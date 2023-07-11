@@ -18,6 +18,8 @@
 		"sanity": "^3.14.1"
 	},
 	"devDependencies": {
+		"@sanity/client": "^6.1.7",
+		"@sanity/image-url": "^1.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-vercel": "^3.0.1",
 		"@sveltejs/kit": "^1.20.4",
