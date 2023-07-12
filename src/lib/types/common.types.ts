@@ -1,11 +1,11 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface PageProps<T> {
-  site: SiteDataProps;
+  site: SiteProps;
   page: T;
 }
 
-export interface SiteDataProps {
+export interface SiteProps {
   logos: {
     favicon: SanityAsset;
     mobileLogo: SanityAsset;
