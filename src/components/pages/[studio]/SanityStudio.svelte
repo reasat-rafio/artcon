@@ -6,6 +6,8 @@
 
   let studioEl: HTMLDivElement;
 
+
+
   onMount(() => {
     if (studioEl) {
       const sanityConfig = defineConfig(config);
@@ -13,6 +15,9 @@
       renderStudio(studioEl, sanityConfig);
     }
   });
+
+
+
 </script>
 
 <svelte:head>
