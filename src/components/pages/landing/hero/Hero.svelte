@@ -1,4 +1,6 @@
 <script lang="ts">
+  import H1 from '@/components/ui/H1.svelte';
+  import H3 from '@/components/ui/H3.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { HeroProps } from '@/lib/types/landing.types';
@@ -21,10 +23,10 @@
       />
     {/if}
 
-    <div class="container relative z-30 max-w-lg text-center text-white">
+    <div class="container relative z-30 max-w-3xl text-center text-white">
       <header>
-        <h1 class="text-7xl font-optiberling-agency">{title}</h1>
-        <h4>{subtitle}</h4>
+        <H1>{title}</H1>
+        <H3 class="whitespace-pre-wrap">{subtitle}</H3>
       </header>
 
       {#if !!cta?.title}
