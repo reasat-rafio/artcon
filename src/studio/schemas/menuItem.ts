@@ -10,29 +10,30 @@ const menuItem = {
     Rule.custom((content: any) => {
       const pageUrlAndExternalURlBothPresent =
         !!content?.pageUrl && !!content?.externalUrl;
-      return pageUrlAndExternalURlBothPresent
-        ? {
-            message:
-              'There should be only one page url or external url set. Please remove the unwanted one'
-          }
-        : true;
+      if (pageUrlAndExternalURlBothPresent)
+        return 'There should be only one page url or external url set. Please remove the unwanted one';
+      else if (!content?.pageUrl && !content?.externalUrl) {
+        return 'You must provide page url or external url';
+      } else {
+        return true;
+      }
     }),
   fields: [
     {
       name: 'title',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     { name: 'pageUrl', type: 'string' },
-    { name: 'externalUrl', type: 'url' }
+    { name: 'externalUrl', type: 'url' },
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'href',
-      highlight: 'highlight'
-    }
-  }
+      highlight: 'highlight',
+    },
+  },
 };
 
 export default menuItem;

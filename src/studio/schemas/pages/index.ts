@@ -1,3 +1,3 @@
-const pages : any =  []
+import landingPage from './landing';
 
-export default pages;
+export default [...landingPage];

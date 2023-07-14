@@ -1,6 +1,7 @@
-import type { ConfigContext } from 'sanity';
 import type { StructureBuilder } from 'sanity/desk';
-import { FaSitemap } from 'react-icons/fa';
+import { FaHome, FaSitemap } from 'react-icons/fa';
+import { RiPagesLine } from 'react-icons/ri';
+import { GrEdit, GrView } from 'react-icons/gr';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -10,6 +11,16 @@ interface PageItemProps {
   icon?: any;
   slug?: string;
 }
+
+const pageItem = (
+  S: StructureBuilder,
+  { schemaType, id, title, icon = GrEdit }: PageItemProps
+) =>
+  S.documentListItem({ schemaType, id, title, icon }).child(
+    S.editor()
+      .schemaType(schemaType)
+      .views([S.view.form().icon(icon)])
+  );
 
 const singleItem = (
   S: StructureBuilder,
@@ -34,13 +45,29 @@ export const AppStructure = (S: StructureBuilder) =>
               singleItem(S, {
                 schemaType: 'site.logos',
                 id: 'siteLogos',
-                title: 'Logos'
+                title: 'Logos',
               }),
               singleItem(S, {
                 schemaType: 'site.nav',
                 id: 'siteNav',
-                title: 'Navigation'
-              })
+                title: 'Navigation',
+              }),
             ])
-        )
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Pages')
+        .icon(RiPagesLine)
+        .child(
+          S.list()
+            .title('Pages')
+            .items([
+              pageItem(S, {
+                schemaType: 'landingPage',
+                id: 'landingPage',
+                title: 'Landing',
+                icon: FaHome,
+              }),
+            ])
+        ),
     ]);
