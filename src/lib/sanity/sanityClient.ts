@@ -1,6 +1,6 @@
 import {
   PUBLIC_SANITY_DATASET,
-  PUBLIC_SANITY_PROJECT_ID
+  PUBLIC_SANITY_PROJECT_ID,
 } from '$env/static/public';
 
 import { createClient } from '@sanity/client';
@@ -11,11 +11,11 @@ export const sanityClient = createClient({
   projectId: PUBLIC_SANITY_PROJECT_ID,
   dataset: PUBLIC_SANITY_DATASET,
   apiVersion: '2021-10-21',
-  useCdn: process.env.NODE_ENV === 'production'
+  useCdn: process.env.NODE_ENV === 'production',
 });
 
-export const builder = imageUrlBuilder(sanityClient);
+export const imageBuilder = imageUrlBuilder(sanityClient);
 
 export const urlFor = (source: SanityImageSource) => {
-  return builder.image(source);
+  return imageBuilder.image(source);
 };

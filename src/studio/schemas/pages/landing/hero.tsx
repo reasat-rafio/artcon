@@ -37,7 +37,7 @@ const hero = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'CTA',
+      name: 'cta',
       type: 'cta',
     },
     {

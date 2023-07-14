@@ -1,18 +1,19 @@
 <script lang="ts">
   import type {
     ImageUrlBuilderOptionsWithAliases,
-    SanityImageSource
+    SanityImageSource,
   } from '@sanity/image-url/lib/types/types';
   import { defaultSanityImageDefaults } from './defaults';
+
   import {
     generateWidths,
     isSanityDimensionedImage,
-    isSanityImageWithLqip
+    isSanityImageWithLqip,
   } from './fns';
   import type { AutoWidths, SanityImageProps } from './types';
   import type { ImageUrlBuilder } from '@sanity/image-url/lib/types/builder';
 
-  import type { HTMLImgAttributes } from 'svelte/elements/index';
+  import type { HTMLImgAttributes } from 'svelte/elements';
 
   type $$Props = SanityImageProps & Omit<HTMLImgAttributes, 'src'>;
 
@@ -46,7 +47,7 @@
     const [width, height] = isSanityDimensionedImage(src)
       ? [
           src.asset.metadata.dimensions.width,
-          src.asset.metadata.dimensions.height
+          src.asset.metadata.dimensions.height,
         ]
       : [undefined, undefined];
 

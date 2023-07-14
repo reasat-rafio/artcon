@@ -13,10 +13,6 @@
   let faviconImage = favicon
     ? urlFor(favicon).size(256, 256).ignoreImageParams().url()
     : null;
-
-  console.log('====================================');
-  console.log(faviconImage);
-  console.log('====================================');
 </script>
 
 <svelte:head>
