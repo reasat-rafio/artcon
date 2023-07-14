@@ -22,6 +22,6 @@
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
 
-<Navbar {nav} {logo} />
+<Navbar {logo} />
 <NavItems {nav} />
 <slot />
