@@ -12,10 +12,10 @@ export interface SiteProps {
     ogImage: SanityAsset;
     logo: SanityAsset;
   };
-  nav: Nav;
+  nav: NavProps;
 }
 
-export interface Nav {
+export interface NavProps {
   _rev: string;
   _type: string;
   _id: string;

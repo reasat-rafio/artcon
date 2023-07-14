@@ -3,11 +3,13 @@
   import Navbar from '@/components/navigation/Navbar.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';
+  import NavItems from '@/components/navigation/NavItems.svelte';
 
   export let data: { site: SiteProps };
   let {
     site: {
-      logos: { favicon },
+      nav,
+      logos: { favicon, logo },
     },
   } = data;
 
@@ -19,5 +21,7 @@
 <svelte:head>
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
-<Navbar />
+
+<Navbar {nav} {logo} />
+<NavItems {nav} />
 <slot />
