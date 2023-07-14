@@ -23,7 +23,7 @@
 
     <div class="container relative z-30 max-w-lg text-center text-white">
       <header>
-        <h1>{title}</h1>
+        <h1 class="text-7xl font-optiberling-agency">{title}</h1>
         <h4>{subtitle}</h4>
       </header>
 
