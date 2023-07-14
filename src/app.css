@@ -16,3 +16,14 @@
     }
   }
 }
+
+/* Fonts */
+@layer base {
+  @font-face {
+    font-family: 'OPTIBerling Agency';
+    src: local('OPTIBerling-Agency'), local('optiberling-agency'),
+      url('/fonts/OPTIBerling-Agency.otf');
+    font-weight: normal;
+    font-display: swap;
+  }
+}

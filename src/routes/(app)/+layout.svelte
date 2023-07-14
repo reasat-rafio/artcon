@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '@fontsource-variable/inter';
   import Navbar from '@/components/navigation/Navbar.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';

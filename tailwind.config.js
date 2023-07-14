@@ -2,8 +2,12 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        inter: ['Inter Variable', 'sans-serif'],
+        'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
-}
-
+};
