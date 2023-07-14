@@ -38,3 +38,9 @@ export interface SeoProps {
   description: string;
   ogImage: SanityAsset;
 }
+
+export interface Cta {
+  _type: 'cta';
+  title: string;
+  href: string;
+}

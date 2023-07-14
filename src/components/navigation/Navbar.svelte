@@ -1,4 +1,1 @@
-<nav class="fixed left-0 top-0">
-	Hi
-	<!--  -->
-</nav>
+<nav class="fixed top-0 left-0">navbar</nav>
