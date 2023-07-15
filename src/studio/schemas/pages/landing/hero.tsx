@@ -75,6 +75,7 @@ const hero = {
               options: {
                 accept: 'video/webm,video/x-matroska',
               },
+              validation: (Rule: Rule) => Rule.required(),
             },
             {
               name: 'video_hevc',
@@ -83,6 +84,7 @@ const hero = {
               options: {
                 accept: 'video/quicktime,video/mp4',
               },
+              validation: (Rule: Rule) => Rule.required(),
             },
           ],
         },
