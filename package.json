@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@fontsource-variable/inter": "^5.0.5",
+    "@portabletext/svelte": "^2.0.0",
     "@sanity/client": "^6.1.7",
     "@sanity/image-url": "^1.0.2",
     "@sveltejs/adapter-auto": "^2.0.0",
