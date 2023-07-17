@@ -52,6 +52,11 @@ export const AppStructure = (S: StructureBuilder) =>
                 id: 'siteNav',
                 title: 'Navigation',
               }),
+              singleItem(S, {
+                schemaType: 'site.contact',
+                id: 'siteContacs',
+                title: 'Contacts',
+              }),
             ])
         ),
       S.divider(),

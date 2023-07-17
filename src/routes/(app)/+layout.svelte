@@ -1,9 +1,9 @@
 <script lang="ts">
-  import '@fontsource-variable/inter';
+  import NavItems from '@/components/navigation/NavItems.svelte';
   import Navbar from '@/components/navigation/Navbar.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';
-  import NavItems from '@/components/navigation/NavItems.svelte';
+  import '@fontsource-variable/inter';
 
   export let data: { site: SiteProps };
   let {

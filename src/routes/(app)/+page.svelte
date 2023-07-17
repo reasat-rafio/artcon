@@ -6,10 +6,12 @@
 
   export let data: PageProps<HomePageProps>;
   let { page, site } = data;
+
+  let rootEl: HTMLDivElement;
 </script>
 
 <Seo seo={page?.seo} siteOgImg={site?.logos?.ogImage} />
-<div class="">
+<div bind:this={rootEl}>
   {#each page.sections as s}
     {#if s._type === 'landingPage.hero'}
       <Hero props={s} />
