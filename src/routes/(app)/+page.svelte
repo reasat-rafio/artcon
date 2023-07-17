@@ -8,6 +8,8 @@
   let { page, site } = data;
 
   let rootEl: HTMLDivElement;
+
+  console.log(site);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={site?.logos?.ogImage} />

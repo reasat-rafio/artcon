@@ -10,6 +10,17 @@ export const siteQuery = groq`{
     "nav": *[_type == "site.nav"][0] {
       ...,
     },
+    "contact": *[_type == "site.contact"][0] {
+      ...,
+      socialsWithVisibleLinks[]{
+        ...,
+        ${asset('icon')},
+      },
+      socials[]{
+        ...,
+        ${asset('icon')},
+      }
+    }
   }`;
 
 export const pageQuery = (query: string) => groq`{

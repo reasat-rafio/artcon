@@ -31,7 +31,12 @@ const contact = {
               type: 'image',
               validation: (Rule: Rule) => Rule.required(),
             },
-            { name: 'info', type: 'array', of: [{ type: 'block' }] },
+            {
+              name: 'info',
+              type: 'array',
+              of: [{ type: 'block' }],
+              validation: (Rule: Rule) => Rule.required(),
+            },
           ],
         },
       ],

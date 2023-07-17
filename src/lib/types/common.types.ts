@@ -1,4 +1,5 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+import type { PortableTextBlock } from 'sanity';
 
 export interface PageProps<T> {
   site: SiteProps;
@@ -13,6 +14,32 @@ export interface SiteProps {
     logo: SanityAsset;
   };
   nav: NavProps;
+  contact: ContactProps;
+}
+
+export interface ContactProps {
+  _rev: string;
+  _type: string;
+  _id: string;
+  _updatedAt: Date;
+  _createdAt: Date;
+  title: string;
+  subtitle: string;
+  socialsWithVisibleLinks: SocialsWithVisibleLinkProps[];
+  socials: SocialProps[];
+}
+
+export interface SocialProps {
+  _key: string;
+  _type: string;
+  icon: SanityAsset;
+  link: string;
+}
+export interface SocialsWithVisibleLinkProps {
+  _key: string;
+  _type: string;
+  icon: SanityAsset;
+  info: PortableTextBlock;
 }
 
 export interface NavProps {
