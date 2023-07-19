@@ -21,4 +21,28 @@
     font-weight: 500;
     font-display: swap;
   }
+
+  @font-face {
+    font-family: 'ABC Arizona Serif';
+    src: url(/fonts/ABCArizonaSerif-Light-Trial.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: 'ABC Arizona Serif';
+    src: url(/fonts/ABCArizonaSerif-LightItalic-Trial.woff2) format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: fallback;
+  }
+
+  @font-face {
+    font-family: ABC Arizona Sans;
+    src: url(/fonts/ABCArizonaSans-Light-Trial.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: fallback;
+  }
 }
