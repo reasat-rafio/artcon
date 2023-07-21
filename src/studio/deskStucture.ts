@@ -1,13 +1,19 @@
 import type { StructureBuilder } from 'sanity/desk';
-import { FaHome, FaSitemap } from 'react-icons/fa';
+import { FaSitemap } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
-import { GrEdit, GrView } from 'react-icons/gr';
+import { GrEdit } from 'react-icons/gr';
+import { PiProjectorScreenChartLight, PiVirtualReality } from 'react-icons/pi';
 import {
+  FcAbout,
   FcBookmark,
+  FcContacts,
+  FcDocument,
   FcExport,
   FcHome,
   FcPodiumWithAudience,
+  FcServices,
 } from 'react-icons/fc';
+import { BsFillCollectionFill } from 'react-icons/bs';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -96,6 +102,48 @@ export const AppStructure = (S: StructureBuilder) =>
                 id: 'publicationPage',
                 title: 'Publication',
                 icon: FcExport,
+              }),
+              pageItem(S, {
+                schemaType: 'vrPage',
+                id: 'vrPage',
+                title: 'VR',
+                icon: PiVirtualReality,
+              }),
+              pageItem(S, {
+                schemaType: 'collectionPage',
+                id: 'collectionPage',
+                title: 'Collection',
+                icon: BsFillCollectionFill,
+              }),
+              pageItem(S, {
+                schemaType: 'documentaryPage',
+                id: 'documentaryPage',
+                title: 'Documentary',
+                icon: FcDocument,
+              }),
+              pageItem(S, {
+                schemaType: 'projectPage',
+                id: 'projectPage',
+                title: 'Project',
+                icon: PiProjectorScreenChartLight,
+              }),
+              pageItem(S, {
+                schemaType: 'servicePage',
+                id: 'servicePage',
+                title: 'Service',
+                icon: FcServices,
+              }),
+              pageItem(S, {
+                schemaType: 'aboutUsPage',
+                id: 'aboutUsPage',
+                title: 'About Us',
+                icon: FcAbout,
+              }),
+              pageItem(S, {
+                schemaType: 'contactPage',
+                id: 'contactPage',
+                title: 'Contact',
+                icon: FcContacts,
               }),
             ])
         ),

@@ -1,3 +1,3 @@
-import exhibitionPage from './document';
+import eventPage from './document';
 
-export default [exhibitionPage];
+export default [eventPage];
