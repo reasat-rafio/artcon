@@ -1,9 +1,9 @@
-import { FaChrome } from 'react-icons/fa';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import VideoPreview from '@/studio/components/VideoPreview';
 import React from 'react';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { SanityAssetDocument } from '@sanity/client';
+import { FcHome } from 'react-icons/fc';
 
 interface AsssetFieldProps {
   parent: {
@@ -24,7 +24,7 @@ const commonHero = {
   name: 'common.hero',
   type: 'object',
   title: 'Hero',
-  icon: FaChrome,
+  icon: FcHome,
   fields: [
     {
       name: 'type',
@@ -112,7 +112,7 @@ const commonHero = {
         ) : webm && hevc ? (
           <VideoPreview background="#eee" webm={webm} hevc={hevc} />
         ) : (
-          FaChrome
+          FcHome
         ),
       };
     },
