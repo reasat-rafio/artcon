@@ -1,19 +1,22 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import type { NavProps } from '@/lib/types/common.types';
 
   export let nav: NavProps;
   let { menu } = nav;
+
+  console.log($page.url.pathname);
 </script>
 
-<aside class="fixed left-0 z-50 -translate-y-1/2 top-1/2">
-  <nav class="flex flex-col mx-[40px] space-y-[23px]">
-    {#each menu as { title, externalUrl, pageUrl }, index}
+<aside class="fixed left-0 top-1/2 z-50 -translate-y-1/2">
+  <nav class="mx-[40px] flex flex-col space-y-[23px]">
+    {#each menu as { title, externalUrl, pageUrl }}
       <a
         href={pageUrl ?? externalUrl}
-        class="font-semibold uppercase text-button text-white transition-colors duration-500 {index ===
-        0
+        class="text-button font-semibold uppercase text-white transition-opacity duration-500 {$page
+          .url.pathname === pageUrl
           ? 'opacity-100'
-          : 'text-opacity-60 hover:text-opacity-100'}"
+          : 'opacity-50 hover:opacity-100'}"
       >
         {title}
       </a>

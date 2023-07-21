@@ -6,8 +6,8 @@
   export let logo: SanityAsset;
 </script>
 
-<nav class="fixed top-0 left-0 z-50 w-full">
-  <div class="px-[40px] mt-[40px] flex w-full items-center">
+<nav class="fixed left-0 top-0 z-50 w-full">
+  <div class="mt-[40px] flex w-full items-center px-[40px]">
     <a class="" href="/">
       <SanityImage
         class="h-[50px] object-contain"
