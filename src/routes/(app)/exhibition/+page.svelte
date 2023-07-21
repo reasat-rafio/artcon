@@ -1,5 +1,7 @@
 <script lang="ts">
+  import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
+  import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionPageProps } from '@/lib/types/exhibition.types';
 
@@ -15,6 +17,8 @@
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
       <Hero props={s} />
+    {:else if s._type === 'common.imageAsset'}
+      <ImageAsset props={s} />
     {/if}
   {/each}
 </div>

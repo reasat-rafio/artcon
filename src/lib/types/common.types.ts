@@ -86,3 +86,9 @@ export interface CommonHeroProps {
     };
   };
 }
+
+export interface CommonImageAsset {
+  _type: 'common.imageAsset';
+  _key: string;
+  image: SanityAsset;
+}
