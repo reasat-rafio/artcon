@@ -3,7 +3,9 @@ import collection from './collection';
 import contact from './contact';
 import documentary from './documentary';
 import event from './event';
+import eventDetails from './[event]';
 import exhibition from './exhibition';
+import exhibitionDetails from './[exhibition]';
 import landing from './landing';
 import project from './project';
 import publication from './publication';
@@ -22,4 +24,6 @@ export default [
   ...service,
   ...aboutUs,
   ...contact,
+  ...exhibitionDetails,
+  ...eventDetails,
 ];

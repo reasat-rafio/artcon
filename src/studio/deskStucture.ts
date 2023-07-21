@@ -5,13 +5,14 @@ import { GrEdit } from 'react-icons/gr';
 import { PiProjectorScreenChartLight, PiVirtualReality } from 'react-icons/pi';
 import {
   FcAbout,
-  FcBookmark,
+  FcCalendar,
   FcContacts,
   FcDocument,
   FcExport,
   FcHome,
   FcPodiumWithAudience,
   FcServices,
+  FcStackOfPhotos,
 } from 'react-icons/fc';
 import { BsFillCollectionFill } from 'react-icons/bs';
 
@@ -89,7 +90,7 @@ export const AppStructure = (S: StructureBuilder) =>
                 schemaType: 'exhibitionPage',
                 id: 'exhibitionPage',
                 title: 'Exhibition',
-                icon: FcBookmark,
+                icon: FcStackOfPhotos,
               }),
               pageItem(S, {
                 schemaType: 'eventPage',
@@ -145,6 +146,29 @@ export const AppStructure = (S: StructureBuilder) =>
                 title: 'Contact',
                 icon: FcContacts,
               }),
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Exhibition')
+        .icon(FcStackOfPhotos)
+        .child(
+          S.list()
+            .title('Exhibition')
+            .items([
+              S.documentTypeListItem('exhibition').title('Exhibitions'),
+              S.documentTypeListItem('exhibitionTag').title('Tags'),
+            ])
+        ),
+      S.listItem()
+        .title('Event')
+        .icon(FcCalendar)
+        .child(
+          S.list()
+            .title('Event')
+            .items([
+              S.documentTypeListItem('event').title('Events'),
+              S.documentTypeListItem('eventTag').title('Tags'),
             ])
         ),
     ]);

@@ -8,7 +8,7 @@
   let { type, title, subtitle, asset, cta } = props;
 </script>
 
-<section class="{$$props.class ?? ''} h-screen w-screen">
+<section class="{$$props.class ?? ''} h-screen w-full">
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
 
