@@ -2,7 +2,12 @@ import type { StructureBuilder } from 'sanity/desk';
 import { FaHome, FaSitemap } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit, GrView } from 'react-icons/gr';
-import { FcBookmark, FcHome, FcPodiumWithAudience } from 'react-icons/fc';
+import {
+  FcBookmark,
+  FcExport,
+  FcHome,
+  FcPodiumWithAudience,
+} from 'react-icons/fc';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -85,6 +90,12 @@ export const AppStructure = (S: StructureBuilder) =>
                 id: 'eventPage',
                 title: 'Event',
                 icon: FcPodiumWithAudience,
+              }),
+              pageItem(S, {
+                schemaType: 'publicationPage',
+                id: 'publicationPage',
+                title: 'Publication',
+                icon: FcExport,
               }),
             ])
         ),
