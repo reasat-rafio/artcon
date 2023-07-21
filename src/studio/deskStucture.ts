@@ -2,6 +2,7 @@ import type { StructureBuilder } from 'sanity/desk';
 import { FaHome, FaSitemap } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit, GrView } from 'react-icons/gr';
+import { FcBookmark, FcHome } from 'react-icons/fc';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -71,7 +72,13 @@ export const AppStructure = (S: StructureBuilder) =>
                 schemaType: 'landingPage',
                 id: 'landingPage',
                 title: 'Landing',
-                icon: FaHome,
+                icon: FcHome,
+              }),
+              pageItem(S, {
+                schemaType: 'exhibitionPage',
+                id: 'exhibitionPage',
+                title: 'Exhibition',
+                icon: FcBookmark,
               }),
             ])
         ),

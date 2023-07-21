@@ -1,3 +1,4 @@
-import landingPage from './landing';
+import exhibition from './exhibition';
+import landing from './landing';
 
-export default [...landingPage];
+export default [...landing, ...exhibition];

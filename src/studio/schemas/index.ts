@@ -5,6 +5,7 @@ import seo from './seo';
 import site from './site';
 import portableText from './portableText';
 import commonHero from './hero';
+import commonImageAsset from './imageAsset';
 
 export const schemaTypes = [
   ...site,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   cta,
   portableText,
   commonHero,
+  commonImageAsset,
 ];
