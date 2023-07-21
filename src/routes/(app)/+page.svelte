@@ -17,9 +17,9 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div bind:this={rootEl}>
   {#each page.sections as s}
-    {#if s._type === 'landingPage.hero'}
+    {#if s._type === 'common.hero'}
       <Hero props={s} />
     {/if}
   {/each}
-  <Contact {contact} />
+  <!-- <Contact {contact} /> -->
 </div>

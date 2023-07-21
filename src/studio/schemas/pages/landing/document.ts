@@ -12,7 +12,7 @@ const landingPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'landingPage.hero' }],
+      of: [{ type: 'common.hero' }],
     },
   ],
   preview: {

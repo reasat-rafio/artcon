@@ -20,12 +20,16 @@ interface PrepareProps extends SanityDefaultPreviewProps {
   hevc: string;
 }
 
-const hero = {
-  name: 'landingPage.hero',
+const commonHero = {
+  name: 'common.hero',
   type: 'object',
   title: 'Hero',
   icon: FaChrome,
   fields: [
+    {
+      name: 'type',
+      type: 'string',
+    },
     {
       name: 'title',
       type: 'string',
@@ -34,7 +38,6 @@ const hero = {
     {
       name: 'subtitle',
       type: 'text',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'cta',
@@ -60,6 +63,7 @@ const hero = {
               title: 'Alternative Text',
               description: 'Important for SEO and accessibility',
               type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
             },
           ],
         },
@@ -115,4 +119,4 @@ const hero = {
   },
 };
 
-export default hero;
+export default commonHero;

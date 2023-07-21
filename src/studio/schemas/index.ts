@@ -4,6 +4,7 @@ import pages from './pages';
 import seo from './seo';
 import site from './site';
 import portableText from './portableText';
+import commonHero from './hero';
 
 export const schemaTypes = [
   ...site,
@@ -12,4 +13,5 @@ export const schemaTypes = [
   menuItem,
   cta,
   portableText,
+  commonHero,
 ];

@@ -71,3 +71,18 @@ export interface Cta {
   title: string;
   href: string;
 }
+export interface CommonHeroProps {
+  _type: 'common.hero';
+  _key: string;
+  type?: string;
+  title: string;
+  subtitle?: string;
+  cta?: Cta;
+  asset: {
+    image?: SanityAsset;
+    video?: {
+      webm: string;
+      mov: string;
+    };
+  };
+}
