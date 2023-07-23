@@ -23,6 +23,12 @@ const quote = {
       description: 'Source on the web',
     },
   ],
+  preview: {
+    select: {
+      title: 'text',
+      subtitle: 'author',
+    },
+  },
 };
 
 export default quote;

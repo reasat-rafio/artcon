@@ -12,7 +12,23 @@ const exhibition = {
       type: 'seo',
       validation: (Rule: Rule) => Rule.required(),
     },
+    {
+      name: 'sections',
+      title: 'Sections',
+      type: 'array',
+      of: [
+        { type: 'common.hero' },
+        { type: 'exhibition.summary' },
+        { type: 'common.imageAsset' },
+      ],
+    },
   ],
+  preview: {
+    select: {
+      title: 'seo.title',
+      subtitle: 'seo.description',
+    },
+  },
 };
 
 export default exhibition;

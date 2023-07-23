@@ -28,6 +28,13 @@ const vrExhibitionnCta = {
       validation: (Rule: Rule) => Rule.required(),
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'subtitle',
+      media: 'image',
+    },
+  },
 };
 
 export default vrExhibitionnCta;

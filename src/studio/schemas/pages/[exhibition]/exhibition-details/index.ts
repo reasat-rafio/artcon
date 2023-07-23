@@ -1,3 +1,4 @@
-import exhibition from './document';
+import exhibitionPage from './document';
+import summary from './summary';
 
-export default [exhibition];
+export default [exhibitionPage, summary];
