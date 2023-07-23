@@ -6,6 +6,8 @@ import site from './site';
 import portableText from './portableText';
 import commonHero from './hero';
 import commonImageAsset from './imageAsset';
+import quote from './quote';
+import vrExhibitionnCta from './vrExhibitionCta';
 
 export const schemaTypes = [
   ...site,
@@ -13,6 +15,8 @@ export const schemaTypes = [
   seo,
   menuItem,
   cta,
+  quote,
+  vrExhibitionnCta,
   portableText,
   commonHero,
   commonImageAsset,
