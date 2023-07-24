@@ -20,6 +20,7 @@ const exhibition = {
         { type: 'common.hero' },
         { type: 'exhibition.summary' },
         { type: 'common.imageAsset' },
+        { type: 'exhibition.featured' },
       ],
     },
   ],

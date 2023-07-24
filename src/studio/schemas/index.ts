@@ -8,6 +8,7 @@ import commonHero from './hero';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
 import vrExhibitionnCta from './vrExhibitionCta';
+import social from './social';
 
 export const schemaTypes = [
   ...site,
@@ -16,6 +17,7 @@ export const schemaTypes = [
   menuItem,
   cta,
   quote,
+  social,
   vrExhibitionnCta,
   portableText,
   commonHero,
