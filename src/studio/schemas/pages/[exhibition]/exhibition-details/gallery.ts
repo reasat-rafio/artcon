@@ -31,20 +31,27 @@ const gallery = {
       ],
     },
     {
-      name: 'title',
-      type: 'string',
+      name: 'descriptionBlock',
+      type: 'object',
       validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'description',
-      type: 'text',
-      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'title',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'description',
+          type: 'text',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
     },
   ],
   preview: {
     select: {
-      title: 'title',
-      subtitle: 'description',
+      title: 'descriptionBlock.title',
+      subtitle: 'descriptionBlock.description',
     },
   },
 };

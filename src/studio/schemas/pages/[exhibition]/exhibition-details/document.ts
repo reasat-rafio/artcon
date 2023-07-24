@@ -13,6 +13,12 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',
@@ -23,6 +29,7 @@ const exhibition = {
         { type: 'exhibition.featured' },
         { type: 'exhibition.note' },
         { type: 'exhibition.gallery' },
+        { type: 'exhibition.newsAndMedia' },
       ],
     },
   ],
