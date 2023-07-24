@@ -18,12 +18,10 @@ const featuredGroup = {
       validation: (Rule: Rule) => Rule.required(),
       of: [
         {
-          name: 'image',
-          type: 'image',
+          name: 'artist',
+          type: 'reference',
+          to: [{ type: 'artist' }],
           validation: (Rule: Rule) => Rule.required(),
-          options: {
-            hotspot: true,
-          },
         },
       ],
     },
