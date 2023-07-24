@@ -10,7 +10,6 @@ const imageAsset = {
     {
       name: 'image',
       type: 'image',
-      title: 'Image',
       validation: (Rule: Rule) => Rule.required(),
       options: {
         hotspot: true,

@@ -18,6 +18,11 @@ const featured = {
       ],
     },
   ],
+  preview: {
+    prepare: () => ({
+      title: 'Solo or Group Exhibition',
+    }),
+  },
 };
 
 export default featured;

@@ -21,6 +21,8 @@ const exhibition = {
         { type: 'exhibition.summary' },
         { type: 'common.imageAsset' },
         { type: 'exhibition.featured' },
+        { type: 'exhibition.note' },
+        { type: 'exhibition.gallery' },
       ],
     },
   ],
