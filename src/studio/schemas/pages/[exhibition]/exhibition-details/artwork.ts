@@ -62,17 +62,17 @@ const artwork = {
                   type: 'string',
                   validation: (Rule: Rule) => Rule.required(),
                 },
+                {
+                  name: 'description',
+                  type: 'text',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
               ],
-            },
-            {
-              name: 'description',
-              type: 'text',
-              validation: (Rule: Rule) => Rule.required(),
             },
           ],
           preview: {
             select: {
-              title: 'description',
+              title: 'image.description',
               media: 'image',
             },
           },

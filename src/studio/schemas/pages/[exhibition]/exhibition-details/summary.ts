@@ -9,103 +9,75 @@ const summary = {
   icon: FaHighlighter,
   fields: [
     {
-      name: 'quoet',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.length(1),
-      of: [
-        {
-          name: 'quote',
-          type: 'quote',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
+      name: 'quote',
+      type: 'quote',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'descriptionBlock',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.length(1),
-      of: [
+      type: 'object',
+      icon: FcInfo,
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
         {
-          name: 'descriptionBlock',
-          type: 'object',
-          icon: FcInfo,
+          name: 'name',
+          type: 'string',
           validation: (Rule: Rule) => Rule.required(),
-          fields: [
+        },
+        {
+          name: 'datetime',
+          type: 'datetime',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'moreInformations',
+          type: 'array',
+          of: [
             {
-              name: 'name',
-              type: 'string',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              name: 'datetime',
-              type: 'datetime',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              name: 'moreInformations',
-              type: 'array',
-              of: [
+              name: 'information',
+              type: 'object',
+              icon: FcInfo,
+              fields: [
                 {
-                  name: 'information',
-                  type: 'object',
-                  icon: FcInfo,
-                  fields: [
-                    {
-                      name: 'key',
-                      type: 'string',
-                      validation: (Rule: Rule) => Rule.required(),
-                    },
-                    {
-                      name: 'value',
-                      type: 'string',
-                      validation: (Rule: Rule) => Rule.required(),
-                    },
-                  ],
-                  preview: {
-                    select: {
-                      title: 'key',
-                      subtitle: 'value',
-                    },
-                  },
+                  name: 'key',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
+                {
+                  name: 'value',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
                 },
               ],
-            },
-
-            {
-              name: 'description',
-              type: 'text',
-              validation: (Rule: Rule) => Rule.required(),
+              preview: {
+                select: {
+                  title: 'key',
+                  subtitle: 'value',
+                },
+              },
             },
           ],
-          preview: {
-            select: {
-              title: 'name',
-              subtitle: 'description',
-            },
-          },
+        },
+
+        {
+          name: 'description',
+          type: 'text',
+          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },
 
     {
       name: 'vrExhibitionnCta',
+      type: 'vrExhibitionnCta',
       title: 'VR Exhibitionn Call To Action',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.length(1),
-      of: [
-        {
-          name: 'vrExhibitionnCta',
-          type: 'vrExhibitionnCta',
-          title: 'VR Exhibitionn Call To Action',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
+      validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
-      title: 'descriptionBlock[0].name',
-      subtitle: 'descriptionBlock[0].description',
+      title: 'descriptionBlock.name',
+      subtitle: 'descriptionBlock.description',
     },
   },
 };

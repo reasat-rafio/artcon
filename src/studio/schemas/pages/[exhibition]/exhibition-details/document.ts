@@ -28,6 +28,8 @@ const exhibition = {
         { type: 'common.imageAsset' },
         { type: 'exhibition.featured' },
         { type: 'exhibition.note' },
+        { type: 'exhibition.promotion' },
+        { type: 'exhibition.artwork' },
         { type: 'exhibition.gallery' },
         { type: 'exhibition.newsAndMedia' },
       ],
