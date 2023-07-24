@@ -11,6 +11,7 @@ import {
   FcExport,
   FcHome,
   FcPodiumWithAudience,
+  FcPortraitMode,
   FcServices,
   FcStackOfPhotos,
 } from 'react-icons/fc';
@@ -169,6 +170,17 @@ export const AppStructure = (S: StructureBuilder) =>
             .items([
               S.documentTypeListItem('event').title('Events'),
               S.documentTypeListItem('eventTag').title('Tags'),
+            ])
+        ),
+      S.listItem()
+        .title('Artist')
+        .icon(FcPortraitMode)
+        .child(
+          S.list()
+            .title('Artist')
+            .items([
+              S.documentTypeListItem('artist').title('Artists'),
+              S.documentTypeListItem('artistTag').title('Tags'),
             ])
         ),
     ]);

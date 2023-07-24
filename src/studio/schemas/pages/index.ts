@@ -11,6 +11,7 @@ import project from './project';
 import publication from './publication';
 import service from './service';
 import vr from './vr';
+import artistDetails from './[artist]';
 
 export default [
   ...landing,
@@ -26,4 +27,5 @@ export default [
   ...contact,
   ...exhibitionDetails,
   ...eventDetails,
+  ...artistDetails,
 ];
