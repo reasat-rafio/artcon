@@ -1,5 +1,5 @@
 import { FcStackOfPhotos } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDocument } from 'sanity';
 
 const exhibition = {
   name: 'exhibition',
@@ -13,11 +13,22 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'slug',
+      type: 'slug',
+      options: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        source: (_: SanityDocument, context: any) =>
+          context.parent.sections[0].title,
+      },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'tags',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
       validation: (Rule: Rule) => Rule.required(),
     },
+
     {
       name: 'sections',
       title: 'Sections',
