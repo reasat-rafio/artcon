@@ -7,9 +7,11 @@ import { asset } from '@/lib/sanity/sanity-image/query.js';
 const query = (params: RouteParams) =>
   groq`*[_type== "exhibition" && slug.current == "${params.slug}"] [0]{
     ...,
+    tags[]->,
     sections[]{
         ...,
         ${asset('image')},
+        ${asset('images[]', { as: 'images' })},
         asset {
             ...,
             ${asset('image')},
@@ -22,9 +24,25 @@ const query = (params: RouteParams) =>
             ...,
             ${asset('image')},
         },
-        featured[]{
+        featured[0]{
             ...,
             ${asset('images[]', { as: 'images' })},
+            descriptionBlock{
+                ...,
+                socials[]{
+                    ...,
+                    ${asset('icon')},
+                }
+            }
+        },
+        artworks[]{
+            ...,
+            ${asset('image')},
+        },
+        newsAndMedia[]{
+            ...,
+            ${asset('image')},
+
         }
     }
 

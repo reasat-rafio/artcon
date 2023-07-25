@@ -92,3 +92,27 @@ export interface CommonImageAsset {
   _key: string;
   image: SanityAsset;
 }
+
+export interface Tag {
+  _rev: string;
+  _type: string;
+  name: string;
+  _id: string;
+  _updatedAt: Date;
+  _createdAt: Date;
+}
+
+export interface Quote {
+  author: string;
+  _type: string;
+  text: string;
+  url?: string;
+}
+
+export interface VRExhibitionnCta {
+  image: SanityAsset;
+  subtitle: string;
+  _type: string;
+  title: string;
+  url: string;
+}
