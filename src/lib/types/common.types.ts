@@ -116,3 +116,7 @@ export interface VRExhibitionnCta {
   title: string;
   url: string;
 }
+
+export interface DescriptionBlock {
+  description: string;
+}

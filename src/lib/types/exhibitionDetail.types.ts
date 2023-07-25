@@ -1,3 +1,4 @@
+import type DescriptionBlock from '@/components/DescriptionBlock.svelte';
 import type {
   CommonHeroProps,
   CommonImageAsset,
@@ -21,14 +22,12 @@ export interface SummaryProps {
   quote: Quote;
   descriptionBlock: SummaryDescriptionBlock;
   vrExhibitionnCta: VRExhibitionnCta;
-  images: null;
 }
 
-export interface SummaryDescriptionBlock {
+export interface SummaryDescriptionBlock extends DescriptionBlock {
   moreInformations: MoreInformation[];
   datetime: Date;
   name: string;
-  description: string;
 }
 export interface MoreInformation {
   _type: string;
