@@ -80,6 +80,12 @@ const artwork = {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'descriptionBlock.title',
+      subtitle: 'descriptionBlock.description',
+    },
+  },
 };
 
 export default artwork;

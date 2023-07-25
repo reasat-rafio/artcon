@@ -26,8 +26,8 @@ const featuredSolo = {
           validation: (Rule: Rule) => Rule.required(),
         },
         {
-          name: 'datetime',
-          type: 'datetime',
+          name: 'subtile',
+          type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
         {
