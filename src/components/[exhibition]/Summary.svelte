@@ -11,9 +11,8 @@
 <section>
   <div class="container">
     <Quote props={quote} />
-    <DescriptionBlock props={descriptionBlock.description}>
-      <!--  -->
+    <!-- <DescriptionBlock props={descriptionBlock.description}>
     </DescriptionBlock>
-    <VrExhibitionCta props={vrExhibitionnCta} />
+    <VrExhibitionCta props={vrExhibitionnCta} /> -->
   </div>
 </section>
