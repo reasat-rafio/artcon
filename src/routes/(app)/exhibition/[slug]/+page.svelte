@@ -1,6 +1,7 @@
 <script lang="ts">
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
+  import Share from '@/components/[exhibition]/Share.svelte';
   import Summary from '@/components/[exhibition]/Summary.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
@@ -14,10 +15,15 @@
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
+
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
     <Hero props={s} />
-  {:else if s._type === 'common.imageAsset'}
+  {/if}
+{/each}
+<Share />
+{#each page.sections as s}
+  {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
     <Summary props={s} />

@@ -2,6 +2,12 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
+    container: {
+      center: true,
+    },
+    spacing: {
+      xl: '144px',
+    },
     colors: {
       red: {
         200: 'rgba(234, 35, 64, 0.20)',

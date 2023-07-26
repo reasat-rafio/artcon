@@ -1,3 +1,3 @@
-<h1 class="{$$props.class ?? ''} text-head-1 font-optiberling-agency">
+<h1 class="{$$props.class ?? ''} font-abc-arizona-serif text-head-1">
   <slot />
 </h1>
