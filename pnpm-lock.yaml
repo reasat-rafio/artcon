@@ -58,6 +58,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.25)
+  embla-carousel-svelte:
+    specifier: 8.0.0-rc11
+    version: 8.0.0-rc11(svelte@4.0.5)
   eslint:
     specifier: ^8.28.0
     version: 8.44.0
@@ -103,9 +106,6 @@ devDependencies:
   svelte-seo:
     specifier: ^1.5.3
     version: 1.5.3
-  swiper:
-    specifier: ^10.0.4
-    version: 10.0.4
   tailwindcss:
     specifier: ^3.3.2
     version: 3.3.2
@@ -2734,6 +2734,28 @@ packages:
 
   /electron-to-chromium@1.4.459:
     resolution: {integrity: sha512-XXRS5NFv8nCrBL74Rm3qhJjA2VCsRFx0OjHKBMPI0otij56aun8UWiKTDABmd5/7GTR021pA4wivs+Ri6XCElg==}
+
+  /embla-carousel-reactive-utils@8.0.0-rc11(embla-carousel@8.0.0-rc11):
+    resolution: {integrity: sha512-pDNVJNCn0dybLkHw93My+cMfkRQ5oLZff6ZCwgmrw+96aPiZUyo5ANywz8Lb70SWWgD/TNBRrtQCquvjHS31Sg==}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc11
+    dependencies:
+      embla-carousel: 8.0.0-rc11
+    dev: true
+
+  /embla-carousel-svelte@8.0.0-rc11(svelte@4.0.5):
+    resolution: {integrity: sha512-HoYJb/h30mXIoM0RitA2j1cibfQ0Kco7FOJJ32JcDqcWzcskSri5I/yEKIvtL1Gsg/O9jmPOTG7r8dfeoQ81EQ==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      embla-carousel: 8.0.0-rc11
+      embla-carousel-reactive-utils: 8.0.0-rc11(embla-carousel@8.0.0-rc11)
+      svelte: 4.0.5
+    dev: true
+
+  /embla-carousel@8.0.0-rc11:
+    resolution: {integrity: sha512-Toeaug98PGYzSY56p/xsa+u4zbQbAXgGymwEDUc2wqT+1XCnnUsH42MClglhABJQbobwDYxOabhJrfXyJKUMig==}
+    dev: true
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5523,11 +5545,6 @@ packages:
       locate-character: 3.0.0
       magic-string: 0.30.1
       periscopic: 3.1.0
-    dev: true
-
-  /swiper@10.0.4:
-    resolution: {integrity: sha512-DlNR3KiaVkPep6RraZ2tNr7lvyuzELuR+4NZr4wO42t0UworIO3DxDlz8b5Q3uUioh7cJad99EdRJLkPF+r8Ag==}
-    engines: {node: '>= 4.7.0'}
     dev: true
 
   /symbol-tree@3.2.4:

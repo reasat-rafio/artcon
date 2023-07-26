@@ -9,6 +9,7 @@
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import Gallery from '@/components/[exhibition]/gallery/Gallery.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   let {
@@ -35,5 +36,7 @@
     <Note props={s} />
   {:else if s._type === 'exhibition.promotion'}
     <Promotion props={s} />
+  {:else if s._type === 'exhibition.gallery'}
+    <Gallery props={s} />
   {/if}
 {/each}
