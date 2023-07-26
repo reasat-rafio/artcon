@@ -34,16 +34,52 @@ export default {
         'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
       },
       fontSize: {
-        'head-1': ['120px', { lineHeight: '116%' }],
-        'head-2': ['32px', { lineHeight: '110%', letterSpacing: '2%' }],
-        'head-3': ['28px', { lineHeight: '120%', letterSpacing: '2%' }],
-        'head-4': ['20px', { lineHeight: '120%', letterSpacing: '2%' }],
-        'head-5': ['16px', { lineHeight: '120%', letterSpacing: '2%' }],
+        'head-1': ['120px', { fontWeight: 500, lineHeight: '139.2px' }],
+        'head-2': [
+          '50px',
+          { lineHeight: '60px', letterSpacing: '1px', fontWeight: 500 },
+        ],
+        'head-3': [
+          '36px',
+          { lineHeight: '42px', letterSpacing: '0.72px', fontWeight: 500 },
+        ],
+        'head-4': [
+          '32px',
+          { lineHeight: '37px', letterSpacing: '0.64px', fontWeight: 500 },
+        ],
+        'head-5': [
+          '28px',
+          { lineHeight: '37px', letterSpacing: '0.56px', fontWeight: 500 },
+        ],
+        'head-6': [
+          '20px',
+          { lineHeight: '24px', letterSpacing: '0.4px', fontWeight: 500 },
+        ],
+        'head-7': [
+          '18px',
+          { lineHeight: '21.6px', letterSpacing: '0.9px', fontWeight: 700 },
+        ],
+        'head-8': [
+          '16px',
+          { lineHeight: '19.2px', letterSpacing: '0.32px', fontWeight: 500 },
+        ],
 
-        title: ['14px', { lineHeight: '120%' }],
-        subtitle: ['12px', { lineHeight: '120%', letterSpacing: '2%' }],
+        'body-1': ['16px', { lineHeight: '19.2px' }],
 
-        button: ['13px', { lineHeight: '120%', letterSpacing: '0.5%' }],
+        'title-1': ['16px', { lineHeight: '19.2px' }],
+        'title-2': ['14px', { lineHeight: '16.8px', fontWeight: 300 }],
+        'title-3': ['10px', { lineHeight: '12px', fontWeight: 600 }],
+
+        'subtitle-1': [
+          '13px',
+          { lineHeight: '15.6px', letterSpacing: '0.26px' },
+        ],
+        'subtitle-2': [
+          '12px',
+          { lineHeight: '14.4px', letterSpacing: '0.24px' },
+        ],
+
+        button: ['13px', { lineHeight: '15.6px', letterSpacing: '0.5%' }],
       },
     },
   },
