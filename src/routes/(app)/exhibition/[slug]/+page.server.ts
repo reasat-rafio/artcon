@@ -20,7 +20,7 @@ const query = (params: RouteParams) =>
                 "mov": video_hevc.asset->url,
             }
         },
-        vrExhibitionnCta {
+        vrExhibition {
             ...,
             ${asset('image')},
         },

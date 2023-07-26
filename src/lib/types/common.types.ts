@@ -109,11 +109,9 @@ export interface Quote {
   url?: string;
 }
 
-export interface VRExhibitionnCta {
+export interface VRExhibition {
   image: SanityAsset;
-  subtitle: string;
   _type: string;
-  title: string;
   url: string;
 }
 

@@ -1,14 +1,14 @@
 <script lang="ts">
   import type { SummaryProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '../Quote.svelte';
-  import VrExhibitionCta from '../VRExhibitionCTA.svelte';
+  import VRExhibition from '../VRExhibition.svelte';
   import DescriptionBlock from '../DescriptionBlock.svelte';
   import H4 from '../ui/H4.svelte';
   import BodyText from '../ui/BodyText.svelte';
   import { DateTime } from 'luxon';
 
   export let props: SummaryProps;
-  let { quote, descriptionBlock, vrExhibitionnCta } = props;
+  let { quote, descriptionBlock, vrExhibition } = props;
 
   const startDate = DateTime.fromISO(descriptionBlock.startDate);
   const endDate = DateTime.fromISO(descriptionBlock.endDate);
@@ -41,6 +41,6 @@
       </div>
     </DescriptionBlock>
 
-    <!-- <VrExhibitionCta props={vrExhibitionnCta} /> -->
+    <VRExhibition props={vrExhibition} />
   </div>
 </section>

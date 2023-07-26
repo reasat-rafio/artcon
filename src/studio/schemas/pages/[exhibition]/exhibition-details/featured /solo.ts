@@ -99,9 +99,9 @@ const featuredSolo = {
     },
 
     {
-      name: 'vrExhibitionnCta',
-      type: 'vrExhibitionnCta',
-      title: 'VR Exhibitionn Call To Action',
+      name: 'vrExhibition',
+      type: 'vrExhibition',
+      title: 'VR Exhibition',
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

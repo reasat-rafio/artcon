@@ -7,7 +7,7 @@ import type {
   SeoProps,
   SocialProps,
   Tag,
-  VRExhibitionnCta,
+  VRExhibition,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock } from 'sanity';
@@ -34,7 +34,7 @@ export interface SummaryProps {
   _type: 'exhibition.summary';
   quote: Quote;
   descriptionBlock: SummaryDescriptionBlock;
-  vrExhibitionnCta: VRExhibitionnCta;
+  vrExhibition: VRExhibition;
 }
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {
@@ -138,7 +138,7 @@ export interface SoloExhibiton {
     statement: string;
   };
   descriptionBlock: SoloExhibitonDescriptionBlock;
-  vrExhibitionnCta: VRExhibitionnCta;
+  vrExhibition: VRExhibition;
 }
 
 export interface SoloExhibitonDescriptionBlock extends DescriptionBlock {

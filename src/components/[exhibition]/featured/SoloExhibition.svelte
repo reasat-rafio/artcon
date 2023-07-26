@@ -9,7 +9,7 @@
   import Images from './Images.svelte';
 
   export let props: SoloExhibiton;
-  let { quote, vrExhibitionnCta, descriptionBlock, images, statement } = props;
+  let { quote, vrExhibition, descriptionBlock, images, statement } = props;
 </script>
 
 <div>

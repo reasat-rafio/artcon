@@ -7,7 +7,7 @@ import portableText from './portableText';
 import commonHero from './hero';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
-import vrExhibitionnCta from './vrExhibitionCta';
+import vrExhibition from './vrExhibition';
 import social from './social';
 
 export const schemaTypes = [
@@ -18,7 +18,7 @@ export const schemaTypes = [
   cta,
   quote,
   social,
-  vrExhibitionnCta,
+  vrExhibition,
   portableText,
   commonHero,
   commonImageAsset,
