@@ -19,7 +19,7 @@
 
 <section>
   <div class="container">
-    <Quote class="mb-xl" props={quote} />
+    <Quote class="mb-xl" {quote} />
 
     <DescriptionBlock class="mb-xl" description={descriptionBlock.description}>
       <div class="mb-10 space-y-2">

@@ -13,7 +13,7 @@
 </script>
 
 <div>
-  <Quote class="my-xl" props={quote} />
+  <Quote class="my-xl" {quote} />
 
   <DescriptionBlock class="my-xl" description={descriptionBlock.description}>
     <div class="mb-[23px] space-y-2">

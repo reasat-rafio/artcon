@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Quote } from '@/lib/types/common.types';
 
-  export let props: Quote;
-  let { author, text, url } = props;
+  export let quote: Quote;
+  let { author, text, url } = quote;
 </script>
 
 <section class="{$$props.class ?? ''} max-w-[740px]">
