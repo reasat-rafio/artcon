@@ -36,5 +36,9 @@
     </div>
   </DescriptionBlock>
 
-  <Images {images} />
+  <Images class="mb-xl" {images} />
+
+  <DescriptionBlock class="mb-xl" description={statement.statement}>
+    <H4>{statement.title}</H4>
+  </DescriptionBlock>
 </div>

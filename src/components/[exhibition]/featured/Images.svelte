@@ -46,7 +46,10 @@
 
 <svelte:window bind:scrollY />
 <IntersectionObserver element={rootEl} bind:intersecting>
-  <div bind:this={rootEl} class="grid grid-cols-12 items-center gap-[30px]">
+  <div
+    bind:this={rootEl}
+    class="{$$props.class ?? ''} grid grid-cols-12 items-center gap-[30px]"
+  >
     <div class="col-span-4">
       <figure
         class="translate-y-[-10%]"
