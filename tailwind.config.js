@@ -6,23 +6,19 @@ export default {
       center: true,
       padding: {
         DEFAULT: '1rem',
-        sm: '2rem',
-        md: '4rem',
-        lg: '6rem',
-        xl: '8rem',
       },
       screens: {
         sm: '640px',
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1520px',
+        '2xl': '1408px',
       },
     },
 
     extend: {
       maxWidth: {
-        '2xl': '1520px',
+        '2xl': '1408px',
       },
       spacing: {
         xl: '144px',
