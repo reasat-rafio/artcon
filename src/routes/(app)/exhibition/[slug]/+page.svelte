@@ -3,6 +3,7 @@
   import Seo from '@/components/Seo.svelte';
   import Share from '@/components/[exhibition]/Share.svelte';
   import Summary from '@/components/[exhibition]/Summary.svelte';
+  import Featured from '@/components/[exhibition]/featured/Featured.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
@@ -15,7 +16,6 @@
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
     <Hero props={s} />
@@ -27,5 +27,7 @@
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
     <Summary props={s} />
+  {:else if s._type === 'exhibition.featured'}
+    <Featured props={s} />
   {/if}
 {/each}

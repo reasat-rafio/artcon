@@ -70,6 +70,11 @@ const featuredSolo = {
               type: 'string',
               validation: (Rule: Rule) => Rule.required(),
             },
+            {
+              name: 'caption',
+              type: 'text',
+              validation: (Rule: Rule) => Rule.required(),
+            },
           ],
         },
       ],

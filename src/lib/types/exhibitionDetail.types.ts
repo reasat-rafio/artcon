@@ -5,6 +5,7 @@ import type {
   Cta,
   Quote,
   SeoProps,
+  SocialProps,
   Tag,
   VRExhibitionnCta,
 } from './common.types';
@@ -24,6 +25,7 @@ type Section =
   | NoteProps
   | PromotionProps
   | ArtworkProps
+  | FeaturedProps
   | GalleryProps
   | NewsAndMediaProps;
 
@@ -118,4 +120,34 @@ export interface NewsAndMedia {
   link: string;
   _key: string;
   title: string;
+}
+
+export interface FeaturedProps {
+  _key: string;
+  _type: 'exhibition.featured';
+  featured: SoloExhibiton | GroupExhibirtion;
+}
+
+export interface SoloExhibiton {
+  _type: 'exhibition.featured.solo';
+  _key: string;
+  images: [SanityAsset, SanityAsset];
+  quote: Quote;
+  statement: {
+    title: string;
+    statement: string;
+  };
+  descriptionBlock: SoloExhibitonDescriptionBlock;
+  vrExhibitionnCta: VRExhibitionnCta;
+}
+
+export interface SoloExhibitonDescriptionBlock extends DescriptionBlock {
+  name: string;
+  subtile: string;
+  socials: SocialProps[];
+}
+
+export interface GroupExhibirtion {
+  _type: 'exhibition.featured.group';
+  _key: string;
 }

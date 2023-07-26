@@ -21,9 +21,9 @@
   <div class="container">
     <Quote class="mb-xl" props={quote} />
 
-    <DescriptionBlock description={descriptionBlock.description}>
+    <DescriptionBlock class="mb-xl" description={descriptionBlock.description}>
       <div class="mb-10 space-y-2">
-        <H4 class="text-dark-gunmetal">{descriptionBlock.name}</H4>
+        <H4>{descriptionBlock.name}</H4>
         <BodyText weight="light"
           >{formattedStartDate} - {formattedEndDate}</BodyText
         >
