@@ -1,30 +1,37 @@
 <script lang="ts">
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { VRExhibition } from '@/lib/types/common.types';
-  import IntersectionObserver from 'svelte-intersection-observer';
 
-  export let props: VRExhibition;
-  let { image, url } = props;
+  export let vrExhibition: VRExhibition;
+  let { image, url } = vrExhibition;
 
-  let rootEl: HTMLElement;
-  let frameEl: HTMLIFrameElement;
-
-  let intersecting: false;
-
-  // $: if (intersecting) {
-  //   frameEl.src =
-  //     'https://my.matterport.com/show/?m=gkskndswhuV&play=1&nt=1&help=0';
-  // }
+  let showIframe = false;
 </script>
 
-<IntersectionObserver element={rootEl} bind:intersecting once>
-  <section bind:this={rootEl}>
-    <div class="container h-full w-full">
-      <!-- <iframe
-        class="h-[600px] w-full"
-        bind:this={frameEl}
-        src=""
-        title="preview"
-      /> -->
-    </div>
-  </section>
-</IntersectionObserver>
+<section class={$$props.class}>
+  <div class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px]">
+    {#if showIframe}
+      <iframe
+        class="h-full w-full overflow-hidden rounded-[20px]"
+        src={url}
+        title="exbibition preview"
+      />
+    {:else}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <figure class="cursor-pointer" on:click={() => (showIframe = true)}>
+        <SanityImage
+          class="h-full w-full rounded-[20px] object-cover"
+          sizes="70vw"
+          src={image}
+          alt={image.alt}
+          imageUrlBuilder={imageBuilder}
+        />
+        <figcaption class="pl-[20px] pt-[20px] text-title-2 text-sonic-silver">
+          {image.caption}
+        </figcaption>
+      </figure>
+    {/if}
+  </div>
+</section>

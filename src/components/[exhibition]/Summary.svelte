@@ -41,6 +41,6 @@
       </div>
     </DescriptionBlock>
 
-    <VRExhibition props={vrExhibition} />
+    <VRExhibition class="mb-xl" {vrExhibition} />
   </div>
 </section>

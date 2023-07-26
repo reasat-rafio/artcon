@@ -13,6 +13,7 @@ const vrExhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Placeholder Image',
       name: 'image',
       type: 'image',
       validation: (Rule: Rule) => Rule.required(),

@@ -7,6 +7,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SoloExhibiton } from '@/lib/types/exhibitionDetail.types';
   import Images from './Images.svelte';
+  import VrExhibition from '@/components/VRExhibition.svelte';
 
   export let props: SoloExhibiton;
   let { quote, vrExhibition, descriptionBlock, images, statement } = props;
@@ -41,4 +42,6 @@
   <DescriptionBlock class="mb-xl" description={statement.statement}>
     <H4>{statement.title}</H4>
   </DescriptionBlock>
+
+  <VrExhibition class="mb-xl" {vrExhibition} />
 </div>
