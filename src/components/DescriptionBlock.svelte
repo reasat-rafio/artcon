@@ -1,8 +1,7 @@
 <script lang="ts">
-  import type { DescriptionBlock } from '@/lib/types/common.types';
+  import BodyText from './ui/BodyText.svelte';
 
-  export let props: DescriptionBlock;
-  let { description } = props;
+  export let description: string;
 </script>
 
 <article class="grid grid-cols-12">
@@ -10,5 +9,5 @@
     <slot />
   </div>
 
-  <p class="col-span-8">{description}</p>
+  <BodyText weight="light" class="col-span-8">{description}</BodyText>
 </article>

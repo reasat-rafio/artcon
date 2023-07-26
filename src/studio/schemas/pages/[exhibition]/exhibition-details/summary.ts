@@ -25,9 +25,15 @@ const summary = {
           validation: (Rule: Rule) => Rule.required(),
         },
         {
-          name: 'datetime',
+          name: 'startDate',
           type: 'datetime',
           validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'endDate',
+          description:
+            'If the event is one day long then ignore the end and only fill the start date',
+          type: 'datetime',
         },
         {
           name: 'moreInformations',

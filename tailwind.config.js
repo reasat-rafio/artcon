@@ -5,11 +5,11 @@ export default {
     container: {
       center: true,
     },
-    spacing: {
-      xl: '144px',
-    },
 
     extend: {
+      spacing: {
+        xl: '144px',
+      },
       colors: {
         red: {
           200: 'rgba(234, 35, 64, 0.20)',
@@ -32,7 +32,8 @@ export default {
           800: 'rgba(29, 29, 37, 0.80)',
           900: 'rgba(29, 29, 37, 1)',
         },
-        white: '#FFFFFF',
+        'dark-gunmetal': '#1A202C',
+        'sonic-silver': '#77777C',
       },
 
       fontFamily: {
@@ -72,7 +73,7 @@ export default {
           { lineHeight: '19.2px', letterSpacing: '0.32px', fontWeight: 500 },
         ],
 
-        'body-1': ['16px', { lineHeight: '19.2px' }],
+        'body-1': ['16px', { lineHeight: '27.2px' }],
 
         'title-1': ['16px', { lineHeight: '19.2px' }],
         'title-2': ['14px', { lineHeight: '16.8px', fontWeight: 300 }],
