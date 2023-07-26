@@ -4,7 +4,7 @@
   export let description: string;
 </script>
 
-<article class="grid grid-cols-12">
+<article class="grid grid-cols-12 gap-[98px]">
   <div class="col-span-4">
     <slot />
   </div>

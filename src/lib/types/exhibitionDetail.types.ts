@@ -37,8 +37,8 @@ export interface SummaryProps {
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {
   moreInformations: MoreInformation[];
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   name: string;
 }
 export interface MoreInformation {

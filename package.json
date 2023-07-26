@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@sanity/vision": "^3.14.1",
-    "luxon": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
@@ -27,6 +26,7 @@
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/adapter-vercel": "^3.0.1",
     "@sveltejs/kit": "^1.20.4",
+    "@types/luxon": "^3.3.1",
     "@types/react": "^18.0.25",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
@@ -35,6 +35,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte": "^2.30.0",
     "groq": "^3.14.1",
+    "luxon": "^3.3.0",
     "motion": "^10.16.2",
     "postcss": "^8.4.25",
     "prettier": "^2.8.0",

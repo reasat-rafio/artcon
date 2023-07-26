@@ -5,26 +5,33 @@
   import DescriptionBlock from '../DescriptionBlock.svelte';
   import H4 from '../ui/H4.svelte';
   import BodyText from '../ui/BodyText.svelte';
+  import { DateTime } from 'luxon';
 
   export let props: SummaryProps;
   let { quote, descriptionBlock, vrExhibitionnCta } = props;
+
+  const startDate = DateTime.fromISO(descriptionBlock.startDate);
+  const endDate = DateTime.fromISO(descriptionBlock.endDate);
+
+  const formattedStartDate = startDate.toFormat('d MMMM');
+  const formattedEndDate = endDate.toFormat('d MMMM, yyyy');
 </script>
 
 <section>
   <div class="container">
     <Quote class="mb-xl" props={quote} />
-    <DescriptionBlock description={descriptionBlock.description}>
-      <div class="mb-10">
-        <H4 class="text-dark-gunmetal">{descriptionBlock.name}</H4>
 
-        <div>
-          <!--  -->
-        </div>
+    <DescriptionBlock description={descriptionBlock.description}>
+      <div class="mb-10 space-y-2">
+        <H4 class="text-dark-gunmetal">{descriptionBlock.name}</H4>
+        <BodyText weight="light"
+          >{formattedStartDate} - {formattedEndDate}</BodyText
+        >
       </div>
 
       <div class="space-y-4">
         {#each descriptionBlock.moreInformations as { key, value }}
-          <div class="">
+          <div>
             <BodyText weight="light" class="!leading-tight !text-sonic-silver"
               >{key}</BodyText
             >
@@ -33,6 +40,7 @@
         {/each}
       </div>
     </DescriptionBlock>
+
     <!-- <VrExhibitionCta props={vrExhibitionnCta} /> -->
   </div>
 </section>
