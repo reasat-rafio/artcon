@@ -2,6 +2,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Note from '@/components/[exhibition]/Note.svelte';
+  import Promotion from '@/components/[exhibition]/promotion/Promotion.svelte';
   import Share from '@/components/[exhibition]/Share.svelte';
   import Summary from '@/components/[exhibition]/Summary.svelte';
   import Featured from '@/components/[exhibition]/featured/Featured.svelte';
@@ -32,5 +33,7 @@
     <Featured props={s} />
   {:else if s._type === 'exhibition.note'}
     <Note props={s} />
+  {:else if s._type === 'exhibition.promotion'}
+    <Promotion props={s} />
   {/if}
 {/each}

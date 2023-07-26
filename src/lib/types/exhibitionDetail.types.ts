@@ -70,8 +70,8 @@ export interface PromotionProps {
   _key: string;
   _type: 'exhibition.promotion';
   quote: Quote;
-  images: SanityAsset[];
-  descriptionBlock: DescriptionBlock;
+  images: [SanityAsset, SanityAsset];
+  descriptionBlock: PromotionDescriptionBlock;
 }
 export interface PromotionDescriptionBlock extends DescriptionBlock {
   title: string;

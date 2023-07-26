@@ -33,7 +33,7 @@ const promotion = {
               validation: (Rule: Rule) => Rule.required(),
             },
             {
-              name: 'description',
+              name: 'caption',
               type: 'text',
               validation: (Rule: Rule) => Rule.required(),
             },
