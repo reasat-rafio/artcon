@@ -58,6 +58,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.25)
+  embla-carousel-autoplay:
+    specifier: 8.0.0-rc11
+    version: 8.0.0-rc11(embla-carousel@8.0.0-rc11)
   embla-carousel-svelte:
     specifier: 8.0.0-rc11
     version: 8.0.0-rc11(svelte@4.0.5)
@@ -2734,6 +2737,14 @@ packages:
 
   /electron-to-chromium@1.4.459:
     resolution: {integrity: sha512-XXRS5NFv8nCrBL74Rm3qhJjA2VCsRFx0OjHKBMPI0otij56aun8UWiKTDABmd5/7GTR021pA4wivs+Ri6XCElg==}
+
+  /embla-carousel-autoplay@8.0.0-rc11(embla-carousel@8.0.0-rc11):
+    resolution: {integrity: sha512-Yzy0cW1ggGL/bJUbp1n6csKiQVz8qYiMQLwsx+/k3bD3niZyXikWEQMSiDUeNHLNUksBAaqHwoLDsrP6Ci/ydg==}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc11
+    dependencies:
+      embla-carousel: 8.0.0-rc11
+    dev: true
 
   /embla-carousel-reactive-utils@8.0.0-rc11(embla-carousel@8.0.0-rc11):
     resolution: {integrity: sha512-pDNVJNCn0dybLkHw93My+cMfkRQ5oLZff6ZCwgmrw+96aPiZUyo5ANywz8Lb70SWWgD/TNBRrtQCquvjHS31Sg==}

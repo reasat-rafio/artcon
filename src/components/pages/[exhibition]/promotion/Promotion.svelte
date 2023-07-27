@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PromotionProps } from '@/lib/types/exhibitionDetail.types';
-  import Quote from '../../Quote.svelte';
+  import Quote from '@/components/Quote.svelte';
   import Images from '../featured/Images.svelte';
   import DescriptionBlock from '@/components/DescriptionBlock.svelte';
   import H4 from '@/components/ui/H4.svelte';

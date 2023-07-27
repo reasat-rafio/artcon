@@ -1,7 +1,7 @@
 <script>
-  import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';
-  import ShareIcon from '../icons/ShareIcon.svelte';
-  import H4 from '../ui/H4.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ShareIcon from '@/components/icons/ShareIcon.svelte';
+  import H4 from '@/components/ui/H4.svelte';
 </script>
 
 <section class="mb-xl border-b border-[#A5A5A8] py-[27px]">

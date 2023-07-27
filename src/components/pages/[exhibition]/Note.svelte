@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { NoteProps } from '@/lib/types/exhibitionDetail.types';
-  import Quote from '../Quote.svelte';
-  import DescriptionBlock from '../DescriptionBlock.svelte';
-  import H4 from '../ui/H4.svelte';
-  import BodyText from '../ui/BodyText.svelte';
+  import Quote from '@/components/Quote.svelte';
+  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
+  import H4 from '@/components/ui/H4.svelte';
+  import BodyText from '@/components/ui/BodyText.svelte';
 
   export let props: NoteProps;
   let { notes } = props;
