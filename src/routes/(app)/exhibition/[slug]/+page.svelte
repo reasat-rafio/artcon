@@ -10,6 +10,7 @@
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
+  import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   let {
@@ -38,5 +39,7 @@
     <Promotion props={s} />
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
+  {:else if s._type === 'exhibition.newsAndMedia'}
+    <NewsAndMedia props={s} />
   {/if}
 {/each}

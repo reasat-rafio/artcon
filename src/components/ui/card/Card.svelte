@@ -1,23 +1,17 @@
 <script lang="ts">
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import H6 from '../H6.svelte';
+  import H8 from '../H8.svelte';
+  import Image from './Image.svelte';
 
-  export let image: SanityAsset;
-  export let title: string;
-  export let subtitle: string;
+  export let href: string | undefined = undefined;
 </script>
 
-<div>
-  <figure class="max-h-[226px]">
-    <SanityImage
-      class="rounded-[12px]"
-      sizes="30vw"
-      src={image}
-      alt={image.alt}
-      imageUrlBuilder={imageBuilder}
-    />
-  </figure>
-
-  <!--  -->
-</div>
+{#if !!href}
+  <a class="{$$props.class ?? ''} " {href}>
+    <slot Title={H6} Subtitle={H8} {Image} />
+  </a>
+{:else}
+  <div class="{$$props.class ?? ''} ">
+    <slot Title={H6} Subtitle={H8} {Image} />
+  </div>
+{/if}
