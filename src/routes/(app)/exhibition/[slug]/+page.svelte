@@ -11,6 +11,7 @@
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
+  import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   let {
@@ -37,6 +38,8 @@
     <Note props={s} />
   {:else if s._type === 'exhibition.promotion'}
     <Promotion props={s} />
+  {:else if s._type === 'exhibition.artwork'}
+    <Artwork props={s} />
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}

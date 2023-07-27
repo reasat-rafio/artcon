@@ -90,7 +90,6 @@ export interface ArtworkProps {
 export interface ArtworkDescriptionBlock extends DescriptionBlock {
   title: string;
   cta: Cta;
-  information: PortableTextBlock;
 }
 
 export interface GalleryProps {
