@@ -13,10 +13,10 @@
   let { quote, vrExhibition, descriptionBlock, images, statement } = props;
 </script>
 
-<div>
-  <Quote class="my-xl" {quote} />
+<div class="py-xl">
+  <Quote class="mb-xl" {quote} />
 
-  <DescriptionBlock class="my-xl" description={descriptionBlock.description}>
+  <DescriptionBlock class="mb-xl" description={descriptionBlock.description}>
     <div class="mb-[23px] space-y-2">
       <H4>{descriptionBlock.name}</H4>
       <BodyText weight="light">{descriptionBlock.subtile}</BodyText>
@@ -43,5 +43,5 @@
     <H4>{statement.title}</H4>
   </DescriptionBlock>
 
-  <VrExhibition class="mb-xl" {vrExhibition} />
+  <VrExhibition {vrExhibition} />
 </div>

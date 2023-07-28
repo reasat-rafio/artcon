@@ -12,8 +12,8 @@
   } = props;
 </script>
 
-<section>
-  <div class="container pt-xl">
+<section class="py-xl">
+  <div class="container">
     <!-- <Carousel {images} /> -->
 
     <Carousel class="mb-xl" let:Gallery>
@@ -31,7 +31,7 @@
       </Gallery>
     </Carousel>
 
-    <DescriptionBlock class="mb-xl" {description}>
+    <DescriptionBlock {description}>
       <H4>{title}</H4>
     </DescriptionBlock>
   </div>

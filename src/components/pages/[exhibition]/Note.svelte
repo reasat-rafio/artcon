@@ -9,8 +9,8 @@
   let { notes } = props;
 </script>
 
-<section>
-  <div class="container pt-xl">
+<section class="py-xl">
+  <div class="container">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }}
       <div>
         <Quote class="mb-xl" {quote} />
@@ -20,7 +20,5 @@
         </DescriptionBlock>
       </div>
     {/each}
-
-    <!--  -->
   </div>
 </section>

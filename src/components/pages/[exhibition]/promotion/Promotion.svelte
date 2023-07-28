@@ -17,11 +17,11 @@
 </script>
 
 <section>
-  <div class="container pt-xl">
+  <div class="container py-xl">
     <Quote class="mb-xl" {quote} />
     <Images class="mb-xl" {images} />
 
-    <DescriptionBlock class="mb-xl" {description}>
+    <DescriptionBlock {description}>
       <div class="space-y-[36px]">
         <div class="space-y-2">
           <H4>{title}</H4>

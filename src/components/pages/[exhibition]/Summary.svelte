@@ -17,7 +17,7 @@
   const formattedEndDate = endDate.toFormat('d MMMM, yyyy');
 </script>
 
-<section>
+<section class="py-xl">
   <div class="container">
     <Quote class="mb-xl" {quote} />
 
@@ -41,6 +41,6 @@
       </div>
     </DescriptionBlock>
 
-    <VRExhibition class="mb-xl" {vrExhibition} />
+    <VRExhibition {vrExhibition} />
   </div>
 </section>

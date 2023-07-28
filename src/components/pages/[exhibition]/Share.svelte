@@ -4,7 +4,7 @@
   import H4 from '@/components/ui/H4.svelte';
 </script>
 
-<section class="mb-xl border-b border-[#A5A5A8] py-[27px]">
+<section class="border-b border-[#A5A5A8] py-[27px]">
   <div class="container flex">
     <div class="flex flex-1 items-center space-x-[32px]">
       <a class="h-[45px] w-[45px]" href="/exhibition">
