@@ -4,7 +4,6 @@ import {
   type DocumentActionProps,
   type SanityDocument,
 } from 'sanity';
-import { Box, Dialog, Text } from '@sanity/ui';
 import CSVPopup from '../components/CSVPopup';
 
 export function ExportCSV(props: DocumentActionProps) {
