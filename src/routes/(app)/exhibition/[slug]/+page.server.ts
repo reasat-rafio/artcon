@@ -12,6 +12,7 @@ const query = (params: RouteParams) =>
         ...,
         ${asset('image')},
         ${asset('images[]', { as: 'images' })},
+        ${asset('artworks[]', { as: 'artworks' })},
         asset {
             ...,
             ${asset('image')},
@@ -35,14 +36,9 @@ const query = (params: RouteParams) =>
                 }
             }
         },
-        artworks[]{
-            ...,
-            ${asset('image')},
-        },
         newsAndMedia[]{
             ...,
             ${asset('image')},
-
         }
     }
 
