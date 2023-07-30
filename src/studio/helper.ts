@@ -1,7 +1,7 @@
-import type { PortableTextBlock, SanityDocument } from 'sanity';
-import type { IFields } from './components/CSVPopup';
+import type { PortableTextBlock } from 'sanity';
+import type { IFields } from './components/csv-popup/artist/CSVPopup';
 import Papa from 'papaparse';
-import type PortableText from '@/lib/portable-text/PortableText.svelte';
+import type { SanityDocument } from '@sanity/client';
 
 const defaultDocumentKeys = [
   '_createdAt',
@@ -9,6 +9,7 @@ const defaultDocumentKeys = [
   '_rev',
   '_updatedAt',
   '_type',
+  'seo',
 ];
 
 export function convertObjectToArray(obj: SanityDocument) {
@@ -25,15 +26,12 @@ export function convertObjectToArray(obj: SanityDocument) {
 }
 
 export function convertArrayToCSV(array: IFields[]) {
-  const csvData = array.map(({ key, value }) => ({
-    key,
-    value: JSON.stringify(value),
-  }));
-
-  const csv = Papa.unparse(csvData, {
-    header: true,
-  });
-
+  const headers = array.map(({ key }) => key);
+  const values = array.map(({ value }) =>
+    typeof value === 'object' ? JSON.stringify(value) : value
+  );
+  const csvData = [headers, values];
+  const csv = Papa.unparse(csvData);
   return csv;
 }
 
@@ -62,4 +60,9 @@ export function blocksToText(blocks: PortableTextBlock[], opts = {}) {
       return (block.children as any).map((child: any) => child.text).join('');
     })
     .join('\n\n');
+}
+
+export function cleanCSV(csvData: string) {
+  const withoutTripleQuotes = csvData.replace(/"""/g, '"');
+  return withoutTripleQuotes.replace(/\n/g, '');
 }

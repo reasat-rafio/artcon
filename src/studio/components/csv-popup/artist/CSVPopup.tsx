@@ -11,11 +11,15 @@ import {
 } from '@sanity/ui';
 import React, { useState, type Dispatch, type SetStateAction } from 'react';
 import { BsDownload } from 'react-icons/bs';
+
+import type { ArtistDocument } from '@/studio/lib/types';
+import { formatData } from './helpers';
 import {
+  cleanCSV,
   convertArrayToCSV,
   convertObjectToArray,
   downloadCSV,
-} from '../helper';
+} from '@/studio/helper';
 
 interface CSVPopupProps {
   data: SanityDocument | null;
@@ -29,9 +33,9 @@ export interface IFields {
 }
 
 const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
-  const keys = convertObjectToArray(data as SanityDocument);
-  const [fields, setFields] = useState<IFields[]>(keys);
-
+  const _data = JSON.parse(JSON.stringify(data));
+  const fData = formatData(_data as ArtistDocument);
+  const [fields, setFields] = useState<IFields[]>(convertObjectToArray(fData));
   const inputOnChangeAction = (key: string, state: boolean) => {
     const newVal = fields.map((obj) =>
       obj.key === key ? { ...obj, state: !state } : obj
@@ -42,7 +46,7 @@ const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
   return (
     <Dialog
       header="Select the feilds you want to export"
-      id="csv-popup"
+      id="artist-csv-popup"
       onClose={() => {
         setDialogOpen(false);
       }}
@@ -81,7 +85,8 @@ const Footer: React.FC<{ fields: IFields[] }> = ({ fields }) => {
       .sort((a, b) => (a.key > b.key ? 1 : -1));
 
     const convertedCSV = convertArrayToCSV(filterOnlySelectedFields);
-    downloadCSV(convertedCSV, 'data.csv');
+
+    downloadCSV(cleanCSV(convertedCSV), 'data.csv');
   };
 
   return (

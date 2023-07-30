@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useDocumentOperation,
-  type DocumentActionProps,
-  type SanityDocument,
-} from 'sanity';
-import CSVPopup from '../components/CSVPopup';
+import type { DocumentActionProps, SanityDocument } from 'sanity';
 import { BiSolidFileExport } from 'react-icons/bi';
+import CSVPopup from '@/studio/components/csv-popup/artist/CSVPopup';
 
-export function ExportCSV(props: DocumentActionProps) {
-  const { patch, publish } = useDocumentOperation(props.id, props.type);
+export function ExportArtistCSV(props: DocumentActionProps) {
   const [data, setData] = useState<SanityDocument | null>(null);
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
-    if (props.draft) setData(props.draft);
-    else setData(props.published);
+    setData(props.published);
   }, [props.draft, props.published]);
 
   return {
-    // disabled: publish.disabled,
+    disabled: !data,
     label: 'Export as CSV',
     icon: BiSolidFileExport,
     tone: 'positive',
 
     onHandle: () => {
-      if (props.draft) setData(props.draft);
-      else setData(props.published);
       setDialogOpen(true);
     },
     dialog: isDialogOpen && {
