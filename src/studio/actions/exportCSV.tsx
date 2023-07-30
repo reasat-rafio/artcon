@@ -5,6 +5,7 @@ import {
   type SanityDocument,
 } from 'sanity';
 import CSVPopup from '../components/CSVPopup';
+import { BiSolidFileExport } from 'react-icons/bi';
 
 export function ExportCSV(props: DocumentActionProps) {
   const { patch, publish } = useDocumentOperation(props.id, props.type);
@@ -19,6 +20,8 @@ export function ExportCSV(props: DocumentActionProps) {
   return {
     // disabled: publish.disabled,
     label: 'Export as CSV',
+    icon: BiSolidFileExport,
+    tone: 'positive',
 
     onHandle: () => {
       if (props.draft) setData(props.draft);

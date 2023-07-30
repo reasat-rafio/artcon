@@ -1,15 +1,43 @@
 import type { SanityDocument } from '@sanity/client';
-import { Dialog, Box, Text, Button } from '@sanity/ui';
-import React, { type Dispatch, type SetStateAction } from 'react';
+import {
+  Dialog,
+  Text,
+  Button,
+  Card,
+  Checkbox,
+  Grid,
+  Box,
+  Flex,
+} from '@sanity/ui';
+import React, { useState, type Dispatch, type SetStateAction } from 'react';
 import { BsDownload } from 'react-icons/bs';
+import {
+  convertArrayToCSV,
+  convertObjectToArray,
+  downloadCSV,
+} from '../helper';
 
 interface CSVPopupProps {
   data: SanityDocument | null;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+export interface IFields {
+  key: string;
+  state: boolean;
+  value: unknown;
+}
+
 const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
-  console.log(data);
+  const keys = convertObjectToArray(data as SanityDocument);
+  const [fields, setFields] = useState<IFields[]>(keys);
+
+  const inputOnChangeAction = (key: string, state: boolean) => {
+    const newVal = fields.map((obj) =>
+      obj.key === key ? { ...obj, state: !state } : obj
+    );
+    setFields(newVal);
+  };
 
   return (
     <Dialog
@@ -20,20 +48,46 @@ const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
       }}
       width={2}
       zOffset={1000}
-      footer={<Footer />}
+      footer={<Footer fields={fields} />}
     >
-      <Box padding={4}>
-        <Text>Content</Text>
-      </Box>
+      <Grid columns={[4]} gap={[4]} padding={4}>
+        {fields.map(({ key, state }) => (
+          <Card padding={4} key={`${key}-${state}`}>
+            <Flex align="center">
+              <Checkbox
+                id={key}
+                onChange={() => inputOnChangeAction(key, state)}
+                style={{ display: 'block' }}
+                checked={state}
+              />
+              <Box flex={1} paddingLeft={3}>
+                <Text>
+                  <label htmlFor={key}>{key}</label>
+                </Text>
+              </Box>
+            </Flex>
+          </Card>
+        ))}
+      </Grid>
     </Dialog>
   );
 };
 export default CSVPopup;
 
-const Footer = () => {
+const Footer: React.FC<{ fields: IFields[] }> = ({ fields }) => {
+  const exportAction = async () => {
+    const filterOnlySelectedFields = fields
+      .filter(({ state }) => state)
+      .sort((a, b) => (a.key > b.key ? 1 : -1));
+
+    const convertedCSV = convertArrayToCSV(filterOnlySelectedFields);
+    downloadCSV(convertedCSV, 'data.csv');
+  };
+
   return (
     <Box>
       <Button
+        onClick={exportAction}
         style={{ marginLeft: 'auto', display: 'block' }}
         fontSize={[2, 2, 3]}
         icon={BsDownload}
