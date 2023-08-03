@@ -17,13 +17,14 @@ export default defineConfig([
 
     basePath: '/studio/production',
 
-    document: {
-      actions: (prev, context) => {
-        return context.schemaType === 'artist'
-          ? [...prev, ExportArtistCSV]
-          : prev;
-      },
-    },
+    // TODO adjust this with newly modified schema structuere
+    // document: {
+    //   actions: (prev, context) => {
+    //     return context.schemaType === 'artist'
+    //       ? [...prev, ExportArtistCSV]
+    //       : prev;
+    //   },
+    // },
 
     plugins: [deskTool({ structure: AppStructure }), visionTool()],
     schema: {

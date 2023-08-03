@@ -15,23 +15,25 @@ const featuredSolo = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    createDescriptionBlock([
-      {
-        name: 'name',
-        type: 'string',
-        validation: (Rule: Rule) => Rule.required(),
-      },
-      {
-        name: 'subtile',
-        type: 'string',
-        validation: (Rule: Rule) => Rule.required(),
-      },
-      {
-        name: 'socials',
-        type: 'array',
-        of: [{ type: 'social' }],
-      },
-    ]),
+    createDescriptionBlock({
+      fields: [
+        {
+          name: 'name',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'subtile',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'socials',
+          type: 'array',
+          of: [{ type: 'social' }],
+        },
+      ],
+    }),
 
     {
       name: 'images',

@@ -1,14 +1,20 @@
 import { FcInfo } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
-const createDescriptionBlock = (props: unknown[]) => {
+const createDescriptionBlock = ({
+  name,
+  fields,
+}: {
+  fields: unknown[];
+  name?: string;
+}) => {
   return {
-    name: 'descriptionBlock',
+    name: name ?? 'descriptionBlock',
     type: 'object',
     icon: FcInfo,
     validation: (Rule: Rule) => Rule.required(),
     fields: [
-      ...props,
+      ...fields,
       {
         name: 'description',
         type: 'text',

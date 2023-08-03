@@ -13,18 +13,20 @@ const artwork = {
       type: 'quote',
       validation: (Rule: Rule) => Rule.required(),
     },
-    createDescriptionBlock([
-      {
-        name: 'title',
-        type: 'string',
-        validation: (Rule: Rule) => Rule.required(),
-      },
-      {
-        name: 'cta',
-        type: 'cta',
-        validation: (Rule: Rule) => Rule.required(),
-      },
-    ]),
+    createDescriptionBlock({
+      fields: [
+        {
+          name: 'title',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'cta',
+          type: 'cta',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    }),
     {
       name: 'artworks',
       type: 'array',

@@ -31,13 +31,15 @@ const gallery = {
         },
       ],
     },
-    createDescriptionBlock([
-      {
-        name: 'title',
-        type: 'string',
-        validation: (Rule: Rule) => Rule.required(),
-      },
-    ]),
+    createDescriptionBlock({
+      fields: [
+        {
+          name: 'title',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

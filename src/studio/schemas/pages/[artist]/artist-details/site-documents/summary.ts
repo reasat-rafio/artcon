@@ -1,18 +1,39 @@
 import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
-import { FcReadingEbook } from 'react-icons/fc';
+import { FaHighlighter } from 'react-icons/fa';
 import type { Rule } from 'sanity';
 
-const promotion = {
-  title: 'Promotion',
-  name: 'exhibition.promotion',
+const summary = {
+  name: 'artist.summary',
+  title: 'Summary',
   type: 'object',
-  icon: FcReadingEbook,
+  icon: FaHighlighter,
   fields: [
     {
       name: 'quote',
       type: 'quote',
       validation: (Rule: Rule) => Rule.required(),
     },
+
+    createDescriptionBlock({
+      fields: [
+        {
+          name: 'name',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'subtile',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'socials',
+          type: 'array',
+          of: [{ type: 'social' }],
+        },
+      ],
+    }),
+
     {
       name: 'images',
       type: 'array',
@@ -44,37 +65,29 @@ const promotion = {
     },
 
     createDescriptionBlock({
+      name: 'statement',
       fields: [
         {
           name: 'title',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
-        {
-          name: 'subtitle',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'information',
-          type: 'array',
-          validation: (Rule: Rule) => Rule.required(),
-          of: [{ type: 'block' }],
-        },
-        {
-          name: 'cta',
-          type: 'cta',
-          validation: (Rule: Rule) => Rule.required(),
-        },
       ],
     }),
+
+    {
+      name: 'vrExhibition',
+      type: 'vrExhibition',
+      title: 'VR Exhibitionn',
+      validation: (Rule: Rule) => Rule.required(),
+    },
   ],
   preview: {
     select: {
-      title: 'descriptionBlock.title',
+      title: 'descriptionBlock.name',
       subtitle: 'descriptionBlock.description',
     },
   },
 };
 
-export default promotion;
+export default summary;

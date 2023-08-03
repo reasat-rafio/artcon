@@ -24,10 +24,12 @@ const note = {
               validation: (Rule: Rule) => Rule.required(),
             },
 
-            createDescriptionBlock([
-              { name: 'title', type: 'string' },
-              { name: 'subtitle', type: 'string' },
-            ]),
+            createDescriptionBlock({
+              fields: [
+                { name: 'title', type: 'string' },
+                { name: 'subtitle', type: 'string' },
+              ],
+            }),
           ],
           preview: {
             select: {
