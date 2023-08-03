@@ -1,3 +1,4 @@
+import type { SanityDocument } from '@sanity/client';
 import { FcPortraitMode } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
@@ -32,7 +33,17 @@ const artist = {
       group: 'site',
       validation: (Rule: Rule) => Rule.required(),
     },
-
+    {
+      name: 'slug',
+      type: 'slug',
+      options: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        source: (_: SanityDocument, context: any) =>
+          context.parent.personalDocuments.name.en,
+      },
+      group: 'site',
+      validation: (Rule: Rule) => Rule.required(),
+    },
     {
       title: 'Personal Documents',
       name: 'personalDocuments',

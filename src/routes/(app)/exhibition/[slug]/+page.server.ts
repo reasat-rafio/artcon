@@ -1,10 +1,9 @@
 import { sanityClient } from '@/lib/sanity/sanityClient.js';
-import { error } from '@sveltejs/kit';
+import { error, type ServerLoad } from '@sveltejs/kit';
 import groq from 'groq';
-import type { RouteParams } from './$types.js';
 import { asset } from '@/lib/sanity/sanity-image/query.js';
 
-const query = (params: RouteParams) =>
+const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "exhibition" && slug.current == "${params.slug}"] [0]{
     ...,
     tags[]->,
@@ -44,7 +43,7 @@ const query = (params: RouteParams) =>
 
   }`;
 
-export const load = async ({ params }) => {
+export const load: ServerLoad = async ({ params }) => {
   const data = await sanityClient.fetch(query(params));
 
   if (!data) throw error(404, 'Not found');
