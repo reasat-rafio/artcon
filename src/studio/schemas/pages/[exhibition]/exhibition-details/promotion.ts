@@ -1,3 +1,4 @@
+import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FcReadingEbook } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -41,39 +42,30 @@ const promotion = {
         },
       ],
     },
-    {
-      name: 'descriptionBlock',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'title',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'subtitle',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'information',
-          type: 'array',
-          validation: (Rule: Rule) => Rule.required(),
-          of: [{ type: 'block' }],
-        },
-        {
-          name: 'cta',
-          type: 'cta',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'description',
-          type: 'text',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
+
+    createDescriptionBlock([
+      {
+        name: 'title',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+      {
+        name: 'subtitle',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+      {
+        name: 'information',
+        type: 'array',
+        validation: (Rule: Rule) => Rule.required(),
+        of: [{ type: 'block' }],
+      },
+      {
+        name: 'cta',
+        type: 'cta',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+    ]),
   ],
   preview: {
     select: {

@@ -1,4 +1,4 @@
-import { FcInfo } from 'react-icons/fc';
+import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { LuPaintbrush } from 'react-icons/lu';
 import type { Rule } from 'sanity';
 
@@ -13,29 +13,18 @@ const artwork = {
       type: 'quote',
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      name: 'descriptionBlock',
-      type: 'object',
-      icon: FcInfo,
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'title',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'cta',
-          type: 'cta',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'description',
-          type: 'text',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
+    createDescriptionBlock([
+      {
+        name: 'title',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+      {
+        name: 'cta',
+        type: 'cta',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+    ]),
     {
       name: 'artworks',
       type: 'array',

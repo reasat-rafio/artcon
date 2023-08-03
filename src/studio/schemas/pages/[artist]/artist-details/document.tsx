@@ -15,16 +15,28 @@ const artist = {
   name: 'artist',
   type: 'document',
   icon: FcPortraitMode,
+  groups: [
+    {
+      title: 'Personal',
+      name: 'personal',
+    },
+    {
+      title: 'Site',
+      name: 'site',
+    },
+  ],
   fields: [
     {
       name: 'seo',
       title: 'SEO',
       type: 'seo',
+      group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'name',
       type: 'object',
+      group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
@@ -44,6 +56,7 @@ const artist = {
     {
       name: 'gender',
       type: 'string',
+      group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
       options: {
         list: [
@@ -56,6 +69,7 @@ const artist = {
     {
       name: 'artistPortrait',
       type: 'image',
+      group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
       options: {
         hotspot: true,
@@ -64,10 +78,12 @@ const artist = {
     {
       name: 'email',
       type: 'string',
+      group: 'personal',
     },
     {
       name: 'country',
       type: 'string',
+      group: 'personal',
       options: {
         list: [...countries],
       },
@@ -75,43 +91,52 @@ const artist = {
     {
       title: 'Website/Profile link',
       name: 'profileLink',
+      group: 'personal',
       type: 'url',
     },
     {
       name: 'phone',
+      group: 'personal',
       type: 'string',
     },
     {
       title: 'NID',
       name: 'nid',
+      group: 'personal',
       type: 'string',
     },
     {
       title: 'Passport',
       name: 'passport',
+      group: 'personal',
       type: 'string',
     },
     {
       name: 'born',
       type: 'datetime',
+      group: 'personal',
     },
     {
       name: 'died',
       type: 'datetime',
+      group: 'personal',
     },
     {
       name: 'address',
       type: 'text',
+      group: 'personal',
     },
     {
       name: 'shortBio',
       type: 'array',
       of: [{ type: 'block' }],
+      group: 'personal',
     },
     {
       name: 'note',
       type: 'array',
       of: [{ type: 'block' }],
+      group: 'personal',
     },
   ],
   preview: {

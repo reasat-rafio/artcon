@@ -1,3 +1,4 @@
+import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FcComments } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -22,20 +23,11 @@ const note = {
               type: 'quote',
               validation: (Rule: Rule) => Rule.required(),
             },
-            {
-              name: 'descriptionBlock',
-              type: 'object',
-              validation: (Rule: Rule) => Rule.required(),
-              fields: [
-                { name: 'title', type: 'string' },
-                { name: 'subtitle', type: 'string' },
-                {
-                  name: 'description',
-                  type: 'text',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
-            },
+
+            createDescriptionBlock([
+              { name: 'title', type: 'string' },
+              { name: 'subtitle', type: 'string' },
+            ]),
           ],
           preview: {
             select: {

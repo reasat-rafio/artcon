@@ -1,3 +1,4 @@
+import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FaUserAlt } from 'react-icons/fa';
 import { FcInfo } from 'react-icons/fc';
 import type { Rule } from 'sanity';
@@ -14,41 +15,23 @@ const featuredSolo = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    {
-      name: 'descriptionBlock',
-      type: 'object',
-      icon: FcInfo,
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'name',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'subtile',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'socials',
-          type: 'array',
-          of: [{ type: 'social' }],
-        },
-
-        {
-          name: 'description',
-          type: 'text',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-      preview: {
-        select: {
-          title: 'name',
-          subtitle: 'description',
-        },
+    createDescriptionBlock([
+      {
+        name: 'name',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
       },
-    },
+      {
+        name: 'subtile',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+      {
+        name: 'socials',
+        type: 'array',
+        of: [{ type: 'social' }],
+      },
+    ]),
 
     {
       name: 'images',

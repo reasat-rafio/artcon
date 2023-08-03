@@ -1,3 +1,4 @@
+import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FcGallery } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -30,23 +31,13 @@ const gallery = {
         },
       ],
     },
-    {
-      name: 'descriptionBlock',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'title',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'description',
-          type: 'text',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
+    createDescriptionBlock([
+      {
+        name: 'title',
+        type: 'string',
+        validation: (Rule: Rule) => Rule.required(),
+      },
+    ]),
   ],
   preview: {
     select: {
