@@ -1,10 +1,10 @@
-import { defineConfig } from 'sanity';
+import { defineConfig, type SchemaTypeDefinition } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { AppStructure } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
-import { ExportCSV } from './actions/exportCSV';
+import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
 // import { testPlugin } from './custom-plugins/test';
 
 export default defineConfig([
@@ -19,13 +19,15 @@ export default defineConfig([
 
     document: {
       actions: (prev, context) => {
-        return context.schemaType === 'artist' ? [...prev, ExportCSV] : prev;
+        return context.schemaType === 'artist'
+          ? [...prev, ExportArtistCSV]
+          : prev;
       },
     },
 
     plugins: [deskTool({ structure: AppStructure }), visionTool()],
     schema: {
-      types: schemaTypes,
+      types: schemaTypes as SchemaTypeDefinition[],
     },
   },
   {
@@ -39,7 +41,7 @@ export default defineConfig([
 
     plugins: [deskTool({ structure: AppStructure }), visionTool()],
     schema: {
-      types: schemaTypes,
+      types: schemaTypes as SchemaTypeDefinition[],
     },
   },
 ]);
