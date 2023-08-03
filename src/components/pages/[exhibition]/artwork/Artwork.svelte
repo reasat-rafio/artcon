@@ -1,8 +1,6 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Quote from '@/components/Quote.svelte';
-  import Cta from '@/components/ui/Cta.svelte';
-  import H4 from '@/components/ui/H4.svelte';
   import type { ArtworkProps } from '@/lib/types/exhibitionDetail.types';
   import Artworks from './Artworks.svelte';
 
@@ -19,9 +17,22 @@
     <Quote class="mb-xl" {quote} />
     <Artworks class="mb-xl" {artworks} />
 
-    <DescriptionBlock {description}>
-      <H4 class="mb-10">{title}</H4>
-      <Cta href={cta.href}>{cta.title}</Cta>
+    <DescriptionBlock>
+      <svelte:fragment slot="intro" let:IntroContainer let:Title let:Cta>
+        <IntroContainer>
+          <Title class="mb-10">{title}</Title>
+          <Cta href={cta.href}>{cta.title}</Cta>
+        </IntroContainer>
+      </svelte:fragment>
+      <svelte:fragment
+        slot="description"
+        let:DescriptionContainer
+        let:Description
+      >
+        <DescriptionContainer>
+          <Description>{description}</Description>
+        </DescriptionContainer>
+      </svelte:fragment>
     </DescriptionBlock>
   </div>
 </section>

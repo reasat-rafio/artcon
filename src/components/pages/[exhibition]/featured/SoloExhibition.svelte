@@ -1,10 +1,6 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Quote from '@/components/Quote.svelte';
-  import BodyText from '@/components/ui/BodyText.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SoloExhibiton } from '@/lib/types/exhibitionDetail.types';
   import Images from './Images.svelte';
   import VrExhibition from '@/components/VRExhibition.svelte';
@@ -16,31 +12,59 @@
 <div class="py-xl">
   <Quote class="mb-xl" {quote} />
 
-  <DescriptionBlock class="mb-xl" description={descriptionBlock.description}>
-    <div class="mb-[23px] space-y-2">
-      <H4>{descriptionBlock.name}</H4>
-      <BodyText weight="light">{descriptionBlock.subtile}</BodyText>
-    </div>
+  <DescriptionBlock class="mb-xl">
+    <svelte:fragment
+      slot="intro"
+      let:IntroContainer
+      let:HeaderContainer
+      let:Title
+      let:Subtitle
+      let:SocialContainer
+      let:Social
+    >
+      <IntroContainer>
+        <HeaderContainer class="mb-[23px]">
+          <Title>{descriptionBlock.name}</Title>
+          <Subtitle>{descriptionBlock.subtile}</Subtitle>
+        </HeaderContainer>
 
-    <div class="flex flex-wrap space-x-[20px]">
-      {#each descriptionBlock.socials as { link, icon }}
-        <a href={link} target="_blank">
-          <SanityImage
-            alt={link}
-            src={icon}
-            sizes="15px"
-            class="h-[15px] w-[15px]"
-            imageUrlBuilder={imageBuilder}
-          />
-        </a>
-      {/each}
-    </div>
+        <SocialContainer>
+          {#each descriptionBlock.socials as { link, icon }}
+            <Social {link} {icon} />
+          {/each}
+        </SocialContainer>
+      </IntroContainer>
+    </svelte:fragment>
+
+    <svelte:fragment
+      slot="description"
+      let:DescriptionContainer
+      let:Description
+    >
+      <DescriptionContainer>
+        <Description>{descriptionBlock.description}</Description>
+      </DescriptionContainer>
+    </svelte:fragment>
   </DescriptionBlock>
 
   <Images class="mb-xl" {images} />
 
-  <DescriptionBlock class="mb-xl" description={statement.statement}>
-    <H4>{statement.title}</H4>
+  <DescriptionBlock class="mb-xl">
+    <svelte:fragment slot="intro" let:IntroContainer let:Title>
+      <IntroContainer>
+        <Title>{statement.title}</Title>
+      </IntroContainer>
+    </svelte:fragment>
+
+    <svelte:fragment
+      slot="description"
+      let:DescriptionContainer
+      let:Description
+    >
+      <DescriptionContainer>
+        <Description>{statement.statement}</Description>
+      </DescriptionContainer>
+    </svelte:fragment>
   </DescriptionBlock>
 
   <VrExhibition {vrExhibition} />

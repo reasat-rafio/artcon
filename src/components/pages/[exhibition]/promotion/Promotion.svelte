@@ -2,11 +2,7 @@
   import type { PromotionProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
   import Images from '../featured/Images.svelte';
-  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import BodyText from '@/components/ui/BodyText.svelte';
-  import { PortableText } from '@portabletext/svelte';
-  import Cta from '@/components/ui/Cta.svelte';
+  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
 
   export let props: PromotionProps;
   let {
@@ -21,19 +17,35 @@
     <Quote class="mb-xl" {quote} />
     <Images class="mb-xl" {images} />
 
-    <DescriptionBlock {description}>
-      <div class="space-y-[36px]">
-        <div class="space-y-2">
-          <H4>{title}</H4>
-          <BodyText>{subtitle}</BodyText>
-        </div>
-        <div class="text-title-2 !leading-relaxed">
-          <PortableText value={information} />
-        </div>
-        <Cta href={cta.href}>
-          {cta.title}
-        </Cta>
-      </div>
+    <DescriptionBlock>
+      <svelte:fragment
+        slot="intro"
+        let:IntroContainer
+        let:HeaderContainer
+        let:PortableTextBlock
+        let:Title
+        let:Subtitle
+        let:Cta
+      >
+        <IntroContainer class="space-y-[36px]">
+          <HeaderContainer>
+            <Title>{title}</Title>
+            <Subtitle>{subtitle}</Subtitle>
+          </HeaderContainer>
+
+          <PortableTextBlock value={information} />
+          <Cta href={cta.href}>{cta.title}</Cta>
+        </IntroContainer>
+      </svelte:fragment>
+      <svelte:fragment
+        slot="description"
+        let:DescriptionContainer
+        let:Description
+      >
+        <DescriptionContainer>
+          <Description>{description}</Description>
+        </DescriptionContainer>
+      </svelte:fragment>
     </DescriptionBlock>
   </div>
 </section>

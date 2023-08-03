@@ -1,9 +1,7 @@
 <script lang="ts">
   import type { NoteProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
-  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import BodyText from '@/components/ui/BodyText.svelte';
+  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
 
   export let props: NoteProps;
   let { notes } = props;
@@ -14,9 +12,29 @@
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }}
       <div>
         <Quote class="mb-xl" {quote} />
-        <DescriptionBlock class="mb-xl" {description}>
-          <H4>{title}</H4>
-          <BodyText>{subtitle}</BodyText>
+
+        <DescriptionBlock class="mb-xl">
+          <svelte:fragment
+            slot="intro"
+            let:IntroContainer
+            let:HeaderContainer
+            let:Title
+          >
+            <IntroContainer>
+              <HeaderContainer>
+                <Title>{title}</Title>
+              </HeaderContainer>
+            </IntroContainer>
+          </svelte:fragment>
+          <svelte:fragment
+            slot="description"
+            let:DescriptionContainer
+            let:Description
+          >
+            <DescriptionContainer>
+              <Description>{description}</Description>
+            </DescriptionContainer>
+          </svelte:fragment>
         </DescriptionBlock>
       </div>
     {/each}

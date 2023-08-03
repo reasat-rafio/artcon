@@ -1,6 +1,5 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/DescriptionBlock.svelte';
-  import H4 from '@/components/ui/H4.svelte';
+  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import type { GalleryProps } from '@/lib/types/exhibitionDetail.types';
@@ -31,8 +30,21 @@
       </Gallery>
     </Carousel>
 
-    <DescriptionBlock {description}>
-      <H4>{title}</H4>
+    <DescriptionBlock>
+      <svelte:fragment slot="intro" let:Title let:IntroContainer>
+        <IntroContainer>
+          <Title>{title}</Title>
+        </IntroContainer>
+      </svelte:fragment>
+      <svelte:fragment
+        slot="description"
+        let:DescriptionContainer
+        let:Description
+      >
+        <DescriptionContainer>
+          <Description>{description}</Description>
+        </DescriptionContainer>
+      </svelte:fragment>
     </DescriptionBlock>
   </div>
 </section>
