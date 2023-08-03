@@ -20,6 +20,7 @@ const siteDocuments = {
         { type: 'common.imageAsset' },
         { type: 'artist.summary' },
         { type: 'artist.artwork' },
+        { type: 'artist.exhibitions' },
       ],
     },
   ],
