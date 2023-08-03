@@ -19,6 +19,7 @@ const siteDocuments = {
         { type: 'common.hero' },
         { type: 'common.imageAsset' },
         { type: 'artist.summary' },
+        { type: 'artist.artwork' },
       ],
     },
   ],
