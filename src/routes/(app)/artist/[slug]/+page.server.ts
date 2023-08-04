@@ -5,28 +5,36 @@ import { asset } from '@/lib/sanity/sanity-image';
 
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type == "artist" && slug.current == "${params.slug}"][0]{
-        seo,
-        siteDocuments {
-            ...,
-            sections[]{
-                ...,
-                ${asset('image')},
-                ${asset('images[]', { as: 'images' })},
-                ${asset('coverImage')},
-                vrExhibition {
-                    ...,
-                    ${asset('image')},
-                },
-                asset {
-                    ...,
-                    ${asset('image')},
-                    video{
-                        "webm": video_webm.asset->url,
-                        "mov": video_hevc.asset->url,
-                    }
-                },
+    seo,
+    siteDocuments {
+      ...,
+      sections[]{
+        ...,
+        ${asset('image')},
+        ${asset('images[]', { as: 'images' })},
+        ${asset('coverImage')},
+        blocks{
+          ...,
+          asset {
+              ...,
+            ${asset('image')},
+            video{
+              "webm": video_webm.asset->url,
+              "mov": video_hevc.asset->url,
             }
+          },
+        },
+        vrExhibition {
+          ...,
+          ${asset('image')},
+        },
+        exhibitions[]-> {
+          "exhibition": sections[]{
+            _type == "exhibition.promotion" => {...}
+          }
         }
+      }
+    }
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
