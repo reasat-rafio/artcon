@@ -5,6 +5,7 @@ import seo from './seo';
 import site from './site';
 import portableText from './portableText';
 import commonHero from './hero';
+import commonHeroList from './heroList';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
 import vrExhibition from './vrExhibition';
@@ -21,5 +22,6 @@ export const schemaTypes = [
   vrExhibition,
   portableText,
   commonHero,
+  commonHeroList,
   commonImageAsset,
 ];
