@@ -14,3 +14,7 @@ export function useDebounce(callback: () => void, cooldownDuration: number) {
     lastScrollTime = currentTime;
   }
 }
+
+export const zeroPad = (num: number) => {
+  return num.toLocaleString().padStart(2, '0');
+};

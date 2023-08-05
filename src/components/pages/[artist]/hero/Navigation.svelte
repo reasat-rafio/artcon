@@ -1,9 +1,10 @@
 <script lang="ts">
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import { zeroPad } from '@/lib/helper';
   import { createEventDispatcher } from 'svelte';
-  import { flip } from 'svelte/animate';
-  import { blur, fade, fly, slide } from 'svelte/transition';
+  import { sineOut } from 'svelte/easing';
+  import { fly } from 'svelte/transition';
 
   export let activeBlockIndex: number;
   export let blocksLength: number;
@@ -17,11 +18,21 @@
     <button on:click={() => dispatch('sliedPrev')}>
       <ChevronLeftRounded color="white" />
     </button>
-    <div>
+    <div class="flex space-x-1 font-abc-arizona-serif font-medium">
+      {#key activeBlockIndex}
+        <span
+          in:fly={{
+            y: scrollDirection === 'forward' ? 5 : -5,
+            duration: 600,
+            easing: sineOut,
+          }}
+        >
+          {zeroPad(activeBlockIndex + 1)}
+        </span>
+      {/key}
       <span>
-        {activeBlockIndex + 1}
+        / {zeroPad(blocksLength)}
       </span>
-      / {blocksLength}
     </div>
     <button on:click={() => dispatch('slideNext')}>
       <ChevronRightRounded color="white" />

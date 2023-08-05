@@ -4,7 +4,7 @@
   import H7 from '@/components/ui/H7.svelte';
   import H1 from '@/components/ui/H1.svelte';
   import H3 from '@/components/ui/H3.svelte';
-  import { timeline, animate } from 'motion';
+  import { animate } from 'motion';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
 
@@ -15,39 +15,36 @@
 
   let { asset, title, cta, subtitle, type } = block;
   let blockEl: HTMLElement;
-  let imgEl: HTMLElement;
+  let assetEl: HTMLElement;
   let contentContainerEl: HTMLElement;
 
   $: isActive = activeBlockIndex === index;
-  $: isPrev = activeBlockIndex - 1 === index;
-  $: isNext = activeBlockIndex + 1 === index;
 
   const runAnimation = () => {
-    if (imgEl) {
-      if (isActive) {
-        animate(
-          imgEl,
-          { x: scrollDirection === 'forward' ? ['3%', '-3%'] : ['-3%', '3%'] },
+    if (!assetEl) return;
 
-          { duration: 1 }
-        );
-        animate(
-          contentContainerEl,
-          { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-          { duration: 2 }
-        );
-      } else {
-        animate(
-          imgEl,
-          { x: scrollDirection === 'forward' ? ['-3%', '3%'] : ['3%', '-3%'] },
-          { duration: 1 }
-        );
-        animate(
-          contentContainerEl,
-          { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-          { duration: 2 }
-        );
-      }
+    if (isActive) {
+      animate(
+        assetEl,
+        { x: scrollDirection === 'forward' ? ['2%', '-2%'] : ['-2%', '2%'] },
+        { duration: 1, easing: 'ease-out', delay: 0.3 }
+      );
+      animate(
+        contentContainerEl,
+        { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
+        { duration: 1.1, easing: 'ease-in-out' }
+      );
+    } else {
+      animate(
+        assetEl,
+        { x: scrollDirection === 'forward' ? ['-2%', '2%'] : ['2%', '-2%'] },
+        { duration: 1, easing: 'ease-out', delay: 0.3 }
+      );
+      animate(
+        contentContainerEl,
+        { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
+        { duration: 1.1, easing: 'ease-in-out' }
+      );
     }
   };
 
@@ -58,22 +55,7 @@
   bind:this={blockEl}
   class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden"
 >
-  {#if !!asset.image}
-    <figure
-      bind:this={imgEl}
-      class="absolute h-[100%] w-[110%] translate-x-[-4%]"
-    >
-      <SanityImage
-        draggable={false}
-        class="h-full w-full object-cover"
-        lqip
-        sizes="100vw"
-        alt={asset.image.alt}
-        src={asset.image}
-        imageUrlBuilder={imageBuilder}
-      />
-    </figure>
-  {/if}
+  <Asset bind:el={assetEl} {asset} />
 
   <div
     bind:this={contentContainerEl}

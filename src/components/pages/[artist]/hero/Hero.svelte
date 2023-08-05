@@ -18,7 +18,7 @@
   let emblaApi: EmblaCarouselType;
   let scrollDirection: 'forward' | 'backward';
   let activeBlockIndex = 0;
-  const DEBOUNCH_TIME = 1200;
+  const DEBOUNCH_TIME = 200;
   const DIRECTION_MAP = {
     '-1': 'forward',
     '1': 'backward',
@@ -54,7 +54,7 @@
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [],
-      options: { loop: true, duration: 45 },
+      options: { loop: true, duration: 30 },
     }}
   >
     <div class="flex">
