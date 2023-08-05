@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import H1 from '@/components/ui/H1.svelte';
   import H3 from '@/components/ui/H3.svelte';
   import H7 from '@/components/ui/H7.svelte';
@@ -47,6 +49,7 @@
     return { active, next, prev };
   };
 
+  $: activeBlockIndex = blocksPositions.indexOf(0);
   $: if (blocksPositions && rootEl) {
     const { active, next, prev } = getBlockNodes();
   }
@@ -109,9 +112,15 @@
     </div>
   {/each}
 
-  <div class="absolute bottom-0 left-0 z-20 w-full px-5 py-10">
-    <!--  -->
-    <!--  -->
-    <!--  -->
-  </div>
+  <nav class="absolute bottom-0 left-0 z-20 w-full">
+    <div class="flex justify-between px-5 py-10 text-white">
+      <button on:click={slideNext}>
+        <ChevronLeftRounded color="white" />
+      </button>
+      <div>{activeBlockIndex + 1} / {blocks.length}</div>
+      <button on:click={sliedPrev}>
+        <ChevronRightRounded color="white" />
+      </button>
+    </div>
+  </nav>
 </section>
