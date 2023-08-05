@@ -8,15 +8,17 @@
 </script>
 
 {#if !!image}
-  <SanityImage
-    draggable={false}
-    class="absolute h-full w-full object-cover"
-    lqip
-    sizes="100vw"
-    alt={image.alt}
-    src={image}
-    imageUrlBuilder={imageBuilder}
-  />
+  <figure class="absolute h-full w-full">
+    <SanityImage
+      draggable={false}
+      class="h-full w-full object-cover"
+      lqip
+      sizes="100vw"
+      alt={image.alt}
+      src={image}
+      imageUrlBuilder={imageBuilder}
+    />
+  </figure>
 {:else if !!video}
   <video
     class="absolute h-full w-full object-cover"

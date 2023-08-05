@@ -17,6 +17,9 @@ dependencies:
   react-is:
     specifier: ^18.2.0
     version: 18.2.0
+  remove:
+    specifier: ^0.1.5
+    version: 0.1.5
   sanity:
     specifier: ^3.14.1
     version: 3.14.2(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
@@ -70,6 +73,9 @@ devDependencies:
   embla-carousel-svelte:
     specifier: 8.0.0-rc11
     version: 8.0.0-rc11(svelte@4.0.5)
+  embla-carousel-wheel-gestures:
+    specifier: 8.0.0-rc04
+    version: 8.0.0-rc04(embla-carousel@8.0.0-rc11)
   eslint:
     specifier: ^8.28.0
     version: 8.44.0
@@ -520,6 +526,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     optional: true
 
   /@emotion/memoize@0.8.1:
@@ -2249,6 +2256,12 @@ packages:
   /caniuse-lite@1.0.30001515:
     resolution: {integrity: sha512-eEFDwUOZbE24sb+Ecsx3+OvNETqjWIdabMy52oOkIgcUtAsQifjUG9q4U9dgTHJM2mfk4uEPxc0+xuFdJ629QA==}
 
+  /chainsaw@0.0.9:
+    resolution: {integrity: sha512-nG8PYH+/4xB+8zkV4G844EtfvZ5tTiLFoX3dZ4nhF4t3OCKIb9UvaFyNmeZO2zOSmRWzBoTD+napN6hiL+EgcA==}
+    dependencies:
+      traverse: 0.3.9
+    dev: false
+
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -2751,6 +2764,16 @@ packages:
       embla-carousel: 8.0.0-rc11
       embla-carousel-reactive-utils: 8.0.0-rc11(embla-carousel@8.0.0-rc11)
       svelte: 4.0.5
+    dev: true
+
+  /embla-carousel-wheel-gestures@8.0.0-rc04(embla-carousel@8.0.0-rc11):
+    resolution: {integrity: sha512-Rkyhixlyako1L99zKMOyl9cuBE5B/NT8/Cy0KgoinzaBALz9me5gx49U2uWMA6pnqYUIvY3iIOkJqovLP/kYFA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc03
+    dependencies:
+      embla-carousel: 8.0.0-rc11
+      wheel-gestures: 2.2.5
     dev: true
 
   /embla-carousel@8.0.0-rc11:
@@ -3465,6 +3488,12 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /hashish@0.0.4:
+    resolution: {integrity: sha512-xyD4XgslstNAs72ENaoFvgMwtv8xhiDtC2AtzCG+8yF7W/Knxxm9BX+e2s25mm+HxMKh0rBmXVOEGF3zNImXvA==}
+    dependencies:
+      traverse: 0.6.7
+    dev: false
 
   /hashlru@2.3.0:
     resolution: {integrity: sha512-0cMsjjIC8I+D3M44pOQdsy0OHXGLVz6Z0beRuufhKa0KfaD2wGwAev6jILzXsd3/vpnNQJmWyZtIILqM1N+n5A==}
@@ -4900,6 +4929,12 @@ packages:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
     dev: false
 
+  /remove@0.1.5:
+    resolution: {integrity: sha512-AJMA9oWvJzdTjwIGwSQZsjGQiRx73YTmiOWmfCp1fpLa/D4n7jKcpoA+CZiVLJqKcEKUuh1Suq80c5wF+L/qVQ==}
+    dependencies:
+      seq: 0.3.5
+    dev: false
+
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -5181,6 +5216,13 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+
+  /seq@0.3.5:
+    resolution: {integrity: sha512-sisY2Ln1fj43KBkRtXkesnRHYNdswIkIibvNe/0UKm2GZxjMbqmccpiatoKr/k2qX5VKiLU8xm+tz/74LAho4g==}
+    dependencies:
+      chainsaw: 0.0.9
+      hashish: 0.0.4
+    dev: false
 
   /set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -5693,6 +5735,14 @@ packages:
       punycode: 2.3.0
     dev: false
 
+  /traverse@0.3.9:
+    resolution: {integrity: sha512-iawgk0hLP3SxGKDfnDJf8wTz4p2qImnyihM5Hh/sGvQ3K37dPi/w8sRhdNIxYA1TwFwc5mDhIJq+O0RsvXBKdQ==}
+    dev: false
+
+  /traverse@0.6.7:
+    resolution: {integrity: sha512-/y956gpUo9ZNCb99YjxG7OaslxZWHfCHAUUfshwqOXmxUIvqLjVO581BT+gM59+QV9tFe6/CGG53tsA1Y7RSdg==}
+    dev: false
+
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
@@ -5972,6 +6022,11 @@ packages:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
+    dev: true
+
+  /wheel-gestures@2.2.5:
+    resolution: {integrity: sha512-01BlXRjBVt5Gy0VH2rRqMeccHruTGq2Gd1fx0UqCPN8KDeDCmlTXsRGc/hXJk6W+wnO9CNJp2xfntMNRArBxKQ==}
+    engines: {node: '>=10'}
     dev: true
 
   /which@2.0.2:

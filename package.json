@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
+    "remove": "^0.1.5",
     "sanity": "^3.14.1"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "autoprefixer": "^10.4.14",
     "embla-carousel-autoplay": "8.0.0-rc11",
     "embla-carousel-svelte": "8.0.0-rc11",
+    "embla-carousel-wheel-gestures": "8.0.0-rc04",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte": "^2.30.0",

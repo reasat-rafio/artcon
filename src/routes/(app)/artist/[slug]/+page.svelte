@@ -21,8 +21,8 @@
   {/if}
 {/each}
 
-{#each page.sections as s}
+<!-- {#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {/if}
-{/each}
+{/each} -->
