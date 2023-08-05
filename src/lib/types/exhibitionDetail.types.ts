@@ -1,8 +1,8 @@
-import type DescriptionBlock from '@/components/DescriptionBlock.svelte';
 import type {
   CommonHeroProps,
   CommonImageAsset,
   Cta,
+  DescriptionBlock,
   Quote,
   SeoProps,
   SocialProps,

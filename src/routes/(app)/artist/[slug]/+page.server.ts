@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import groq from 'groq';
 import { error, type ServerLoad } from '@sveltejs/kit';
 import { sanityClient } from '@/lib/sanity/sanityClient';
@@ -13,7 +14,7 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('image')},
         ${asset('images[]', { as: 'images' })},
         ${asset('coverImage')},
-        blocks{
+        blocks[]{
           ...,
           asset {
               ...,
@@ -39,11 +40,26 @@ const query = (params: Partial<Record<string, string>>) =>
 
 export const load: ServerLoad = async ({ params }) => {
   const data = await sanityClient.fetch(query(params));
-  const { seo, siteDocuments } = data;
-
   if (!data) throw error(404, 'Not found');
 
+  const { seo, siteDocuments } = data;
+  const siteDocumentsCopy = JSON.parse(JSON.stringify(siteDocuments));
+
+  const modifiedSections = siteDocumentsCopy.sections.map((section: any) => {
+    if (section._type !== 'artist.exhibitions') return section;
+
+    // removeing empty objects from the exhibition array
+    const modifiledExhibtions = section.exhibitions.map(({ exhibition }: any) =>
+      exhibition.filter((e: any) => Object.keys(e).length !== 0)
+    );
+
+    section.exhibitions = modifiledExhibtions;
+    return section;
+  });
+
+  siteDocumentsCopy.sections = modifiedSections;
+
   return {
-    page: { seo, ...siteDocuments },
+    page: { seo, ...siteDocumentsCopy },
   };
 };

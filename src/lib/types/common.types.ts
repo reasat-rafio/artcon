@@ -87,6 +87,12 @@ export interface CommonHeroProps {
   };
 }
 
+export interface CommonHeroListProps {
+  _type: 'common.heroList';
+  _key: string;
+  blocks: CommonHeroProps[];
+}
+
 export interface CommonImageAsset {
   _type: 'common.imageAsset';
   _key: string;

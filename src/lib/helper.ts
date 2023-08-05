@@ -5,3 +5,12 @@ export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
   }
   return result;
 }
+
+let lastScrollTime = 0;
+export function useDebounce(callback: () => void, cooldownDuration: number) {
+  const currentTime = Date.now();
+  if (currentTime - lastScrollTime > cooldownDuration) {
+    callback();
+    lastScrollTime = currentTime;
+  }
+}
