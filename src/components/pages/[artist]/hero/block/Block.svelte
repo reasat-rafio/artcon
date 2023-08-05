@@ -5,8 +5,6 @@
   import H1 from '@/components/ui/H1.svelte';
   import H3 from '@/components/ui/H3.svelte';
   import { animate } from 'motion';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -26,8 +24,8 @@
     if (isActive) {
       animate(
         assetEl,
-        { x: scrollDirection === 'forward' ? ['2%', '-2%'] : ['-2%', '2%'] },
-        { duration: 1, easing: 'ease-out', delay: 0.3 }
+        { x: scrollDirection === 'forward' ? ['1%', '-1%'] : ['-1%', '1%'] },
+        { duration: 1, easing: 'ease-out', delay: 0.2 }
       );
       animate(
         contentContainerEl,
@@ -37,8 +35,8 @@
     } else {
       animate(
         assetEl,
-        { x: scrollDirection === 'forward' ? ['-2%', '2%'] : ['2%', '-2%'] },
-        { duration: 1, easing: 'ease-out', delay: 0.3 }
+        { x: scrollDirection === 'forward' ? ['-1%', '1%'] : ['1%', '-1%'] },
+        { duration: 1, easing: 'ease-out', delay: 0.2 }
       );
       animate(
         contentContainerEl,

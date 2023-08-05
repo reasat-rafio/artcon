@@ -8,7 +8,7 @@
   export let el: HTMLElement;
 </script>
 
-<div bind:this={el} class="absolute h-[100%] w-[105%] translate-x-[-2%]">
+<div bind:this={el} class="absolute h-[100%] w-[105%] translate-x-[-1%]">
   {#if !!image}
     <figure class="h-full w-full object-cover">
       <SanityImage
