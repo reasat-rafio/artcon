@@ -1,13 +1,8 @@
 <script lang="ts">
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import H1 from '@/components/ui/H1.svelte';
-  import H3 from '@/components/ui/H3.svelte';
-  import H7 from '@/components/ui/H7.svelte';
   import { useDebounce } from '@/lib/helper';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { CommonHeroListProps } from '@/lib/types/common.types';
+  import Navigation from './Navigation.svelte';
+  import Block from './block/Block.svelte';
 
   type WheelEventType = WheelEvent & {
     currentTarget: EventTarget & HTMLElement;
@@ -38,21 +33,9 @@
     else if (scrollDirection === 'down') sliedPrev();
   };
 
-  const getBlockNodes = () => {
-    const nextPosition = blocksPositions[1];
-    const prevPosition = blocksPositions[2];
-
-    let active = rootEl.childNodes[blocksPositions.indexOf(0)];
-    let next = rootEl.childNodes[blocksPositions.indexOf(nextPosition)];
-    let prev = rootEl.childNodes[blocksPositions.indexOf(prevPosition)];
-
-    return { active, next, prev };
-  };
-
   $: activeBlockIndex = blocksPositions.indexOf(0);
-  $: if (blocksPositions && rootEl) {
-    const { active, next, prev } = getBlockNodes();
-  }
+  $: nextBlockIndex = blocksPositions[1];
+  $: prevBlockIndex = blocksPositions[2];
 </script>
 
 <section
@@ -61,66 +44,28 @@
     useDebounce(() => onMouseWheelAction(e), 1000)}
   class="relative h-screen"
 >
-  {#each blocks as { asset: { image, video }, title, cta, subtitle, type }, index}
-    <div
-      style="z-index: {blocks.length - blocksPositions[index]};"
-      class="absolute left-0 top-0 flex h-full w-full items-center justify-center"
-    >
-      {#if !!image}
-        <SanityImage
-          draggable={false}
-          class="absolute h-full w-full object-cover"
-          lqip
-          sizes="100vw"
-          alt={image.alt}
-          src={image}
-          imageUrlBuilder={imageBuilder}
-        />
-      {:else if !!video}
-        <video
-          class="absolute h-full w-full object-cover"
-          width="100%"
-          height="100%"
-          disablePictureInPicture
-          controlsList="nodownload noplaybackrate"
-          controls={false}
-          playsInline
-          autoPlay
-          muted
-          loop
-        >
-          <source src={video?.mov} type="video/mp4; codecs=hvc1" />
-          <source src={video?.webm} type="video/webm" />
-          Sorry, your browser doesn&apos;t support embedded videos.
-        </video>
-      {/if}
-      <!-- <p>{blocksPositions[index] + }</p> -->
-      <div class="container relative z-30 text-center text-white">
-        <header class="space-y-2">
-          {#if !!type}
-            <H7>{type}</H7>
-          {/if}
-          <H1>{title}</H1>
-          {#if !!subtitle}
-            <H3 class="whitespace-pre-wrap">{subtitle}</H3>
-          {/if}
-        </header>
-        {#if !!cta?.title}
-          <a href={cta.href}>{cta.title}</a>
-        {/if}
-      </div>
-    </div>
+  {#each blocks as block, index (block._key)}
+    <Block
+      {block}
+      {index}
+      {activeBlockIndex}
+      {prevBlockIndex}
+      {nextBlockIndex}
+      {scrollDirection}
+      zIndex={blocks.length - blocksPositions[index]}
+    />
   {/each}
 
-  <nav class="absolute bottom-0 left-0 z-20 w-full">
-    <div class="flex justify-between px-5 py-10 text-white">
-      <button on:click={slideNext}>
-        <ChevronLeftRounded color="white" />
-      </button>
-      <div>{activeBlockIndex + 1} / {blocks.length}</div>
-      <button on:click={sliedPrev}>
-        <ChevronRightRounded color="white" />
-      </button>
-    </div>
-  </nav>
+  <Navigation
+    {activeBlockIndex}
+    on:slideNext={() => {
+      scrollDirection = 'up';
+      slideNext();
+    }}
+    on:sliedPrev={() => {
+      scrollDirection = 'down';
+      sliedPrev();
+    }}
+    blocksLength={blocks.length}
+  />
 </section>
