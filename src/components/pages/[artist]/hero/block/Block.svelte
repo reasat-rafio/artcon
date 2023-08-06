@@ -30,7 +30,7 @@
       animate(
         contentContainerEl,
         { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-        { duration: 1.1, easing: 'ease-in-out' }
+        { duration: 1.1, easing: 'ease-out' }
       );
     } else {
       animate(
@@ -41,7 +41,7 @@
       animate(
         contentContainerEl,
         { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-        { duration: 1.1, easing: 'ease-in-out' }
+        { duration: 1.1, easing: 'ease-out' }
       );
     }
   };

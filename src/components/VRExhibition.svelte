@@ -13,6 +13,7 @@
   <div class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px]">
     {#if showIframe}
       <iframe
+        allowfullscreen
         class="h-full w-full overflow-hidden rounded-[20px]"
         src={url}
         title="exbibition preview"
