@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PromotionProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
-  import Images from '../featured/Images.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
 
   export let props: PromotionProps;
   let {
@@ -15,7 +15,7 @@
 <section>
   <div class="container py-xl">
     <Quote class="mb-xl" {quote} />
-    <Images class="mb-xl" {images} />
+    <ParallaxScrollImage class="mb-xl" {images} />
 
     <DescriptionBlock>
       <svelte:fragment
