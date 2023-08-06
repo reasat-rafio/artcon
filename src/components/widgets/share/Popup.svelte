@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fade, scale, blur, slide } from 'svelte/transition';
+  import { fade, scale, blur } from 'svelte/transition';
   import { page } from '$app/stores';
   import CopyIcon from '@/components/icons/Copy.svelte';
   import XIcon from '@/components/icons/X.svelte';
@@ -9,14 +9,19 @@
 
   let clipboardEl: HTMLInputElement;
   let copyedToClipboard = false;
+  let pageUrl: string;
+  let pageTitle: string;
   const SOCIALS = [
-    { name: 'Twitter', icon: '/share-icons/x.svg' },
-    { name: 'Facebook', icon: '/share-icons/fb.svg' },
-    { name: 'Thread', icon: '/share-icons/th.svg' },
-    { name: 'WhatsApp', icon: '/share-icons/wa.svg' },
+    { name: 'Twitter', icon: '/share-icons/x.svg', type: 'twitter' },
+    { name: 'Facebook', icon: '/share-icons/fb.svg', type: 'fb' },
+    { name: 'Thread', icon: '/share-icons/th.svg', type: 'linkedin' },
+    { name: 'WhatsApp', icon: '/share-icons/wa.svg', type: 'whatsapp' },
   ];
 
   onMount(() => {
+    pageUrl = encodeURIComponent(document.URL);
+    pageTitle = encodeURIComponent(document.title);
+
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
 
@@ -36,6 +41,60 @@
       clipboardEl.setSelectionRange(0, 99999);
       navigator.clipboard.writeText(clipboardEl.value);
       copyedToClipboard = true;
+    }
+  };
+
+  const socialWindow = (url: string, width: number, height: number) => {
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+    var params =
+      'menubar=no,toolbar=no,status=no,width=' +
+      width +
+      ',height=' +
+      height +
+      ',top=' +
+      top +
+      ',left=' +
+      left;
+    window.open(url, '', params);
+  };
+
+  const shareToSocialMedia = (
+    e: MouseEvent & {
+      currentTarget: EventTarget & HTMLButtonElement;
+    }
+  ) => {
+    if (typeof window !== 'undefined' && pageUrl && pageTitle) {
+      if (!(e.target instanceof HTMLButtonElement)) return;
+
+      let url = null;
+      switch (e.target?.dataset?.type) {
+        case 'fb':
+          url = 'https://www.facebook.com/sharer.php?u=' + pageUrl;
+          socialWindow(url, 570, 570);
+          break;
+        case 'twitter':
+          url =
+            'https://twitter.com/intent/tweet?url=' +
+            pageUrl +
+            '&text=' +
+            pageTitle;
+          socialWindow(url, 570, 300);
+          break;
+
+        case 'linkedin':
+          url =
+            'https://www.linkedin.com/shareArticle?mini=true&url=' + pageUrl;
+          socialWindow(url, 570, 570);
+          break;
+        case 'whatsapp':
+          url = 'whatsapp://send?text=' + pageTitle + '%20' + pageUrl;
+          socialWindow(url, 570, 450);
+          break;
+
+        default:
+          break;
+      }
     }
   };
 </script>
@@ -63,10 +122,12 @@
       <p class="text-t2">If you like this content share it with your friends</p>
     </div>
     <ul class="flex justify-between space-x-[48px]">
-      {#each SOCIALS as { icon, name }}
+      {#each SOCIALS as { icon, name, type }}
         <li class="flex flex-col items-center justify-center">
           <button
+            data-type={type}
             class="mb-[8px] flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[rgba(34,34,34,0.06)] p-[20px]"
+            on:click={shareToSocialMedia}
           >
             <img src={icon} alt={name} />
           </button>

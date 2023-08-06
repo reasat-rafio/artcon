@@ -6,7 +6,7 @@
 
   export let href: string;
 
-  let popupSate: 'visiable' | 'hidden' = 'visiable';
+  let popupSate: 'visiable' | 'hidden' = 'hidden';
 </script>
 
 <section class="border-b border-[#A5A5A8] py-[27px]">
