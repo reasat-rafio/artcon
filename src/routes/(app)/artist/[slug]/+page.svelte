@@ -6,6 +6,7 @@
   import ShareWidget from '@/components/widgets/share/Share.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
   import type { PageProps } from '@/lib/types/common.types';
+  import Exhibitions from '@/components/pages/[artist]/exhibitions/Exhibitions.svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
 
@@ -13,8 +14,6 @@
     page,
     site: { logos },
   } = data;
-
-  console.log(page);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
@@ -30,5 +29,7 @@
     <ImageAsset props={s} />
   {:else if s._type === 'artist.summary'}
     <Summary props={s} />
+  {:else if s._type === 'artist.exhibitions'}
+    <Exhibitions props={s} />
   {/if}
 {/each}

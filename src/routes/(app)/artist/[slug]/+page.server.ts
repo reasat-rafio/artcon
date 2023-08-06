@@ -31,7 +31,10 @@ const query = (params: Partial<Record<string, string>>) =>
         },
         exhibitions[]-> {
           "exhibition": sections[]{
-            _type == "exhibition.promotion" => {...}
+            _type == "exhibition.promotion" => {
+              ...,
+               ${asset('images[1]', { as: 'image' })},
+            }
           }
         }
       }
