@@ -8,7 +8,7 @@
   export let data: PageProps<HomePageProps>;
   let {
     page,
-    site: { logos, contact },
+    site: { logos },
   } = data;
 
   let rootEl: HTMLDivElement;
@@ -21,5 +21,5 @@
       <Hero class="fixed inset-0" props={s} />
     {/if}
   {/each}
-  <Contact {contact} />
+  <!-- <Contact {contact} /> -->
 </div>

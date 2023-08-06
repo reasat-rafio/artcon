@@ -15,6 +15,17 @@ export interface SiteProps {
   };
   nav: NavProps;
   contact: ContactProps;
+  footer: FooterProps;
+}
+
+export interface FooterProps {
+  _rev: string;
+  _type: string;
+  _id: string;
+  _updatedAt: Date;
+  _createdAt: Date;
+  menu: Menu[];
+  title: string;
 }
 
 export interface ContactProps {
@@ -23,10 +34,12 @@ export interface ContactProps {
   _id: string;
   _updatedAt: Date;
   _createdAt: Date;
-  title: string;
-  subtitle: string;
   socialsWithVisibleLinks: SocialsWithVisibleLinkProps[];
   socials: SocialProps[];
+  address: {
+    icon: SanityAsset;
+    address: PortableTextBlock;
+  };
 }
 
 export interface SocialProps {

@@ -8,7 +8,7 @@
   import { PortableText } from '@portabletext/svelte';
 
   export let contact: ContactProps;
-  let { title, subtitle, socialsWithVisibleLinks, socials } = contact;
+  let { socialsWithVisibleLinks, socials } = contact;
 
   let state: 'hidden' | 'visible' = 'visible';
   $: isVisible = state === 'visible';
@@ -17,20 +17,20 @@
 {#if isVisible}
   <section
     transition:fade
-    class="fixed right-0 top-0 w-[50vw] h-screen bg-[#0E0E0F] text-white text-opacity-70"
+    class="fixed right-0 top-0 h-screen w-[50vw] bg-[#0E0E0F] text-white text-opacity-70"
   >
-    <div class="relative z-30 px-[27px] py-[85px] flex flex-col h-full">
-      <div class="flex flex-col justify-center flex-1">
+    <div class="relative z-30 flex h-full flex-col px-[27px] py-[85px]">
+      <div class="flex flex-1 flex-col justify-center">
         <header class="mb-[57px]">
-          <H2>{title}</H2>
-          <H5>{subtitle}</H5>
+          <H2>title</H2>
+          <H5>subtitle</H5>
         </header>
 
-        <ul class="flex flex-col space-y-[23px] mb-[48px]">
+        <ul class="mb-[48px] flex flex-col space-y-[23px]">
           {#each socialsWithVisibleLinks as { icon, info }}
             <li class="flex space-x-[9px]">
               <SanityImage
-                class="h-[15px] w-[15px] mt-[5px]"
+                class="mt-[5px] h-[15px] w-[15px]"
                 src={icon}
                 sizes="15px"
                 alt={''}

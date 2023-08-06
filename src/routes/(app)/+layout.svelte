@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Footer from '@/components/Footer.svelte';
   import NavItems from '@/components/navigation/NavItems.svelte';
   import Navbar from '@/components/navigation/Navbar.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
@@ -10,6 +11,8 @@
     site: {
       nav,
       logos: { favicon, logo },
+      footer,
+      contact,
     },
   } = data;
 
@@ -25,3 +28,4 @@
 <Navbar {logo} />
 <NavItems {nav} />
 <slot />
+<Footer {footer} {contact} />
