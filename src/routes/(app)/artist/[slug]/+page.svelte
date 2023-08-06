@@ -2,6 +2,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Hero from '@/components/pages/[artist]/hero/Hero.svelte';
+  import ShareWidget from '@/components/widgets/share/Share.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
   import type { PageProps } from '@/lib/types/common.types';
 
@@ -20,9 +21,9 @@
     <Hero props={s} />
   {/if}
 {/each}
-
-<!-- {#each page.sections as s}
+<ShareWidget href="/artist">Our artist</ShareWidget>
+{#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {/if}
-{/each} -->
+{/each}

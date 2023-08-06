@@ -47,9 +47,9 @@
 </script>
 
 <section bind:this={rootEl} class=" relative">
+  <!--   on:wheel|preventDefault|stopPropagation={(e) =>
+      useDebounce(() => onMouseWheelAction(e), DEBOUNCH_TIME)} -->
   <div
-    on:wheel|preventDefault|stopPropagation={(e) =>
-      useDebounce(() => onMouseWheelAction(e), DEBOUNCH_TIME)}
     class="overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
