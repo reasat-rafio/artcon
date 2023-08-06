@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Footer from '@/components/Footer.svelte';
+  import Footer from '@/components/footer/Footer.svelte';
   import NavItems from '@/components/navigation/NavItems.svelte';
   import Navbar from '@/components/navigation/Navbar.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
@@ -10,7 +10,7 @@
   let {
     site: {
       nav,
-      logos: { favicon, logo },
+      logos: { favicon, logoLight, logoDark },
       footer,
       contact,
     },
@@ -25,7 +25,7 @@
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
 
-<Navbar {logo} />
+<Navbar logo={logoDark} />
 <NavItems {nav} />
 <slot />
-<Footer {footer} {contact} />
+<Footer {footer} {contact} logo={logoLight} />

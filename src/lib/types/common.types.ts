@@ -11,7 +11,8 @@ export interface SiteProps {
     favicon: SanityAsset;
     mobileLogo: SanityAsset;
     ogImage: SanityAsset;
-    logo: SanityAsset;
+    logoDark: SanityAsset;
+    logoLight: SanityAsset;
   };
   nav: NavProps;
   contact: ContactProps;
@@ -38,7 +39,7 @@ export interface ContactProps {
   socials: SocialProps[];
   address: {
     icon: SanityAsset;
-    address: PortableTextBlock;
+    address: PortableTextBlock[];
   };
 }
 
@@ -52,7 +53,7 @@ export interface SocialsWithVisibleLinkProps {
   _key: string;
   _type: string;
   icon: SanityAsset;
-  info: PortableTextBlock;
+  info: PortableTextBlock[];
 }
 
 export interface NavProps {

@@ -8,36 +8,41 @@ const logos = {
   icon: FaRegStar,
   fields: [
     {
-      name: 'logo',
+      name: 'logoLight',
       type: 'image',
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'logoDark',
+      type: 'image',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'mobileLogo',
       type: 'image',
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'favicon',
       title: 'Favicon',
       type: 'image',
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'ogImage',
       title: 'Default SEO Image',
       type: 'image',
       options: {
-        accept: 'image/png, image/jpeg, image/webp'
+        accept: 'image/png, image/jpeg, image/webp',
       },
-      validation: (Rule: Rule) => Rule.required()
-    }
+      validation: (Rule: Rule) => Rule.required(),
+    },
   ],
   preview: {
     prepare: () => ({
-      title: 'Logos'
-    })
-  }
+      title: 'Logos',
+    }),
+  },
 };
 
 export default logos;

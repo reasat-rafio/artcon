@@ -6,7 +6,8 @@ export const siteQuery = groq`{
     "footer": *[_type == "site.footer"][0],
     "logos": *[_type == "site.logos"][0] {
       ...,
-      ${asset('logo')},
+      ${asset('logoDark')},
+      ${asset('logoLight')},
       ${asset('mobileLogo')},
     },
     "contact": *[_type == "site.contact"][0] {

@@ -93,7 +93,7 @@ export default {
         'body-1': ['16px', { lineHeight: '27.2px' }],
 
         'title-1': ['16px', { lineHeight: '19.2px' }],
-        'title-2': ['14px', { lineHeight: '16.8px', fontWeight: 300 }],
+        'title-2': ['14px', { lineHeight: '16.8px' }],
         'title-3': ['10px', { lineHeight: '12px', fontWeight: 600 }],
 
         'subtitle-1': [
