@@ -2,6 +2,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Hero from '@/components/pages/[artist]/hero/Hero.svelte';
+  import Summary from '@/components/pages/[artist]/Summary.svelte';
   import ShareWidget from '@/components/widgets/share/Share.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
   import type { PageProps } from '@/lib/types/common.types';
@@ -12,6 +13,8 @@
     page,
     site: { logos },
   } = data;
+
+  console.log(page);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
@@ -25,5 +28,7 @@
 {#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
+  {:else if s._type === 'artist.summary'}
+    <Summary props={s} />
   {/if}
 {/each}

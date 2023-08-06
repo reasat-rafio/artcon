@@ -3,8 +3,8 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  export let images: [SanityAsset, SanityAsset];
 
+  export let images: [SanityAsset, SanityAsset];
   let [firstImg, secondImg] = images;
   let scrollY = 0;
   let intersecting = false;

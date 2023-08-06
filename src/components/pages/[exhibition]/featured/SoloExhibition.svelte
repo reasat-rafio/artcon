@@ -2,8 +2,8 @@
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Quote from '@/components/Quote.svelte';
   import type { SoloExhibiton } from '@/lib/types/exhibitionDetail.types';
-  import Images from './Images.svelte';
   import VrExhibition from '@/components/VRExhibition.svelte';
+  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
 
   export let props: SoloExhibiton;
   let { quote, vrExhibition, descriptionBlock, images, statement } = props;
@@ -47,7 +47,7 @@
     </svelte:fragment>
   </DescriptionBlock>
 
-  <Images class="mb-xl" {images} />
+  <ParallaxScrollImage class="mb-xl" {images} />
 
   <DescriptionBlock class="mb-xl">
     <svelte:fragment slot="intro" let:IntroContainer let:Title>
