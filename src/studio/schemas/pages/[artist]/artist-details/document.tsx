@@ -51,6 +51,21 @@ const artist = {
       group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
     },
+
+    // {
+    //   name: 'exhibitions',
+    //   title: "Artist's Exhibitions",
+    //   type: 'array',
+    //   of: [{ type: 'reference', to: { type: 'exhibition' } }],
+    //   group: 'site',
+    // },
+    {
+      name: 'artworks',
+      title: "Artist's Artworks",
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'artwork' } }],
+      group: 'site',
+    },
     {
       title: 'Site Documents',
       name: 'siteDocuments',

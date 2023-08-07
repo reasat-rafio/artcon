@@ -4,8 +4,6 @@
   import type { ContactProps, FooterProps } from '@/lib/types/common.types';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import BodyText from '../ui/BodyText.svelte';
-  import { PortableText, toPlainText } from '@portabletext/svelte';
-  import InfoBlock from './InfoBlock.svelte';
   import Address from './Address.svelte';
 
   export let footer: FooterProps;

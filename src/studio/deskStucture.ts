@@ -156,6 +156,18 @@ export const AppStructure = (S: StructureBuilder) =>
         ),
       S.divider(),
       S.listItem()
+        .title('Artist')
+        .icon(FcPortraitMode)
+        .child(
+          S.list()
+            .title('Artist')
+            .items([
+              S.documentTypeListItem('artist').title('Artists'),
+              S.documentTypeListItem('artistTag').title('Tags'),
+            ])
+        ),
+      S.documentTypeListItem('artwork').title('Artworks'),
+      S.listItem()
         .title('Exhibition')
         .icon(FcStackOfPhotos)
         .child(
@@ -175,17 +187,6 @@ export const AppStructure = (S: StructureBuilder) =>
             .items([
               S.documentTypeListItem('event').title('Events'),
               S.documentTypeListItem('eventTag').title('Tags'),
-            ])
-        ),
-      S.listItem()
-        .title('Artist')
-        .icon(FcPortraitMode)
-        .child(
-          S.list()
-            .title('Artist')
-            .items([
-              S.documentTypeListItem('artist').title('Artists'),
-              S.documentTypeListItem('artistTag').title('Tags'),
             ])
         ),
     ]);
