@@ -13,6 +13,8 @@ import service from './service';
 import vr from './vr';
 import artistDetails from './[artist]';
 import artwork from './[artwork]';
+import privacyPolicy from './privacyPolicy';
+import termsConditions from './termsConditions';
 
 export default [
   ...landing,
@@ -30,4 +32,6 @@ export default [
   ...exhibitionDetails,
   ...eventDetails,
   ...artistDetails,
+  privacyPolicy,
+  termsConditions,
 ];

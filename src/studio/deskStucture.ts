@@ -12,6 +12,8 @@ import {
   FcHome,
   FcPodiumWithAudience,
   FcPortraitMode,
+  FcPrivacy,
+  FcRules,
   FcServices,
   FcStackOfPhotos,
 } from 'react-icons/fc';
@@ -151,6 +153,18 @@ export const AppStructure = (S: StructureBuilder) =>
                 id: 'contactPage',
                 title: 'Contact',
                 icon: FcContacts,
+              }),
+              pageItem(S, {
+                schemaType: 'privacyPolicyPage',
+                id: 'privacyPolicyPage',
+                title: 'Privacy Policy',
+                icon: FcPrivacy,
+              }),
+              pageItem(S, {
+                schemaType: 'termsConditionsPage',
+                id: 'termsConditionsPage',
+                title: 'Terms And Conditions',
+                icon: FcRules,
               }),
             ])
         ),
