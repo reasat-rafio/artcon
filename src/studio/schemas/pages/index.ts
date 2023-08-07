@@ -16,6 +16,8 @@ import privacyPolicy from './privacyPolicy';
 import termsConditions from './termsConditions';
 import artwork from './[artwork]';
 import team from './[team]';
+import projectDetail from './[project]';
+import collectionDetail from './[collection]';
 
 export default [
   ...landing,
@@ -32,6 +34,8 @@ export default [
   ...exhibitionDetails,
   ...eventDetails,
   ...artistDetails,
+  ...projectDetail,
+  ...collectionDetail,
   artwork,
   team,
   privacyPolicy,
