@@ -37,33 +37,21 @@
               <Quote class="mb-xl" {quote} />
 
               <DescriptionBlock>
-                <svelte:fragment
-                  slot="intro"
-                  let:IntroContainer
-                  let:HeaderContainer
-                  let:PortableTextBlock
-                  let:Title
-                  let:Subtitle
-                  let:Cta
-                >
-                  <IntroContainer class="space-y-[36px]">
-                    <HeaderContainer>
-                      <Title>{title}</Title>
-                      <Subtitle>{subtitle}</Subtitle>
-                    </HeaderContainer>
+                <svelte:fragment slot="intro" let:C>
+                  <C.IntroContainer class="space-y-[36px]">
+                    <C.HeaderContainer>
+                      <C.Title>{title}</C.Title>
+                      <C.Subtitle>{subtitle}</C.Subtitle>
+                    </C.HeaderContainer>
 
-                    <PortableTextBlock value={information} />
-                    <Cta href={cta.href}>{cta.title}</Cta>
-                  </IntroContainer>
+                    <C.PortableTextBlock value={information} />
+                    <C.Cta href={cta.href}>{cta.title}</C.Cta>
+                  </C.IntroContainer>
                 </svelte:fragment>
-                <svelte:fragment
-                  slot="description"
-                  let:DescriptionContainer
-                  let:Description
-                >
-                  <DescriptionContainer>
-                    <Description>{description}</Description>
-                  </DescriptionContainer>
+                <svelte:fragment slot="description" let:C>
+                  <C.DescriptionContainer>
+                    <C.Description>{description}</C.Description>
+                  </C.DescriptionContainer>
                 </svelte:fragment>
               </DescriptionBlock>
             </div>

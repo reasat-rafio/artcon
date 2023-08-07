@@ -20,41 +20,31 @@
     <Quote class="mb-xl" {quote} />
 
     <DescriptionBlock class="mb-xl">
-      <svelte:fragment
-        slot="intro"
-        let:IntroContainer
-        let:HeaderContainer
-        let:Title
-        let:Subtitle
-      >
-        <IntroContainer>
-          <HeaderContainer class="mb-10">
-            <Title>{descriptionBlock.name}</Title>
-            <Subtitle weight="light"
-              >{formattedStartDate} - {formattedEndDate}</Subtitle
+      <svelte:fragment slot="intro" let:C>
+        <C.IntroContainer>
+          <C.HeaderContainer class="mb-10">
+            <C.Title>{descriptionBlock.name}</C.Title>
+            <C.Subtitle weight="light"
+              >{formattedStartDate} - {formattedEndDate}</C.Subtitle
             >
-          </HeaderContainer>
+          </C.HeaderContainer>
           <div class="space-y-4">
             {#each descriptionBlock.moreInformations as { key, value }}
               <div>
-                <Subtitle
+                <C.Subtitle
                   weight="light"
-                  class="!leading-tight !text-sonic-silver">{key}</Subtitle
+                  class="!leading-tight !text-sonic-silver">{key}</C.Subtitle
                 >
-                <Subtitle weight="light">{value}</Subtitle>
+                <C.Subtitle weight="light">{value}</C.Subtitle>
               </div>
             {/each}
           </div>
-        </IntroContainer>
+        </C.IntroContainer>
       </svelte:fragment>
-      <svelte:fragment
-        slot="description"
-        let:DescriptionContainer
-        let:Description
-      >
-        <DescriptionContainer>
-          <Description>{descriptionBlock.description}</Description>
-        </DescriptionContainer>
+      <svelte:fragment slot="description" let:C>
+        <C.DescriptionContainer>
+          <C.Description>{descriptionBlock.description}</C.Description>
+        </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
 

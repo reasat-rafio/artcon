@@ -14,26 +14,17 @@
         <Quote class="mb-xl" {quote} />
 
         <DescriptionBlock class="mb-xl">
-          <svelte:fragment
-            slot="intro"
-            let:IntroContainer
-            let:HeaderContainer
-            let:Title
-          >
-            <IntroContainer>
-              <HeaderContainer>
-                <Title>{title}</Title>
-              </HeaderContainer>
-            </IntroContainer>
+          <svelte:fragment slot="intro" let:C>
+            <C.IntroContainer>
+              <C.HeaderContainer>
+                <C.Title>{title}</C.Title>
+              </C.HeaderContainer>
+            </C.IntroContainer>
           </svelte:fragment>
-          <svelte:fragment
-            slot="description"
-            let:DescriptionContainer
-            let:Description
-          >
-            <DescriptionContainer>
-              <Description>{description}</Description>
-            </DescriptionContainer>
+          <svelte:fragment slot="description" let:C>
+            <C.DescriptionContainer>
+              <C.Description>{description}</C.Description>
+            </C.DescriptionContainer>
           </svelte:fragment>
         </DescriptionBlock>
       </div>

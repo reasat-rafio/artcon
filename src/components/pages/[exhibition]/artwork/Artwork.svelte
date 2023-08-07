@@ -18,20 +18,16 @@
     <Artworks class="mb-xl" {artworks} />
 
     <DescriptionBlock>
-      <svelte:fragment slot="intro" let:IntroContainer let:Title let:Cta>
-        <IntroContainer>
-          <Title class="mb-10">{title}</Title>
-          <Cta href={cta.href}>{cta.title}</Cta>
-        </IntroContainer>
+      <svelte:fragment slot="intro" let:C>
+        <C.IntroContainer>
+          <C.Title class="mb-10">{title}</C.Title>
+          <C.Cta href={cta.href}>{cta.title}</C.Cta>
+        </C.IntroContainer>
       </svelte:fragment>
-      <svelte:fragment
-        slot="description"
-        let:DescriptionContainer
-        let:Description
-      >
-        <DescriptionContainer>
-          <Description>{description}</Description>
-        </DescriptionContainer>
+      <svelte:fragment slot="description" let:C>
+        <C.DescriptionContainer>
+          <C.Description>{description}</C.Description>
+        </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

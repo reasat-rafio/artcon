@@ -43,19 +43,18 @@
     </Carousel>
 
     <DescriptionBlock>
-      <svelte:fragment slot="intro" let:Title let:IntroContainer>
-        <IntroContainer>
-          <Title>{title}</Title>
-        </IntroContainer>
+      <svelte:fragment slot="intro" let:C>
+        <C.IntroContainer>
+          <C.Title>{title}</C.Title>
+        </C.IntroContainer>
       </svelte:fragment>
       <svelte:fragment
         slot="description"
-        let:DescriptionContainer
-        let:Description
+        let:C
       >
-        <DescriptionContainer>
-          <Description>{description}</Description>
-        </DescriptionContainer>
+        <C.DescriptionContainer>
+          <C.Description>{description}</C.Description>
+        </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

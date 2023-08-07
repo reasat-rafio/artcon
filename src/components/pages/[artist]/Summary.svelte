@@ -14,57 +14,41 @@
     <Quote class="mb-xl" {quote} />
 
     <DescriptionBlock class="mb-xl">
-      <svelte:fragment
-        slot="intro"
-        let:IntroContainer
-        let:HeaderContainer
-        let:Title
-        let:Subtitle
-        let:SocialContainer
-        let:Social
-      >
-        <IntroContainer>
-          <HeaderContainer class="mb-[23px]">
-            <Title>{descriptionBlock.name}</Title>
-            <Subtitle>{descriptionBlock.subtile}</Subtitle>
-          </HeaderContainer>
+      <svelte:fragment slot="intro" let:C>
+        <C.IntroContainer>
+          <C.HeaderContainer class="mb-[23px]">
+            <C.Title>{descriptionBlock.name}</C.Title>
+            <C.Subtitle>{descriptionBlock.subtile}</C.Subtitle>
+          </C.HeaderContainer>
 
-          <SocialContainer>
+          <C.SocialContainer>
             {#each descriptionBlock.socials as { link, icon }}
-              <Social {link} {icon} />
+              <C.Social {link} {icon} />
             {/each}
-          </SocialContainer>
-        </IntroContainer>
+          </C.SocialContainer>
+        </C.IntroContainer>
       </svelte:fragment>
 
-      <svelte:fragment
-        slot="description"
-        let:DescriptionContainer
-        let:Description
-      >
-        <DescriptionContainer>
-          <Description>{descriptionBlock.description}</Description>
-        </DescriptionContainer>
+      <svelte:fragment slot="description" let:C>
+        <C.DescriptionContainer>
+          <C.Description>{descriptionBlock.description}</C.Description>
+        </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
 
     <ParallaxScrollImage class="mb-xl" {images} />
 
     <DescriptionBlock class="mb-xl">
-      <svelte:fragment slot="intro" let:IntroContainer let:Title>
-        <IntroContainer>
-          <Title>{statement.title}</Title>
-        </IntroContainer>
+      <svelte:fragment slot="intro" let:C>
+        <C.IntroContainer>
+          <C.Title>{statement.title}</C.Title>
+        </C.IntroContainer>
       </svelte:fragment>
 
-      <svelte:fragment
-        slot="description"
-        let:DescriptionContainer
-        let:Description
-      >
-        <DescriptionContainer>
-          <Description>{statement.description}</Description>
-        </DescriptionContainer>
+      <svelte:fragment slot="description" let:C>
+        <C.DescriptionContainer>
+          <C.Description>{statement.description}</C.Description>
+        </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
 

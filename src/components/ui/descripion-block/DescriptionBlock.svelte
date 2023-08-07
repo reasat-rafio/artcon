@@ -13,14 +13,22 @@
 <article class="{$$props.class ?? ''} grid w-[85%] grid-cols-12 gap-[50px]">
   <slot
     name="intro"
-    Title={H4}
-    Subtitle={BodyText}
-    {HeaderContainer}
-    {IntroContainer}
-    {SocialContainer}
-    {Social}
-    {PortableTextBlock}
-    {Cta}
+    C={{
+      Title: H4,
+      Subtitle: BodyText,
+      HeaderContainer,
+      IntroContainer,
+      SocialContainer,
+      Social,
+      PortableTextBlock,
+      Cta,
+    }}
   />
-  <slot name="description" {DescriptionContainer} Description={BodyText} />
+  <slot
+    name="description"
+    C={{
+      DescriptionContainer,
+      Description: BodyText,
+    }}
+  />
 </article>
