@@ -12,9 +12,10 @@ import publication from './publication';
 import service from './service';
 import vr from './vr';
 import artistDetails from './[artist]';
-import artwork from './[artwork]';
 import privacyPolicy from './privacyPolicy';
 import termsConditions from './termsConditions';
+import artwork from './[artwork]';
+import team from './[team]';
 
 export default [
   ...landing,
@@ -28,10 +29,11 @@ export default [
   ...service,
   ...aboutUs,
   ...contact,
-  ...artwork,
   ...exhibitionDetails,
   ...eventDetails,
   ...artistDetails,
+  artwork,
+  team,
   privacyPolicy,
   termsConditions,
 ];

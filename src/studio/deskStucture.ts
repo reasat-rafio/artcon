@@ -203,4 +203,5 @@ export const AppStructure = (S: StructureBuilder) =>
               S.documentTypeListItem('eventTag').title('Tags'),
             ])
         ),
+      S.documentTypeListItem('team').title('Team Members'),
     ]);

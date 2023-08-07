@@ -21,6 +21,7 @@ const privacyPolicy = {
       of: [{ type: 'block' }],
       validation: (Rule: Rule) => Rule.required(),
     },
+    { name: 'cta', type: 'cta' },
   ],
   preview: {
     select: {
