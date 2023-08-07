@@ -19,8 +19,8 @@
 
     <Carousel class="mb-xl" let:Gallery>
       <Gallery
-        class="grid grid-cols-3 gap-x-[25px] gap-y-[56px] pr-[25px]"
-        slidesPerView={6}
+        class="mr-5 grid grid-cols-3 gap-x-[25px] gap-y-[56px] "
+        slidesPerPage={6}
         items={newsAndMedia}
         let:chunk
       >
@@ -48,10 +48,7 @@
           <C.Title>{title}</C.Title>
         </C.IntroContainer>
       </svelte:fragment>
-      <svelte:fragment
-        slot="description"
-        let:C
-      >
+      <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
           <C.Description>{description}</C.Description>
         </C.DescriptionContainer>

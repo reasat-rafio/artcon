@@ -18,7 +18,7 @@
     <Carousel class="mb-xl" let:Gallery>
       <Gallery
         class="grid grid-cols-3 gap-x-[25px] gap-y-[56px] pr-[25px]"
-        slidesPerView={6}
+        slidesPerPage={6}
         items={images}
         let:chunk
       >
