@@ -4,7 +4,8 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { AppStructure } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
-import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
+// import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
+
 // import { testPlugin } from './custom-plugins/test';
 
 export default defineConfig([

@@ -1,3 +1,4 @@
+import { orderRankField } from '@sanity/orderable-document-list';
 import { PiUsersThreeLight } from 'react-icons/pi';
 
 const team = {
@@ -5,6 +6,7 @@ const team = {
   type: 'document',
   icon: PiUsersThreeLight,
   fields: [
+    orderRankField({ type: 'category' }),
     { name: 'name', type: 'string' },
     { name: 'role', type: 'string' },
     {

@@ -18,6 +18,8 @@ import {
   FcStackOfPhotos,
 } from 'react-icons/fc';
 import { BsFillCollectionFill } from 'react-icons/bs';
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
+import type { ConfigContext } from 'sanity';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -46,7 +48,7 @@ const singleItem = (
     S.editor().id(id).title(title).schemaType(schemaType)
   );
 
-export const AppStructure = (S: StructureBuilder) =>
+export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
   S.list()
     .title('Content')
     .id('__root__')
@@ -205,5 +207,5 @@ export const AppStructure = (S: StructureBuilder) =>
         ),
       S.documentTypeListItem('project').title('Project'),
       S.documentTypeListItem('collection').title('Collections'),
-      S.documentTypeListItem('team').title('Team Members'),
+      orderableDocumentListDeskItem({ type: 'team', S, context }),
     ]);

@@ -23,6 +23,7 @@
     "@portabletext/svelte": "^2.0.0",
     "@sanity/client": "^6.1.7",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/ui": "^1.7.4",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/adapter-vercel": "^3.0.1",
