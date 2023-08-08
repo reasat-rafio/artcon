@@ -1,3 +1,4 @@
 import servicePage from './document';
+import services from './services';
 
-export default [servicePage];
+export default [servicePage, services];
