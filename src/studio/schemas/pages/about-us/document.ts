@@ -12,7 +12,12 @@ const aboutUsPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
+      of: [
+        { type: 'common.hero' },
+        { type: 'common.imageAsset' },
+        { type: 'aboutUsPage.aboutUs' },
+        { type: 'aboutUsPage.team' },
+      ],
     },
   ],
   preview: {
