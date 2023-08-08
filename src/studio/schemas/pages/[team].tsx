@@ -19,7 +19,7 @@ const team = {
         ],
       },
     },
-    { name: 'description', type: 'text' },
+    { name: 'url', type: 'url' },
     { name: 'image', type: 'image' },
   ],
   preview: {
