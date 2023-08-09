@@ -212,11 +212,18 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
       S.documentTypeListItem('project').title('Projects'),
       S.divider(),
       orderableDocumentListDeskItem({
+        type: 'service',
+        S,
+        context,
+        title: 'Services',
+        icon: FcServices,
+      }),
+      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
+      orderableDocumentListDeskItem({
         type: 'team',
         S,
         context,
         title: 'Team',
         icon: PiUsersThreeLight,
       }),
-      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
     ]);

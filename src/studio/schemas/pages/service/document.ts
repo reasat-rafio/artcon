@@ -12,7 +12,7 @@ const servicePage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'common.hero' }, { type: 'servicePage.services' }],
+      of: [{ type: 'common.hero' }],
     },
   ],
   preview: {

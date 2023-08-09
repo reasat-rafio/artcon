@@ -10,7 +10,6 @@
 
 <div>
   <H4 class="mb-md">Other team mambers</H4>
-
   <div class="grid grid-cols-3 gap-[22px]">
     {#each extraTeam as { image, name, role, url }}
       {@const el = url ? 'a' : 'div'}

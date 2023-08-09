@@ -18,6 +18,7 @@ import team from './[team]';
 import projectDetail from './[project]';
 import collectionDetail from './[collection]';
 import vrExhibition from './[vrExhibition]';
+import services from './[service]';
 
 export default [
   ...landing,
@@ -37,6 +38,7 @@ export default [
   ...projectDetail,
   ...collectionDetail,
   team,
+  services,
   vrExhibition,
   privacyPolicy,
   termsConditions,
