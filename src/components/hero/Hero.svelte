@@ -6,7 +6,7 @@
   import H7 from '../ui/H7.svelte';
 
   export let props: CommonHeroProps;
-  let { type, title, subtitle, asset, cta } = props;
+  let { text, title, type, asset, cta } = props;
 </script>
 
 <section class="{$$props.class ?? ''} h-screen w-full">
@@ -15,12 +15,12 @@
 
     <div class="container relative z-30 text-center text-white">
       <header class="space-y-2">
-        {#if !!type}
-          <H7>{type}</H7>
+        {#if !!text}
+          <H7>{text}</H7>
         {/if}
         <H1>{title}</H1>
-        {#if !!subtitle}
-          <H3 class="whitespace-pre-wrap">{subtitle}</H3>
+        {#if !!type}
+          <H3 class="whitespace-pre-wrap">{type}</H3>
         {/if}
       </header>
       {#if !!cta?.title}

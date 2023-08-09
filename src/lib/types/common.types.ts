@@ -88,9 +88,9 @@ export interface Cta {
 export interface CommonHeroProps {
   _type: 'common.hero';
   _key: string;
-  type?: string;
+  text?: string;
   title: string;
-  subtitle?: string;
+  type?: string;
   cta?: Cta;
   asset: {
     image?: SanityAsset;

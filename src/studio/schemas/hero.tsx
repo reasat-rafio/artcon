@@ -27,7 +27,7 @@ const commonHero = {
   icon: FcHome,
   fields: [
     {
-      name: 'type',
+      name: 'text',
       type: 'string',
     },
     {
@@ -36,7 +36,7 @@ const commonHero = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'subtitle',
+      name: 'type',
       type: 'text',
     },
     {
@@ -98,7 +98,7 @@ const commonHero = {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'subtitle',
+      subtitle: 'type',
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',

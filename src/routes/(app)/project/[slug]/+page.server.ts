@@ -26,13 +26,24 @@ const query = (params: Partial<Record<string, string>>) =>
     "otherProjects": *[_type == 'project' && slug.current != "${
       params.slug
     }"][]{
-        slug
+        slug,
+        "info": sections[ _type == "common.hero"][0]{
+            type,
+            title,
+            asset {
+                  ...,
+                  ${asset('image')},
+                  video{
+                      "webm": video_webm.asset->url,
+                      "mov": video_hevc.asset->url,
+                  }
+              },
+        }
     }
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
   const data = await sanityClient.fetch(query(params));
-
   if (!data) throw error(404, 'Not found');
 
   return {

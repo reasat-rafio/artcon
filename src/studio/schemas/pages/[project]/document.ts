@@ -34,14 +34,7 @@ const project = {
         'If the event is one day long then ignore the end and only fill the start date',
       type: 'datetime',
     },
-    {
-      name: 'organisedBy',
-      type: 'string',
-    },
-    {
-      name: 'supportedBy',
-      type: 'string',
-    },
+
     {
       name: 'sections',
       title: 'Sections',
