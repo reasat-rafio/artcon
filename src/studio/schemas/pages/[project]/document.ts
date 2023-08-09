@@ -1,3 +1,4 @@
+import type { SanityDocument } from '@sanity/client';
 import { FcVideoProjector } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -10,6 +11,16 @@ const project = {
       name: 'seo',
       title: 'SEO',
       type: 'seo',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      options: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        source: (_: SanityDocument, context: any) =>
+          context?.parent?.sections[0]?.title,
+      },
       validation: (Rule: Rule) => Rule.required(),
     },
     {

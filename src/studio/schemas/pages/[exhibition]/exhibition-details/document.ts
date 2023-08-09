@@ -18,7 +18,7 @@ const exhibition = {
       options: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         source: (_: SanityDocument, context: any) =>
-          context.parent.sections[0].title,
+          context?.parent?.sections[0]?.title,
       },
       validation: (Rule: Rule) => Rule.required(),
     },
