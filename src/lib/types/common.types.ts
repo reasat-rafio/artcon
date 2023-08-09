@@ -130,6 +130,7 @@ export interface Quote {
 }
 
 export interface VRExhibition {
+  name: string;
   image: SanityAsset;
   _type: string;
   url: string;

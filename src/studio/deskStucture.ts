@@ -2,7 +2,11 @@ import type { StructureBuilder } from 'sanity/desk';
 import { FaSitemap } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
-import { PiProjectorScreenChartLight, PiVirtualReality } from 'react-icons/pi';
+import {
+  PiProjectorScreenChartLight,
+  PiUsersThreeLight,
+  PiVirtualReality,
+} from 'react-icons/pi';
 import {
   FcAbout,
   FcCalendar,
@@ -207,6 +211,12 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         ),
       S.documentTypeListItem('project').title('Projects'),
       S.divider(),
-      orderableDocumentListDeskItem({ type: 'team', S, context }),
+      orderableDocumentListDeskItem({
+        type: 'team',
+        S,
+        context,
+        title: 'Team',
+        icon: PiUsersThreeLight,
+      }),
       S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
     ]);

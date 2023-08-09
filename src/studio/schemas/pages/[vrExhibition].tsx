@@ -7,6 +7,7 @@ const vrExhibition = {
   title: 'VR Exhibition',
   icon: PiVirtualRealityFill,
   fields: [
+    { name: 'name', type: 'string' },
     {
       name: 'url',
       type: 'url',
@@ -38,6 +39,7 @@ const vrExhibition = {
   ],
   preview: {
     select: {
+      title: 'name',
       subtitle: 'url',
       media: 'image',
     },

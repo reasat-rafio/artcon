@@ -20,7 +20,7 @@ const query = (params: Partial<Record<string, string>>) =>
                 "mov": video_hevc.asset->url,
             }
         },
-        vrExhibition {
+        vrExhibition-> {
             ...,
             ${asset('image')},
         },
