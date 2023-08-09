@@ -222,6 +222,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         icon: FcServices,
       }),
       S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
+      S.documentTypeListItem('ebook').title('EBooks'),
       orderableDocumentListDeskItem({
         type: 'team',
         S,

@@ -19,6 +19,7 @@ import projectDetail from './[project]';
 import collectionDetail from './[collection]';
 import vrExhibition from './[vrExhibition]';
 import services from './[service]';
+import ebook from './[ebook]';
 
 export default [
   ...landing,
@@ -37,6 +38,7 @@ export default [
   ...artistDetails,
   ...projectDetail,
   ...collectionDetail,
+  ebook,
   team,
   services,
   vrExhibition,
