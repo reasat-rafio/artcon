@@ -2,8 +2,8 @@ import { VscOrganization } from 'react-icons/vsc';
 import type { Rule } from 'sanity';
 
 const team = {
-  name: 'aboutUsPage.team',
-  title: 'Team',
+  name: 'aboutUsPage.teamBanner',
+  title: 'Team Banner',
   icon: VscOrganization,
   type: 'object',
   fields: [

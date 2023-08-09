@@ -15,7 +15,7 @@ const aboutUsPage = {
       of: [
         { type: 'common.hero' },
         { type: 'aboutUsPage.aboutUs' },
-        { type: 'aboutUsPage.team' },
+        { type: 'aboutUsPage.teamBanner' },
       ],
     },
   ],

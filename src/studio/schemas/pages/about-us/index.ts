@@ -1,5 +1,5 @@
 import aboutUs from './aboutUs';
 import aboutUsPage from './document';
-import team from './team';
+import teamBanner from './teamBanner';
 
-export default [aboutUsPage, aboutUs, team];
+export default [aboutUsPage, aboutUs, teamBanner];

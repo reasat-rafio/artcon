@@ -8,6 +8,7 @@
   import PortableTextBlock from './PortableTextBlock.svelte';
   import Social from './Social.svelte';
   import SocialContainer from './SocialContainer.svelte';
+  import { PortableText } from '@portabletext/svelte';
 </script>
 
 <article class="{$$props.class ?? ''} grid w-[85%] grid-cols-12 gap-[50px]">
@@ -29,6 +30,7 @@
     C={{
       DescriptionContainer,
       Description: BodyText,
+      PortableTextBlock: PortableText,
     }}
   />
 </article>
