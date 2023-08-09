@@ -43,6 +43,13 @@ const project = {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'seo.title',
+      subtitle: 'seo.description',
+      media: 'seo.ogImage',
+    },
+  },
 };
 
 export default project;

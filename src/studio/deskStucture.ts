@@ -20,6 +20,7 @@ import {
   FcRules,
   FcServices,
   FcStackOfPhotos,
+  FcVideoProjector,
 } from 'react-icons/fc';
 import { BsFillCollectionFill } from 'react-icons/bs';
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
@@ -209,7 +210,9 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               S.documentTypeListItem('eventTag').title('Tags'),
             ])
         ),
-      S.documentTypeListItem('project').title('Projects'),
+      S.documentTypeListItem('project')
+        .title('Projects')
+        .icon(FcVideoProjector),
       S.divider(),
       orderableDocumentListDeskItem({
         type: 'service',
