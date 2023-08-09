@@ -6,7 +6,7 @@ const team = {
   type: 'document',
   icon: PiUsersThreeLight,
   fields: [
-    orderRankField({ type: 'category' }),
+    orderRankField({ type: 'team' }),
     { name: 'name', type: 'string' },
     { name: 'role', type: 'string' },
     {

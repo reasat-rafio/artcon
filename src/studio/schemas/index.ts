@@ -8,7 +8,6 @@ import commonHero from './hero';
 import commonHeroList from './heroList';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
-import vrExhibition from './vrExhibition';
 import social from './social';
 
 export const schemaTypes = [
@@ -19,7 +18,6 @@ export const schemaTypes = [
   cta,
   quote,
   social,
-  vrExhibition,
   portableText,
   commonHero,
   commonHeroList,

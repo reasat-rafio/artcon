@@ -67,8 +67,9 @@ const summary = {
 
     {
       name: 'vrExhibition',
-      type: 'vrExhibition',
-      title: 'VR Exhibitionn',
+      title: 'VR Exhibition',
+      type: 'reference',
+      to: [{ type: 'vrExhibition' }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

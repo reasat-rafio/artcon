@@ -182,7 +182,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               S.documentTypeListItem('artistTag').title('Tags'),
             ])
         ),
-      S.documentTypeListItem('artwork').title('Artworks'),
+      S.documentTypeListItem('collection').title('Collections'),
       S.listItem()
         .title('Exhibition')
         .icon(FcStackOfPhotos)
@@ -205,7 +205,8 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               S.documentTypeListItem('eventTag').title('Tags'),
             ])
         ),
-      S.documentTypeListItem('project').title('Project'),
-      S.documentTypeListItem('collection').title('Collections'),
+      S.documentTypeListItem('project').title('Projects'),
+      S.divider(),
       orderableDocumentListDeskItem({ type: 'team', S, context }),
+      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
     ]);

@@ -1,11 +1,11 @@
-import { FaQuoteLeft } from 'react-icons/fa';
+import { PiVirtualRealityFill } from 'react-icons/pi';
 import type { Rule } from 'sanity';
 
 const vrExhibition = {
   name: 'vrExhibition',
-  type: 'object',
-  title: 'VR Exhibitionn Call To Action',
-  icon: FaQuoteLeft,
+  type: 'document',
+  title: 'VR Exhibition',
+  icon: PiVirtualRealityFill,
   fields: [
     {
       name: 'url',

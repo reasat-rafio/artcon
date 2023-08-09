@@ -14,10 +14,10 @@ import vr from './vr';
 import artistDetails from './[artist]';
 import privacyPolicy from './privacyPolicy';
 import termsConditions from './termsConditions';
-import artwork from './[artwork]';
 import team from './[team]';
 import projectDetail from './[project]';
 import collectionDetail from './[collection]';
+import vrExhibition from './[vrExhibition]';
 
 export default [
   ...landing,
@@ -36,8 +36,8 @@ export default [
   ...artistDetails,
   ...projectDetail,
   ...collectionDetail,
-  artwork,
   team,
+  vrExhibition,
   privacyPolicy,
   termsConditions,
 ];

@@ -63,7 +63,7 @@ const artist = {
       name: 'artworks',
       title: "Artist's Artworks",
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'artwork' } }],
+      of: [{ type: 'reference', to: { type: 'collection' } }],
       group: 'site',
     },
     {

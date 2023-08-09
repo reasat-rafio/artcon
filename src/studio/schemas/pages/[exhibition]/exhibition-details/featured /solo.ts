@@ -85,8 +85,9 @@ const featuredSolo = {
 
     {
       name: 'vrExhibition',
-      type: 'vrExhibition',
       title: 'VR Exhibition',
+      type: 'reference',
+      to: [{ type: 'vrExhibition' }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],
