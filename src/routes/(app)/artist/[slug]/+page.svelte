@@ -17,7 +17,6 @@
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-
 {#each page.sections as s}
   {#if s._type === 'common.heroList'}
     <Hero props={s} />
