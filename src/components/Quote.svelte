@@ -12,6 +12,8 @@
     <blockquote class="inline" cite={url}>
       <p class="inline">“{text}”</p>
     </blockquote>
-    <p class="inline">– {author}</p>
+    {#if !!author}
+      <p class="inline">– {author}</p>
+    {/if}
   </div>
 </section>

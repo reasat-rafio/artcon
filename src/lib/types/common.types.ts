@@ -123,7 +123,7 @@ export interface Tag {
 }
 
 export interface Quote {
-  author: string;
+  author?: string;
   _type: string;
   text: string;
   url?: string;

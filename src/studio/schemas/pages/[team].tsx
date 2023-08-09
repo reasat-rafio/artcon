@@ -1,5 +1,6 @@
 import { orderRankField } from '@sanity/orderable-document-list';
 import { PiUsersThreeLight } from 'react-icons/pi';
+import type { Rule } from 'sanity';
 
 const team = {
   name: 'team',
@@ -7,8 +8,16 @@ const team = {
   icon: PiUsersThreeLight,
   fields: [
     orderRankField({ type: 'team' }),
-    { name: 'name', type: 'string' },
-    { name: 'role', type: 'string' },
+    {
+      name: 'name',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'role',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
     {
       name: 'type',
       type: 'string',
@@ -18,9 +27,14 @@ const team = {
           { title: 'Extra', value: 'extra' },
         ],
       },
+      validation: (Rule: Rule) => Rule.required(),
     },
     { name: 'url', type: 'url' },
-    { name: 'image', type: 'image' },
+    {
+      name: 'image',
+      type: 'image',
+      validation: (Rule: Rule) => Rule.required(),
+    },
   ],
   preview: {
     select: {

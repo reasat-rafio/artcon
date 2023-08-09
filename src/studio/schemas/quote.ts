@@ -15,7 +15,6 @@ const quote = {
     {
       name: 'author',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'url',
