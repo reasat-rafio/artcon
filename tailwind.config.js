@@ -26,6 +26,11 @@ export default {
       },
       spacing: {
         xl: '144px',
+        lg: '80px',
+        md: '50px',
+      },
+      borderRadius: {
+        lg: '20px',
       },
       colors: {
         red: {

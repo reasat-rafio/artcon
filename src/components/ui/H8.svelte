@@ -1,3 +1,10 @@
-<h6 class="{$$props.class ?? ''} font-abc-arizona-serif text-head-8">
+<script lang="ts">
+  export let el: string = 'h6';
+</script>
+
+<svelte:element
+  this={el}
+  class="{$$props.class ?? ''} font-abc-arizona-serif text-head-8"
+>
   <slot />
-</h6>
+</svelte:element>
