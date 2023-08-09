@@ -3,6 +3,7 @@
   import type { ServicesPageProps } from '@/lib/types/services.types';
   import type { PageProps } from '@/lib/types/common.types';
   import Hero from '@/components/hero/Hero.svelte';
+  import Services from '@/components/pages/services/Services.svelte';
 
   export let data: PageProps<ServicesPageProps>;
   let {
@@ -17,3 +18,6 @@
     <Hero props={s} />
   {/if}
 {/each}
+{#if page.services.length}
+  <Services services={page.services} />
+{/if}
