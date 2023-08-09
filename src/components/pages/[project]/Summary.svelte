@@ -3,21 +3,13 @@
   import VrExhibition from '@/components/VRExhibition.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { SummaryProps } from '@/lib/types/projectDetail.types';
-  import { DateTime } from 'luxon';
 
   interface SProps extends SummaryProps {
-    startDate: string;
-    endDate?: string;
+    date: string;
   }
 
   export let props: SProps;
-  let { quote, vrExhibition, descriptionBlock, startDate, endDate } = props;
-
-  const s = DateTime.fromISO(startDate);
-  const e = endDate ? DateTime.fromISO(endDate) : null;
-
-  const formattedStartDate = s.toFormat('d MMMM');
-  const formattedEndDate = e ? e.toFormat('d MMMM, yyyy') : null;
+  let { quote, vrExhibition, descriptionBlock, date } = props;
 </script>
 
 <section class="py-xl">
@@ -29,12 +21,7 @@
         <C.IntroContainer>
           <C.HeaderContainer class="mb-10">
             <C.Title>{descriptionBlock.name}</C.Title>
-            <C.Subtitle weight="light"
-              >{formattedStartDate}
-              {#if formattedEndDate}
-                - {formattedEndDate}
-              {/if}
-            </C.Subtitle>
+            <C.Subtitle weight="light">{date}</C.Subtitle>
           </C.HeaderContainer>
           <div class="space-y-4">
             {#each descriptionBlock.moreInformations as { key, value }}
