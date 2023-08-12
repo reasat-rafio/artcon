@@ -18,10 +18,10 @@
 
 <div
   class="{$$props.class ?? ''} overflow-hidden"
-  use:emblaCarouselSvelte={{ plugins: plugins ?? [], options: options ?? {} }}
+  use:emblaCarouselSvelte={{ plugins, options }}
   on:emblaInit={onInit}
 >
-  <div class="flex">
+  <div class="flex space-x-[25px]">
     <slot {Gallery} api={emblaApi} />
   </div>
 </div>
