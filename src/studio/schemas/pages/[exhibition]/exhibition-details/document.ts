@@ -28,6 +28,12 @@ const exhibition = {
       of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
       validation: (Rule: Rule) => Rule.required(),
     },
+    {
+      name: 'artists',
+      title: "Exhibition's Artists",
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'artist' } }],
+    },
 
     {
       name: 'sections',
