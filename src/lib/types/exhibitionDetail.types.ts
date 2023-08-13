@@ -134,7 +134,7 @@ export interface SoloExhibiton {
   quote: Quote;
   statement: {
     title: string;
-    statement: string;
+    statement: PortableTextBlock[];
   };
   descriptionBlock: SoloExhibitonDescriptionBlock;
   vrExhibition: VRExhibition;

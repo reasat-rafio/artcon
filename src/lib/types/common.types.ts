@@ -137,5 +137,5 @@ export interface VRExhibition {
 }
 
 export interface DescriptionBlock {
-  description: string;
+  description: PortableTextBlock[];
 }

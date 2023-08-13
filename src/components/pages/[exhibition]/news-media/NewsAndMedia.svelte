@@ -50,7 +50,9 @@
       </svelte:fragment>
       <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
-          <C.Description>{description}</C.Description>
+          <C.Description>
+            <C.PortableTextBlock value={description} />
+          </C.Description>
         </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>
