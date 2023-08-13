@@ -14,33 +14,32 @@ const promotion = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'images',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.length(2),
-      of: [
+      name: 'coverImage',
+      type: 'image',
+      validation: (Rule: Rule) => Rule.required(),
+      options: {
+        hotspot: true,
+      },
+      fields: [
         {
-          name: 'image',
-          type: 'image',
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
           validation: (Rule: Rule) => Rule.required(),
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              title: 'Alternative Text',
-              description: 'Important for SEO and accessibility',
-              type: 'string',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              name: 'caption',
-              type: 'text',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
+        },
+        {
+          name: 'caption',
+          type: 'text',
+          validation: (Rule: Rule) => Rule.required(),
         },
       ],
+    },
+
+    {
+      name: 'ebook',
+      type: 'reference',
+      to: [{ type: 'ebook' }],
     },
 
     createDescriptionBlock({

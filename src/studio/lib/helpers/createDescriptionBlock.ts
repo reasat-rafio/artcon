@@ -17,7 +17,8 @@ const createDescriptionBlock = ({
       ...fields,
       {
         name: 'description',
-        type: 'text',
+        type: 'array',
+        of: [{ type: 'block' }],
         validation: (Rule: Rule) => Rule.required(),
       },
     ],

@@ -23,6 +23,17 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'startDate',
+      type: 'datetime',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'endDate',
+      description:
+        'If the event is one day long then ignore the end and only fill the start date',
+      type: 'datetime',
+    },
+    {
       name: 'tags',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
@@ -32,7 +43,7 @@ const exhibition = {
       name: 'artists',
       title: "Exhibition's Artists",
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'artist' } }],
+      of: [{ type: 'reference', to: [{ type: 'artist' }] }],
     },
 
     {
@@ -43,7 +54,7 @@ const exhibition = {
         { type: 'common.hero' },
         { type: 'exhibition.summary' },
         { type: 'common.imageAsset' },
-        { type: 'exhibition.featured' },
+        { type: 'exhibition.includedArtists' },
         { type: 'exhibition.note' },
         { type: 'exhibition.promotion' },
         { type: 'exhibition.artwork' },
