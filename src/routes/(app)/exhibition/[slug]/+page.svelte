@@ -5,7 +5,7 @@
   import Promotion from '@/components/pages/[exhibition]/promotion/Promotion.svelte';
   import Share from '@/components/pages/[exhibition]/Share.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
-  import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
+  import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
@@ -34,7 +34,7 @@
     <Summary props={s} />
   {:else if s._type === 'exhibition.includedArtists'}
     <IncludedArtists artists={page.artists} />
-    <!-- {:else if s._type === 'exhibition.note'}
+  {:else if s._type === 'exhibition.note'}
     <Note props={s} />
   {:else if s._type === 'exhibition.promotion'}
     <Promotion props={s} />
@@ -43,6 +43,6 @@
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} /> -->
+    <NewsAndMedia props={s} />
   {/if}
 {/each}

@@ -139,3 +139,14 @@ export interface VRExhibition {
 export interface DescriptionBlock {
   description: PortableTextBlock[];
 }
+
+export interface EbookProps {
+  _createdAt: Date;
+  _rev: string;
+  _type: string;
+  name: string;
+  _id: string;
+  _updatedAt: Date;
+  url: string;
+  image: SanityAsset;
+}

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
+  import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
   import Quote from '@/components/Quote.svelte';
   import VrExhibition from '@/components/VRExhibition.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';

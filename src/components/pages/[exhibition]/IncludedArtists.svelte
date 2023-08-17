@@ -4,7 +4,7 @@
     GroupExhibirtionProps,
     SoloExhibitonProps,
   } from '@/lib/types/exhibitionDetail.types';
-  import Summary from '../../[artist]/Summary.svelte';
+  import Summary from '../[artist]/Summary.svelte';
   import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
 
   export let artists: ArtistsProps;
@@ -21,7 +21,7 @@
 {#if !!soloExhibition?.length}
   <Summary props={soloExhibition[0].data} />
 {:else if !!groupExhibition?.length}
-  <section class="my-xl">
+  <section class="py-xl">
     <UserListWithTitle class="container" title="Artist in this ehibition">
       <svelte:fragment slot="list" let:CardsContainer let:Card>
         <CardsContainer>

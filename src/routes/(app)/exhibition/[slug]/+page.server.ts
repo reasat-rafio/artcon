@@ -56,8 +56,7 @@ const query = (params: Partial<Record<string, string>>) =>
             ${asset('image')},
         },
         ebook-> {
-          name,
-          url,
+          ...,
           ${asset('image')},
         },
         newsAndMedia[]{

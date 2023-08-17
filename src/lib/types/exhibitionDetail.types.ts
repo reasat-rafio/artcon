@@ -3,6 +3,7 @@ import type {
   CommonImageAsset,
   Cta,
   DescriptionBlock,
+  EbookProps,
   Quote,
   SeoProps,
   SocialProps,
@@ -89,7 +90,8 @@ export interface PromotionProps {
   _key: string;
   _type: 'exhibition.promotion';
   quote: Quote;
-  images: [SanityAsset, SanityAsset];
+  coverImage: SanityAsset;
+  ebook: EbookProps;
   descriptionBlock: PromotionDescriptionBlock;
 }
 export interface PromotionDescriptionBlock extends DescriptionBlock {

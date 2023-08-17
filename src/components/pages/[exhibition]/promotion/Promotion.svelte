@@ -2,20 +2,29 @@
   import type { PromotionProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
+  import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
 
   export let props: PromotionProps;
   let {
     descriptionBlock: { title, cta, information, description, subtitle },
-    images,
+    coverImage,
+    ebook,
     quote,
   } = props;
 </script>
 
-<section>
-  <div class="container py-xl">
+<section class="py-xl">
+  <div class="container">
     <Quote class="mb-xl" {quote} />
-    <ParallaxScrollImage class="mb-xl" {images} />
+
+    <ParallaxScrollImage class="mb-xl">
+      <svelte:fragment slot="first-image" let:Image>
+        <Image image={coverImage} />
+      </svelte:fragment>
+      <svelte:fragment slot="second-image" let:Image>
+        <Image el="a" href={ebook.url} image={ebook.image} />
+      </svelte:fragment>
+    </ParallaxScrollImage>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
