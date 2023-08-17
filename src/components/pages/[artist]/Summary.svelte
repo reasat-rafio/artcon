@@ -38,7 +38,14 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <ParallaxScrollImage class="mb-xl" {images} />
+    <ParallaxScrollImage class="mb-xl">
+      <svelte:fragment slot="first-image" let:Image>
+        <Image image={images[0]} />
+      </svelte:fragment>
+      <svelte:fragment slot="second-image" let:Image>
+        <Image image={images[1]} />
+      </svelte:fragment>
+    </ParallaxScrollImage>
 
     <DescriptionBlock class="mb-xl">
       <svelte:fragment slot="intro" let:C>
