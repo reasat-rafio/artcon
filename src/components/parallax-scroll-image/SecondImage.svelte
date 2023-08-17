@@ -7,9 +7,10 @@
   export let el: El = 'div';
   export let image: SanityAsset;
   export let href: string | undefined = undefined;
+  export let caption: string | undefined = undefined;
 </script>
 
-<svlete:element this={el} class={$$props.class} {href}>
+<svelte:element this={el} class={$$props.class} {href}>
   <figure>
     <SanityImage
       sizes="70vw"
@@ -18,12 +19,12 @@
       class="h-full w-full rounded-[20px]"
       imageUrlBuilder={imageBuilder}
     />
-    {#if !!image?.caption}
+    {#if !!image?.caption || caption}
       <figcaption
         class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
       >
-        {image?.caption}
+        {caption ?? image?.caption}
       </figcaption>
     {/if}
   </figure>
-</svlete:element>
+</svelte:element>
