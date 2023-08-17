@@ -18,6 +18,8 @@
     page,
     site: { logos },
   } = data;
+
+  console.log(page);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
@@ -27,7 +29,7 @@
   {/if}
 {/each}
 <Share />
-{#each page.sections as s}
+<!-- {#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
@@ -45,4 +47,4 @@
   {:else if s._type === 'exhibition.newsAndMedia'}
     <NewsAndMedia props={s} />
   {/if}
-{/each}
+{/each} -->

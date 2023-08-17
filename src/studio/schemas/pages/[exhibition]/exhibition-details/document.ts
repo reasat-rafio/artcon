@@ -41,9 +41,10 @@ const exhibition = {
     },
     {
       name: 'artists',
-      title: "Exhibition's Artists",
+      title: 'Artist in this ehibition',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
+      validation: (Rule: Rule) => Rule.unique(),
     },
 
     {

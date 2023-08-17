@@ -16,7 +16,7 @@ const siteDocuments = {
       title: 'Sections',
       type: 'array',
       of: [
-        { type: 'common.heroList' },
+        { type: 'common.hero' },
         { type: 'common.imageAsset' },
         { type: 'artist.summary' },
         { type: 'artist.artwork' },

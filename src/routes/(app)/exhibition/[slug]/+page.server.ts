@@ -7,9 +7,34 @@ const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "exhibition" && slug.current == "${params.slug}"] [0]{
     ...,
     tags[]->,
+    count(artists) == 1 => {
+      artists[]->{
+        slug,
+        ...siteDocuments {
+          sections[ _type == "artist.summary"][0]{
+            ...,
+            ${asset('images[]', { as: 'images' })},
+            vrExhibition-> {
+              ...,
+              ${asset('image')},
+            },
+          }
+        }
+      },
+    },
+    count(artists) > 1 => {
+      artists[]->{
+        slug,
+        ...personalDocuments {
+          "name": name.en,
+          ${asset('artistPortrait')},
+        }
+      },
+    },
     sections[]{
         ...,
         ${asset('image')},
+        ${asset('coverImage')},
         ${asset('images[]', { as: 'images' })},
         ${asset('artworks[]', { as: 'artworks' })},
         asset {
@@ -23,6 +48,11 @@ const query = (params: Partial<Record<string, string>>) =>
         vrExhibition-> {
             ...,
             ${asset('image')},
+        },
+        ebook-> {
+          name,
+          url,
+          ${asset('image')},
         },
         featured[0]{
             ...,
@@ -40,7 +70,6 @@ const query = (params: Partial<Record<string, string>>) =>
             ${asset('image')},
         }
     }
-
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
