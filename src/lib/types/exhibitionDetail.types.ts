@@ -10,12 +10,25 @@ import type {
   VRExhibition,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-import type { PortableTextBlock } from 'sanity';
+import type { PortableTextBlock, Slug } from 'sanity';
+import type { ArtistSummaryProps } from './artistDetail.types';
 
 export interface ExhinitionDetailPageProps {
+  artists: [SoloExhibiton] | GroupExhibirtion[];
   seo: SeoProps;
   tags: Tag[];
   sections: Section[];
+}
+
+interface SoloExhibiton {
+  slug: Slug;
+  data: ArtistSummaryProps;
+}
+
+interface GroupExhibirtion {
+  slug: Slug;
+  name: string;
+  artistPortrait: SanityAsset;
 }
 
 type Section =
@@ -25,7 +38,7 @@ type Section =
   | NoteProps
   | PromotionProps
   | ArtworkProps
-  | FeaturedProps
+  | IncludedArtistsProps
   | GalleryProps
   | NewsAndMediaProps;
 
@@ -35,6 +48,11 @@ export interface SummaryProps {
   quote: Quote;
   descriptionBlock: SummaryDescriptionBlock;
   vrExhibition: VRExhibition;
+}
+
+export interface IncludedArtistsProps {
+  _key: string;
+  _type: 'exhibition.includedArtists';
 }
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {
@@ -124,21 +142,21 @@ export interface NewsAndMedia {
 export interface FeaturedProps {
   _key: string;
   _type: 'exhibition.featured';
-  featured: SoloExhibiton | GroupExhibirtion;
+  // featured: SoloExhibiton | GroupExhibirtion;
 }
 
-export interface SoloExhibiton {
-  _type: 'exhibition.featured.solo';
-  _key: string;
-  images: [SanityAsset, SanityAsset];
-  quote: Quote;
-  statement: {
-    title: string;
-    statement: PortableTextBlock[];
-  };
-  descriptionBlock: SoloExhibitonDescriptionBlock;
-  vrExhibition: VRExhibition;
-}
+// export interface SoloExhibiton {
+//   _type: 'exhibition.featured.solo';
+//   _key: string;
+//   images: [SanityAsset, SanityAsset];
+//   quote: Quote;
+//   statement: {
+//     title: string;
+//     statement: PortableTextBlock[];
+//   };
+//   descriptionBlock: SoloExhibitonDescriptionBlock;
+//   vrExhibition: VRExhibition;
+// }
 
 export interface SoloExhibitonDescriptionBlock extends DescriptionBlock {
   name: string;
@@ -146,7 +164,7 @@ export interface SoloExhibitonDescriptionBlock extends DescriptionBlock {
   socials: SocialProps[];
 }
 
-export interface GroupExhibirtion {
-  _type: 'exhibition.featured.group';
-  _key: string;
-}
+// export interface GroupExhibirtion {
+//   _type: 'exhibition.featured.group';
+//   _key: string;
+// }

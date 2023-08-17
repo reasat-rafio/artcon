@@ -11,7 +11,7 @@ const query = (params: Partial<Record<string, string>>) =>
       artists[]->{
         slug,
         ...siteDocuments {
-          sections[ _type == "artist.summary"][0]{
+        "data": sections[ _type == "artist.summary"][0]{
             ...,
             ${asset('images[]', { as: 'images' })},
             vrExhibition-> {
