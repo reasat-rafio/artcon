@@ -14,18 +14,19 @@ import type { PortableTextBlock, Slug } from 'sanity';
 import type { ArtistSummaryProps } from './artistDetail.types';
 
 export interface ExhinitionDetailPageProps {
-  artists: [SoloExhibiton] | GroupExhibirtion[];
+  artists: ArtistsProps;
   seo: SeoProps;
   tags: Tag[];
   sections: Section[];
 }
 
-interface SoloExhibiton {
-  slug: Slug;
+export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
+
+export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
 }
 
-interface GroupExhibirtion {
+export interface GroupExhibirtionProps {
   slug: Slug;
   name: string;
   artistPortrait: SanityAsset;

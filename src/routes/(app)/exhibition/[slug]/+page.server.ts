@@ -9,10 +9,16 @@ const query = (params: Partial<Record<string, string>>) =>
     tags[]->,
     count(artists) == 1 => {
       artists[]->{
-        slug,
         ...siteDocuments {
         "data": sections[ _type == "artist.summary"][0]{
             ...,
+            descriptionBlock{
+              ...,
+              socials[]{
+                  ...,
+                  ${asset('icon')},
+              }
+            },
             ${asset('images[]', { as: 'images' })},
             vrExhibition-> {
               ...,
@@ -53,17 +59,6 @@ const query = (params: Partial<Record<string, string>>) =>
           name,
           url,
           ${asset('image')},
-        },
-        featured[0]{
-            ...,
-            ${asset('images[]', { as: 'images' })},
-            descriptionBlock{
-                ...,
-                socials[]{
-                    ...,
-                    ${asset('icon')},
-                }
-            }
         },
         newsAndMedia[]{
             ...,

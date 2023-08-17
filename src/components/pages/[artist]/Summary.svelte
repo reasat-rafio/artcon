@@ -3,7 +3,6 @@
   import Quote from '@/components/Quote.svelte';
   import VrExhibition from '@/components/VRExhibition.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { ArtistSummaryProps } from '@/lib/types/artistDetail.types';
 
   export let props: ArtistSummaryProps;
@@ -50,7 +49,9 @@
 
       <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
-          <C.Description>{statement.description}</C.Description>
+          <C.Description>
+            <C.PortableTextBlock value={statement.description} />
+          </C.Description>
         </C.DescriptionContainer>
       </svelte:fragment>
     </DescriptionBlock>

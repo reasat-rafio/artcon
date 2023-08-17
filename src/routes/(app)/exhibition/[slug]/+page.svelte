@@ -5,7 +5,7 @@
   import Promotion from '@/components/pages/[exhibition]/promotion/Promotion.svelte';
   import Share from '@/components/pages/[exhibition]/Share.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
-  import Featured from '@/components/pages/[exhibition]/featured/Featured.svelte';
+  import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
@@ -18,8 +18,6 @@
     page,
     site: { logos },
   } = data;
-
-  console.log(page);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
@@ -29,14 +27,14 @@
   {/if}
 {/each}
 <Share />
-<!-- {#each page.sections as s}
+{#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
     <Summary props={s} />
-  {:else if s._type === 'exhibition.featured'}
-    <Featured props={s} />
-  {:else if s._type === 'exhibition.note'}
+  {:else if s._type === 'exhibition.includedArtists'}
+    <IncludedArtists artists={page.artists} />
+    <!-- {:else if s._type === 'exhibition.note'}
     <Note props={s} />
   {:else if s._type === 'exhibition.promotion'}
     <Promotion props={s} />
@@ -45,6 +43,6 @@
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} />
+    <NewsAndMedia props={s} /> -->
   {/if}
-{/each} -->
+{/each}
