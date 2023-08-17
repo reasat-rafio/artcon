@@ -13,7 +13,7 @@
       <div>
         <Quote class="mb-xl" {quote} />
 
-        <DescriptionBlock class="mb-xl">
+        <DescriptionBlock class="mb-xl last:mb-0">
           <svelte:fragment slot="intro" let:C>
             <C.IntroContainer>
               <C.HeaderContainer>

@@ -13,8 +13,6 @@
 
 <section class="py-xl">
   <div class="container">
-    <!-- <Carousel {images} /> -->
-
     <Carousel class="mb-xl" let:Gallery>
       <Gallery
         class="grid grid-cols-3 gap-x-[25px] gap-y-[56px] pr-[25px]"

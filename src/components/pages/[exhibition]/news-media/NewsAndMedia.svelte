@@ -26,17 +26,19 @@
       >
         {#each chunk as { image, link, subtitle, title }}
           <Card
+            el="a"
             class="space-y-[20px]"
             href={link}
+            let:Container
             let:Title
             let:Subtitle
             let:Image
           >
             <Image {image} />
-            <header class="space-y-[10px]">
+            <Container>
               <Title>{title}</Title>
               <Subtitle class="text-sonic-silver">{subtitle}</Subtitle>
-            </header>
+            </Container>
           </Card>
         {/each}
       </Gallery>

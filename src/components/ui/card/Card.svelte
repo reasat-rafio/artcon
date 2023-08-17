@@ -2,16 +2,12 @@
   import H6 from '../H6.svelte';
   import H8 from '../H8.svelte';
   import Image from './Image.svelte';
+  import HeaderContainer from './HeaderContainer.svelte';
 
+  export let el: 'a' | 'div' = 'div';
   export let href: string | undefined = undefined;
 </script>
 
-{#if !!href}
-  <a class="{$$props.class ?? ''} " {href}>
-    <slot Title={H6} Subtitle={H8} {Image} />
-  </a>
-{:else}
-  <div class="{$$props.class ?? ''} ">
-    <slot Title={H6} Subtitle={H8} {Image} />
-  </div>
-{/if}
+<svelte:element this={el} {href} class={$$props.class ?? ''}>
+  <slot Title={H6} Subtitle={H8} Container={HeaderContainer} {Image} />
+</svelte:element>
