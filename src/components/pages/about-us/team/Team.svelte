@@ -15,7 +15,6 @@
   }
 </script>
 
-<!-- PersonaPane -->
 <section class="py-xl">
   <div class="container">
     <H4 class="mb-lg">Meet Our Team</H4>
@@ -29,8 +28,13 @@
           <svelte:fragment slot="list" let:CardsContainer let:Card>
             <CardsContainer>
               {#each extraTeam as { image, name, role, url }}
-                {@const el = url ? 'a' : 'div'}
-                <Card {el} {image} title={name} subtitle={role} />
+                <Card
+                  el={url ? 'a' : 'div'}
+                  {image}
+                  title={name}
+                  subtitle={role}
+                  {url}
+                />
               {/each}
             </CardsContainer>
           </svelte:fragment>
