@@ -17,14 +17,16 @@
   <div class="container">
     <Quote class="mb-xl" {quote} />
 
-    <ParallaxScrollImage class="mb-xl">
-      <svelte:fragment slot="first-image" let:Image>
-        <Image image={coverImage} />
-      </svelte:fragment>
-      <svelte:fragment slot="second-image" let:Image>
-        <Image el="a" href={ebook.url} image={ebook.image} />
-      </svelte:fragment>
-    </ParallaxScrollImage>
+    <svlete:element this="article">
+      <ParallaxScrollImage class="mb-xl">
+        <svelte:fragment slot="first-image" let:Image>
+          <Image image={coverImage} />
+        </svelte:fragment>
+        <svelte:fragment slot="second-image" let:Image>
+          <Image el="a" href={ebook.url} image={ebook.image} />
+        </svelte:fragment>
+      </ParallaxScrollImage>
+    </svlete:element>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

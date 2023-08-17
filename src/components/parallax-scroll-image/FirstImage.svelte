@@ -9,23 +9,21 @@
   export let image: SanityAsset;
 </script>
 
-<div>
-  <svlete:element this={el} class={$$props.class} {href}>
-    <figure>
-      <SanityImage
-        class="aspect-square w-full rounded-[20px] object-cover"
-        sizes="30vw"
-        src={image}
-        alt={image.alt}
-        imageUrlBuilder={imageBuilder}
-      />
-      {#if !!image?.caption}
-        <figcaption
-          class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-        >
-          {image.caption}
-        </figcaption>
-      {/if}
-    </figure>
-  </svlete:element>
-</div>
+<svlete:element this={el} class={$$props.class} {href}>
+  <figure>
+    <SanityImage
+      class="aspect-square w-full rounded-[20px] object-cover"
+      sizes="30vw"
+      src={image}
+      alt={image.alt}
+      imageUrlBuilder={imageBuilder}
+    />
+    {#if !!image?.caption}
+      <figcaption
+        class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
+      >
+        {image.caption}
+      </figcaption>
+    {/if}
+  </figure>
+</svlete:element>
