@@ -25,24 +25,30 @@
     startDate: page?.startDate,
     endDate: page?.endDate,
   });
+
+  const getHeroTextField = (text: string | undefined) =>
+    text || (status.status !== 'Ongoing' ? status.date : status.status);
+
+  const getHeroNameField = (text: string | undefined) => {
+    let fallbackText: string | undefined = undefined;
+    const artist = page.artists[0];
+
+    if ('personalDocuments' in artist)
+      fallbackText = artist.personalDocuments.name;
+    else if (page.artists.length > 1) fallbackText = 'Group Exhibition';
+
+    return text || fallbackText;
+  };
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
-    {@const text =
-      s.text || (status.status !== 'Ongoing' ? status.date : status.status)}
-    {@const type =
-      s.type ||
-      (page?.artists?.length === 1
-        ? // @ts-ignore @TODO fix this
-          page.artists[0].personalDocuments.name
-        : 'Group Exhibition')}
     <Hero
       props={{
         ...s,
-        text,
-        type,
+        text: getHeroTextField(s.text),
+        type: getHeroNameField(s.type),
       }}
     />
   {/if}

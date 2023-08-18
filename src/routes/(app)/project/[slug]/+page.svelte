@@ -19,17 +19,18 @@
     startDate: page.startDate,
     endDate: page?.endDate,
   });
+
+  const getHeroTextField = (text: string | undefined) =>
+    text || (status.status !== 'Ongoing' ? status.date : status.status);
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
-    {@const text =
-      s.text || (status.status !== 'Ongoing' ? status.date : status.status)}
     <Hero
       props={{
         ...s,
-        text,
+        text: getHeroTextField(s.text),
       }}
     />
   {/if}
