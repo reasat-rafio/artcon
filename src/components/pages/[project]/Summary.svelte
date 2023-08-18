@@ -9,7 +9,7 @@
   }
 
   export let props: SProps;
-  let { quote, vrExhibition, descriptionBlock, date } = props;
+  $: ({ quote, vrExhibition, descriptionBlock, date } = props);
 </script>
 
 <section class="py-xl">

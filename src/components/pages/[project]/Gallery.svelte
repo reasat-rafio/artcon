@@ -5,10 +5,10 @@
   import type { GalleryProps } from '@/lib/types/projectDetail.types';
 
   export let props: GalleryProps;
-  let {
+  $: ({
     descriptionBlock: { title, description },
     images,
-  } = props;
+  } = props);
 </script>
 
 <section class="py-xl">

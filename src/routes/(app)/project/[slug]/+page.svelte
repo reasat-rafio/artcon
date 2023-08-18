@@ -10,21 +10,22 @@
   import { getEventStatus } from '@/lib/helper';
 
   export let data: PageProps<ProjectDetailPageProps>;
-  let {
+  $: ({
     page,
     site: { logos },
-  } = data;
+  } = data);
 
-  const { date, status } = getEventStatus({
+  $: status = getEventStatus({
     startDate: page.startDate,
-    endDate: page.endDate,
+    endDate: page?.endDate,
   });
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
-    {@const text = s.text || (status !== 'Ongoing' ? date : status)}
+    {@const text =
+      s.text || (status.status !== 'Ongoing' ? status.date : status.status)}
     <Hero
       props={{
         ...s,
@@ -38,7 +39,7 @@
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'project.summary'}
-    <Summary props={{ ...s, date }} />
+    <Summary props={{ ...s, date: status.date }} />
   {:else if s._type === 'project.gallery'}
     <Gallery props={s} />
   {/if}
