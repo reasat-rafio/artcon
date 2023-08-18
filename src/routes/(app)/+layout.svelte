@@ -16,7 +16,7 @@
     },
   } = data);
 
-  let faviconImage = favicon
+  $: faviconImage = favicon
     ? urlFor(favicon).size(256, 256).ignoreImageParams().url()
     : null;
 </script>
