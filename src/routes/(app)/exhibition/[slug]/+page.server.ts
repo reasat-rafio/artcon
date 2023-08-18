@@ -43,6 +43,16 @@ const query = (params: Partial<Record<string, string>>) =>
      slug,
      startDate,
      endDate,
+     "type": select(
+        count(artists) == 1 => {
+          artists[0]->{
+            ...personalDocuments {
+              "name": name.en,
+            }
+          }
+        },
+        count(artists) > 1 => "Group Exhibition",
+     ),
      "data": sections[_type == "common.hero"][0]{
         ...,
         asset {

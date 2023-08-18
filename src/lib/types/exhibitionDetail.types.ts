@@ -52,6 +52,7 @@ export interface OtherExhibitionProps {
   startDate: string;
   endDate?: string;
   data: CommonHeroProps;
+  type: 'Group Exhibition' | { artists: { name: string } };
 }
 
 export interface SummaryProps {

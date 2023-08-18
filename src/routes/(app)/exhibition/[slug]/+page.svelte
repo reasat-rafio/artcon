@@ -13,6 +13,7 @@
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import { getEventStatus } from '@/lib/helper';
+  import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   let {
@@ -24,25 +25,6 @@
     startDate: page.startDate,
     endDate: page.endDate,
   });
-
-  // page.otherExhibitions.sort((a, b) => {
-  //   const { status: statusA } = getEventStatus({
-  //     startDate: a.startDate,
-  //     endDate: a.endDate,
-  //   });
-
-  //   const { status: statusB } = getEventStatus({
-  //     startDate: b.startDate,
-  //     endDate: b.endDate,
-  //   });
-
-  //   const statusOrder = {
-  //     Ongoing: 0,
-  //     Upcoming: 1,
-  //     Completed: 2,
-  //   } as const;
-  //   return statusOrder[statusA] - statusOrder[statusB];
-  // });
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
@@ -73,3 +55,6 @@
     <NewsAndMedia props={s} />
   {/if}
 {/each}
+{#if !!page?.otherExhibitions?.length}
+  <OtherExhibitions exhibitions={page.otherExhibitions} />
+{/if}
