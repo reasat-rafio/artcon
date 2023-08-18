@@ -4,7 +4,7 @@
   import type { VRExhibition } from '@/lib/types/common.types';
 
   export let vrExhibition: VRExhibition;
-  let { image, url } = vrExhibition;
+  $: ({ image, url } = vrExhibition);
 
   let showIframe = false;
 </script>

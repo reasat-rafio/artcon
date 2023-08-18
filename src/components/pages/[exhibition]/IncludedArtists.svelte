@@ -8,14 +8,11 @@
   import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
 
   export let artists: ArtistsProps;
-
-  let soloExhibition: [SoloExhibitonProps];
-  let groupExhibition: GroupExhibirtionProps[];
-
-  if (!!artists?.length) {
-    if (artists.length === 1) soloExhibition = artists as [SoloExhibitonProps];
-    else groupExhibition = artists as GroupExhibirtionProps[];
-  }
+  $: artists;
+  $: soloExhibition =
+    artists.length === 1 ? (artists as SoloExhibitonProps[]) : null;
+  $: groupExhibition =
+    artists.length > 1 ? (artists as GroupExhibirtionProps[]) : null;
 </script>
 
 {#if !!soloExhibition?.length}

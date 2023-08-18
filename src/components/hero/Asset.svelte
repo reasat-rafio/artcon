@@ -4,7 +4,7 @@
   import type { CommonHeroProps } from '@/lib/types/common.types';
 
   export let asset: CommonHeroProps['asset'];
-  let { image, video } = asset;
+  $: ({ image, video } = asset);
 </script>
 
 {#if !!image}

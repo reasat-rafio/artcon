@@ -5,12 +5,12 @@
   import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
 
   export let props: PromotionProps;
-  let {
+  $: ({
     descriptionBlock: { title, cta, information, description, subtitle },
     coverImage,
     ebook,
     quote,
-  } = props;
+  } = props);
 </script>
 
 <section class="py-xl">

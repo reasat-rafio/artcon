@@ -4,7 +4,7 @@
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
 
   export let props: NoteProps;
-  let { notes } = props;
+  $: ({ notes } = props);
 </script>
 
 <section class="py-xl">
@@ -12,12 +12,12 @@
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }}
       <div>
         <Quote class="mb-xl" {quote} />
-
         <DescriptionBlock class="mb-xl last:mb-0">
           <svelte:fragment slot="intro" let:C>
             <C.IntroContainer>
               <C.HeaderContainer>
                 <C.Title>{title}</C.Title>
+                <C.Subtitle>{subtitle}</C.Subtitle>
               </C.HeaderContainer>
             </C.IntroContainer>
           </svelte:fragment>

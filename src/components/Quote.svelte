@@ -2,7 +2,7 @@
   import type { Quote } from '@/lib/types/common.types';
 
   export let quote: Quote;
-  let { author, text, url } = quote;
+  $: ({ author, text, url } = quote);
 </script>
 
 <section class="{$$props.class ?? ''} max-w-[740px]">

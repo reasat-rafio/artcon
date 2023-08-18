@@ -5,11 +5,11 @@
   import Artworks from './Artworks.svelte';
 
   export let props: ArtworkProps;
-  let {
+  $: ({
     quote,
     artworks,
     descriptionBlock: { description, title, cta },
-  } = props;
+  } = props);
 </script>
 
 <section class="py-xl">

@@ -10,6 +10,7 @@
   } from 'embla-carousel-svelte';
 
   export let exhibitions: OtherExhibitionProps[];
+  $: exhibitions;
 
   exhibitions.sort((a, b) => {
     const { status: statusA } = getEventStatus({

@@ -6,7 +6,7 @@
   import type { ArtistSummaryProps } from '@/lib/types/artistDetail.types';
 
   export let props: ArtistSummaryProps;
-  let { quote, vrExhibition, descriptionBlock, images, statement } = props;
+  $: ({ quote, vrExhibition, descriptionBlock, images, statement } = props);
 </script>
 
 <section class="py-xl">

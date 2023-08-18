@@ -4,7 +4,7 @@
   import type { CommonImageAsset } from '@/lib/types/common.types';
 
   export let props: CommonImageAsset;
-  let { image } = props;
+  $: ({ image } = props);
 </script>
 
 <figure class="h-screen w-full">

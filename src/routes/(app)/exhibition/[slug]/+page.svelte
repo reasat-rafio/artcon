@@ -14,16 +14,17 @@
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import { getEventStatus } from '@/lib/helper';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
+  import { onMount } from 'svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
-  let {
+  $: ({
     page,
     site: { logos },
-  } = data;
+  } = data);
 
-  const { date, status } = getEventStatus({
-    startDate: page.startDate,
-    endDate: page.endDate,
+  $: status = getEventStatus({
+    startDate: page?.startDate,
+    endDate: page?.endDate,
   });
 </script>
 
@@ -31,7 +32,11 @@
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
     <Hero
-      props={{ ...s, text: s.text || (status !== 'Ongoing' ? date : status) }}
+      props={{
+        ...s,
+        text:
+          s.text || (status.status !== 'Ongoing' ? status.date : status.status),
+      }}
     />
   {/if}
 {/each}
@@ -52,9 +57,10 @@
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} />
+    <NewsAndMedia props={s} /> -->
   {/if}
 {/each}
+
 {#if !!page?.otherExhibitions?.length}
   <OtherExhibitions exhibitions={page.otherExhibitions} />
 {/if}

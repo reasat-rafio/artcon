@@ -6,10 +6,10 @@
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
 
   export let props: SummaryProps;
-  let { quote, descriptionBlock, vrExhibition } = props;
+  $: ({ quote, descriptionBlock, vrExhibition } = props);
 
-  const startDate = DateTime.fromISO(descriptionBlock.startDate);
-  const endDate = DateTime.fromISO(descriptionBlock.endDate);
+  const startDate = DateTime.fromISO(descriptionBlock?.startDate);
+  const endDate = DateTime.fromISO(descriptionBlock?.endDate);
 
   const formattedStartDate = startDate.toFormat('d MMMM');
   const formattedEndDate = endDate.toFormat('d MMMM, yyyy');

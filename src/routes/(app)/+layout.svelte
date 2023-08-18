@@ -7,14 +7,14 @@
   import '@fontsource-variable/inter';
 
   export let data: { site: SiteProps };
-  let {
+  $: ({
     site: {
       nav,
       logos: { favicon, logoLight, logoDark },
       footer,
       contact,
     },
-  } = data;
+  } = data);
 
   let faviconImage = favicon
     ? urlFor(favicon).size(256, 256).ignoreImageParams().url()
@@ -25,7 +25,7 @@
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
 
-<Navbar logo={logoDark} />
-<NavItems {nav} />
+<!-- <Navbar logo={logoDark} />
+<NavItems {nav} /> -->
 <slot />
-<Footer {footer} {contact} logo={logoLight} />
+<!-- <Footer {footer} {contact} logo={logoLight} /> -->

@@ -8,7 +8,7 @@
   export let active: boolean;
   export let artwork: SanityAsset;
 
-  const x = tweened(active ? 1.4 : 0.6, {
+  const x = tweened(active ? 1.2 : 0.6, {
     duration: 600,
     easing: cubicInOut,
   });
@@ -17,15 +17,15 @@
     easing: cubicInOut,
   });
 
-  $: $x = active ? 1.4 : 0.6;
+  $: $x = active ? 1.2 : 0.6;
   $: $y = active ? 1 : 0.5;
 </script>
 
 <div class="relative flex h-full flex-[0_0_50%] items-center justify-center">
   <div style="transform: scale({$x}, {$y});">
-    <figure class={active ? 'translate-x-[-10%]' : 'translate-x-[-30%]'}>
+    <figure class={active ? 'translate-x-[-10%]' : 'translate-x-[-25%]'}>
       <SanityImage
-        class="h-full w-full rounded object-cover "
+        class="h-full w-full  rounded-[25px] object-cover"
         sizes="60vw"
         src={artwork}
         imageUrlBuilder={imageBuilder}

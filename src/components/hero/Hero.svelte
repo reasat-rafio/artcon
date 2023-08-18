@@ -6,7 +6,7 @@
   import H7 from '../ui/H7.svelte';
 
   export let props: CommonHeroProps;
-  let { text, title, type, asset, cta } = props;
+  $: ({ text, title, type, asset, cta } = props);
 </script>
 
 <section class="{$$props.class ?? ''} h-screen w-full">

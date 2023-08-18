@@ -9,7 +9,6 @@
   import Image from './Image.svelte';
 
   export let artworks: SanityAsset[];
-
   let emblaApi: EmblaCarouselType;
 
   let plugins: EmblaPluginType[] = [AutoPlay()];

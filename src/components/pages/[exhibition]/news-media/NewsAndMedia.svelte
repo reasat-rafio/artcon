@@ -6,11 +6,11 @@
   import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
 
   export let props: NewsAndMediaProps;
-  let {
+  $: ({
     quote,
     newsAndMedia,
     descriptionBlock: { description, title },
-  } = props;
+  } = props);
 </script>
 
 <section class="py-xl">
