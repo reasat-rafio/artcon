@@ -15,6 +15,8 @@ import type { PortableTextBlock, Slug } from 'sanity';
 import type { ArtistSummaryProps } from './artistDetail.types';
 
 export interface ExhinitionDetailPageProps {
+  startDate: string;
+  endDate?: string;
   artists: ArtistsProps;
   seo: SeoProps;
   tags: Tag[];
