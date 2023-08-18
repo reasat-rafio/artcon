@@ -9,10 +9,10 @@
 
 <section class="py-xl">
   <div class="container">
-    {#each notes as { quote, descriptionBlock: { title, subtitle, description } }}
+    {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
         <Quote class="mb-xl" {quote} />
-        <DescriptionBlock class="mb-xl last:mb-0">
+        <DescriptionBlock class={index + 1 !== notes.length ? 'mb-xl' : ''}>
           <svelte:fragment slot="intro" let:C>
             <C.IntroContainer>
               <C.HeaderContainer>

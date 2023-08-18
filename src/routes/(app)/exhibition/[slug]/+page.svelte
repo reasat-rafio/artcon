@@ -14,7 +14,6 @@
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import { getEventStatus } from '@/lib/helper';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
-  import { onMount } from 'svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   $: ({
@@ -31,11 +30,16 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
+    {@const text =
+      s.text || (status.status !== 'Ongoing' ? status.date : status.status)}
+    {@const type =
+      s.type ||
+      (page?.artists?.length === 1 ? page.artists[0].name : 'Group Exhibition')}
     <Hero
       props={{
         ...s,
-        text:
-          s.text || (status.status !== 'Ongoing' ? status.date : status.status),
+        text,
+        type,
       }}
     />
   {/if}

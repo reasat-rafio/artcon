@@ -9,6 +9,7 @@ const query = (params: Partial<Record<string, string>>) =>
     tags[]->,
     count(artists) == 1 => {
       artists[]->{
+        "name": personalDocuments.name.en,
         ...siteDocuments {
         "data": sections[_type == "artist.summary"][0]{
             ...,

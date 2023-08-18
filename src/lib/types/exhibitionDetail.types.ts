@@ -39,6 +39,7 @@ export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
 
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
+  name: string;
 }
 
 export interface GroupExhibirtionProps {
