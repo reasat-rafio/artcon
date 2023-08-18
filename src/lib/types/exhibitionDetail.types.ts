@@ -19,7 +19,19 @@ export interface ExhinitionDetailPageProps {
   seo: SeoProps;
   tags: Tag[];
   sections: Section[];
+  otherExhibitions: OtherExhibitionProps[];
 }
+
+type Section =
+  | CommonHeroProps
+  | CommonImageAsset
+  | SummaryProps
+  | NoteProps
+  | PromotionProps
+  | ArtworkProps
+  | IncludedArtistsProps
+  | GalleryProps
+  | NewsAndMediaProps;
 
 export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
 
@@ -33,16 +45,12 @@ export interface GroupExhibirtionProps {
   artistPortrait: SanityAsset;
 }
 
-type Section =
-  | CommonHeroProps
-  | CommonImageAsset
-  | SummaryProps
-  | NoteProps
-  | PromotionProps
-  | ArtworkProps
-  | IncludedArtistsProps
-  | GalleryProps
-  | NewsAndMediaProps;
+export interface OtherExhibitionProps {
+  slug: Slug;
+  startDate: string;
+  endDate?: string;
+  data: CommonHeroProps;
+}
 
 export interface SummaryProps {
   _key: string;

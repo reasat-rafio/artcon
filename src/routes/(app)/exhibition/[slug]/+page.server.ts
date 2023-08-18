@@ -10,7 +10,7 @@ const query = (params: Partial<Record<string, string>>) =>
     count(artists) == 1 => {
       artists[]->{
         ...siteDocuments {
-        "data": sections[ _type == "artist.summary"][0]{
+        "data": sections[_type == "artist.summary"][0]{
             ...,
             descriptionBlock{
               ...,
@@ -36,6 +36,24 @@ const query = (params: Partial<Record<string, string>>) =>
           ${asset('artistPortrait')},
         }
       },
+    },
+    "otherExhibitions": *[_type== "exhibition" && slug.current != "${
+      params.slug
+    }"][]{
+     slug,
+     startDate,
+     endDate,
+     "data": sections[_type == "common.hero"][0]{
+        ...,
+        asset {
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
+      }
     },
     sections[]{
         ...,
