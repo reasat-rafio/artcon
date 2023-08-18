@@ -42,29 +42,11 @@ const query = (params: Partial<Record<string, string>>) =>
     }
   }`;
 
-// TODO modify the exhibitions[] qurey, for ref see project pages otherProjects
 export const load: ServerLoad = async ({ params }) => {
   const data = await sanityClient.fetch(query(params));
   if (!data) throw error(404, 'Not found');
 
-  const { seo, siteDocuments } = data;
-  const siteDocumentsCopy = { ...siteDocuments };
-
-  const modifiedSections = siteDocumentsCopy.sections.map((section: any) => {
-    if (section._type !== 'artist.exhibitions') return section;
-
-    // removeing empty objects from the exhibition array
-    const modifiledExhibtions = section.exhibitions.map(({ exhibition }: any) =>
-      exhibition.filter((e: any) => Object.keys(e).length !== 0),
-    );
-
-    section.exhibitions = modifiledExhibtions;
-    return section;
-  });
-
-  siteDocumentsCopy.sections = modifiedSections;
-
   return {
-    page: { seo, ...siteDocumentsCopy },
+    page: data,
   };
 };

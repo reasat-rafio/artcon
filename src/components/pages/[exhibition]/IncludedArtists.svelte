@@ -19,8 +19,8 @@
   <Summary
     props={{
       ...soloExhibition[0].data,
-      personalDocuments: soloExhibition[0].personalDocuments,
     }}
+    personalDocuments={soloExhibition[0].personalDocuments}
   />
 {:else if !!groupExhibition?.length}
   <section class="py-xl">

@@ -8,7 +8,7 @@
   import Image from './Image.svelte';
 
   export let props: ExhibitionsProps;
-  let { exhibitions } = props;
+  $: ({ exhibitions } = props);
 
   let emblaApi: EmblaCarouselType;
   const onInit = (event: CustomEvent<EmblaCarouselType>) =>

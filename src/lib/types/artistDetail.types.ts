@@ -1,6 +1,6 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type {
-  CommonHeroListProps,
+  CommonHeroProps,
   CommonImageAsset,
   Cta,
   DescriptionBlock,
@@ -13,12 +13,15 @@ import type { PortableTextBlock } from 'sanity';
 
 export interface ArtistDetailPageProps {
   seo: SeoProps;
-  sections: Section[];
-  coverImage: SanityAsset;
+  siteDocuments: {
+    sections: Section[];
+    coverImage: SanityAsset;
+  };
+  personalDocuments: PersonalDocuments;
 }
 
 type Section =
-  | CommonHeroListProps
+  | CommonHeroProps
   | CommonImageAsset
   | ArtistSummaryProps
   | ExhibitionsProps;
@@ -30,7 +33,6 @@ export interface ArtistSummaryProps {
   vrExhibition: VRExhibition;
   images: [SanityAsset, SanityAsset];
   quote: Quote;
-  personalDocuments: PersonalDocuments;
 }
 
 export interface PersonalDocuments {
