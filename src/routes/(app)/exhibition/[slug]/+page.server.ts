@@ -9,17 +9,18 @@ const query = (params: Partial<Record<string, string>>) =>
     tags[]->,
     count(artists) == 1 => {
       artists[]->{
-        "name": personalDocuments.name.en,
+        personalDocuments {
+          "name": name.en,
+          shortBio,
+          born,
+          socials[]{
+            ...,
+            ${asset('icon')},
+          }
+        },
         ...siteDocuments {
         "data": sections[_type == "artist.summary"][0]{
             ...,
-            descriptionBlock{
-              ...,
-              socials[]{
-                  ...,
-                  ${asset('icon')},
-              }
-            },
             ${asset('images[]', { as: 'images' })},
             vrExhibition-> {
               ...,

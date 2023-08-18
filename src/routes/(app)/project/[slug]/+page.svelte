@@ -24,10 +24,11 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
+    {@const text = s.text || (status !== 'Ongoing' ? date : status)}
     <Hero
       props={{
         ...s,
-        text: s.text || (status !== 'Ongoing' ? date : status),
+        text,
       }}
     />
   {/if}

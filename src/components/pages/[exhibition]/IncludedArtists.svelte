@@ -16,7 +16,12 @@
 </script>
 
 {#if !!soloExhibition?.length}
-  <Summary props={soloExhibition[0].data} />
+  <Summary
+    props={{
+      ...soloExhibition[0].data,
+      personalDocuments: soloExhibition[0].personalDocuments,
+    }}
+  />
 {:else if !!groupExhibition?.length}
   <section class="py-xl">
     <UserListWithTitle class="container" title="Artist in this ehibition">

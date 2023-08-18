@@ -34,7 +34,10 @@
       s.text || (status.status !== 'Ongoing' ? status.date : status.status)}
     {@const type =
       s.type ||
-      (page?.artists?.length === 1 ? page.artists[0].name : 'Group Exhibition')}
+      (page?.artists?.length === 1
+        ? // @ts-ignore @TODO fix this
+          page.artists[0].personalDocuments.name
+        : 'Group Exhibition')}
     <Hero
       props={{
         ...s,
@@ -61,7 +64,7 @@
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} /> -->
+    <NewsAndMedia props={s} />
   {/if}
 {/each}
 

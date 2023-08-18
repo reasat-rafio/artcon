@@ -4,9 +4,10 @@
   import VrExhibition from '@/components/VRExhibition.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { ArtistSummaryProps } from '@/lib/types/artistDetail.types';
+  import { DateTime } from 'luxon';
 
   export let props: ArtistSummaryProps;
-  $: ({ quote, vrExhibition, descriptionBlock, images, statement } = props);
+  $: ({ quote, vrExhibition, images, statement, personalDocuments } = props);
 </script>
 
 <section class="py-xl">
@@ -17,12 +18,16 @@
       <svelte:fragment slot="intro" let:C>
         <C.IntroContainer>
           <C.HeaderContainer class="mb-[23px]">
-            <C.Title>{descriptionBlock.name}</C.Title>
-            <C.Subtitle>{descriptionBlock.subtile}</C.Subtitle>
+            <C.Title>{personalDocuments?.name}</C.Title>
+            <C.Subtitle
+              >b. {DateTime.fromISO(personalDocuments.born).toFormat(
+                'yyyy',
+              )}</C.Subtitle
+            >
           </C.HeaderContainer>
 
           <C.SocialContainer>
-            {#each descriptionBlock.socials as { link, icon }}
+            {#each personalDocuments.socials as { link, icon }}
               <C.Social {link} {icon} />
             {/each}
           </C.SocialContainer>
@@ -32,7 +37,7 @@
       <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
           <C.Description>
-            <C.PortableTextBlock value={descriptionBlock.description} />
+            <C.PortableTextBlock value={personalDocuments.shortBio} />
           </C.Description>
         </C.DescriptionContainer>
       </svelte:fragment>

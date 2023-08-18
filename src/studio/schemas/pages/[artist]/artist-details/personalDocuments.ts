@@ -91,6 +91,13 @@ const personalDocuments = {
       name: 'shortBio',
       type: 'array',
       of: [{ type: 'block' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'socials',
+      type: 'array',
+      of: [{ type: 'social' }],
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'note',

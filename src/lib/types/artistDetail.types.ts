@@ -26,21 +26,22 @@ type Section =
 export interface ArtistSummaryProps {
   _key: string;
   _type: 'artist.summary';
-  descriptionBlock: ArtistSummaryDescriptionBlock;
   statement: Statement;
   vrExhibition: VRExhibition;
   images: [SanityAsset, SanityAsset];
   quote: Quote;
+  personalDocuments: PersonalDocuments;
+}
+
+export interface PersonalDocuments {
+  born: string;
+  name: string;
+  shortBio: PortableTextBlock[];
+  socials: SocialProps[];
 }
 
 export interface Statement extends DescriptionBlock {
   title: string;
-}
-
-export interface ArtistSummaryDescriptionBlock extends DescriptionBlock {
-  name: string;
-  subtile: string;
-  socials: SocialProps[];
 }
 
 export interface ExhibitionsProps {

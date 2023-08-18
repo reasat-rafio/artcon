@@ -12,7 +12,10 @@ import type {
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock, Slug } from 'sanity';
-import type { ArtistSummaryProps } from './artistDetail.types';
+import type {
+  ArtistSummaryProps,
+  PersonalDocuments,
+} from './artistDetail.types';
 
 export interface ExhinitionDetailPageProps {
   startDate: string;
@@ -39,7 +42,7 @@ export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
 
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
-  name: string;
+  personalDocuments: PersonalDocuments;
 }
 
 export interface GroupExhibirtionProps {
