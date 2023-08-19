@@ -4,7 +4,7 @@ import type { Rule } from 'sanity';
 const vrExhibition = {
   name: 'vrExhibition',
   type: 'document',
-  title: 'VR Exhibition',
+  title: 'VR Preview',
   icon: PiVirtualRealityFill,
   fields: [
     { name: 'name', type: 'string' },

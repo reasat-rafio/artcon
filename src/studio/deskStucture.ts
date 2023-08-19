@@ -221,6 +221,11 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         .title('Projects')
         .icon(FcVideoProjector),
       S.divider(),
+
+      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
+      S.documentTypeListItem('publication').title('Publications'),
+
+      S.divider(),
       orderableDocumentListDeskItem({
         type: 'service',
         S,
@@ -228,8 +233,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         title: 'Services',
         icon: FcServices,
       }),
-      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
-      S.documentTypeListItem('publication').title('Publications'),
+
       S.documentTypeListItem('ebook').title('EBooks'),
       orderableDocumentListDeskItem({
         type: 'team',
@@ -244,7 +248,12 @@ export const DefaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
   { schemaType },
 ) => {
-  if (schemaType === 'exhibition') {
+  if (
+    schemaType === 'vrExhibition' ||
+    schemaType === 'artist' ||
+    schemaType === 'collection' ||
+    schemaType === 'publication'
+  ) {
     return S.document().views([
       S.view.form(),
       S.view

@@ -44,13 +44,6 @@ const artist = {
       group: 'site',
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      title: 'Personal Documents',
-      name: 'personalDocuments',
-      type: 'personalDocuments',
-      group: 'personal',
-      validation: (Rule: Rule) => Rule.required(),
-    },
 
     {
       name: 'artworks',
@@ -59,6 +52,23 @@ const artist = {
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
     },
+
+    {
+      name: 'publications',
+      title: "Artist's Publications",
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'publication' }] }],
+      group: 'site',
+    },
+
+    {
+      title: 'Personal Documents',
+      name: 'personalDocuments',
+      type: 'personalDocuments',
+      group: 'personal',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
     {
       title: 'Site Documents',
       name: 'siteDocuments',

@@ -46,7 +46,12 @@ const exhibition = {
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
       validation: (Rule: Rule) => Rule.unique(),
     },
-
+    {
+      name: 'publication',
+      title: 'Publication',
+      type: 'reference',
+      to: [{ type: 'publication' }],
+    },
     {
       name: 'sections',
       title: 'Sections',
