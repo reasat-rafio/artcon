@@ -15,15 +15,17 @@ const summary = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
+    {
+      name: 'gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
     createDescriptionBlock({
       fields: [
         {
-          name: 'name',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'moreInformations',
+          name: 'infos',
           type: 'array',
           of: [
             {
@@ -56,7 +58,7 @@ const summary = {
 
     {
       name: 'vrExhibition',
-      title: 'VR Exhibition',
+      title: 'VR Preview',
       type: 'reference',
       to: [{ type: 'vrExhibition' }],
       validation: (Rule: Rule) => Rule.required(),
@@ -64,7 +66,7 @@ const summary = {
   ],
   preview: {
     select: {
-      title: 'descriptionBlock.name',
+      title: 'gallery.name',
       subtitle: 'descriptionBlock.description',
     },
   },

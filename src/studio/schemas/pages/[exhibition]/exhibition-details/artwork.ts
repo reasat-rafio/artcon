@@ -27,35 +27,6 @@ const artwork = {
         },
       ],
     }),
-    {
-      name: 'artworks',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.required(),
-      of: [
-        {
-          name: 'artwork',
-          type: 'image',
-          validation: (Rule: Rule) => Rule.required(),
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: 'alt',
-              title: 'Alternative Text',
-              description: 'Important for SEO and accessibility',
-              type: 'string',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              name: 'description',
-              type: 'text',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
-        },
-      ],
-    },
   ],
   preview: {
     select: {

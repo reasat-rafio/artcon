@@ -16,6 +16,12 @@ const gallery = {
       type: 'string',
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'location',
+    },
+  },
 };
 
 export default gallery;

@@ -4,14 +4,14 @@ import gallery from './gallery';
 import includedArtists from './includedArtists';
 import newsAndMedia from './newsAndMedia';
 import note from './note';
-import promotion from './promotion';
+import publication from './publication';
 import summary from './summary';
 
 export default [
   exhibitionPage,
   summary,
   note,
-  promotion,
+  publication,
   artwork,
   gallery,
   newsAndMedia,

@@ -80,6 +80,13 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.unique(),
     },
     {
+      name: 'artworks',
+      title: 'Featured Artworks in this Exhibition',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'collection' }] }],
+      validation: (Rule: Rule) => Rule.unique(),
+    },
+    {
       name: 'publication',
       title: 'Publication',
       type: 'reference',
@@ -94,7 +101,7 @@ const exhibition = {
         { type: 'common.imageAsset' },
         { type: 'exhibition.includedArtists' },
         { type: 'exhibition.note' },
-        { type: 'exhibition.promotion' },
+        { type: 'exhibition.publication' },
         { type: 'exhibition.artwork' },
         { type: 'exhibition.gallery' },
         { type: 'exhibition.newsAndMedia' },
