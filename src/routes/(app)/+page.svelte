@@ -1,6 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
-  import Contact from '@/components/pages/landing/Contact.svelte';
+  // import Contact from '@/components/pages/landing/Contact.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { HomePageProps } from '@/lib/types/landing.types';

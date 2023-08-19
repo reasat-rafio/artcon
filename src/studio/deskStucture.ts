@@ -1,4 +1,7 @@
-import type { StructureBuilder } from 'sanity/desk';
+import type {
+  DefaultDocumentNodeResolver,
+  StructureBuilder,
+} from 'sanity/desk';
 import { FaSitemap } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
@@ -25,32 +28,35 @@ import {
 import { BsFillCollectionFill } from 'react-icons/bs';
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 import type { ConfigContext } from 'sanity';
+import type { IconType } from 'react-icons/lib';
+import DocumentsPane from 'sanity-plugin-documents-pane';
+import { VscReferences } from 'react-icons/vsc';
 
 // TODO put this in separet file
 interface PageItemProps {
   schemaType: string;
   id: string;
   title: string;
-  icon?: any;
+  icon?: IconType;
   slug?: string;
 }
 
 const pageItem = (
   S: StructureBuilder,
-  { schemaType, id, title, icon = GrEdit }: PageItemProps
+  { schemaType, id, title, icon = GrEdit }: PageItemProps,
 ) =>
   S.documentListItem({ schemaType, id, title, icon }).child(
     S.editor()
       .schemaType(schemaType)
-      .views([S.view.form().icon(icon)])
+      .views([S.view.form().icon(icon)]),
   );
 
 const singleItem = (
   S: StructureBuilder,
-  { schemaType, id, title, icon }: PageItemProps
+  { schemaType, id, title, icon }: PageItemProps,
 ) =>
   S.listItem({ schemaType, title, id, icon }).child(
-    S.editor().id(id).title(title).schemaType(schemaType)
+    S.editor().id(id).title(title).schemaType(schemaType),
   );
 
 export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
@@ -85,9 +91,10 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 id: 'siteFooter',
                 title: 'Footer',
               }),
-            ])
+            ]),
         ),
       S.divider(),
+
       S.listItem()
         .title('Pages')
         .icon(RiPagesLine)
@@ -173,7 +180,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 title: 'Terms And Conditions',
                 icon: FcRules,
               }),
-            ])
+            ]),
         ),
       S.divider(),
       S.listItem()
@@ -185,7 +192,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             .items([
               S.documentTypeListItem('artist').title('Artists'),
               S.documentTypeListItem('artistTag').title('Tags'),
-            ])
+            ]),
         ),
       S.documentTypeListItem('collection').title('Collections'),
       S.listItem()
@@ -197,7 +204,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             .items([
               S.documentTypeListItem('exhibition').title('Exhibitions'),
               S.documentTypeListItem('exhibitionTag').title('Tags'),
-            ])
+            ]),
         ),
       S.listItem()
         .title('Event')
@@ -208,7 +215,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             .items([
               S.documentTypeListItem('event').title('Events'),
               S.documentTypeListItem('eventTag').title('Tags'),
-            ])
+            ]),
         ),
       S.documentTypeListItem('project')
         .title('Projects')
@@ -222,6 +229,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         icon: FcServices,
       }),
       S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
+      S.documentTypeListItem('publication').title('Publications'),
       S.documentTypeListItem('ebook').title('EBooks'),
       orderableDocumentListDeskItem({
         type: 'team',
@@ -231,3 +239,24 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         icon: PiUsersThreeLight,
       }),
     ]);
+
+export const DefaultDocumentNode: DefaultDocumentNodeResolver = (
+  S,
+  { schemaType },
+) => {
+  if (schemaType === 'exhibition') {
+    return S.document().views([
+      S.view.form(),
+      S.view
+        .component(DocumentsPane)
+        .options({
+          query: `*[!(_id in path("drafts.**")) && references($id)]`,
+          params: { id: `_id` },
+        })
+        .icon(VscReferences)
+        .title('References'),
+    ]);
+  }
+
+  return S.document().views([S.view.form()]);
+};

@@ -2,7 +2,7 @@ import { defineConfig, type SchemaTypeDefinition } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
-import { AppStructure } from './deskStucture';
+import { AppStructure, DefaultDocumentNode } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 // import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
 
@@ -27,7 +27,13 @@ export default defineConfig([
     //   },
     // },
 
-    plugins: [deskTool({ structure: AppStructure }), visionTool()],
+    plugins: [
+      deskTool({
+        structure: AppStructure,
+        defaultDocumentNode: DefaultDocumentNode,
+      }),
+      visionTool(),
+    ],
     schema: {
       types: schemaTypes as SchemaTypeDefinition[],
     },
@@ -41,7 +47,13 @@ export default defineConfig([
 
     basePath: '/studio/staging',
 
-    plugins: [deskTool({ structure: AppStructure }), visionTool()],
+    plugins: [
+      deskTool({
+        structure: AppStructure,
+        defaultDocumentNode: DefaultDocumentNode,
+      }),
+      visionTool(),
+    ],
     schema: {
       types: schemaTypes as SchemaTypeDefinition[],
     },
