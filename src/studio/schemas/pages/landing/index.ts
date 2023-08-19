@@ -1,3 +1,4 @@
+import collection from './collection';
 import landingDocument from './document';
 
-export default [landingDocument];
+export default [landingDocument, collection];
