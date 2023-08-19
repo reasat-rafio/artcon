@@ -9,6 +9,7 @@ import commonHeroList from './heroList';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
 import social from './social';
+import asset from './assset';
 
 export const schemaTypes = [
   ...site,
@@ -17,6 +18,7 @@ export const schemaTypes = [
   menuItem,
   cta,
   quote,
+  asset,
   social,
   portableText,
   commonHero,
