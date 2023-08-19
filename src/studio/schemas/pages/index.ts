@@ -21,6 +21,7 @@ import vrExhibition from './[vrExhibition]';
 import services from './[service]';
 import ebook from './[ebook]';
 import publicationDetail from './[publication]';
+import gallery from './[gallery]';
 
 export default [
   ...landing,
@@ -41,6 +42,7 @@ export default [
   ...collectionDetail,
   ebook,
   team,
+  gallery,
   services,
   vrExhibition,
   privacyPolicy,

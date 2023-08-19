@@ -235,6 +235,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
       }),
 
       S.documentTypeListItem('ebook').title('EBooks'),
+      S.documentTypeListItem('gallery').title('Gallery'),
       orderableDocumentListDeskItem({
         type: 'team',
         S,
@@ -252,6 +253,7 @@ export const DefaultDocumentNode: DefaultDocumentNodeResolver = (
     schemaType === 'vrExhibition' ||
     schemaType === 'artist' ||
     schemaType === 'collection' ||
+    schemaType === 'gallery' ||
     schemaType === 'publication'
   ) {
     return S.document().views([
