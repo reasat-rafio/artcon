@@ -1,6 +1,4 @@
-import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FaHighlighter } from 'react-icons/fa';
-import { FcInfo } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const summary = {
@@ -16,47 +14,6 @@ const summary = {
     },
 
     {
-      name: 'gallery',
-      type: 'reference',
-      to: [{ type: 'gallery' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-
-    createDescriptionBlock({
-      fields: [
-        {
-          name: 'infos',
-          type: 'array',
-          of: [
-            {
-              name: 'information',
-              type: 'object',
-              icon: FcInfo,
-              fields: [
-                {
-                  name: 'key',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-                {
-                  name: 'value',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
-              preview: {
-                select: {
-                  title: 'key',
-                  subtitle: 'value',
-                },
-              },
-            },
-          ],
-        },
-      ],
-    }),
-
-    {
       name: 'vrExhibition',
       title: 'VR Preview',
       type: 'reference',
@@ -66,8 +23,8 @@ const summary = {
   ],
   preview: {
     select: {
-      title: 'gallery.name',
-      subtitle: 'descriptionBlock.description',
+      title: 'quote.text',
+      subtitle: 'vrExhibition.url',
     },
   },
 };

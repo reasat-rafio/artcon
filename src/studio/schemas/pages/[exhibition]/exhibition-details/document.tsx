@@ -3,12 +3,16 @@ import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { FcStackOfPhotos } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import React from 'react';
+import { formatDate } from '@/studio/helper';
 
-interface PrepareProps extends SanityDefaultPreviewProps {
+type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
   webm: string;
   hevc: string;
-}
+  artists: unknown[];
+  startDate: string;
+  endDate?: string;
+};
 
 const exhibition = {
   name: 'exhibition',
@@ -49,19 +53,35 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'This will display in detail page and the preview page',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'associationsList',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'status',
+      title: 'Status (Optional)',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',
     },
     {
       name: 'type',
+      title: 'Type (Optional)',
       type: 'string',
       description:
         'This will replace the automatically determined type based on the count of included artists.',
     },
     {
-      title: 'Button',
+      title: 'Button (Optional)',
+      description: 'This will display at hero section.',
       name: 'cta',
       type: 'cta',
     },
@@ -79,6 +99,7 @@ const exhibition = {
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
       validation: (Rule: Rule) => Rule.unique(),
     },
+
     {
       name: 'artworks',
       title: 'Featured Artworks in this Exhibition',
@@ -91,6 +112,30 @@ const exhibition = {
       title: 'Publication',
       type: 'reference',
       to: [{ type: 'publication' }],
+    },
+    {
+      name: 'gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
+      name: 'previewDisplayImage',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: 'sections',
@@ -111,15 +156,30 @@ const exhibition = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'seo.description',
+      startDate: 'startDate',
+      endDate: 'endDate',
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
+      artists: 'artists',
     },
-    prepare: ({ title, subtitle, image, webm, hevc }: PrepareProps) => {
+    prepare: ({
+      title,
+      image,
+      webm,
+      hevc,
+      artists,
+      startDate,
+      endDate,
+    }: PrepareProps) => {
+      const exhibitionType =
+        artists?.length === 1 ? 'Solo Exhibition' : 'Group Exhibition';
+
       return {
-        title,
-        subtitle,
+        title: `${title} | ${exhibitionType}`,
+        subtitle: `${formatDate(startDate)} ${
+          endDate ? ` - ${formatDate(endDate)}` : ''
+        }`,
         media: image ? (
           image
         ) : webm && hevc ? (

@@ -2,6 +2,7 @@ import type { PortableTextBlock } from 'sanity';
 import type { IFields } from './components/csv-popup/artist/CSVPopup';
 import Papa from 'papaparse';
 import type { SanityDocument } from '@sanity/client';
+import { DateTime } from 'luxon';
 
 const defaultDocumentKeys = [
   '_createdAt',
@@ -28,7 +29,7 @@ export function convertObjectToArray(obj: SanityDocument) {
 export function convertArrayToCSV(array: IFields[]) {
   const headers = array.map(({ key }) => key);
   const values = array.map(({ value }) =>
-    typeof value === 'object' ? JSON.stringify(value) : value
+    typeof value === 'object' ? JSON.stringify(value) : value,
   );
   const csvData = [headers, values];
   const csv = Papa.unparse(csvData);
@@ -66,3 +67,6 @@ export function cleanCSV(csvData: string) {
   const withoutTripleQuotes = csvData.replace(/"""/g, '"');
   return withoutTripleQuotes.replace(/\n/g, '');
 }
+
+export const formatDate = (date: string) =>
+  DateTime.fromISO(date).toFormat('dd LLL yyyy');

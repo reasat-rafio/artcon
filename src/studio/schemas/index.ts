@@ -10,6 +10,7 @@ import commonImageAsset from './imageAsset';
 import quote from './quote';
 import social from './social';
 import asset from './assset';
+import keyValuePairs from './keyValuePairs';
 
 export const schemaTypes = [
   ...site,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   commonHero,
   commonHeroList,
   commonImageAsset,
+  keyValuePairs,
 ];
