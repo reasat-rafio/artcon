@@ -245,17 +245,18 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
       }),
     ]);
 
+const refDocumentsPaneSchemas = [
+  'vrExhibition',
+  'artist',
+  'collection',
+  'gallery',
+  'publication',
+];
 export const DefaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
   { schemaType },
 ) => {
-  if (
-    schemaType === 'vrExhibition' ||
-    schemaType === 'artist' ||
-    schemaType === 'collection' ||
-    schemaType === 'gallery' ||
-    schemaType === 'publication'
-  ) {
+  if (refDocumentsPaneSchemas.includes(schemaType)) {
     return S.document().views([
       S.view.form(),
       S.view
