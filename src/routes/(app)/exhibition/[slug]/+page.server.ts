@@ -6,7 +6,32 @@ import { asset } from '@/lib/sanity/sanity-image/query.js';
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "exhibition" && slug.current == "${params.slug}"] [0]{
     ...,
+    ${asset('previewDisplayImage')},
+    asset {
+      ...,
+      ${asset('image')},
+      video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+      }
+    },
     tags[]->,
+    gallery->{name},
+    sections[]{
+      ...,
+      ${asset('image')},
+      ${asset('coverImage')},
+      ${asset('images[]', { as: 'images' })},
+      ${asset('artworks[]', { as: 'artworks' })},
+      vrExhibition-> {
+          ...,
+          ${asset('image')},
+      },
+      newsAndMedia[]{
+          ...,
+          ${asset('image')},
+      }
+    },
     count(artists) == 1 => {
       artists[]->{
         personalDocuments {
@@ -67,33 +92,6 @@ const query = (params: Partial<Record<string, string>>) =>
         },
       }
     },
-    sections[]{
-        ...,
-        ${asset('image')},
-        ${asset('coverImage')},
-        ${asset('images[]', { as: 'images' })},
-        ${asset('artworks[]', { as: 'artworks' })},
-        asset {
-            ...,
-            ${asset('image')},
-            video{
-                "webm": video_webm.asset->url,
-                "mov": video_hevc.asset->url,
-            }
-        },
-        vrExhibition-> {
-            ...,
-            ${asset('image')},
-        },
-        ebook-> {
-          ...,
-          ${asset('image')},
-        },
-        newsAndMedia[]{
-            ...,
-            ${asset('image')},
-        }
-    }
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
