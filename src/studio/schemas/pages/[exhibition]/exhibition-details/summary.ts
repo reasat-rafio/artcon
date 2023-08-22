@@ -14,17 +14,17 @@ const summary = {
     },
 
     {
-      name: 'vrExhibition',
-      title: 'VR Preview',
+      name: 'vr',
+      title: 'VR',
       type: 'reference',
-      to: [{ type: 'vrExhibition' }],
+      to: [{ type: 'vr' }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
       title: 'quote.text',
-      subtitle: 'vrExhibition.url',
+      subtitle: 'vr.url',
     },
   },
 };

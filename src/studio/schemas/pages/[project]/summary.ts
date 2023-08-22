@@ -54,10 +54,10 @@ const summary = {
       ],
     }),
     {
-      name: 'vrExhibition',
-      title: 'VR Preview',
+      name: 'vr',
+      title: 'VR',
       type: 'reference',
-      to: [{ type: 'vrExhibition' }],
+      to: [{ type: 'vr' }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

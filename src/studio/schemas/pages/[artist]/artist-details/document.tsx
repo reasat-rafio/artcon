@@ -2,14 +2,14 @@ import type { SanityDocument } from '@sanity/client';
 import { FcPortraitMode } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
-interface PreviewProps extends SanityDefaultPreviewProps {
+type PreviewProps = SanityDefaultPreviewProps & {
   name: {
     en: string;
     bn: string;
   };
   email: string;
   phone: string;
-}
+};
 
 const artist = {
   name: 'artist',

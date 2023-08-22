@@ -1,6 +1,6 @@
 <script lang="ts">
   import Quote from '@/components/Quote.svelte';
-  import VrExhibition from '@/components/VRExhibition.svelte';
+  import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { SummaryProps } from '@/lib/types/projectDetail.types';
 
@@ -9,7 +9,7 @@
   }
 
   export let props: SProps;
-  $: ({ quote, vrExhibition, descriptionBlock, date } = props);
+  $: ({ quote, vr, descriptionBlock, date } = props);
 </script>
 
 <section class="py-xl">
@@ -45,6 +45,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VrExhibition {vrExhibition} />
+    <VR {vr} />
   </div>
 </section>

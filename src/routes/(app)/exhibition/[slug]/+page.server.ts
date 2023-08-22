@@ -23,7 +23,7 @@ const query = (params: Partial<Record<string, string>>) =>
       ${asset('coverImage')},
       ${asset('images[]', { as: 'images' })},
       ${asset('artworks[]', { as: 'artworks' })},
-      vrExhibition-> {
+      vr-> {
           ...,
           ${asset('image')},
       },
@@ -47,7 +47,7 @@ const query = (params: Partial<Record<string, string>>) =>
         "data": sections[_type == "artist.summary"][0]{
             ...,
             ${asset('images[]', { as: 'images' })},
-            vrExhibition-> {
+            vr-> {
               ...,
               ${asset('image')},
             },

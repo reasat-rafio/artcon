@@ -34,7 +34,7 @@ const query = (params: Partial<Record<string, string>>) =>
             }
           },
         },
-        vrExhibition-> {
+        vr-> {
           ...,
           ${asset('image')},
         },

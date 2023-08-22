@@ -5,7 +5,7 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
-  VRExhibition,
+  VR,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
@@ -24,7 +24,7 @@ export interface SummaryProps {
   key: string;
   quote: Quote;
   descriptionBlock: SummaryDescriptionBlock;
-  vrExhibition: VRExhibition;
+  vr: VR;
 }
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {

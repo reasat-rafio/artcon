@@ -8,7 +8,7 @@ import type {
   SeoProps,
   SocialProps,
   Tag,
-  VRExhibition,
+  VR,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock, Slug } from 'sanity';
@@ -64,7 +64,7 @@ export interface SummaryProps {
   _type: 'exhibition.summary';
   quote: Quote;
   descriptionBlock: SummaryDescriptionBlock;
-  vrExhibition: VRExhibition;
+  vr: VR;
 }
 
 export interface IncludedArtistsProps {

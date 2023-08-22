@@ -1,7 +1,7 @@
 <script lang="ts">
   import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
   import Quote from '@/components/Quote.svelte';
-  import VrExhibition from '@/components/VRExhibition.svelte';
+  import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type {
     ArtistSummaryProps,
@@ -12,7 +12,7 @@
   export let props: ArtistSummaryProps;
   export let personalDocuments: PersonalDocuments;
 
-  $: ({ quote, vrExhibition, images, statement } = props);
+  $: ({ quote, vr, images, statement } = props);
 </script>
 
 <section class="py-xl">
@@ -73,6 +73,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VrExhibition {vrExhibition} />
+    <VR {vr} />
   </div>
 </section>

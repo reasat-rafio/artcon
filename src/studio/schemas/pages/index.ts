@@ -10,14 +10,14 @@ import landing from './landing';
 import project from './project';
 import publication from './publication';
 import service from './service';
-import vr from './vr';
+import vrListingPage from './vr';
 import artistDetails from './[artist]';
 import privacyPolicy from './privacyPolicy';
 import termsConditions from './termsConditions';
 import team from './[team]';
 import projectDetail from './[project]';
 import collectionDetail from './[collection]';
-import vrExhibition from './[vrExhibition]';
+import vr from './[vr]';
 import services from './[service]';
 import ebook from './[ebook]';
 import publicationDetail from './[publication]';
@@ -28,7 +28,7 @@ export default [
   ...exhibition,
   ...event,
   ...publication,
-  ...vr,
+  ...vrListingPage,
   ...collection,
   ...documentary,
   ...project,
@@ -44,7 +44,7 @@ export default [
   team,
   gallery,
   services,
-  vrExhibition,
+  vr,
   privacyPolicy,
   termsConditions,
   publicationDetail,

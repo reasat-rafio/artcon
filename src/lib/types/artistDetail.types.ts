@@ -7,7 +7,7 @@ import type {
   Quote,
   SeoProps,
   SocialProps,
-  VRExhibition,
+  VR,
 } from './common.types';
 import type { PortableTextBlock } from 'sanity';
 
@@ -30,7 +30,7 @@ export interface ArtistSummaryProps {
   _key: string;
   _type: 'artist.summary';
   statement: Statement;
-  vrExhibition: VRExhibition;
+  vr: VR;
   images: [SanityAsset, SanityAsset];
   quote: Quote;
 }

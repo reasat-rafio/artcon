@@ -1,10 +1,10 @@
 <script lang="ts">
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { VRExhibition } from '@/lib/types/common.types';
+  import type { VR } from '@/lib/types/common.types';
 
-  export let vrExhibition: VRExhibition;
-  $: ({ image, url } = vrExhibition);
+  export let vr: VR;
+  $: ({ image, url } = vr);
 
   let showIframe = false;
 </script>

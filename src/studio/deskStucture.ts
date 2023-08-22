@@ -222,7 +222,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         .icon(FcVideoProjector),
       S.divider(),
 
-      S.documentTypeListItem('vrExhibition').title('VR Exhibitions'),
+      S.documentTypeListItem('vr').title('VR'),
       S.documentTypeListItem('publication').title('Publications'),
 
       S.divider(),
@@ -246,7 +246,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
     ]);
 
 const refDocumentsPaneSchemas = [
-  'vrExhibition',
+  'vr',
   'artist',
   'collection',
   'gallery',

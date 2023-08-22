@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { SummaryProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
-  import VRExhibition from '@/components/VRExhibition.svelte';
+  import VR from '@/components/VR.svelte';
   import { DateTime } from 'luxon';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
 
   export let props: SummaryProps;
-  $: ({ quote, descriptionBlock, vrExhibition } = props);
+  $: ({ quote, descriptionBlock, vr } = props);
 
   const startDate = DateTime.fromISO(descriptionBlock?.startDate);
   const endDate = DateTime.fromISO(descriptionBlock?.endDate);
@@ -50,6 +50,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VRExhibition {vrExhibition} />
+    <VR {vr} />
   </div>
 </section>

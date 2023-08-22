@@ -129,7 +129,7 @@ export interface Quote {
   url?: string;
 }
 
-export interface VRExhibition {
+export interface VR {
   name: string;
   image: SanityAsset;
   _type: string;
