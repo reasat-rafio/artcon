@@ -145,7 +145,7 @@ const exhibition = {
         { type: 'exhibition.summary' },
         { type: 'common.imageAsset' },
         { type: 'exhibition.includedArtists' },
-        { type: 'exhibition.note' },
+        { type: 'common.note' },
         { type: 'exhibition.publication' },
         { type: 'exhibition.artwork' },
         { type: 'exhibition.gallery' },

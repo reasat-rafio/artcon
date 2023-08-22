@@ -3,7 +3,7 @@ import { FcComments } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const note = {
-  name: 'exhibition.note',
+  name: 'common.note',
   title: 'Note',
   type: 'object',
   icon: FcComments,

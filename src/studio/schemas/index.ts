@@ -11,6 +11,7 @@ import quote from './quote';
 import social from './social';
 import asset from './assset';
 import keyValuePairs from './keyValuePairs';
+import note from './note';
 
 export const schemaTypes = [
   ...site,
@@ -21,6 +22,7 @@ export const schemaTypes = [
   quote,
   asset,
   social,
+  note,
   portableText,
   commonHero,
   commonHeroList,

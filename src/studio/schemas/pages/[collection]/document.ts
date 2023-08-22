@@ -56,6 +56,10 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'inquiryButton',
+      type: 'cta',
+    },
+    {
       name: 'provenance',
       type: 'object',
       validation: (Rule: Rule) => Rule.required(),
@@ -78,6 +82,7 @@ const collection = {
       type: 'asset',
       validation: (Rule: Rule) => Rule.required(),
     },
+
     {
       name: 'previewDisplayImage',
       type: 'image',
@@ -99,7 +104,12 @@ const collection = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'common.imageAsset' }],
+      of: [
+        { type: 'common.imageAsset' },
+        { type: 'collection.summary' },
+        { type: 'common.note' },
+        { type: 'collection.artist' },
+      ],
     },
   ],
 };
