@@ -19,7 +19,6 @@ import projectDetail from './[project]';
 import collectionDetail from './[collection]';
 import vr from './[vr]';
 import services from './[service]';
-import ebook from './[ebook]';
 import publicationDetail from './[publication]';
 import gallery from './[gallery]';
 
@@ -40,11 +39,10 @@ export default [
   ...artistDetails,
   ...projectDetail,
   ...collectionDetail,
-  ebook,
+  ...vr,
   team,
   gallery,
   services,
-  vr,
   privacyPolicy,
   termsConditions,
   publicationDetail,

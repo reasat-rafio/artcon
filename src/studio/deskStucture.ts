@@ -9,6 +9,7 @@ import {
   PiProjectorScreenChartLight,
   PiUsersThreeLight,
   PiVirtualReality,
+  PiVirtualRealityFill,
 } from 'react-icons/pi';
 import {
   FcAbout,
@@ -222,7 +223,18 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         .icon(FcVideoProjector),
       S.divider(),
 
-      S.documentTypeListItem('vr').title("VR's"),
+      S.listItem()
+        .title("VR's")
+        .icon(PiVirtualRealityFill)
+        .child(
+          S.list()
+            .title("VR's")
+            .items([
+              S.documentTypeListItem('vr').title("VR's"),
+              S.documentTypeListItem('vrCategory').title('Category'),
+            ]),
+        ),
+
       S.documentTypeListItem('publication').title('Publications'),
 
       S.divider(),
@@ -234,7 +246,6 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         icon: FcServices,
       }),
 
-      S.documentTypeListItem('ebook').title('EBooks'),
       S.documentTypeListItem('gallery').title('Gallery'),
       orderableDocumentListDeskItem({
         type: 'team',
