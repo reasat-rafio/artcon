@@ -222,7 +222,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         .icon(FcVideoProjector),
       S.divider(),
 
-      S.documentTypeListItem('vr').title('VR'),
+      S.documentTypeListItem('vr').title("VR's"),
       S.documentTypeListItem('publication').title('Publications'),
 
       S.divider(),

@@ -1,6 +1,15 @@
+import VideoPreview from '@/studio/components/VideoPreview';
 import VrPreview from '@/studio/components/VrPreview';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { PiVirtualRealityFill } from 'react-icons/pi';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps } from 'sanity';
+import React from 'react';
+
+type PrepareProps = SanityDefaultPreviewProps & {
+  image: SanityAsset;
+  webm: string;
+  hevc: string;
+};
 
 const vr = {
   name: 'vr',
@@ -60,7 +69,22 @@ const vr = {
     select: {
       title: 'name',
       subtitle: 'url',
-      media: 'image',
+      image: 'cover.image',
+      webm: 'cover.video.video_webm.asset.url',
+      hevc: 'cover.video.video_hevc.asset.url',
+    },
+    prepare: ({ title, subtitle, image, webm, hevc }: PrepareProps) => {
+      return {
+        title,
+        subtitle,
+        media: image ? (
+          image
+        ) : webm && hevc ? (
+          <VideoPreview background="#eee" webm={webm} hevc={hevc} />
+        ) : (
+          PiVirtualRealityFill
+        ),
+      };
     },
   },
 };

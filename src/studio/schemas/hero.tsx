@@ -5,7 +5,7 @@ import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { SanityAssetDocument } from '@sanity/client';
 import { FcHome } from 'react-icons/fc';
 
-interface AsssetFieldProps {
+type AsssetFieldProps = {
   parent: {
     image: SanityAsset;
     video: {
@@ -13,12 +13,12 @@ interface AsssetFieldProps {
       video_hevc: SanityAssetDocument;
     };
   };
-}
-interface PrepareProps extends SanityDefaultPreviewProps {
+};
+type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
   webm: string;
   hevc: string;
-}
+};
 
 const commonHero = {
   name: 'common.hero',
