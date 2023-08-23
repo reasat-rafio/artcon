@@ -40,10 +40,10 @@ export default [
   ...projectDetail,
   ...collectionDetail,
   ...vr,
+  ...publicationDetail,
   team,
   gallery,
   services,
   privacyPolicy,
   termsConditions,
-  publicationDetail,
 ];

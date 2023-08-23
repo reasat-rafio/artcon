@@ -26,7 +26,7 @@ import {
   FcStackOfPhotos,
   FcVideoProjector,
 } from 'react-icons/fc';
-import { BsFillCollectionFill } from 'react-icons/bs';
+import { BsFillCollectionFill, BsFillPostageFill } from 'react-icons/bs';
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 import type { ConfigContext } from 'sanity';
 import type { IconType } from 'react-icons/lib';
@@ -234,8 +234,17 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               S.documentTypeListItem('vrCategory').title('Category'),
             ]),
         ),
-
-      S.documentTypeListItem('publication').title('Publications'),
+      S.listItem()
+        .title('Publications')
+        .icon(BsFillPostageFill)
+        .child(
+          S.list()
+            .title('Publications')
+            .items([
+              S.documentTypeListItem('publication').title('Publications'),
+              S.documentTypeListItem('publicationCategory').title('Category'),
+            ]),
+        ),
 
       S.divider(),
       orderableDocumentListDeskItem({

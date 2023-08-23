@@ -34,6 +34,18 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'category',
+      type: 'reference',
+      to: [{ type: 'vrCategory' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'cover',
       type: 'asset',
       validation: (Rule: Rule) => Rule.required(),
@@ -62,18 +74,6 @@ const vr = {
       name: 'description',
       type: 'array',
       of: [{ type: 'block' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'gallery',
-      type: 'reference',
-      to: [{ type: 'gallery' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'category',
-      type: 'reference',
-      to: [{ type: 'vrCategory' }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

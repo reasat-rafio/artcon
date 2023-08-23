@@ -2,7 +2,7 @@ import type { SanityAssetDocument } from '@sanity/client';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { Rule } from 'sanity';
 
-interface AsssetFieldProps {
+interface AssetFieldProps {
   parent: {
     image: SanityAsset;
     video: {
@@ -23,7 +23,7 @@ const asset = {
       name: 'image',
       type: 'image',
       title: 'Image',
-      hidden: ({ parent }: AsssetFieldProps) => !!parent?.video?.video_webm,
+      hidden: ({ parent }: AssetFieldProps) => !!parent?.video?.video_webm,
       options: {
         hotspot: true,
       },
@@ -40,7 +40,7 @@ const asset = {
     {
       name: 'video',
       type: 'object',
-      hidden: ({ parent }: AsssetFieldProps) => !!parent?.image?.asset,
+      hidden: ({ parent }: AssetFieldProps) => !!parent?.image?.asset,
       fields: [
         {
           name: 'video_webm',

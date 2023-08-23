@@ -9,7 +9,7 @@ import commonHeroList from './heroList';
 import commonImageAsset from './imageAsset';
 import quote from './quote';
 import social from './social';
-import asset from './assset';
+import asset from './asset';
 import keyValuePairs from './keyValuePairs';
 import note from './note';
 

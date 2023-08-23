@@ -85,13 +85,6 @@ const exhibition = {
       name: 'cta',
       type: 'cta',
     },
-
-    {
-      name: 'tags',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
     {
       name: 'artists',
       title: 'Artist in this ehibition',
@@ -113,6 +106,13 @@ const exhibition = {
       type: 'reference',
       to: [{ type: 'publication' }],
     },
+    {
+      name: 'tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
     {
       name: 'gallery',
       type: 'reference',
