@@ -1,5 +1,6 @@
+import { toPlainText } from '@portabletext/svelte';
 import { BsCollection } from 'react-icons/bs';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
 const collection = {
   name: 'collection',
@@ -29,7 +30,7 @@ const collection = {
       validation: (Rule: Rule) => Rule.required().max(4),
       of: [
         {
-          name: 'previewDisplayImage',
+          name: 'artworkImage',
           type: 'image',
           options: {
             hotspot: true,
@@ -109,9 +110,23 @@ const collection = {
         { type: 'collection.summary' },
         { type: 'common.note' },
         { type: 'collection.artist' },
+        { type: 'collection.publications' },
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'information',
+      media: 'artworkImages',
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    prepare: ({ title, subtitle, media }: any) => ({
+      title,
+      subtitle: toPlainText(subtitle),
+      media: media[0],
+    }),
+  },
 };
 
 export default collection;

@@ -90,7 +90,11 @@ const publication = {
       },
       validation: (Rule: Rule) => Rule.required(),
     },
-
+    {
+      name: 'quote',
+      type: 'quote',
+      validation: (Rule: Rule) => Rule.required(),
+    },
     {
       name: 'description',
       type: 'array',

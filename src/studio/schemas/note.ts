@@ -34,7 +34,7 @@ const note = {
           preview: {
             select: {
               title: 'descriptionBlock.title',
-              subtitle: 'descriptionBlock.subtitle',
+              subtitle: 'descriptionBlock.description',
             },
           },
         },

@@ -21,6 +21,7 @@ const siteDocuments = {
         { type: 'artist.summary' },
         { type: 'artist.artwork' },
         { type: 'artist.exhibitions' },
+        { type: 'artist.publication' },
       ],
     },
   ],

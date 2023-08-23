@@ -65,8 +65,8 @@ const summary = {
   ],
   preview: {
     select: {
-      title: 'descriptionBlock.name',
-      subtitle: 'descriptionBlock.description',
+      title: 'quote.text',
+      subtitle: 'vr.url',
     },
   },
 };
