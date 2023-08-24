@@ -1,18 +1,24 @@
 <script lang="ts">
-  import type { SummaryProps } from '@/lib/types/exhibitionDetail.types';
+  import type {
+    Association,
+    SummaryProps,
+  } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
   import VR from '@/components/VR.svelte';
-  import { DateTime } from 'luxon';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import type { PortableTextBlock } from 'sanity';
 
-  export let props: SummaryProps;
-  $: ({ quote, descriptionBlock, vr } = props);
+  type Props = SummaryProps & {
+    exhibition: {
+      date: string;
+      associationsList: Association[];
+      name: string;
+      description: PortableTextBlock[];
+    };
+  };
 
-  const startDate = DateTime.fromISO(descriptionBlock?.startDate);
-  const endDate = DateTime.fromISO(descriptionBlock?.endDate);
-
-  const formattedStartDate = startDate.toFormat('d MMMM');
-  const formattedEndDate = endDate.toFormat('d MMMM, yyyy');
+  export let props: Props;
+  $: ({ quote, vr, exhibition } = props);
 </script>
 
 <section class="py-xl">
@@ -23,13 +29,11 @@
       <svelte:fragment slot="intro" let:C>
         <C.IntroContainer>
           <C.HeaderContainer class="mb-10">
-            <C.Title>{descriptionBlock.name}</C.Title>
-            <C.Subtitle weight="light"
-              >{formattedStartDate} - {formattedEndDate}</C.Subtitle
-            >
+            <C.Title>{exhibition.name}</C.Title>
+            <C.Subtitle weight="light">{exhibition.date}</C.Subtitle>
           </C.HeaderContainer>
           <div class="space-y-4">
-            {#each descriptionBlock.moreInformations as { key, value }}
+            {#each exhibition.associationsList as { key, value }}
               <div>
                 <C.Subtitle
                   weight="light"
@@ -44,7 +48,7 @@
       <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
           <C.Description>
-            <C.PortableTextBlock value={descriptionBlock.description} />
+            <C.PortableTextBlock value={exhibition.description} />
           </C.Description>
         </C.DescriptionContainer>
       </svelte:fragment>

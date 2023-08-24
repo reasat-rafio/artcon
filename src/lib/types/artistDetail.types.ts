@@ -29,7 +29,9 @@ type Section =
 export interface ArtistSummaryProps {
   _key: string;
   _type: 'artist.summary';
-  statement: Statement;
+  statement?: DescriptionBlock & {
+    title: string;
+  };
   vr: VR;
   images: [SanityAsset, SanityAsset];
   quote: Quote;
@@ -42,10 +44,6 @@ export interface PersonalDocuments {
   socials: SocialProps[];
 }
 
-export interface Statement extends DescriptionBlock {
-  title: string;
-}
-
 export interface ExhibitionsProps {
   _type: 'artist.exhibitions';
   _key: string;
@@ -55,14 +53,12 @@ export interface ExhibitionsProps {
 export interface Exhibition {
   _type: string;
   _key: string;
-  descriptionBlock: ExhibitionDescriptionBlock;
+  descriptionBlock: DescriptionBlock & {
+    title: string;
+    subtitle: string;
+    information: PortableTextBlock;
+    cta: Cta;
+  };
   image: SanityAsset;
   quote: Quote;
-}
-
-export interface ExhibitionDescriptionBlock extends DescriptionBlock {
-  title: string;
-  subtitle: string;
-  information: PortableTextBlock;
-  cta: Cta;
 }

@@ -2,25 +2,30 @@
   import type {
     ArtistsProps,
     GroupExhibirtionProps,
+    IncludedArtistsProps,
     SoloExhibitonProps,
   } from '@/lib/types/exhibitionDetail.types';
   import Summary from '../[artist]/Summary.svelte';
   import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
 
-  export let artists: ArtistsProps;
-  $: artists;
+  export let props: IncludedArtistsProps & { artists: ArtistsProps };
+  $: ({ artists, statement } = props);
   $: soloExhibition =
     artists.length === 1 ? (artists as SoloExhibitonProps[]) : null;
   $: groupExhibition =
     artists.length > 1 ? (artists as GroupExhibirtionProps[]) : null;
+  $: statementProps = !!statement
+    ? { description: statement.statement, title: statement.title }
+    : undefined;
 </script>
 
 {#if !!soloExhibition?.length}
   <Summary
     props={{
       ...soloExhibition[0].data,
+      statement: statementProps,
+      personalDocuments: soloExhibition[0].personalDocuments,
     }}
-    personalDocuments={soloExhibition[0].personalDocuments}
   />
 {:else if !!groupExhibition?.length}
   <section class="py-xl">

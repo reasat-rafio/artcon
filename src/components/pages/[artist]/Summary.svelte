@@ -9,10 +9,11 @@
   } from '@/lib/types/artistDetail.types';
   import { DateTime } from 'luxon';
 
-  export let props: ArtistSummaryProps;
-  export let personalDocuments: PersonalDocuments;
+  export let props: ArtistSummaryProps & {
+    personalDocuments: PersonalDocuments;
+  };
 
-  $: ({ quote, vr, images, statement } = props);
+  $: ({ quote, vr, images, statement, personalDocuments } = props);
 </script>
 
 <section class="py-xl">
@@ -57,21 +58,23 @@
       </svelte:fragment>
     </ParallaxScrollImage>
 
-    <DescriptionBlock class="mb-xl">
-      <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.Title>{statement.title}</C.Title>
-        </C.IntroContainer>
-      </svelte:fragment>
+    {#if statement?.title && statement?.description}
+      <DescriptionBlock class="mb-xl">
+        <svelte:fragment slot="intro" let:C>
+          <C.IntroContainer>
+            <C.Title>{statement.title}</C.Title>
+          </C.IntroContainer>
+        </svelte:fragment>
 
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={statement.description} />
-          </C.Description>
-        </C.DescriptionContainer>
-      </svelte:fragment>
-    </DescriptionBlock>
+        <svelte:fragment slot="description" let:C>
+          <C.DescriptionContainer>
+            <C.Description>
+              <C.PortableTextBlock value={statement.description} />
+            </C.Description>
+          </C.DescriptionContainer>
+        </svelte:fragment>
+      </DescriptionBlock>
+    {/if}
 
     <VR {vr} />
   </div>

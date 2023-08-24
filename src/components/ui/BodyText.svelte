@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { twMerge } from 'tailwind-merge';
+
   export let weight: 'light' | 'normal' | 'semibold' = 'normal';
 
   $: fontWeight =
@@ -9,6 +11,6 @@
       : 'font-normal';
 </script>
 
-<p class="{$$props.class} {fontWeight} text-body-1 text-dark-gunmetal">
+<p class={twMerge('text-body-1 text-dark-gunmetal', fontWeight, $$props.class)}>
   <slot />
 </p>

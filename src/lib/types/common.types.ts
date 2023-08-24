@@ -132,14 +132,25 @@ export interface Quote {
 }
 
 export interface VR {
-  name: string;
-  image: SanityAsset;
-  _type: string;
+  cover: Asset;
   url: string;
 }
 
 export interface DescriptionBlock {
   description: PortableTextBlock[];
+}
+
+export interface CommonNoteProps {
+  _type: 'common.note';
+  _key: string;
+  notes: Note[];
+}
+
+export interface Note {
+  quote: Quote;
+  _type: string;
+  _key: string;
+  descriptionBlock: DescriptionBlock & { title: string; subtitle: string };
 }
 
 export interface EbookProps {

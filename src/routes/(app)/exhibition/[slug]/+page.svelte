@@ -2,7 +2,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
-  import Promotion from '@/components/pages/[exhibition]/promotion/Promotion.svelte';
+  import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
   import Share from '@/components/pages/[exhibition]/Share.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
@@ -72,26 +72,36 @@
   }}
 />
 <Share />
-<!-- {#each page.sections as s}
+{#each sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
-    <Summary props={s} />
+    <Summary
+      props={{
+        ...s,
+        exhibition: {
+          associationsList,
+          date,
+          name,
+          description,
+        },
+      }}
+    />
   {:else if s._type === 'exhibition.includedArtists'}
-    <IncludedArtists artists={page.artists} />
-  {:else if s._type === 'exhibition.note'}
+    <IncludedArtists props={{ ...s, artists }} />
+  {:else if s._type === 'common.note'}
     <Note props={s} />
-  {:else if s._type === 'exhibition.promotion'}
-    <Promotion props={s} />
-  {:else if s._type === 'exhibition.artwork'}
+  {:else if s._type === 'exhibition.publication'}
+    <Publication props={{ ...s, publication }} />
+    <!-- {:else if s._type === 'exhibition.artwork'}
     <Artwork props={s} />
   {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} />
+    <NewsAndMedia props={s} /> -->
   {/if}
 {/each}
-
-{#if !!page?.otherExhibitions?.length}
-  <OtherExhibitions exhibitions={page.otherExhibitions} />
+<!--
+{#if !!otherExhibitions?.length}
+  <OtherExhibitions exhibitions={otherExhibitions} />
 {/if} -->

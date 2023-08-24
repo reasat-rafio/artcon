@@ -1,17 +1,12 @@
 import { FcReadingEbook } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
 const publication = {
-  title: 'Publication',
+  title: 'Publication Section',
   name: 'exhibition.publication',
   type: 'object',
   icon: FcReadingEbook,
   fields: [
-    {
-      name: 'quote',
-      type: 'quote',
-      validation: (Rule: Rule) => Rule.required(),
-    },
     {
       name: 'invitationCardImage',
       type: 'image',
@@ -37,9 +32,12 @@ const publication = {
   ],
   preview: {
     select: {
-      title: 'quote.text',
       media: 'invitationCardImage',
     },
+    prepare: (props: SanityDefaultPreviewProps) => ({
+      ...props,
+      title: 'Publication Section',
+    }),
   },
 };
 

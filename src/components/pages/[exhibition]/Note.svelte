@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { NoteProps } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import type { CommonNoteProps } from '@/lib/types/common.types';
 
-  export let props: NoteProps;
+  export let props: CommonNoteProps;
   $: ({ notes } = props);
 </script>
 

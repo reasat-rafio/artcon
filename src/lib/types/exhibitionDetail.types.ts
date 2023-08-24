@@ -2,9 +2,9 @@ import type {
   Asset,
   CommonHeroProps,
   CommonImageAsset,
+  CommonNoteProps,
   Cta,
   DescriptionBlock,
-  EbookProps,
   Quote,
   SeoProps,
   SocialProps,
@@ -34,17 +34,17 @@ export interface ExhinitionDetailPageProps {
   gallery: Gallery;
   seo: SeoProps;
   tags: Tag[];
-  sections: Section[];
   otherExhibitions: OtherExhibitionProps[];
   publication: Publication;
+  sections: Section[];
 }
 
 type Section =
   | CommonHeroProps
   | CommonImageAsset
+  | CommonNoteProps
   | SummaryProps
-  | NoteProps
-  | PromotionProps
+  | PublicationProps
   | ArtworkProps
   | IncludedArtistsProps
   | GalleryProps
@@ -97,13 +97,13 @@ export interface SummaryProps {
   _key: string;
   _type: 'exhibition.summary';
   quote: Quote;
-  descriptionBlock: SummaryDescriptionBlock;
   vr: VR;
 }
 
 export interface IncludedArtistsProps {
   _key: string;
   _type: 'exhibition.includedArtists';
+  statement?: { statement: PortableTextBlock[]; title: string };
 }
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {
@@ -119,69 +119,42 @@ export interface MoreInformation {
   key: string;
 }
 
-export interface NoteProps {
-  _type: 'exhibition.note';
+export interface PublicationProps {
   _key: string;
-  notes: Note[];
-}
-export interface Note {
-  quote: Quote;
-  _type: string;
-  _key: string;
-  descriptionBlock: NoteDescriptionBlock;
-}
-export interface NoteDescriptionBlock extends DescriptionBlock {
-  title: string;
-  subtitle: string;
-}
-
-export interface PromotionProps {
-  _key: string;
-  _type: 'exhibition.promotion';
-  quote: Quote;
-  coverImage: SanityAsset;
-  ebook: EbookProps;
-  descriptionBlock: PromotionDescriptionBlock;
-}
-export interface PromotionDescriptionBlock extends DescriptionBlock {
-  title: string;
-  cta: Cta;
-  subtitle: string;
-  information: PortableTextBlock;
+  _type: 'exhibition.publication';
+  invitationCardImage: SanityAsset;
 }
 
 export interface ArtworkProps {
   _key: string;
   _type: 'exhibition.artwork';
-  descriptionBlock: ArtworkDescriptionBlock;
+  descriptionBlock: DescriptionBlock & {
+    title: string;
+    cta: Cta;
+  };
   artworks: SanityAsset[];
   quote: Quote;
-}
-export interface ArtworkDescriptionBlock extends DescriptionBlock {
-  title: string;
-  cta: Cta;
 }
 
 export interface GalleryProps {
   _key: string;
   _type: 'exhibition.gallery';
-  descriptionBlock: GalleryDescriptionBlock;
+  descriptionBlock: DescriptionBlock & {
+    title: string;
+  };
   images: SanityAsset[];
-}
-export interface GalleryDescriptionBlock extends DescriptionBlock {
-  title: string;
 }
 
 export interface NewsAndMediaProps {
   _key: string;
   newsAndMedia: NewsAndMedia[];
-  descriptionBlock: NewsAndMediaDescriptionBlock;
+  descriptionBlock: DescriptionBlock & {
+    title: string;
+  };
   quote: Quote;
   _type: 'exhibition.newsAndMedia';
 }
-export interface NewsAndMediaDescriptionBlock extends DescriptionBlock {
-  title: string;
-}
+
 export interface NewsAndMedia {
   image: SanityAsset;
   subtitle: string;

@@ -43,11 +43,19 @@ const query = (params: Partial<Record<string, string>>) =>
     sections[]{
       ...,
       ${asset('image')},
+      ${asset('invitationCardImage')},
       ${asset('images[]', { as: 'images' })},
       ${asset('artworks[]', { as: 'artworks' })},
-      vr-> {
-          ...,
-          ${asset('image')},
+      vr->{
+          url,
+          cover {
+            ...,
+            ${asset('image')},
+            video{
+              "webm": video_webm.asset->url,
+              "mov": video_hevc.asset->url,
+          }
+        },
       },
       newsAndMedia[]{
           ...,
