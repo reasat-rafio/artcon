@@ -92,12 +92,14 @@ export interface CommonHeroProps {
   title: string;
   type?: string;
   cta?: Cta;
-  asset: {
-    image?: SanityAsset;
-    video?: {
-      webm: string;
-      mov: string;
-    };
+  asset: Asset;
+}
+
+export interface Asset {
+  image?: SanityAsset;
+  video?: {
+    webm: string;
+    mov: string;
   };
 }
 

@@ -5,8 +5,30 @@ import { asset } from '@/lib/sanity/sanity-image/query.js';
 
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "exhibition" && slug.current == "${params.slug}"] [0]{
-    ...,
-    ${asset('previewDisplayImage')},
+    _id,
+    name,
+    type,
+    status,
+    cta,
+    seo,
+    associationsList,
+    description,
+    endDate,
+    startDate,
+    tags[]->,
+    gallery->{name},
+    publication->{
+      name,
+      subtitle,
+      slug,
+      category->{name},
+      publishedBy,
+      isbn,
+      quote,
+      description,
+      exproleLink,
+      ${asset('publicationImage')},
+    },
     asset {
       ...,
       ${asset('image')},
@@ -15,12 +37,12 @@ const query = (params: Partial<Record<string, string>>) =>
           "mov": video_hevc.asset->url,
       }
     },
-    tags[]->,
-    gallery->{name},
+    artworks[]->{
+      ${asset('artworkImages[]', { as: 'artworkImages' })},
+    },
     sections[]{
       ...,
       ${asset('image')},
-      ${asset('coverImage')},
       ${asset('images[]', { as: 'images' })},
       ${asset('artworks[]', { as: 'artworks' })},
       vr-> {

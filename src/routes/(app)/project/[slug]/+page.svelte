@@ -7,7 +7,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Summary from '@/components/pages/[project]/Summary.svelte';
   import Gallery from '@/components/pages/[project]/Gallery.svelte';
-  import { getEventStatus } from '@/lib/helper';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
 
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
@@ -15,7 +15,7 @@
     site: { logos },
   } = data);
 
-  $: status = getEventStatus({
+  $: status = calculateStatusBetweenDates({
     startDate: page.startDate,
     endDate: page?.endDate,
   });

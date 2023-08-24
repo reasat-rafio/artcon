@@ -1,6 +1,6 @@
 import { toPlainText } from '@portabletext/svelte';
 import { BsCollection } from 'react-icons/bs';
-import type { Rule, SanityDefaultPreviewProps } from 'sanity';
+import type { Rule } from 'sanity';
 
 const collection = {
   name: 'collection',

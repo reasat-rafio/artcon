@@ -3,7 +3,7 @@
   import H4 from '@/components/ui/H4.svelte';
   import H6 from '@/components/ui/H6.svelte';
   import H8 from '@/components/ui/H8.svelte';
-  import { getEventStatus } from '@/lib/helper';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { OtherExhibitionProps } from '@/lib/types/exhibitionDetail.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
@@ -13,12 +13,12 @@
   $: exhibitions;
 
   exhibitions.sort((a, b) => {
-    const { status: statusA } = getEventStatus({
+    const { status: statusA } = calculateStatusBetweenDates({
       startDate: a.startDate,
       endDate: a.endDate,
     });
 
-    const { status: statusB } = getEventStatus({
+    const { status: statusB } = calculateStatusBetweenDates({
       startDate: b.startDate,
       endDate: b.endDate,
     });

@@ -12,49 +12,67 @@
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
-  import { getEventStatus } from '@/lib/helper';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   $: ({
-    page,
+    page: {
+      name,
+      otherExhibitions,
+      publication,
+      tags,
+      cta,
+      status,
+      type,
+      startDate,
+      endDate,
+      seo,
+      sections,
+      artists,
+      artworks,
+      asset,
+      gallery,
+      associationsList,
+      description,
+    },
     site: { logos },
   } = data);
 
-  $: status = getEventStatus({
-    startDate: page?.startDate,
-    endDate: page?.endDate,
-  });
+  $: ({ date, status: exhibitionStatus } = calculateStatusBetweenDates({
+    startDate,
+    endDate,
+  }));
 
-  const getHeroTextField = (text: string | undefined) =>
-    text || (status.status !== 'Ongoing' ? status.date : status.status);
+  $: heroText =
+    status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
 
-  const getHeroNameField = (text: string | undefined) => {
+  $: heroType = () => {
     let fallbackText: string | undefined = undefined;
-    const artist = page.artists[0];
+    const artist = artists[0];
 
     if ('personalDocuments' in artist)
       fallbackText = artist.personalDocuments.name;
-    else if (page.artists.length > 1) fallbackText = 'Group Exhibition';
+    else if (artists.length > 1) fallbackText = 'Group Exhibition';
 
-    return text || fallbackText;
+    return type || fallbackText;
   };
 </script>
 
-<Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-{#each page.sections as s}
-  {#if s._type === 'common.hero'}
-    <Hero
-      props={{
-        ...s,
-        text: getHeroTextField(s.text),
-        type: getHeroNameField(s.type),
-      }}
-    />
-  {/if}
-{/each}
+<Seo {seo} siteOgImg={logos?.ogImage} />
+<Hero
+  props={{
+    _type: 'common.hero',
+    _key: '',
+    asset,
+    cta,
+    title: name,
+    text: heroText,
+    type: heroType(),
+  }}
+/>
 <Share />
-{#each page.sections as s}
+<!-- {#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'exhibition.summary'}
@@ -76,4 +94,4 @@
 
 {#if !!page?.otherExhibitions?.length}
   <OtherExhibitions exhibitions={page.otherExhibitions} />
-{/if}
+{/if} -->

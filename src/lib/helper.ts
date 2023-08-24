@@ -21,7 +21,10 @@ export const zeroPad = (num: number) => {
   return num.toLocaleString().padStart(2, '0');
 };
 
-export const getEventStatus = ({
+function areSameMonthAndYear(date1: DateTime, date2: DateTime) {
+  return date1.month === date2.month && date1.year === date2.year;
+}
+export const calculateStatusBetweenDates = ({
   startDate,
   endDate,
 }: {
@@ -36,8 +39,11 @@ export const getEventStatus = ({
   const isoEndDate = endDate ? DateTime.fromISO(endDate) : null;
 
   if (isoEndDate) {
-    const formattedStartDate = isoStartDate.toFormat('d MMMM');
     const formattedEndDate = isoEndDate.toFormat('d MMMM, yyyy');
+    const formattedStartDate = areSameMonthAndYear(isoStartDate, isoEndDate)
+      ? isoStartDate.toFormat('d')
+      : isoStartDate.toFormat('d MMMM');
+
     date = `${formattedStartDate} - ${formattedEndDate}`;
 
     if (isoStartDate <= currentDateTime && isoEndDate >= currentDateTime) {

@@ -1,4 +1,5 @@
 import type {
+  Asset,
   CommonHeroProps,
   CommonImageAsset,
   Cta,
@@ -18,13 +19,24 @@ import type {
 } from './artistDetail.types';
 
 export interface ExhinitionDetailPageProps {
-  startDate: string;
-  endDate?: string;
+  _id: string;
+  type?: string;
+  status?: string;
+  cta?: Cta;
   artists: ArtistsProps;
+  artworks: { artworkImages: SanityAsset }[];
+  asset: Asset;
+  associationsList: Association[];
+  name: string;
+  description: PortableTextBlock[];
+  endDate?: string;
+  startDate: string;
+  gallery: Gallery;
   seo: SeoProps;
   tags: Tag[];
   sections: Section[];
   otherExhibitions: OtherExhibitionProps[];
+  publication: Publication;
 }
 
 type Section =
@@ -43,6 +55,28 @@ export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
   personalDocuments: PersonalDocuments;
+}
+
+export interface Association {
+  key: string;
+  value: string;
+}
+
+export interface Publication {
+  name: string;
+  category: { name: string };
+  description: PortableTextBlock[];
+  exproleLink: Cta;
+  isbn: string;
+  quote: Quote;
+  slug: Slug;
+  publishedBy: string[];
+  publicationImage: SanityAsset;
+  subtitle: string;
+}
+
+export interface Gallery {
+  name: string;
 }
 
 export interface GroupExhibirtionProps {
