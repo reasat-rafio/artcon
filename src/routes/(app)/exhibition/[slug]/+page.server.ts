@@ -119,10 +119,7 @@ const query = (params: Partial<Record<string, string>>) =>
 
 export const load: ServerLoad = async ({ params }) => {
   const data = await sanityClient.fetch(query(params));
-
   if (!data) throw error(404, 'Not found');
 
-  return {
-    page: data,
-  };
+  return { page: data };
 };

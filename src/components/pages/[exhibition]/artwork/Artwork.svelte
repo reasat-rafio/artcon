@@ -1,10 +1,15 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Quote from '@/components/Quote.svelte';
-  import type { ArtworkProps } from '@/lib/types/exhibitionDetail.types';
+  import type {
+    ArtworkProps,
+    ExhinitionDetailPageProps,
+  } from '@/lib/types/exhibitionDetail.types';
   import Artworks from './Artworks.svelte';
 
-  export let props: ArtworkProps;
+  export let props: ArtworkProps & {
+    artworks: ExhinitionDetailPageProps['artworks'];
+  };
   $: ({
     quote,
     artworks,

@@ -24,7 +24,7 @@ export interface ExhinitionDetailPageProps {
   status?: string;
   cta?: Cta;
   artists: ArtistsProps;
-  artworks: { artworkImages: SanityAsset }[];
+  artworks: { artworkImages: SanityAsset[] }[];
   asset: Asset;
   associationsList: Association[];
   name: string;
@@ -132,7 +132,6 @@ export interface ArtworkProps {
     title: string;
     cta: Cta;
   };
-  artworks: SanityAsset[];
   quote: Quote;
 }
 

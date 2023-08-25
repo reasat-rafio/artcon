@@ -7,26 +7,33 @@
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
   import Image from './Image.svelte';
+  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
 
-  export let artworks: SanityAsset[];
+  type Artworks = ExhinitionDetailPageProps['artworks'];
+  export let artworks: Artworks;
   let emblaApi: EmblaCarouselType;
 
+  let activeSide = 1;
   let plugins: EmblaPluginType[] = [AutoPlay()];
   let options: Partial<EmblaOptionsType> = {
     align: 'start',
     loop: true,
   };
-  let activeSide = 1;
 
-  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
-    emblaApi = event.detail;
-  };
-
+  $: modifedArtworks = flatenArtworkArray(artworks);
   $: if (emblaApi) {
     emblaApi.on('select', ({ selectedScrollSnap }) => {
       activeSide = selectedScrollSnap() + 1;
     });
   }
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+  };
+  const flatenArtworkArray = (artworks: Artworks): SanityAsset[] =>
+    artworks.flatMap(({ artworkImages }) =>
+      artworkImages.flatMap((artwork) => artwork),
+    );
 </script>
 
 <div class="{$$props.class} w-[85%]">
@@ -36,11 +43,11 @@
     on:emblaInit={onInit}
   >
     <div class="flex">
-      {#each artworks as artwork, index}
+      {#each modifedArtworks as artwork, index}
         <Image
           {artwork}
           active={activeSide === index ||
-            (activeSide === artworks.length && index === 0)}
+            (activeSide === modifedArtworks.length && index === 0)}
         />
       {/each}
     </div>

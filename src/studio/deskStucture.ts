@@ -185,6 +185,17 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         ),
       S.divider(),
       S.listItem()
+        .title('Exhibition')
+        .icon(FcStackOfPhotos)
+        .child(
+          S.list()
+            .title('Exhibition')
+            .items([
+              S.documentTypeListItem('exhibition').title('Exhibitions'),
+              S.documentTypeListItem('exhibitionTag').title('Tags'),
+            ]),
+        ),
+      S.listItem()
         .title('Artist')
         .icon(FcPortraitMode)
         .child(
@@ -196,17 +207,6 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             ]),
         ),
       S.documentTypeListItem('collection').title('Collections'),
-      S.listItem()
-        .title('Exhibition')
-        .icon(FcStackOfPhotos)
-        .child(
-          S.list()
-            .title('Exhibition')
-            .items([
-              S.documentTypeListItem('exhibition').title('Exhibitions'),
-              S.documentTypeListItem('exhibitionTag').title('Tags'),
-            ]),
-        ),
       S.listItem()
         .title('Event')
         .icon(FcCalendar)
