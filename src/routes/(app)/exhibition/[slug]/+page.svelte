@@ -66,7 +66,7 @@
     type: heroType,
   }}
 />
-<Share href="/" logo={logos.logoLight}>Out Exhibitions</Share>
+<Share href="/" logo={logos.logoLight}>Our Exhibition</Share>
 {#each sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />

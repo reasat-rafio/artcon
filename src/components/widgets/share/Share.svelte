@@ -21,7 +21,7 @@
 <svelte:window on:scroll={setLogoVisibility} />
 <section
   bind:this={sectionEl}
-  class="sticky top-0 border-b border-[#A5A5A8] bg-white py-[27px]"
+  class="sticky top-0 z-50 border-b border-[#A5A5A8] bg-white py-[27px]"
 >
   <div class="relative">
     <div class="container flex items-center">
