@@ -30,19 +30,19 @@
   <div class="container">
     <Quote class="mb-xl" {quote} />
 
-    <!-- <ParallaxScrollImage class="mb-xl">
+    <ParallaxScrollImage class="mb-xl">
       <svelte:fragment slot="first-image" let:Image>
         <Image image={invitationCardImage} />
       </svelte:fragment>
       <svelte:fragment slot="second-image" let:Image>
         <Image
           el="a"
-          caption={publicationImage.name}
+          caption={name}
           href={`/publications/${slug.current}`}
-          image={publicationImage.image}
+          image={publicationImage}
         />
       </svelte:fragment>
-    </ParallaxScrollImage> -->
+    </ParallaxScrollImage>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

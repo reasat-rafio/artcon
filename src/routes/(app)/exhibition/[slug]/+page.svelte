@@ -8,11 +8,7 @@
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
-  import type {
-    ArtistsProps,
-    ExhinitionDetailPageProps,
-    SoloExhibitonProps,
-  } from '@/lib/types/exhibitionDetail.types';
+  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
