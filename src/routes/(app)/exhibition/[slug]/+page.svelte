@@ -19,9 +19,9 @@
   $: ({
     page: {
       name,
+      // tags,
       otherExhibitions,
       publication,
-      tags,
       cta,
       status,
       type,
@@ -46,6 +46,7 @@
 
   $: heroText =
     status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
+
   $: heroType =
     type ||
     (isSoloExhibition(artists)
@@ -73,11 +74,11 @@
     <Summary
       props={{
         ...s,
-        exhibition: {
-          associationsList,
+        descriptionBlock: {
           date,
-          name,
+          gallery,
           description,
+          associationsList,
         },
       }}
     />
@@ -96,6 +97,6 @@
   {/if}
 {/each}
 
-<!-- {#if !!otherExhibitions?.length}
+{#if !!otherExhibitions?.length}
   <OtherExhibitions exhibitions={otherExhibitions} />
-{/if} -->
+{/if}

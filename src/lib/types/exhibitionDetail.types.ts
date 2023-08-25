@@ -86,11 +86,13 @@ export interface GroupExhibirtionProps {
 }
 
 export interface OtherExhibitionProps {
+  asset: Asset;
+  name: string;
+  tags: { name: string }[];
   slug: Slug;
   startDate: string;
   endDate?: string;
-  data: CommonHeroProps;
-  type: 'Group Exhibition' | { artists: { name: string } };
+  type: 'Group Exhibition' | { name: string };
 }
 
 export interface SummaryProps {

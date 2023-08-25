@@ -90,12 +90,22 @@ const query = (params: Partial<Record<string, string>>) =>
     "otherExhibitions": *[_type== "exhibition" && slug.current != "${
       params.slug
     }"][]{
+     name,
      slug,
      startDate,
      endDate,
+     tags[]->{name},
+     asset {
+      ...,
+      ${asset('image')},
+        video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+        }
+      },
      "type": select(
         count(artists) == 1 => {
-          artists[0]->{
+          ...artists[0]->{
             ...personalDocuments {
               "name": name.en,
             }
@@ -103,17 +113,6 @@ const query = (params: Partial<Record<string, string>>) =>
         },
         count(artists) > 1 => "Group Exhibition",
      ),
-     "data": sections[_type == "common.hero"][0]{
-        ...,
-        asset {
-          ...,
-          ${asset('image')},
-          video{
-            "webm": video_webm.asset->url,
-            "mov": video_hevc.asset->url,
-          }
-        },
-      }
     },
   }`;
 

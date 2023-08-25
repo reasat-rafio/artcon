@@ -59,9 +59,7 @@ const vr = {
     {
       name: 'url',
       type: 'url',
-      components: {
-        input: VrPreview,
-      },
+      components: { input: VrPreview },
       validation: (Rule: Rule) => Rule.required(),
     },
     {

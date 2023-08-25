@@ -9,16 +9,18 @@
   import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
-    exhibition: {
+    descriptionBlock: {
+      gallery: Gallery;
       date: string;
       associationsList: Association[];
-      name: string;
       description: PortableTextBlock[];
     };
   };
 
+  import type { Gallery } from '@/lib/types/exhibitionDetail.types';
+
   export let props: Props;
-  $: ({ quote, vr, exhibition } = props);
+  $: ({ quote, vr, descriptionBlock } = props);
 </script>
 
 <section class="py-xl">
@@ -29,11 +31,11 @@
       <svelte:fragment slot="intro" let:C>
         <C.IntroContainer>
           <C.HeaderContainer class="mb-10">
-            <C.Title>{exhibition.name}</C.Title>
-            <C.Subtitle weight="light">{exhibition.date}</C.Subtitle>
+            <C.Title>{descriptionBlock.gallery.name}</C.Title>
+            <C.Subtitle weight="light">{descriptionBlock.date}</C.Subtitle>
           </C.HeaderContainer>
           <div class="space-y-4">
-            {#each exhibition.associationsList as { key, value }}
+            {#each descriptionBlock.associationsList as { key, value }}
               <div>
                 <C.Subtitle
                   weight="light"
@@ -48,7 +50,7 @@
       <svelte:fragment slot="description" let:C>
         <C.DescriptionContainer>
           <C.Description>
-            <C.PortableTextBlock value={exhibition.description} />
+            <C.PortableTextBlock value={descriptionBlock.description} />
           </C.Description>
         </C.DescriptionContainer>
       </svelte:fragment>

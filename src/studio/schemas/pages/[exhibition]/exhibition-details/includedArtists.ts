@@ -16,7 +16,7 @@ const includedArtists = {
       name: 'statement',
       type: 'object',
       hidden: ({ document }: ExhibitionDocument) => {
-        return document?.artists.length > 1;
+        return document?.artists?.length > 1;
       },
       fields: [
         { name: 'title', type: 'string' },

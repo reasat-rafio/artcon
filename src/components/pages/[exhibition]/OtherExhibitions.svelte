@@ -12,6 +12,12 @@
   export let exhibitions: OtherExhibitionProps[];
   $: exhibitions;
 
+  const statusOrder = {
+    Ongoing: 0,
+    Upcoming: 1,
+    Completed: 2,
+  } as const;
+
   exhibitions.sort((a, b) => {
     const { status: statusA } = calculateStatusBetweenDates({
       startDate: a.startDate,
@@ -23,16 +29,10 @@
       endDate: b.endDate,
     });
 
-    const statusOrder = {
-      Ongoing: 0,
-      Upcoming: 1,
-      Completed: 2,
-    } as const;
     return statusOrder[statusA] - statusOrder[statusB];
   });
 
   let emblaApi: EmblaCarouselType;
-
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
@@ -47,7 +47,7 @@
       on:emblaInit={onInit}
     >
       <div class="flex">
-        {#each exhibitions as { data: { asset, title }, slug, type }}
+        {#each exhibitions as { slug, type, name, asset }}
           <a
             href="/exhibition/{slug.current}"
             class="flex-[0_0_50%] overflow-hidden"
@@ -60,12 +60,12 @@
             <div class="border-t border-[#D2D2D3] pt-[36px]">
               <div class="odd:mr-[30px] even:ml-[30px]">
                 <header class="flex flex-wrap items-center space-y-[10px]">
-                  <H6>{title} /</H6>
+                  <H6>{name} /</H6>
                   <H8>
                     {#if typeof type === 'string'}
                       {type}
                     {:else}
-                      {type.artists.name}
+                      {type.name}
                     {/if}
                   </H8>
                 </header>
