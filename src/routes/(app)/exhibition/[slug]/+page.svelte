@@ -8,11 +8,15 @@
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import type {
+    ArtistsProps,
+    ExhinitionDetailPageProps,
+    SoloExhibitonProps,
+  } from '@/lib/types/exhibitionDetail.types';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
+  import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
@@ -46,17 +50,11 @@
 
   $: heroText =
     status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
-
-  $: heroType = () => {
-    let fallbackText: string | undefined = undefined;
-    const artist = artists[0];
-
-    if ('personalDocuments' in artist)
-      fallbackText = artist.personalDocuments.name;
-    else if (artists.length > 1) fallbackText = 'Group Exhibition';
-
-    return type || fallbackText;
-  };
+  $: heroType =
+    type ||
+    (isSoloExhibition(artists)
+      ? artists.personalDocuments.name
+      : 'Group Exhibition');
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -68,7 +66,7 @@
     cta,
     title: name,
     text: heroText,
-    type: heroType(),
+    type: heroType,
   }}
 />
 <Share />

@@ -50,7 +50,7 @@ type Section =
   | GalleryProps
   | NewsAndMediaProps;
 
-export type ArtistsProps = [SoloExhibitonProps] | GroupExhibirtionProps[];
+export type ArtistsProps = SoloExhibitonProps | GroupExhibirtionProps[];
 
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;

@@ -1,4 +1,8 @@
 import { DateTime } from 'luxon';
+import type {
+  ArtistsProps,
+  SoloExhibitonProps,
+} from './types/exhibitionDetail.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
   const result = [];
@@ -68,3 +72,7 @@ export const calculateStatusBetweenDates = ({
 
   return { status, date };
 };
+
+export const isSoloExhibition = (
+  artist: ArtistsProps,
+): artist is SoloExhibitonProps => 'data' in artist;

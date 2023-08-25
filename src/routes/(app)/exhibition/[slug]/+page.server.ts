@@ -63,7 +63,7 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     count(artists) == 1 => {
-      artists[]->{
+      artists[0]->{
         personalDocuments {
           "name": name.en,
           shortBio,
