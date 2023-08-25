@@ -93,13 +93,13 @@
     <Publication props={{ ...s, publication }} />
   {:else if s._type === 'exhibition.artwork'}
     <Artwork props={{ ...s, artworks }} />
-    <!--{:else if s._type === 'exhibition.gallery'}
+  {:else if s._type === 'exhibition.gallery'}
     <Gallery props={s} />
   {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} /> -->
+    <NewsAndMedia props={s} />
   {/if}
 {/each}
-<!--
-{#if !!otherExhibitions?.length}
+
+<!-- {#if !!otherExhibitions?.length}
   <OtherExhibitions exhibitions={otherExhibitions} />
 {/if} -->
