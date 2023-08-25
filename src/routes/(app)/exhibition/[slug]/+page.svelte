@@ -3,7 +3,6 @@
   import Seo from '@/components/Seo.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
-  import Share from '@/components/pages/[exhibition]/Share.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Hero from '@/components/hero/Hero.svelte';
@@ -14,6 +13,7 @@
   import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
+  import Share from '@/components/widgets/share/Share.svelte';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   $: ({
@@ -66,7 +66,7 @@
     type: heroType,
   }}
 />
-<Share logo={logos.logoLight} />
+<Share href="/" logo={logos.logoLight}>Out Exhibitions</Share>
 {#each sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
