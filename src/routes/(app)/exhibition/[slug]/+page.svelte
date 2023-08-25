@@ -66,7 +66,7 @@
     type: heroType,
   }}
 />
-<Share />
+<Share logo={logos.logoLight} />
 {#each sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
