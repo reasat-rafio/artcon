@@ -4,6 +4,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { AppStructure, DefaultDocumentNode } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
+import { customExibitionAction } from './lib/actions/exhibition/createImprovedAction';
 // import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
 
 // import { testPlugin } from './custom-plugins/test';
@@ -26,6 +27,19 @@ export default defineConfig([
     //       : prev;
     //   },
     // },
+    document: {
+      actions: (prev, context) =>
+        prev.map((originalAction) => {
+          const isExhibition = context.schemaType === 'exhibition';
+          const pubOrUnpubAction =
+            originalAction.action === 'publish' ||
+            originalAction.action === 'unpublish';
+
+          return isExhibition && pubOrUnpubAction
+            ? customExibitionAction(originalAction)
+            : originalAction;
+        }),
+    },
 
     plugins: [
       deskTool({
