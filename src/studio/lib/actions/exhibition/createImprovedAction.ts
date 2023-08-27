@@ -21,6 +21,38 @@ const query = groq`*[_type == "artist" && _id in $artistsIds] {
   _id,
   publications[]
 }`;
+const apiUrl = '/api/studio/exhibition/update-artists-publications';
+const requestData = {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
+const callApi = async ({
+  _id,
+  updatedPublications,
+}: {
+  _id: string;
+  updatedPublications: SanityReferenceWKey[];
+}) => {
+  try {
+    const response = await fetch(apiUrl, {
+      ...requestData,
+      body: JSON.stringify({
+        _id,
+        updatedPublications,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Request failed with status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log('Error:', error);
+  }
+};
 
 export function customExibitionAction(
   originalPublishAction: DocumentActionComponent,
@@ -112,10 +144,7 @@ export function customExibitionAction(
               ...updatedPublications,
             ];
           }
-          await sanityClient
-            .patch(artist._id)
-            .set({ publications: updatedPublications })
-            .commit();
+          callApi({ _id: artist._id, updatedPublications });
         }
       }
     };
@@ -133,10 +162,7 @@ export function customExibitionAction(
               (e) => e._ref !== removedPublicationRef._ref,
             );
 
-            await sanityClient
-              .patch(artist._id)
-              .set({ publications: updatedPublications })
-              .commit();
+            callApi({ _id: artist._id, updatedPublications });
           }
         }
       }
