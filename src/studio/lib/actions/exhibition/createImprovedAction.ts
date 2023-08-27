@@ -33,7 +33,7 @@ export function customExibitionAction(
     ) as DocumentActionDescription;
 
     const [artistsIds, setArtistIds] = useState<string[]>([]);
-    const [docPublication, setDocPublicationId] =
+    const [docPublication, setDocPublication] =
       useState<SanityReferenceWKey | null>(null);
     const [initialData, setInitialData] = useState<SanityDocument | null>(null);
 
@@ -49,18 +49,22 @@ export function customExibitionAction(
     }, [props, initialData]);
 
     useEffect(() => {
-      getArtistId();
+      setArtistIdAction();
     }, [data?.artists]);
 
     useEffect(() => {
-      const publicationRef = data?.publication as SanityReferenceWKey;
-      setDocPublicationId(publicationRef);
+      setDocPublicationAction();
     }, [data?.publication]);
 
-    const getArtistId = () => {
+    const setArtistIdAction = () => {
       const artists = data?.artists as SanityReferenceWKey[];
       if (artists?.length) setArtistIds(() => artists.map((a) => a._ref));
       else setArtistIds([]);
+    };
+
+    const setDocPublicationAction = () => {
+      const publicationRef = data?.publication as SanityReferenceWKey;
+      setDocPublication(publicationRef);
     };
 
     const checkPublicationChangeState = (): 'added' | 'removed' | undefined => {
@@ -78,14 +82,21 @@ export function customExibitionAction(
         artistsIds,
       })) as ArtistsPublication;
 
-    const getTheArtistWhoDontHaveThePublication = (
+    const getArtistPublications = (
+      logic: 'have' | 'dont_have',
       artistData: ArtistsPublication,
     ) => {
       return artistData.filter((artist) => {
         const hasPublication = !!artist.publications?.some(
-          (publication) => publication._ref === docPublication?._ref,
+          (publication) =>
+            publication._ref ===
+            (logic === 'have'
+              ? initialData?.publication?._ref
+              : docPublication?._ref),
         );
-        return hasPublication === false;
+        return logic === 'dont_have'
+          ? hasPublication === false
+          : hasPublication;
       });
     };
 
@@ -109,14 +120,56 @@ export function customExibitionAction(
       }
     };
 
-    const checkAndCreateArtistsPublications = (data: ArtistsPublication) => {
+    const removeExhibitionsPublicationToArtistsPublications = async (
+      artists: ArtistsPublication,
+    ) => {
+      for (const artist of artists) {
+        if (initialData?.publication) {
+          const removedPublicationRef =
+            initialData.publication as SanityReferenceWKey;
+
+          if (artist?.publications?.length) {
+            const updatedPublications = artist.publications.filter(
+              (e) => e._ref !== removedPublicationRef._ref,
+            );
+
+            await sanityClient
+              .patch(artist._id)
+              .set({ publications: updatedPublications })
+              .commit();
+          }
+        }
+      }
+    };
+
+    const checkAndCreateArtistsPublications = async (
+      data: ArtistsPublication,
+    ) => {
       try {
-        const artistWhoDontHaveThePublication =
-          getTheArtistWhoDontHaveThePublication(data);
+        const artistWhoDontHaveThePublication = getArtistPublications(
+          'dont_have',
+          data,
+        );
 
         if (artistWhoDontHaveThePublication?.length) {
           insertExhibitionsPublicationToArtistsPublications(
             artistWhoDontHaveThePublication,
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const checkAndRemoveArtistsPublications = async (
+      data: ArtistsPublication,
+    ) => {
+      try {
+        const artistWhoHaveThePublication = getArtistPublications('have', data);
+        console.log(artistWhoHaveThePublication);
+
+        if (artistWhoHaveThePublication?.length) {
+          removeExhibitionsPublicationToArtistsPublications(
+            artistWhoHaveThePublication,
           );
         }
       } catch (error) {
@@ -134,9 +187,13 @@ export function customExibitionAction(
         if (publicationDocState === 'added') {
           checkAndCreateArtistsPublications(artistsPublicationData);
         } else if (publicationDocState === 'removed') {
-          //
+          checkAndRemoveArtistsPublications(artistsPublicationData);
         }
+        console.log(publicationDocState);
+
         if (originalResult.onHandle) originalResult.onHandle();
+
+        setInitialData(data);
       },
     };
   };
