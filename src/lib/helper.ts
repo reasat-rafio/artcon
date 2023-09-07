@@ -76,3 +76,7 @@ export const calculateStatusBetweenDates = ({
 export const isSoloExhibition = (
   artist: ArtistsProps,
 ): artist is SoloExhibitonProps => 'data' in artist;
+
+export const delay = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

@@ -10,7 +10,7 @@
   let showIframe = false;
 </script>
 
-<section class={twMerge($$props.class)}>
+<section {...$$restProps} class={twMerge($$props.class)}>
   <div class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px]">
     {#if showIframe}
       <iframe

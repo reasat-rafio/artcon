@@ -11,6 +11,8 @@
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
+  import { onMount } from 'svelte';
+  import { gsap } from 'gsap';
 
   export let data: PageProps<VrPreviewProps>;
   $: ({
@@ -33,7 +35,14 @@
     endDate,
   }));
 
-  $: console.log(date, status);
+  onMount(() => {
+    gsap.from('[data-load-animate]', {
+      y: 100,
+      opacity: 0,
+      stagger: 0.1,
+      delay: 0.5,
+    });
+  });
 </script>
 
 <Seo
@@ -47,8 +56,8 @@
 />
 
 <section>
-  <article class="grid h-screen w-full grid-cols-12 gap-[15px]">
-    <div class="col-span-4">
+  <article class="grid h-screen w-full grid-cols-10 gap-[15px]">
+    <div class="col-span-3">
       <figure class="h-full w-full">
         <SanityImage
           lqip
@@ -60,27 +69,32 @@
         />
       </figure>
     </div>
-    <section class="col-span-8 overflow-scroll">
+    <section class="col-span-7 overflow-scroll">
       <div class="space-y-[40px] px-[135px] py-[97px]">
         <div class="space-y-[32px]">
-          <H8>Our virtual reality</H8>
+          <H8 data-load-animate="y" class="">Our virtual reality</H8>
           <header class="space-y-[10px]">
-            <div>
+            <div data-load-animate="y">
               <H4 class="inline">{name}</H4>
               <H6 class="inline">/ Showrov Chowdury</H6>
             </div>
-            <H8>Exhibition</H8>
+            <H8 data-load-animate="y">Exhibition</H8>
           </header>
-          <div class="space-y-[6px] text-[#1B1B1E]">
-            <div class="text-title-2 font-light">{gallery.name}</div>
+          <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
+            <div class="text-title-2 font-light">
+              {gallery.name}
+            </div>
             <div class="text-subtitle-2">
               <span class="font-light">{date}</span> |
               <span class="font-medium text-[#ED1C24]">{status}</span>
             </div>
           </div>
         </div>
-        <Vr vr={{ previewImage: placeholderImage, url }} />
-        <BodyText weight="light">
+        <Vr
+          data-load-animate="y"
+          vr={{ previewImage: placeholderImage, url }}
+        />
+        <BodyText data-load-animate="y" weight="light">
           <PortableText value={description} />
         </BodyText>
       </div>

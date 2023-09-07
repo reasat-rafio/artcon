@@ -88,6 +88,9 @@ devDependencies:
   groq:
     specifier: ^3.15.1
     version: 3.15.1
+  gsap:
+    specifier: ^3.12.2
+    version: 3.12.2
   luxon:
     specifier: ^3.4.0
     version: 3.4.0
@@ -3205,6 +3208,10 @@ packages:
   /groq@3.15.1:
     resolution: {integrity: sha512-gRSMFXSDCVE9/69YfhIb4ymh2naGp+JtyrIDBzWrNpZghC/9W4bAkDmHqoWESiTbbpetYZrrFRF3yvcuW7daqA==}
     engines: {node: '>=14'}
+    dev: true
+
+  /gsap@3.12.2:
+    resolution: {integrity: sha512-EkYnpG8qHgYBFAwsgsGEqvT1WUidX0tt/ijepx7z8EUJHElykg91RvW1XbkT59T0gZzzszOpjQv7SE41XuIXyQ==}
     dev: true
 
   /gunzip-maybe@1.4.2:

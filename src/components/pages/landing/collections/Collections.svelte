@@ -1,9 +1,11 @@
 <script lang="ts">
-  import Asset from '@/components/hero/Asset.svelte';
+  import { goto } from '$app/navigation';
+  import { delay } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { CollectionsProps } from '@/lib/types/landing.types';
-  import { timeline } from 'motion';
+  import uiStore from '@/store/ui';
+  import { slide } from 'svelte/transition';
 
   export let props: CollectionsProps;
   $: ({ collections } = props);
@@ -11,13 +13,7 @@
   let rootEl: HTMLElement;
   let containerEl: HTMLDivElement;
   let activeIndex: null | number = null;
-  const defaultColumWidth = '50vw';
-  const activeColumWidth = '100vw';
-
-  $: containerWidth =
-    activeIndex !== null
-      ? `${collections.length * 50 + 50}vw`
-      : `${collections.length * 50}vw`;
+  const defaultColumWidthInPercentage = 30;
 
   function init(node: HTMLElement) {
     node.style.width = `${collections.length * 50}vw`;
@@ -27,40 +23,7 @@
     node: HTMLElement,
     _: { index: number; activeIndex: number | null },
   ) {
-    node.style.width = defaultColumWidth;
-
-    return {
-      update({
-        index,
-        activeIndex,
-      }: {
-        index: number;
-        activeIndex: number | null;
-      }) {
-        let isActive = activeIndex === index;
-        if (isActive) {
-          timeline([
-            [
-              containerEl,
-              { width: [containerEl.style.width, containerWidth] },
-              { duration: 0 },
-            ],
-            [node, { width: [node.style.width, activeColumWidth] }],
-          ]);
-        } else {
-          console.log('not');
-
-          timeline([
-            [
-              containerEl,
-              { width: [containerEl.style.width, containerWidth] },
-              { duration: 0 },
-            ],
-            [node, { width: [node.style.width, defaultColumWidth] }],
-          ]);
-        }
-      },
-    };
+    node.style.width = `${defaultColumWidthInPercentage}vw`;
   }
 </script>
 
@@ -70,12 +33,13 @@
       {#if collection._type === 'vr'}
         <a
           href="/preview/vr/{collection.slug.current}"
-          on:click={(e) => {
+          on:click|preventDefault={async (e) => {
             if (e.target instanceof HTMLElement) {
               console.log(e.target.getBoundingClientRect());
             }
-            if (activeIndex !== index) activeIndex = index;
-            else activeIndex = null;
+            uiStore.setActivePreview(index);
+            await delay(600);
+            goto(`/preview/vr/${collection.slug.current}`);
           }}
           use:animation={{ index, activeIndex }}
           class="relative h-screen"
@@ -88,6 +52,13 @@
             alt={collection.name}
           />
         </a>
+
+        {#if index === $uiStore.seclectedPreviewIndex}
+          <div
+            in:slide={{ axis: 'x', duration: 400 }}
+            class="w-[70vw] bg-white"
+          />
+        {/if}
       {/if}
     {/each}
   </div>
