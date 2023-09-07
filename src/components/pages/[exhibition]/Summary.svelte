@@ -22,18 +22,18 @@
   $: ({ quote, vr, descriptionBlock } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb- xl:mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
-    <!-- <DescriptionBlock class="mb-xl">
+    <DescriptionBlock class="mb-xl">
       <svelte:fragment slot="intro" let:C>
         <C.IntroContainer>
-          <C.HeaderContainer class="mb-10">
+          <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
             <C.Title>{descriptionBlock.gallery.name}</C.Title>
             <C.Subtitle weight="light">{descriptionBlock.date}</C.Subtitle>
           </C.HeaderContainer>
-          <div class="space-y-4">
+          <div class="space-y-[10px] lg:space-y-[13px]">
             {#each descriptionBlock.associationsList as { key, value }}
               <div>
                 <C.Subtitle
@@ -55,6 +55,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VR {vr} /> -->
+    <VR {vr} />
   </div>
 </section>

@@ -11,7 +11,10 @@
   import { PortableText } from '@portabletext/svelte';
 </script>
 
-<article class="{$$props.class ?? ''} grid w-[85%] grid-cols-12 gap-[50px]">
+<article
+  class="{$$props.class ??
+    ''} grid w-full grid-cols-12 gap-[40px] xl:w-[85%] xl:gap-[50px]"
+>
   <slot
     name="intro"
     C={{

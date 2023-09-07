@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer utilities {
+  .mb-section {
+    @apply mb-sm xl:mb-xl;
+  }
+  .py-section {
+    @apply py-sm xl:py-xl;
+  }
 }
 
 /* Fonts */
@@ -16,7 +22,9 @@
   }
   @font-face {
     font-family: 'OPTIBerling Agency';
-    src: local('OPTIBerling-Agency'), local('optiberling-agency'),
+    src:
+      local('OPTIBerling-Agency'),
+      local('optiberling-agency'),
       url('/fonts/OPTIBerling-Agency-500.otf') format('opentype');
     font-weight: 500;
     font-display: swap;
