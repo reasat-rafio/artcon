@@ -10,12 +10,13 @@ const collection = {
     {
       name: 'collections',
       type: 'array',
-      validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required().unique(),
       of: [
         {
           name: 'collection',
           type: 'reference',
           to: [
+            { type: 'vr' },
             { type: 'exhibition' },
             { type: 'artist' },
             { type: 'collection' },

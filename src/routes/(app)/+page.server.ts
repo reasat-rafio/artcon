@@ -17,18 +17,8 @@ const query = groq`
                 }
             },
             collections[]-> {
-                slug,
-                "data": sections[_type == "common.hero"][0]{
-                    ...,
-                    asset{
-                        ...,
-                        ${asset('image')},
-                        video{
-                            "webm": video_webm.asset->url,
-                            "mov": video_hevc.asset->url,
-                        },
-                    },
-                }
+                ...,
+                ${asset('previewImage')},
             }
         }
     }

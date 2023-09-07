@@ -1,6 +1,7 @@
 <script lang="ts">
   import Asset from '@/components/hero/Asset.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { CollectionsProps } from '@/lib/types/landing.types';
   import { timeline } from 'motion';
 
@@ -38,8 +39,6 @@
       }) {
         let isActive = activeIndex === index;
         if (isActive) {
-          console.log('active');
-
           timeline([
             [
               containerEl,
@@ -67,24 +66,29 @@
 
 <section class="translate-x-[100vw]" bind:this={rootEl}>
   <div bind:this={containerEl} use:init class="flex">
-    {#each collections as { data, slug }, index}
-      <!-- svelte-ignore a11y-no-static-element-interactions -->
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <div
-        on:click={(e) => {
-          if (e.target instanceof HTMLElement) {
-            console.log(e.target.getBoundingClientRect());
-          }
-          if (activeIndex !== index) activeIndex = index;
-          else activeIndex = null;
-        }}
-        use:animation={{ index, activeIndex }}
-        class="relative h-screen"
-      >
-        <Asset asset={data.asset} />
-      </div>
+    {#each collections as collection, index}
+      {#if collection._type === 'vr'}
+        <a
+          href="/preview/vr/{collection.slug.current}"
+          on:click={(e) => {
+            if (e.target instanceof HTMLElement) {
+              console.log(e.target.getBoundingClientRect());
+            }
+            if (activeIndex !== index) activeIndex = index;
+            else activeIndex = null;
+          }}
+          use:animation={{ index, activeIndex }}
+          class="relative h-screen"
+        >
+          <SanityImage
+            class="h-full w-full object-cover"
+            src={collection.previewImage}
+            sizes="30vw"
+            imageUrlBuilder={imageBuilder}
+            alt={collection.name}
+          />
+        </a>
+      {/if}
     {/each}
   </div>
-
-  <!--  -->
 </section>

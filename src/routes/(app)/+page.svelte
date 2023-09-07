@@ -5,22 +5,33 @@
   import type { PageProps } from '@/lib/types/common.types';
   import type { HomePageProps } from '@/lib/types/landing.types';
   import Collections from '@/components/pages/landing/collections/Collections.svelte';
+  import { tweened } from 'svelte/motion';
+  import { expoOut } from 'svelte/easing';
 
+  type MouseEvnt = WheelEvent & {
+    currentTarget: EventTarget & HTMLDivElement;
+  };
   export let data: PageProps<HomePageProps>;
   let {
     page,
     site: { logos },
   } = data;
 
+  const SCROLL_AMOUNT = 600;
   let rootEl: HTMLDivElement;
+  const tweenedScrollAmount = tweened(0, { duration: 2500, easing: expoOut });
+  $: if (rootEl) rootEl.scrollLeft = $tweenedScrollAmount;
+
+  const scrollAction = (event: MouseEvnt) => {
+    const scrollingUp = event.deltaY > 0 ? true : false;
+    if (scrollingUp) tweenedScrollAmount.set(rootEl.scrollLeft + SCROLL_AMOUNT);
+    else tweenedScrollAmount.set(rootEl.scrollLeft - SCROLL_AMOUNT);
+  };
 </script>
 
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div
-  on:wheel={(event) => {
-    const scrollAmount = event.deltaY;
-    rootEl.scrollLeft += scrollAmount;
-  }}
+  on:wheel={scrollAction}
   class="fixed inset-0 h-screen w-screen overflow-hidden"
   bind:this={rootEl}
 >

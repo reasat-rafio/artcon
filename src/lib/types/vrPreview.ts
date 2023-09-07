@@ -2,7 +2,7 @@ import type { SanityImageAssetDocument } from '@sanity/client';
 import type { PortableTextBlock, Slug } from 'sanity';
 
 export interface VrPreviewProps {
-  _type: string;
+  _type: 'vr';
   category: RefDocument;
   endDate: string;
   description: PortableTextBlock[];
