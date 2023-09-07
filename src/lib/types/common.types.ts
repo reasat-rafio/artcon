@@ -74,7 +74,7 @@ export interface Menu {
 }
 
 export interface SeoProps {
-  _type: 'seo';
+  _type: string;
   title: string;
   description: string;
   ogImage: SanityAsset;

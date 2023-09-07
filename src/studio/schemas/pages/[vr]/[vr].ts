@@ -49,6 +49,21 @@ const vr = {
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
+      ],
+    },
+    {
+      name: 'placeholderImage',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
         {
           name: 'caption',
           type: 'text',
