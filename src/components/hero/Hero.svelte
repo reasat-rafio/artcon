@@ -14,7 +14,7 @@
     <Asset {asset} />
 
     <div class="container relative z-30 text-center text-white">
-      <header class="space-y-2">
+      <header class="space-y-[20px] xl:space-y-[35px]">
         {#if !!text}
           <H7>{text}</H7>
         {/if}

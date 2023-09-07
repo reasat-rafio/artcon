@@ -28,6 +28,7 @@ export default {
         xl: '144px',
         lg: '80px',
         md: '50px',
+        sm: '40px',
       },
       borderRadius: {
         lg: '20px',

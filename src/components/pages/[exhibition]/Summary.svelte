@@ -7,6 +7,7 @@
   import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { PortableTextBlock } from 'sanity';
+  import type { Gallery } from '@/lib/types/exhibitionDetail.types';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -17,17 +18,15 @@
     };
   };
 
-  import type { Gallery } from '@/lib/types/exhibitionDetail.types';
-
   export let props: Props;
   $: ({ quote, vr, descriptionBlock } = props);
 </script>
 
 <section class="py-xl">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb- xl:mb-xl" {quote} />
 
-    <DescriptionBlock class="mb-xl">
+    <!-- <DescriptionBlock class="mb-xl">
       <svelte:fragment slot="intro" let:C>
         <C.IntroContainer>
           <C.HeaderContainer class="mb-10">
@@ -56,6 +55,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VR {vr} />
+    <VR {vr} /> -->
   </div>
 </section>

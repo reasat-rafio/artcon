@@ -7,7 +7,7 @@
 
 <section class="{$$props.class ?? ''} max-w-[740px]">
   <div
-    class="bg-gradient-to-r from-[#EA234080] to-[#0000004D] bg-clip-text font-abc-arizona-serif text-head-2 text-transparent"
+    class="bg-gradient-to-r from-[#EA234080] to-[#0000004D] bg-clip-text font-abc-arizona-serif text-head-4 text-transparent md:text-head-3 xl:text-head-2"
   >
     <blockquote class="inline" cite={url}>
       <p class="inline">“{text}”</p>
