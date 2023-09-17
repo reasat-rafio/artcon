@@ -9,9 +9,9 @@ const createUiStore = () => {
     seclectedPreviewIndex: null,
   });
 
-  const setActivePreview = (acitveIndex: number) => {
+  const setActivePreview = (acitveIndexOrNull: number | null) => {
     update(($store) => {
-      $store.seclectedPreviewIndex = acitveIndex;
+      $store.seclectedPreviewIndex = acitveIndexOrNull;
       return $store;
     });
   };

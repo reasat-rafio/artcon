@@ -8,6 +8,7 @@
   import { slide } from 'svelte/transition';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+  import uiStore from '@/store/ui';
 
   export let props: CollectionsProps;
   $: ({ collections } = props);
@@ -16,58 +17,57 @@
   let windowWidth = 0;
   let containerEl: HTMLDivElement;
   let activeIndex: null | number = null;
-  const defaultColumWidthInPercentage = 100 / 3;
+  const DEFAULT_COLUMN_WIDTH_IN_PERCENTAGE = 100 / 3;
 
   onMount(() => {
+    const amountToScroll = containerEl.getBoundingClientRect().width;
     gsap.registerPlugin(ScrollTrigger);
 
-    const containerWidth = containerEl.getBoundingClientRect().width;
-    const amountToScroll = containerWidth;
-
-    const tween = gsap.to(containerEl, {
+    gsap.to(containerEl, {
       x: -amountToScroll,
-      duration: 3,
-      ease: 'none',
-    });
-
-    ScrollTrigger.create({
-      trigger: rootEl,
-      start: 'top top',
-      end: '+=' + amountToScroll,
-      pin: true,
-      animation: tween,
-      scrub: 3,
-      markers: true,
+      duration: 5,
+      scrollTrigger: {
+        trigger: rootEl,
+        start: 'top top',
+        end: '+=' + amountToScroll,
+        pin: true,
+        scrub: 3,
+      },
     });
   });
 
-  function init(node: HTMLElement) {}
+  let scrollY = 0;
 
-  function animation(
-    node: HTMLElement,
-    _: { index: number; activeIndex: number | null },
-  ) {
-    // node.style.width = `${defaultColumWidthInPercentage}vw`;
-  }
+  $: console.log({
+    windowWidth,
+    space: containerEl?.getBoundingClientRect().width,
+    scrollY,
+    sum: containerEl?.getBoundingClientRect().width / 5,
+  });
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
+<svelte:window bind:innerWidth={windowWidth} bind:scrollY />
 <section class="h-screen translate-x-[100vw]" bind:this={rootEl}>
-  <div bind:this={containerEl} use:init class="flex h-full w-max">
+  <div bind:this={containerEl} class="flex h-full w-max">
     {#each collections as collection, index}
       {#if collection._type === 'vr'}
         <a
-          style="width: {defaultColumWidthInPercentage}vw;"
+          id={collection._id}
+          style="width: {DEFAULT_COLUMN_WIDTH_IN_PERCENTAGE}vw;"
           href="/preview/vr/{collection.slug.current}"
           on:click|preventDefault={async (e) => {
-            // if (e.target instanceof HTMLElement) {
-            //   console.log(e.target.getBoundingClientRect());
-            // }
-            // uiStore.setActivePreview(index);
-            // await delay(600);
+            if (e.target instanceof HTMLElement) {
+              // gsap.to(window, { duration: 3, scrollTo: e.target });
+              e.target.scrollIntoView();
+
+              // console.log(e.target.getBoundingClientRect().left);
+            }
+            if ($uiStore.seclectedPreviewIndex === index)
+              uiStore.setActivePreview(null);
+            else uiStore.setActivePreview(index);
+
             // goto(`/preview/vr/${collection?.slug?.current}`);
           }}
-          use:animation={{ index, activeIndex }}
           class="relative h-full"
         >
           <SanityImage
@@ -81,7 +81,7 @@
 
         <!-- {#if index === $uiStore.seclectedPreviewIndex}
           <div
-            in:slide={{ axis: 'x', duration: 400 }}
+            transition:slide={{ axis: 'x', duration: 400 }}
             class="w-[70vw] bg-white"
           />
         {/if} -->
