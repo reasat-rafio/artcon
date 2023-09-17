@@ -1,5 +1,4 @@
 <script lang="ts">
-  import IntersectionObserver from 'svelte-intersection-observer';
   import { twMerge } from 'tailwind-merge';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -8,11 +7,14 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
 
-  export let images: [SanityImageAssetDocument, SanityImageAssetDocument];
+  type Image = {
+    img: SanityImageAssetDocument;
+    link?: string;
+    caption?: string;
+  };
+  export let images: [Image, Image];
   $: [firstImage, secondImage] = images;
 
-  let scrollY = 0;
-  let intersecting = false;
   let rootEl: HTMLDivElement;
   let firstImageEl: HTMLElement;
 
@@ -23,7 +25,7 @@
       y: sectionHeight,
       scrollTrigger: {
         scrub: 2,
-        start: 'top bottom',
+        start: 'center bottom',
         end: 'top top',
         trigger: firstImageEl,
       },
@@ -31,50 +33,51 @@
   });
 </script>
 
-<svelte:window bind:scrollY />
-<IntersectionObserver element={rootEl} bind:intersecting>
-  <div
-    bind:this={rootEl}
-    class={twMerge(
-      'grid w-[85%] grid-cols-12  gap-[30px]',
-      $$props.class ?? '',
-    )}
-  >
-    <div class="col-span-4">
+<div
+  bind:this={rootEl}
+  class={twMerge('grid w-[85%] grid-cols-12  gap-[30px]', $$props.class)}
+>
+  <div class="col-span-4">
+    <svelte:element
+      this={!!firstImage?.link ? 'a' : 'div'}
+      href={firstImage?.link}
+    >
       <figure bind:this={firstImageEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="30vw"
-          src={firstImage}
-          alt={firstImage?.alt}
+          src={firstImage.img}
+          alt={firstImage.img?.alt}
           imageUrlBuilder={imageBuilder}
         />
-        {#if !!firstImage?.caption}
-          <figcaption
+        {#if !!firstImage.img?.caption || !!firstImage?.caption}
+          <figurecaption
             class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
           >
-            {firstImage.caption}
-          </figcaption>
+            {firstImage?.caption ?? firstImage.img?.caption}
+          </figurecaption>
         {/if}
       </figure>
-    </div>
-    <div class="col-span-8">
+    </svelte:element>
+  </div>
+  <div class="col-span-8">
+    <svelte:element this={!!firstImage?.link ? 'a' : 'div'}>
       <figure>
         <SanityImage
           sizes="70vw"
-          src={secondImage}
-          alt={secondImage?.alt}
+          src={secondImage.img}
+          alt={secondImage.img?.alt}
           class="h-full w-full rounded-[20px]"
           imageUrlBuilder={imageBuilder}
         />
-        {#if !!secondImage?.caption}
-          <figcaption
+        {#if !!secondImage.img?.caption || !!secondImage?.caption}
+          <figurecaption
             class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
           >
-            {secondImage.caption}
-          </figcaption>
+            {secondImage?.caption ?? secondImage.img?.caption}
+          </figurecaption>
         {/if}
       </figure>
-    </div>
+    </svelte:element>
   </div>
-</IntersectionObserver>
+</div>

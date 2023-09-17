@@ -66,7 +66,7 @@
     type: heroType,
   }}
 />
-<Share href="/" logo={logos.logoLight}>Our Exhibition</Share>
+<!-- <Share href="/" logo={logos.logoLight}>Our Exhibition</Share> -->
 {#each sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
@@ -87,7 +87,7 @@
   {:else if s._type === 'common.note'}
     <Note props={s} />
   {:else if s._type === 'exhibition.publication'}
-    <!-- <Publication props={{ ...s, publication }} /> -->
+    <Publication props={{ ...s, publication }} />
   {:else if s._type === 'exhibition.artwork'}
     <Artwork props={{ ...s, artworks }} />
   {:else if s._type === 'exhibition.gallery'}

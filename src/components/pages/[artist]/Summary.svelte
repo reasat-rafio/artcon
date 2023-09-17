@@ -49,7 +49,10 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <ParallaxScrollImage class="mb-xl" {images} />
+    <ParallaxScrollImage
+      class="mb-xl"
+      images={[{ img: images[0] }, { img: images[1] }]}
+    />
 
     {#if statement?.title && statement?.description}
       <DescriptionBlock class="mb-xl">

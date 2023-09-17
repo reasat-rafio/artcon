@@ -11,12 +11,12 @@ import type {
   Tag,
   VR,
 } from './common.types';
-import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock, Slug } from 'sanity';
 import type {
   ArtistSummaryProps,
   PersonalDocuments,
 } from './artistDetail.types';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ExhinitionDetailPageProps {
   _id: string;
@@ -24,7 +24,7 @@ export interface ExhinitionDetailPageProps {
   status?: string;
   cta?: Cta;
   artists: ArtistsProps;
-  artworks: { artworkImages: SanityAsset[] }[];
+  artworks: { artworkImages: SanityImageAssetDocument[] }[];
   asset: Asset;
   associationsList: Association[];
   name: string;
@@ -71,7 +71,7 @@ export interface Publication {
   quote: Quote;
   slug: Slug;
   publishedBy: string[];
-  publicationImage: SanityAsset;
+  publicationImage: SanityImageAssetDocument;
   subtitle: string;
 }
 
@@ -82,7 +82,7 @@ export interface Gallery {
 export interface GroupExhibirtionProps {
   slug: Slug;
   name: string;
-  artistPortrait: SanityAsset;
+  artistPortrait: SanityImageAssetDocument;
 }
 
 export interface OtherExhibitionProps {
@@ -124,7 +124,7 @@ export interface MoreInformation {
 export interface PublicationProps {
   _key: string;
   _type: 'exhibition.publication';
-  invitationCardImage: SanityAsset;
+  invitationCardImage: SanityImageAssetDocument;
 }
 
 export interface ArtworkProps {
@@ -143,7 +143,7 @@ export interface GalleryProps {
   descriptionBlock: DescriptionBlock & {
     title: string;
   };
-  images: SanityAsset[];
+  images: SanityImageAssetDocument[];
 }
 
 export interface NewsAndMediaProps {
@@ -157,7 +157,7 @@ export interface NewsAndMediaProps {
 }
 
 export interface NewsAndMedia {
-  image: SanityAsset;
+  image: SanityImageAssetDocument;
   subtitle: string;
   _type: string;
   link: string;
@@ -174,7 +174,7 @@ export interface FeaturedProps {
 // export interface SoloExhibiton {
 //   _type: 'exhibition.featured.solo';
 //   _key: string;
-//   images: [SanityAsset, SanityAsset];
+//   images: [SanityImageAssetDocument, SanityImageAssetDocument];
 //   quote: Quote;
 //   statement: {
 //     title: string;
