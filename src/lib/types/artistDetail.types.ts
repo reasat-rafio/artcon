@@ -10,6 +10,7 @@ import type {
   VR,
 } from './common.types';
 import type { PortableTextBlock } from 'sanity';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ArtistDetailPageProps {
   seo: SeoProps;
@@ -33,7 +34,7 @@ export interface ArtistSummaryProps {
     title: string;
   };
   vr: VR;
-  images: [SanityAsset, SanityAsset];
+  images: [SanityImageAssetDocument, SanityImageAssetDocument];
   quote: Quote;
 }
 

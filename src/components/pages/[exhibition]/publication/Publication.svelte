@@ -5,7 +5,7 @@
   } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
+  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
 
   export let props: PublicationProps & {
     publication: Publication;

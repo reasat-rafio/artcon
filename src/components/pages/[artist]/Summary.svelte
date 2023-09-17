@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ParallaxScrollImage from '@/components/parallax-scroll-image/ParallaxScrollImage.svelte';
+  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
   import Quote from '@/components/Quote.svelte';
   import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
@@ -49,14 +49,7 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <ParallaxScrollImage class="mb-xl">
-      <svelte:fragment slot="first-image" let:Image>
-        <Image image={images[0]} />
-      </svelte:fragment>
-      <svelte:fragment slot="second-image" let:Image>
-        <Image image={images[1]} />
-      </svelte:fragment>
-    </ParallaxScrollImage>
+    <ParallaxScrollImage class="mb-xl" {images} />
 
     {#if statement?.title && statement?.description}
       <DescriptionBlock class="mb-xl">
