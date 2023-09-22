@@ -28,7 +28,7 @@
   const scrollAction = debounce((event: MouseEvnt) => {
     const scrollAmount = event.deltaY > 0 ? SCROLL_SPEED : -SCROLL_SPEED;
     tweenedScrollAmount.set(rootEl.scrollLeft + scrollAmount);
-  }, 100);
+  }, 30);
 
   $: {
     // SCROLL TO THE ACTIVE SLIDE

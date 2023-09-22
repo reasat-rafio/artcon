@@ -1,15 +1,14 @@
 <script lang="ts">
   import H1 from '@/components/ui/H1.svelte';
   import H3 from '@/components/ui/H3.svelte';
-  import Asset from './Asset.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import H7 from '../ui/H7.svelte';
+  import Asset from './Asset.svelte';
 
   export let props: CommonHeroProps & { scrollAmount: number };
   $: ({ text, title, type, asset, cta, scrollAmount } = props);
 
   let windowHeight = 0;
-
   $: deltaY = Math.min(scrollAmount / windowHeight, 1);
 </script>
 
