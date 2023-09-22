@@ -5,18 +5,17 @@
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import H7 from '../ui/H7.svelte';
 
-  export let props: CommonHeroProps;
-  $: ({ text, title, type, asset, cta } = props);
+  export let props: CommonHeroProps & { scrollAmount: number };
+  $: ({ text, title, type, asset, cta, scrollAmount } = props);
 
-  let scrollY = 0;
   let windowHeight = 0;
 
-  $: deltaY = scrollY / windowHeight;
+  $: deltaY = Math.min(scrollAmount / windowHeight, 1);
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight={windowHeight} />
+<svelte:window bind:innerHeight={windowHeight} />
 <section
-  style={`filter: blur(${deltaY * 5}px) grayscale(${deltaY * 50}%);`}
+  style={`filter: blur(${deltaY * 5}px) grayscale(${deltaY * 60}%);`}
   class="{$$props.class ?? ''} h-screen w-full"
 >
   <div class="relative flex h-full w-full items-center justify-center">
