@@ -7,9 +7,18 @@
 
   export let props: CommonHeroProps;
   $: ({ text, title, type, asset, cta } = props);
+
+  let scrollY = 0;
+  let windowHeight = 0;
+
+  $: deltaY = scrollY / windowHeight;
 </script>
 
-<section class="{$$props.class ?? ''} h-screen w-full">
+<svelte:window bind:scrollY bind:innerHeight={windowHeight} />
+<section
+  style={`filter: blur(${deltaY * 5}px) grayscale(${deltaY * 50}%);`}
+  class="{$$props.class ?? ''} h-screen w-full"
+>
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
 
