@@ -1,54 +1,24 @@
 <script lang="ts">
-  import { slide } from 'svelte/transition';
-  import uiStore from '@/store/ui';
-  import { delay } from '@/lib/helper';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import { goto } from '$app/navigation';
   import type { VrProps, WithExtra } from '@/lib/types/landing.types';
   import H8 from '@/components/ui/H8.svelte';
   import H4 from '@/components/ui/H4.svelte';
+  import CollectionLayout from './CollectionLayout.svelte';
 
   export let props: WithExtra<VrProps>;
   $: ({ slug, index, title, name, previewImage, DEFAULT_COLUMN_W_PERCENTAGE } =
     props);
-  $: width = DEFAULT_COLUMN_W_PERCENTAGE;
-
-  const onClickAction = async () => {
-    uiStore.setActivePreview(index);
-    await delay(600);
-    goto(`/preview/vr/${slug.current}`);
-  };
 </script>
 
-<a
-  data-sveltekit-preload-data
-  style="width: {width}vw;"
+<CollectionLayout
+  {DEFAULT_COLUMN_W_PERCENTAGE}
   href="/preview/vr/{slug.current}"
-  class="pointer-events-auto relative h-screen"
-  on:click|preventDefault={onClickAction}
+  image={previewImage}
+  {index}
 >
-  <SanityImage
-    class="h-full w-full object-cover"
-    src={previewImage}
-    sizes="30vw"
-    imageUrlBuilder={imageBuilder}
-    alt={name}
-  />
-
   <div class="absolute bottom-[10%] left-[5%] z-10 text-white">
     <H8>{title}</H8>
     <div class="mt-3">
       <H4 class="inline">{name}</H4>
     </div>
   </div>
-</a>
-
-{#if index === $uiStore.seclectedPreviewIndex}
-  <div
-    in:slide={{ axis: 'x', duration: 500 }}
-    out:slide={{ axis: 'x', duration: 600 }}
-    style="width: {100 - DEFAULT_COLUMN_W_PERCENTAGE}vw;"
-    class="bg-white"
-  />
-{/if}
+</CollectionLayout>
