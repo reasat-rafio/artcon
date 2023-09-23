@@ -7,6 +7,10 @@
   export let props: CollectionsProps & { DEFAULT_COLUMN_W_PERCENTAGE: number };
   $: ({ collections, DEFAULT_COLUMN_W_PERCENTAGE } = props);
 
+  $: {
+    console.log(props);
+  }
+
   let rootEl: HTMLElement;
   let containerEl: HTMLDivElement;
   $: containerWidth =

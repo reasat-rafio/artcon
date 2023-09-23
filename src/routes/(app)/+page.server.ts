@@ -16,9 +16,29 @@ const query = groq`
                     "mov": video_hevc.asset->url,
                 }
             },
-            collections[]-> {
-                ...,
-                ${asset('previewImage')},
+            collections[]->{
+                _type == "vr" => {
+                    "title":"Our virtual reality",
+                    name,
+                    slug,
+                    ${asset('previewImage')},
+                },
+                _type == "exhibition" => {
+                    "title":"Our exhibition",
+                    name,
+                    slug,
+                    ${asset('previewDisplayImage')},
+                    "exhibitionType": select(
+                        count(artists) == 1 => artists[0]-> {
+                            ...personalDocuments {
+                                ...name{
+                                    en
+                                }
+                            }
+                        },
+                        count(artists) > 1 => "Group Exhibition",
+                    )
+                }
             }
         }
     }

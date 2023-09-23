@@ -11,10 +11,9 @@
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { gsap } from 'gsap';
   import { fade } from 'svelte/transition';
-  import { page } from '$app/stores';
   import { beforeNavigate, goto } from '$app/navigation';
 
   export let data: PageProps<VrPreviewProps>;
@@ -48,12 +47,16 @@
       defaults: { ease: 'expo.out' },
     });
 
-    tl.to('#previewImage', { scale: 1.1 }).from(animationNodes, {
-      y: 100,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 1,
-    });
+    tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
+      animationNodes,
+      {
+        y: 100,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1,
+      },
+      0.3,
+    );
   });
 
   beforeNavigate(async (navigation) => {
@@ -65,7 +68,10 @@
         },
       });
 
-      tl.to(contentEl, { opacity: 0 }).to('#previewImage', { scale: 1 });
+      tl.to(contentEl, { opacity: 0 }).to('#previewImage', {
+        scale: 1,
+        duration: 0.4,
+      });
       navigation.cancel();
 
       onOutroEnd = async () => {

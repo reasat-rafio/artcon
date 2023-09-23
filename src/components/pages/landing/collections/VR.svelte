@@ -13,6 +13,12 @@
   };
   $: ({ slug, index, name, previewImage, DEFAULT_COLUMN_W_PERCENTAGE } = props);
   $: width = DEFAULT_COLUMN_W_PERCENTAGE;
+
+  const onClickAction = async () => {
+    uiStore.setActivePreview(index);
+    await delay(600);
+    goto(`/preview/vr/${slug.current}`);
+  };
 </script>
 
 <a
@@ -20,11 +26,7 @@
   style="width: {width}vw;"
   href="/preview/vr/{slug.current}"
   class="pointer-events-auto relative h-screen"
-  on:click|preventDefault={async (e) => {
-    uiStore.setActivePreview(index);
-    await delay(600);
-    goto(`/preview/vr/${slug.current}`);
-  }}
+  on:click|preventDefault={onClickAction}
 >
   <SanityImage
     class="h-full w-full object-cover"
