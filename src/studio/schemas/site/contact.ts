@@ -13,9 +13,34 @@ const contact = {
       validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
-          name: 'icon',
+          name: 'darkIcon',
+          description: 'This icon will use in lighter background',
           type: 'image',
           validation: (Rule: Rule) => Rule.required(),
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+        {
+          name: 'lightIcon',
+          description: 'This icon will use in darker background',
+          type: 'image',
+          validation: (Rule: Rule) => Rule.required(),
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
         },
         {
           name: 'address',
@@ -34,9 +59,34 @@ const contact = {
           type: 'object',
           fields: [
             {
-              name: 'icon',
+              name: 'darkIcon',
+              description: 'This icon will use in lighter background',
               type: 'image',
               validation: (Rule: Rule) => Rule.required(),
+              fields: [
+                {
+                  name: 'alt',
+                  title: 'Alternative Text',
+                  description: 'Important for SEO and accessibility',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
+              ],
+            },
+            {
+              name: 'lightIcon',
+              description: 'This icon will use in darker background',
+              type: 'image',
+              validation: (Rule: Rule) => Rule.required(),
+              fields: [
+                {
+                  name: 'alt',
+                  title: 'Alternative Text',
+                  description: 'Important for SEO and accessibility',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
+              ],
             },
             {
               name: 'info',
@@ -58,9 +108,34 @@ const contact = {
           type: 'object',
           fields: [
             {
-              name: 'icon',
+              name: 'darkIcon',
+              description: 'This icon will use in lighter background',
               type: 'image',
               validation: (Rule: Rule) => Rule.required(),
+              fields: [
+                {
+                  name: 'alt',
+                  title: 'Alternative Text',
+                  description: 'Important for SEO and accessibility',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
+              ],
+            },
+            {
+              name: 'lightIcon',
+              description: 'This icon will use in darker background',
+              type: 'image',
+              validation: (Rule: Rule) => Rule.required(),
+              fields: [
+                {
+                  name: 'alt',
+                  title: 'Alternative Text',
+                  description: 'Important for SEO and accessibility',
+                  type: 'string',
+                  validation: (Rule: Rule) => Rule.required(),
+                },
+              ],
             },
             {
               name: 'link',
