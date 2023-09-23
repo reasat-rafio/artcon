@@ -44,27 +44,28 @@
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      defaults: { ease: 'expo.out' },
+    });
 
     tl.to('#previewImage', { scale: 1.1 }).from(animationNodes, {
       y: 100,
       opacity: 0,
       stagger: 0.1,
-      delay: 0.4,
       duration: 1,
-      ease: 'expo.out',
     });
   });
 
   beforeNavigate(async (navigation) => {
     if (!transitioningOut) {
       transitioningOut = true;
-      const tl = gsap.timeline();
-
-      tl.to('#previewImage', { scale: 1 }).to(contentEl, {
-        opacity: 0,
-        ease: 'expo.out',
+      const tl = gsap.timeline({
+        defaults: {
+          ease: 'expo.out',
+        },
       });
+
+      tl.to(contentEl, { opacity: 0 }).to('#previewImage', { scale: 1 });
       navigation.cancel();
 
       onOutroEnd = async () => {
