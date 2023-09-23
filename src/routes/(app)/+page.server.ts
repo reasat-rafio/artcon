@@ -18,17 +18,20 @@ const query = groq`
             },
             collections[]->{
                 _type == "vr" => {
+                    _type,
                     "title":"Our virtual reality",
                     name,
                     slug,
                     ${asset('previewImage')},
                 },
                 _type == "exhibition" => {
+                    _type,
                     "title":"Our exhibition",
                     name,
                     slug,
                     ${asset('previewDisplayImage')},
                     "exhibitionType": select(
+                        count(artists) > 1 => "Group Exhibition",
                         count(artists) == 1 => artists[0]-> {
                             ...personalDocuments {
                                 ...name{
@@ -36,7 +39,6 @@ const query = groq`
                                 }
                             }
                         },
-                        count(artists) > 1 => "Group Exhibition",
                     )
                 }
             }

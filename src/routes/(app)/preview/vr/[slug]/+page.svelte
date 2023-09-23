@@ -114,7 +114,7 @@
           class="space-y-[40px] px-[135px] py-[97px]"
         >
           <div class="space-y-[32px]">
-            <H8 data-load-animate="y" class="">Our virtual reality</H8>
+            <H8 data-load-animate="y">Our virtual reality</H8>
             <header class="space-y-[10px]">
               <div data-load-animate="y">
                 <H4 class="inline">{name}</H4>

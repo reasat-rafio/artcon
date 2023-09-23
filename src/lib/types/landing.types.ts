@@ -1,5 +1,6 @@
+import type { Slug } from 'sanity';
 import type { CommonHeroProps, SeoProps } from './common.types';
-import type { VrPreviewProps } from './vrPreview';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface HomePageProps {
   seo: SeoProps;
@@ -13,4 +14,26 @@ export interface CollectionsProps {
   collections: CollectionProps[];
 }
 
-type CollectionProps = VrPreviewProps;
+type CollectionProps = VrProps | ExhibitionProps;
+
+export interface VrProps {
+  _type: 'vr';
+  title: string;
+  name: string;
+  slug: Slug;
+  previewImage: SanityImageAssetDocument;
+}
+
+export interface ExhibitionProps {
+  _type: 'exhibition';
+  title: string;
+  slug: Slug;
+  name: string;
+  previewDisplayImage: SanityImageAssetDocument;
+  exhibitionType: string | { en: string };
+}
+
+export type WithExtra<T> = T & {
+  index: number;
+  DEFAULT_COLUMN_W_PERCENTAGE: number;
+};
