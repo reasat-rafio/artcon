@@ -18,15 +18,12 @@
 <a
   style="width: {width}vw;"
   href="/preview/vr/{slug.current}"
+  class="pointer-events-auto relative h-screen"
   on:click|preventDefault={async (e) => {
-    if (e.target instanceof HTMLElement) {
-      console.log(e.target.getBoundingClientRect());
-    }
     uiStore.setActivePreview(index);
     await delay(600);
     goto(`/preview/vr/${slug.current}`);
   }}
-  class="relative h-screen"
 >
   <SanityImage
     class="h-full w-full object-cover"

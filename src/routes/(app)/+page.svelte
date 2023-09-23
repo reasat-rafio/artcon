@@ -9,6 +9,7 @@
   import uiStore from '@/store/ui';
   import { debounce } from '@/lib/helper';
   import { onMount } from 'svelte';
+  import Contact from '@/components/pages/landing/Contact.svelte';
 
   type MouseEvnt = WheelEvent & {
     currentTarget: EventTarget & Window;
@@ -16,7 +17,7 @@
   export let data: PageProps<HomePageProps>;
   let {
     page,
-    site: { logos },
+    site: { logos, contact },
   } = data;
 
   let rootEl: HTMLDivElement;
@@ -24,8 +25,9 @@
   const SCROLL_SPEED = 700;
   const DEFAULT_COLUMN_W_PERCENTAGE = 35;
   const tweenedScrollAmount = tweened(0, { duration: 2500, easing: expoOut });
-
   $: if (rootEl) rootEl.scrollLeft = $tweenedScrollAmount;
+  $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
+
   $: {
     // SCROLL TO THE ACTIVE SLIDE
     if ($uiStore.seclectedPreviewIndex != null) {
@@ -56,13 +58,19 @@
 
 <svelte:window bind:innerWidth={windowWidth} on:wheel={scrollAction} />
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-<div bind:this={rootEl} class="fixed inset-0 h-screen w-screen overflow-hidden">
+<div
+  bind:this={rootEl}
+  class="fixed inset-0 isolate h-screen w-screen overflow-hidden"
+>
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
       <Hero
         class="fixed inset-0"
         props={{ ...s, scrollAmount: $tweenedScrollAmount }}
       />
+      {#if showContact}
+        <Contact {contact} />
+      {/if}
     {:else if s._type === 'landing.collections'}
       <Collections props={{ ...s, DEFAULT_COLUMN_W_PERCENTAGE }} />
     {/if}
