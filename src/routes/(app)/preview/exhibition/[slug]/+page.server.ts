@@ -6,9 +6,12 @@ import groq from 'groq';
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type == "exhibition" && slug.current == "${params.slug}"][0]{
     _id,
+    _type,
     name,
     type,
     status,
+    startDate,
+    endDate,
     cta,
     seo,
     gallery->{name},

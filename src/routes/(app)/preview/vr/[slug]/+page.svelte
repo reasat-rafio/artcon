@@ -32,14 +32,14 @@
     site: { logos },
   } = data);
 
+  let onOutroEnd: () => void;
+  let transitioningOut = false;
+  let contentEl: HTMLElement;
+
   $: ({ date, status } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
-
-  let onOutroEnd: () => void;
-  let transitioningOut = false;
-  let contentEl: HTMLElement;
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
