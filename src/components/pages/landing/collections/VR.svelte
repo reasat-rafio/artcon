@@ -39,7 +39,8 @@
 
 {#if index === $uiStore.seclectedPreviewIndex}
   <div
-    in:slide={{ axis: 'x', duration: 400 }}
+    in:slide={{ axis: 'x', duration: 500 }}
+    out:slide={{ axis: 'x', duration: 600 }}
     style="width: {100 - DEFAULT_COLUMN_W_PERCENTAGE}vw;"
     class="bg-white"
   />

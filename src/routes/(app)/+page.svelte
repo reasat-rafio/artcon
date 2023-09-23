@@ -8,6 +8,7 @@
   import { expoOut } from 'svelte/easing';
   import uiStore from '@/store/ui';
   import { debounce } from '@/lib/helper';
+  import { onMount } from 'svelte';
 
   type MouseEvnt = WheelEvent & {
     currentTarget: EventTarget & Window;
@@ -35,6 +36,17 @@
       );
     }
   }
+
+  onMount(() => {
+    if ($uiStore.seclectedPreviewIndex != null) {
+      const offSetWidth = (windowWidth / 100) * DEFAULT_COLUMN_W_PERCENTAGE;
+      tweenedScrollAmount.set(
+        windowWidth + offSetWidth * $uiStore.seclectedPreviewIndex,
+        { duration: 0 },
+      );
+      uiStore.setActivePreview(null);
+    }
+  });
 
   const scrollAction = debounce((event: MouseEvnt) => {
     const scrollAmount = event.deltaY > 0 ? SCROLL_SPEED : -SCROLL_SPEED;
