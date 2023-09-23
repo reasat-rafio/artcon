@@ -44,8 +44,9 @@
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
+    const tl = gsap.timeline();
 
-    gsap.from(animationNodes, {
+    tl.to('#previewImage', { scale: 1.1 }).from(animationNodes, {
       y: 100,
       opacity: 0,
       stagger: 0.1,
@@ -58,7 +59,12 @@
   beforeNavigate(async (navigation) => {
     if (!transitioningOut) {
       transitioningOut = true;
-      gsap.to(contentEl, { opacity: 0, ease: 'expo.out' });
+      const tl = gsap.timeline();
+
+      tl.to('#previewImage', { scale: 1 }).to(contentEl, {
+        opacity: 0,
+        ease: 'expo.out',
+      });
       navigation.cancel();
 
       onOutroEnd = async () => {
@@ -82,8 +88,9 @@
 <section>
   <article class="flex h-screen w-full gap-[15px]">
     <div class="flex-[35%]">
-      <figure class="h-full w-full">
+      <figure class="h-full w-full overflow-hidden">
         <SanityImage
+          id="previewImage"
           class="h-full w-full object-cover"
           sizes="50vw"
           imageUrlBuilder={imageBuilder}
@@ -95,8 +102,8 @@
     <section bind:this={contentEl} class="flex-[65%] overflow-scroll">
       {#key transitioningOut}
         <div
-          out:fade={{ duration: 500 }}
           on:outroend={onOutroEnd}
+          out:fade={{ duration: 500 }}
           class="space-y-[40px] px-[135px] py-[97px]"
         >
           <div class="space-y-[32px]">
