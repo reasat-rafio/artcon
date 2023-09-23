@@ -13,22 +13,22 @@
   let rootEl: HTMLElement;
   let containerEl: HTMLDivElement;
   let activeIndex: null | number = null;
-  const defaultColumWidthInPercentage = 30;
-
-  function init(node: HTMLElement) {
-    node.style.width = `${collections.length * 50}vw`;
-  }
+  const DEFAULT_COLUMN_W_PERCENTAGE = 30;
+  $: containerWidth =
+    collections?.length * DEFAULT_COLUMN_W_PERCENTAGE +
+    50 +
+    ($uiStore.seclectedPreviewIndex !== null ? 70 : 0);
 
   function animation(
     node: HTMLElement,
     _: { index: number; activeIndex: number | null },
   ) {
-    node.style.width = `${defaultColumWidthInPercentage}vw`;
+    node.style.width = `${DEFAULT_COLUMN_W_PERCENTAGE}vw`;
   }
 </script>
 
 <section class="translate-x-[100vw]" bind:this={rootEl}>
-  <div bind:this={containerEl} use:init class="flex">
+  <div bind:this={containerEl} style="width: {containerWidth}vw;" class="flex">
     {#each collections as collection, index}
       {#if collection._type === 'vr'}
         <a
