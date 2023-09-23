@@ -5,14 +5,17 @@
   import H4 from '@/components/ui/H4.svelte';
   import H6 from '@/components/ui/H6.svelte';
   import H8 from '@/components/ui/H8.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
+  import { calculateStatusBetweenDates, delay } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { gsap } from 'gsap';
+  import { fade } from 'svelte/transition';
+  import { page } from '$app/stores';
+  import { beforeNavigate, goto } from '$app/navigation';
 
   export let data: PageProps<VrPreviewProps>;
   $: ({
@@ -35,13 +38,34 @@
     endDate,
   }));
 
+  let onOutroEnd: () => void;
+  let transitioningOut = false;
+  let contentEl: HTMLElement;
+
   onMount(() => {
-    gsap.from('[data-load-animate]', {
+    const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
+
+    gsap.from(animationNodes, {
       y: 100,
       opacity: 0,
       stagger: 0.1,
-      delay: 0.5,
+      delay: 0.4,
+      duration: 1,
+      ease: 'expo.out',
     });
+  });
+
+  beforeNavigate(async (navigation) => {
+    if (!transitioningOut) {
+      transitioningOut = true;
+      gsap.to(contentEl, { opacity: 0, ease: 'expo.out' });
+      navigation.cancel();
+
+      onOutroEnd = async () => {
+        await goto(navigation.to?.url.pathname as string);
+        transitioningOut = false;
+      };
+    }
   });
 </script>
 
@@ -60,7 +84,6 @@
     <div class="flex-[35%]">
       <figure class="h-full w-full">
         <SanityImage
-          lqip
           class="h-full w-full object-cover"
           sizes="50vw"
           imageUrlBuilder={imageBuilder}
@@ -69,35 +92,41 @@
         />
       </figure>
     </div>
-    <section class="flex-[65%] overflow-scroll">
-      <div class="space-y-[40px] px-[135px] py-[97px]">
-        <div class="space-y-[32px]">
-          <H8 data-load-animate="y" class="">Our virtual reality</H8>
-          <header class="space-y-[10px]">
-            <div data-load-animate="y">
-              <H4 class="inline">{name}</H4>
-              <H6 class="inline">/ Showrov Chowdury</H6>
-            </div>
-            <H8 data-load-animate="y">Exhibition</H8>
-          </header>
-          <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
-            <div class="text-title-2 font-light">
-              {gallery.name}
-            </div>
-            <div class="text-subtitle-2">
-              <span class="font-light">{date}</span> |
-              <span class="font-medium text-[#ED1C24]">{status}</span>
+    <section bind:this={contentEl} class="flex-[65%] overflow-scroll">
+      {#key transitioningOut}
+        <div
+          out:fade={{ duration: 500 }}
+          on:outroend={onOutroEnd}
+          class="space-y-[40px] px-[135px] py-[97px]"
+        >
+          <div class="space-y-[32px]">
+            <H8 data-load-animate="y" class="">Our virtual reality</H8>
+            <header class="space-y-[10px]">
+              <div data-load-animate="y">
+                <H4 class="inline">{name}</H4>
+                <H6 class="inline">/ Showrov Chowdury</H6>
+              </div>
+              <H8 data-load-animate="y">Exhibition</H8>
+            </header>
+            <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
+              <div class="text-title-2 font-light">
+                {gallery.name}
+              </div>
+              <div class="text-subtitle-2">
+                <span class="font-light">{date}</span> |
+                <span class="font-medium text-[#ED1C24]">{status}</span>
+              </div>
             </div>
           </div>
+          <Vr
+            data-load-animate="y"
+            vr={{ previewImage: placeholderImage, url }}
+          />
+          <BodyText data-load-animate="y" weight="light">
+            <PortableText value={description} />
+          </BodyText>
         </div>
-        <Vr
-          data-load-animate="y"
-          vr={{ previewImage: placeholderImage, url }}
-        />
-        <BodyText data-load-animate="y" weight="light">
-          <PortableText value={description} />
-        </BodyText>
-      </div>
+      {/key}
     </section>
   </article>
 </section>
