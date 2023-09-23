@@ -21,12 +21,14 @@
   let rootEl: HTMLDivElement;
   let windowWidth = 0;
   const SCROLL_SPEED = 700;
+  const DEFAULT_COLUMN_W_PERCENTAGE = 35;
   const tweenedScrollAmount = tweened(0, { duration: 2500, easing: expoOut });
+
   $: if (rootEl) rootEl.scrollLeft = $tweenedScrollAmount;
   $: {
     // SCROLL TO THE ACTIVE SLIDE
     if ($uiStore.seclectedPreviewIndex != null) {
-      const offSetWidth = (windowWidth / 100) * 30;
+      const offSetWidth = (windowWidth / 100) * DEFAULT_COLUMN_W_PERCENTAGE;
       tweenedScrollAmount.set(
         windowWidth + offSetWidth * $uiStore.seclectedPreviewIndex,
         { duration: 600 },
@@ -50,7 +52,7 @@
         props={{ ...s, scrollAmount: $tweenedScrollAmount }}
       />
     {:else if s._type === 'landing.collections'}
-      <Collections props={s} />
+      <Collections props={{ ...s, DEFAULT_COLUMN_W_PERCENTAGE }} />
     {/if}
   {/each}
 </div>

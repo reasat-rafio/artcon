@@ -56,8 +56,8 @@
 />
 
 <section>
-  <article class="grid h-screen w-full grid-cols-10 gap-[15px]">
-    <div class="col-span-3">
+  <article class="flex h-screen w-full gap-[15px]">
+    <div class="flex-[35%]">
       <figure class="h-full w-full">
         <SanityImage
           lqip
@@ -69,7 +69,7 @@
         />
       </figure>
     </div>
-    <section class="col-span-7 overflow-scroll">
+    <section class="flex-[65%] overflow-scroll">
       <div class="space-y-[40px] px-[135px] py-[97px]">
         <div class="space-y-[32px]">
           <H8 data-load-animate="y" class="">Our virtual reality</H8>

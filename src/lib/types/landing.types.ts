@@ -13,4 +13,4 @@ export interface CollectionsProps {
   collections: CollectionProps[];
 }
 
-type CollectionProps = VrPreviewProps | CommonHeroProps;
+type CollectionProps = VrPreviewProps;
