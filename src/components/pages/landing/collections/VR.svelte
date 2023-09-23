@@ -16,6 +16,7 @@
 </script>
 
 <a
+  data-sveltekit-preload-data
   style="width: {width}vw;"
   href="/preview/vr/{slug.current}"
   class="pointer-events-auto relative h-screen"
