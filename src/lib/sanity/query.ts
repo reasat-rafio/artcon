@@ -14,15 +14,16 @@ export const siteQuery = groq`{
       ...,
       address{
         ...,
-        ${asset('logo')},
+        ${asset('darkIcon')},
+        ${asset('lightIcon')}
       },
       socialsWithVisibleLinks[]{
         ...,
-        ${asset('icon')},
+        ${asset('darkIcon')},
       },
       socials[]{
         ...,
-        ${asset('icon')},
+        ${asset('lightIcon')}
       }
     }
   }`;

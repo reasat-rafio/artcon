@@ -38,7 +38,8 @@ export interface ContactProps {
   socialsWithVisibleLinks: SocialsWithVisibleLinkProps[];
   socials: SocialProps[];
   address: {
-    icon: SanityAsset;
+    darkIcon: SanityAsset;
+    lightIcon: SanityAsset;
     address: PortableTextBlock[];
   };
 }
@@ -46,13 +47,15 @@ export interface ContactProps {
 export interface SocialProps {
   _key: string;
   _type: string;
-  icon: SanityAsset;
+  darkIcon: SanityAsset;
+  lightIcon: SanityAsset;
   link: string;
 }
 export interface SocialsWithVisibleLinkProps {
   _key: string;
   _type: string;
-  icon: SanityAsset;
+  darkIcon: SanityAsset;
+  lightIcon: SanityAsset;
   info: PortableTextBlock[];
 }
 
