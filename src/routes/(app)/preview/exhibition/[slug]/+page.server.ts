@@ -4,9 +4,34 @@ import { error, type ServerLoad } from '@sveltejs/kit';
 import groq from 'groq';
 
 const query = (params: Partial<Record<string, string>>) =>
-  groq`*[_type == "exhibition" && slug.current = "${params.slug}"][0]{
+  groq`*[_type == "exhibition" && slug.current == "${params.slug}"][0]{
     _id,
+    name,
+    type,
+    status,
+    cta,
+    seo,
+    gallery->{name},
+    description,
     ${asset('previewDisplayImage')},
+    asset {
+      ...,
+      ${asset('image')},
+      video{
+        "webm": video_webm.asset->url,
+        "mov": video_hevc.asset->url,
+      }
+    },
+    "exhibitionType": select(
+      count(artists) > 1 => "Group Exhibition",
+      count(artists) == 1 => artists[0]-> {
+        ...personalDocuments {
+          ...name{
+            en
+          }
+        }
+      },
+    ),
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
