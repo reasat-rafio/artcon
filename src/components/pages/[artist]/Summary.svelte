@@ -7,6 +7,7 @@
     ArtistSummaryProps,
     PersonalDocuments,
   } from '@/lib/types/artistDetail.types';
+  import { PortableText } from '@portabletext/svelte';
   import { DateTime } from 'luxon';
 
   export let props: ArtistSummaryProps & {
@@ -22,30 +23,27 @@
 
     <DescriptionBlock class="mb-xl">
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.HeaderContainer class="mb-[23px]">
-            <C.Title>{personalDocuments.name}</C.Title>
-            <C.Subtitle
-              >b. {DateTime.fromISO(personalDocuments.born).toFormat(
-                'yyyy',
-              )}</C.Subtitle
-            >
-          </C.HeaderContainer>
+        <C.HeaderContainer class="mb-[23px]">
+          <C.Title>{personalDocuments.name}</C.Title>
+          <C.Subtitle variant="sm"
+            >b. {DateTime.fromISO(personalDocuments.born).toFormat(
+              'yyyy',
+            )}</C.Subtitle
+          >
+        </C.HeaderContainer>
 
-          <C.SocialContainer>
-            {#each personalDocuments.socials as { link, icon }}
-              <C.Social {link} {icon} />
-            {/each}
-          </C.SocialContainer>
-        </C.IntroContainer>
+        <C.SocialContainer>
+          {#each personalDocuments.socials as { link, lightIcon }}
+            <!-- TODO uncommet this after the icons -->
+            <!-- <C.Social {link} icon={lightIcon} /> -->
+          {/each}
+        </C.SocialContainer>
       </svelte:fragment>
 
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={personalDocuments.shortBio} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={personalDocuments.shortBio} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
 
@@ -57,17 +55,13 @@
     {#if statement?.title && statement?.description}
       <DescriptionBlock class="mb-xl">
         <svelte:fragment slot="intro" let:C>
-          <C.IntroContainer>
-            <C.Title>{statement.title}</C.Title>
-          </C.IntroContainer>
+          <C.Title>{statement.title}</C.Title>
         </svelte:fragment>
 
-        <svelte:fragment slot="description" let:C>
-          <C.DescriptionContainer>
-            <C.Description>
-              <C.PortableTextBlock value={statement.description} />
-            </C.Description>
-          </C.DescriptionContainer>
+        <svelte:fragment slot="description" let:Description>
+          <Description>
+            <PortableText value={statement.description} />
+          </Description>
         </svelte:fragment>
       </DescriptionBlock>
     {/if}

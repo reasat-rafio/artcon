@@ -1,42 +1,32 @@
 <script lang="ts">
   import { twMerge } from 'tailwind-merge';
-  import BodyText from '../BodyText.svelte';
-  import Cta from '../Cta.svelte';
-  import H4 from '../H4.svelte';
-  import DescriptionContainer from './DescriptionContainer.svelte';
+  import Description from './Description.svelte';
   import HeaderContainer from './HeaderContainer.svelte';
-  import IntroContainer from './IntroContainer.svelte';
-  import PortableTextBlock from './PortableTextBlock.svelte';
   import Social from './Social.svelte';
   import SocialContainer from './SocialContainer.svelte';
-  import { PortableText } from '@portabletext/svelte';
+  import Subtitle from './Subtitle.svelte';
+  import Title from './Title.svelte';
 </script>
 
 <article
   class={twMerge(
-    'grid w-full grid-cols-12 gap-[40px] xl:w-[85%] xl:gap-[50px]',
+    'grid w-full grid-cols-12 gap-[20px] sm:gap-[40px] xl:w-[85%] xl:gap-[50px]',
     $$props.class,
   )}
 >
-  <slot
-    name="intro"
-    C={{
-      Title: H4,
-      Subtitle: BodyText,
-      HeaderContainer,
-      IntroContainer,
-      SocialContainer,
-      Social,
-      PortableTextBlock,
-      Cta,
-    }}
-  />
-  <slot
-    name="description"
-    C={{
-      DescriptionContainer,
-      Description: BodyText,
-      PortableTextBlock: PortableText,
-    }}
-  />
+  <div class="col-span-12 lg:col-span-5 xl:col-span-4">
+    <slot
+      name="intro"
+      C={{
+        Title,
+        Subtitle,
+        HeaderContainer,
+        SocialContainer,
+        Social,
+      }}
+    />
+  </div>
+  <div class="col-span-12 lg:col-span-7 xl:col-span-8">
+    <slot name="description" {Description} />
+  </div>
 </article>

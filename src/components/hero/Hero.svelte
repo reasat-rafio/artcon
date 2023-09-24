@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { twMerge } from 'tailwind-merge';
   import Asset from './Asset.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
 
@@ -6,7 +7,7 @@
   let { text, title, type, asset, cta } = props;
 </script>
 
-<section class="{$$props.class ?? ''} h-screen w-full">
+<section class={twMerge('h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
 

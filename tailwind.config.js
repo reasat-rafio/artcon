@@ -66,9 +66,6 @@ export default {
         'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
       },
       fontSize: {
-        'h-5xl': 'clamp(2.25rem, 6vw + 1rem, 7.5rem)',
-        'h-3xl': 'clamp(1.25rem, 2vw + 1rem, 2.25rem)',
-
         'head-1': ['120px', { lineHeight: '139.2px' }],
         'head-2': ['50px', { lineHeight: '60px', letterSpacing: '1px' }],
         'head-3': ['36px', { lineHeight: '42px', letterSpacing: '0.72px' }],
@@ -79,6 +76,7 @@ export default {
         'head-8': ['16px', { lineHeight: '19.2px', letterSpacing: '0.32px' }],
 
         'body-1': ['16px', { lineHeight: '27.2px' }],
+        'body-2': ['14px', { lineHeight: '23.1px' }],
 
         'title-1': ['16px', { lineHeight: '19.2px' }],
         'title-2': ['14px', { lineHeight: '16.8px' }],

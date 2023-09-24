@@ -4,6 +4,7 @@
   import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
+  import { PortableText } from '@portabletext/svelte';
 
   export let props: NewsAndMediaProps;
   $: ({
@@ -27,8 +28,8 @@
         {#each chunk as { image, link, subtitle, title }}
           <Card
             el="a"
-            class="space-y-[20px]"
             href={link}
+            class="space-y-[20px]"
             let:Container
             let:Title
             let:Subtitle
@@ -46,16 +47,12 @@
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.Title>{title}</C.Title>
-        </C.IntroContainer>
+        <C.Title>{title}</C.Title>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={description} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

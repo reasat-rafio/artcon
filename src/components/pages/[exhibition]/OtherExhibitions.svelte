@@ -1,6 +1,5 @@
 <script lang="ts">
   import Asset from '@/components/hero/Asset.svelte';
-  import H4 from '@/components/ui/H4.svelte';
   import H6 from '@/components/ui/H6.svelte';
   import H8 from '@/components/ui/H8.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
@@ -40,7 +39,7 @@
 
 <section>
   <div class="container border-t border-[#BBBBBE] py-xl">
-    <H4>Other Exhibition</H4>
+    <h2 class="head-xl">Other Exhibition</h2>
     <div
       class="mt-[32px] overflow-hidden"
       use:emblaCarouselSvelte={{ plugins: [], options: { align: 'start' } }}
@@ -58,18 +57,21 @@
               <Asset {asset} />
             </div>
             <div class="border-t border-[#D2D2D3] pt-[36px]">
-              <div class="odd:mr-[30px] even:ml-[30px]">
-                <header class="flex flex-wrap items-center space-y-[10px]">
-                  <H6>{name} /</H6>
-                  <H8>
+              <div class="space-y-[10px] odd:mr-[30px] even:ml-[30px]">
+                <header class="flex flex-wrap items-center">
+                  <h3 class="text-head-6">{name}</h3>
+                  <h4 class="text-head-8">
+                    /
                     {#if typeof type === 'string'}
                       {type}
                     {:else}
                       {type.name}
                     {/if}
-                  </H8>
+                  </h4>
                 </header>
-                <H8 class="text-[#77777C]">Photography exhibition</H8>
+                <h4 class="text-head-8 text-[#77777C]">
+                  Photography exhibition
+                </h4>
               </div>
             </div>
           </a>

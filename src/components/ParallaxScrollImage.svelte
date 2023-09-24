@@ -25,7 +25,7 @@
       y: sectionHeight,
       scrollTrigger: {
         scrub: 2,
-        start: 'center bottom',
+        start: 'top bottom',
         end: 'top top',
         trigger: firstImageEl,
       },

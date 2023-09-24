@@ -6,6 +6,8 @@
   import Quote from '@/components/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
+  import { PortableText } from '@portabletext/svelte';
 
   export let props: PublicationProps & {
     publication: Publication;
@@ -41,53 +43,40 @@
         { img: publicationImage },
       ]}
     />
-    <!-- <svelte:fragment slot="first-image" let:Image>
-        <Image image={invitationCardImage} />
-      </svelte:fragment>
-      <svelte:fragment slot="second-image" let:Image>
-        <Image
-          el="a"
-          caption={name}
-          href={`/publications/${slug.current}`}
-          image={publicationImage}
-        />
-      </svelte:fragment> -->
-    <!-- </ParallaxScrollImage> -->
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer class="space-y-[36px]">
+        <div class="space-y-[36px]">
           <C.HeaderContainer>
             <C.Title>{name}</C.Title>
             <C.Subtitle>{subtitle}</C.Subtitle>
           </C.HeaderContainer>
 
           <div class="space-y-[6px]">
-            <div>
+            <C.Subtitle variant="sm">
               Published by
               {#each publishedBy as p, i}
-                <C.Subtitle class="inline font-medium text-[#000]">
+                <div class="inline font-medium text-[#000]">
                   {#if i === publishedBy.length - 1}
                     <span class="font-normal">and</span>
                   {:else if i !== 0}
                     ,
                   {/if}
                   {p}
-                </C.Subtitle>
+                </div>
               {/each}
-            </div>
-            <C.Subtitle>ISBN {isbn}</C.Subtitle>
+            </C.Subtitle>
+            <C.Subtitle variant="sm">ISBN {isbn}</C.Subtitle>
           </div>
 
-          <C.Cta href={exproleLink.href}>{exproleLink.title}</C.Cta>
-        </C.IntroContainer>
+          <Cta href={exproleLink.href}>{exproleLink.title}</Cta>
+        </div>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={description} />
-          </C.Description>
-        </C.DescriptionContainer>
+
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

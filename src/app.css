@@ -52,23 +52,26 @@
   h6 {
     @apply font-abc-arizona-serif font-medium;
   }
+  body {
+    @apply text-dark-gunmetal;
+  }
 }
 
 @layer utilities {
   .head-5xl {
-    @apply text-h-5xl font-medium tracking-normal max-md:tracking-[0.72px];
+    @apply text-[clamp(2.25rem,6vw+1rem,7.5rem)] font-medium tracking-normal max-md:tracking-[0.72px];
   }
   .head-4xl {
     @apply text-head-2 font-medium;
   }
   .head-3xl {
-    @apply text-h-3xl;
+    @apply text-[clamp(1.25rem,2vw+1rem,2.25rem)];
   }
   .head-2xl {
     @apply text-head-5 text-dark-gunmetal lg:text-head-4;
   }
   .head-xl {
-    @apply text-head-5;
+    @apply text-[clamp(1.5rem,2vw+1rem,2rem)] leading-[120%] tracking-[0.48px] lg:leading-[115%] lg:tracking-[0.64px];
   }
   .head-lg {
     @apply text-head-6;
@@ -82,7 +85,10 @@
   }
 
   .body-1 {
-    @apply text-body-1 text-dark-gunmetal;
+    @apply text-[14px] md:text-body-1;
+  }
+  .body-2 {
+    @apply text-[12px] md:text-body-1;
   }
 
   .mb-section {

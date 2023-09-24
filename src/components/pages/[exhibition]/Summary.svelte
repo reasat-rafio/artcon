@@ -6,8 +6,9 @@
   import Quote from '@/components/Quote.svelte';
   import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import type { PortableTextBlock } from 'sanity';
   import type { Gallery } from '@/lib/types/exhibitionDetail.types';
+  import type { PortableTextBlock } from 'sanity';
+  import { PortableText } from '@portabletext/svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -28,30 +29,26 @@
 
     <DescriptionBlock class="mb-xl">
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
-            <C.Title>{descriptionBlock.gallery.name}</C.Title>
-            <C.Subtitle weight="light">{descriptionBlock.date}</C.Subtitle>
-          </C.HeaderContainer>
-          <div class="space-y-[10px] lg:space-y-[13px]">
-            {#each descriptionBlock.associationsList as { key, value }}
-              <div>
-                <C.Subtitle
-                  weight="light"
-                  class="!leading-tight !text-sonic-silver">{key}</C.Subtitle
-                >
-                <C.Subtitle weight="light">{value}</C.Subtitle>
-              </div>
-            {/each}
-          </div>
-        </C.IntroContainer>
+        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
+          <C.Title>{descriptionBlock.gallery.name}</C.Title>
+          <C.Subtitle>{descriptionBlock.date}</C.Subtitle>
+        </C.HeaderContainer>
+        <div class="space-y-[10px] lg:space-y-[13px]">
+          {#each descriptionBlock.associationsList as { key, value }}
+            <div>
+              <C.Subtitle el="h4" variant="sm" class="text-sonic-silver">
+                {key}
+              </C.Subtitle>
+              <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+            </div>
+          {/each}
+        </div>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={descriptionBlock.description} />
-          </C.Description>
-        </C.DescriptionContainer>
+
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={descriptionBlock.description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
 

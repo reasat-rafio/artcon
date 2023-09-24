@@ -6,6 +6,8 @@
     ExhinitionDetailPageProps,
   } from '@/lib/types/exhibitionDetail.types';
   import Artworks from './Artworks.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
+  import { PortableText } from '@portabletext/svelte';
 
   export let props: ArtworkProps & {
     artworks: ExhinitionDetailPageProps['artworks'];
@@ -24,17 +26,13 @@
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.Title class="mb-10">{title}</C.Title>
-          <C.Cta href={cta.href}>{cta.title}</C.Cta>
-        </C.IntroContainer>
+        <C.Title class="mb-10">{title}</C.Title>
+        <Cta href={cta.href}>{cta.title}</Cta>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={description} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
   </div>
