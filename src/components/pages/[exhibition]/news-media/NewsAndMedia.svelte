@@ -14,11 +14,11 @@
   } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
-    <Carousel class="mb-xl" let:Gallery>
+    <Carousel class="mb-section" let:Gallery>
       <Gallery
         class="mr-5 grid grid-cols-3 gap-x-[25px] gap-y-[56px] "
         slidesPerPage={6}

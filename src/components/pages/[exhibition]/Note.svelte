@@ -8,12 +8,14 @@
   $: ({ notes } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
-        <Quote class="mb-xl" {quote} />
-        <DescriptionBlock class={index + 1 !== notes.length ? 'mb-xl' : ''}>
+        <Quote class="mb-section" {quote} />
+        <DescriptionBlock
+          class={index + 1 !== notes.length ? 'mb-section' : ''}
+        >
           <svelte:fragment slot="intro" let:C>
             <C.HeaderContainer>
               <C.Title>{title}</C.Title>

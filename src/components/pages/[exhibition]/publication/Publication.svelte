@@ -28,12 +28,12 @@
   } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
     <ParallaxScrollImage
-      class="mb-xl"
+      class="mb-section"
       images={[
         {
           img: invitationCardImage,

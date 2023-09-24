@@ -38,7 +38,7 @@
 </script>
 
 <section>
-  <div class="container border-t border-[#BBBBBE] py-xl">
+  <div class="py-section container border-t border-[#BBBBBE]">
     <h2 class="head-xl">Other Exhibition</h2>
     <div
       class="mt-[32px] overflow-hidden"

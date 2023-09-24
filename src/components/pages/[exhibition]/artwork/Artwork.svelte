@@ -19,10 +19,10 @@
   } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
-    <Artworks class="mb-xl" {artworks} />
+    <Quote class="mb-section" {quote} />
+    <Artworks class="mb-section" {artworks} />
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

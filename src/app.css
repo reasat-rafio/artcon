@@ -92,9 +92,9 @@
   }
 
   .mb-section {
-    @apply mb-sm xl:mb-xl;
+    @apply mb-sm md:mb-[80px] xl:mb-xl;
   }
   .py-section {
-    @apply py-sm xl:py-xl;
+    @apply py-sm md:py-[80px]  xl:py-xl;
   }
 }

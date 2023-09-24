@@ -27,7 +27,7 @@
   <div class="container">
     <Quote class="mb-section" {quote} />
 
-    <DescriptionBlock class="mb-xl">
+    <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
           <C.Title>{descriptionBlock.gallery.name}</C.Title>

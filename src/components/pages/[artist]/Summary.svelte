@@ -17,11 +17,11 @@
   $: ({ quote, vr, images, statement, personalDocuments } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
-    <DescriptionBlock class="mb-xl">
+    <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[23px]">
           <C.Title>{personalDocuments.name}</C.Title>
@@ -48,12 +48,12 @@
     </DescriptionBlock>
 
     <ParallaxScrollImage
-      class="mb-xl"
+      class="mb-section"
       images={[{ img: images[0] }, { img: images[1] }]}
     />
 
     {#if statement?.title && statement?.description}
-      <DescriptionBlock class="mb-xl">
+      <DescriptionBlock class="mb-section">
         <svelte:fragment slot="intro" let:C>
           <C.Title>{statement.title}</C.Title>
         </svelte:fragment>
