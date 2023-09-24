@@ -5,6 +5,7 @@
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
   import Gallery from './Gallery.svelte';
+  import { twMerge } from 'tailwind-merge';
 
   export let plugins: EmblaPluginType[] = [];
   export let options: Partial<EmblaOptionsType> = {};
@@ -17,11 +18,11 @@
 </script>
 
 <div
-  class="{$$props.class ?? ''} overflow-hidden"
+  class={twMerge('overflow-hidden', $$props.class)}
   use:emblaCarouselSvelte={{ plugins, options }}
   on:emblaInit={onInit}
 >
-  <div class="flex space-x-[25px]">
+  <div class="flex">
     <slot {Gallery} api={emblaApi} />
   </div>
 </div>
