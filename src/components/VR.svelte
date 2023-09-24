@@ -36,7 +36,7 @@
             imageUrlBuilder={imageBuilder}
           />
           <figcaption
-            class="pl-[20px] pt-[20px] text-title-2 text-sonic-silver"
+            class="pl-[20px] pt-[20px] text-[12px] text-sonic-silver md:text-[14px]"
           >
             {previewImage.caption}
           </figcaption>

@@ -17,7 +17,7 @@
       : 0);
 </script>
 
-<section class="pointer-events-none translate-x-[100vw]" bind:this={rootEl}>
+<section bind:this={rootEl} class="pointer-events-none translate-x-[100vw]">
   <div bind:this={containerEl} style="width: {containerWidth}vw;" class="flex">
     {#each collections as collection, index}
       {#if collection._type === 'vr'}

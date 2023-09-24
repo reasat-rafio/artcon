@@ -1,15 +1,15 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
-  import Hero from '@/components/hero/Hero.svelte';
+  import Contact from '@/components/pages/landing/Contact.svelte';
+  import Hero from '@/components/pages/landing/Hero.svelte';
+  import Collections from '@/components/pages/landing/collections/Collections.svelte';
+  import { debounce } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { HomePageProps } from '@/lib/types/landing.types';
-  import Collections from '@/components/pages/landing/collections/Collections.svelte';
-  import { tweened } from 'svelte/motion';
-  import { expoOut } from 'svelte/easing';
   import uiStore from '@/store/ui';
-  import { debounce } from '@/lib/helper';
   import { onMount } from 'svelte';
-  import Contact from '@/components/pages/landing/Contact.svelte';
+  import { expoOut } from 'svelte/easing';
+  import { tweened } from 'svelte/motion';
 
   type MouseEvnt = WheelEvent & {
     currentTarget: EventTarget & Window;

@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .mb-section {
-    @apply mb-sm xl:mb-xl;
-  }
-  .py-section {
-    @apply py-sm xl:py-xl;
-  }
-}
-
-/* Fonts */
 @layer base {
   @font-face {
     font-family: 'OPTIBerling Agency';
@@ -52,5 +42,53 @@
     font-weight: 300;
     font-style: normal;
     font-display: fallback;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-abc-arizona-serif font-medium;
+  }
+}
+
+@layer utilities {
+  .head-5xl {
+    @apply text-h-5xl font-medium tracking-normal max-md:tracking-[0.72px];
+  }
+  .head-4xl {
+    @apply text-head-2 font-medium;
+  }
+  .head-3xl {
+    @apply text-h-3xl;
+  }
+  .head-2xl {
+    @apply text-head-5 text-dark-gunmetal lg:text-head-4;
+  }
+  .head-xl {
+    @apply text-head-5;
+  }
+  .head-lg {
+    @apply text-head-6;
+  }
+
+  .head-md {
+    @apply text-head-8 font-medium md:text-head-7 md:font-bold;
+  }
+  .head-sm {
+    @apply text-head-8;
+  }
+
+  .body-1 {
+    @apply text-body-1 text-dark-gunmetal;
+  }
+
+  .mb-section {
+    @apply mb-sm xl:mb-xl;
+  }
+  .py-section {
+    @apply py-sm xl:py-xl;
   }
 }

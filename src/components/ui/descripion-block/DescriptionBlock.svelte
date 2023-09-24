@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { twMerge } from 'tailwind-merge';
   import BodyText from '../BodyText.svelte';
   import Cta from '../Cta.svelte';
   import H4 from '../H4.svelte';
@@ -12,8 +13,10 @@
 </script>
 
 <article
-  class="{$$props.class ??
-    ''} grid w-full grid-cols-12 gap-[40px] xl:w-[85%] xl:gap-[50px]"
+  class={twMerge(
+    'grid w-full grid-cols-12 gap-[40px] xl:w-[85%] xl:gap-[50px]',
+    $$props.class,
+  )}
 >
   <slot
     name="intro"

@@ -19,7 +19,7 @@
 
 <CollectionLayout
   {DEFAULT_COLUMN_W_PERCENTAGE}
-  href="/preview/vr/{slug.current}"
+  href="/preview/exhibition/{slug.current}"
   image={previewDisplayImage}
   {index}
 >

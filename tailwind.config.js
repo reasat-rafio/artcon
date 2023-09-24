@@ -66,41 +66,23 @@ export default {
         'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
       },
       fontSize: {
-        'head-1': ['120px', { fontWeight: 500, lineHeight: '139.2px' }],
-        'head-2': [
-          '50px',
-          { lineHeight: '60px', letterSpacing: '1px', fontWeight: 500 },
-        ],
-        'head-3': [
-          '36px',
-          { lineHeight: '42px', letterSpacing: '0.72px', fontWeight: 500 },
-        ],
-        'head-4': [
-          '32px',
-          { lineHeight: '37px', letterSpacing: '0.64px', fontWeight: 500 },
-        ],
-        'head-5': [
-          '28px',
-          { lineHeight: '37px', letterSpacing: '0.56px', fontWeight: 500 },
-        ],
-        'head-6': [
-          '20px',
-          { lineHeight: '24px', letterSpacing: '0.4px', fontWeight: 500 },
-        ],
-        'head-7': [
-          '18px',
-          { lineHeight: '21.6px', letterSpacing: '0.9px', fontWeight: 700 },
-        ],
-        'head-8': [
-          '16px',
-          { lineHeight: '19.2px', letterSpacing: '0.32px', fontWeight: 500 },
-        ],
+        'h-5xl': 'clamp(2.25rem, 6vw + 1rem, 7.5rem)',
+        'h-3xl': 'clamp(1.25rem, 2vw + 1rem, 2.25rem)',
+
+        'head-1': ['120px', { lineHeight: '139.2px' }],
+        'head-2': ['50px', { lineHeight: '60px', letterSpacing: '1px' }],
+        'head-3': ['36px', { lineHeight: '42px', letterSpacing: '0.72px' }],
+        'head-4': ['32px', { lineHeight: '37px', letterSpacing: '0.64px' }],
+        'head-5': ['28px', { lineHeight: '37px', letterSpacing: '0.56px' }],
+        'head-6': ['20px', { lineHeight: '24px', letterSpacing: '0.4px' }],
+        'head-7': ['18px', { lineHeight: '21.6px', letterSpacing: '0.9px' }],
+        'head-8': ['16px', { lineHeight: '19.2px', letterSpacing: '0.32px' }],
 
         'body-1': ['16px', { lineHeight: '27.2px' }],
 
         'title-1': ['16px', { lineHeight: '19.2px' }],
         'title-2': ['14px', { lineHeight: '16.8px' }],
-        'title-3': ['10px', { lineHeight: '12px', fontWeight: 600 }],
+        'title-3': ['10px', { lineHeight: '12px' }],
 
         'subtitle-1': [
           '13px',
