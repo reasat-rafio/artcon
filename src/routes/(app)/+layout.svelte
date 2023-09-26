@@ -25,7 +25,7 @@
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
 
-<!-- <Navbar logo={logoDark} /> -->
+<Navbar logo={logoDark} />
 <!-- <NavItems {nav} /> -->
 <slot />
 <Footer {footer} {contact} logo={logoLight} />

@@ -4,6 +4,8 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import SearchIcon from '../icons/Search.svelte';
+  import { twMerge } from 'tailwind-merge';
+  import servicePage from '@/studio/schemas/pages/service/document';
 
   export let logo: SanityAsset;
 
@@ -22,24 +24,39 @@
       />
     </a>
 
-    <div class="ml-auto text-white">
+    <div
+      class={twMerge(
+        'group ml-auto',
+        sarchIsActive ? 'text-dark-gunmetal' : 'text-white',
+      )}
+    >
       <button
         use:clickOutSide={() => (sarchIsActive = false)}
         on:click={setSearchBarActive}
-        class="flex cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px]"
+        class={twMerge(
+          'flex cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white',
+          sarchIsActive && ' bg-white',
+        )}
       >
         <input
-          class="{sarchIsActive
-            ? 'w-[200px]'
-            : 'w-[70px]'} bg-transparent text-[13.5px] outline-none transition-all duration-300 ease-in-out placeholder:text-[13.5px] placeholder:text-white"
+          class={twMerge(
+            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-white group-hover:placeholder:text-dark-gunmetal',
+            sarchIsActive
+              ? 'w-[200px] text-dark-gunmetal placeholder:text-dark-gunmetal'
+              : 'w-[70px]',
+          )}
           type="text"
-          placeholder="Search"
+          placeholder={sarchIsActive
+            ? 'Search artist, art work, news etc '
+            : 'Search'}
         />
-        <button
-          class="scale-100 transition-transform duration-300 hover:scale-125"
+        <div
+          class={twMerge(
+            'scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal',
+          )}
         >
           <SearchIcon />
-        </button>
+        </div>
       </button>
     </div>
   </div>
