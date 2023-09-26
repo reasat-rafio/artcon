@@ -6,7 +6,6 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
-  import breakpoint from '@/store/breakpoint';
 
   type Image = {
     img: SanityImageAssetDocument;
@@ -23,9 +22,10 @@
   const createAnimation = () => {
     const sectionHeight = rootEl.getBoundingClientRect().height / 2;
     const sectionWidth = rootEl.getBoundingClientRect().width;
+    const tl = gsap.timeline({ paused: true });
 
     if (innerWidth >= 640) {
-      gsap.from(firstImageEl, {
+      tl.from(firstImageEl, {
         y: sectionHeight,
         x: 0,
         scrollTrigger: {
@@ -36,7 +36,7 @@
         },
       });
     } else {
-      gsap.from(firstImageEl, {
+      tl.from(firstImageEl, {
         y: 0,
         x: -sectionWidth,
         scrollTrigger: {
@@ -47,10 +47,16 @@
         },
       });
     }
+
+    tl.play();
   };
+
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
     createAnimation();
+
+    window.addEventListener('resize', createAnimation);
+    return () => window.removeEventListener('resize', createAnimation);
   });
 </script>
 
