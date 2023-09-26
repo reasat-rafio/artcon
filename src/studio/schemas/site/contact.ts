@@ -8,6 +8,16 @@ const contact = {
   type: 'document',
   fields: [
     {
+      name: 'title',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'subtitle',
+      type: 'text',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'address',
       type: 'object',
       validation: (Rule: Rule) => Rule.required(),
@@ -146,7 +156,7 @@ const contact = {
           preview: {
             select: {
               title: 'link',
-              media: 'icon',
+              media: 'lightIcon',
             },
           },
         },

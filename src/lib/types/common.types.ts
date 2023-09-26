@@ -35,6 +35,8 @@ export interface ContactProps {
   _id: string;
   _updatedAt: Date;
   _createdAt: Date;
+  title: string;
+  subtitle: string;
   socialsWithVisibleLinks: SocialsWithVisibleLinkProps[];
   socials: SocialProps[];
   address: {
