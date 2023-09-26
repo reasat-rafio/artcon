@@ -1,7 +1,5 @@
 <script lang="ts">
   import Asset from '@/components/hero/Asset.svelte';
-  import H6 from '@/components/ui/H6.svelte';
-  import H8 from '@/components/ui/H8.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { OtherExhibitionProps } from '@/lib/types/exhibitionDetail.types';
   import emblaCarouselSvelte, {

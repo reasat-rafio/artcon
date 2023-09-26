@@ -97,4 +97,8 @@
   .py-section {
     @apply py-sm md:py-[80px]  xl:py-xl;
   }
+
+  .gallery-carousel-card-spacing {
+    @apply max-md:pt-[20px] md:pl-[20px];
+  }
 }

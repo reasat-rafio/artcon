@@ -17,7 +17,7 @@
     <div class="mb-section">
       <Gallery items={images} let:chunk>
         {#each chunk as image}
-          <Card class="max-md:pt-[20px] md:pl-[20px]" let:Image>
+          <Card class="gallery-carousel-card-spacing" let:Image>
             <Image {image} />
           </Card>
         {/each}

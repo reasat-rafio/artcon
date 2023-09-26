@@ -5,6 +5,7 @@
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
   import { PortableText } from '@portabletext/svelte';
+  import Gallery from '@/components/ui/carousel/Gallery.svelte';
 
   export let props: NewsAndMediaProps;
   $: ({
@@ -18,18 +19,13 @@
   <div class="container">
     <Quote class="mb-section" {quote} />
 
-    <Carousel class="mb-section" let:Gallery>
-      <Gallery
-        class="mr-5 grid grid-cols-3 gap-x-[25px] gap-y-[56px] "
-        slidesPerPage={6}
-        items={newsAndMedia}
-        let:chunk
-      >
+    <div class="mb-section">
+      <Gallery items={newsAndMedia} let:chunk>
         {#each chunk as { image, link, subtitle, title }}
           <Card
             el="a"
             href={link}
-            class="space-y-[20px]"
+            class="gallery-carousel-card-spacing space-y-[20px]"
             let:Container
             let:Title
             let:Subtitle
@@ -43,7 +39,7 @@
           </Card>
         {/each}
       </Gallery>
-    </Carousel>
+    </div>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
