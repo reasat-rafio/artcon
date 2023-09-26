@@ -57,7 +57,7 @@
           `${builder
             .width(w)
             .withOptions(options ?? {})
-            .url()} ${w}w`
+            .url()} ${w}w`,
       )
       .join(', ');
 

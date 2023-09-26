@@ -11,30 +11,30 @@
 </script>
 
 <div class={$$props.class ?? ''}>
-  <address class="col-span-2 space-y-[26px] text-[#1B1B1E]">
-    <InfoBlock icon={contact.address.icon} info={contact.address.address} />
+  <address class="col-span-3 space-y-[26px] text-[#1B1B1E] 2xl:col-span-2">
+    <InfoBlock icon={contact.address.darkIcon} info={contact.address.address} />
 
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-1 gap-[1.62rem] sm:grid-cols-2">
       <InfoBlock
         extraLightHeight
-        icon={firstSocialWLink.icon}
+        icon={firstSocialWLink.darkIcon}
         info={firstSocialWLink.info}
       />
 
       <div class="space-y-[16px]">
-        {#each restSocialsWLink as { icon, info }}
-          <InfoBlock {icon} {info} />
+        {#each restSocialsWLink as { darkIcon, info }}
+          <InfoBlock icon={darkIcon} {info} />
         {/each}
       </div>
     </div>
 
-    <ul class="ml-[30px] flex space-x-[20px]">
-      {#each contact.socials as { icon, link }}
+    <ul class="flex space-x-[20px] md:ml-[30px]">
+      {#each contact.socials as { darkIcon, link }}
         <li>
           <a href={link} target="_blank">
             <SanityImage
               class="h-[15px] w-[15px]"
-              src={icon}
+              src={darkIcon}
               sizes="15px"
               alt={link}
               imageUrlBuilder={imageBuilder}
@@ -44,5 +44,5 @@
       {/each}
     </ul>
   </address>
-  <div class="col-span-1" />
+  <div class="hidden 2xl:col-span-1 2xl:block" />
 </div>

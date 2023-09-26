@@ -28,4 +28,4 @@
 <!-- <Navbar logo={logoDark} /> -->
 <!-- <NavItems {nav} /> -->
 <slot />
-<!-- <Footer {footer} {contact} logo={logoLight} /> -->
+<Footer {footer} {contact} logo={logoLight} />

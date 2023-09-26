@@ -13,25 +13,31 @@
 
 <footer>
   <div class="container border-t border-[#BBBBBE] py-[40px]">
-    <section class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[32px]">
-      <div class="col-span-2 grid grid-cols-2">
+    <section
+      class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[2.56rem] lg:pb-[4rem]"
+    >
+      <div
+        class="col-span-12 grid grid-cols-1 max-sm:pb-[1.56rem] sm:col-span-3 lg:col-span-2 xl:grid-cols-2"
+      >
         <figure>
           <SanityImage
-            class="w-full object-contain"
+            class="max-h-[3.125rem] object-contain"
             sizes="90px"
             src={logo}
             imageUrlBuilder={imageBuilder}
             alt="artcon logo"
           />
         </figure>
-        <div />
+        <div class="hidden xl:block" />
       </div>
 
-      <div class="col-span-6 grid grid-cols-12">
-        <div class="col-span-10 flex flex-col justify-between">
+      <div
+        class="col-span-12 grid grid-cols-12 max-lg:pb-[2.5rem] sm:col-span-9 lg:col-span-5 lg:pr-2 2xl:col-span-6"
+      >
+        <div class="col-span-12 flex flex-col justify-between 2xl:col-span-10">
           <BodyText weight="light">{footer.title}</BodyText>
 
-          <div class="flex space-x-[40px]">
+          <div class="hidden space-x-[40px] lg:flex">
             {#each footer.menu as { title, externalUrl, pageUrl }}
               <a
                 class="text-title-2 text-[#A5A5A8]"
@@ -40,13 +46,23 @@
             {/each}
           </div>
         </div>
-        <div class="col-span-2" />
+        <div class="hidden 2xl:col-span-2 2xl:block" />
       </div>
 
-      <Address class="col-span-4 grid grid-cols-3" {contact} />
+      <Address class="col-span-12 grid grid-cols-3 lg:col-span-4" {contact} />
     </section>
 
-    <section class="flex justify-between pt-[32px] text-[14px] text-[#A5A5A8]">
+    <div class="flex flex-wrap space-x-[40px] lg:hidden">
+      {#each footer.menu as { title, externalUrl, pageUrl }}
+        <a class="text-title-2 text-[#A5A5A8]" href={externalUrl || pageUrl}
+          >{title}</a
+        >
+      {/each}
+    </div>
+
+    <section
+      class="flex justify-between text-[14px] text-[#A5A5A8] max-lg:flex-col max-lg:space-y-[0.63rem] max-lg:pt-[3.1rem]"
+    >
       <p>© ARTCON 2023</p>
       <p>Developed by Edistys</p>
     </section>
