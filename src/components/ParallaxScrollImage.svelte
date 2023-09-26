@@ -6,6 +6,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
+  import breakpoint from '@/store/breakpoint';
 
   type Image = {
     img: SanityImageAssetDocument;
@@ -17,32 +18,56 @@
 
   let rootEl: HTMLDivElement;
   let firstImageEl: HTMLElement;
+  let innerWidth = 0;
 
-  onMount(() => {
+  const createAnimation = () => {
     const sectionHeight = rootEl.getBoundingClientRect().height / 2;
+    const sectionWidth = rootEl.getBoundingClientRect().width;
+
+    if (innerWidth >= 640) {
+      gsap.from(firstImageEl, {
+        y: sectionHeight,
+        x: 0,
+        scrollTrigger: {
+          scrub: 2,
+          start: 'top bottom',
+          end: 'top top',
+          trigger: firstImageEl,
+        },
+      });
+    } else {
+      gsap.from(firstImageEl, {
+        y: 0,
+        x: -sectionWidth,
+        scrollTrigger: {
+          scrub: 2,
+          start: 'top bottom',
+          end: 'top top',
+          trigger: firstImageEl,
+        },
+      });
+    }
+  };
+  onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from(firstImageEl, {
-      y: sectionHeight,
-      scrollTrigger: {
-        scrub: 2,
-        start: 'top bottom',
-        end: 'top top',
-        trigger: firstImageEl,
-      },
-    });
+    createAnimation();
   });
 </script>
 
+<svelte:window bind:innerWidth />
 <div
   bind:this={rootEl}
-  class={twMerge('grid w-[85%] grid-cols-12  gap-[30px]', $$props.class)}
+  class={twMerge(
+    'grid w-full grid-cols-12 gap-[30px] max-sm:ml-auto',
+    $$props.class,
+  )}
 >
-  <div class="col-span-4">
+  <div class="col-span-12 sm:col-span-4">
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
     >
-      <figure bind:this={firstImageEl}>
+      <figure class="max-sm:ml-auto max-sm:w-[70%]" bind:this={firstImageEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="30vw"
@@ -60,7 +85,7 @@
       </figure>
     </svelte:element>
   </div>
-  <div class="col-span-8">
+  <div class="col-span-12 sm:col-span-8">
     <svelte:element this={!!firstImage?.link ? 'a' : 'div'}>
       <figure>
         <SanityImage
