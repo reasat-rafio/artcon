@@ -1,9 +1,9 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import type { GalleryProps } from '@/lib/types/exhibitionDetail.types';
   import { PortableText } from '@portabletext/svelte';
+  import Gallery from '@/components/ui/carousel/Gallery.svelte';
 
   export let props: GalleryProps;
   $: ({
@@ -14,19 +14,15 @@
 
 <section class="py-section">
   <div class="container">
-    <Carousel class="mb-section" let:Gallery>
-      <Gallery
-        class="grid grid-cols-3 gap-x-[25px] gap-y-[56px] "
-        items={images}
-        let:chunk
-      >
+    <div class="mb-section">
+      <Gallery items={images} let:chunk>
         {#each chunk as image}
-          <Card let:Image>
+          <Card class="max-md:pt-[20px] md:pl-[20px]" let:Image>
             <Image {image} />
           </Card>
         {/each}
       </Gallery>
-    </Carousel>
+    </div>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

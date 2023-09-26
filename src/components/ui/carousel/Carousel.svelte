@@ -4,7 +4,6 @@
     type EmblaOptionsType,
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
-  import Gallery from './Gallery.svelte';
   import { twMerge } from 'tailwind-merge';
 
   export let plugins: EmblaPluginType[] = [];
@@ -23,6 +22,6 @@
   on:emblaInit={onInit}
 >
   <div class="flex">
-    <slot {Gallery} api={emblaApi} />
+    <slot api={emblaApi} />
   </div>
 </div>
