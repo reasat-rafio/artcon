@@ -5,7 +5,7 @@
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import SearchIcon from '../icons/Search.svelte';
   import { twMerge } from 'tailwind-merge';
-  import servicePage from '@/studio/schemas/pages/service/document';
+  import Hamburger from '../Hamburger.svelte';
 
   export let logo: SanityAsset;
 
@@ -26,15 +26,16 @@
 
     <div
       class={twMerge(
-        'group ml-auto',
+        'group ml-auto ',
         sarchIsActive ? 'text-dark-gunmetal' : 'text-white',
       )}
     >
+      <Hamburger class="block md:hidden" />
       <button
         use:clickOutSide={() => (sarchIsActive = false)}
         on:click={setSearchBarActive}
         class={twMerge(
-          'flex cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white',
+          'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white md:flex',
           sarchIsActive && ' bg-white',
         )}
       >
@@ -42,7 +43,7 @@
           class={twMerge(
             'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-white group-hover:placeholder:text-dark-gunmetal',
             sarchIsActive
-              ? 'w-[200px] text-dark-gunmetal placeholder:text-dark-gunmetal'
+              ? 'w-[250px] text-dark-gunmetal placeholder:text-dark-gunmetal'
               : 'w-[70px]',
           )}
           type="text"

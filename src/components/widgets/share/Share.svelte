@@ -6,6 +6,7 @@
   import { fade } from 'svelte/transition';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import Hamburger from '@/components/Hamburger.svelte';
 
   export let logo: SanityAsset;
   export let href: string;
@@ -20,7 +21,7 @@
 <svelte:window on:scroll={setLogoVisibility} />
 <section
   bind:this={sectionEl}
-  class="sticky top-0 z-50 border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]"
+  class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]"
 >
   <div class="relative">
     <div class="container flex items-center">
@@ -32,11 +33,15 @@
           <slot />
         </h2>
       </div>
+
+      <Hamburger color="#1B1B1E" class="block md:hidden" />
       <button
         on:click={() => (popupSate = 'visiable')}
-        class="aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:h-[2.8125rem] lg:w-[2.8125rem]"
+        class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full md:block lg:h-[2.8125rem] lg:w-[2.8125rem]"
       >
-        <ShareIcon />
+        <ShareIcon
+          class="text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal"
+        />
       </button>
     </div>
     {#if showLogo}
