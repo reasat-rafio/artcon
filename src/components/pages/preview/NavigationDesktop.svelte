@@ -2,7 +2,7 @@
   import Cta from '@/components/ui/Cta.svelte';
 </script>
 
-<nav class="fixed top-0 z-30 w-full">
+<nav class="fixed top-0 z-30 hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
     <Cta color="white" href="test" class="flex items-center space-x-[0.5rem]"
       ><svg

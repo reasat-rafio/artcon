@@ -9,7 +9,7 @@
 <a
   {href}
   class={twMerge(
-    'block w-fit overflow-hidden rounded-[4rem] border px-[2.2rem] py-[0.88rem] text-center  text-[0.84375rem] font-medium tracking-[0.01688rem] ',
+    'block w-fit overflow-hidden rounded-[4rem] border px-[2.2rem] py-[0.88rem] text-center text-[0.84375rem] font-medium tracking-[0.01688rem]',
     variant === 'outline'
       ? color === 'gray'
         ? 'border-sonic-silver/60 text-sonic-silver'
@@ -18,7 +18,7 @@
         : null
       : variant === 'fill'
       ? color === 'red-gray'
-        ? 'red-gray relative bg-transparent text-white'
+        ? 'red-gray relative bg-transparent text-white '
         : null
       : null,
     $$props.class,

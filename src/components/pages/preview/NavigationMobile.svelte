@@ -1,0 +1,14 @@
+<script lang="ts">
+  import X from '@/components/icons/X.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
+</script>
+
+<nav
+  class="sticky top-0 z-20 flex w-full items-center justify-between bg-white py-[1.18rem] lg:hidden"
+>
+  <a href="/">
+    <X class="h-[1.0215rem] w-[1.04394rem]" />
+  </a>
+
+  <Cta variant="fill" href="" color="red-gray">EXHIBITION</Cta>
+</nav>

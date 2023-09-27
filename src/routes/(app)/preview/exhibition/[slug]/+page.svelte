@@ -15,7 +15,8 @@
   import BodyText from '@/components/ui/BodyText.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import Asset from '@/components/hero/Asset.svelte';
-  import Navigation from '@/components/pages/preview/Navigation.svelte';
+  import NavigationDesktop from '@/components/pages/preview/NavigationDesktop.svelte';
+  import NavigationMobile from '@/components/pages/preview/NavigationMobile.svelte';
 
   export let data: PageProps<ExhibitionPreviewProps>;
   $: ({
@@ -35,6 +36,7 @@
 
   let onOutroEnd: () => void;
   let transitioningOut = false;
+  let articleEl: HTMLElement;
   let contentEl: HTMLElement;
   let innerWidth = 0;
 
@@ -45,11 +47,13 @@
   }));
 
   onMount(() => {
+    const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
+    const articleNodeHeight = articleEl.clientHeight;
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'expo.out' },
+    });
     if (innerWidth >= 1024) {
-      const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
-      const tl = gsap.timeline({
-        defaults: { ease: 'expo.out' },
-      });
       tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
         animationNodes,
         {
@@ -60,7 +64,19 @@
         },
         0.3,
       );
+    } else {
+      tl.from(articleEl, { y: articleNodeHeight, duration: 1 }).from(
+        animationNodes,
+        {
+          y: 100,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 1,
+        },
+        0.3,
+      );
     }
+    // }
   });
 
   beforeNavigate(async (navigation) => {
@@ -86,9 +102,10 @@
   });
 </script>
 
-<svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={logos?.ogImage} />
-<Navigation />
+
+<svelte:window bind:innerWidth />
+<NavigationDesktop />
 <section>
   <div class="fixed inset-0 -z-10 block lg:hidden">
     <figure class="h-full w-full overflow-hidden">
@@ -104,7 +121,8 @@
   </div>
 
   <article
-    class="flex h-screen w-full gap-[15px] bg-white max-lg:mt-[1.56rem] max-lg:rounded-t-[0.94rem]"
+    bind:this={articleEl}
+    class="flex h-screen w-full flex-col gap-[15px] bg-white max-lg:mt-[1.56rem] max-lg:rounded-t-[0.94rem] lg:flex-row"
   >
     <div class="max-lg:hidden lg:flex-[35%]">
       <figure class="h-full w-full overflow-hidden">
@@ -118,6 +136,7 @@
         />
       </figure>
     </div>
+
     <section
       bind:this={contentEl}
       class="flex-[100%] overflow-scroll lg:flex-[65%]"
@@ -126,8 +145,9 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="space-y-[2.5rem] px-[4rem] py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
+          class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
+          <NavigationMobile />
           <div class="space-y-[32px]">
             <H8 data-load-animate="y">Our exhibition</H8>
             <header class="space-y-[10px]">

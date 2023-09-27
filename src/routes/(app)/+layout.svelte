@@ -26,6 +26,6 @@
 </svelte:head>
 
 <!-- <Navbar logo={logoDark} /> -->
-<NavItems {nav} />
+<!-- <NavItems {nav} /> -->
 <slot />
 <!-- <Footer {footer} {contact} logo={logoLight} /> -->
