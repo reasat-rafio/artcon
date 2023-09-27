@@ -1,6 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
-  import Contact from '@/components/pages/landing/Contact.svelte';
+  import ContactDesktop from '@/components/pages/landing/ContactDesktop.svelte';
   import Hero from '@/components/pages/landing/Hero.svelte';
   import DesktopCollections from '@/components/pages/landing/collections/desktop/Collections.svelte';
   import MobileCollections from '@/components/pages/landing/collections/mobile/Collections.svelte';
@@ -16,7 +16,7 @@
   let rootEl: HTMLDivElement;
   let windowWidth = 0;
 
-  // $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
+  $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -28,14 +28,14 @@
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
       <Hero class="fixed inset-0" props={{ ...s, scrollAmount: 0 }} />
-      <!-- {#if showContact}
-        <Contact {contact} />
-      {/if} -->
+      {#if showContact && windowWidth < 1024}
+        <ContactDesktop {contact} />
+      {/if}
     {:else if s._type === 'landing.collections'}
       {#if windowWidth < 1024}
         <MobileCollections props={s} />
       {:else}
-        <DesktopCollections props={{ ...s, rootEl }} />
+        <DesktopCollections bind:rootEl props={s} />
       {/if}
     {/if}
   {/each}

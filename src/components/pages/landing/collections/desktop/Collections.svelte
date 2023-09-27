@@ -9,10 +9,9 @@
   import { gsap } from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
 
-  export let props: CollectionsProps & {
-    rootEl: HTMLElement;
-  };
-  $: ({ collections, rootEl } = props);
+  export let props: CollectionsProps;
+  export let rootEl: HTMLElement;
+  $: ({ collections } = props);
 
   let windowWidth = 0;
   const DEFAULT_COLUMN_W_PERCENTAGE = 35;

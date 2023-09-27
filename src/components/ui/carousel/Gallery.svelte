@@ -14,7 +14,7 @@
   let options: Partial<EmblaOptionsType> = {};
   let containerEl: HTMLElement;
 
-  $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 3;
+  $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
   $: chunks = chunkArray(items, slidesNumber);
 
   let emblaApi: EmblaCarouselType;
@@ -30,7 +30,7 @@
 
     if (containerEl) {
       containerEl.style.height =
-        innerWidth < 768 ? `${grandChildHeight * 3}px` : 'auto';
+        innerWidth < 768 ? `${grandChildHeight * 2}px` : 'auto';
     }
 
     return {
@@ -41,7 +41,7 @@
 
         if (containerEl) {
           containerEl.style.height =
-            innerWidth < 768 ? `${grandChildHeight * 3}px` : 'auto';
+            innerWidth < 768 ? `${grandChildHeight * 2}px` : 'auto';
         }
       },
     };

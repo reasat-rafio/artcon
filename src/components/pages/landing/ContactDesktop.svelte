@@ -9,7 +9,7 @@
 </script>
 
 <section
-  class="fixed right-0 top-0 h-screen w-[50vw] bg-[#0E0E0F] text-[#F5EEE6] text-opacity-70"
+  class="fixed right-0 top-0 hidden h-screen w-[50vw] bg-[#0E0E0F] text-[#F5EEE6] text-opacity-70 lg:block"
 >
   <div class="relative z-30 flex h-full flex-col px-[27px] py-[85px]">
     <div class="flex flex-1 flex-col justify-center">
