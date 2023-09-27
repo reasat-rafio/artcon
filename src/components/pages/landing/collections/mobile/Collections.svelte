@@ -7,9 +7,11 @@
   import Vr from '@/components/pages/landing/collections/VR.svelte';
   import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import uiStore from '@/store/ui';
+  import type { ContactProps } from '@/lib/types/common.types';
+  import Contact from '@/components/pages/landing/Contact.svelte';
 
-  export let props: CollectionsProps;
-  $: ({ collections } = props);
+  export let props: CollectionsProps & { contact: ContactProps };
+  $: ({ collections, contact } = props);
 
   let animating = false;
   let currentIndex = 0;
@@ -37,7 +39,7 @@
           if (!animating) {
             currentIndex = Math.min(
               Math.max(0, currentIndex - 1),
-              collections.length,
+              collections.length + 1,
             );
             gsap.to(window, {
               duration: 0.4,
@@ -56,7 +58,7 @@
           if (!animating) {
             currentIndex = Math.min(
               Math.max(0, currentIndex + 1),
-              collections.length,
+              collections.length + 1,
             );
             gsap.to(window, {
               duration: 0.7,
@@ -87,5 +89,6 @@
         <Vr props={{ ...collection, index }} />
       {/if}
     {/each}
+    <Contact {contact} />
   </div>
 </section>

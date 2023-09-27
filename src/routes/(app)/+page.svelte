@@ -1,6 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
-  import ContactDesktop from '@/components/pages/landing/ContactDesktop.svelte';
+  import Contact from '@/components/pages/landing/Contact.svelte';
   import Hero from '@/components/pages/landing/Hero.svelte';
   import DesktopCollections from '@/components/pages/landing/collections/desktop/Collections.svelte';
   import MobileCollections from '@/components/pages/landing/collections/mobile/Collections.svelte';
@@ -28,12 +28,12 @@
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
       <Hero class="fixed inset-0" props={{ ...s, scrollAmount: 0 }} />
-      {#if showContact && windowWidth < 1024}
-        <ContactDesktop {contact} />
+      {#if showContact && windowWidth >= 1024}
+        <Contact {contact} />
       {/if}
     {:else if s._type === 'landing.collections'}
       {#if windowWidth < 1024}
-        <MobileCollections props={s} />
+        <MobileCollections props={{ ...s, contact }} />
       {:else}
         <DesktopCollections bind:rootEl props={s} />
       {/if}
