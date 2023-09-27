@@ -10,10 +10,9 @@
   import { onMount } from 'svelte';
   import { expoOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
+  import { gsap } from 'gsap';
+  import { Observer } from 'gsap/dist/Observer';
 
-  type MouseEvnt = WheelEvent & {
-    currentTarget: EventTarget & Window;
-  };
   export let data: PageProps<HomePageProps>;
   let {
     page,
@@ -22,7 +21,6 @@
 
   let rootEl: HTMLDivElement;
   let windowWidth = 0;
-  const SCROLL_SPEED = 700;
   const DEFAULT_COLUMN_W_PERCENTAGE = 35;
   const tweenedScrollAmount = tweened(0, { duration: 2500, easing: expoOut });
   $: if (rootEl) rootEl.scrollLeft = $tweenedScrollAmount;
@@ -40,6 +38,19 @@
   }
 
   onMount(() => {
+    gsap.registerPlugin(Observer);
+
+    Observer.create({
+      target: window,
+      type: 'wheel,scrool',
+
+      onChange: (self) => {
+        tweenedScrollAmount.set(
+          rootEl?.scrollLeft + self.deltaY + self.velocityY * 0.1,
+        );
+      },
+    });
+
     if ($uiStore.seclectedPreviewIndex != null) {
       const offSetWidth = (windowWidth / 100) * DEFAULT_COLUMN_W_PERCENTAGE;
       tweenedScrollAmount.set(
@@ -49,14 +60,9 @@
       uiStore.setActivePreview(null);
     }
   });
-
-  const scrollAction = debounce((event: MouseEvnt) => {
-    const scrollAmount = event.deltaY > 0 ? SCROLL_SPEED : -SCROLL_SPEED;
-    tweenedScrollAmount.set(rootEl.scrollLeft + scrollAmount);
-  }, 30);
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} on:wheel={scrollAction} />
+<svelte:window bind:innerWidth={windowWidth} />
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div
   bind:this={rootEl}
