@@ -17,6 +17,11 @@
   let windowWidth = 0;
   const DEFAULT_COLUMN_W_PERCENTAGE = 35;
   const tweenedScrollAmount = tweened(0, { duration: 1500, easing: expoOut });
+  const containerWidth = tweened($uiStore.containerWidth, {
+    duration: 200,
+    easing: expoOut,
+  });
+
   $: if (rootEl) {
     rootEl.scrollLeft = $tweenedScrollAmount;
   }
@@ -32,12 +37,15 @@
     }
   }
 
-  $: containerWidth =
-    collections?.length * DEFAULT_COLUMN_W_PERCENTAGE +
-    50 +
-    ($uiStore.seclectedPreviewIndex !== null
-      ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
-      : 0);
+  $: {
+    uiStore.setContaienrWidth(
+      collections?.length * DEFAULT_COLUMN_W_PERCENTAGE +
+        50 +
+        ($uiStore.seclectedPreviewIndex !== null
+          ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
+          : 0),
+    );
+  }
 
   onMount(() => {
     if ($uiStore.seclectedPreviewIndex != null) {
@@ -69,7 +77,7 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <section class="pointer-events-none hidden translate-x-[100vw] lg:block">
-  <div style="width: {containerWidth}vw;" class="flex">
+  <div style="width: {$containerWidth}vw;" class="flex">
     {#each collections as collection, index}
       {#if collection._type === 'vr'}
         <Vr props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }} />
