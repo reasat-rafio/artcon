@@ -165,18 +165,13 @@
         >
           <NavigationMobile cta={{ href: '/', title: 'Exhibition' }} />
           <div class="space-y-[1.5rem] lg:space-y-[2rem]">
-            <h2
-              class="text-[1.2rem] font-medium tracking-[0.025rem] md:text-[1.25rem]"
-              data-load-animate="y"
-            >
-              Our exhibition
-            </h2>
+            <h2 class="preview-h-2" data-load-animate="y">Our exhibition</h2>
             <header class="space-y-[0.625rem]">
               <div data-load-animate="y">
-                <h1 class="inline text-[2rem] font-medium tracking-[0.04rem]">
+                <h1 class="preview-h-1 inline">
                   {name}
                 </h1>
-                <h3 class="inline text-[1.25rem] tracking-[0.025rem]">
+                <h3 class="preview-h-3 inline">
                   /{#if typeof exhibitionType === 'string'}
                     {exhibitionType}
                   {:else}
@@ -184,10 +179,7 @@
                   {/if}
                 </h3>
               </div>
-              <h4
-                class="text-[1rem] font-medium tracking-[0.02rem]"
-                data-load-animate="y"
-              >
+              <h4 class="preview-h-4" data-load-animate="y">
                 {#if isSoloExhibition}
                   Solo Exhibition
                 {:else}
@@ -212,9 +204,9 @@
             <Asset {asset} />
           </div>
 
-          <BodyText data-load-animate="y" weight="light">
+          <div data-load-animate="y" class="body-1 font-light">
             <PortableText value={description} />
-          </BodyText>
+          </div>
         </div>
       {/key}
     </section>

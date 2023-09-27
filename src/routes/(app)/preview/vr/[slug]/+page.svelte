@@ -1,10 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
   import Vr from '@/components/VR.svelte';
-  import BodyText from '@/components/ui/BodyText.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import H6 from '@/components/ui/H6.svelte';
-  import H8 from '@/components/ui/H8.svelte';
   import { calculateStatusBetweenDates, delay } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -176,13 +172,15 @@
         >
           <NavigationMobile cta={{ href: '/', title: 'Exhibition' }} />
           <div class="space-y-[1.5rem] lg:space-y-[2rem]">
-            <H8 data-load-animate="y">Our virtual reality</H8>
+            <h2 class="preview-h-2" data-load-animate="y">
+              Our virtual reality
+            </h2>
             <header class="space-y-[10px]">
               <div data-load-animate="y">
-                <H4 class="inline">{name}</H4>
-                <H6 class="inline">/ Showrov Chowdury</H6>
+                <h1 class="preview-h-1 inline">{name}</h1>
+                <h3 class="preview-h-3 inline">/ Showrov Chowdury</h3>
               </div>
-              <H8 data-load-animate="y">Exhibition</H8>
+              <h4 class="preview-h-4" data-load-animate="y">Exhibition</h4>
             </header>
             <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
               <div class="text-title-2 font-light">
@@ -199,9 +197,9 @@
               data-load-animate="y"
               vr={{ previewImage: placeholderImage, url }}
             />
-            <BodyText data-load-animate="y" weight="light">
+            <div data-load-animate="y" class="body-1 font-light">
               <PortableText value={description} />
-            </BodyText>
+            </div>
           </div>
         </div>
       {/key}
