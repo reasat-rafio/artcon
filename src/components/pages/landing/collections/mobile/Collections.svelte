@@ -13,15 +13,17 @@
 
   let animating = false;
   let currentIndex = 0;
+  let innerWidth = 0;
 
   onMount(() => {
     gsap.registerPlugin(Observer, ScrollToPlugin);
     let ctx = gsap.context(() => {
-      if ($uiStore.seclectedPreviewIndex !== null) {
+      if ($uiStore.seclectedPreviewIndex !== null && innerWidth < 1024) {
         gsap.to(window, {
-          duration: 0,
+          duration: 0.001,
           scrollTo: window.innerHeight * ($uiStore.seclectedPreviewIndex + 1),
         });
+        currentIndex = $uiStore.seclectedPreviewIndex + 1;
         uiStore.setActivePreview(null);
       }
 
@@ -75,7 +77,8 @@
   });
 </script>
 
-<section class="z-40 translate-y-[100vh]">
+<svelte:window bind:innerWidth />
+<section class="z-40 block translate-y-[100vh] lg:hidden">
   <div class="flex flex-col">
     {#each collections as collection, index}
       {#if collection._type === 'exhibition'}

@@ -14,8 +14,7 @@
   export let windowWidth = 0;
 
   // TODO caculate this on top component for better performance
-  $: width =
-    windowWidth >= 1024 ? `${100 - DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
+  $: width = windowWidth >= 1024 ? `${DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
 
   const onClickAction = async () => {
     uiStore.setActivePreview(index);
@@ -49,6 +48,4 @@
     style="width: {100 - DEFAULT_COLUMN_W_PERCENTAGE}vw;"
     class="bg-white"
   />
-{:else if index === $uiStore.seclectedPreviewIndex && innerWidth < 1024}
-  <div />
 {/if}

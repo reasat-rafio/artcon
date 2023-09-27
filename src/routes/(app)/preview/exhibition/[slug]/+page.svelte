@@ -50,33 +50,35 @@
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
     const articleNodeHeight = articleEl.clientHeight;
 
-    const tl = gsap.timeline({
-      defaults: { ease: 'expo.out' },
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: 'expo.out' },
+      });
+      if (innerWidth >= 1024) {
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
+          animationNodes,
+          {
+            y: 100,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+          },
+          0.3,
+        );
+      } else {
+        tl.from(articleEl, { y: articleNodeHeight, duration: 1 }).from(
+          animationNodes,
+          {
+            y: 100,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+          },
+          0.3,
+        );
+      }
     });
-    if (innerWidth >= 1024) {
-      tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
-        animationNodes,
-        {
-          y: 100,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 1,
-        },
-        0.3,
-      );
-    } else {
-      tl.from(articleEl, { y: articleNodeHeight, duration: 1 }).from(
-        animationNodes,
-        {
-          y: 100,
-          opacity: 0,
-          stagger: 0.1,
-          duration: 1,
-        },
-        0.3,
-      );
-    }
-    // }
+    return () => ctx.revert();
   });
 
   beforeNavigate(async (navigation) => {
@@ -88,10 +90,19 @@
         },
       });
 
-      tl.to(contentEl, { opacity: 0 }).to('#previewImage', {
-        scale: 1,
-        duration: 0.4,
-      });
+      if (innerWidth >= 1024) {
+        tl.to(contentEl, { opacity: 0 }).to('#previewImage', {
+          scale: 1,
+          duration: 0.4,
+        });
+      } else {
+        const articleNodeHeight = articleEl?.clientHeight;
+        tl.to(contentEl, { opacity: 0 }).to(articleEl, {
+          y: articleNodeHeight,
+          duration: 0.4,
+        });
+      }
+
       navigation.cancel();
 
       onOutroEnd = async () => {
