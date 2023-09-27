@@ -6,7 +6,7 @@
   export let image: SanityAsset;
 </script>
 
-<figure class="{$$props.class ?? ''} h-[226px]">
+<figure class="{$$props.class ?? ''} h-[11.3125rem] lg:h-[14.125rem]">
   <SanityImage
     imageUrlBuilder={imageBuilder}
     class="h-full w-full rounded-[12px] object-cover"
