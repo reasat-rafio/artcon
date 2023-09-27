@@ -24,11 +24,11 @@
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
+<!-- style="width: {width};" -->
 <a
   data-sveltekit-preload-data
   {href}
-  style="width: {width};"
-  class="pointer-events-auto relative h-screen"
+  class="pointer-events-auto relative h-screen w-full lg:w-[35vw]"
   on:click|preventDefault={onClickAction}
 >
   <SanityImage

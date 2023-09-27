@@ -97,10 +97,14 @@
         });
       } else {
         const articleNodeHeight = articleEl?.clientHeight;
-        tl.to(contentEl, { opacity: 0 }).to(articleEl, {
-          y: articleNodeHeight,
-          duration: 0.4,
-        });
+        tl.to(contentEl, { opacity: 0 }).to(
+          articleEl,
+          {
+            y: articleNodeHeight,
+            duration: 0.4,
+          },
+          '-=0.4',
+        );
       }
 
       navigation.cancel();
