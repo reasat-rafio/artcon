@@ -16,7 +16,7 @@
   let rootEl: HTMLDivElement;
   let windowWidth = 0;
 
-  $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
+  // $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />

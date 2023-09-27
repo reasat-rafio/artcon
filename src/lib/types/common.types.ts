@@ -86,7 +86,7 @@ export interface SeoProps {
 }
 
 export interface Cta {
-  _type: 'cta';
+  _type?: 'cta';
   title: string;
   href: string;
 }

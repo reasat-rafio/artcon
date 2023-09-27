@@ -1,6 +1,9 @@
 <script lang="ts">
   import X from '@/components/icons/X.svelte';
   import Cta from '@/components/ui/Cta.svelte';
+
+  import type { Cta as CTAProps } from '@/lib/types/common.types';
+  export let cta: CTAProps;
 </script>
 
 <nav
@@ -10,5 +13,5 @@
     <X class="h-[1.0215rem] w-[1.04394rem]" />
   </a>
 
-  <Cta variant="fill" href="" color="red-gray">EXHIBITION</Cta>
+  <Cta variant="fill" href={cta.href} color="red-gray">{cta.title}</Cta>
 </nav>

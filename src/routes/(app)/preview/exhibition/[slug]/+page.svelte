@@ -115,9 +115,13 @@
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
-
 <svelte:window bind:innerWidth />
-<NavigationDesktop />
+<NavigationDesktop
+  ctas={[
+    { href: '/', title: 'Back' },
+    { href: '/', title: 'Exhibition' },
+  ]}
+/>
 <section>
   <div class="fixed inset-0 -z-10 block lg:hidden">
     <figure class="h-full w-full overflow-hidden">
@@ -159,15 +163,15 @@
           out:fade={{ duration: 500 }}
           class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
-          <NavigationMobile />
-          <div class="space-y-[32px]">
+          <NavigationMobile cta={{ href: '/', title: 'Exhibition' }} />
+          <div class="space-y-[1.5rem] lg:space-y-[2rem]">
             <h2
               class="text-[1.2rem] font-medium tracking-[0.025rem] md:text-[1.25rem]"
               data-load-animate="y"
             >
               Our exhibition
             </h2>
-            <header class="space-y-[10px]">
+            <header class="space-y-[0.625rem]">
               <div data-load-animate="y">
                 <h1 class="inline text-[2rem] font-medium tracking-[0.04rem]">
                   {name}

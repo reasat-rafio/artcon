@@ -22,9 +22,7 @@
     easing: expoOut,
   });
 
-  $: if (rootEl) {
-    rootEl.scrollLeft = $tweenedScrollAmount;
-  }
+  $: if (rootEl) rootEl.scrollLeft = $tweenedScrollAmount;
 
   $: {
     // SCROLL TO THE ACTIVE SLIDE
@@ -45,6 +43,7 @@
           ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
           : 0),
     );
+    containerWidth.set($uiStore.containerWidth);
   }
 
   onMount(() => {
@@ -61,7 +60,7 @@
     let ctx = gsap.context(() => {
       Observer.create({
         target: window,
-        type: 'wheel,scrool',
+        type: 'wheel,scrool,touch',
 
         onChange: (self) => {
           tweenedScrollAmount.set(

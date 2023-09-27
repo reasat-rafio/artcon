@@ -1,10 +1,16 @@
 <script lang="ts">
+  import type { Cta as CTAProps } from '@/lib/types/common.types';
+
   import Cta from '@/components/ui/Cta.svelte';
+  export let ctas: [CTAProps, CTAProps];
 </script>
 
 <nav class="fixed top-0 z-30 hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
-    <Cta color="white" href="/" class="flex items-center space-x-[0.5rem] "
+    <Cta
+      color="white"
+      href={ctas[0].href}
+      class="flex items-center space-x-[0.5rem] "
       ><svg
         width="6"
         height="10"
@@ -17,9 +23,11 @@
           fill="currentColor"
         />
       </svg>
-      <span> Back </span></Cta
+      <span> {ctas[0].title} </span></Cta
     >
 
-    <Cta variant="fill" href="/" color="red-gray">EXHIBITION</Cta>
+    <Cta variant="fill" href={ctas[1].href} color="red-gray"
+      >{ctas[1].title}</Cta
+    >
   </div>
 </nav>
