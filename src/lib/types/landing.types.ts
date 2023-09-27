@@ -35,5 +35,5 @@ export interface ExhibitionProps {
 
 export type WithExtra<T> = T & {
   index: number;
-  DEFAULT_COLUMN_W_PERCENTAGE: number;
+  DEFAULT_COLUMN_W_PERCENTAGE?: number;
 };

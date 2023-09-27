@@ -5,15 +5,17 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import uiStore from '@/store/ui';
   import type { SanityImageAssetDocument } from '@sanity/client';
-  import type { Slug } from 'sanity';
   import { slide } from 'svelte/transition';
 
   export let index: number;
   export let href: string;
   export let image: SanityImageAssetDocument;
-  export let DEFAULT_COLUMN_W_PERCENTAGE: number;
+  export let DEFAULT_COLUMN_W_PERCENTAGE: number = 35;
+  export let windowWidth = 0;
 
-  $: width = DEFAULT_COLUMN_W_PERCENTAGE;
+  // TODO caculate this on top component for better performance
+  $: width =
+    windowWidth >= 1024 ? `${100 - DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
 
   const onClickAction = async () => {
     uiStore.setActivePreview(index);
@@ -22,28 +24,31 @@
   };
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} />
 <a
   data-sveltekit-preload-data
   {href}
-  style="width: {width}vw;"
+  style="width: {width};"
   class="pointer-events-auto relative h-screen"
   on:click|preventDefault={onClickAction}
 >
   <SanityImage
     class="h-full w-full object-cover"
     src={image}
-    sizes="30vw"
+    sizes="(min-width:1024px) 30vw, 100vw"
     imageUrlBuilder={imageBuilder}
     alt={image?.alt ?? 'Collection Preview'}
   />
   <slot />
 </a>
 
-{#if index === $uiStore.seclectedPreviewIndex}
+{#if index === $uiStore.seclectedPreviewIndex && innerWidth >= 1024}
   <div
     in:slide={{ axis: 'x', duration: 500 }}
     out:slide={{ axis: 'x', duration: 600 }}
     style="width: {100 - DEFAULT_COLUMN_W_PERCENTAGE}vw;"
     class="bg-white"
   />
+{:else if index === $uiStore.seclectedPreviewIndex && innerWidth < 1024}
+  <div />
 {/if}
