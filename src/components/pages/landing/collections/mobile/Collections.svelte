@@ -42,7 +42,7 @@
               collections.length + 1,
             );
             gsap.to(window, {
-              duration: 0.4,
+              duration: 0.7,
               scrollTo: window.innerHeight * currentIndex,
               ease: 'expoOut',
               onStart: () => {
