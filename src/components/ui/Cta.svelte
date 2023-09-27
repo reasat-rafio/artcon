@@ -14,7 +14,7 @@
       ? color === 'gray'
         ? 'border-sonic-silver/60 text-sonic-silver'
         : color === 'white'
-        ? 'border-white text-white'
+        ? 'border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal'
         : null
       : variant === 'fill'
       ? color === 'red-gray'

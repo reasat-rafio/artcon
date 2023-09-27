@@ -9,9 +9,6 @@
   import { gsap } from 'gsap';
   import { beforeNavigate, goto } from '$app/navigation';
   import { fade } from 'svelte/transition';
-  import H8 from '@/components/ui/H8.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import H6 from '@/components/ui/H6.svelte';
   import BodyText from '@/components/ui/BodyText.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import Asset from '@/components/hero/Asset.svelte';
@@ -164,25 +161,35 @@
         >
           <NavigationMobile />
           <div class="space-y-[32px]">
-            <H8 data-load-animate="y">Our exhibition</H8>
+            <h2
+              class="text-[1.2rem] font-medium tracking-[0.025rem] md:text-[1.25rem]"
+              data-load-animate="y"
+            >
+              Our exhibition
+            </h2>
             <header class="space-y-[10px]">
               <div data-load-animate="y">
-                <H4 class="inline">{name}</H4>
-                <H6 class="inline"
-                  >/{#if typeof exhibitionType === 'string'}
+                <h1 class="inline text-[2rem] font-medium tracking-[0.04rem]">
+                  {name}
+                </h1>
+                <h3 class="inline text-[1.25rem] tracking-[0.025rem]">
+                  /{#if typeof exhibitionType === 'string'}
                     {exhibitionType}
                   {:else}
                     {exhibitionType.en}
-                  {/if}</H6
-                >
+                  {/if}
+                </h3>
               </div>
-              <H8 data-load-animate="y"
-                >{#if isSoloExhibition}
+              <h4
+                class="text-[1rem] font-medium tracking-[0.02rem]"
+                data-load-animate="y"
+              >
+                {#if isSoloExhibition}
                   Solo Exhibition
                 {:else}
                   Group Exhibition
-                {/if}</H8
-              >
+                {/if}
+              </h4>
             </header>
             <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
               <div class="text-title-2 font-light">
