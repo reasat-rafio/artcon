@@ -15,6 +15,7 @@
   import BodyText from '@/components/ui/BodyText.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import Asset from '@/components/hero/Asset.svelte';
+  import Navigation from '@/components/pages/preview/Navigation.svelte';
 
   export let data: PageProps<ExhibitionPreviewProps>;
   $: ({
@@ -35,6 +36,7 @@
   let onOutroEnd: () => void;
   let transitioningOut = false;
   let contentEl: HTMLElement;
+  let innerWidth = 0;
 
   $: isSoloExhibition = typeof exhibitionType !== 'string';
   $: ({ date, status } = calculateStatusBetweenDates({
@@ -43,21 +45,22 @@
   }));
 
   onMount(() => {
-    const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
-    const tl = gsap.timeline({
-      defaults: { ease: 'expo.out' },
-    });
-
-    tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
-      animationNodes,
-      {
-        y: 100,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-      },
-      0.3,
-    );
+    if (innerWidth >= 1024) {
+      const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
+      const tl = gsap.timeline({
+        defaults: { ease: 'expo.out' },
+      });
+      tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
+        animationNodes,
+        {
+          y: 100,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 1,
+        },
+        0.3,
+      );
+    }
   });
 
   beforeNavigate(async (navigation) => {
@@ -83,10 +86,27 @@
   });
 </script>
 
+<svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={logos?.ogImage} />
+<Navigation />
 <section>
-  <article class="flex h-screen w-full gap-[15px]">
-    <div class="flex-[35%]">
+  <div class="fixed inset-0 -z-10 block lg:hidden">
+    <figure class="h-full w-full overflow-hidden">
+      <SanityImage
+        id="previewImage"
+        class="h-full w-full object-cover"
+        sizes="50vw"
+        imageUrlBuilder={imageBuilder}
+        src={previewDisplayImage}
+        alt={previewDisplayImage.alt}
+      />
+    </figure>
+  </div>
+
+  <article
+    class="flex h-screen w-full gap-[15px] bg-white max-lg:mt-[1.56rem] max-lg:rounded-t-[0.94rem]"
+  >
+    <div class="max-lg:hidden lg:flex-[35%]">
       <figure class="h-full w-full overflow-hidden">
         <SanityImage
           id="previewImage"
@@ -98,12 +118,15 @@
         />
       </figure>
     </div>
-    <section bind:this={contentEl} class="flex-[65%] overflow-scroll">
+    <section
+      bind:this={contentEl}
+      class="flex-[100%] overflow-scroll lg:flex-[65%]"
+    >
       {#key transitioningOut}
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="space-y-[40px] px-[135px] py-[97px]"
+          class="space-y-[2.5rem] px-[4rem] py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
           <div class="space-y-[32px]">
             <H8 data-load-animate="y">Our exhibition</H8>

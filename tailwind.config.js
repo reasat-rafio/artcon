@@ -91,7 +91,7 @@ export default {
           { lineHeight: '14.4px', letterSpacing: '0.24px' },
         ],
 
-        button: ['13px', { lineHeight: '15.6px', letterSpacing: '0.5%' }],
+        button: ['13px', {}],
       },
     },
   },
