@@ -47,15 +47,17 @@
         {#each exhibitions as { slug, type, name, asset }}
           <a
             href="/exhibition/{slug.current}"
-            class="flex-[0_0_50%] overflow-hidden"
+            class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
           >
             <div
-              class="relative mb-[64px] aspect-square overflow-hidden rounded-lg odd:mr-[30px] even:ml-[30px]"
+              class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4.03rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
             >
               <Asset {asset} />
             </div>
-            <div class="border-t border-[#D2D2D3] pt-[36px]">
-              <div class="space-y-[10px] odd:mr-[30px] even:ml-[30px]">
+            <div class="border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]">
+              <div
+                class="space-y-[10px] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
+              >
                 <header class="flex flex-wrap items-center">
                   <h3 class="text-head-6">{name}</h3>
                   <h4 class="text-head-8">
