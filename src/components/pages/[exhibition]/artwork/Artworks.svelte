@@ -39,8 +39,8 @@
     );
 </script>
 
-<div class={twMerge('grid grid-cols-12', $$props.class)}>
-  <div class={twMerge('col-span-12 lg:col-span-11')}>
+<div class={twMerge('grid  grid-cols-12', $$props.class)}>
+  <div class={'col-span-12 lg:col-span-11'}>
     <div
       class="relative overflow-hidden"
       use:emblaCarouselSvelte={{ plugins, options }}

@@ -22,7 +22,7 @@
 <section class="py-section">
   <div class="container">
     <Quote class="mb-section" {quote} />
-    <Artworks class="mb-section hidden lg:block" {artworks} />
+    <Artworks class="mb-section hidden lg:grid" {artworks} />
 
     <DescriptionBlock class="max-lg:mb-section">
       <svelte:fragment slot="intro" let:C>
@@ -39,6 +39,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <Artworks class="block lg:hidden" {artworks} />
+    <Artworks class="grid lg:hidden" {artworks} />
   </div>
 </section>
