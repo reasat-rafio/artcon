@@ -12,9 +12,9 @@
 </script>
 
 <footer>
-  <div class="container border-t border-[#BBBBBE] py-[40px]">
+  <div class="container border-t border-[#BBBBBE] pt-[2.5rem]">
     <section
-      class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[2.56rem] lg:pb-[4rem]"
+      class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[1.75rem] lg:pb-[2rem]"
     >
       <div
         class="col-span-12 grid grid-cols-1 max-sm:pb-[1.56rem] sm:col-span-3 lg:col-span-2 xl:grid-cols-2"
@@ -50,18 +50,20 @@
       </div>
 
       <Address class="col-span-12 grid grid-cols-3 lg:col-span-4" {contact} />
+
+      <div
+        class="col-span-12 flex flex-wrap space-x-[40px] pt-[2.62rem] lg:hidden"
+      >
+        {#each footer.menu as { title, externalUrl, pageUrl }}
+          <a class="text-title-2 text-[#A5A5A8]" href={externalUrl || pageUrl}
+            >{title}</a
+          >
+        {/each}
+      </div>
     </section>
 
-    <div class="flex flex-wrap space-x-[40px] lg:hidden">
-      {#each footer.menu as { title, externalUrl, pageUrl }}
-        <a class="text-title-2 text-[#A5A5A8]" href={externalUrl || pageUrl}
-          >{title}</a
-        >
-      {/each}
-    </div>
-
     <section
-      class="flex justify-between text-[14px] text-[#A5A5A8] max-lg:flex-col max-lg:space-y-[0.63rem] max-lg:pt-[3.1rem]"
+      class="flex justify-between text-[14px] text-[#A5A5A8] max-lg:flex-col max-lg:space-y-[0.63rem] max-lg:py-[1.56rem] lg:my-[2.5rem]"
     >
       <p>© ARTCON 2023</p>
       <p>Developed by Edistys</p>
