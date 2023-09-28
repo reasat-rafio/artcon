@@ -1,7 +1,7 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Quote from '@/components/Quote.svelte';
-  import Carousel from '@/components/ui/carousel/Carousel.svelte';
+  // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
   import { PortableText } from '@portabletext/svelte';
@@ -25,7 +25,7 @@
           <Card
             el="a"
             href={link}
-            class="gallery-carousel-card-spacing space-y-[20px]"
+            class="space-y-[20px] pl-[20px]"
             let:Container
             let:Title
             let:Subtitle

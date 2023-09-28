@@ -15,9 +15,9 @@
 <section class="py-section">
   <div class="container">
     <div class="mb-section">
-      <Gallery items={images} let:chunk>
+      <Gallery axiesOnMobile="y" items={images} let:chunk>
         {#each chunk as image}
-          <Card class="gallery-carousel-card-spacing" let:Image>
+          <Card class="max-md:pt-[20px] md:pl-[20px]" let:Image>
             <Image {image} />
           </Card>
         {/each}
