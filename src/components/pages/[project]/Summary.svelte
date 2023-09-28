@@ -3,48 +3,43 @@
   import VR from '@/components/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { SummaryProps } from '@/lib/types/projectDetail.types';
+  import { PortableText } from '@portabletext/svelte';
 
-  interface SProps extends SummaryProps {
+  export let props: SummaryProps & {
     date: string;
-  }
+  };
 
-  export let props: SProps;
   $: ({ quote, vr, descriptionBlock, date } = props);
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
-    <DescriptionBlock class="mb-xl">
+    <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.HeaderContainer class="mb-10">
-            <C.Title>{descriptionBlock.name}</C.Title>
-            <C.Subtitle weight="light">{date}</C.Subtitle>
-          </C.HeaderContainer>
-          <div class="space-y-4">
-            {#each descriptionBlock.moreInformations as { key, value }}
-              <div>
-                <C.Subtitle
-                  weight="light"
-                  class="!leading-tight !text-sonic-silver">{key}</C.Subtitle
-                >
-                <C.Subtitle weight="light">{value}</C.Subtitle>
-              </div>
-            {/each}
-          </div>
-        </C.IntroContainer>
+        <div class="pb-[2rem]">
+          <C.Title>{descriptionBlock.name}</C.Title>
+          <C.Subtitle>{date}</C.Subtitle>
+        </div>
+        <div class="space-y-4">
+          {#each descriptionBlock.moreInformations as { key, value }}
+            <div>
+              <C.Subtitle class="!leading-tight !text-sonic-silver"
+                >{key}</C.Subtitle
+              >
+              <C.Subtitle>{value}</C.Subtitle>
+            </div>
+          {/each}
+        </div>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={descriptionBlock.description} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={descriptionBlock.description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VR {vr} />
+    <!-- <VR {vr} /> -->
   </div>
 </section>

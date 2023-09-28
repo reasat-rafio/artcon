@@ -35,13 +35,13 @@
     />
   {/if}
 {/each}
-<ShareWidget href="/project">Our Projects</ShareWidget>
+<!-- <ShareWidget href="/project">Our Projects</ShareWidget> -->
 {#each page.sections as s}
   {#if s._type === 'common.imageAsset'}
     <ImageAsset props={s} />
   {:else if s._type === 'project.summary'}
     <Summary props={{ ...s, date: status.date }} />
   {:else if s._type === 'project.gallery'}
-    <Gallery props={s} />
+    <!-- <Gallery props={s} /> -->
   {/if}
 {/each}
