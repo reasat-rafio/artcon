@@ -58,9 +58,9 @@
     </div>
   </div>
   <div
-    class="col-span-12 flex items-center justify-center max-lg:mt-[2rem] max-lg:space-x-[0.62rem] lg:col-span-1"
+    class="col-span-12 flex items-center justify-center max-lg:mt-[2rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]"
   >
-    <button class="lg:hidden" on:click={() => emblaApi.scrollPrev()}>
+    <button on:click={() => emblaApi.scrollPrev()}>
       <ChevronLeftRounded />
     </button>
     <button on:click={() => emblaApi.scrollNext()}>

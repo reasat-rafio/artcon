@@ -96,16 +96,25 @@
     </div>
   </div>
   <nav
-    class="col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1"
+    class={twMerge(
+      'col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]',
+      axiesOnMobile === 'y' && '',
+    )}
   >
     {#if axiesOnMobile === 'x'}
-      <button class="block lg:hidden" on:click={() => emblaApi.scrollPrev()}>
+      <button on:click={() => emblaApi.scrollPrev()}>
         <ChevronLeftRounded />
       </button>
       <button on:click={() => emblaApi.scrollNext()}>
         <ChevronRightRounded />
       </button>
     {:else}
+      <button
+        class="rotate-90 md:rotate-0"
+        on:click={() => emblaApi.scrollPrev()}
+      >
+        <ChevronLeftRounded />
+      </button>
       <button
         class="rotate-90 md:rotate-0"
         on:click={() => emblaApi.scrollNext()}
