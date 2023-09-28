@@ -14,15 +14,17 @@ export interface CollectionsProps {
   collections: CollectionProps[];
 }
 
-type CollectionProps = VrProps | ExhibitionProps;
+type CollectionProps = VrProps | PublicationProps | ExhibitionProps;
+export type VrProps = Collection<'vr'>;
+export type PublicationProps = Collection<'publication'>;
 
-export interface VrProps {
-  _type: 'vr';
+export type Collection<T> = {
+  _type: T;
   title: string;
   name: string;
   slug: Slug;
   previewImage: SanityImageAssetDocument;
-}
+};
 
 export interface ExhibitionProps {
   _type: 'exhibition';

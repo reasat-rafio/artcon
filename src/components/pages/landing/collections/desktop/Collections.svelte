@@ -8,6 +8,7 @@
   import { expoOut } from 'svelte/easing';
   import { gsap } from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
+  import Collection from '../Collection.svelte';
 
   export let props: CollectionsProps;
   export let rootEl: HTMLElement;
@@ -77,10 +78,12 @@
 <section class="pointer-events-none hidden translate-x-[100vw] lg:block">
   <div style="width: {$containerWidth}vw;" class="flex">
     {#each collections as collection, index}
-      {#if collection._type === 'vr'}
-        <Vr props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }} />
-      {:else if collection._type === 'exhibition'}
+      {#if collection._type === 'exhibition'}
         <Exhibition
+          props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }}
+        />
+      {:else}
+        <Collection
           props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }}
         />
       {/if}

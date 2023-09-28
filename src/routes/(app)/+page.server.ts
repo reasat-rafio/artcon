@@ -24,6 +24,13 @@ const query = groq`
                     slug,
                     ${asset('previewImage')},
                 },
+                _type == "publication" => {
+                    _type,
+                    name,
+                    slug,
+                    "title":"Our publication",
+                    ${asset('previewImage')},
+                },
                 _type == "exhibition" => {
                     _type,
                     "title":"Our exhibition",

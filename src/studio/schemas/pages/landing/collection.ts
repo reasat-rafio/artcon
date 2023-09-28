@@ -18,6 +18,7 @@ const collection = {
           to: [
             { type: 'vr' },
             { type: 'exhibition' },
+            { type: 'publication' },
             // { type: 'artist' },
             // { type: 'collection' },
             // { type: 'event' },

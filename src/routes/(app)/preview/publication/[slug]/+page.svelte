@@ -12,7 +12,6 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import NavigationMobile from '@/components/pages/preview/NavigationMobile.svelte';
   import Cta from '@/components/ui/Cta.svelte';
-  import publication from '@/studio/schemas/pages/publication';
 
   export let data: PageProps<PublicationPreviewProps>;
 
@@ -166,7 +165,7 @@
         >
           <NavigationMobile cta={exproleLink} />
 
-          <div class="grid grid-cols-12 xl:gap-[1rem] 2xl:gap-[5rem]">
+          <div class="grid grid-cols-12 xl:gap-[1rem] 2xl:gap-[3rem]">
             <div class="col-span-12 xl:col-span-7">
               <div class="space-y-[1.5rem] lg:space-y-[2rem]">
                 <h2 class="preview-h-2" data-load-animate="y">

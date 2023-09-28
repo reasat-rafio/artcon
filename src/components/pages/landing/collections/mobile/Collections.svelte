@@ -4,11 +4,11 @@
   import gsap from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
   import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
-  import Vr from '@/components/pages/landing/collections/VR.svelte';
   import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import uiStore from '@/store/ui';
   import type { ContactProps } from '@/lib/types/common.types';
   import Contact from '@/components/pages/landing/Contact.svelte';
+  import Collection from '../Collection.svelte';
 
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
@@ -85,8 +85,13 @@
     {#each collections as collection, index}
       {#if collection._type === 'exhibition'}
         <Exhibition props={{ ...collection, index }} />
-      {:else if collection._type === 'vr'}
-        <Vr props={{ ...collection, index }} />
+      {:else}
+        <Collection
+          props={{
+            ...collection,
+            index,
+          }}
+        />
       {/if}
     {/each}
     <Contact {contact} />

@@ -9,8 +9,6 @@
 
   export let color: 'gray' | 'white' | 'black' | 'red-gray' = 'gray';
   export let variant: 'outline' | 'fill' = 'outline';
-
-  console.log({ variant, color });
 </script>
 
 <a
