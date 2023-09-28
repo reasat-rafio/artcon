@@ -28,7 +28,7 @@
 <a
   data-sveltekit-preload-data
   {href}
-  class="pointer-events-auto relative h-screen w-full lg:w-[35vw]"
+  class="group pointer-events-auto relative h-screen w-full lg:w-[35vw]"
   on:click|preventDefault={onClickAction}
 >
   <SanityImage
