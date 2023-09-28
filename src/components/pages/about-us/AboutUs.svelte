@@ -2,6 +2,7 @@
   import Quote from '@/components/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { AboutUsProps } from '@/lib/types/aboutUs.types';
+  import { PortableText } from '@portabletext/svelte';
 
   export let props: AboutUsProps;
   let {
@@ -10,22 +11,18 @@
   } = props;
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <Quote class="mb-xl" {quote} />
+    <Quote class="mb-section" {quote} />
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.Title>{title}</C.Title>
-        </C.IntroContainer>
+        <C.Title>{title}</C.Title>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={description} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

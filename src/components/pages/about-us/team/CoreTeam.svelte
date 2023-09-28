@@ -7,8 +7,10 @@
   export let coreTeam: TeamProps[];
 </script>
 
-<div class="mb-lg grid grid-cols-3 gap-[22px]">
-  {#each coreTeam as { image, name, role, type, url }}
+<div
+  class="col-span-1 mb-lg grid gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[3.56rem] xl:grid-cols-3"
+>
+  {#each coreTeam as { image, name, role, url }}
     {@const el = url ? 'a' : 'div'}
     <svelte:element this={el} href={url} class="group relative h-[550px]">
       <figure

@@ -18,10 +18,10 @@
   href={url}
   class={twMerge(
     'group flex items-center justify-center space-x-[20px]',
-    $$props.class ?? ''
+    $$props.class ?? '',
   )}
 >
-  <figure class="h-[112px] w-[112px]">
+  <figure class="h-[80px] w-[80px] md:h-[112px] md:w-[112px]">
     <SanityImage
       class="h-full w-full rounded-full object-cover"
       src={image}

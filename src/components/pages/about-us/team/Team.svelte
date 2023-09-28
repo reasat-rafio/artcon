@@ -1,5 +1,4 @@
 <script lang="ts">
-  import H4 from '@/components/ui/H4.svelte';
   import type { TeamProps } from '@/lib/types/aboutUs.types';
   import CoreTeam from './CoreTeam.svelte';
   import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
@@ -15,11 +14,10 @@
   }
 </script>
 
-<section class="py-xl">
+<section class="py-section">
   <div class="container">
-    <H4 class="mb-lg">Meet Our Team</H4>
-
-    <div class="pl-[5%]">
+    <h2 class="mb-lg text-[2rem] tracking-[0.04rem]">Meet Our Team</h2>
+    <div>
       {#if !!coreTeam?.length}
         <CoreTeam {coreTeam} />
       {/if}
