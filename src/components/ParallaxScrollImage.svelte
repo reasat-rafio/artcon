@@ -17,15 +17,16 @@
 
   let rootEl: HTMLDivElement;
   let firstImageEl: HTMLElement;
+  let firstImageMobileEl: HTMLElement;
   let innerWidth = 0;
 
-  const createAnimation = () => {
+  onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const sectionHeight = rootEl.getBoundingClientRect().height / 2;
     const sectionWidth = rootEl.getBoundingClientRect().width;
-    const tl = gsap.timeline({ paused: true });
 
-    if (innerWidth >= 640) {
-      tl.from(firstImageEl, {
+    let ctx = gsap.context(() => {
+      gsap.from(firstImageEl, {
         y: sectionHeight,
         x: 0,
         scrollTrigger: {
@@ -35,28 +36,20 @@
           trigger: firstImageEl,
         },
       });
-    } else {
-      tl.from(firstImageEl, {
+
+      gsap.from(firstImageMobileEl, {
         y: 0,
         x: -sectionWidth,
         scrollTrigger: {
           scrub: 2,
           start: 'top bottom',
           end: 'top top',
-          trigger: firstImageEl,
+          trigger: firstImageMobileEl,
         },
       });
-    }
+    });
 
-    tl.play();
-  };
-
-  onMount(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    createAnimation();
-
-    window.addEventListener('resize', createAnimation);
-    return () => window.removeEventListener('resize', createAnimation);
+    return () => ctx.revert();
   });
 </script>
 
@@ -72,8 +65,31 @@
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
+      class="hidden sm:block"
     >
-      <figure class="max-sm:ml-auto max-sm:w-[70%]" bind:this={firstImageEl}>
+      <figure bind:this={firstImageEl}>
+        <SanityImage
+          class="aspect-square w-full rounded-[20px] object-cover"
+          sizes="30vw"
+          src={firstImage.img}
+          alt={firstImage.img?.alt}
+          imageUrlBuilder={imageBuilder}
+        />
+        {#if !!firstImage.img?.caption || !!firstImage?.caption}
+          <figurecaption
+            class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
+          >
+            {firstImage?.caption ?? firstImage.img?.caption}
+          </figurecaption>
+        {/if}
+      </figure>
+    </svelte:element>
+    <svelte:element
+      this={!!firstImage?.link ? 'a' : 'div'}
+      href={firstImage?.link}
+      class="block sm:hidden"
+    >
+      <figure class="ml-auto w-[70%]" bind:this={firstImageMobileEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="30vw"

@@ -48,7 +48,7 @@
           <li>
             <a href={link} target="_blank">
               <SanityImage
-                class="h-[0.375rem] w-[0.375rem]"
+                class="h-[0.938rem] w-[0.938rem]"
                 src={lightIcon}
                 sizes="15px"
                 alt={lightIcon.alt}
