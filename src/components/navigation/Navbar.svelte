@@ -14,7 +14,7 @@
 </script>
 
 <nav class="absolute left-0 top-0 z-40 w-full">
-  <div class="mt-[40px] flex w-full items-center px-[40px]">
+  <div class="mt-[40px] flex w-full items-center px-[2.5rem]">
     <a class="" href="/">
       <SanityImage
         class="h-[50px] object-contain"

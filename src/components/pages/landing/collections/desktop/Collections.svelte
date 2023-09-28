@@ -64,7 +64,7 @@
 
         onChange: (self) => {
           tweenedScrollAmount.set(
-            rootEl?.scrollLeft + self.deltaY + self.velocityY * 0.05,
+            rootEl?.scrollLeft + self.deltaY + self.velocityY * 0.01,
           );
         },
       });

@@ -2,6 +2,7 @@
   import { twMerge } from 'tailwind-merge';
   import Asset from './Asset.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
+  import ChevronDown from '../icons/ChevronDown.svelte';
 
   export let props: CommonHeroProps;
   let { text, title, type, asset, cta } = props;
@@ -24,6 +25,18 @@
       {#if !!cta?.title}
         <a href={cta.href}>{cta.title}</a>
       {/if}
+    </div>
+    <div
+      class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
+    >
+      <div
+        class="flex items-center justify-center space-x-[1.06rem] text-[#E8E6E3] lg:pr-[2.5rem]"
+      >
+        <span class="text-[0.84375rem] font-medium tracking-[0.01688rem]"
+          >Discover our stories</span
+        >
+        <ChevronDown class="chevron-icon animate-bounce" />
+      </div>
     </div>
   </div>
 </section>
