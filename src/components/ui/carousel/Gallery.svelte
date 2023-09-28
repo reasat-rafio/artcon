@@ -6,17 +6,21 @@
   } from 'embla-carousel-svelte';
   import { twMerge } from 'tailwind-merge';
   import { chunkArray } from '@/lib/helper';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
 
   export let items: T[];
   export let axiesOnMobile: 'x' | 'y' = 'x';
 
   let plugins: EmblaPluginType[] = [];
   let innerWidth = 0;
+  let containerEl: HTMLElement;
+  let emblaApi: EmblaCarouselType;
   let options: Partial<EmblaOptionsType> = {
     axis: 'x',
   };
-  let containerEl: HTMLElement;
 
+  $: chunks = chunkArray(items, slidesNumber);
   $: slidesNumber =
     innerWidth >= 1280
       ? 6
@@ -25,9 +29,7 @@
       : axiesOnMobile === 'y'
       ? 2
       : 1;
-  $: chunks = chunkArray(items, slidesNumber);
 
-  let emblaApi: EmblaCarouselType;
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
@@ -66,29 +68,50 @@
 
 <svelte:window bind:innerWidth />
 
-<div
-  class={twMerge('overflow-hidden')}
-  use:sectionInit={innerWidth}
-  use:emblaCarouselSvelte={{ plugins, options }}
-  on:emblaInit={onInit}
->
+<section class="grid grid-cols-12">
   <div
-    bind:this={containerEl}
-    class={twMerge(
-      axiesOnMobile === 'y' && 'max-md:mt-[-20px] md:ml-[-20px] md:flex',
-      axiesOnMobile === 'x' && 'ml-[-20px] flex',
-    )}
+    class={twMerge('col-span-12 overflow-hidden lg:col-span-11')}
+    use:sectionInit={innerWidth}
+    use:emblaCarouselSvelte={{ plugins, options }}
+    on:emblaInit={onInit}
   >
-    {#each chunks as chunk}
-      <div
-        class={twMerge(
-          'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1  md:grid-cols-2 md:gap-y-[56px] xl:grid-cols-3 ',
-          axiesOnMobile === 'y' && '',
-          $$props.class,
-        )}
-      >
-        <slot {chunk} api={emblaApi} />
-      </div>
-    {/each}
+    <div
+      bind:this={containerEl}
+      class={twMerge(
+        axiesOnMobile === 'y' && 'max-md:mt-[-20px] md:ml-[-20px] md:flex',
+        axiesOnMobile === 'x' && 'ml-[-20px] flex',
+      )}
+    >
+      {#each chunks as chunk}
+        <div
+          class={twMerge(
+            'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1  md:grid-cols-2 md:gap-y-[56px] xl:grid-cols-3 ',
+            axiesOnMobile === 'y' && '',
+            $$props.class,
+          )}
+        >
+          <slot {chunk} api={emblaApi} />
+        </div>
+      {/each}
+    </div>
   </div>
-</div>
+  <div
+    class="col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1"
+  >
+    {#if axiesOnMobile === 'x'}
+      <button class="block lg:hidden" on:click={() => emblaApi.scrollPrev()}>
+        <ChevronLeftRounded />
+      </button>
+      <button on:click={() => emblaApi.scrollNext()}>
+        <ChevronRightRounded />
+      </button>
+    {:else}
+      <button
+        class="rotate-90 md:rotate-0"
+        on:click={() => emblaApi.scrollNext()}
+      >
+        <ChevronRightRounded />
+      </button>
+    {/if}
+  </div>
+</section>
