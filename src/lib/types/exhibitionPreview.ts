@@ -1,5 +1,5 @@
 import type { Asset, Cta, SeoProps } from './common.types';
-import type { PortableTextBlock } from 'sanity';
+import type { PortableTextBlock, Slug } from 'sanity';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ExhibitionPreviewProps {
@@ -10,6 +10,7 @@ export interface ExhibitionPreviewProps {
   status?: string;
   startDate: string;
   endDate?: string;
+  slug: Slug;
   cta: Cta;
   seo: SeoProps;
   gallery: { name: string };

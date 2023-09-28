@@ -12,6 +12,7 @@ const query = (params: Partial<Record<string, string>>) =>
     status,
     startDate,
     endDate,
+    slug,
     cta,
     seo,
     gallery->{name},

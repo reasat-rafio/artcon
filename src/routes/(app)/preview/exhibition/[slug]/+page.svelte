@@ -9,7 +9,6 @@
   import { gsap } from 'gsap';
   import { beforeNavigate, goto } from '$app/navigation';
   import { fade } from 'svelte/transition';
-  import BodyText from '@/components/ui/BodyText.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import Asset from '@/components/hero/Asset.svelte';
   import NavigationDesktop from '@/components/pages/preview/NavigationDesktop.svelte';
@@ -24,6 +23,7 @@
       startDate,
       endDate,
       seo,
+      slug,
       previewDisplayImage,
       asset,
       exhibitionType,
@@ -119,7 +119,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: '/', title: 'Exhibition' },
+    { href: `/exhibition/${slug.current}`, title: 'Exhibition' },
   ]}
 />
 <section>
@@ -163,7 +163,9 @@
           out:fade={{ duration: 500 }}
           class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
-          <NavigationMobile cta={{ href: '/', title: 'Exhibition' }} />
+          <NavigationMobile
+            cta={{ href: `/exhibition/${slug.current}`, title: 'Exhibition' }}
+          />
           <div class="space-y-[1.5rem] lg:space-y-[2rem]">
             <h2 class="preview-h-2" data-load-animate="y">Our exhibition</h2>
             <header class="space-y-[0.625rem]">
