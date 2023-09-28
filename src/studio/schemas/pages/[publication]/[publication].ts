@@ -61,6 +61,7 @@ const publication = {
           title: 'Price in USD',
           name: 'priceUSD',
           type: 'number',
+          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },

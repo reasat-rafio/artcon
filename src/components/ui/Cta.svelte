@@ -1,13 +1,21 @@
 <script lang="ts">
+  import type { HTMLAnchorAttributes } from 'svelte/elements';
   import { twMerge } from 'tailwind-merge';
 
-  export let href: string;
+  interface $$Props extends HTMLAnchorAttributes {
+    color: 'gray' | 'white' | 'black' | 'red-gray';
+    variant: 'outline' | 'fill';
+  }
+
   export let color: 'gray' | 'white' | 'black' | 'red-gray' = 'gray';
   export let variant: 'outline' | 'fill' = 'outline';
+
+  console.log({ variant, color });
 </script>
 
 <a
-  {href}
+  href={$$props.href}
+  {...$$restProps}
   class={twMerge(
     'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium tracking-[0.01688rem] lg:px-[2.2rem] lg:text-[0.84375rem]',
     variant === 'outline'
