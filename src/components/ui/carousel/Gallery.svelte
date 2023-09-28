@@ -98,7 +98,6 @@
   <nav
     class={twMerge(
       'col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]',
-      axiesOnMobile === 'y' && '',
     )}
   >
     {#if axiesOnMobile === 'x'}
