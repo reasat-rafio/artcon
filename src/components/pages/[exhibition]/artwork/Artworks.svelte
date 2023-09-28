@@ -8,6 +8,9 @@
   } from 'embla-carousel-svelte';
   import Image from './Image.svelte';
   import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import { twMerge } from 'tailwind-merge';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
 
   type Artworks = ExhinitionDetailPageProps['artworks'];
   export let artworks: Artworks;
@@ -36,20 +39,32 @@
     );
 </script>
 
-<div class="{$$props.class} w-[85%]">
-  <div
-    class="relative overflow-hidden"
-    use:emblaCarouselSvelte={{ plugins, options }}
-    on:emblaInit={onInit}
-  >
-    <div class="flex">
-      {#each modifedArtworks as artwork, index}
-        <Image
-          {artwork}
-          active={activeSide === index ||
-            (activeSide === modifedArtworks.length && index === 0)}
-        />
-      {/each}
+<div class={twMerge('grid grid-cols-12', $$props.class)}>
+  <div class={twMerge('col-span-12 lg:col-span-11')}>
+    <div
+      class="relative overflow-hidden"
+      use:emblaCarouselSvelte={{ plugins, options }}
+      on:emblaInit={onInit}
+    >
+      <div class="flex max-lg:ml-[-1.25rem]">
+        {#each modifedArtworks as artwork, index}
+          <Image
+            {artwork}
+            active={activeSide === index ||
+              (activeSide === modifedArtworks.length && index === 0)}
+          />
+        {/each}
+      </div>
     </div>
+  </div>
+  <div
+    class="col-span-12 flex items-center justify-center max-lg:mt-[2rem] max-lg:space-x-[0.62rem] lg:col-span-1"
+  >
+    <button class="lg:hidden" on:click={() => emblaApi.scrollPrev()}>
+      <ChevronLeftRounded />
+    </button>
+    <button on:click={() => emblaApi.scrollNext()}>
+      <ChevronRightRounded />
+    </button>
   </div>
 </div>

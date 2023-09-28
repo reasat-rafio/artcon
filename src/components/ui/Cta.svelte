@@ -3,8 +3,8 @@
   import { twMerge } from 'tailwind-merge';
 
   interface $$Props extends HTMLAnchorAttributes {
-    color: 'gray' | 'white' | 'black' | 'red-gray';
-    variant: 'outline' | 'fill';
+    color?: 'gray' | 'white' | 'black' | 'red-gray';
+    variant?: 'outline' | 'fill';
   }
 
   export let color: 'gray' | 'white' | 'black' | 'red-gray' = 'gray';

@@ -95,7 +95,7 @@
       {/each}
     </div>
   </div>
-  <div
+  <nav
     class="col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1"
   >
     {#if axiesOnMobile === 'x'}
@@ -113,5 +113,5 @@
         <ChevronRightRounded />
       </button>
     {/if}
-  </div>
+  </nav>
 </section>

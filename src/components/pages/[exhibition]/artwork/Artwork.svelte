@@ -22,18 +22,23 @@
 <section class="py-section">
   <div class="container">
     <Quote class="mb-section" {quote} />
-    <Artworks class="mb-section" {artworks} />
+    <Artworks class="mb-section hidden lg:block" {artworks} />
 
-    <DescriptionBlock>
+    <DescriptionBlock class="max-lg:mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.Title class="mb-10">{title}</C.Title>
-        <Cta href={cta.href}>{cta.title}</Cta>
+        <C.Title class="lg:mb-10">{title}</C.Title>
+        <Cta class="hidden lg:block" href={cta.href}>{cta.title}</Cta>
       </svelte:fragment>
       <svelte:fragment slot="description" let:Description>
         <Description>
           <PortableText value={description} />
         </Description>
+        <Cta class="mt-[1.56rem] block lg:hidden" href={cta.href}
+          >{cta.title}</Cta
+        >
       </svelte:fragment>
     </DescriptionBlock>
+
+    <Artworks class="block lg:hidden" {artworks} />
   </div>
 </section>

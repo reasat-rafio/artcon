@@ -1,14 +1,19 @@
 <script lang="ts">
   import Asset from '@/components/hero/Asset.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { OtherExhibitionProps } from '@/lib/types/exhibitionDetail.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
+  import { twMerge } from 'tailwind-merge';
 
   export let exhibitions: OtherExhibitionProps[];
   $: exhibitions;
 
+  let emblaApi: EmblaCarouselType;
+  let activeSlideIndex = 0;
   const statusOrder = {
     Ongoing: 0,
     Upcoming: 1,
@@ -29,53 +34,75 @@
     return statusOrder[statusA] - statusOrder[statusB];
   });
 
-  let emblaApi: EmblaCarouselType;
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
+
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ selectedScrollSnap }) => {
+      activeSlideIndex = selectedScrollSnap();
+    });
+  }
 </script>
 
 <section>
   <div class="py-section container border-t border-[#BBBBBE]">
     <h2 class="head-xl">Other Exhibition</h2>
-    <div
-      class="mt-[32px] overflow-hidden"
-      use:emblaCarouselSvelte={{ plugins: [], options: { align: 'start' } }}
-      on:emblaInit={onInit}
-    >
-      <div class="flex">
-        {#each exhibitions as { slug, type, name, asset }}
-          <a
-            href="/exhibition/{slug.current}"
-            class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
-          >
-            <div
-              class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4.03rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
+    <div class="relative">
+      <div
+        class="relative mt-[32px] overflow-hidden"
+        use:emblaCarouselSvelte={{ plugins: [], options: { align: 'start' } }}
+        on:emblaInit={onInit}
+      >
+        <div class="flex">
+          {#each exhibitions as { slug, type, name, asset }, index}
+            <a
+              href="/exhibition/{slug.current}"
+              class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
             >
-              <Asset {asset} />
-            </div>
-            <div class="border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]">
               <div
-                class="space-y-[10px] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
+                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4.03rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
               >
-                <header class="flex flex-wrap items-center">
-                  <h3 class="text-head-6">{name}</h3>
-                  <h4 class="text-head-8">
-                    /
-                    {#if typeof type === 'string'}
-                      {type}
-                    {:else}
-                      {type.name}
-                    {/if}
-                  </h4>
-                </header>
-                <h4 class="text-head-8 text-[#77777C]">
-                  Photography exhibition
-                </h4>
+                <Asset {asset} />
               </div>
-            </div>
-          </a>
-        {/each}
+              <div
+                class={twMerge('border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
+              >
+                <div
+                  class={twMerge(
+                    'space-y-[10px] transition-transform duration-300 odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
+                    index === activeSlideIndex && 'lg:translate-x-[20%]',
+                  )}
+                >
+                  <header class="flex flex-wrap items-center">
+                    <h3 class="text-head-6">{name}</h3>
+                    <h4 class="text-head-8">
+                      /
+                      {#if typeof type === 'string'}
+                        {type}
+                      {:else}
+                        {type.name}
+                      {/if}
+                    </h4>
+                  </header>
+                  <h4 class="text-head-8 text-[#77777C]">
+                    Photography exhibition
+                  </h4>
+                </div>
+              </div>
+            </a>
+          {/each}
+        </div>
+      </div>
+      <div
+        class="z-10 space-x-[0.62rem] max-lg:mt-[2.38rem] max-lg:flex max-lg:justify-center lg:absolute lg:bottom-0 lg:left-0 lg:space-x-[0.3rem]"
+      >
+        <button on:click={() => emblaApi.scrollPrev()}>
+          <ChevronLeftRounded class="bg-white" />
+        </button>
+        <button on:click={() => emblaApi.scrollNext()}>
+          <ChevronRightRounded class="bg-white" />
+        </button>
       </div>
     </div>
   </div>
