@@ -2,6 +2,7 @@
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import Asset from '@/components/hero/Asset.svelte';
   import ChevronDown from '@/components/icons/ChevronDown.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
 
   export let props: CommonHeroProps & { scrollAmount: number };
   $: ({ text, title, type, asset, cta, scrollAmount } = props);
@@ -32,7 +33,9 @@
         {/if}
       </header>
       {#if !!cta?.title}
-        <a href={cta.href}>{cta.title}</a>
+        <Cta variant="fill" color="white" class="mx-auto" href={cta.href}
+          >{cta.title}</Cta
+        >
       {/if}
     </div>
 

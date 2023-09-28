@@ -3,6 +3,7 @@
   import Asset from './Asset.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import ChevronDown from '../icons/ChevronDown.svelte';
+  import Cta from '../ui/Cta.svelte';
 
   export let props: CommonHeroProps;
   let { text, title, type, asset, cta } = props;
@@ -23,7 +24,9 @@
         {/if}
       </header>
       {#if !!cta?.title}
-        <a href={cta.href}>{cta.title}</a>
+        <Cta variant="fill" color="white" class="mx-auto" href={cta.href}
+          >{cta.title}</Cta
+        >
       {/if}
     </div>
     <div
