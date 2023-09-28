@@ -1,8 +1,5 @@
 <script lang="ts">
   import type { ExhibitionProps, WithExtra } from '@/lib/types/landing.types';
-  import H8 from '@/components/ui/H8.svelte';
-  import H4 from '@/components/ui/H4.svelte';
-  import H6 from '@/components/ui/H6.svelte';
   import CollectionLayout from './CollectionLayout.svelte';
 
   export let props: WithExtra<ExhibitionProps>;
@@ -24,16 +21,16 @@
   {index}
 >
   <div class="absolute bottom-[10%] left-[5%] z-10 text-white">
-    <H8>{title}</H8>
+    <h2 class="text-[1.25rem] font-medium leading-[0.025rem]">{title}</h2>
     <div class="mt-3">
-      <H4 class="inline">{name}</H4>
-      <H6 class="inline"
-        >/ {#if typeof exhibitionType === 'string'}
+      <h3 class="inline text-[2rem] tracking-[0.04rem]">{name}</h3>
+      <h4 class="inline text-[1.25rem] font-medium leading-[0.025rem]">
+        / {#if typeof exhibitionType === 'string'}
           {exhibitionType}
         {:else}
           {exhibitionType.en}
-        {/if}</H6
-      >
+        {/if}
+      </h4>
     </div>
   </div>
 </CollectionLayout>

@@ -1,11 +1,5 @@
 <script lang="ts">
-  import type {
-    VrProps,
-    WithExtra,
-    Collection,
-  } from '@/lib/types/landing.types';
-  import H8 from '@/components/ui/H8.svelte';
-  import H4 from '@/components/ui/H4.svelte';
+  import type { WithExtra, Collection } from '@/lib/types/landing.types';
   import CollectionLayout from './CollectionLayout.svelte';
 
   export let props: WithExtra<Collection<unknown>>;
@@ -27,9 +21,9 @@
   image={previewImage}
 >
   <div class="absolute bottom-[10%] left-[5%] z-10 text-white">
-    <H8>{title}</H8>
-    <div class="mt-3">
-      <H4 class="inline">{name}</H4>
+    <h2 class="text-[1.25rem] font-medium leading-[0.025rem]">{title}</h2>
+    <div class="mt-[0.62rem]">
+      <h3 class="inline text-[2rem] tracking-[0.04rem]">{name}</h3>
     </div>
   </div>
 </CollectionLayout>
