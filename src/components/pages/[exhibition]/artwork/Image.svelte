@@ -23,16 +23,18 @@
 
 <div class="relative flex h-full flex-[0_0_50%] items-center justify-center">
   <div style="transform: scale({$x}, {$y});">
-    <figure class={active ? 'translate-x-[-10%]' : 'translate-x-[-25%]'}>
+    <figure class={active ? 'translate-x-[-15%]' : 'translate-x-[-25%]'}>
       <SanityImage
         class="h-full w-full  rounded-[25px] object-cover"
         sizes="60vw"
         src={artwork}
         imageUrlBuilder={imageBuilder}
       />
+
+      <!-- <figurecaption
+        class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
+      >
+      </figurecaption> -->
     </figure>
   </div>
 </div>
-
-<style>
-</style>

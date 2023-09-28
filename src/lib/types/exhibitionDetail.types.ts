@@ -24,7 +24,10 @@ export interface ExhinitionDetailPageProps {
   status?: string;
   cta?: Cta;
   artists: ArtistsProps;
-  artworks: { artworkImages: SanityImageAssetDocument[] }[];
+  artworks: {
+    artworkImages: SanityImageAssetDocument[];
+    information: PortableTextBlock[];
+  }[];
   asset: Asset;
   associationsList: Association[];
   name: string;

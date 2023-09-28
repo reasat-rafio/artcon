@@ -38,6 +38,7 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     artworks[]->{
+      information,
       ${asset('artworkImages[]', { as: 'artworkImages' })},
     },
     sections[]{
