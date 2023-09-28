@@ -3,7 +3,7 @@
   import Cta from '@/components/ui/Cta.svelte';
 
   import type { Cta as CTAProps } from '@/lib/types/common.types';
-  export let cta: CTAProps;
+  export let cta: CTAProps & { newTab?: boolean };
 </script>
 
 <nav
@@ -13,5 +13,10 @@
     <X class="h-[1.0215rem] w-[1.04394rem]" />
   </a>
 
-  <Cta variant="fill" href={cta.href} color="red-gray">{cta.title}</Cta>
+  <Cta
+    target={cta.newTab ? '_blank' : '_self'}
+    variant="fill"
+    href={cta.href}
+    color="red-gray">{cta.title}</Cta
+  >
 </nav>

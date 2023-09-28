@@ -2,7 +2,9 @@
   import type { Cta as CTAProps } from '@/lib/types/common.types';
 
   import Cta from '@/components/ui/Cta.svelte';
-  export let ctas: [CTAProps, CTAProps];
+
+  type CTA = CTAProps & { newTab?: boolean };
+  export let ctas: [CTA, CTA];
 </script>
 
 <nav class="fixed top-0 z-30 hidden w-full lg:block">
@@ -26,8 +28,11 @@
       <span> {ctas[0].title} </span></Cta
     >
 
-    <Cta variant="fill" href={ctas[1].href} color="red-gray"
-      >{ctas[1].title}</Cta
+    <Cta
+      target={ctas[1].newTab ? '_blank' : '_self'}
+      variant="fill"
+      href={ctas[1].href}
+      color="red-gray">{ctas[1].title}</Cta
     >
   </div>
 </nav>

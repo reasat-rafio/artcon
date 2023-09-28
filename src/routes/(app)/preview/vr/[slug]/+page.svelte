@@ -126,7 +126,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: url, title: 'Explore' },
+    { href: url, title: 'Explore', newTab: true },
   ]}
 />
 <section>
@@ -170,7 +170,9 @@
           out:fade={{ duration: 500 }}
           class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
-          <NavigationMobile cta={{ href: url, title: 'Explore' }} />
+          <NavigationMobile
+            cta={{ href: url, title: 'Explore', newTab: true }}
+          />
           <div class="space-y-[1.5rem] lg:space-y-[2rem]">
             <h2 class="preview-h-2" data-load-animate="y">
               Our virtual reality
