@@ -24,7 +24,7 @@
     }}
   />
 {:else if !!artists?.length}
-  <section class="py-xl">
+  <section class="py-section">
     <UserListWithTitle class="container" title="Artist in this ehibition">
       <svelte:fragment slot="list" let:CardsContainer let:Card>
         <CardsContainer>

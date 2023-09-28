@@ -105,6 +105,7 @@ const exhibition = {
       title: 'Publication',
       type: 'reference',
       to: [{ type: 'publication' }],
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'tags',
