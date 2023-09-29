@@ -90,7 +90,7 @@ const exhibition = {
       title: 'Artist in this ehibition',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
-      validation: (Rule: Rule) => Rule.unique(),
+      validation: (Rule: Rule) => Rule.unique().required(),
     },
 
     {
@@ -98,7 +98,7 @@ const exhibition = {
       title: 'Featured Artworks in this Exhibition',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
-      validation: (Rule: Rule) => Rule.unique(),
+      validation: (Rule: Rule) => Rule.unique().required(),
     },
     {
       name: 'publication',
