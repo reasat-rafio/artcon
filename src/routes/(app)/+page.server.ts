@@ -19,17 +19,19 @@ const query = groq`
             collections[]->{
                 _type == "vr" => {
                     _type,
-                    "title":"Our virtual reality",
                     name,
+                    subtitle,
                     slug,
                     ${asset('previewImage')},
+                    "title":"Our virtual reality",
                 },
                 _type == "publication" => {
                     _type,
                     name,
+                    subtitle,
                     slug,
-                    "title":"Our publication",
                     ${asset('previewImage')},
+                    "title":"Our publication",
                 },
                 _type == "exhibition" => {
                     _type,

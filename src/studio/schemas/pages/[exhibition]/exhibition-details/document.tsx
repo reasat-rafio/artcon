@@ -108,9 +108,9 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'tags',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'exhibitionTag' }] }],
+      name: 'tag',
+      type: 'reference',
+      to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
     },
 

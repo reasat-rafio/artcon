@@ -24,6 +24,7 @@ export type Collection<T> = {
   name: string;
   slug: Slug;
   previewImage: SanityImageAssetDocument;
+  subtitle: string;
 };
 
 export interface ExhibitionProps {

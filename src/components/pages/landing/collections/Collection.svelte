@@ -9,6 +9,7 @@
     title,
     _type,
     name,
+    subtitle,
     previewImage,
     DEFAULT_COLUMN_W_PERCENTAGE,
   } = props);
@@ -26,6 +27,9 @@
     <h2 class="text-[1.25rem] font-medium leading-[0.025rem]">{title}</h2>
     <div class="mt-[0.62rem]">
       <h3 class="inline text-[2rem] tracking-[0.04rem]">{name}</h3>
+      <h4 class="inline text-[1.25rem] font-medium leading-[0.025rem]">
+        / {subtitle}
+      </h4>
     </div>
   </div>
 </CollectionLayout>
