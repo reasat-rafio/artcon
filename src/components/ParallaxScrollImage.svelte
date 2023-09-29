@@ -104,7 +104,7 @@
     </svelte:element>
   </div>
   <div class="col-span-12 sm:col-span-8">
-    <svelte:element this={!!firstImage?.link ? 'a' : 'div'}>
+    <svelte:element this={!!secondImage?.link ? 'a' : 'div'}>
       <figure>
         <SanityImage
           sizes="70vw"

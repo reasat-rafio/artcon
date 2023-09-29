@@ -21,6 +21,7 @@
         src={logo}
         sizes="100px"
         imageUrlBuilder={imageBuilder}
+        alt="Artcon Logo"
       />
     </a>
 
