@@ -199,14 +199,13 @@
               </div>
             </div>
           </div>
-          <div>
-            <Vr
-              data-load-animate="y"
-              vr={{ previewImage: placeholderImage, url }}
-            />
-            <div data-load-animate="y" class="body-1 font-light">
-              <PortableText value={description} />
-            </div>
+          <Vr
+            class="mb-[2.5rem]"
+            data-load-animate="y"
+            vr={{ previewImage: placeholderImage, url }}
+          />
+          <div data-load-animate="y" class="body-1 font-light">
+            <PortableText value={description} />
           </div>
         </div>
       {/key}
