@@ -163,7 +163,7 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
+          class="max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[5.88rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
           <NavigationMobile cta={exproleLink} />
 

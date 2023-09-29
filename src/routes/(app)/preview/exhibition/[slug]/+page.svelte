@@ -163,14 +163,16 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="space-y-[2.5rem] max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[6.063rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
+          class="max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[5.88rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
         >
           <NavigationMobile
             cta={{ href: `/exhibition/${slug.current}`, title: 'Exhibition' }}
           />
-          <div class="space-y-[1.5rem] lg:space-y-[2rem]">
+
+          <!--  -->
+          <div class="mb-[2.5rem]">
             <h2 class="preview-h-2" data-load-animate="y">Our exhibition</h2>
-            <header class="space-y-[0.625rem]">
+            <header class="space-y-[0.625rem] pt-[1.5rem] lg:pt-[2rem]">
               <div data-load-animate="y">
                 <h1 class="preview-h-1 inline">
                   {name}
@@ -191,7 +193,10 @@
                 {/if}
               </h4>
             </header>
-            <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
+            <div
+              data-load-animate="y"
+              class="space-y-[6px] pt-[1.5rem] text-[#1B1B1E] lg:pt-[2rem]"
+            >
               <div class="text-title-2 font-light">
                 {gallery.name}
               </div>
@@ -201,13 +206,15 @@
               </div>
             </div>
           </div>
+          <!--  -->
           <div
             data-load-animate="y"
-            class="relative aspect-video max-h-[494px] w-full overflow-hidden rounded-[25px]"
+            class="relative mb-[2.5rem] aspect-video max-h-[494px] w-full overflow-hidden rounded-[25px]"
           >
             <Asset {asset} />
           </div>
 
+          <!--  -->
           <div data-load-animate="y" class="body-1 font-light">
             <PortableText value={description} />
           </div>
