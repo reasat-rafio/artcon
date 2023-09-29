@@ -25,7 +25,7 @@ export interface ExhinitionDetailPageProps {
   cta?: Cta;
   artists: ArtistsProps;
   artworks: {
-    artworkImages: SanityImageAssetDocument[];
+    artwork: SanityImageAssetDocument;
     information: PortableTextBlock[];
   }[];
   asset: Asset;

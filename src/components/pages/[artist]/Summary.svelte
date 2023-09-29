@@ -33,9 +33,8 @@
         </C.HeaderContainer>
 
         <C.SocialContainer>
-          {#each personalDocuments.socials as { link, lightIcon }}
-            <!-- TODO uncommet this after the icons -->
-            <!-- <C.Social {link} icon={lightIcon} /> -->
+          {#each personalDocuments.socials as { link, icon }}
+            <C.Social {link} {icon} />
           {/each}
         </C.SocialContainer>
       </svelte:fragment>

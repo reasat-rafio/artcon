@@ -39,7 +39,16 @@ const query = (params: Partial<Record<string, string>>) =>
     },
     artworks[]->{
       information,
-      ${asset('artworkImages[]', { as: 'artworkImages' })},
+      "artwork": artworkImages[0] {
+        ...,
+        asset->{
+          ...,
+          metadata {
+           lqip,
+          dimensions
+         }
+       }
+      }
     },
     sections[]{
       ...,

@@ -35,9 +35,7 @@
             alt={previewImage.alt}
             imageUrlBuilder={imageBuilder}
           />
-          <figcaption
-            class="pl-[20px] pt-[20px] text-[12px] text-sonic-silver md:text-[14px]"
-          >
+          <figcaption class="caption">
             {previewImage.caption}
           </figcaption>
         </figure>

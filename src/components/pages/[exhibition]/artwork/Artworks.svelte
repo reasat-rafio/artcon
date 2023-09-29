@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import AutoPlay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
@@ -23,7 +22,7 @@
     loop: true,
   };
 
-  $: modifedArtworks = flatenArtworkArray(artworks);
+  // $: modifedArtworks = flatenArtworkArray(artworks);
   $: if (emblaApi) {
     emblaApi.on('select', ({ selectedScrollSnap }) => {
       activeSide = selectedScrollSnap() + 1;
@@ -33,10 +32,10 @@
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
-  const flatenArtworkArray = (artworks: Artworks): SanityAsset[] =>
-    artworks.flatMap(({ artworkImages }) =>
-      artworkImages.flatMap((artwork) => artwork),
-    );
+  // const flatenArtworkArray = (artworks: Artworks): SanityAsset[] =>
+  //   artworks.flatMap(({ artworkImages }) =>
+  //     artworkImages.flatMap((artwork) => artwork),
+  //   );
 </script>
 
 <div class={twMerge('grid  grid-cols-12', $$props.class)}>
@@ -47,11 +46,11 @@
       on:emblaInit={onInit}
     >
       <div class="flex items-center max-lg:ml-[-1.25rem]">
-        {#each modifedArtworks as artwork, index}
+        {#each artworks as artwork, index}
           <Image
-            {artwork}
+            {...artwork}
             active={activeSide === index ||
-              (activeSide === modifedArtworks.length && index === 0)}
+              (activeSide === artworks.length && index === 0)}
           />
         {/each}
       </div>

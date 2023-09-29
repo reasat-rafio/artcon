@@ -6,7 +6,6 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
-  SocialProps,
   VR,
 } from './common.types';
 import type { PortableTextBlock } from 'sanity';
@@ -42,7 +41,14 @@ export interface PersonalDocuments {
   born: string;
   name: string;
   shortBio: PortableTextBlock[];
-  socials: SocialProps[];
+  socials: ArtistSocial[];
+}
+
+interface ArtistSocial {
+  _key: string;
+  _type: string;
+  icon: SanityAsset;
+  link: string;
 }
 
 export interface ExhibitionsProps {

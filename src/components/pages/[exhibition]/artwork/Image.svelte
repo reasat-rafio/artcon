@@ -1,13 +1,17 @@
 <script lang="ts">
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { tweened } from 'svelte/motion';
   import { cubicInOut } from 'svelte/easing';
+  import type { SanityImageAssetDocument } from '@sanity/client';
+  import type { PortableTextBlock } from 'sanity';
+  import { toPlainText } from '@portabletext/svelte';
+  import { twMerge } from 'tailwind-merge';
 
   export let active: boolean;
-  export let artwork: SanityAsset;
-  let innerWidth = 0;
+  export let artwork: SanityImageAssetDocument;
+  export let information: PortableTextBlock[];
+  export let innerWidth = 0;
 
   const x = tweened(active ? 1.2 : 0.6, {
     duration: 600,
@@ -26,19 +30,28 @@
 <div
   class="relative h-full flex-[0_0_90%] max-lg:pl-[1.25rem] lg:flex lg:flex-[0_0_50%] lg:items-center lg:justify-center"
 >
-  <div style="transform: scale({$x}, {$y});">
-    <figure class={active ? 'lg:translate-x-[-15%]' : 'lg:translate-x-[-25%]'}>
-      <SanityImage
-        class="h-full w-full rounded-[25px] object-cover"
-        sizes="60vw"
-        src={artwork}
-        imageUrlBuilder={imageBuilder}
-      />
-
-      <!-- <figurecaption
-        class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
+  <div>
+    <div style="transform: scale({$x}, {$y});">
+      <figure
+        class={active ? 'lg:translate-x-[-15%]' : 'lg:translate-x-[-25%]'}
       >
-      </figurecaption> -->
-    </figure>
+        <SanityImage
+          class="h-full w-full rounded-[25px] object-cover"
+          sizes="60vw"
+          src={artwork}
+          imageUrlBuilder={imageBuilder}
+        />
+
+        <figurecaption
+          class={twMerge(
+            'caption whitespace-pre-wrap',
+            !active &&
+              'lg:translate-x-[20%] lg:translate-y-[25%] lg:scale-x-[1.4] lg:scale-y-150 lg:transition-transform lg:duration-100',
+          )}
+        >
+          {toPlainText(information)}
+        </figurecaption>
+      </figure>
+    </div>
   </div>
 </div>

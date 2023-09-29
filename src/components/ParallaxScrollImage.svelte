@@ -76,9 +76,7 @@
           imageUrlBuilder={imageBuilder}
         />
         {#if !!firstImage.img?.caption || !!firstImage?.caption}
-          <figurecaption
-            class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-          >
+          <figurecaption class="caption">
             {firstImage?.caption ?? firstImage.img?.caption}
           </figurecaption>
         {/if}
@@ -98,9 +96,7 @@
           imageUrlBuilder={imageBuilder}
         />
         {#if !!firstImage.img?.caption || !!firstImage?.caption}
-          <figurecaption
-            class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-          >
+          <figurecaption class="caption">
             {firstImage?.caption ?? firstImage.img?.caption}
           </figurecaption>
         {/if}
@@ -118,9 +114,7 @@
           imageUrlBuilder={imageBuilder}
         />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
-          <figurecaption
-            class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-          >
+          <figurecaption class="caption">
             {secondImage?.caption ?? secondImage.img?.caption}
           </figurecaption>
         {/if}
