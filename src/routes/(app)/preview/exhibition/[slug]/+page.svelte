@@ -79,6 +79,8 @@
   });
 
   beforeNavigate(async (navigation) => {
+    if (navigation.to?.url.pathname !== '/') return;
+
     if (!transitioningOut) {
       transitioningOut = true;
       const tl = gsap.timeline({
