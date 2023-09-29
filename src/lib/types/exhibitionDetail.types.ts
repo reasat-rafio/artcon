@@ -91,7 +91,7 @@ export interface GroupExhibirtionProps {
 export interface OtherExhibitionProps {
   asset: Asset;
   name: string;
-  tags: { name: string }[];
+  tag: { name: string };
   slug: Slug;
   startDate: string;
   endDate?: string;

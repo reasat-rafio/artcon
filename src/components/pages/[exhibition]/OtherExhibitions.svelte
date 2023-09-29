@@ -55,7 +55,7 @@
         on:emblaInit={onInit}
       >
         <div class="flex">
-          {#each exhibitions as { slug, type, name, asset }, index}
+          {#each exhibitions as { slug, type, name, asset, tag }, index}
             <a
               href="/exhibition/{slug.current}"
               class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
@@ -86,7 +86,7 @@
                     </h4>
                   </header>
                   <h4 class="text-head-8 text-[#77777C]">
-                    Photography exhibition
+                    {tag.name}
                   </h4>
                 </div>
               </div>

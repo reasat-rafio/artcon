@@ -102,9 +102,9 @@ const query = (params: Partial<Record<string, string>>) =>
     }"][]{
      name,
      slug,
+     tag->{name},
      startDate,
      endDate,
-     tags[]->{name},
      asset {
       ...,
       ${asset('image')},
