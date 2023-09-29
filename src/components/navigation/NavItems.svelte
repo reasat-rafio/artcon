@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import type { NavProps } from '@/lib/types/common.types';
+  import { onMount } from 'svelte';
+  import { twMerge } from 'tailwind-merge';
 
   export let nav: NavProps;
   let { menu } = nav;
@@ -18,12 +20,18 @@
       <a
         style="color: {textColor};"
         href={pageUrl ?? externalUrl}
-        class="text-button font-semibold uppercase transition-all duration-500 {$page
-          .url.pathname === pageUrl
-          ? 'opacity-100'
-          : 'opacity-70 hover:opacity-100'}"
+        class={twMerge('navitem text-button font-semibold uppercase')}
       >
-        {title}
+        <span
+          class={twMerge(
+            'transition-opacity duration-500',
+            $page.url.pathname === pageUrl
+              ? 'opacity-100'
+              : 'opacity-70 hover:opacity-100',
+          )}
+        >
+          {title}
+        </span>
       </a>
     {/each}
   </nav>
