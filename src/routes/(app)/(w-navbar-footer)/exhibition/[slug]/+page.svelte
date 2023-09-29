@@ -1,19 +1,20 @@
 <script lang="ts">
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
-  import Note from '@/components/pages/[exhibition]/Note.svelte';
-  import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
-  import Summary from '@/components/pages/[exhibition]/Summary.svelte';
-  import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
+  import Footer from '@/components/footer/Footer.svelte';
   import Hero from '@/components/hero/Hero.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
-  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
+  import Note from '@/components/pages/[exhibition]/Note.svelte';
+  import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
+  import Summary from '@/components/pages/[exhibition]/Summary.svelte';
+  import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
-  import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
-  import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
-  import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
+  import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
+  import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
+  import type { PageProps } from '@/lib/types/common.types';
+  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
 
   export let data: PageProps<ExhinitionDetailPageProps>;
   $: ({
@@ -36,7 +37,11 @@
       associationsList,
       description,
     },
-    site: { logos },
+    site: {
+      logos: { logoLight, logoDark, ogImage },
+      footer,
+      contact,
+    },
   } = data);
 
   $: ({ date, status: exhibitionStatus } = calculateStatusBetweenDates({
@@ -54,7 +59,7 @@
       : 'Group Exhibition');
 </script>
 
-<Seo {seo} siteOgImg={logos?.ogImage} />
+<Seo {seo} siteOgImg={ogImage} />
 <Hero
   props={{
     _type: 'common.hero',
@@ -66,37 +71,40 @@
     type: heroType,
   }}
 />
-<Share href="/" logo={logos.logoLight}>Our Exhibition</Share>
-{#each sections as s}
-  {#if s._type === 'common.imageAsset'}
-    <ImageAsset props={s} />
-  {:else if s._type === 'exhibition.summary'}
-    <Summary
-      props={{
-        ...s,
-        descriptionBlock: {
-          date,
-          gallery,
-          description,
-          associationsList,
-        },
-      }}
-    />
-  {:else if s._type === 'exhibition.includedArtists'}
-    <IncludedArtists props={{ ...s, artists }} />
-  {:else if s._type === 'common.note'}
-    <Note props={s} />
-  {:else if s._type === 'exhibition.publication'}
-    <Publication props={{ ...s, publication }} />
-  {:else if s._type === 'exhibition.artwork'}
-    <Artwork props={{ ...s, artworks }} />
-  {:else if s._type === 'exhibition.gallery'}
-    <Gallery props={s} />
-  {:else if s._type === 'exhibition.newsAndMedia'}
-    <NewsAndMedia props={s} />
-  {/if}
-{/each}
+<div class="relative mt-[100vh] bg-white">
+  <Share href="/" logo={logoLight}>Our Exhibition</Share>
+  {#each sections as s}
+    {#if s._type === 'common.imageAsset'}
+      <ImageAsset props={s} />
+    {:else if s._type === 'exhibition.summary'}
+      <Summary
+        props={{
+          ...s,
+          descriptionBlock: {
+            date,
+            gallery,
+            description,
+            associationsList,
+          },
+        }}
+      />
+    {:else if s._type === 'exhibition.includedArtists'}
+      <IncludedArtists props={{ ...s, artists }} />
+    {:else if s._type === 'common.note'}
+      <Note props={s} />
+    {:else if s._type === 'exhibition.publication'}
+      <Publication props={{ ...s, publication }} />
+    {:else if s._type === 'exhibition.artwork'}
+      <Artwork props={{ ...s, artworks }} />
+    {:else if s._type === 'exhibition.gallery'}
+      <Gallery props={s} />
+    {:else if s._type === 'exhibition.newsAndMedia'}
+      <NewsAndMedia props={s} />
+    {/if}
+  {/each}
 
-{#if !!otherExhibitions?.length}
-  <OtherExhibitions exhibitions={otherExhibitions} />
-{/if}
+  {#if !!otherExhibitions?.length}
+    <OtherExhibitions exhibitions={otherExhibitions} />
+  {/if}
+  <Footer {footer} {contact} logo={logoLight} />
+</div>

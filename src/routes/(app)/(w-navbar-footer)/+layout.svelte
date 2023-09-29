@@ -15,4 +15,4 @@
 
 <Navbar logo={logoDark} />
 <slot />
-<Footer {footer} {contact} logo={logoLight} />
+<!-- <Footer {footer} {contact} logo={logoLight} /> -->

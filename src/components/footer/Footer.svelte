@@ -63,7 +63,7 @@
     </section>
 
     <section
-      class="flex justify-between text-[14px] text-[#A5A5A8] max-lg:flex-col max-lg:space-y-[0.63rem] max-lg:py-[1.56rem] lg:my-[2.5rem]"
+      class="flex justify-between text-[14px] text-[#A5A5A8] max-lg:flex-col max-lg:space-y-[0.63rem] max-lg:py-[1.56rem] lg:py-[2.5rem]"
     >
       <p>© ARTCON 2023</p>
       <p>Developed by Edistys</p>

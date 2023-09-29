@@ -41,7 +41,7 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<section class={twMerge('h-screen w-full', $$props.class)}>
+<section class={twMerge('fixed inset-0 h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
 
