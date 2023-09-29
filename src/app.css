@@ -59,7 +59,7 @@
 
 @layer utilities {
   .head-5xl {
-    @apply text-[clamp(2.25rem,6vw+1rem,7.5rem)] font-medium tracking-normal max-md:tracking-[0.72px];
+    @apply text-[clamp(2.25rem,6vw+1rem,7.5rem)] font-medium leading-none tracking-normal max-md:tracking-[0.72px];
   }
   .head-4xl {
     @apply text-head-2 font-medium;

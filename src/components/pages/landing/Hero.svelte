@@ -22,19 +22,24 @@
     <Asset {asset} />
 
     <div class="container relative z-30 text-center text-white">
-      <header class="space-y-[1.25rem] xl:space-y-[2.188rem]">
+      <header class="space-y-[1rem] lg:space-y-[1.56rem]">
         {#if !!text}
           <h3 class="head-md">{text}</h3>
         {/if}
         <h1 class="head-5xl">{title}</h1>
 
         {#if !!type}
-          <h2 class="head-3xl whitespace-pre-wrap">{type}</h2>
+          <h2 class="whitespace-pre-wrap text-[1.25rem] tracking-[0.025rem]">
+            {type}
+          </h2>
         {/if}
       </header>
       {#if !!cta?.title}
-        <Cta variant="fill" color="white" class="mx-auto" href={cta.href}
-          >{cta.title}</Cta
+        <Cta
+          variant="fill"
+          color="white"
+          class="mx-auto mt-[2.5rem] lg:mt-[4.75rem]"
+          href={cta.href}>{cta.title}</Cta
         >
       {/if}
     </div>
