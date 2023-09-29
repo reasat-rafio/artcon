@@ -10,7 +10,7 @@ const collection = {
     {
       name: 'collections',
       type: 'array',
-      validation: (Rule: Rule) => Rule.required().unique(),
+      validation: (Rule: Rule) => Rule.required().unique().min(3),
       of: [
         {
           name: 'collection',
