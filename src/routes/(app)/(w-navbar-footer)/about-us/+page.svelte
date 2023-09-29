@@ -1,5 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/Seo.svelte';
+  import Footer from '@/components/footer/Footer.svelte';
   import Hero from '@/components/hero/Hero.svelte';
   import AboutUs from '@/components/pages/about-us/AboutUs.svelte';
   import TeamBanner from '@/components/pages/about-us/TeamBanner.svelte';
@@ -10,20 +11,33 @@
   export let data: PageProps<AboutUsPageProps>;
   let {
     page,
-    site: { logos },
+    site: {
+      footer,
+      contact,
+      logos: { logoLight, ogImage },
+    },
   } = data;
 </script>
 
-<Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
+<Seo seo={page?.seo} siteOgImg={ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
     <Hero props={s} />
-  {:else if s._type === 'aboutUsPage.aboutUs'}
-    <AboutUs props={s} />
-  {:else if s._type === 'aboutUsPage.teamBanner'}
-    <TeamBanner props={s} />
   {/if}
 {/each}
-{#if page.team.length}
-  <Team team={page.team} />
-{/if}
+
+<div class="relative mt-[100vh] bg-white">
+  {#each page.sections as s}
+    {#if s._type === 'aboutUsPage.aboutUs'}
+      <AboutUs props={s} />
+    {:else if s._type === 'aboutUsPage.teamBanner'}
+      <TeamBanner props={s} />
+    {/if}
+  {/each}
+
+  {#if page.team.length}
+    <Team team={page.team} />
+  {/if}
+
+  <Footer {footer} {contact} logo={logoLight} />
+</div>
