@@ -37,9 +37,10 @@
       >
         <SanityImage
           class="h-full w-full rounded-[25px] object-cover"
-          sizes="60vw"
+          sizes="(min-width:1024px) 60vw, 100vw"
           src={artwork}
           imageUrlBuilder={imageBuilder}
+          alt={artwork.alt}
         />
 
         <figurecaption
