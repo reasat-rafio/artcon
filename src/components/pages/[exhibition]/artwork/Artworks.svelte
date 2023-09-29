@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import AutoPlay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
@@ -16,7 +17,7 @@
   let emblaApi: EmblaCarouselType;
 
   let activeSide = 1;
-  let plugins: EmblaPluginType[] = [AutoPlay()];
+  let plugins: EmblaPluginType[] = [AutoPlay({ stopOnInteraction: true })];
   let options: Partial<EmblaOptionsType> = {
     align: 'start',
     loop: true,

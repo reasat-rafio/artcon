@@ -33,7 +33,10 @@
   <div>
     <div style="transform: scale({$x}, {$y});">
       <figure
-        class={active ? 'lg:translate-x-[-15%]' : 'lg:translate-x-[-25%]'}
+        class={twMerge(
+          'relative',
+          active ? 'lg:translate-x-[-15%]' : 'lg:translate-x-[-25%]',
+        )}
       >
         <SanityImage
           class="h-full w-full rounded-[25px] object-cover"
