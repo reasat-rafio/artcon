@@ -185,9 +185,18 @@
                 <div data-load-animate="y" class="space-y-[6px] text-[#1B1B1E]">
                   <div class="preview-b-light space-y-[1.5rem] font-inter">
                     <div>
-                      <h5>
-                        Published By {#each publishedBy as publisher}
-                          <span>{publisher}</span>
+                      <h5 class="font-inter font-light">
+                        Published By {#each publishedBy as publisher, index}
+                          <span class="font-medium"
+                            >{publisher}{#if index !== publishedBy.length - 1}
+                              {#if index === publishedBy.length - 2}
+                                {' '} <span class="font-light">and</span>
+                              {:else}
+                                ,
+                              {/if}
+                            {/if}
+                            {' '}</span
+                          >
                         {/each}
                       </h5>
                       <div>ISBN {isbn}</div>
