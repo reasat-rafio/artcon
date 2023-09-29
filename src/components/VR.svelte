@@ -15,7 +15,7 @@
     {#if showIframe}
       <iframe
         allowfullscreen
-        class="h-full w-full overflow-hidden rounded-[20px]"
+        class="h-full w-full overflow-hidden rounded-[20px] bg-gray-300"
         src={url}
         title="exbibition preview"
       />
