@@ -90,7 +90,7 @@
       <figure class="ml-auto w-[70%]" bind:this={firstImageMobileEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
-          sizes="30vw"
+          sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
           imageUrlBuilder={imageBuilder}
@@ -104,10 +104,13 @@
     </svelte:element>
   </div>
   <div class="col-span-12 sm:col-span-8">
-    <svelte:element this={!!secondImage?.link ? 'a' : 'div'}>
+    <svelte:element
+      this={!!secondImage?.link ? 'a' : 'div'}
+      href={secondImage?.link}
+    >
       <figure>
         <SanityImage
-          sizes="70vw"
+          sizes="(min-width:1024) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
           class="h-full w-full rounded-[20px]"
@@ -115,7 +118,7 @@
         />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">
-            {secondImage?.caption ?? secondImage.img?.caption}
+            {secondImage?.caption ?? secondImage?.img?.caption}
           </figurecaption>
         {/if}
       </figure>

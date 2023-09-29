@@ -37,10 +37,12 @@
       images={[
         {
           img: invitationCardImage,
-          link: `/publications/${slug.current}`,
-          caption: name,
         },
-        { img: publicationImage },
+        {
+          img: publicationImage,
+          caption: name,
+          link: `/publications/${slug.current}`,
+        },
       ]}
     />
 
