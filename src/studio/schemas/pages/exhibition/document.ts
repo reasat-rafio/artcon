@@ -12,7 +12,7 @@ const exhibitionPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
+      of: [{ type: 'exhibitionPage.hero' }, { type: 'common.imageAsset' }],
     },
   ],
   preview: {
