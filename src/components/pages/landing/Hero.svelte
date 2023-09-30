@@ -5,6 +5,9 @@
   import Cta from '@/components/ui/Cta.svelte';
   import { onMount } from 'svelte';
   import gsap from 'gsap';
+  import { tweened } from 'svelte/motion';
+  import { expoOut } from 'svelte/easing';
+  import { twMerge } from 'tailwind-merge';
 
   export let props: CommonHeroProps & { scrollAmount: number };
   $: ({ text, title, type, asset, cta, scrollAmount } = props);
@@ -14,6 +17,7 @@
   let titleEl: HTMLElement;
   let textEl: HTMLElement;
   let typeEl: HTMLElement;
+  $: tweenDelta = tweened(deltaY, { duration: 500, easing: expoOut });
   $: deltaY =
     windowWidth >= 1024 ? Math.min(scrollAmount / windowHeight, 1) : 0;
 
@@ -44,8 +48,10 @@
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 <section
-  style={`filter: blur(${deltaY * 5}px) grayscale(${deltaY * 60}%);`}
-  class="{$$props.class ?? ''} h-screen w-full"
+  style={`filter: blur(${$tweenDelta * 2.5}px) grayscale(${
+    $tweenDelta * 50
+  }%);`}
+  class={twMerge('h-screen w-full', $$props.class)}
 >
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />

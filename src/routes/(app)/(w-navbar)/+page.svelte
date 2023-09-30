@@ -27,7 +27,10 @@
 >
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
-      <Hero class="fixed inset-0" props={{ ...s, scrollAmount: 0 }} />
+      <Hero
+        class="fixed inset-0"
+        props={{ ...s, scrollAmount: rootEl?.scrollLeft }}
+      />
       {#if showContact && windowWidth >= 1024}
         <Contact {contact} />
       {/if}
