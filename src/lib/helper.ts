@@ -7,6 +7,7 @@ import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition
 import type {
   CommonHeroListProps,
   CommonHeroProps,
+  CommonImageAsset,
 } from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -131,4 +132,34 @@ export const formatExhibitionListingProps = (
   return {
     blocks: formatedProps,
   };
+};
+
+type FormatedItem<T> = {
+  items: T[];
+  image?: CommonImageAsset;
+};
+
+export const createListingItemWithImage = <T>(
+  items: T[],
+  imges: CommonImageAsset[],
+  chunkSize: number = 4,
+) => {
+  const formatedArray: FormatedItem<T>[] = [];
+
+  for (let i = 0; i < items.length; i += chunkSize) {
+    const chunkOfItem = items.slice(i, i + chunkSize);
+
+    if (i + chunkSize >= items.length) {
+      formatedArray.push({ items: chunkOfItem });
+    } else {
+      const chunkOfImage = imges[i / chunkSize];
+      if (chunkOfImage !== undefined) {
+        formatedArray.push({ items: chunkOfItem, image: chunkOfImage });
+      } else {
+        formatedArray.push({ items: chunkOfItem });
+      }
+    }
+  }
+
+  return formatedArray;
 };

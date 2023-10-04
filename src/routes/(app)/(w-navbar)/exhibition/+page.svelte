@@ -2,20 +2,31 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Hero from '@/components/hero-list/Hero.svelte';
-  import { formatExhibitionListingProps } from '@/lib/helper';
-  import type { PageProps } from '@/lib/types/common.types';
+  import {
+    createListingItemWithImage,
+    formatExhibitionListingProps,
+  } from '@/lib/helper';
+  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { ExhibitionPageProps } from '@/lib/types/exhibition.types';
 
   export let data: PageProps<ExhibitionPageProps>;
   $: ({
-    page,
+    page: { sections, seo, exhibitions },
     site: { logos },
   } = data);
+
+  $: sectionImages = sections.filter(
+    ({ _type }) => _type === 'common.imageAsset',
+  ) as CommonImageAsset[];
+  $: exhibitionWithImages = createListingItemWithImage(
+    exhibitions,
+    sectionImages,
+  );
 </script>
 
-<Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
+<Seo {seo} siteOgImg={logos?.ogImage} />
 <div>
-  {#each page.sections as s}
+  {#each sections as s}
     {#if s._type === 'exhibitionPage.hero'}
       <Hero props={formatExhibitionListingProps(s)} />
     {:else if s._type === 'common.imageAsset'}

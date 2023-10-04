@@ -7,36 +7,61 @@ const query = groq`
     *[_id == "exhibitionPage"][0]{
         ...,
         sections[]{
+        ...,
+        highlightedExhibition[]->{
+          name,
+          slug,
+          endDate,
+          startDate,
+          tag->{name},
+          count(artists) > 1 => {
+            "subtitle": "Group Exhibition"
+          },
+          count(artists) == 1 => {
+            "subtitle": artists[0]->{
+              ...personalDocuments {
+                "name": name.en
+              }
+            }
+          },
+          type,
+          status,
+          asset{
             ...,
-            highlightedExhibition[]->{
-              name,
-              slug,
-              endDate,
-              startDate,
-              tag->{name},
-              count(artists) > 1 => {
-                "subtitle": "Group Exhibition"
-              },
-              count(artists) == 1 => {
-                "subtitle": artists[0]->{
-                  ...personalDocuments {
-                    "name": name.en
-                  }
-                }
-              },
-              type,
-              status,
-              asset{
-                ...,
-                ${asset('image')},
-                video{
-                    "webm": video_webm.asset->url,
-                    "mov": video_hevc.asset->url,
-                }
-              },
-            },
             ${asset('image')},
-        }
+            video{
+                "webm": video_webm.asset->url,
+                "mov": video_hevc.asset->url,
+            }
+          },
+        },
+        ${asset('image')},
+      },
+      "exhibitions" : *[_type== "exhibition"][]{
+        name,
+        slug,
+        tag->{name},
+        startDate,
+        endDate,
+        asset {
+          ...,
+          ${asset('image')},
+            video{
+              "webm": video_webm.asset->url,
+              "mov": video_hevc.asset->url,
+            }
+          },
+        "type": select(
+          count(artists) == 1 => {
+            ...artists[0]->{
+              ...personalDocuments {
+                "name": name.en,
+              }
+            }
+          },
+          count(artists) > 1 => "Group Exhibition",
+        )
+      }
     }
 `;
 
