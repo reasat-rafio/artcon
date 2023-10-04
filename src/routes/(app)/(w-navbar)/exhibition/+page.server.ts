@@ -8,6 +8,33 @@ const query = groq`
         ...,
         sections[]{
             ...,
+            highlightedExhibition[]->{
+              name,
+              slug,
+              endDate,
+              startDate,
+              tag->{name},
+              count(artists) > 1 => {
+                "subtitle": "Group Exhibition"
+              },
+              count(artists) == 1 => {
+                "subtitle": artists[0]->{
+                  ...personalDocuments {
+                    "name": name.en
+                  }
+                }
+              },
+              type,
+              status,
+              asset{
+                ...,
+                ${asset('image')},
+                video{
+                    "webm": video_webm.asset->url,
+                    "mov": video_hevc.asset->url,
+                }
+              },
+            },
             ${asset('image')},
         }
     }

@@ -41,14 +41,9 @@
       activeBlockIndex = e.selectedScrollSnap();
     });
   }
-  const onMouseWheelAction = (e: WheelEventType) => {
-    e.deltaY > 0 ? emblaApi.scrollNext() : emblaApi.scrollPrev();
-  };
 </script>
 
-<section bind:this={rootEl} class=" relative">
-  <!--   on:wheel|preventDefault|stopPropagation={(e) =>
-      useDebounce(() => onMouseWheelAction(e), DEBOUNCH_TIME)} -->
+<section bind:this={rootEl} class="relative">
   <div
     class="overflow-hidden"
     on:emblaInit={onInit}

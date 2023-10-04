@@ -109,8 +109,6 @@ export interface Asset {
 }
 
 export interface CommonHeroListProps {
-  _type: 'common.heroList';
-  _key: string;
   blocks: CommonHeroProps[];
 }
 

@@ -3,6 +3,11 @@ import type {
   ArtistsProps,
   SoloExhibitonProps,
 } from './types/exhibitionDetail.types';
+import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition.types';
+import type {
+  CommonHeroListProps,
+  CommonHeroProps,
+} from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
   const result = [];
@@ -94,3 +99,36 @@ export function debounce<T extends unknown[], U>(
     });
   };
 }
+
+export const formatExhibitionListingProps = (
+  props: ExhibitionListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedExhibition.map(
+    ({ asset, name, startDate, endDate, status, type, subtitle, slug }) => {
+      const { date, status: exhibitionStatus } = calculateStatusBetweenDates({
+        startDate,
+        endDate,
+      });
+
+      const heroText =
+        status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
+
+      const stitle = typeof subtitle === 'string' ? subtitle : subtitle.name;
+      const heroType = type || stitle;
+
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset,
+        title: name,
+        text: heroText,
+        type: heroType,
+        cta: { title: 'EXPLORE', href: `/exhibition/${slug.current}` },
+      };
+    },
+  );
+
+  return {
+    blocks: formatedProps,
+  };
+};

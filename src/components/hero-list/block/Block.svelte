@@ -1,52 +1,89 @@
 <script lang="ts">
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import Asset from './Asset.svelte';
-  import H7 from '@/components/ui/H7.svelte';
-  import H1 from '@/components/ui/H1.svelte';
-  import H3 from '@/components/ui/H3.svelte';
-  import { animate } from 'motion';
+  import Cta from '@/components/ui/Cta.svelte';
+  import ChevronDown from '@/components/icons/ChevronDown.svelte';
+  import gsap from 'gsap';
+  import { onDestroy } from 'svelte';
 
   export let block: CommonHeroProps;
   export let index: number;
   export let activeBlockIndex: number;
   export let scrollDirection: 'forward' | 'backward';
 
-  let { asset, title, cta, subtitle, type } = block;
+  $: ({ text, title, type, asset, cta } = block);
   let blockEl: HTMLElement;
+  let titleEl: HTMLElement;
   let assetEl: HTMLElement;
+  let textEl: HTMLElement;
+  let typeEl: HTMLElement;
   let contentContainerEl: HTMLElement;
 
   $: isActive = activeBlockIndex === index;
 
+  let ctx: gsap.Context;
+
   const runAnimation = () => {
     if (!assetEl) return;
 
+    ctx?.revert();
     if (isActive) {
-      animate(
-        assetEl,
-        { x: scrollDirection === 'forward' ? ['1%', '-1%'] : ['-1%', '1%'] },
-        { duration: 1, easing: 'ease-out', delay: 0.2 }
-      );
-      animate(
-        contentContainerEl,
-        { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-        { duration: 1.1, easing: 'ease-out' }
-      );
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          assetEl,
+          {
+            x: scrollDirection === 'forward' ? '-1%' : '1%',
+            duration: 1,
+            ease: 'expo.out',
+            delay: 0.2,
+          },
+          {
+            x: scrollDirection === 'forward' ? '1%' : '-1%',
+            duration: 1,
+            ease: 'expo.out',
+            delay: 0.2,
+          },
+        );
+        gsap.fromTo(
+          contentContainerEl,
+          {
+            x: scrollDirection === 'forward' ? '-10%' : '-0%',
+            duration: 1.1,
+            easing: 'expo.out',
+          },
+          { x: 0, duration: 1.1, easing: 'expo.out' },
+        );
+      });
     } else {
-      animate(
+      gsap.fromTo(
         assetEl,
-        { x: scrollDirection === 'forward' ? ['-1%', '1%'] : ['1%', '-1%'] },
-        { duration: 1, easing: 'ease-out', delay: 0.2 }
+        {
+          x: scrollDirection === 'forward' ? '-1%' : '1%',
+          duration: 1,
+          ease: 'expo.out',
+          delay: 0.2,
+        },
+        {
+          x: scrollDirection === 'forward' ? '1%' : '-1%',
+          duration: 1,
+          ease: 'expo.out',
+          delay: 0.2,
+        },
       );
-      animate(
+      gsap.fromTo(
         contentContainerEl,
-        { x: scrollDirection === 'forward' ? ['-10%', 0] : ['10%', 0] },
-        { duration: 1.1, easing: 'ease-out' }
+        {
+          x: scrollDirection === 'forward' ? '-10%' : '10%',
+          duration: 1.1,
+          easing: 'expo.out',
+        },
+        { x: 0, duration: 1.1, easing: 'expo.out' },
       );
     }
   };
 
   $: activeBlockIndex, runAnimation();
+  onDestroy(() => ctx?.revert());
 </script>
 
 <div
@@ -59,17 +96,43 @@
     bind:this={contentContainerEl}
     class="container relative z-30 text-center text-white"
   >
-    <header class="space-y-2">
-      {#if !!type}
-        <H7>{type}</H7>
+    <header class="space-y-[1rem] lg:space-y-[1.56rem]">
+      {#if !!text}
+        <div class="overflow-hidden">
+          <h3 bind:this={textEl} class="head-md">{text}</h3>
+        </div>
       {/if}
-      <H1>{title}</H1>
-      {#if !!subtitle}
-        <H3 class="whitespace-pre-wrap">{subtitle}</H3>
+      <div class="overflow-hidden">
+        <h1 bind:this={titleEl} class="head-5xl">{title}</h1>
+      </div>
+      {#if !!type}
+        <div class="overflow-hidden">
+          <h2 bind:this={typeEl} class="head-3xl">{type}</h2>
+        </div>
       {/if}
     </header>
     {#if !!cta?.title}
-      <a href={cta.href}>{cta.title}</a>
+      <div class="overflow-hidden">
+        <Cta
+          variant="fill"
+          color="white"
+          class="cta-btn mx-auto mt-[2.5rem] lg:mt-[4.75rem]"
+          href={cta.href}>{cta.title}</Cta
+        >
+      </div>
     {/if}
+  </div>
+  <div
+    id="pointer"
+    class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
+  >
+    <div
+      class="flex items-center justify-center space-x-[1.06rem] text-[#E8E6E3] lg:pr-[2.5rem]"
+    >
+      <span class="text-[0.84375rem] font-medium tracking-[0.01688rem]"
+        >Discover our stories</span
+      >
+      <ChevronDown class="chevron-icon animate-bounce" />
+    </div>
   </div>
 </div>
