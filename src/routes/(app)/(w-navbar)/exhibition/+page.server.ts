@@ -41,16 +41,7 @@ const query = groq`
         name,
         slug,
         tag->{name},
-        startDate,
-        endDate,
-        asset {
-          ...,
-          ${asset('image')},
-            video{
-              "webm": video_webm.asset->url,
-              "mov": video_hevc.asset->url,
-            }
-          },
+        ${asset('previewDisplayImage')},
         "type": select(
           count(artists) == 1 => {
             ...artists[0]->{

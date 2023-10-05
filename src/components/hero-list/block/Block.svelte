@@ -26,60 +26,39 @@
   const runAnimation = () => {
     if (!assetEl) return;
 
-    ctx?.revert();
-    if (isActive) {
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          assetEl,
-          {
-            x: scrollDirection === 'forward' ? '-1%' : '1%',
-            duration: 1,
-            ease: 'expo.out',
-            delay: 0.2,
-          },
-          {
-            x: scrollDirection === 'forward' ? '1%' : '-1%',
-            duration: 1,
-            ease: 'expo.out',
-            delay: 0.2,
-          },
-        );
-        gsap.fromTo(
-          contentContainerEl,
-          {
-            x: scrollDirection === 'forward' ? '-10%' : '-0%',
-            duration: 1.1,
-            easing: 'expo.out',
-          },
-          { x: 0, duration: 1.1, easing: 'expo.out' },
-        );
-      });
-    } else {
-      gsap.fromTo(
-        assetEl,
-        {
-          x: scrollDirection === 'forward' ? '-1%' : '1%',
-          duration: 1,
-          ease: 'expo.out',
-          delay: 0.2,
-        },
-        {
-          x: scrollDirection === 'forward' ? '1%' : '-1%',
-          duration: 1,
-          ease: 'expo.out',
-          delay: 0.2,
-        },
-      );
-      gsap.fromTo(
-        contentContainerEl,
-        {
-          x: scrollDirection === 'forward' ? '-10%' : '10%',
-          duration: 1.1,
-          easing: 'expo.out',
-        },
-        { x: 0, duration: 1.1, easing: 'expo.out' },
-      );
-    }
+    const direction = scrollDirection === 'forward' ? 1 : -1;
+    const xAsset = isActive ? '1%' : '-1%';
+    const xContentContainer = isActive ? '0%' : `${-10 * direction}%`;
+
+    gsap.fromTo(
+      assetEl,
+      {
+        x: xAsset,
+        duration: 1,
+        ease: 'expo.out',
+        delay: 0.2,
+      },
+      {
+        x: `${-1 * parseFloat(xAsset)}%`,
+        duration: 1,
+        ease: 'expo.out',
+        delay: 0.2,
+      },
+    );
+
+    gsap.fromTo(
+      contentContainerEl,
+      {
+        x: xContentContainer,
+        duration: 1.1,
+        easing: 'expo.out',
+      },
+      {
+        x: '0%',
+        duration: 1.1,
+        easing: 'expo.out',
+      },
+    );
   };
 
   $: activeBlockIndex, runAnimation();

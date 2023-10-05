@@ -1,11 +1,19 @@
 import type { Slug } from 'sanity';
 import type { Asset, CommonImageAsset, SeoProps } from './common.types';
-import type { OtherExhibitionProps } from './exhibitionDetail.types';
+import type { SanityAssetDocument } from '@sanity/client';
 
 export interface ExhibitionPageProps {
   seo: SeoProps;
   sections: Section[];
-  exhibitions: OtherExhibitionProps[];
+  exhibitions: Exhibition[];
+}
+
+export interface Exhibition {
+  previewDisplayImage: SanityAssetDocument;
+  name: string;
+  tag: { name: string };
+  slug: Slug;
+  type: 'Group Exhibition' | { name: string };
 }
 
 type Section = HeroProps | CommonImageAsset;

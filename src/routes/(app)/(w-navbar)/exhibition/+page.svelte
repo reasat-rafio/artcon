@@ -2,6 +2,7 @@
   import ImageAsset from '@/components/ImageAsset.svelte';
   import Seo from '@/components/Seo.svelte';
   import Hero from '@/components/hero-list/Hero.svelte';
+  import Listing from '@/components/pages/exhibition/Listing.svelte';
   import {
     createListingItemWithImage,
     formatExhibitionListingProps,
@@ -29,8 +30,8 @@
   {#each sections as s}
     {#if s._type === 'exhibitionPage.hero'}
       <Hero props={formatExhibitionListingProps(s)} />
-    {:else if s._type === 'common.imageAsset'}
-      <ImageAsset props={s} />
     {/if}
   {/each}
+
+  <Listing list={exhibitionWithImages} />
 </div>

@@ -8,10 +8,6 @@
   } from 'embla-carousel-svelte';
   import { useDebounce } from '@/lib/helper';
 
-  type WheelEventType = WheelEvent & {
-    currentTarget: EventTarget & HTMLElement;
-  };
-
   export let props: CommonHeroListProps;
   let { blocks } = props;
   let rootEl: HTMLElement;

@@ -134,7 +134,7 @@ export const formatExhibitionListingProps = (
   };
 };
 
-type FormatedItem<T> = {
+export type FormatedItem<T> = {
   items: T[];
   image?: CommonImageAsset;
 };
@@ -142,7 +142,7 @@ type FormatedItem<T> = {
 export const createListingItemWithImage = <T>(
   items: T[],
   imges: CommonImageAsset[],
-  chunkSize: number = 4,
+  chunkSize: number = 6,
 ) => {
   const formatedArray: FormatedItem<T>[] = [];
 
