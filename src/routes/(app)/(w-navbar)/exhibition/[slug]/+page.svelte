@@ -20,7 +20,6 @@
   $: ({
     page: {
       name,
-      // tags,
       otherExhibitions,
       publication,
       cta,

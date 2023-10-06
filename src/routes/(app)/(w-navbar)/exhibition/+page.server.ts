@@ -13,7 +13,10 @@ const query = groq`
           slug,
           endDate,
           startDate,
-          tag->{name},
+          tag->{
+            name,
+            slug
+          },
           count(artists) > 1 => {
             "subtitle": "Group Exhibition"
           },
@@ -40,7 +43,10 @@ const query = groq`
       "exhibitions" : *[_type== "exhibition"]|order(orderRank){
         name,
         slug,
-        tag->{name},
+        tag->{
+          name,
+          slug
+        },
         ${asset('previewDisplayImage')},
         "type": select(
           count(artists) == 1 => {
@@ -52,7 +58,8 @@ const query = groq`
           },
           count(artists) > 1 => "Group Exhibition",
         )
-      }
+      },
+      "tags": *[_type == "exhibitionTag"]|order(orderRank)
     }
 `;
 

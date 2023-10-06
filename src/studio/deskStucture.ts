@@ -2,7 +2,7 @@ import type {
   DefaultDocumentNodeResolver,
   StructureBuilder,
 } from 'sanity/desk';
-import { FaSitemap } from 'react-icons/fa';
+import { FaSitemap, FaTag } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import {
@@ -198,7 +198,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 title: 'Exhibitions',
                 icon: FcStackOfPhotos,
               }),
-              S.documentTypeListItem('exhibitionTag').title('Tags'),
+              orderableDocumentListDeskItem({
+                type: 'exhibitionTag',
+                S,
+                context,
+                title: 'Tags',
+                icon: FaTag,
+              }),
             ]),
         ),
       S.listItem()

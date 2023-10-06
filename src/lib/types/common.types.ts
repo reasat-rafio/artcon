@@ -1,5 +1,5 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-import type { PortableTextBlock } from 'sanity';
+import type { PortableTextBlock, Slug } from 'sanity';
 
 export interface PageProps<T> {
   site: SiteProps;
@@ -123,6 +123,7 @@ export interface Tag {
   _type: string;
   name: string;
   _id: string;
+  slug: Slug;
   _updatedAt: Date;
   _createdAt: Date;
 }

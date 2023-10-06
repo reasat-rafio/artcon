@@ -1,21 +1,32 @@
 <script lang="ts">
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import ShareIcon from '@/components/icons/ShareIcon.svelte';
-  import SahrePopup from './Popup.svelte';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { fade } from 'svelte/transition';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import Hamburger from '@/components/Hamburger.svelte';
+  import type { Tag } from '@/lib/types/common.types';
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
 
   export let logo: SanityAsset;
   export let href: string;
+  export let tags: Tag[];
 
   let sectionEl: HTMLElement;
-  let popupSate: 'visiable' | 'hidden' = 'hidden';
   let showLogo = false;
+
   const setLogoVisibility = () =>
     (showLogo = sectionEl.getBoundingClientRect().top <= 10);
+
+  const setSearhParams = (searchQuery: string) => {
+    const searchParams = new URLSearchParams({
+      search: searchQuery,
+    });
+    goto($page.url.pathname + '?' + searchParams.toString(), {
+      replaceState: true,
+      noScroll: true,
+    });
+  };
 </script>
 
 <svelte:window on:scroll={setLogoVisibility} />
@@ -29,20 +40,28 @@
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
         </a>
-        <h2 class="text-head-6 font-medium text-dark-gunmetal lg:text-head-4">
-          <slot />
-        </h2>
-      </div>
+        <div>
+          <h2 class="text-head-6 font-medium text-dark-gunmetal lg:text-head-4">
+            <slot />
+          </h2>
 
-      <Hamburger color="#1B1B1E" class="block md:hidden" />
-      <button
-        on:click={() => (popupSate = 'visiable')}
-        class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full md:block lg:h-[2.8125rem] lg:w-[2.8125rem]"
-      >
-        <ShareIcon
-          class="text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal"
-        />
-      </button>
+          <ul class="flex space-x-2 pt-[0.2rem]">
+            {#each tags as { name, slug: { current } }, index}
+              <li class="flex items-center space-x-2">
+                <button
+                  class="text-[0.875rem] font-light tracking-[0.0175rem]"
+                  on:click|preventDefault={() => setSearhParams(current)}
+                >
+                  {name}
+                </button>
+                {#if index !== tags.length - 1}
+                  <div class="h-1 w-1 rounded-full bg-[#ED1C24]" />
+                {/if}
+              </li>
+            {/each}
+          </ul>
+        </div>
+      </div>
     </div>
     {#if showLogo}
       <div transition:fade class="absolute left-[40px] top-0 hidden 2xl:block">
@@ -59,7 +78,3 @@
     {/if}
   </div>
 </nav>
-
-{#if popupSate === 'visiable'}
-  <SahrePopup bind:popupSate />
-{/if}

@@ -1,8 +1,9 @@
 <script lang="ts">
-  import ImageAsset from '@/components/ImageAsset.svelte';
+  import { page } from '$app/stores';
   import Seo from '@/components/Seo.svelte';
   import Hero from '@/components/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
+  import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
   import {
     createListingItemWithImage,
     formatExhibitionListingProps,
@@ -12,20 +13,33 @@
 
   export let data: PageProps<ExhibitionPageProps>;
   $: ({
-    page: { sections, seo, exhibitions },
-    site: { logos },
+    page: { sections, seo, exhibitions, tags },
+    site: {
+      logos: { logoLight, ogImage },
+    },
   } = data);
 
+  $: filteredExhibition = exhibitions;
+  $: aciteveSearchParms = $page.url.searchParams.get('search');
+  $: aciteveSearchParms, filterBySearchParams(aciteveSearchParms);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
   $: exhibitionWithImages = createListingItemWithImage(
-    exhibitions,
+    filteredExhibition,
     sectionImages,
   );
+
+  const filterBySearchParams = (aciteveSearchParms: string | null) => {
+    if (!aciteveSearchParms) return;
+    const fList = exhibitions.filter(
+      ({ tag: { slug } }) => slug.current === aciteveSearchParms,
+    );
+    filteredExhibition = fList;
+  };
 </script>
 
-<Seo {seo} siteOgImg={logos?.ogImage} />
+<Seo {seo} siteOgImg={ogImage} />
 <div>
   {#each sections as s}
     {#if s._type === 'exhibitionPage.hero'}
@@ -33,5 +47,6 @@
     {/if}
   {/each}
 
+  <SecondaryNav {tags} href="/" logo={logoLight}>Our exhibition</SecondaryNav>
   <Listing list={exhibitionWithImages} />
 </div>
