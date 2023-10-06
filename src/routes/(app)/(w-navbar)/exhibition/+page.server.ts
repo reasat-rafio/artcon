@@ -37,7 +37,7 @@ const query = groq`
         },
         ${asset('image')},
       },
-      "exhibitions" : *[_type== "exhibition"][]{
+      "exhibitions" : *[_type== "exhibition"]|order(orderRank){
         name,
         slug,
         tag->{name},

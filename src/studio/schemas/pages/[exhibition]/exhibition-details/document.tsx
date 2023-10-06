@@ -4,6 +4,7 @@ import { FcStackOfPhotos } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import React from 'react';
 import { formatDate } from '@/studio/helper';
+import { orderRankField } from '@sanity/orderable-document-list';
 
 type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
@@ -19,6 +20,7 @@ const exhibition = {
   type: 'document',
   icon: FcStackOfPhotos,
   fields: [
+    orderRankField({ type: 'exhibition' }),
     {
       name: 'seo',
       title: 'SEO',
