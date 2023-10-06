@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  /* html {
+    scroll-behavior: smooth;
+  } */
+
   @font-face {
     font-family: 'OPTIBerling Agency';
     src: local('OPTIBerling-Agency'), local('optiberling-agency'),

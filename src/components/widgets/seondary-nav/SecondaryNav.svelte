@@ -7,6 +7,7 @@
   import type { Tag } from '@/lib/types/common.types';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { twMerge } from 'tailwind-merge';
 
   export let logo: SanityAsset;
   export let href: string;
@@ -15,6 +16,7 @@
   let sectionEl: HTMLElement;
   let showLogo = false;
 
+  $: aciteveSearchParms = $page.url.searchParams.get('search');
   const setLogoVisibility = () =>
     (showLogo = sectionEl.getBoundingClientRect().top <= 10);
 
@@ -49,7 +51,10 @@
             {#each tags as { name, slug: { current } }, index}
               <li class="flex items-center space-x-2">
                 <button
-                  class="text-[0.875rem] font-light tracking-[0.0175rem]"
+                  class={twMerge(
+                    'text-[0.875rem] font-light tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
+                    current === aciteveSearchParms && 'text-[#ED1C24]',
+                  )}
                   on:click|preventDefault={() => setSearhParams(current)}
                 >
                   {name}
