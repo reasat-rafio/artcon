@@ -10,6 +10,7 @@ export interface ExhibitionPageProps {
 }
 
 export interface Exhibition {
+  _id: string;
   previewDisplayImage: SanityAssetDocument;
   name: string;
   tag: {

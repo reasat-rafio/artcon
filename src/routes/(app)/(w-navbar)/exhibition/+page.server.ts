@@ -41,6 +41,7 @@ const query = groq`
         ${asset('image')},
       },
       "exhibitions" : *[_type== "exhibition"]|order(orderRank){
+        _id,
         name,
         slug,
         tag->{
