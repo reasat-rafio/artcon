@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import Seo from '@/components/Seo.svelte';
+  import Footer from '@/components/footer/Footer.svelte';
   import Hero from '@/components/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
   import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
@@ -16,6 +17,8 @@
     page: { sections, seo, exhibitions, tags },
     site: {
       logos: { logoLight, ogImage },
+      footer,
+      contact,
     },
   } = data);
 
@@ -40,13 +43,13 @@
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-<div>
-  {#each sections as s}
-    {#if s._type === 'exhibitionPage.hero'}
-      <Hero props={formatExhibitionListingProps(s)} />
-    {/if}
-  {/each}
 
-  <SecondaryNav {tags} href="/" logo={logoLight}>Our exhibition</SecondaryNav>
-  <Listing list={exhibitionWithImages} />
-</div>
+{#each sections as s}
+  {#if s._type === 'exhibitionPage.hero'}
+    <Hero props={formatExhibitionListingProps(s)} />
+  {/if}
+{/each}
+
+<SecondaryNav {tags} href="/" logo={logoLight}>Our exhibition</SecondaryNav>
+<Listing list={exhibitionWithImages} />
+<Footer {footer} {contact} logo={logoLight} />
