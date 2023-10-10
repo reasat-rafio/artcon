@@ -108,7 +108,8 @@
     <div
       class="flex items-center justify-center space-x-[1.06rem] text-[#E8E6E3] lg:pr-[2.5rem]"
     >
-      <span class="text-[0.84375rem] font-medium tracking-[0.01688rem]"
+      <span
+        class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]"
         >Discover our stories</span
       >
       <ChevronDown class="chevron-icon animate-bounce" />

@@ -42,7 +42,7 @@ export const calculateStatusBetweenDates = ({
   endDate?: string;
 }) => {
   const currentDateTime = DateTime.now();
-  let status: 'Ongoing' | 'Upcoming' | 'Completed';
+  let status: 'Ongoing' | 'Upcoming' | 'Ended';
   let date: string;
 
   const isoStartDate = DateTime.fromISO(startDate);
@@ -61,7 +61,7 @@ export const calculateStatusBetweenDates = ({
     } else if (isoStartDate > currentDateTime) {
       status = 'Upcoming';
     } else {
-      status = 'Completed';
+      status = 'Ended';
     }
   } else {
     const formattedDate = isoStartDate.toFormat('d MMMM, yyyy');
@@ -72,7 +72,7 @@ export const calculateStatusBetweenDates = ({
     } else if (isoStartDate > currentDateTime) {
       status = 'Upcoming';
     } else {
-      status = 'Completed';
+      status = 'Ended';
     }
   }
 

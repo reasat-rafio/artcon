@@ -21,12 +21,12 @@
   {index}
 >
   <div
-    class="absolute bottom-[10%] left-[5%] z-10 text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem]"
+    class="absolute bottom-0 left-0 z-10 p-[4rem] text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem] xl:w-[90%]"
   >
-    <h2 class="text-[1.25rem] font-medium leading-[0.025rem]">{title}</h2>
-    <div class="mt-3">
-      <h3 class="inline text-[2rem] tracking-[0.04rem]">{name}</h3>
-      <h4 class="inline text-[1.25rem] font-medium leading-[0.025rem]">
+    <h2 class="text-[1.125rem] font-medium">{title}</h2>
+    <div class="pt-[0.75rem]">
+      <h3 class="inline text-[2.5rem] leading-[1.2]">{name}</h3>
+      <h4 class="inline text-[1.125rem] font-medium leading-[0.025rem]">
         / {#if typeof exhibitionType === 'string'}
           {exhibitionType}
         {:else}

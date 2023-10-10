@@ -20,14 +20,14 @@
       <a
         style="color: {textColor};"
         href={pageUrl ?? externalUrl}
-        class={twMerge('navitem text-button font-semibold uppercase')}
+        class={twMerge('navitem text-button uppercase')}
       >
         <span
           class={twMerge(
-            'transition-opacity duration-500',
+            'transition-all duration-500',
             $page.url.pathname === pageUrl
-              ? 'opacity-100'
-              : 'opacity-70 hover:opacity-100',
+              ? 'font-semibold opacity-100'
+              : 'opacity-70 hover:font-semibold hover:opacity-100 ',
           )}
         >
           {title}
