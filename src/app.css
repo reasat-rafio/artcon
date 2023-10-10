@@ -118,10 +118,6 @@
     @apply px-[1.25rem] pb-[5rem] lg:px-[6rem] lg:pb-[8rem] lg:pt-[4rem];
   }
 
-  .preview_img_wrapper_desktop {
-    @apply max-lg:hidden lg:flex-[38%];
-  }
-
   .preview-h-1 {
     @apply text-[2.1875rem] font-light leading-[2.5rem] md:text-[2.5rem];
   }

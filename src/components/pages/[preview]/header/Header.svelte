@@ -9,7 +9,7 @@
 
 <section class="mb-[2.5rem]">
   <h2 class="preview-h-2" data-load-animate="y">{topic}</h2>
-  <header class="space-y-[0.625rem] pt-[1rem] lg:pt-[1.25rem]">
+  <header class="space-y-[0.625rem] py-[1rem] lg:py-[1.25rem]">
     <div data-load-animate="y">
       <h1 class="preview-h-1 inline">{title}</h1>
       <h3 class="preview-h-3 inline">{' '} / {subtitle}</h3>
@@ -17,5 +17,7 @@
     <h4 class="preview-h-4" data-load-animate="y">{type}</h4>
   </header>
 
-  <slot {Info} />
+  <div class="space-y-[1.5rem] lg:space-y-[2rem]">
+    <slot {Info} />
+  </div>
 </section>
