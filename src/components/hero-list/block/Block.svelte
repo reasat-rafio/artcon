@@ -24,31 +24,47 @@
     if (!assetEl) return;
 
     if (isActive) {
-      gsap.to(assetEl, {
-        x: scrollDirection === 'forward' ? '-1%' : '1%',
-        duration: 1,
-        ease: 'ease.out',
-        delay: 0.2,
-      });
+      gsap.fromTo(
+        assetEl,
+        { x: scrollDirection === 'forward' ? '1%' : '-1%' },
+        {
+          x: 0,
+          duration: 1,
+          ease: 'ease.out',
+          delay: 0.2,
+        },
+      );
 
-      gsap.to(contentContainerEl, {
-        x: scrollDirection === 'forward' ? '-10%' : '10%',
-        duration: 1.1,
-        ease: 'ease.out',
-      });
+      gsap.fromTo(
+        contentContainerEl,
+        { x: scrollDirection === 'forward' ? '10%' : '-10%' },
+        {
+          x: 0,
+          duration: 1.1,
+          ease: 'ease.out',
+        },
+      );
     } else {
-      gsap.to(assetEl, {
-        x: scrollDirection === 'forward' ? '1%' : '-1%',
-        duration: 1,
-        ease: 'ease.out',
-        delay: 0.2,
-      });
+      gsap.fromTo(
+        assetEl,
+        { x: scrollDirection === 'forward' ? '-1%' : '1%' },
+        {
+          x: 0,
+          duration: 1,
+          ease: 'ease.out',
+          delay: 0.2,
+        },
+      );
 
-      gsap.to(contentContainerEl, {
-        x: scrollDirection === 'forward' ? '-10%' : '10%',
-        duration: 1.1,
-        ease: 'ease.out',
-      });
+      gsap.fromTo(
+        contentContainerEl,
+        { x: scrollDirection === 'forward' ? '-10%' : '10%' },
+        {
+          x: 0,
+          duration: 1.1,
+          ease: 'ease.out',
+        },
+      );
     }
   };
 
