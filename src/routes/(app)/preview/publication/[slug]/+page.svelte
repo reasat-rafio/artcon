@@ -132,18 +132,15 @@
       <SanityImage
         id="previewImage"
         class="h-full w-full object-cover"
-        sizes="50vw"
+        sizes="100vw"
         imageUrlBuilder={imageBuilder}
         src={previewImage}
         alt={previewImage.alt}
       />
     </figure>
   </div>
-  <article
-    bind:this={articleEl}
-    class="flex h-screen w-full flex-col gap-[15px] bg-white max-lg:mt-[1.56rem] max-lg:rounded-t-[0.94rem] lg:flex-row"
-  >
-    <div class="max-lg:hidden lg:flex-[35%]">
+  <article bind:this={articleEl} class="preview_container">
+    <div class="preview_img_wrapper_desktop">
       <figure class="h-full w-full overflow-hidden">
         <SanityImage
           id="previewImage"
@@ -155,15 +152,12 @@
         />
       </figure>
     </div>
-    <section
-      bind:this={contentEl}
-      class="flex-[100%] overflow-scroll lg:flex-[65%]"
-    >
+    <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="max-lg:container max-lg:pb-[3.5rem] lg:px-[4rem] lg:py-[5.88rem] xl:px-[5.438rem] 2xl:px-[8.438rem]"
+          class="preview_content_container"
         >
           <NavigationMobile cta={exproleLink} />
 

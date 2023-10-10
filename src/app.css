@@ -105,17 +105,34 @@
     @apply max-lg:px-[1.25rem] lg:pl-[16rem] lg:pr-[5rem];
   }
 
+  /* Preview */
+
+  .preview_container {
+    @apply flex h-screen w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
+  }
+  .preview_content_wrapper {
+    @apply flex-[100%] overflow-scroll lg:flex-[75%];
+  }
+
+  .preview_content_container {
+    @apply px-[1.25rem] pb-[5rem] lg:px-[6rem] lg:pb-[8rem] lg:pt-[4rem];
+  }
+
+  .preview_img_wrapper_desktop {
+    @apply max-lg:hidden lg:flex-[45%];
+  }
+
   .preview-h-1 {
-    @apply text-[2rem] font-medium tracking-[0.04rem];
+    @apply text-[2.1875rem] font-light leading-[2.5rem] md:text-[2.5rem];
   }
   .preview-h-2 {
-    @apply text-[1.2rem] font-medium tracking-[0.025rem] md:text-[1.25rem];
+    @apply text-[0.938rem] font-light leading-[1.5];
   }
   .preview-h-3 {
     @apply text-[1.25rem] tracking-[0.025rem];
   }
   .preview-h-4 {
-    @apply text-[1rem] font-medium tracking-[0.02rem];
+    @apply text-[0.938rem] font-light leading-[1.5];
   }
   .preview-b-light {
     @apply text-[0.75rem] font-light tracking-[0.015rem];
