@@ -11,8 +11,11 @@
   import { gsap } from 'gsap';
   import { fade } from 'svelte/transition';
   import { beforeNavigate, goto } from '$app/navigation';
-  import NavigationDesktop from '@/components/pages/preview/NavigationDesktop.svelte';
-  import NavigationMobile from '@/components/pages/preview/NavigationMobile.svelte';
+  import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
+  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
+  import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
+  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
 
   export let data: PageProps<VrPreviewProps>;
   $: ({
@@ -132,33 +135,10 @@
   ]}
 />
 <section>
-  <div class="fixed inset-0 -z-10 block lg:hidden">
-    <figure class="h-full w-full overflow-hidden">
-      <SanityImage
-        id="previewImage"
-        class="h-full w-full object-cover"
-        sizes="100vw"
-        imageUrlBuilder={imageBuilder}
-        src={previewImage}
-        alt={previewImage.alt}
-      />
-    </figure>
-  </div>
+  <MobileImage image={previewImage} />
 
   <article bind:this={articleEl} class="preview_container">
-    <div class="preview_img_wrapper_desktop">
-      <figure class="h-full w-full overflow-hidden">
-        <SanityImage
-          id="previewImage"
-          class="h-full w-full object-cover"
-          sizes="50vw"
-          imageUrlBuilder={imageBuilder}
-          src={previewImage}
-          alt={previewImage.alt}
-        />
-      </figure>
-    </div>
-
+    <DesktopImage image={previewImage} />
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
@@ -169,30 +149,24 @@
           <NavigationMobile
             cta={{ href: url, title: 'Explore', newTab: true }}
           />
-          <div class="mb-[2.5rem]">
-            <h2 class="preview-h-2" data-load-animate="y">
-              Our virtual reality
-            </h2>
-            <header class="space-y-[0.625rem] pt-[1rem] lg:pt-[1.25rem]">
-              <div data-load-animate="y">
-                <h1 class="preview-h-1 inline">{name}</h1>
-                <h3 class="preview-h-3 inline">/ Showrov Chowdury</h3>
-              </div>
-              <h4 class="preview-h-4" data-load-animate="y">Exhibition</h4>
-            </header>
-            <div
-              data-load-animate="y"
-              class="space-y-[6px] pt-[1.5rem] text-[#1B1B1E] lg:pt-[2rem]"
-            >
-              <div class="text-title-2 font-light">
+          <Header
+            topic="Our virtual reality"
+            title={name}
+            subtitle="Showrov Chowdury"
+            type="Exhibition"
+            let:Info
+          >
+            <Info>
+              <svelte:fragment slot="title-1">
                 {gallery.name}
-              </div>
-              <div class="text-subtitle-2">
+              </svelte:fragment>
+              <svelte:fragment slot="title-2">
                 <span class="font-light">{date}</span> |
                 <span class="font-medium text-[#ED1C24]">{status}</span>
-              </div>
-            </div>
-          </div>
+              </svelte:fragment>
+            </Info>
+          </Header>
+
           <Vr
             class="mb-[2.5rem]"
             data-load-animate="y"

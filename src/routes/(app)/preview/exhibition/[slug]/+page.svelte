@@ -11,8 +11,8 @@
   import { fade } from 'svelte/transition';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import Asset from '@/components/hero/Asset.svelte';
-  import NavigationDesktop from '@/components/pages/preview/NavigationDesktop.svelte';
-  import NavigationMobile from '@/components/pages/preview/NavigationMobile.svelte';
+  import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
+  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
 
   export let data: PageProps<ExhibitionPreviewProps>;
   $: ({

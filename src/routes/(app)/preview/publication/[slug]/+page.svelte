@@ -7,10 +7,10 @@
   import { gsap } from 'gsap';
   import { fade } from 'svelte/transition';
   import { beforeNavigate, goto } from '$app/navigation';
-  import NavigationDesktop from '@/components/pages/preview/NavigationDesktop.svelte';
+  import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import NavigationMobile from '@/components/pages/preview/NavigationMobile.svelte';
+  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import Cta from '@/components/ui/Cta.svelte';
 
   export let data: PageProps<PublicationPreviewProps>;
