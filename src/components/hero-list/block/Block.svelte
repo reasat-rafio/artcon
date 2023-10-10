@@ -4,7 +4,6 @@
   import Cta from '@/components/ui/Cta.svelte';
   import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import gsap from 'gsap';
-  import { onDestroy } from 'svelte';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -21,48 +20,39 @@
 
   $: isActive = activeBlockIndex === index;
 
-  let ctx: gsap.Context;
-
   const runAnimation = () => {
     if (!assetEl) return;
 
-    const direction = scrollDirection === 'forward' ? 1 : -1;
-    const xAsset = isActive ? '1%' : '-1%';
-    const xContentContainer = isActive ? '0%' : `${-10 * direction}%`;
-
-    gsap.fromTo(
-      assetEl,
-      {
-        x: xAsset,
+    if (isActive) {
+      gsap.to(assetEl, {
+        x: scrollDirection === 'forward' ? '-1%' : '1%',
         duration: 1,
-        ease: 'expo.out',
+        ease: 'ease.out',
         delay: 0.2,
-      },
-      {
-        x: `${-1 * parseFloat(xAsset)}%`,
-        duration: 1,
-        ease: 'expo.out',
-        delay: 0.2,
-      },
-    );
+      });
 
-    gsap.fromTo(
-      contentContainerEl,
-      {
-        x: xContentContainer,
+      gsap.to(contentContainerEl, {
+        x: scrollDirection === 'forward' ? '-10%' : '10%',
         duration: 1.1,
-        easing: 'expo.out',
-      },
-      {
-        x: '0%',
+        ease: 'ease.out',
+      });
+    } else {
+      gsap.to(assetEl, {
+        x: scrollDirection === 'forward' ? '1%' : '-1%',
+        duration: 1,
+        ease: 'ease.out',
+        delay: 0.2,
+      });
+
+      gsap.to(contentContainerEl, {
+        x: scrollDirection === 'forward' ? '-10%' : '10%',
         duration: 1.1,
-        easing: 'expo.out',
-      },
-    );
+        ease: 'ease.out',
+      });
+    }
   };
 
   $: activeBlockIndex, runAnimation();
-  onDestroy(() => ctx?.revert());
 </script>
 
 <div

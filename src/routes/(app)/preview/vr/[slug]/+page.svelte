@@ -2,8 +2,6 @@
   import Seo from '@/components/Seo.svelte';
   import Vr from '@/components/VR.svelte';
   import { calculateStatusBetweenDates, delay } from '@/lib/helper';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
