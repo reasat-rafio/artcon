@@ -111,7 +111,7 @@
     @apply flex h-screen w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
   }
   .preview_content_wrapper {
-    @apply flex-[100%] overflow-scroll lg:flex-[75%];
+    @apply flex-[100%] overflow-scroll lg:flex-[63%];
   }
 
   .preview_content_container {
@@ -119,7 +119,7 @@
   }
 
   .preview_img_wrapper_desktop {
-    @apply max-lg:hidden lg:flex-[45%];
+    @apply max-lg:hidden lg:flex-[38%];
   }
 
   .preview-h-1 {

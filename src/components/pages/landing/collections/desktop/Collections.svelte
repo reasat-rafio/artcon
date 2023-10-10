@@ -15,7 +15,7 @@
   $: ({ collections } = props);
 
   let windowWidth = 0;
-  const DEFAULT_COLUMN_W_PERCENTAGE = 35;
+  const DEFAULT_COLUMN_W_PERCENTAGE = 38;
   const tweenedScrollAmount = tweened(0, { duration: 1500, easing: expoOut });
   const containerWidth = tweened($uiStore.containerWidth, {
     duration: 200,

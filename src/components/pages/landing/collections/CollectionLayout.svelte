@@ -10,7 +10,7 @@
   export let index: number;
   export let href: string;
   export let image: SanityImageAssetDocument;
-  export let DEFAULT_COLUMN_W_PERCENTAGE: number = 35;
+  export let DEFAULT_COLUMN_W_PERCENTAGE: number = 38;
   export let windowWidth = 0;
 
   // TODO caculate this on top component for better performance
@@ -28,13 +28,13 @@
 <a
   data-sveltekit-preload-data
   {href}
-  class="group pointer-events-auto relative h-screen w-full lg:w-[35vw]"
+  class="group pointer-events-auto relative h-screen w-full lg:w-[38vw]"
   on:click|preventDefault={onClickAction}
 >
   <SanityImage
     class="h-full w-full object-cover"
     src={image}
-    sizes="(min-width:1024px) 30vw, 100vw"
+    sizes="(min-width:1024px) 40vw, 100vw"
     imageUrlBuilder={imageBuilder}
     alt={image?.alt ?? 'Collection Preview'}
   />
