@@ -14,7 +14,7 @@
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />
-<aside class="fixed left-0 top-1/2 z-[1000] hidden -translate-y-1/2 md:block">
+<aside class="fixed left-0 top-1/2 z-[1000] hidden -translate-y-1/2 lg:block">
   <nav class="mx-[40px] flex flex-col space-y-[23px]">
     {#each menu as { title, externalUrl, pageUrl }}
       <a

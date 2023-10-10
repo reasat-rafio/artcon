@@ -57,7 +57,7 @@
 <div
   bind:this={rootEl}
   class={twMerge(
-    'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto lg:w-[85%] lg:gap-x-[1.87rem]',
+    'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto lg:gap-x-[1.87rem]',
     $$props.class,
   )}
 >

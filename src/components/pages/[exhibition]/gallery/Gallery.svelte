@@ -12,8 +12,8 @@
   } = props);
 </script>
 
-<section class="py-section">
-  <div class="container">
+<section>
+  <div class="max-w-section px-section py-section">
     <div class="mb-section">
       <Gallery axiesOnMobile="y" items={images} let:chunk>
         {#each chunk as image}

@@ -8,8 +8,8 @@
   $: ({ notes } = props);
 </script>
 
-<section class="py-section">
-  <div class="container">
+<section>
+  <div class="max-w-section px-section py-section">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
         <Quote class="mb-section" {quote} />

@@ -19,8 +19,8 @@
   } = props);
 </script>
 
-<section class="py-section">
-  <div class="container">
+<section>
+  <div class="max-w-section px-section py-section">
     <Quote class="mb-section" {quote} />
     <Artworks class="mb-section hidden lg:grid" {artworks} />
 

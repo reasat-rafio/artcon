@@ -31,12 +31,12 @@
         sarchIsActive ? 'text-dark-gunmetal' : 'text-white',
       )}
     >
-      <Hamburger class="block md:hidden" />
+      <Hamburger class="block lg:hidden" />
       <button
         use:clickOutSide={() => (sarchIsActive = false)}
         on:click={setSearchBarActive}
         class={twMerge(
-          'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white md:flex',
+          'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
           sarchIsActive && ' bg-white',
         )}
       >

@@ -23,6 +23,7 @@ export default {
       },
       maxWidth: {
         '2xl': '1424px',
+        section: '1500px',
       },
       spacing: {
         xl: '144px',

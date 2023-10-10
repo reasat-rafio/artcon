@@ -46,7 +46,7 @@
 </script>
 
 <section>
-  <div class="py-section container border-t border-[#BBBBBE]">
+  <div class="max-w-section px-section py-section border-t border-[#BBBBBE]">
     <h2 class="head-xl">Other Exhibition</h2>
     <div class="relative">
       <div

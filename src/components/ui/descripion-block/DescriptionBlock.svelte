@@ -10,7 +10,7 @@
 
 <article
   class={twMerge(
-    'grid w-full grid-cols-12 gap-[20px] sm:gap-[40px] xl:w-[85%] xl:gap-[50px]',
+    'grid w-full grid-cols-12 gap-[20px] sm:gap-[40px] xl:gap-[50px]',
     $$props.class,
   )}
 >
