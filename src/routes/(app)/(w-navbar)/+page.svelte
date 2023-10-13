@@ -21,26 +21,27 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-<div
-  bind:this={rootEl}
-  id="landing-page"
-  class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden"
->
-  {#each page.sections as s}
-    {#if s._type === 'common.hero'}
-      <Hero
-        class="fixed inset-0"
-        props={{ ...s, scrollAmount: rootEl?.scrollLeft }}
-      />
-      {#if showContact && windowWidth >= 1024}
-        <Contact {contact} />
+<div id="landing-page">
+  <div
+    bind:this={rootEl}
+    class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden"
+  >
+    {#each page.sections as s}
+      {#if s._type === 'common.hero'}
+        <Hero
+          class="fixed inset-0"
+          props={{ ...s, scrollAmount: rootEl?.scrollLeft }}
+        />
+        {#if showContact && windowWidth >= 1024}
+          <Contact {contact} />
+        {/if}
+      {:else if s._type === 'landing.collections'}
+        {#if windowWidth < 1024}
+          <MobileCollections props={{ ...s, contact }} />
+        {:else}
+          <DesktopCollections bind:rootEl props={s} />
+        {/if}
       {/if}
-    {:else if s._type === 'landing.collections'}
-      {#if windowWidth < 1024}
-        <MobileCollections props={{ ...s, contact }} />
-      {:else}
-        <DesktopCollections bind:rootEl props={s} />
-      {/if}
-    {/if}
-  {/each}
+    {/each}
+  </div>
 </div>

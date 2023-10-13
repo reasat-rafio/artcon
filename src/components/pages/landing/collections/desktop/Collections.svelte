@@ -60,6 +60,12 @@
     }
 
     gsap.registerPlugin(Observer);
+    const el = document.querySelector('#landing-page');
+    gsap.to(el, {
+      duration: 0,
+      y: 0,
+    });
+
     let ctx = gsap.context(() => {
       Observer.create({
         target: window,
