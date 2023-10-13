@@ -23,6 +23,7 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div
   bind:this={rootEl}
+  id="landing-page"
   class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden"
 >
   {#each page.sections as s}
@@ -36,7 +37,7 @@
       {/if}
     {:else if s._type === 'landing.collections'}
       {#if windowWidth < 1024}
-        <MobileCollections bind:rootEl props={{ ...s, contact }} />
+        <MobileCollections props={{ ...s, contact }} />
       {:else}
         <DesktopCollections bind:rootEl props={s} />
       {/if}

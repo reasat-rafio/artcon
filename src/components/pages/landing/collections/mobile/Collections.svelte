@@ -9,7 +9,6 @@
   import Contact from '@/components/pages/landing/Contact.svelte';
   import Collection from '../Collection.svelte';
 
-  export let rootEl: HTMLElement;
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
 
@@ -19,12 +18,15 @@
 
   onMount(() => {
     gsap.registerPlugin(Observer);
+    const rootEl = document.querySelector('#landing-page');
+
     let ctx = gsap.context(() => {
       if ($uiStore.seclectedPreviewIndex !== null && innerWidth < 1024) {
         gsap.to(rootEl, {
-          duration: 0.001,
-          y: `-${currentIndex * 100}dvh`,
+          duration: 0,
+          y: `-${($uiStore.seclectedPreviewIndex + 1) * 100}dvh`,
         });
+
         currentIndex = $uiStore.seclectedPreviewIndex + 1;
         uiStore.setActivePreview(null);
       }
