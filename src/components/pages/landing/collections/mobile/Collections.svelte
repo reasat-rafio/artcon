@@ -9,6 +9,7 @@
   import Contact from '@/components/pages/landing/Contact.svelte';
   import Collection from '../Collection.svelte';
 
+  export let rootEl: HTMLElement;
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
 
@@ -40,7 +41,7 @@
               Math.max(0, currentIndex - 1),
               collections.length + 1,
             );
-            gsap.to(document.body, {
+            gsap.to(rootEl, {
               duration: 0.7,
               y: `-${currentIndex * 100}dvh`,
               ease: 'expoOut',
@@ -59,7 +60,7 @@
               Math.max(0, currentIndex + 1),
               collections.length + 1,
             );
-            gsap.to(document.body, {
+            gsap.to(rootEl, {
               duration: 0.7,
               y: `-${currentIndex * 100}dvh`,
               ease: 'expoOut',

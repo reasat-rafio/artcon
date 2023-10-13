@@ -14,7 +14,7 @@
   export let windowWidth = 0;
 
   // TODO caculate this on top component for better performance
-  $: width = windowWidth >= 1024 ? `${DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
+  // $: width = windowWidth >= 1024 ? `${DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
 
   const onClickAction = async () => {
     uiStore.setActivePreview(index);
@@ -24,7 +24,6 @@
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
-<!-- style="width: {width};" -->
 <a
   data-sveltekit-preload-data
   {href}

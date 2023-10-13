@@ -36,13 +36,17 @@
   }
 
   $: {
-    uiStore.setContaienrWidth(
-      (collections?.length + 1) * DEFAULT_COLUMN_W_PERCENTAGE +
-        ($uiStore.seclectedPreviewIndex !== null
-          ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
-          : 0),
-    );
-    containerWidth.set($uiStore.containerWidth);
+    const collectionsWidth = collections?.length * DEFAULT_COLUMN_W_PERCENTAGE;
+    const contactWidth = DEFAULT_COLUMN_W_PERCENTAGE;
+    const collectionContentPlaceHolderWidth =
+      $uiStore.seclectedPreviewIndex !== null
+        ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
+        : 0;
+    const totalWidths =
+      collectionsWidth + contactWidth + collectionContentPlaceHolderWidth;
+
+    uiStore.setContaienrWidth(totalWidths);
+    containerWidth.set($uiStore.containerWidth, { duration: 0 });
   }
 
   onMount(() => {

@@ -23,7 +23,7 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div
   bind:this={rootEl}
-  class="lg:fixed lg:inset-0 lg:isolate lg:h-screen lg:w-screen lg:overflow-hidden"
+  class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden"
 >
   {#each page.sections as s}
     {#if s._type === 'common.hero'}
@@ -36,7 +36,7 @@
       {/if}
     {:else if s._type === 'landing.collections'}
       {#if windowWidth < 1024}
-        <MobileCollections props={{ ...s, contact }} />
+        <MobileCollections bind:rootEl props={{ ...s, contact }} />
       {:else}
         <DesktopCollections bind:rootEl props={s} />
       {/if}
