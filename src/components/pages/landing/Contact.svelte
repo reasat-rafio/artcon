@@ -15,7 +15,7 @@
   )}
 >
   <div
-    class="relative z-30 flex h-full flex-col px-[1.25rem] pb-[3.75rem] pt-[calc(100vh*.31)] max-lg:container lg:px-[2rem] lg:pb-[4rem]"
+    class="relative z-30 flex h-full flex-col px-[1.25rem] pb-[3.75rem] pt-[calc(100vh*.31)] lg:px-[2rem] lg:pb-[4rem]"
   >
     <div class="flex flex-1 flex-col">
       <header

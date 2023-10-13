@@ -21,7 +21,7 @@
   {index}
 >
   <div
-    class="absolute bottom-0 left-0 z-10 p-[4rem] text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem] xl:w-[90%]"
+    class="absolute bottom-0 left-0 z-10 text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem] max-lg:px-[1.25rem] max-lg:pb-[2.8rem] lg:p-[3rem] xl:w-[90%] xl:p-[4rem]"
   >
     <h2 class="text-[1.125rem] font-medium">{title}</h2>
     <div class="pt-[0.75rem]">
