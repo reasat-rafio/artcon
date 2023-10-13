@@ -21,9 +21,9 @@
     gsap.registerPlugin(Observer);
     let ctx = gsap.context(() => {
       if ($uiStore.seclectedPreviewIndex !== null && innerWidth < 1024) {
-        gsap.to(window, {
+        gsap.to(rootEl, {
           duration: 0.001,
-          scrollTo: window.innerHeight * ($uiStore.seclectedPreviewIndex + 1),
+          y: `-${currentIndex * 100}dvh`,
         });
         currentIndex = $uiStore.seclectedPreviewIndex + 1;
         uiStore.setActivePreview(null);
