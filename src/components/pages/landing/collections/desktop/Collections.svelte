@@ -37,8 +37,7 @@
 
   $: {
     uiStore.setContaienrWidth(
-      collections?.length * DEFAULT_COLUMN_W_PERCENTAGE +
-        50 +
+      (collections?.length + 1) * DEFAULT_COLUMN_W_PERCENTAGE +
         ($uiStore.seclectedPreviewIndex !== null
           ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
           : 0),
