@@ -11,7 +11,7 @@
 
 <section
   class={twMerge(
-    'h-screen bg-[#0E0E0F] font-inter text-[#F5EEE6] lg:fixed lg:right-0 lg:top-0 lg:block lg:w-[38vw]',
+    'h-[100dvh] bg-[#0E0E0F] font-inter text-[#F5EEE6] lg:fixed lg:right-0 lg:top-0 lg:block lg:w-[38vw]',
   )}
 >
   <div
