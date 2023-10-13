@@ -3,7 +3,6 @@
   import { onMount } from 'svelte';
   import gsap from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
-  import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
   import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import uiStore from '@/store/ui';
   import type { ContactProps } from '@/lib/types/common.types';
@@ -18,7 +17,7 @@
   let innerWidth = 0;
 
   onMount(() => {
-    gsap.registerPlugin(Observer, ScrollToPlugin);
+    gsap.registerPlugin(Observer);
     let ctx = gsap.context(() => {
       if ($uiStore.seclectedPreviewIndex !== null && innerWidth < 1024) {
         gsap.to(window, {
@@ -41,9 +40,9 @@
               Math.max(0, currentIndex - 1),
               collections.length + 1,
             );
-            gsap.to(window, {
+            gsap.to(document.body, {
               duration: 0.7,
-              scrollTo: window.innerHeight * currentIndex,
+              y: `-${currentIndex * 100}dvh`,
               ease: 'expoOut',
               onStart: () => {
                 animating = true;
@@ -60,9 +59,9 @@
               Math.max(0, currentIndex + 1),
               collections.length + 1,
             );
-            gsap.to(window, {
+            gsap.to(document.body, {
               duration: 0.7,
-              scrollTo: window.innerHeight * currentIndex,
+              y: `-${currentIndex * 100}dvh`,
               ease: 'expoOut',
               onStart: () => {
                 animating = true;
@@ -80,7 +79,7 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<section class="z-40 block translate-y-[100vh] lg:hidden">
+<section class="z-40 block translate-y-[100dvh] lg:hidden">
   <div class="flex flex-col">
     {#each collections as collection, index}
       {#if collection._type === 'exhibition'}
