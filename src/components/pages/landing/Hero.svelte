@@ -29,16 +29,16 @@
 
       // from NavItems Component
       if (windowWidth >= 1024)
-        tl.from('.navitem', {
-          y: 20,
-          opacity: 0,
+        tl.to('.navitem', {
+          y: 0,
+          opacity: 1,
           stagger: 0.1,
           ease: 'expoOut',
         });
-      if (textEl) tl.from(textEl, { y: '100%', opacity: 0 }, '-=0.1');
-      if (titleEl) tl.from(titleEl, { y: '100%', opacity: 0 }, '-=0.2');
-      if (typeEl) tl.from(typeEl, { y: '100%', opacity: 0 }, '-=0.3');
-      tl.from('.cta-btn', { y: '100%', opacity: 0 }, '-=0.4');
+      if (textEl) tl.to(textEl, { y: 0, opacity: 1 }, '-=0.1');
+      if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+      if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');
+      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
       tl.from('#pointer', { y: '100%', opacity: 0 }, '-=0.4');
     });
 
@@ -59,17 +59,24 @@
     <div class="container relative z-30 text-center text-white">
       <header class="space-y-[1rem]">
         {#if !!text}
-          <h3 bind:this={textEl} class="head-md">{text}</h3>
+          <h3 bind:this={textEl} class="head-md translate-y-full opacity-0">
+            {text}
+          </h3>
         {/if}
         <div class="overflow-hidden">
-          <h1 bind:this={titleEl} class="head-5xl !leading-none">{title}</h1>
+          <h1
+            bind:this={titleEl}
+            class="head-5xl translate-y-full !leading-none opacity-0"
+          >
+            {title}
+          </h1>
         </div>
 
         {#if !!type}
           <div class="overflow-hidden">
             <h2
               bind:this={typeEl}
-              class="whitespace-pre-wrap text-[0.938rem] leading-[1.4rem] lg:text-[1.5rem] lg:leading-[2.25rem]"
+              class="translate-y-full whitespace-pre-wrap text-[0.938rem] leading-[1.4rem] opacity-0 lg:text-[1.5rem] lg:leading-[2.25rem]"
             >
               {type}
             </h2>
@@ -81,7 +88,7 @@
           <Cta
             variant="fill"
             color="white"
-            class="cta-btn mx-auto"
+            class="cta-btn mx-auto translate-y-full opacity-0"
             href={cta.href}>{cta.title}</Cta
           >
         </div>

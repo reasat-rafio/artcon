@@ -20,7 +20,9 @@
       <a
         style="color: {textColor};"
         href={pageUrl ?? externalUrl}
-        class={twMerge('navitem text-button uppercase')}
+        class={twMerge(
+          'navitem text-button uppercase lg:space-y-[20px] lg:opacity-0',
+        )}
       >
         <span
           class={twMerge(
