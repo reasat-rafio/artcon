@@ -70,7 +70,7 @@
 
 <section class="grid grid-cols-12">
   <div
-    class={twMerge('col-span-12 overflow-hidden lg:col-span-11')}
+    class={twMerge('col-span-12 overflow-hidden')}
     use:sectionInit={innerWidth}
     use:emblaCarouselSvelte={{ plugins, options }}
     on:emblaInit={onInit}
@@ -96,9 +96,7 @@
     </div>
   </div>
   <nav
-    class={twMerge(
-      'col-span-12 flex items-center justify-center max-lg:mt-[2.38rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]',
-    )}
+    class="col-span-12 mt-[1rem] flex items-center justify-center space-x-[0.62rem] max-lg:mt-[2.38rem] lg:justify-end"
   >
     {#if axiesOnMobile === 'x'}
       <button on:click={() => emblaApi.scrollPrev()}>
