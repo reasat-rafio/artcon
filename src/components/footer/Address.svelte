@@ -11,7 +11,7 @@
 </script>
 
 <div class={$$props.class ?? ''}>
-  <address class="col-span-3 space-y-[26px] text-[#1B1B1E] 2xl:col-span-2">
+  <address class="col-span-3 space-y-[26px] text-[#1B1B1E]">
     <InfoBlock icon={contact.address.darkIcon} info={contact.address.address} />
 
     <div class="grid grid-cols-1 gap-[1.62rem] sm:grid-cols-2">
@@ -44,5 +44,4 @@
       {/each}
     </ul>
   </address>
-  <div class="hidden 2xl:col-span-1 2xl:block" />
 </div>

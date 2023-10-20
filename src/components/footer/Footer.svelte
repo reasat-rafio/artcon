@@ -13,7 +13,7 @@
 
 <footer>
   <div
-    class="max-w-section px-section py-section border-t border-[#BBBBBE] pt-[2.5rem]"
+    class="px-section py-section max-w-section border-t border-[#BBBBBE] pt-[2.5rem]"
   >
     <section
       class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[1.75rem] lg:pb-[2rem]"
