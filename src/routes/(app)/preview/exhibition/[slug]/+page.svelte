@@ -167,7 +167,7 @@
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] aspect-video max-h-[494px] w-full overflow-hidden rounded-[25px]"
+            class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px]"
           >
             <Asset {asset} />
           </div>
