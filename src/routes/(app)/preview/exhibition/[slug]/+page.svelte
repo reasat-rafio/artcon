@@ -145,20 +145,21 @@
           />
 
           <Header
+            let:Info
             topic="Our exhibition"
             title={name}
             subtitle={typeof exhibitionType === 'string'
               ? exhibitionType
               : exhibitionType.en}
             type={isSoloExhibition ? 'Solo Exhibition' : 'Group Exhibition'}
-            let:Info
           >
             <Info>
               <svelte:fragment slot="title-1">
                 {gallery.name}
               </svelte:fragment>
               <svelte:fragment slot="title-2">
-                <span class="font-light">{date}</span> |
+                <span class="font-light">{date}</span>
+                <span class="whitespace-normal break-all">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
               </svelte:fragment>
             </Info>
