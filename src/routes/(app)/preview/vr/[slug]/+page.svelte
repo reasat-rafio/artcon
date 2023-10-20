@@ -20,6 +20,7 @@
     page: {
       _type,
       name,
+      subtitle,
       description,
       previewImage,
       placeholderImage,
@@ -27,6 +28,7 @@
       startDate,
       endDate,
       url,
+      category,
     },
     site: { logos },
   } = data);
@@ -148,9 +150,9 @@
             cta={{ href: url, title: 'Explore', newTab: true }}
           />
           <Header
-            topic="Our virtual reality"
             title={name}
-            subtitle="Showrov Chowdury"
+            {subtitle}
+            topic={category.name}
             type="Exhibition"
             let:Info
           >

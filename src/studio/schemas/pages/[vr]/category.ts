@@ -12,6 +12,12 @@ const vrCategory = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
+    {
+      name: 'slug',
+      type: 'slug',
+      options: { source: 'name' },
+      validation: (Rule: Rule) => Rule.required(),
+    },
   ],
   preview: {
     select: {

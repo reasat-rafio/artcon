@@ -1,9 +1,10 @@
 import type { SanityImageAssetDocument } from '@sanity/client';
 import type { PortableTextBlock, Slug } from 'sanity';
+import type { Tag } from './common.types';
 
 export interface VrPreviewProps {
   _type: 'vr';
-  category: RefDocument;
+  category: Tag;
   endDate: string;
   description: PortableTextBlock[];
   url: string;
