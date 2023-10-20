@@ -50,6 +50,7 @@
         {#each artworks as artwork, index}
           <Image
             {...artwork}
+            isSingleArtwork={artworks?.length === 1}
             active={activeSide === index ||
               (activeSide === artworks.length && index === 0)}
           />

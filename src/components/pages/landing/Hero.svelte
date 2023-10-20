@@ -31,7 +31,7 @@
       if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
       if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');
       tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
-      tl.from('#pointer', { y: '100%', opacity: 0 }, '-=0.4');
+      tl.to('#pointer', { opacity: 1 }, '-=0.4');
     });
 
     return () => ctx.revert();
@@ -89,7 +89,7 @@
 
     <div
       id="pointer"
-      class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
+      class="absolute opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
     >
       <div
         class="flex items-center justify-center space-x-[1.06rem] text-[#E8E6E3] lg:pr-[2.5rem]"

@@ -12,6 +12,7 @@
   export let artwork: SanityImageAssetDocument;
   export let information: PortableTextBlock[];
   export let innerWidth = 0;
+  export let isSingleArtwork: boolean;
 
   const x = tweened(active ? 1.2 : 0.6, {
     duration: 600,
@@ -22,8 +23,14 @@
     easing: cubicInOut,
   });
 
-  $: $x = innerWidth >= 1024 ? (active ? 1.2 : 0.6) : 1;
-  $: $y = innerWidth >= 1024 ? (active ? 1 : 0.5) : 1;
+  $: $x = !isSingleArtwork
+    ? innerWidth >= 1024
+      ? active
+        ? 1.2
+        : 0.6
+      : 1
+    : 1;
+  $: $y = !isSingleArtwork ? (innerWidth >= 1024 ? (active ? 1 : 0.5) : 1) : 1;
 </script>
 
 <svelte:window bind:innerWidth />
@@ -35,7 +42,11 @@
       <figure
         class={twMerge(
           'relative',
-          active ? 'lg:translate-x-[-15%]' : 'lg:translate-x-[-25%]',
+          !isSingleArtwork
+            ? active
+              ? 'lg:translate-x-[-15%]'
+              : 'lg:translate-x-[-25%]'
+            : '',
         )}
       >
         <SanityImage
