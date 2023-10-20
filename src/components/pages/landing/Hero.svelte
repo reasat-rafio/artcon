@@ -25,16 +25,8 @@
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'expoOut', duration: 0.5 },
+        delay: 0.6,
       });
-
-      // from NavItems Component
-      if (windowWidth >= 1024)
-        tl.to('.navitem', {
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          ease: 'expoOut',
-        });
       if (textEl) tl.to(textEl, { y: 0, opacity: 1 }, '-=0.1');
       if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
       if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');

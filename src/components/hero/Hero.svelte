@@ -19,20 +19,12 @@
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'expoOut', duration: 0.5 },
+        delay: 0.6,
       });
-
-      // from NavItems Component
-      if (innerWidth >= 1024)
-        tl.from('.navitem', {
-          y: 20,
-          opacity: 0,
-          stagger: 0.1,
-          ease: 'expoOut',
-        });
-      if (textEl) tl.from(textEl, { y: '100%', opacity: 0 }, '-=0.1');
-      if (titleEl) tl.from(titleEl, { y: '100%', opacity: 0 }, '-=0.2');
-      if (typeEl) tl.from(typeEl, { y: '100%', opacity: 0 }, '-=0.3');
-      tl.from('.cta-btn', { y: '100%', opacity: 0 }, '-=0.4');
+      if (textEl) tl.to(textEl, { y: 0, opacity: 1 }, '-=0.1');
+      if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+      if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');
+      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
       tl.from('#pointer', { y: '100%', opacity: 0 }, '-=0.4');
     });
 
@@ -46,32 +38,44 @@
     <Asset {asset} />
 
     <div class="container relative z-30 text-center text-white">
-      <header class="space-y-[1rem] lg:space-y-[1.56rem]">
+      <header class="space-y-[1rem]">
         {#if !!text}
-          <div class="overflow-hidden">
-            <h3 bind:this={textEl} class="head-md">{text}</h3>
-          </div>
+          <h3 bind:this={textEl} class="head-md translate-y-full opacity-0">
+            {text}
+          </h3>
         {/if}
         <div class="overflow-hidden">
-          <h1 bind:this={titleEl} class="head-5xl">{title}</h1>
+          <h1
+            bind:this={titleEl}
+            class="head-5xl translate-y-full !leading-none opacity-0"
+          >
+            {title}
+          </h1>
         </div>
+
         {#if !!type}
           <div class="overflow-hidden">
-            <h2 bind:this={typeEl} class="head-3xl">{type}</h2>
+            <h2
+              bind:this={typeEl}
+              class="translate-y-full whitespace-pre-wrap text-[0.938rem] leading-[1.4rem] opacity-0 lg:text-[1.5rem] lg:leading-[2.25rem]"
+            >
+              {type}
+            </h2>
           </div>
         {/if}
       </header>
       {#if !!cta?.title}
-        <div class="overflow-hidden">
+        <div class="mt-[1rem] overflow-hidden">
           <Cta
             variant="fill"
             color="white"
-            class="cta-btn mx-auto mt-[2.5rem] lg:mt-[4.75rem]"
+            class="cta-btn mx-auto translate-y-full opacity-0"
             href={cta.href}>{cta.title}</Cta
           >
         </div>
       {/if}
     </div>
+
     <div
       id="pointer"
       class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
