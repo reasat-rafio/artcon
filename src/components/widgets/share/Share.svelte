@@ -23,8 +23,8 @@
   bind:this={sectionEl}
   class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]"
 >
-  <div class="relative">
-    <div class="container flex items-center">
+  <div class="px-section relative max-w-section">
+    <div class="flex items-center">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
@@ -45,8 +45,8 @@
       </button>
     </div>
     {#if showLogo}
-      <div transition:fade class="absolute left-[40px] top-0 hidden 2xl:block">
-        <a class="" href="/">
+      <div transition:fade class="absolute left-[40px] top-0 hidden lg:block">
+        <a href="/">
           <SanityImage
             class="h-[50px] object-contain"
             src={logo}
