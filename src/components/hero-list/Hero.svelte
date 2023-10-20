@@ -7,6 +7,7 @@
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import { useDebounce } from '@/lib/helper';
+  import Autoplay from 'embla-carousel-autoplay';
 
   export let props: CommonHeroListProps;
   let { blocks } = props;
@@ -44,7 +45,7 @@
     class="overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
-      plugins: [],
+      plugins: [Autoplay()],
       options: { loop: true, duration: 30 },
     }}
   >

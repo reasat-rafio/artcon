@@ -20,7 +20,7 @@
               <Card
                 el="a"
                 href={`/exhibition/${slug.current}`}
-                class="space-y-[20px] pl-[20px]"
+                class="flex flex-col gap-y-[20px] pl-[20px]"
                 let:Image
                 let:Title
                 let:Container
