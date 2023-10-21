@@ -8,13 +8,13 @@
   <UserListWithTitle title="Other artists">
     <svelte:fragment slot="list" let:CardsContainer let:Card>
       <CardsContainer>
-        {#each artists as { artistPortrait, name, slug }}
+        {#each artists as { artistPortrait, name, slug, tag }}
           <Card
             el="a"
             url="/artist/{slug.current}"
             image={artistPortrait}
             title={name}
-            subtitle={'role'}
+            subtitle={tag.name}
           />
         {/each}
       </CardsContainer>

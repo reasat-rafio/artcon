@@ -4,7 +4,7 @@ import type {
 } from 'sanity/desk';
 import { FaSitemap, FaTag } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
-import { GrEdit, GrTag } from 'react-icons/gr';
+import { GrEdit } from 'react-icons/gr';
 import {
   PiProjectorScreenChartLight,
   PiUsersThreeLight,
@@ -215,7 +215,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             .title('Artist')
             .items([
               S.documentTypeListItem('artist').title('Artists'),
-              S.documentTypeListItem('artistTag').title('Tags'),
+              orderableDocumentListDeskItem({
+                type: 'artistTag',
+                S,
+                context,
+                title: 'Tags',
+                icon: FaTag,
+              }),
             ]),
         ),
       S.documentTypeListItem('collection').title('Collections'),
@@ -254,7 +260,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 S,
                 context,
                 title: 'Category',
-                icon: GrTag,
+                icon: FaTag,
               }),
             ]),
         ),

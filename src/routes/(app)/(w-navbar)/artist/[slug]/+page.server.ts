@@ -79,7 +79,8 @@ const query = (params: Partial<Record<string, string>>) =>
       ),
     },
     "otherArtists": *[_type == "artist" && slug.current != "${params.slug}"]{
-       slug,
+      slug,
+      tag->{name},
       ...personalDocuments {
         "name": name.en,
         ${asset('artistPortrait')},

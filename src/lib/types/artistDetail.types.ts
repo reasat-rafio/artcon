@@ -9,6 +9,7 @@ import type {
   Quote,
   SeoProps,
   ShortArtworks,
+  Tag,
   VR,
 } from './common.types';
 import type { PortableTextBlock, Slug } from 'sanity';
@@ -43,6 +44,7 @@ export interface OtherArtists {
   slug: Slug;
   name: string;
   artistPortrait: SanityImageAssetDocument;
+  tag: Tag;
 }
 
 export interface ArtistSummaryProps {

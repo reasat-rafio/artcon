@@ -46,6 +46,15 @@ const artist = {
     },
 
     {
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{ type: 'artistTag' }],
+      group: 'site',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
       name: 'artworks',
       title: "Artist's Artworks",
       type: 'array',
