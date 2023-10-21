@@ -272,7 +272,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             .title('Publications')
             .items([
               S.documentTypeListItem('publication').title('Publications'),
-              S.documentTypeListItem('publicationCategory').title('Category'),
+              orderableDocumentListDeskItem({
+                type: 'publicationCategory',
+                S,
+                context,
+                title: 'Category',
+                icon: FaTag,
+              }),
             ]),
         ),
 
