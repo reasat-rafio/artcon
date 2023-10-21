@@ -31,7 +31,13 @@ type Section =
   | CommonImageAsset
   | CommonArtworkSectionProps
   | ArtistSummaryProps
+  | PublicationSectionPros
   | ExhibitionsProps;
+
+export interface PublicationSectionPros {
+  _type: 'artist.publication';
+  _key: string;
+}
 
 export interface OtherArtists {
   slug: Slug;

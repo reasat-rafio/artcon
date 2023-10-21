@@ -5,7 +5,7 @@
 </script>
 
 <section class="px-section py-section max-w-section">
-  <UserListWithTitle title="Artist in this ehibition">
+  <UserListWithTitle title="Other artists">
     <svelte:fragment slot="list" let:CardsContainer let:Card>
       <CardsContainer>
         {#each artists as { artistPortrait, name, slug }}
