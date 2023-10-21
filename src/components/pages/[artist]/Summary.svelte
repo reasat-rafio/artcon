@@ -18,7 +18,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     <Quote class="mb-section" {quote} />
 
     <DescriptionBlock class="mb-section">

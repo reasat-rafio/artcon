@@ -7,6 +7,7 @@ const summary = {
   title: 'Summary',
   type: 'object',
   icon: FaHighlighter,
+
   fields: [
     {
       name: 'quote',
@@ -17,7 +18,7 @@ const summary = {
     {
       name: 'images',
       type: 'array',
-      validation: (Rule: Rule) => Rule.length(2),
+      validation: (Rule: Rule) => Rule.length(2).required(),
       of: [
         {
           name: 'image',
