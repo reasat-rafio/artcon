@@ -1,3 +1,5 @@
+import type { Rule } from 'sanity';
+
 const projectPage = {
   name: 'projectPage',
   title: 'Project Page',
@@ -12,6 +14,7 @@ const projectPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+      validation: (Rule: Rule) => Rule.required().min(1),
       of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
     },
   ],

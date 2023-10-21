@@ -1,3 +1,5 @@
+import type { Rule } from 'sanity';
+
 const eventPage = {
   name: 'eventPage',
   title: 'Event Page',
@@ -12,6 +14,7 @@ const eventPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+      validation: (Rule: Rule) => Rule.required().min(1),
       of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
     },
   ],

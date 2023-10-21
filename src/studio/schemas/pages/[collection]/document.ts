@@ -105,6 +105,8 @@ const collection = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+      validation: (Rule: Rule) => Rule.required().min(1),
+
       of: [
         { type: 'common.imageAsset' },
         { type: 'collection.summary' },

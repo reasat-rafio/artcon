@@ -1,3 +1,5 @@
+import type { Rule } from 'sanity';
+
 const aboutUsPage = {
   name: 'aboutUsPage',
   title: 'About us Page',
@@ -12,6 +14,7 @@ const aboutUsPage = {
       name: 'sections',
       title: 'Sections',
       type: 'array',
+      validation: (Rule: Rule) => Rule.required().min(1),
       of: [
         { type: 'common.hero' },
         { type: 'aboutUsPage.aboutUs' },

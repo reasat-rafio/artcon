@@ -8,15 +8,19 @@
   import Exhibitions from '@/components/pages/[artist]/exhibitions/Exhibitions.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
 
   $: ({
-    page: { siteDocuments, personalDocuments, seo, artworks },
+    page: { siteDocuments, personalDocuments, seo, artworks, exhibitions },
     site: {
       logos: { logoLight, ogImage },
+      footer,
+      contact,
     },
   } = data);
+  $: console.log(exhibitions);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -45,4 +49,5 @@
       <Exhibitions props={s} /> -->
     {/if}
   {/each}
+  <Footer {footer} {contact} logo={logoLight} />
 </div>
