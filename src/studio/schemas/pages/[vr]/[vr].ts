@@ -1,4 +1,5 @@
 import VrPreview from '@/studio/components/VrPreview';
+import { orderRankField } from '@sanity/orderable-document-list';
 import { PiVirtualRealityFill } from 'react-icons/pi';
 import type { Rule } from 'sanity';
 
@@ -8,6 +9,7 @@ const vr = {
   title: 'VR',
   icon: PiVirtualRealityFill,
   fields: [
+    orderRankField({ type: 'vr' }),
     {
       name: 'name',
       type: 'string',

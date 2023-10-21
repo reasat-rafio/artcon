@@ -242,7 +242,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
           S.list()
             .title("VR's")
             .items([
-              S.documentTypeListItem('vr').title("VR's"),
+              orderableDocumentListDeskItem({
+                type: 'vr',
+                S,
+                context,
+                title: "VR's",
+                icon: PiVirtualRealityFill,
+              }),
               S.documentTypeListItem('vrCategory').title('Category'),
             ]),
         ),

@@ -1,3 +1,4 @@
 import vrPage from './document';
+import hero from './hero';
 
-export default [vrPage];
+export default [vrPage, hero];
