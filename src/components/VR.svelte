@@ -11,7 +11,9 @@
 </script>
 
 <section {...$$restProps} class={twMerge($$props.class)}>
-  <div class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px]">
+  <div
+    class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px] overflow-hidden"
+  >
     {#if showIframe}
       <iframe
         allowfullscreen
@@ -21,13 +23,14 @@
       />
     {:else}
       <div
+        class="h-full w-full"
         tabindex="0"
         role="button"
         aria-pressed="false"
         on:click={() => (showIframe = true)}
         on:keypress={() => (showIframe = true)}
       >
-        <figure class="cursor-pointer">
+        <figure class="h-full w-full cursor-pointer">
           <SanityImage
             class="h-full w-full rounded-[20px] object-cover"
             sizes="70vw"
