@@ -4,7 +4,7 @@ import type {
 } from 'sanity/desk';
 import { FaSitemap, FaTag } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
-import { GrEdit } from 'react-icons/gr';
+import { GrEdit, GrTag } from 'react-icons/gr';
 import {
   PiProjectorScreenChartLight,
   PiUsersThreeLight,
@@ -249,7 +249,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 title: "VR's",
                 icon: PiVirtualRealityFill,
               }),
-              S.documentTypeListItem('vrCategory').title('Category'),
+              orderableDocumentListDeskItem({
+                type: 'vrCategory',
+                S,
+                context,
+                title: 'Category',
+                icon: GrTag,
+              }),
             ]),
         ),
       S.listItem()

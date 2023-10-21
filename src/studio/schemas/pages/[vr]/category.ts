@@ -1,3 +1,4 @@
+import { orderRankField } from '@sanity/orderable-document-list';
 import { GrTag } from 'react-icons/gr';
 import type { Rule } from 'sanity';
 
@@ -7,6 +8,8 @@ const vrCategory = {
   type: 'document',
   icon: GrTag,
   fields: [
+    orderRankField({ type: 'vrCategory' }),
+
     {
       name: 'name',
       type: 'string',

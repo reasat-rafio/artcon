@@ -43,7 +43,6 @@
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-
 {#each sections as s}
   {#if s._type === 'exhibitionPage.hero'}
     <Hero props={formatExhibitionListingProps(s)} />

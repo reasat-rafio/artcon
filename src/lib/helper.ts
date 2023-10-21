@@ -4,6 +4,8 @@ import type {
   SoloExhibitonProps,
 } from './types/exhibitionDetail.types';
 import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition.types';
+import type { HeroProps as VrListingHeroProps } from './types/vr.types';
+
 import type {
   CommonHeroListProps,
   CommonHeroProps,
@@ -100,6 +102,27 @@ export function debounce<T extends unknown[], U>(
     });
   };
 }
+
+export const formatVrListingProps = (
+  props: VrListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedVr.map(
+    ({ previewImage, name, subtitle, slug, category }) => {
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset: { image: previewImage },
+        title: name,
+        text: subtitle,
+        type: category.name,
+        cta: { title: 'EXPLORE', href: `/preview/vr/${slug.current}` },
+      };
+    },
+  );
+  return {
+    blocks: formatedProps,
+  };
+};
 
 export const formatExhibitionListingProps = (
   props: ExhibitionListingHeroProps,
