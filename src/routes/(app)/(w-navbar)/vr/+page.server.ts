@@ -23,6 +23,7 @@ const query = groq`
         _id,
         name,
         gallery->{name},
+        ${asset('placeholderImage')},
         category->{
             name,
             slug

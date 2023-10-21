@@ -10,6 +10,7 @@ import type {
   CommonHeroListProps,
   CommonHeroProps,
   CommonImageAsset,
+  Tag,
 } from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -186,3 +187,13 @@ export const createListingItemWithImage = <T>(
 
   return formatedArray;
 };
+
+// export const filterBySearchParams = (
+//   flist: { tag: Tag }[],
+//   aciteveSearchParms: string | null,
+// ) => {
+//   if (!aciteveSearchParms) return;
+//   return flist.filter(
+//     ({ tag: { slug } }) => slug.current === aciteveSearchParms,
+//   );
+// };
