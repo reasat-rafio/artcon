@@ -8,7 +8,29 @@ const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type == "artist" && slug.current == "${params.slug}"][0]{
     seo,
     "exhibitions" : *[_type== "exhibition" && references("artists", ^._id)][]{
-        ...
+      name,
+      slug,
+      tag->{name},
+      startDate,
+      endDate,
+      asset {
+        ...,
+        ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
+      "type": select(
+          count(artists) == 1 => {
+            ...artists[0]->{
+              ...personalDocuments {
+                "name": name.en,
+              }
+            }
+          },
+          count(artists) > 1 => "Group Exhibition",
+      ),
     },
     personalDocuments {
       "name": name.en,

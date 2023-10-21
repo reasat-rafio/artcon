@@ -4,6 +4,7 @@ import type {
   CommonHeroProps,
   CommonImageAsset,
   CommonNoteProps,
+  CommonOtherExhibitionProps,
   Cta,
   DescriptionBlock,
   Quote,
@@ -36,7 +37,7 @@ export interface ExhinitionDetailPageProps {
   gallery: Gallery;
   seo: SeoProps;
   tags: Tag[];
-  otherExhibitions: OtherExhibitionProps[];
+  otherExhibitions: CommonOtherExhibitionProps[];
   publication: Publication;
   sections: Section[];
 }
@@ -85,16 +86,6 @@ export interface GroupExhibirtionProps {
   slug: Slug;
   name: string;
   artistPortrait: SanityImageAssetDocument;
-}
-
-export interface OtherExhibitionProps {
-  asset: Asset;
-  name: string;
-  tag: { name: string };
-  slug: Slug;
-  startDate: string;
-  endDate?: string;
-  type: 'Group Exhibition' | { name: string };
 }
 
 export interface SummaryProps {

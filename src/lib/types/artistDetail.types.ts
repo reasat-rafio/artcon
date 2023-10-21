@@ -3,6 +3,7 @@ import type {
   CommonArtworkSectionProps,
   CommonHeroProps,
   CommonImageAsset,
+  CommonOtherExhibitionProps,
   Cta,
   DescriptionBlock,
   Quote,
@@ -20,6 +21,7 @@ export interface ArtistDetailPageProps {
     coverImage: SanityAsset;
   };
   artworks: ShortArtworks;
+  exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
 }
 

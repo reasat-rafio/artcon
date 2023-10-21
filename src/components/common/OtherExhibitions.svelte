@@ -3,13 +3,14 @@
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
-  import type { OtherExhibitionProps } from '@/lib/types/exhibitionDetail.types';
+  import type { CommonOtherExhibitionProps } from '@/lib/types/common.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import { twMerge } from 'tailwind-merge';
 
-  export let exhibitions: OtherExhibitionProps[];
+  export let exhibitions: CommonOtherExhibitionProps[];
+  export let title: string;
   $: exhibitions;
 
   let emblaApi: EmblaCarouselType;
@@ -47,7 +48,7 @@
 
 <section>
   <div class="px-section py-section max-w-section border-t border-[#BBBBBE]">
-    <h2 class="head-xl">Other Exhibition</h2>
+    <h2 class="head-xl">{title}</h2>
     <div class="relative">
       <div
         class="relative mt-[32px] overflow-hidden"

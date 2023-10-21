@@ -9,6 +9,7 @@
   import Share from '@/components/widgets/share/Share.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
+  import OtherExhibitions from '@/components/common/OtherExhibitions.svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
 
@@ -20,7 +21,6 @@
       contact,
     },
   } = data);
-  $: console.log(exhibitions);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -44,10 +44,15 @@
       />
     {:else if s._type === 'common.artwork'}
       <Artwork props={{ ...s, artworks }} />
-
-      <!-- {:else if s._type === 'artist.exhibitions'}
-      <Exhibitions props={s} /> -->
     {/if}
   {/each}
+
+  {#if !!exhibitions?.length}
+    <OtherExhibitions
+      title={`${personalDocuments.name}’s other exhibition with us`}
+      {exhibitions}
+    />
+  {/if}
+
   <Footer {footer} {contact} logo={logoLight} />
 </div>

@@ -179,7 +179,18 @@ export interface CommonArtworkSectionProps {
   quote: Quote;
 }
 
-export type ShortArtworks = {
+export interface ShortArtworks {
   artwork: SanityImageAssetDocument;
   information: PortableTextBlock[];
-}[];
+}
+[];
+
+export interface CommonOtherExhibitionProps {
+  asset: Asset;
+  name: string;
+  tag: { name: string };
+  slug: Slug;
+  startDate: string;
+  endDate?: string;
+  type: 'Group Exhibition' | { name: string };
+}
