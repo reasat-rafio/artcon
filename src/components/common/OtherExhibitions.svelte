@@ -32,6 +32,7 @@
       endDate: b.endDate,
     });
 
+    // @TODO Fix this
     return statusOrder[statusA] - statusOrder[statusB];
   });
 

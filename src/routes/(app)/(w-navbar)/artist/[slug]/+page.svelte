@@ -3,9 +3,9 @@
   import Seo from '@/components/common/Seo.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Summary from '@/components/pages/[artist]/Summary.svelte';
+  import OtherArtists from '@/components/pages/[artist]/OtherArtists.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import Exhibitions from '@/components/pages/[artist]/exhibitions/Exhibitions.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -14,7 +14,14 @@
   export let data: PageProps<ArtistDetailPageProps>;
 
   $: ({
-    page: { siteDocuments, personalDocuments, seo, artworks, exhibitions },
+    page: {
+      siteDocuments,
+      personalDocuments,
+      seo,
+      artworks,
+      exhibitions,
+      otherArtists,
+    },
     site: {
       logos: { logoLight, ogImage },
       footer,
@@ -52,6 +59,10 @@
       title={`${personalDocuments.name}’s other exhibition with us`}
       {exhibitions}
     />
+  {/if}
+
+  {#if !!otherArtists?.length}
+    <OtherArtists artists={otherArtists} />
   {/if}
 
   <Footer {footer} {contact} logo={logoLight} />

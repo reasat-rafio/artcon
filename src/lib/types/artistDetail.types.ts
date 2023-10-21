@@ -11,7 +11,7 @@ import type {
   ShortArtworks,
   VR,
 } from './common.types';
-import type { PortableTextBlock } from 'sanity';
+import type { PortableTextBlock, Slug } from 'sanity';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ArtistDetailPageProps {
@@ -23,6 +23,7 @@ export interface ArtistDetailPageProps {
   artworks: ShortArtworks;
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
+  otherArtists: OtherArtists[];
 }
 
 type Section =
@@ -31,6 +32,12 @@ type Section =
   | CommonArtworkSectionProps
   | ArtistSummaryProps
   | ExhibitionsProps;
+
+export interface OtherArtists {
+  slug: Slug;
+  name: string;
+  artistPortrait: SanityImageAssetDocument;
+}
 
 export interface ArtistSummaryProps {
   _key: string;
