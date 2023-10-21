@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CommonHeroProps } from '@/lib/types/common.types';
-  import Asset from '@/components/hero/Asset.svelte';
+  import Asset from '@/components/common/hero/Asset.svelte';
   import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import { onMount } from 'svelte';

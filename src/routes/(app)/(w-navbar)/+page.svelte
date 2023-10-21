@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
+  import Seo from '@/components/common/Seo.svelte';
   import Contact from '@/components/pages/landing/Contact.svelte';
   import Hero from '@/components/pages/landing/Hero.svelte';
   import DesktopCollections from '@/components/pages/landing/collections/desktop/Collections.svelte';

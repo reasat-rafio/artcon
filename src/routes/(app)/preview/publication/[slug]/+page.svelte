@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
+  import Seo from '@/components/common/Seo.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { PublicationPreviewProps } from '@/lib/types/publicationPreview';
   import { toPlainText, PortableText } from '@portabletext/svelte';

@@ -1,16 +1,16 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import Quote from '@/components/Quote.svelte';
-  import type {
-    ArtworkProps,
-    ExhinitionDetailPageProps,
-  } from '@/lib/types/exhibitionDetail.types';
+  import Quote from '@/components/common/Quote.svelte';
   import Artworks from './Artworks.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import { PortableText } from '@portabletext/svelte';
+  import type {
+    CommonArtworkSectionProps,
+    ShortArtworks,
+  } from '@/lib/types/common.types';
 
-  export let props: ArtworkProps & {
-    artworks: ExhinitionDetailPageProps['artworks'];
+  export let props: CommonArtworkSectionProps & {
+    artworks: ShortArtworks;
   };
   $: ({
     quote,
@@ -20,7 +20,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     <Quote class="mb-section" {quote} />
     <Artworks class="mb-section hidden lg:grid" {artworks} />
 

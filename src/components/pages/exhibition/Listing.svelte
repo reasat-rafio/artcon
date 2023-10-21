@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ImageAsset from '@/components/ImageAsset.svelte';
+  import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { FormatedItem } from '@/lib/helper';
   import type { Exhibition } from '@/lib/types/exhibition.types';

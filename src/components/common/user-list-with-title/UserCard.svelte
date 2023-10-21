@@ -2,7 +2,7 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import H8 from '../ui/H8.svelte';
+  import H8 from '../../ui/H8.svelte';
   import { twMerge } from 'tailwind-merge';
 
   type EL = 'div' | 'a' | undefined;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Quote from '@/components/Quote.svelte';
+  import Quote from '@/components/common/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { CommonNoteProps } from '@/lib/types/common.types';
   import { PortableText } from '@portabletext/svelte';
@@ -9,7 +9,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
         <Quote class="mb-section" {quote} />

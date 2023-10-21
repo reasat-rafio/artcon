@@ -3,8 +3,8 @@
     Association,
     SummaryProps,
   } from '@/lib/types/exhibitionDetail.types';
-  import Quote from '@/components/Quote.svelte';
-  import VR from '@/components/VR.svelte';
+  import Quote from '@/components/common/Quote.svelte';
+  import VR from '@/components/common/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { Gallery } from '@/lib/types/exhibitionDetail.types';
   import type { PortableTextBlock } from 'sanity';
@@ -24,7 +24,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     <Quote class="mb-section" {quote} />
 
     <DescriptionBlock class="mb-section">

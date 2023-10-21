@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
-  import Footer from '@/components/footer/Footer.svelte';
-  import Hero from '@/components/hero/Hero.svelte';
+  import Seo from '@/components/common/Seo.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
+  import Hero from '@/components/common/hero/Hero.svelte';
   import AboutUs from '@/components/pages/about-us/AboutUs.svelte';
   import TeamBanner from '@/components/pages/about-us/TeamBanner.svelte';
   import Team from '@/components/pages/about-us/team/Team.svelte';

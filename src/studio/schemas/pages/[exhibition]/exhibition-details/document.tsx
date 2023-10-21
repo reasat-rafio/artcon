@@ -150,7 +150,7 @@ const exhibition = {
         { type: 'exhibition.includedArtists' },
         { type: 'common.note' },
         { type: 'exhibition.publication' },
-        { type: 'exhibition.artwork' },
+        { type: 'common.artwork' },
         { type: 'exhibition.gallery' },
         { type: 'exhibition.newsAndMedia' },
       ],

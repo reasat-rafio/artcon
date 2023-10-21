@@ -3,7 +3,7 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import SearchIcon from '../icons/Search.svelte';
+  import SearchIcon from '../../icons/Search.svelte';
   import { twMerge } from 'tailwind-merge';
   import Hamburger from '../Hamburger.svelte';
 

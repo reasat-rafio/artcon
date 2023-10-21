@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Quote from '@/components/Quote.svelte';
-  import VR from '@/components/VR.svelte';
+  import Quote from '@/components/common/Quote.svelte';
+  import VR from '@/components/common/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type { SummaryProps } from '@/lib/types/projectDetail.types';
   import { PortableText } from '@portabletext/svelte';

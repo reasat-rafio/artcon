@@ -3,7 +3,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ContactProps, FooterProps } from '@/lib/types/common.types';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import BodyText from '../ui/BodyText.svelte';
+  import BodyText from '../../ui/BodyText.svelte';
   import Address from './Address.svelte';
 
   export let footer: FooterProps;

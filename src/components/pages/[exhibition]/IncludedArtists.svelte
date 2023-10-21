@@ -4,7 +4,7 @@
     IncludedArtistsProps,
   } from '@/lib/types/exhibitionDetail.types';
   import Summary from '../[artist]/Summary.svelte';
-  import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
+  import UserListWithTitle from '@/components/common/user-list-with-title/UserListWithTitle.svelte';
   import { isSoloExhibition } from '@/lib/helper';
 
   export let props: IncludedArtistsProps & { artists: ArtistsProps };

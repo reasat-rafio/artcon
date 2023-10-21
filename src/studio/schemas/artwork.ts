@@ -4,7 +4,7 @@ import type { Rule } from 'sanity';
 
 const artwork = {
   title: 'artwork',
-  name: 'exhibition.artwork',
+  name: 'common.artwork',
   icon: LuPaintbrush,
   type: 'object',
   fields: [

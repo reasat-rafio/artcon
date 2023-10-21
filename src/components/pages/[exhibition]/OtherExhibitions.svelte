@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Asset from '@/components/hero/Asset.svelte';
+  import Asset from '@/components/common/hero/Asset.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
@@ -46,7 +46,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section border-t border-[#BBBBBE]">
+  <div class="px-section py-section max-w-section border-t border-[#BBBBBE]">
     <h2 class="head-xl">Other Exhibition</h2>
     <div class="relative">
       <div

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
+  import Seo from '@/components/common/Seo.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -10,7 +10,7 @@
   import { beforeNavigate, goto } from '$app/navigation';
   import { fade } from 'svelte/transition';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import Asset from '@/components/hero/Asset.svelte';
+  import Asset from '@/components/common/hero/Asset.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';

@@ -12,6 +12,7 @@ import social from './social';
 import asset from './asset';
 import keyValuePairs from './keyValuePairs';
 import note from './note';
+import commonArtwork from './artwork';
 
 export const schemaTypes = [
   ...site,
@@ -25,6 +26,7 @@ export const schemaTypes = [
   note,
   portableText,
   commonHero,
+  commonArtwork,
   commonHeroList,
   commonImageAsset,
   keyValuePairs,

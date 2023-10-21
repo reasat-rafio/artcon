@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { TeamProps } from '@/lib/types/aboutUs.types';
   import CoreTeam from './CoreTeam.svelte';
-  import UserListWithTitle from '@/components/user-list-with-title/UserListWithTitle.svelte';
+  import UserListWithTitle from '@/components/common/user-list-with-title/UserListWithTitle.svelte';
 
   export let team: TeamProps[];
 

@@ -3,9 +3,9 @@
     Publication,
     PublicationProps,
   } from '@/lib/types/exhibitionDetail.types';
-  import Quote from '@/components/Quote.svelte';
+  import Quote from '@/components/common/Quote.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
+  import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import { PortableText } from '@portabletext/svelte';
 
@@ -29,7 +29,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     <Quote class="mb-section" {quote} />
 
     <ParallaxScrollImage

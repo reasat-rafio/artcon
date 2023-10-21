@@ -1,11 +1,13 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type {
+  CommonArtworkSectionProps,
   CommonHeroProps,
   CommonImageAsset,
   Cta,
   DescriptionBlock,
   Quote,
   SeoProps,
+  ShortArtworks,
   VR,
 } from './common.types';
 import type { PortableTextBlock } from 'sanity';
@@ -17,12 +19,14 @@ export interface ArtistDetailPageProps {
     sections: Section[];
     coverImage: SanityAsset;
   };
+  artworks: ShortArtworks;
   personalDocuments: PersonalDocuments;
 }
 
 type Section =
   | CommonHeroProps
   | CommonImageAsset
+  | CommonArtworkSectionProps
   | ArtistSummaryProps
   | ExhibitionsProps;
 

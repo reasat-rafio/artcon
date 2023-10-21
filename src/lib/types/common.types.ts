@@ -1,3 +1,4 @@
+import type { SanityImageAssetDocument } from '@sanity/client';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock, Slug } from 'sanity';
 
@@ -167,3 +168,18 @@ export interface EbookProps {
   url: string;
   image: SanityAsset;
 }
+
+export interface CommonArtworkSectionProps {
+  _key: string;
+  _type: 'common.artwork';
+  descriptionBlock: DescriptionBlock & {
+    title: string;
+    cta: Cta;
+  };
+  quote: Quote;
+}
+
+export type ShortArtworks = {
+  artwork: SanityImageAssetDocument;
+  information: PortableTextBlock[];
+}[];

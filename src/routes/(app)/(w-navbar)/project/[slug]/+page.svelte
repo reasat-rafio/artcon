@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
-  import Hero from '@/components/hero/Hero.svelte';
+  import Seo from '@/components/common/Seo.svelte';
+  import Hero from '@/components/common/hero/Hero.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ProjectDetailPageProps } from '@/lib/types/projectDetail.types';
   import ShareWidget from '@/components/widgets/share/Share.svelte';
-  import ImageAsset from '@/components/ImageAsset.svelte';
+  import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Summary from '@/components/pages/[project]/Summary.svelte';
   import Gallery from '@/components/pages/[project]/Gallery.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';

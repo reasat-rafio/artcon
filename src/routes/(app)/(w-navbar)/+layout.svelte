@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { SiteProps } from '@/lib/types/common.types';
-  import Navbar from '@/components/navigation/Navbar.svelte';
+  import Navbar from '@/components/common/navigation/Navbar.svelte';
 
   export let data: { site: SiteProps };
   $: ({

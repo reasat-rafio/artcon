@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Seo from '@/components/Seo.svelte';
-  import Vr from '@/components/VR.svelte';
+  import Seo from '@/components/common/Seo.svelte';
+  import Vr from '@/components/common/VR.svelte';
   import { calculateStatusBetweenDates, delay } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';

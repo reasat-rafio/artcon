@@ -1,4 +1,3 @@
-import artwork from './artwork';
 import exhibitionPage from './document';
 import gallery from './gallery';
 import includedArtists from './includedArtists';
@@ -10,7 +9,6 @@ export default [
   exhibitionPage,
   summary,
   publication,
-  artwork,
   gallery,
   newsAndMedia,
   includedArtists,

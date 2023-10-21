@@ -1,8 +1,8 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import Seo from '@/components/Seo.svelte';
-  import Footer from '@/components/footer/Footer.svelte';
-  import Hero from '@/components/hero-list/Hero.svelte';
+  import Seo from '@/components/common/Seo.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
+  import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
   import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
   import {

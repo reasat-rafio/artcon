@@ -1,13 +1,13 @@
 <script lang="ts">
-  import ImageAsset from '@/components/ImageAsset.svelte';
-  import Seo from '@/components/Seo.svelte';
-  import Footer from '@/components/footer/Footer.svelte';
-  import Hero from '@/components/hero/Hero.svelte';
+  import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import Seo from '@/components/common/Seo.svelte';
+  import Artwork from '@/components/common/artwork/Artwork.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
+  import Hero from '@/components/common/hero/Hero.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import OtherExhibitions from '@/components/pages/[exhibition]/OtherExhibitions.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
-  import Artwork from '@/components/pages/[exhibition]/artwork/Artwork.svelte';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
@@ -93,7 +93,7 @@
       <Note props={s} />
     {:else if s._type === 'exhibition.publication'}
       <Publication props={{ ...s, publication }} />
-    {:else if s._type === 'exhibition.artwork'}
+    {:else if s._type === 'common.artwork'}
       <Artwork props={{ ...s, artworks }} />
     {:else if s._type === 'exhibition.gallery'}
       <Gallery props={s} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import NavItems from '@/components/navigation/NavItems.svelte';
+  import NavItems from '@/components/common/navigation/NavItems.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';
   import '@fontsource-variable/inter';

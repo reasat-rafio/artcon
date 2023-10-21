@@ -1,5 +1,6 @@
 import type {
   Asset,
+  CommonArtworkSectionProps,
   CommonHeroProps,
   CommonImageAsset,
   CommonNoteProps,
@@ -7,6 +8,7 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
+  ShortArtworks,
   SocialProps,
   Tag,
   VR,
@@ -24,10 +26,7 @@ export interface ExhinitionDetailPageProps {
   status?: string;
   cta?: Cta;
   artists: ArtistsProps;
-  artworks: {
-    artwork: SanityImageAssetDocument;
-    information: PortableTextBlock[];
-  }[];
+  artworks: ShortArtworks;
   asset: Asset;
   associationsList: Association[];
   name: string;
@@ -48,7 +47,7 @@ type Section =
   | CommonNoteProps
   | SummaryProps
   | PublicationProps
-  | ArtworkProps
+  | CommonArtworkSectionProps
   | IncludedArtistsProps
   | GalleryProps
   | NewsAndMediaProps;
@@ -128,16 +127,6 @@ export interface PublicationProps {
   _key: string;
   _type: 'exhibition.publication';
   invitationCardImage: SanityImageAssetDocument;
-}
-
-export interface ArtworkProps {
-  _key: string;
-  _type: 'exhibition.artwork';
-  descriptionBlock: DescriptionBlock & {
-    title: string;
-    cta: Cta;
-  };
-  quote: Quote;
 }
 
 export interface GalleryProps {

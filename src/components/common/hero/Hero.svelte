@@ -2,8 +2,8 @@
   import { twMerge } from 'tailwind-merge';
   import Asset from './Asset.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
-  import ChevronDown from '../icons/ChevronDown.svelte';
-  import Cta from '../ui/Cta.svelte';
+  import ChevronDown from '../../icons/ChevronDown.svelte';
+  import Cta from '../../ui/Cta.svelte';
   import { onMount } from 'svelte';
   import gsap from 'gsap';
 

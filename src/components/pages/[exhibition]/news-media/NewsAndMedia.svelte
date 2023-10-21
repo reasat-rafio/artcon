@@ -1,6 +1,6 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import Quote from '@/components/Quote.svelte';
+  import Quote from '@/components/common/Quote.svelte';
   // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
@@ -16,7 +16,7 @@
 </script>
 
 <section>
-  <div class="max-w-section px-section py-section">
+  <div class="px-section py-section max-w-section">
     <Quote class="mb-section" {quote} />
 
     <div class="mb-section">

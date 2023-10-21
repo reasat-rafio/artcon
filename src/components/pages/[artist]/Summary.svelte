@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ParallaxScrollImage from '@/components/ParallaxScrollImage.svelte';
-  import Quote from '@/components/Quote.svelte';
-  import VR from '@/components/VR.svelte';
+  import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
+  import Quote from '@/components/common/Quote.svelte';
+  import VR from '@/components/common/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import type {
     ArtistSummaryProps,

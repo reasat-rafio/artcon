@@ -6,7 +6,7 @@
   import { fade } from 'svelte/transition';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import Hamburger from '@/components/Hamburger.svelte';
+  import Hamburger from '@/components/common/Hamburger.svelte';
 
   export let logo: SanityAsset;
   export let href: string;
