@@ -76,6 +76,10 @@ const artist = {
       type: 'personalDocuments',
       group: 'personal',
       validation: (Rule: Rule) => Rule.required(),
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
     },
 
     {
@@ -84,6 +88,9 @@ const artist = {
       type: 'siteDocuments',
       group: 'site',
       validation: (Rule: Rule) => Rule.required(),
+      options: {
+        collapsible: true,
+      },
     },
   ],
   preview: {
