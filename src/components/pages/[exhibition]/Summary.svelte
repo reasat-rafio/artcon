@@ -1,14 +1,14 @@
 <script lang="ts">
-  import type {
-    Association,
-    SummaryProps,
-  } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/VR.svelte';
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
-  import type { Gallery } from '@/lib/types/exhibitionDetail.types';
-  import type { PortableTextBlock } from 'sanity';
+  import type { Association } from '@/lib/types/common.types';
+  import type {
+    Gallery,
+    SummaryProps,
+  } from '@/lib/types/exhibitionDetail.types';
   import { PortableText } from '@portabletext/svelte';
+  import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
     descriptionBlock: {

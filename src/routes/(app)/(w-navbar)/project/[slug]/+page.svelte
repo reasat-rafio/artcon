@@ -63,7 +63,17 @@
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
     {:else if s._type === 'project.summary'}
-      <Summary props={{ ...s, date: date }} />
+      <Summary
+        props={{
+          ...s,
+          descriptionBlock: {
+            date,
+            gallery,
+            description,
+            associationsList,
+          },
+        }}
+      />
     {:else if s._type === 'project.gallery'}
       <Gallery props={s} />
     {/if}
