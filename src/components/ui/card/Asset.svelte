@@ -8,7 +8,12 @@
   $: ({ image, video } = asset);
 </script>
 
-<div class={twMerge('h-[11.3125rem] sm:h-[14.125rem]', $$props.class)}>
+<div
+  class={twMerge(
+    'relative h-[11.3125rem] overflow-hidden rounded-[12px] sm:h-[14.125rem]',
+    $$props.class,
+  )}
+>
   {#if !!image}
     <SanityImage
       draggable={false}

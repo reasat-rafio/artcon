@@ -6,6 +6,7 @@ import type {
 import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition.types';
 import type { HeroProps as VrListingHeroProps } from './types/vr.types';
 import type { HeroProps as PublicationListingHeroProps } from './types/publication.types';
+import type { HeroProps as ProjectListingHeroProps } from './types/project.types';
 
 import type {
   CommonHeroListProps,
@@ -141,6 +142,36 @@ export const formatVrListingProps = (
       };
     },
   );
+  return {
+    blocks: formatedProps,
+  };
+};
+
+export const formatProjectListingProps = (
+  props: ProjectListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedProjects.map(
+    ({ asset, name, startDate, endDate, status, slug, tag }) => {
+      const { date, status: exhibitionStatus } = calculateStatusBetweenDates({
+        startDate,
+        endDate,
+      });
+
+      const heroText =
+        status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
+
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset,
+        title: name,
+        text: heroText,
+        type: tag.name,
+        cta: { title: 'EXPLORE', href: `/project/${slug.current}` },
+      };
+    },
+  );
+
   return {
     blocks: formatedProps,
   };
