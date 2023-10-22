@@ -25,6 +25,8 @@ export interface ArtistDetailPageProps {
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
   otherArtists: OtherArtists[];
+  publications: Publication[];
+  publicationsFromExhibitions: Publication[];
 }
 
 type Section =
@@ -38,6 +40,33 @@ type Section =
 export interface PublicationSectionPros {
   _type: 'artist.publication';
   _key: string;
+}
+
+export interface Publication {
+  _createdAt: string;
+  quote: Quote;
+  publicationImage: SanityImageAssetDocument;
+  name: string;
+  description: PortableTextBlock[];
+  exproleLink: ExproleLink;
+  isbn: string;
+  slug: Slug;
+  subtitle: string;
+  associationsList: AssociationsList[];
+  publishedBy: string[];
+}
+
+export interface ExproleLink {
+  _type: string;
+  href: string;
+  title: string;
+}
+
+export interface AssociationsList {
+  _type: string;
+  _key: string;
+  value: string;
+  key: string;
 }
 
 export interface OtherArtists {

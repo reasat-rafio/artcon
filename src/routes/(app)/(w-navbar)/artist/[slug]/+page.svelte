@@ -10,7 +10,7 @@
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import OtherExhibitions from '@/components/common/OtherExhibitions.svelte';
-  import Publication from '@/components/pages/[artist]/Publication.svelte';
+  import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
 
@@ -22,6 +22,8 @@
       artworks,
       exhibitions,
       otherArtists,
+      publications,
+      publicationsFromExhibitions,
     },
     site: {
       logos: { logoLight, ogImage },
@@ -29,6 +31,8 @@
       contact,
     },
   } = data);
+
+  $: allPublications = [...publications, ...publicationsFromExhibitions];
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -53,7 +57,7 @@
     {:else if s._type === 'common.artwork'}
       <Artwork props={{ ...s, artworks }} />
     {:else if s._type === 'artist.publication'}
-      <Publication />
+      <Publication publications={allPublications} />
     {/if}
   {/each}
 

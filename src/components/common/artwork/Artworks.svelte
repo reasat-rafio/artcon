@@ -46,6 +46,7 @@
       use:emblaCarouselSvelte={{ plugins, options }}
       on:emblaInit={onInit}
     >
+      <!-- @TODO fix this -->
       <div class="flex items-center max-lg:ml-[-1.25rem]">
         {#each artworks as artwork, index}
           <Image

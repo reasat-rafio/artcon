@@ -7,6 +7,34 @@ import { asset } from '@/lib/sanity/sanity-image';
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type == "artist" && slug.current == "${params.slug}"][0]{
     seo,
+    "publicationsFromExhibitions": *[_type == "exhibition" && references("artists", ^._id)]{
+      ...publication->{
+        _createdAt,
+        name,
+        isbn,
+        subtitle,
+        description,
+        exproleLink,
+        associationsList,
+        publishedBy,
+        quote,
+        slug,
+        ${asset('publicationImage')}
+      }
+    },
+    publications[]->{
+      _createdAt,
+      name,
+      isbn,
+      subtitle,
+      description,
+      exproleLink,
+      associationsList,
+      publishedBy,
+      quote,
+      slug,
+      ${asset('publicationImage')}
+    },
     personalDocuments {
       "name": name.en,
       shortBio,
