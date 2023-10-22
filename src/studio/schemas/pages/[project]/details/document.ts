@@ -1,4 +1,4 @@
-import type { SanityDocument } from '@sanity/client';
+import { orderRankField } from '@sanity/orderable-document-list';
 import { FcVideoProjector } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -7,6 +7,7 @@ const project = {
   type: 'document',
   icon: FcVideoProjector,
   fields: [
+    orderRankField({ type: 'project' }),
     {
       name: 'seo',
       title: 'SEO',
@@ -14,13 +15,20 @@ const project = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'name',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'slug',
       type: 'slug',
-      options: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        source: (_: SanityDocument, context: any) =>
-          context?.parent?.sections[0]?.title,
-      },
+      options: { source: 'name' },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'tag',
+      type: 'reference',
+      to: [{ type: 'projectTag' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {

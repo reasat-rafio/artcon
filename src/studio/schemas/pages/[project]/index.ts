@@ -1,5 +1,6 @@
-import project from './document';
-import gallery from './gallery';
-import summary from './summary';
+import project from './details/document';
+import gallery from './details/gallery';
+import summary from './details/summary';
+import projectTag from './tag';
 
-export default [project, summary, gallery];
+export default [project, summary, gallery, projectTag];

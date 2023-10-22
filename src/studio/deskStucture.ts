@@ -236,9 +236,31 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               S.documentTypeListItem('eventTag').title('Tags'),
             ]),
         ),
-      S.documentTypeListItem('project')
+
+      S.listItem()
         .title('Projects')
-        .icon(FcVideoProjector),
+        .icon(FcStackOfPhotos)
+        .child(
+          S.list()
+            .title('Projects')
+            .items([
+              orderableDocumentListDeskItem({
+                type: 'project',
+                S,
+                context,
+                title: 'Projects',
+                icon: FcVideoProjector,
+              }),
+              orderableDocumentListDeskItem({
+                type: 'projectTag',
+                S,
+                context,
+                title: 'Tags',
+                icon: FaTag,
+              }),
+            ]),
+        ),
+
       S.divider(),
 
       S.listItem()
