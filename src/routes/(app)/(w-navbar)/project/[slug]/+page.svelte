@@ -1,15 +1,15 @@
 <script lang="ts">
+  import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
+  import Gallery from '@/components/pages/[project]/Gallery.svelte';
+  import Summary from '@/components/pages/[project]/Summary.svelte';
+  import Share from '@/components/widgets/share/Share.svelte';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ProjectDetailPageProps } from '@/lib/types/projectDetail.types';
-  import ImageAsset from '@/components/common/ImageAsset.svelte';
-  import Summary from '@/components/pages/[project]/Summary.svelte';
-  import Gallery from '@/components/pages/[project]/Gallery.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
-  import Share from '@/components/widgets/share/Share.svelte';
-  import Footer from '@/components/common/footer/Footer.svelte';
-  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
 
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
