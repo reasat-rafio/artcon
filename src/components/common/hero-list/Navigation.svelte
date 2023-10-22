@@ -14,7 +14,7 @@
 </script>
 
 <nav class="absolute bottom-0 left-0 z-20 w-full">
-  <div class="flex justify-between px-5 py-10 text-white">
+  <div class="flex justify-between px-5 py-5 text-white lg:py-10">
     <button on:click={() => dispatch('sliedPrev')}>
       <ChevronLeftRounded color="white" />
     </button>

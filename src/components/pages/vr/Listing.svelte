@@ -28,10 +28,13 @@
               >
                 <Image image={placeholderImage} />
                 <Container>
-                  <Title
-                    >{name} /
-                    {gallery.name}</Title
+                  <Title class="inline">{name}</Title>
+                  <h6
+                    class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]"
                   >
+                    / {gallery.name}
+                  </h6>
+
                   <Subtitle class="text-sonic-silver">{category.name}</Subtitle>
                 </Container>
               </Card>

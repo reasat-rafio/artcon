@@ -28,13 +28,19 @@
               >
                 <Image image={previewDisplayImage} />
                 <Container>
-                  <Title
-                    >{name} / {#if typeof type === 'string'}
-                      {type}
-                    {:else}
-                      {type.name}
-                    {/if}</Title
-                  >
+                  <div>
+                    <Title class="inline">{name}</Title>
+                    <h6
+                      class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]"
+                    >
+                      /
+                      {#if typeof type === 'string'}
+                        {type}
+                      {:else}
+                        {type.name}
+                      {/if}
+                    </h6>
+                  </div>
                   <Subtitle class="text-sonic-silver">{tag.name}</Subtitle>
                 </Container>
               </Card>
