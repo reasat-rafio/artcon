@@ -9,9 +9,9 @@
   } from 'embla-carousel-svelte';
   import { twMerge } from 'tailwind-merge';
 
-  export let exhibitions: CommonOtherExhibitionProps[];
+  export let data: CommonOtherExhibitionProps[];
   export let title: string;
-  $: exhibitions;
+  $: data;
 
   let emblaApi: EmblaCarouselType;
   let activeSlideIndex = 0;
@@ -21,7 +21,7 @@
     Completed: 2,
   } as const;
 
-  exhibitions.sort((a, b) => {
+  data.sort((a, b) => {
     const { status: statusA } = calculateStatusBetweenDates({
       startDate: a.startDate,
       endDate: a.endDate,
@@ -57,7 +57,7 @@
         on:emblaInit={onInit}
       >
         <div class="flex">
-          {#each exhibitions as { slug, type, name, asset, tag }, index}
+          {#each data as { slug, type, name, asset, tag }, index}
             <a
               href="/exhibition/{slug.current}"
               class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
@@ -78,14 +78,16 @@
                 >
                   <header class="flex flex-wrap items-center">
                     <h3 class="text-head-6">{name}</h3>
-                    <h4 class="text-head-8">
-                      /
-                      {#if typeof type === 'string'}
-                        {type}
-                      {:else}
-                        {type.name}
-                      {/if}
-                    </h4>
+                    {#if !!type}
+                      <h4 class="text-head-8">
+                        /
+                        {#if typeof type === 'string'}
+                          {type}
+                        {:else}
+                          {type.name}
+                        {/if}
+                      </h4>
+                    {/if}
                   </header>
                   <h4 class="text-head-8 text-[#77777C]">
                     {tag.name}

@@ -7,7 +7,6 @@ const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "project" && slug.current == "${params.slug}"][0]{
     _id,
     name,
-    type,
     status,
     cta,
     seo,
@@ -37,19 +36,19 @@ const query = (params: Partial<Record<string, string>>) =>
     "otherProjects": *[_type == 'project' && slug.current != "${
       params.slug
     }"][]{
+      name,
       slug,
-      "info": sections[ _type == "common.hero"][0]{
-        type,
-        title,
-        asset {
-        ...,
-        ${asset('image')},
-          video{
-            "webm": video_webm.asset->url,
-            "mov": video_hevc.asset->url,
-          }
-        },
-      }
+      tag->{name},
+      startDate,
+      endDate,
+      asset {
+      ...,
+      ${asset('image')},
+        video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+        }
+      },
     }
   }`;
 

@@ -9,6 +9,7 @@
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import Share from '@/components/widgets/share/Share.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
+  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
 
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
@@ -26,7 +27,6 @@
       status,
       tag,
       otherProjects,
-      type,
     },
     site: {
       logos: { logoLight, ogImage },
@@ -78,6 +78,10 @@
       <Gallery props={s} />
     {/if}
   {/each}
+
+  {#if !!otherProjects?.length}
+    <OtherExhibitions title="Other projects" data={otherProjects} />
+  {/if}
 
   <Footer {footer} {contact} logo={logoLight} />
 </div>

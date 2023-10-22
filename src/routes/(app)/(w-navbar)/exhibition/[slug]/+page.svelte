@@ -6,7 +6,7 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
-  import OtherExhibitions from '@/components/common/OtherExhibitions.svelte';
+  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
@@ -103,7 +103,7 @@
   {/each}
 
   {#if !!otherExhibitions?.length}
-    <OtherExhibitions title="Other Exhibition" exhibitions={otherExhibitions} />
+    <OtherExhibitions title="Other exhibition" data={otherExhibitions} />
   {/if}
   <Footer {footer} {contact} logo={logoLight} />
 </div>

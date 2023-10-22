@@ -192,7 +192,7 @@ export interface CommonOtherExhibitionProps {
   slug: Slug;
   startDate: string;
   endDate?: string;
-  type: 'Group Exhibition' | { name: string };
+  type?: 'Group Exhibition' | { name: string };
 }
 
 export interface Association {

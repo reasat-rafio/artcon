@@ -9,13 +9,13 @@ import type {
   VR,
   Asset,
   Cta,
+  CommonOtherExhibitionProps,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface ProjectDetailPageProps {
   _id: string;
   name: string;
-  type?: string;
   status?: string;
   cta?: Cta;
   seo: SeoProps;
@@ -27,7 +27,7 @@ export interface ProjectDetailPageProps {
   description: PortableTextBlock[];
   gallery: Gallery;
   sections: Section[];
-  otherProjects: OtherProjectProps[];
+  otherProjects: Omit<CommonOtherExhibitionProps, 'type'>[];
 }
 
 type Section = CommonImageAsset | SummaryProps | GalleryProps;
