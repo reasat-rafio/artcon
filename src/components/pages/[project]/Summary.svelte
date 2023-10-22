@@ -40,6 +40,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <!-- <VR {vr} /> -->
+    <VR {vr} />
   </div>
 </section>

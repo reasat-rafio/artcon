@@ -1,8 +1,9 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import type { GalleryProps } from '@/lib/types/projectDetail.types';
+  import { PortableText } from '@portabletext/svelte';
+  import Gallery from '@/components/ui/carousel/Gallery.svelte';
 
   export let props: GalleryProps;
   $: ({
@@ -11,35 +12,26 @@
   } = props);
 </script>
 
-<section class="py-xl">
-  <div class="container">
-    <Carousel class="mb-xl" let:Gallery>
-      <Gallery
-        class="grid grid-cols-3 gap-x-[25px] gap-y-[56px]"
-        slidesPerPage={6}
-        items={images}
-        let:chunk
-      >
+<section>
+  <div class="px-section py-section max-w-section">
+    <div class="mb-section">
+      <Gallery axiesOnMobile="y" items={images} let:chunk>
         {#each chunk as image}
-          <Card let:Image>
+          <Card class="max-md:pt-[20px] md:pl-[20px]" let:Image>
             <Image {image} />
           </Card>
         {/each}
       </Gallery>
-    </Carousel>
+    </div>
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.IntroContainer>
-          <C.Title>{title}</C.Title>
-        </C.IntroContainer>
+        <C.Title>{title}</C.Title>
       </svelte:fragment>
-      <svelte:fragment slot="description" let:C>
-        <C.DescriptionContainer>
-          <C.Description>
-            <C.PortableTextBlock value={description} />
-          </C.Description>
-        </C.DescriptionContainer>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
       </svelte:fragment>
     </DescriptionBlock>
   </div>

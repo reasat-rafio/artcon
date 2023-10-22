@@ -8,11 +8,17 @@
   import Summary from '@/components/pages/[project]/Summary.svelte';
   import Gallery from '@/components/pages/[project]/Gallery.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
+  import Share from '@/components/widgets/share/Share.svelte';
+  import Footer from '@/components/common/footer/Footer.svelte';
 
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
     page,
-    site: { logos },
+    site: {
+      logos: { logoLight, ogImage },
+      footer,
+      contact,
+    },
   } = data);
 
   $: status = calculateStatusBetweenDates({
@@ -24,7 +30,7 @@
     text || (status.status !== 'Ongoing' ? status.date : status.status);
 </script>
 
-<Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
+<Seo seo={page?.seo} siteOgImg={ogImage} />
 {#each page.sections as s}
   {#if s._type === 'common.hero'}
     <Hero
@@ -35,13 +41,17 @@
     />
   {/if}
 {/each}
-<!-- <ShareWidget href="/project">Our Projects</ShareWidget> -->
-{#each page.sections as s}
-  {#if s._type === 'common.imageAsset'}
-    <ImageAsset props={s} />
-  {:else if s._type === 'project.summary'}
-    <Summary props={{ ...s, date: status.date }} />
-  {:else if s._type === 'project.gallery'}
-    <!-- <Gallery props={s} /> -->
-  {/if}
-{/each}
+<div class="relative mt-[100vh] bg-white">
+  <Share href="/" logo={logoLight}>Our projects</Share>
+  {#each page.sections as s}
+    {#if s._type === 'common.imageAsset'}
+      <ImageAsset props={s} />
+    {:else if s._type === 'project.summary'}
+      <Summary props={{ ...s, date: status.date }} />
+    {:else if s._type === 'project.gallery'}
+      <Gallery props={s} />
+    {/if}
+  {/each}
+
+  <Footer {footer} {contact} logo={logoLight} />
+</div>
