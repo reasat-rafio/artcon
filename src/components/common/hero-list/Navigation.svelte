@@ -18,7 +18,7 @@
     <button on:click={() => dispatch('sliedPrev')}>
       <ChevronLeftRounded color="white" />
     </button>
-    <div class="flex space-x-1 font-abc-arizona-serif font-medium">
+    <div class="flex items-center space-x-1 font-abc-arizona-serif font-medium">
       {#key activeBlockIndex}
         <span
           in:fly={{

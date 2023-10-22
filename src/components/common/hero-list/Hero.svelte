@@ -8,6 +8,7 @@
   } from 'embla-carousel-svelte';
   import { useDebounce } from '@/lib/helper';
   import Autoplay from 'embla-carousel-autoplay';
+  import ChevronDown from '@/components/icons/ChevronDown.svelte';
 
   export let props: CommonHeroListProps;
   let { blocks } = props;
@@ -63,4 +64,19 @@
     on:sliedPrev={() => useDebounce(() => emblaApi.scrollPrev(), DEBOUNCH_TIME)}
     blocksLength={blocks.length}
   />
+
+  <div
+    id="pointer"
+    class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
+  >
+    <div
+      class="flex items-center justify-center space-x-[1.06rem] text-[#E8E6E3] lg:pr-[2.5rem]"
+    >
+      <span
+        class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]"
+        >Discover our stories</span
+      >
+      <ChevronDown class="chevron-icon animate-bounce" />
+    </div>
+  </div>
 </section>
