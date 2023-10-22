@@ -58,7 +58,7 @@
 />
 
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/" logo={logoLight}>Our projects</Share>
+  <Share href="/project" logo={logoLight}>Our projects</Share>
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
