@@ -1,24 +1,40 @@
-import type { Slug } from 'sanity';
+import type { PortableTextBlock, Slug } from 'sanity';
 import type {
-  CommonHeroProps,
+  Association,
   CommonImageAsset,
   DescriptionBlock,
   Quote,
   SeoProps,
+  Tag,
   VR,
+  Asset,
+  Cta,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface ProjectDetailPageProps {
+  _id: string;
+  name: string;
+  type?: string;
+  status?: string;
+  cta?: Cta;
   seo: SeoProps;
-  sections: Section[];
+  asset: Asset;
+  tag: Tag;
   startDate: string;
   endDate?: string;
+  associationsList: Association[];
+  description: PortableTextBlock[];
+  gallery: Gallery;
+  sections: Section[];
   otherProjects: OtherProjectProps[];
 }
 
-type Section = CommonHeroProps | CommonImageAsset | SummaryProps | GalleryProps;
+type Section = CommonImageAsset | SummaryProps | GalleryProps;
 
+export interface Gallery {
+  name: string;
+}
 export interface SummaryProps {
   _type: 'project.summary';
   key: string;

@@ -5,19 +5,30 @@ import groq from 'groq';
 
 const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "project" && slug.current == "${params.slug}"][0]{
-    ...,
+    _id,
+    name,
+    type,
+    status,
+    cta,
+    seo,
+    endDate,
+    startDate,
+    associationsList,
+    description,
+    gallery->{name},
+    tag->,
+    asset {
+      ...,
+      ${asset('image')},
+      video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+      }
+    },
     sections[]{
       ...,
       ${asset('image')},
       ${asset('images[]', { as: 'images' })},
-      asset {
-        ...,
-        ${asset('image')},
-        video{
-          "webm": video_webm.asset->url,
-          "mov": video_hevc.asset->url,
-        }
-      },
       vr-> {
         ...,
         ${asset('image')},

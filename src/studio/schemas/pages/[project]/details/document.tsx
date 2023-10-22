@@ -2,9 +2,9 @@ import VideoPreview from '@/studio/components/VideoPreview';
 import { formatDate } from '@/studio/helper';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { orderRankField } from '@sanity/orderable-document-list';
+import React from 'react';
 import { FcVideoProjector } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
-import React from 'react';
 
 type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
@@ -38,12 +38,6 @@ const project = {
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      name: 'tag',
-      type: 'reference',
-      to: [{ type: 'projectTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
 
     {
       name: 'startDate',
@@ -59,6 +53,19 @@ const project = {
     {
       name: 'asset',
       type: 'asset',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'This will display in detail page and the preview page',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'associationsList',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -80,6 +87,18 @@ const project = {
       description: 'This will display at hero section.',
       name: 'cta',
       type: 'cta',
+    },
+    {
+      name: 'tag',
+      type: 'reference',
+      to: [{ type: 'projectTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'sections',

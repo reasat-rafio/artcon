@@ -1,5 +1,6 @@
 import type {
   Asset,
+  Association,
   CommonArtworkSectionProps,
   CommonHeroProps,
   CommonImageAsset,
@@ -36,7 +37,7 @@ export interface ExhinitionDetailPageProps {
   startDate: string;
   gallery: Gallery;
   seo: SeoProps;
-  tags: Tag[];
+  tag: Tag;
   otherExhibitions: CommonOtherExhibitionProps[];
   publication: Publication;
   sections: Section[];
@@ -58,11 +59,6 @@ export type ArtistsProps = SoloExhibitonProps | GroupExhibirtionProps[];
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
   personalDocuments: PersonalDocuments;
-}
-
-export interface Association {
-  key: string;
-  value: string;
 }
 
 export interface Publication {

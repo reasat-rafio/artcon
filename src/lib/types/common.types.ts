@@ -194,3 +194,8 @@ export interface CommonOtherExhibitionProps {
   endDate?: string;
   type: 'Group Exhibition' | { name: string };
 }
+
+export interface Association {
+  key: string;
+  value: string;
+}
