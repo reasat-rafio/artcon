@@ -5,12 +5,12 @@ import type {
 } from './types/exhibitionDetail.types';
 import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition.types';
 import type { HeroProps as VrListingHeroProps } from './types/vr.types';
+import type { HeroProps as PublicationListingHeroProps } from './types/publication.types';
 
 import type {
   CommonHeroListProps,
   CommonHeroProps,
   CommonImageAsset,
-  Tag,
 } from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -103,6 +103,27 @@ export function debounce<T extends unknown[], U>(
     });
   };
 }
+
+export const formatPublicationListingProps = (
+  props: PublicationListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedPublication.map(
+    ({ previewImage, name, subtitle, slug, category }) => {
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset: { image: previewImage },
+        title: name,
+        text: subtitle,
+        type: category.name,
+        cta: { title: 'EXPLORE', href: `/preview/publication/${slug.current}` },
+      };
+    },
+  );
+  return {
+    blocks: formatedProps,
+  };
+};
 
 export const formatVrListingProps = (
   props: VrListingHeroProps,

@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import { page } from '$app/stores';
+  import Hero from '@/components/common/hero-list/Hero.svelte';
+  import Listing from '@/components/pages/vr/Listing.svelte';
   import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
   import {
     createListingItemWithImage,
@@ -9,8 +11,6 @@
   } from '@/lib/helper';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { VrPageProps } from '@/lib/types/vr.types';
-  import Hero from '@/components/common/hero-list/Hero.svelte';
-  import Listing from '@/components/pages/vr/Listing.svelte';
   export let data: PageProps<VrPageProps>;
   $: ({
     page: { sections, seo, vrs, tags },
