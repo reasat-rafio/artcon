@@ -10,6 +10,7 @@
   import type { PublicationPageProps } from '@/lib/types/publication.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
+  import Listing from '@/components/pages/publication/Listing.svelte';
 
   export let data: PageProps<PublicationPageProps>;
 
@@ -28,7 +29,7 @@
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
-  $: vrsWithImages = createListingItemWithImage(
+  $: publicationsWithImages = createListingItemWithImage(
     filteredPublications,
     sectionImages,
   );
@@ -51,4 +52,5 @@
 <SecondaryNav tags={categories} href="/" logo={logoLight}
   >Our publication</SecondaryNav
 >
+<Listing list={publicationsWithImages} />
 <Footer {footer} {contact} logo={logoLight} />

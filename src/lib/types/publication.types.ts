@@ -5,13 +5,13 @@ import type { SanityImageAssetDocument } from '@sanity/client';
 export interface PublicationPageProps {
   seo: SeoProps;
   sections: Section[];
-  publications: Publications[];
+  publications: Publication[];
   categories: Tag[];
 }
 
 type Section = HeroProps | CommonImageAsset;
 
-export interface Publications {
+export interface Publication {
   _id: string;
   name: string;
   slug: Slug;
