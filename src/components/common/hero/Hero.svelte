@@ -8,7 +8,7 @@
   import gsap from 'gsap';
 
   export let props: CommonHeroProps;
-  $: ({ text, title, type, asset, cta } = props);
+  $: ({ text, title, type, asset, cta, _key } = props);
 
   let titleEl: HTMLElement;
   let textEl: HTMLElement;
@@ -35,7 +35,9 @@
 <svelte:window bind:innerWidth />
 <section class={twMerge('fixed inset-0 h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
-    <Asset {asset} />
+    {#key asset}
+      <Asset {asset} />
+    {/key}
 
     <div class="container relative z-30 text-center text-white">
       <header class="space-y-[1rem]">

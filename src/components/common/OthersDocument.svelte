@@ -18,7 +18,7 @@
   const statusOrder = {
     Ongoing: 0,
     Upcoming: 1,
-    Completed: 2,
+    Ended: 2,
   } as const;
 
   data.sort((a, b) => {
@@ -32,7 +32,6 @@
       endDate: b.endDate,
     });
 
-    // @TODO Fix this
     return statusOrder[statusA] - statusOrder[statusB];
   });
 
