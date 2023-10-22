@@ -55,6 +55,7 @@ const vr = {
     },
     {
       name: 'placeholderImage',
+      title: 'Thumbnail',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
