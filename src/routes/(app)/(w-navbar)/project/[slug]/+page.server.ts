@@ -7,38 +7,38 @@ const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "project" && slug.current == "${params.slug}"][0]{
     ...,
     sections[]{
+      ...,
+      ${asset('image')},
+      ${asset('images[]', { as: 'images' })},
+      asset {
         ...,
         ${asset('image')},
-        ${asset('images[]', { as: 'images' })},
-        asset {
-            ...,
-            ${asset('image')},
-            video{
-                "webm": video_webm.asset->url,
-                "mov": video_hevc.asset->url,
-            }
-        },
-        vr-> {
-            ...,
-            ${asset('image')},
-        },
+        video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+        }
+      },
+      vr-> {
+        ...,
+        ${asset('image')},
+      },
     },
     "otherProjects": *[_type == 'project' && slug.current != "${
       params.slug
     }"][]{
-        slug,
-        "info": sections[ _type == "common.hero"][0]{
-            type,
-            title,
-            asset {
-                  ...,
-                  ${asset('image')},
-                  video{
-                      "webm": video_webm.asset->url,
-                      "mov": video_hevc.asset->url,
-                  }
-              },
-        }
+      slug,
+      "info": sections[ _type == "common.hero"][0]{
+        type,
+        title,
+        asset {
+        ...,
+        ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
+      }
     }
   }`;
 
