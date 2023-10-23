@@ -150,10 +150,10 @@
             cta={{ href: url, title: 'Explore', newTab: true }}
           />
           <Header
+            topic="Our virtual reality"
             title={name}
             {subtitle}
-            topic={category.name}
-            type="Exhibition"
+            type={category.name}
             let:Info
           >
             <Info>
