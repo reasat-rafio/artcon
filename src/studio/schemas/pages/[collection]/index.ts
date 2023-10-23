@@ -1,6 +1,7 @@
-import artist from './artist';
-import collection from './document';
-import publications from './publications';
-import summary from './summary';
+import artist from './details/artist';
+import collection from './details/document';
+import publications from './details/publications';
+import summary from './details/summary';
+import collectionTag from './tag';
 
-export default [collection, summary, artist, publications];
+export default [collection, summary, artist, publications, collectionTag];

@@ -2,7 +2,7 @@ import type {
   DefaultDocumentNodeResolver,
   StructureBuilder,
 } from 'sanity/desk';
-import { FaSitemap, FaTag } from 'react-icons/fa';
+import { FaPaintBrush, FaSitemap, FaTag } from 'react-icons/fa';
 import { RiPagesLine } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import {
@@ -224,7 +224,31 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               }),
             ]),
         ),
-      S.documentTypeListItem('collection').title('Collections'),
+
+      S.listItem()
+        .title('Collections')
+        .icon(FaPaintBrush)
+        .child(
+          S.list()
+            .title('Collections')
+            .items([
+              orderableDocumentListDeskItem({
+                type: 'collection',
+                S,
+                context,
+                title: 'Collections',
+                icon: FaPaintBrush,
+              }),
+              orderableDocumentListDeskItem({
+                type: 'collectionTag',
+                S,
+                context,
+                title: 'Tags',
+                icon: FaTag,
+              }),
+            ]),
+        ),
+
       S.listItem()
         .title('Event')
         .icon(FcCalendar)
@@ -293,7 +317,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
           S.list()
             .title('Publications')
             .items([
-              S.documentTypeListItem('publication').title('Publications'),
+              orderableDocumentListDeskItem({
+                type: 'publication',
+                S,
+                context,
+                title: 'Publications',
+                icon: BsFillPostageFill,
+              }),
               orderableDocumentListDeskItem({
                 type: 'publicationCategory',
                 S,

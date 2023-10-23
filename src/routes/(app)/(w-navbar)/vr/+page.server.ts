@@ -8,6 +8,7 @@ const query = groq`
         ...,
         sections[]{
             ...,
+            ${asset('image')},
             highlightedVr[]->{
                 name,
                 subtitle,
@@ -16,7 +17,7 @@ const query = groq`
                     name,
                     slug
                 },
-                ${asset('previewImage')},
+                ${asset('coverImage')},
             },
         },
       "vrs" : *[_type== "vr"]|order(orderRank){

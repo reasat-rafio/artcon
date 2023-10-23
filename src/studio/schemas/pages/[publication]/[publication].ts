@@ -1,3 +1,4 @@
+import { orderRankField } from '@sanity/orderable-document-list';
 import { BsFillPostageFill } from 'react-icons/bs';
 import type { Rule } from 'sanity';
 
@@ -6,6 +7,7 @@ const publication = {
   type: 'document',
   icon: BsFillPostageFill,
   fields: [
+    orderRankField({ type: 'publication' }),
     {
       name: 'name',
       type: 'string',
@@ -76,7 +78,21 @@ const publication = {
       },
       validation: (Rule: Rule) => Rule.required(),
     },
-
+    {
+      name: 'coverImage',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
     {
       name: 'previewImage',
       type: 'image',

@@ -8,15 +8,16 @@ const query = groq`
         ...,
         sections[]{
             ...,
+            ${asset('image')},
             highlightedPublication[]->{
                 name,
                 subtitle,
                 slug,
                 category->{
-                    name,
-                    slug
+                  name,
+                  slug
                 },
-                ${asset('previewImage')},
+                ${asset('coverImage')},
             },
         },
       "publications" : *[_type== "publication"]|order(orderRank){

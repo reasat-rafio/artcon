@@ -109,11 +109,11 @@ export const formatPublicationListingProps = (
   props: PublicationListingHeroProps,
 ): CommonHeroListProps => {
   const formatedProps: CommonHeroProps[] = props.highlightedPublication.map(
-    ({ previewImage, name, subtitle, slug, category }) => {
+    ({ coverImage, name, subtitle, slug, category }) => {
       return {
         _type: 'common.hero',
         _key: '',
-        asset: { image: previewImage },
+        asset: { image: coverImage },
         title: name,
         text: subtitle,
         type: category.name,
@@ -130,11 +130,11 @@ export const formatVrListingProps = (
   props: VrListingHeroProps,
 ): CommonHeroListProps => {
   const formatedProps: CommonHeroProps[] = props.highlightedVr.map(
-    ({ previewImage, name, subtitle, slug, category }) => {
+    ({ coverImage, name, subtitle, slug, category }) => {
       return {
         _type: 'common.hero',
         _key: '',
-        asset: { image: previewImage },
+        asset: { image: coverImage },
         title: name,
         text: subtitle,
         type: category.name,

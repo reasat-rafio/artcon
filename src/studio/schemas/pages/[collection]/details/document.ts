@@ -1,12 +1,14 @@
 import { toPlainText } from '@portabletext/svelte';
-import { BsCollection } from 'react-icons/bs';
+import { orderRankField } from '@sanity/orderable-document-list';
+import { FaPaintBrush } from 'react-icons/fa';
 import type { Rule } from 'sanity';
 
 const collection = {
   name: 'collection',
   type: 'document',
-  icon: BsCollection,
+  icon: FaPaintBrush,
   fields: [
+    orderRankField({ type: 'collection' }),
     {
       name: 'seo',
       title: 'SEO',
@@ -24,6 +26,14 @@ const collection = {
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
     },
+
+    {
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
     {
       name: 'artworkImages',
       type: 'array',
@@ -36,15 +46,6 @@ const collection = {
             hotspot: true,
           },
           validation: (Rule: Rule) => Rule.required(),
-          fields: [
-            {
-              name: 'alt',
-              title: 'Alternative Text',
-              description: 'Important for SEO and accessibility',
-              type: 'string',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
         },
       ],
     },

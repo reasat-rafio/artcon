@@ -21,7 +21,7 @@ export interface HighlightedVr {
   subtitle: string;
   slug: Slug;
   category: Tag;
-  previewImage: SanityImageAssetDocument;
+  coverImage: SanityImageAssetDocument;
 }
 
 export interface Vr {

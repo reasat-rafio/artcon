@@ -39,6 +39,21 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'coverImage',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       name: 'previewImage',
       type: 'image',
       options: { hotspot: true },
@@ -103,7 +118,7 @@ const vr = {
     select: {
       title: 'name',
       subtitle: 'description',
-      media: 'previewImage',
+      media: 'placeholderImage',
     },
   },
 };
