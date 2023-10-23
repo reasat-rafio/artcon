@@ -9,7 +9,7 @@
   <div class="text-title-2 font-light">
     <slot name="title-1" />
   </div>
-  <div class="whitespace-normal break-all text-subtitle-2">
+  <div class="text-subtitle-2">
     <slot name="title-2" />
   </div>
 </div>

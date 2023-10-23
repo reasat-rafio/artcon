@@ -161,7 +161,8 @@
                 {gallery.name}
               </svelte:fragment>
               <svelte:fragment slot="title-2">
-                <span class="font-light">{date}</span> |
+                <span class="font-light">{date}</span>
+                <span class="px-[6px]">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
               </svelte:fragment>
             </Info>
@@ -170,7 +171,7 @@
           <Vr
             class="mb-[2.5rem]"
             data-load-animate="y"
-            vr={{ previewImage: placeholderImage, url }}
+            vr={{ placeholderImage, url }}
           />
           <div data-load-animate="y" class="body-1 font-light">
             <PortableText value={description} />

@@ -52,5 +52,5 @@
 <div class="relative mt-[100vh] bg-white">
   <SecondaryNav {tags} href="/" logo={logoLight}>Our projects</SecondaryNav>
   <Listing list={projectsWithImages} />
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer useContainer {footer} {contact} logo={logoLight} />
 </div>

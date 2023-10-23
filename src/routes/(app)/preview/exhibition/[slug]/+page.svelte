@@ -159,7 +159,7 @@
               </svelte:fragment>
               <svelte:fragment slot="title-2">
                 <span class="font-light">{date}</span>
-                <span class="whitespace-normal break-all">|</span>
+                <span class="px-[6px]"> | </span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
               </svelte:fragment>
             </Info>

@@ -28,5 +28,5 @@
   {#if page.services.length}
     <Services services={page.services} />
   {/if}
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer useContainer {footer} {contact} logo={logoLight} />
 </div>

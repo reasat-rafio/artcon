@@ -50,5 +50,5 @@
     >Our virtual reality</SecondaryNav
   >
   <Listing list={vrsWithImages} />
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer useContainer {footer} {contact} logo={logoLight} />
 </div>

@@ -137,7 +137,7 @@ export interface Quote {
 }
 
 export interface VR {
-  previewImage: SanityAsset;
+  placeholderImage: SanityAsset;
   url: string;
 }
 

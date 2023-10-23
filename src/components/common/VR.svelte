@@ -5,7 +5,7 @@
   import { twMerge } from 'tailwind-merge';
 
   export let vr: VR;
-  $: ({ previewImage, url } = vr);
+  $: ({ placeholderImage, url } = vr);
 
   let showIframe = false;
 </script>
@@ -34,12 +34,12 @@
           <SanityImage
             class="h-full w-full rounded-[20px] object-cover"
             sizes="70vw"
-            src={previewImage}
-            alt={previewImage.alt}
+            src={placeholderImage}
+            alt={placeholderImage.alt}
             imageUrlBuilder={imageBuilder}
           />
           <figcaption class="caption">
-            {previewImage.caption}
+            {placeholderImage.caption}
           </figcaption>
         </figure>
       </div>

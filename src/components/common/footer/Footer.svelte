@@ -9,11 +9,14 @@
   export let footer: FooterProps;
   export let contact: ContactProps;
   export let logo: SanityAsset;
+  export let useContainer: boolean = false;
 </script>
 
 <footer>
   <div
-    class="px-section py-section max-w-section border-t border-[#BBBBBE] pt-[2.5rem]"
+    class="{useContainer
+      ? 'container '
+      : 'px-section max-w-section'} py-section border-t border-[#BBBBBE] pt-[2.5rem]"
   >
     <section
       class="grid grid-cols-12 border-b border-[#EDEDEE] pb-[1.75rem] lg:pb-[2rem]"
