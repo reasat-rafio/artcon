@@ -29,7 +29,9 @@
                 <Asset {asset} />
                 <Container>
                   <Title>{name}</Title>
-                  <Subtitle class="text-sonic-silver">{tag.name}</Subtitle>
+                  <Subtitle class="font-abc-arizona-serif text-sonic-silver"
+                    >{tag.name}</Subtitle
+                  >
                 </Container>
               </Card>
             </div>

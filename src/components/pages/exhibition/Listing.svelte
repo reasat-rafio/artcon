@@ -41,7 +41,9 @@
                       {/if}
                     </h6>
                   </div>
-                  <Subtitle class="text-sonic-silver">{tag.name}</Subtitle>
+                  <Subtitle class="font-abc-arizona-serif text-sonic-silver"
+                    >{tag.name}</Subtitle
+                  >
                 </Container>
               </Card>
             </div>

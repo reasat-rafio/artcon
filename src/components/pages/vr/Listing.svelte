@@ -35,7 +35,9 @@
                     / {gallery.name}
                   </h6>
 
-                  <Subtitle class="text-sonic-silver">{category.name}</Subtitle>
+                  <Subtitle class="font-abc-arizona-serif text-sonic-silver"
+                    >{category.name}</Subtitle
+                  >
                 </Container>
               </Card>
             </div>

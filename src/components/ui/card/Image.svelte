@@ -9,7 +9,12 @@
 </script>
 
 {#if variant === 'cover'}
-  <figure class={twMerge('h-[11.3125rem] sm:h-[14.125rem]', $$props.class)}>
+  <figure
+    class={twMerge(
+      'h-auto max-md:aspect-video md:h-[14.125rem]',
+      $$props.class,
+    )}
+  >
     <SanityImage
       imageUrlBuilder={imageBuilder}
       class="h-full w-full rounded-[12px] object-cover"
