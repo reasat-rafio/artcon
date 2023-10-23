@@ -15,6 +15,7 @@
 
   let emblaApi: EmblaCarouselType;
   let activeSlideIndex = 0;
+  let blockHeight = 0;
   const statusOrder = {
     Ongoing: 0,
     Upcoming: 1,
@@ -44,6 +45,15 @@
       activeSlideIndex = selectedScrollSnap();
     });
   }
+
+  const setBlockHeight = (node: HTMLElement, isActive: boolean) => {
+    blockHeight = node.clientHeight;
+    return {
+      update(isActive: boolean) {
+        blockHeight = node.clientHeight;
+      },
+    };
+  };
 </script>
 
 <section>
@@ -70,15 +80,17 @@
                 class={twMerge('border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
               >
                 <div
+                  use:setBlockHeight={index === activeSlideIndex}
                   class={twMerge(
                     'space-y-[10px] transition-transform duration-300 odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
-                    index === activeSlideIndex && 'lg:translate-x-[20%]',
+                    index === activeSlideIndex &&
+                      'lg:translate-x-[23%] lg:pr-[23%] 2xl:translate-x-[20%] 2xl:pr-[20%]',
                   )}
                 >
-                  <header class="flex flex-wrap items-center">
-                    <h3 class="text-head-6">{name}</h3>
+                  <header>
+                    <h3 class="inline text-head-6">{name}</h3>
                     {#if !!type}
-                      <h4 class="text-head-8">
+                      <h4 class="inline text-head-8">
                         /
                         {#if typeof type === 'string'}
                           {type}
@@ -96,17 +108,27 @@
             </a>
           {/each}
         </div>
-      </div>
-      <div
-        class="z-10 space-x-[0.62rem] max-lg:mt-[2.38rem] max-lg:flex max-lg:justify-center lg:absolute lg:bottom-0 lg:left-0 lg:space-x-[0.3rem]"
-      >
-        <button on:click={() => emblaApi.scrollPrev()}>
-          <ChevronLeftRounded class="bg-white" />
-        </button>
-        <button on:click={() => emblaApi.scrollNext()}>
-          <ChevronRightRounded class="bg-white" />
-        </button>
+        <div
+          id="navContainer"
+          style="--blockHeight:{blockHeight}px"
+          class="z-10 space-x-[0.62rem] bg-white max-lg:mt-[2.38rem] max-lg:flex max-lg:justify-center lg:absolute lg:left-0 lg:space-x-[0.3rem]"
+        >
+          <button on:click={() => emblaApi.scrollPrev()}>
+            <ChevronLeftRounded />
+          </button>
+          <button on:click={() => emblaApi.scrollNext()}>
+            <ChevronRightRounded />
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  @media screen and (min-width: 1024px) {
+    #navContainer {
+      bottom: calc(var(--blockHeight) / 2);
+    }
+  }
+</style>
