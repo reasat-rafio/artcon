@@ -47,7 +47,7 @@
             <slot />
           </h2>
 
-          <ul class="flex space-x-2 pt-[0.2rem]">
+          <ul class=" hidden space-x-2 pt-[0.2rem] sm:flex">
             {#each tags as { name, slug: { current } }, index}
               <li class="flex items-center space-x-2">
                 <button

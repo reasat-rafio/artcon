@@ -20,7 +20,7 @@
               <Card
                 el="a"
                 href={`/preview/publication/${slug.current}`}
-                class="flex flex-col gap-y-[20px] pl-[20px]"
+                class="flex flex-col gap-y-[20px]"
                 let:Image
                 let:Title
                 let:Container

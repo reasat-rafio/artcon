@@ -1,19 +1,19 @@
 <script lang="ts">
+  import { beforeNavigate, goto } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
-  import Vr from '@/components/common/VR.svelte';
-  import { calculateStatusBetweenDates, delay } from '@/lib/helper';
+  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
+  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
+  import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
+  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
+  import Vr from '@/components/pages/[preview]/Vr.svelte';
+  import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vrPreview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
-  import { onMount } from 'svelte';
   import { gsap } from 'gsap';
+  import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import { beforeNavigate, goto } from '$app/navigation';
-  import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
-  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
-  import Header from '@/components/pages/[preview]/header/Header.svelte';
-  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
-  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
 
   export let data: PageProps<VrPreviewProps>;
   $: ({
