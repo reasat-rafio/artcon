@@ -49,7 +49,8 @@
     <Hero props={formatProjectListingProps(s)} />
   {/if}
 {/each}
-
-<SecondaryNav {tags} href="/" logo={logoLight}>Our projects</SecondaryNav>
-<Listing list={projectsWithImages} />
-<Footer {footer} {contact} logo={logoLight} />
+<div class="relative mt-[100vh] bg-white">
+  <SecondaryNav {tags} href="/" logo={logoLight}>Our projects</SecondaryNav>
+  <Listing list={projectsWithImages} />
+  <Footer {footer} {contact} logo={logoLight} />
+</div>

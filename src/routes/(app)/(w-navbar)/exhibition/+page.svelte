@@ -48,6 +48,8 @@
     <Hero props={formatExhibitionListingProps(s)} />
   {/if}
 {/each}
-<SecondaryNav {tags} href="/" logo={logoLight}>Our exhibition</SecondaryNav>
-<Listing list={exhibitionWithImages} />
-<Footer {footer} {contact} logo={logoLight} />
+<div class="relative mt-[100vh] bg-white">
+  <SecondaryNav {tags} href="/" logo={logoLight}>Our exhibition</SecondaryNav>
+  <Listing list={exhibitionWithImages} />
+  <Footer {footer} {contact} logo={logoLight} />
+</div>

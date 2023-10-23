@@ -49,8 +49,10 @@
     <Hero props={formatPublicationListingProps(s)} />
   {/if}
 {/each}
-<SecondaryNav tags={categories} href="/" logo={logoLight}
-  >Our publication</SecondaryNav
->
-<Listing list={publicationsWithImages} />
-<Footer {footer} {contact} logo={logoLight} />
+<div class="relative mt-[100vh] bg-white">
+  <SecondaryNav tags={categories} href="/" logo={logoLight}
+    >Our publication</SecondaryNav
+  >
+  <Listing list={publicationsWithImages} />
+  <Footer {footer} {contact} logo={logoLight} />
+</div>

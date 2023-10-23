@@ -45,7 +45,10 @@
   {/if}
 {/each}
 
-<SecondaryNav {tags} href="/" logo={logoLight}>Our virtual reality</SecondaryNav
->
-<Listing list={vrsWithImages} />
-<Footer {footer} {contact} logo={logoLight} />
+<div class="relative mt-[100vh] bg-white">
+  <SecondaryNav {tags} href="/" logo={logoLight}
+    >Our virtual reality</SecondaryNav
+  >
+  <Listing list={vrsWithImages} />
+  <Footer {footer} {contact} logo={logoLight} />
+</div>

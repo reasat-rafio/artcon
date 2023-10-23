@@ -41,7 +41,7 @@
   }
 </script>
 
-<section bind:this={rootEl} class="relative">
+<section bind:this={rootEl} class="fixed inset-0 h-screen w-full">
   <div
     class="overflow-hidden"
     on:emblaInit={onInit}
