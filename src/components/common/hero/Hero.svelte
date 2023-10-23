@@ -39,7 +39,7 @@
       <Asset {asset} />
     {/key}
 
-    <div class="container relative z-30 text-center text-white">
+    <div class=" relative z-30 max-w-6xl px-[1rem] text-center text-white">
       <header class="space-y-[1rem]">
         {#if !!text}
           <h3 bind:this={textEl} class="head-md translate-y-full opacity-0">

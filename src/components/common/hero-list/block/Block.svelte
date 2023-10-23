@@ -79,7 +79,7 @@
 
   <div
     bind:this={contentContainerEl}
-    class="container relative z-30 text-center text-white"
+    class="relative z-30 max-w-6xl px-[1rem] text-center text-white"
   >
     <header class="space-y-[1rem]">
       {#if !!text}

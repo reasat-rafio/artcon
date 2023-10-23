@@ -8,6 +8,7 @@ const query = groq`
         ...,
         sections[]{
         ...,
+        ${asset('image')},
         highlightedExhibition[]->{
           name,
           slug,
@@ -38,7 +39,6 @@ const query = groq`
             }
           },
         },
-        ${asset('image')},
       },
       "exhibitions" : *[_type== "exhibition"]|order(orderRank){
         _id,
