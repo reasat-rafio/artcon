@@ -52,6 +52,7 @@ const project = {
     },
     {
       name: 'asset',
+      title: 'Image / Video',
       type: 'asset',
       validation: (Rule: Rule) => Rule.required(),
     },

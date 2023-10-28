@@ -15,6 +15,7 @@ interface AssetFieldProps {
 const asset = {
   name: 'asset',
   type: 'object',
+  title: 'Image / Video',
   description:
     'Please provide input in only one of the following fields: Image or Video',
   validation: (Rule: Rule) => Rule.required(),

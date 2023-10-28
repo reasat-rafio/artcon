@@ -27,6 +27,7 @@ const commonHero = {
   icon: FcHome,
   fields: [
     {
+      title: 'Title Top',
       name: 'text',
       type: 'string',
     },
@@ -36,15 +37,18 @@ const commonHero = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Subtitle',
       name: 'type',
       type: 'text',
     },
     {
+      title: 'Button',
       name: 'cta',
       type: 'cta',
     },
     {
       name: 'asset',
+      title: 'Image / Video',
       type: 'object',
       description: 'Please provide input in only one of the following fields',
       validation: (Rule: Rule) => Rule.required(),

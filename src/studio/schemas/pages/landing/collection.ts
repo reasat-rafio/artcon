@@ -2,13 +2,14 @@ import { MdOutlineCollections } from 'react-icons/md';
 import type { Rule } from 'sanity';
 
 const collection = {
-  title: 'Collections',
+  title: 'Slider',
   name: 'landing.collections',
   type: 'object',
   icon: MdOutlineCollections,
   fields: [
     {
       name: 'collections',
+      title: 'Slider',
       type: 'array',
       validation: (Rule: Rule) => Rule.required().unique().min(3),
       of: [
@@ -30,7 +31,7 @@ const collection = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Collections',
+      title: 'Slider',
     }),
   },
 };

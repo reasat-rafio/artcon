@@ -20,6 +20,7 @@ const service = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Button',
       name: 'cta',
       type: 'cta',
     },

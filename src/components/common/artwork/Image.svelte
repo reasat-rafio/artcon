@@ -60,7 +60,8 @@
         <figurecaption
           class={twMerge(
             'caption whitespace-pre-wrap',
-            !active && ' lg:transition-transform lg:duration-100',
+            !active &&
+              'lg:translate-x-[20%] lg:translate-y-[25%] lg:scale-x-[1.4] lg:scale-y-150 lg:transition-transform lg:duration-100',
           )}
         >
           {toPlainText(information)}

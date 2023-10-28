@@ -21,6 +21,7 @@ const artwork = {
           validation: (Rule: Rule) => Rule.required(),
         },
         {
+          title: 'Button',
           name: 'cta',
           type: 'cta',
           validation: (Rule: Rule) => Rule.required(),

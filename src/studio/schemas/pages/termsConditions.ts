@@ -21,7 +21,11 @@ const termsConditions = {
       of: [{ type: 'block' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-    { name: 'cta', type: 'cta' },
+    {
+      title: 'Button',
+      name: 'cta',
+      type: 'cta',
+    },
   ],
   preview: {
     select: {
