@@ -152,7 +152,7 @@ export interface CommonNoteProps {
 }
 
 export interface Note {
-  quote: Quote;
+  quote?: Quote;
   _type: string;
   _key: string;
   descriptionBlock: DescriptionBlock & { title: string; subtitle: string };
@@ -176,7 +176,7 @@ export interface CommonArtworkSectionProps {
     title: string;
     cta: Cta;
   };
-  quote: Quote;
+  quote?: Quote;
 }
 
 export interface ShortArtworks {

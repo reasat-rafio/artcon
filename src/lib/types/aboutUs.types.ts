@@ -13,7 +13,7 @@ type Section = CommonHeroProps | AboutUsProps | TeamBannerProps;
 export interface AboutUsProps {
   key: string;
   _type: 'aboutUsPage.aboutUs';
-  quote: Quote;
+  quote?: Quote;
   descriptionBlock: {
     title: string;
     description: PortableTextBlock[];

@@ -19,7 +19,9 @@
 
 <section>
   <div class="px-section py-section max-w-section">
-    <Quote class="mb-section" {quote} />
+    {#if !!quote}
+      <Quote class="mb-section" {quote} />
+    {/if}
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>

@@ -7,13 +7,16 @@ const keyValuePairs = {
   icon: FcInfo,
   fields: [
     {
+      title: 'Role',
       name: 'key',
       type: 'string',
+      description: 'example: Organised by',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'value',
       type: 'string',
+      description: 'example: Bangladesh National Museum, Dhaka',
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

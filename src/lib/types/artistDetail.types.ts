@@ -44,7 +44,7 @@ export interface PublicationSectionPros {
 
 export interface Publication {
   _createdAt: string;
-  quote: Quote;
+  quote?: Quote;
   publicationImage: SanityImageAssetDocument;
   name: string;
   description: PortableTextBlock[];
@@ -84,7 +84,7 @@ export interface ArtistSummaryProps {
   };
   vr: VR;
   images: [SanityImageAssetDocument, SanityImageAssetDocument];
-  quote: Quote;
+  quote?: Quote;
 }
 
 export interface PersonalDocuments {
@@ -117,5 +117,5 @@ export interface Exhibition {
     cta: Cta;
   };
   image: SanityAsset;
-  quote: Quote;
+  quote?: Quote;
 }

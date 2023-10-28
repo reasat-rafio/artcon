@@ -12,7 +12,10 @@
   <div class="px-section py-section max-w-section">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
-        <Quote class="mb-section" {quote} />
+        {#if !!quote}
+          <Quote class="mb-section" {quote} />
+        {/if}
+
         <DescriptionBlock
           class={index + 1 !== notes.length ? 'mb-section' : ''}
         >

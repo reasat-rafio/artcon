@@ -30,7 +30,9 @@
 
 <section>
   <div class="px-section py-section max-w-section">
-    <Quote class="mb-section" {quote} />
+    {#if !!quote}
+      <Quote class="mb-section" {quote} />
+    {/if}
 
     <ParallaxScrollImage
       class="mb-section"

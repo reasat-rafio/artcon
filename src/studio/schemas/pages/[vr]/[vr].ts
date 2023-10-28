@@ -11,6 +11,7 @@ const vr = {
   fields: [
     orderRankField({ type: 'vr' }),
     {
+      title: 'VR Name',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
@@ -55,6 +56,7 @@ const vr = {
     },
     {
       name: 'previewImage',
+      title: 'Slider Image',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),

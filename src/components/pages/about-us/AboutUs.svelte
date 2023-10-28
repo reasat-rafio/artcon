@@ -13,7 +13,9 @@
 
 <section class="py-section">
   <div class="container">
-    <Quote class="mb-section" {quote} />
+    {#if !!quote}
+      <Quote class="mb-section" {quote} />
+    {/if}
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

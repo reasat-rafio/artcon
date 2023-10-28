@@ -6,7 +6,7 @@ export interface PublicationPreviewProps {
   _type: string;
   description: PortableTextBlock[];
   _createdAt: Date;
-  quote: Quote;
+  quote?: Quote;
   subtitle: string;
   buyingLink: Cta;
   prices: Prices;

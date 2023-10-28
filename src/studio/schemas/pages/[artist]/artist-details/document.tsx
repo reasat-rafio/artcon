@@ -17,7 +17,7 @@ const artist = {
   icon: FcPortraitMode,
   groups: [
     {
-      title: 'Personal Documents',
+      title: 'Personal Information and Documents',
       name: 'personal',
     },
     {
@@ -71,7 +71,7 @@ const artist = {
     },
 
     {
-      title: 'Personal Documents',
+      title: 'Personal Information and Documents',
       name: 'personalDocuments',
       type: 'personalDocuments',
       group: 'personal',

@@ -21,7 +21,9 @@
 
 <section>
   <div class="px-section py-section max-w-section">
-    <Quote class="mb-section" {quote} />
+    {#if !!quote}
+      <Quote class="mb-section" {quote} />
+    {/if}
     <Artworks class="mb-section hidden lg:grid" {artworks} />
 
     <DescriptionBlock class="max-lg:mb-section">

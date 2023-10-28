@@ -28,6 +28,7 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Exhibition Name',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
@@ -70,14 +71,14 @@ const exhibition = {
     },
     {
       name: 'status',
-      title: 'Status (Optional)',
+      title: 'Top Title (Optional)',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',
     },
     {
       name: 'type',
-      title: 'Type (Optional)',
+      title: 'Subtitle (Optional)',
       type: 'string',
       description:
         'This will replace the automatically determined type based on the count of included artists.',
@@ -112,6 +113,7 @@ const exhibition = {
     },
     {
       name: 'tag',
+      title: 'Exhibition Tag',
       type: 'reference',
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
@@ -126,6 +128,7 @@ const exhibition = {
 
     {
       name: 'previewDisplayImage',
+      title: 'Slider Image',
       type: 'image',
       options: {
         hotspot: true,

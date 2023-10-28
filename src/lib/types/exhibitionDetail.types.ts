@@ -67,7 +67,7 @@ export interface Publication {
   description: PortableTextBlock[];
   exproleLink: Cta;
   isbn: string;
-  quote: Quote;
+  quote?: Quote;
   slug: Slug;
   publishedBy: string[];
   publicationImage: SanityImageAssetDocument;
@@ -87,7 +87,7 @@ export interface GroupExhibirtionProps {
 export interface SummaryProps {
   _key: string;
   _type: 'exhibition.summary';
-  quote: Quote;
+  quote?: Quote;
   vr: VR;
 }
 
@@ -131,7 +131,7 @@ export interface NewsAndMediaProps {
   descriptionBlock: DescriptionBlock & {
     title: string;
   };
-  quote: Quote;
+  quote?: Quote;
   _type: 'exhibition.newsAndMedia';
 }
 

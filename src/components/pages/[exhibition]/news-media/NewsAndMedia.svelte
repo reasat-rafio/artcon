@@ -17,7 +17,9 @@
 
 <section>
   <div class="px-section py-section max-w-section">
-    <Quote class="mb-section" {quote} />
+    {#if !!quote}
+      <Quote class="mb-section" {quote} />
+    {/if}
 
     <div class="mb-section">
       <Gallery items={newsAndMedia} let:chunk>

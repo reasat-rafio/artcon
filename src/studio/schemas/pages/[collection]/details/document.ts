@@ -16,6 +16,7 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Collection Name',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
@@ -88,6 +89,7 @@ const collection = {
 
     {
       name: 'previewDisplayImage',
+      title: 'Slider Image',
       type: 'image',
       options: {
         hotspot: true,

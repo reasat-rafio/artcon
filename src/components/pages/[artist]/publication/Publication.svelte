@@ -36,7 +36,9 @@
       <div class="-ml-[4rem] flex">
         {#each publications as { quote, subtitle, associationsList, isbn, description, exproleLink, name, publicationImage, publishedBy, slug }}
           <div class="flex-[0_0_100%] pl-[4rem]">
-            <Quote class="mb-section" {quote} />
+            {#if !!quote}
+              <Quote class="mb-section" {quote} />
+            {/if}
 
             <PublicationImage
               {name}

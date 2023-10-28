@@ -28,6 +28,7 @@ const project = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Project Name',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
@@ -71,7 +72,7 @@ const project = {
     },
     {
       name: 'status',
-      title: 'Status (Optional)',
+      title: 'Top Title (Optional)',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',

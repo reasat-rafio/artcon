@@ -38,7 +38,7 @@ export interface Gallery {
 export interface SummaryProps {
   _type: 'project.summary';
   key: string;
-  quote: Quote;
+  quote?: Quote;
   vr: VR;
 }
 

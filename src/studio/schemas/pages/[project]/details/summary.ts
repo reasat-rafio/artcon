@@ -10,7 +10,6 @@ const summary = {
     {
       name: 'quote',
       type: 'quote',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'vr',

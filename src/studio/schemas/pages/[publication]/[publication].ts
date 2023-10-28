@@ -9,6 +9,7 @@ const publication = {
   fields: [
     orderRankField({ type: 'publication' }),
     {
+      title: 'Publication Name',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
@@ -95,6 +96,7 @@ const publication = {
     },
     {
       name: 'previewImage',
+      title: 'Slider Image',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
@@ -120,7 +122,6 @@ const publication = {
     {
       name: 'quote',
       type: 'quote',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'description',
