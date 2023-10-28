@@ -3,7 +3,7 @@ import { FcGallery } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const gallery = {
-  title: 'Gallery',
+  title: 'Photo Gallery',
   name: 'project.gallery',
   type: 'object',
   icon: FcGallery,

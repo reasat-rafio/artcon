@@ -3,7 +3,7 @@ import { FcGallery } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const gallery = {
-  title: 'Gallery',
+  title: 'Photo Gallery',
   name: 'exhibition.gallery',
   type: 'object',
   icon: FcGallery,
@@ -35,6 +35,7 @@ const gallery = {
       fields: [
         {
           name: 'title',
+          title: 'Section Title',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },

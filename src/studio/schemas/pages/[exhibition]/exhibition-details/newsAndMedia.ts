@@ -48,6 +48,7 @@ const newsAndMedia = {
             {
               name: 'subtitle',
               type: 'string',
+              title: 'Media Name',
               validation: (Rule: Rule) => Rule.required(),
             },
             {

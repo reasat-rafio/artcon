@@ -3,7 +3,7 @@ import { LuPaintbrush } from 'react-icons/lu';
 import type { Rule } from 'sanity';
 
 const artwork = {
-  title: 'artwork',
+  title: 'Artwork',
   name: 'common.artwork',
   icon: LuPaintbrush,
   type: 'object',
@@ -16,6 +16,7 @@ const artwork = {
       fields: [
         {
           name: 'title',
+          title: 'Section Title',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
