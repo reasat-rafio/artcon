@@ -91,7 +91,7 @@
       <IncludedArtists props={{ ...s, artists }} />
     {:else if s._type === 'common.note'}
       <Note props={s} />
-    {:else if s._type === 'exhibition.publication'}
+    {:else if s._type === 'exhibition.publication' && !!publication}
       <Publication props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
       <Artwork props={{ ...s, artworks }} />

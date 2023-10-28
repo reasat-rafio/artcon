@@ -39,7 +39,7 @@ export interface ExhinitionDetailPageProps {
   seo: SeoProps;
   tag: Tag;
   otherExhibitions: CommonOtherExhibitionProps[];
-  publication: Publication;
+  publication?: Publication;
   sections: Section[];
 }
 

@@ -82,7 +82,7 @@ export interface ArtistSummaryProps {
   statement?: DescriptionBlock & {
     title: string;
   };
-  vr: VR;
+  vr?: VR;
   images: [SanityImageAssetDocument, SanityImageAssetDocument];
   quote?: Quote;
 }

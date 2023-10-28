@@ -67,6 +67,8 @@
       </DescriptionBlock>
     {/if}
 
-    <VR {vr} />
+    {#if !!vr}
+      <VR {vr} />
+    {/if}
   </div>
 </section>

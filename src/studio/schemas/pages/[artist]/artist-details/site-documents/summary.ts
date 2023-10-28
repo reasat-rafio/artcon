@@ -1,5 +1,5 @@
-import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
 import { FaHighlighter } from 'react-icons/fa';
+import { FcInfo } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const summary = {
@@ -16,6 +16,7 @@ const summary = {
 
     {
       name: 'images',
+      title: 'Artist And Studio Images',
       type: 'array',
       validation: (Rule: Rule) => Rule.length(2).required(),
       of: [
@@ -44,23 +45,30 @@ const summary = {
       ],
     },
 
-    createDescriptionBlock({
+    {
       name: 'statement',
+      type: 'object',
+      icon: FcInfo,
       fields: [
         {
           name: 'title',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
+        {
+          name: 'description',
+          type: 'array',
+          of: [{ type: 'block' }],
+          validation: (Rule: Rule) => Rule.required(),
+        },
       ],
-    }),
+    },
 
     {
       name: 'vr',
-      title: 'VR',
+      title: "Artist's Studio VR",
       type: 'reference',
       to: [{ type: 'vr' }],
-      validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {
