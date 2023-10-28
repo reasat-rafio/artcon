@@ -14,7 +14,7 @@ const summary = {
 
     {
       name: 'vr',
-      title: 'VR',
+      title: "Exhibition's VR",
       type: 'reference',
       to: [{ type: 'vr' }],
       validation: (Rule: Rule) => Rule.required(),

@@ -2,7 +2,7 @@ import { FcMms } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
 const imageAsset = {
-  title: 'Image Asset',
+  title: 'Image Divider',
   name: 'common.imageAsset',
   type: 'object',
   icon: FcMms,

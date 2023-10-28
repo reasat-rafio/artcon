@@ -4,7 +4,7 @@ import type { Rule } from 'sanity';
 
 const note = {
   name: 'common.note',
-  title: 'Note',
+  title: 'Art Critics Notes / Articles',
   type: 'object',
   icon: FcComments,
   fields: [
@@ -21,13 +21,16 @@ const note = {
             {
               name: 'quote',
               type: 'quote',
-              validation: (Rule: Rule) => Rule.required(),
             },
 
             createDescriptionBlock({
               fields: [
                 { name: 'title', type: 'string' },
-                { name: 'subtitle', type: 'string' },
+                {
+                  name: 'subtitle',
+                  title: 'Author / Subtitle',
+                  type: 'string',
+                },
               ],
             }),
           ],
@@ -43,7 +46,7 @@ const note = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Notes',
+      title: 'Art Critics Notes / Articles',
     }),
   },
 };

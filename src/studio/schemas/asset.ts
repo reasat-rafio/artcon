@@ -23,7 +23,7 @@ const asset = {
     {
       name: 'image',
       type: 'image',
-      title: 'Image',
+      title: 'Thumbnail image',
       hidden: ({ parent }: AssetFieldProps) => !!parent?.video?.video_webm,
       options: {
         hotspot: true,
@@ -41,7 +41,9 @@ const asset = {
     {
       name: 'video',
       type: 'object',
-      hidden: ({ parent }: AssetFieldProps) => !!parent?.image?.asset,
+      title: 'Thumbnail video',
+      hidden: ({ parent }: AssetFieldProps) =>
+        !!parent?.image?.asset || !!parent?.image?.alt,
       fields: [
         {
           name: 'video_webm',

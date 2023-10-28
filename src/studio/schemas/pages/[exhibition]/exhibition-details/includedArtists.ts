@@ -6,7 +6,7 @@ type ExhibitionDocument = SanityDocument & {
 };
 
 const includedArtists = {
-  title: 'Exhibition Artist"s Section',
+  title: 'Artist Statement For This Exhibition',
   name: 'exhibition.includedArtists',
   type: 'object',
   icon: FaUserShield,
@@ -26,7 +26,7 @@ const includedArtists = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Exhibition Artist"s Section',
+      title: 'Artist Statement For This Exhibition',
     }),
   },
 };

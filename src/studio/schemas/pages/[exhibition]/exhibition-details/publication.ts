@@ -2,7 +2,7 @@ import { FcReadingEbook } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
 const publication = {
-  title: 'Publication Section',
+  title: 'Exhibitions Publicity Materials',
   name: 'exhibition.publication',
   type: 'object',
   icon: FcReadingEbook,
@@ -36,7 +36,7 @@ const publication = {
     },
     prepare: (props: SanityDefaultPreviewProps) => ({
       ...props,
-      title: 'Publication Section',
+      title: 'Exhibitions Publicity Materials',
     }),
   },
 };

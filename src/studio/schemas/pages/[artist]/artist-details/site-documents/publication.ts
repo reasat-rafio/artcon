@@ -1,7 +1,7 @@
 import { BsFillPostageFill } from 'react-icons/bs';
 
 const publication = {
-  title: 'Publication Section',
+  title: 'Publicity Materials',
   name: 'artist.publication',
   type: 'object',
   icon: BsFillPostageFill,
@@ -10,7 +10,7 @@ const publication = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Publications Section',
+      title: 'Publicity Materials',
     }),
   },
 };
