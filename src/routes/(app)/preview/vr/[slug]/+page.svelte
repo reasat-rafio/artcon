@@ -22,13 +22,13 @@
       name,
       subtitle,
       description,
-      previewImage,
       placeholderImage,
       gallery,
       startDate,
       endDate,
       url,
       category,
+      sliderImageVideo,
     },
     site: { logos },
   } = data);
@@ -122,7 +122,7 @@
     _type,
     title: name,
     description: toPlainText(description),
-    ogImage: previewImage,
+    ogImage: placeholderImage,
   }}
   siteOgImg={logos?.ogImage}
 />
@@ -135,10 +135,10 @@
   ]}
 />
 <section>
-  <MobileImage image={previewImage} />
+  <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage image={previewImage} />
+    <DesktopImage {sliderImageVideo} />
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
@@ -173,7 +173,7 @@
             data-load-animate="y"
             vr={{ placeholderImage, url }}
           />
-          <div data-load-animate="y" class="body-1 font-light">
+          <div data-load-animate="y" class="font-light body-1">
             <PortableText value={description} />
           </div>
         </div>

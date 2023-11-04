@@ -27,7 +27,7 @@
       endDate,
       seo,
       slug,
-      previewDisplayImage,
+      sliderImageVideo,
       asset,
       exhibitionType,
     },
@@ -128,10 +128,10 @@
   ]}
 />
 <section>
-  <MobileImage image={previewDisplayImage} />
+  <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage image={previewDisplayImage} />
+    <DesktopImage {sliderImageVideo} />
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}

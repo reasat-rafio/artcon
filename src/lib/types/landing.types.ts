@@ -1,6 +1,5 @@
 import type { Slug } from 'sanity';
-import type { CommonHeroProps, SeoProps } from './common.types';
-import type { SanityImageAssetDocument } from '@sanity/client';
+import type { Asset, CommonHeroProps, SeoProps } from './common.types';
 
 export interface HomePageProps {
   seo: SeoProps;
@@ -23,7 +22,7 @@ export type Collection<T> = {
   title: string;
   name: string;
   slug: Slug;
-  previewImage: SanityImageAssetDocument;
+  sliderImageVideo: Asset;
   subtitle: string;
 };
 
@@ -32,7 +31,7 @@ export interface ExhibitionProps {
   title: string;
   slug: Slug;
   name: string;
-  previewDisplayImage: SanityImageAssetDocument;
+  sliderImageVideo: Asset;
   exhibitionType: string | { en: string };
 }
 

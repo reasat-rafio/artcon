@@ -9,16 +9,16 @@
     name,
     title,
     exhibitionType,
-    previewDisplayImage,
+    sliderImageVideo,
     DEFAULT_COLUMN_W_PERCENTAGE,
   } = props);
 </script>
 
 <CollectionLayout
-  {DEFAULT_COLUMN_W_PERCENTAGE}
-  href="/preview/exhibition/{slug.current}"
-  image={previewDisplayImage}
   {index}
+  {sliderImageVideo}
+  href="/preview/exhibition/{slug.current}"
+  {DEFAULT_COLUMN_W_PERCENTAGE}
 >
   <div
     class="absolute bottom-0 left-0 z-10 text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem] max-lg:px-[1.25rem] max-lg:pb-[2.8rem] lg:p-[3rem] xl:w-[90%] xl:p-[4rem]"

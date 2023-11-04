@@ -1,5 +1,5 @@
 import type { PortableTextBlock, Slug } from 'sanity';
-import type { Cta, Quote } from './common.types';
+import type { Asset, Cta, Quote } from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface PublicationPreviewProps {
@@ -15,7 +15,7 @@ export interface PublicationPreviewProps {
   stock: string;
   associationsList: AssociationsList[];
   _rev: string;
-  previewImage: SanityImageAssetDocument;
+  sliderImageVideo: Asset;
   isbn: string;
   _id: string;
   exproleLink: Cta;

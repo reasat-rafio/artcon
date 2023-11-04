@@ -8,7 +8,14 @@ const query = (params: Partial<Record<string, string>>) =>
     ...,
     gallery->,
     category->,
-    ${asset('previewImage')},
+    sliderImageVideo {
+      ...,
+      ${asset('image')},
+      video{
+        "webm": video_webm.asset->url,
+        "mov": video_hevc.asset->url,
+      }
+    },
     ${asset('publicationImage')},
   }`;
 

@@ -22,7 +22,7 @@
     page: {
       _type,
       name,
-      previewImage,
+      sliderImageVideo,
       associationsList,
       buyingLink,
       category,
@@ -122,7 +122,7 @@
     _type,
     title: name,
     description: toPlainText(description),
-    ogImage: previewImage,
+    ogImage: publicationImage,
   }}
   siteOgImg={logos?.ogImage}
 />
@@ -132,10 +132,10 @@
 />
 
 <section>
-  <MobileImage image={previewImage} />
+  <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage image={previewImage} />
+    <DesktopImage {sliderImageVideo} />
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}

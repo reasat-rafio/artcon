@@ -1,6 +1,6 @@
 import type { SanityImageAssetDocument } from '@sanity/client';
 import type { PortableTextBlock, Slug } from 'sanity';
-import type { Tag } from './common.types';
+import type { Asset, Tag } from './common.types';
 
 export interface VrPreviewProps {
   _type: 'vr';
@@ -12,7 +12,7 @@ export interface VrPreviewProps {
   _rev: string;
   gallery: RefDocument;
   _id: string;
-  previewImage: SanityImageAssetDocument;
+  sliderImageVideo: Asset;
   placeholderImage: SanityImageAssetDocument;
   _createdAt: string;
   startDate: string;

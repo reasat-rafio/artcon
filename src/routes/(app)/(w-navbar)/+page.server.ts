@@ -22,7 +22,14 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
-                    ${asset('previewImage')},
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
                     "title":"Our virtual reality",
                 },
                 _type == "publication" => {
@@ -30,7 +37,14 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
-                    ${asset('previewImage')},
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
                     "title":"Our publication",
                 },
                 _type == "exhibition" => {
@@ -38,7 +52,14 @@ const query = groq`
                     "title":"Our exhibition",
                     name,
                     slug,
-                    ${asset('previewDisplayImage')},
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
                     "exhibitionType": select(
                         count(artists) > 1 => "Group Exhibition",
                         count(artists) == 1 => artists[0]-> {

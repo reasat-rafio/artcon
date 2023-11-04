@@ -17,7 +17,14 @@ const query = (params: Partial<Record<string, string>>) =>
     seo,
     gallery->{name},
     description,
-    ${asset('previewDisplayImage')},
+    sliderImageVideo {
+      ...,
+      ${asset('image')},
+      video{
+        "webm": video_webm.asset->url,
+        "mov": video_hevc.asset->url,
+      }
+    },
     asset {
       ...,
       ${asset('image')},
