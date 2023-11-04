@@ -55,20 +55,10 @@ const vr = {
       ],
     },
     {
-      name: 'previewImage',
-      title: 'Slider Image',
-      type: 'image',
-      options: { hotspot: true },
+      name: 'sliderImageVideo',
+      type: 'sliderImageVideo',
+      title: 'Slider Image / Video',
       validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
     },
     {
       name: 'placeholderImage',

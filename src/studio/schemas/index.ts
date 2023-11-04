@@ -13,6 +13,7 @@ import asset from './asset';
 import keyValuePairs from './keyValuePairs';
 import note from './note';
 import commonArtwork from './artwork';
+import sliderImageVideo from './sliderImageVideo';
 
 export const schemaTypes = [
   ...site,
@@ -30,4 +31,5 @@ export const schemaTypes = [
   commonHeroList,
   commonImageAsset,
   keyValuePairs,
+  sliderImageVideo,
 ];

@@ -52,21 +52,14 @@ const exhibition = {
     },
     {
       name: 'asset',
-      title: 'Image / Video',
+      title: 'Hero Image / Video',
       type: 'asset',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'description',
-      type: 'array',
-      of: [{ type: 'block' }],
-      description: 'This will display in detail page and the preview page',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'associationsList',
-      type: 'array',
-      of: [{ type: 'keyValuePairs' }],
+      name: 'sliderImageVideo',
+      type: 'sliderImageVideo',
+      title: 'Slider Image / Video',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -96,7 +89,6 @@ const exhibition = {
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
       validation: (Rule: Rule) => Rule.unique().required(),
     },
-
     {
       name: 'artworks',
       title: 'Featured Artworks in this Exhibition',
@@ -117,31 +109,24 @@ const exhibition = {
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
       name: 'gallery',
       type: 'reference',
       to: [{ type: 'gallery' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
-      name: 'previewDisplayImage',
-      title: 'Slider Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'description',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'This will display in detail page and the preview page',
       validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
+    },
+    {
+      name: 'associationsList',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'sections',
