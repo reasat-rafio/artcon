@@ -23,13 +23,14 @@ const query = groq`
       "vrs" : *[_type== "vr"]|order(orderRank){
         _id,
         name,
+        slug,
         gallery->{name},
-        ${asset('placeholderImage')},
+        caption,
+        url,
         category->{
             name,
             slug
-        },
-        slug,
+        }
       },
       "tags": *[_type == "vrCategory"]|order(orderRank)
     }

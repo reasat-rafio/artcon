@@ -42,6 +42,8 @@ const vr = {
     {
       name: 'coverImage',
       type: 'image',
+      description:
+        "If this vr is featured in listing page hero, it'll be used as the cover image",
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
       fields: [
@@ -61,30 +63,14 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'placeholderImage',
-      title: 'Thumbnail',
-      type: 'image',
-      options: { hotspot: true },
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'caption',
-          type: 'text',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
-    {
       name: 'url',
       type: 'url',
       components: { input: VrPreview },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'caption',
+      type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -110,7 +96,7 @@ const vr = {
     select: {
       title: 'name',
       subtitle: 'description',
-      media: 'placeholderImage',
+      media: 'coverImage',
     },
   },
 };

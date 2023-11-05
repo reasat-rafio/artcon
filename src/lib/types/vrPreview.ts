@@ -13,12 +13,13 @@ export interface VrPreviewProps {
   gallery: RefDocument;
   _id: string;
   sliderImageVideo: Asset;
-  placeholderImage: SanityImageAssetDocument;
+  caption: string;
   _createdAt: string;
   startDate: string;
   _updatedAt: string;
   slug: Slug;
   name: string;
+  coverImage: SanityImageAssetDocument;
 }
 
 export interface RefDocument {

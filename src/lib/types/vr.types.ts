@@ -30,7 +30,7 @@ export interface Vr {
   slug: Slug;
   gallery: Gallery;
   category: Tag;
-  placeholderImage: SanityImageAssetDocument;
+  url: string;
 }
 
 export interface Gallery {

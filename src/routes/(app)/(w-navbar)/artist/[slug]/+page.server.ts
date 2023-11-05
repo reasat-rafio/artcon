@@ -51,6 +51,7 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('image')},
         ${asset('images[]', { as: 'images' })},
         ${asset('coverImage')},
+        vr->,
         blocks[]{
           ...,
           asset {
@@ -61,10 +62,6 @@ const query = (params: Partial<Record<string, string>>) =>
               "mov": video_hevc.asset->url,
             }
           },
-        },
-        vr-> {
-          ...,
-          ${asset('image')},
         },
       },
     },

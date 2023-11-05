@@ -6,10 +6,8 @@
   $: ({ caption, url } = vr);
 </script>
 
-<section {...$$restProps} class={twMerge('sm:max-w-[1167px]', $$props.class)}>
-  <div
-    class="mx-auto h-[65vh] overflow-hidden sm:aspect-video sm:h-full sm:max-h-[655px]"
-  >
+<section {...$$restProps} class={twMerge('max-w-[72.9375rem]', $$props.class)}>
+  <div class="mx-auto aspect-video h-full max-h-[655px] overflow-hidden">
     <iframe
       allowfullscreen
       class="h-full w-full overflow-hidden rounded-[20px] bg-gray-300"

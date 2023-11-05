@@ -15,18 +15,27 @@
         <div
           class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3"
         >
-          {#each items as { name, slug, _id, category, gallery, placeholderImage } (_id)}
+          {#each items as { name, slug, _id, category, gallery, url } (_id)}
             <div in:fade out:fade={{ duration: 0 }}>
               <Card
                 el="a"
                 href={`/preview/vr/${slug.current}`}
                 class="flex flex-col gap-y-[20px]"
-                let:Image
                 let:Title
                 let:Container
                 let:Subtitle
               >
-                <Image image={placeholderImage} />
+                <div
+                  class="pointer-events-none h-auto overflow-hidden rounded-[12px] max-md:aspect-video md:h-[14.125rem]"
+                >
+                  <iframe
+                    class="h-full w-full scale-125 object-cover"
+                    title={name}
+                    src={url}
+                    frameborder="0"
+                  ></iframe>
+                </div>
+
                 <Container>
                   <Title class="inline">{name}</Title>
                   <h6

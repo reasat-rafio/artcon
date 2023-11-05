@@ -22,13 +22,14 @@
       name,
       subtitle,
       description,
-      placeholderImage,
       gallery,
       startDate,
       endDate,
       url,
+      caption,
       category,
       sliderImageVideo,
+      coverImage,
     },
     site: { logos },
   } = data);
@@ -122,7 +123,7 @@
     _type,
     title: name,
     description: toPlainText(description),
-    ogImage: placeholderImage,
+    ogImage: coverImage,
   }}
   siteOgImg={logos?.ogImage}
 />
@@ -168,12 +169,8 @@
             </Info>
           </Header>
 
-          <Vr
-            class="mb-[2.5rem]"
-            data-load-animate="y"
-            vr={{ placeholderImage, url }}
-          />
-          <div data-load-animate="y" class="font-light body-1">
+          <Vr class="mb-[2.5rem]" data-load-animate="y" vr={{ caption, url }} />
+          <div data-load-animate="y" class="body-1 font-light">
             <PortableText value={description} />
           </div>
         </div>

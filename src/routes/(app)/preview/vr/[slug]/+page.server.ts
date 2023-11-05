@@ -8,6 +8,7 @@ const query = (params: Partial<Record<string, string>>) =>
     ...,
     gallery->,
     category->,
+    ${asset('coverImage')},
     sliderImageVideo {
       ...,
       ${asset('image')},
@@ -17,7 +18,6 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     ${asset('previewImage')},
-    ${asset('placeholderImage')},
   }`;
 
 export const load: ServerLoad = async ({ params }) => {
