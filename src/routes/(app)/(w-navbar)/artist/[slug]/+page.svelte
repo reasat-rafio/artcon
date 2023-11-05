@@ -63,6 +63,7 @@
 
   {#if !!exhibitions?.length}
     <OtherExhibitions
+      urlPrefix="/exhibition"
       title={`${personalDocuments.name}’s other exhibition with us`}
       data={exhibitions}
     />

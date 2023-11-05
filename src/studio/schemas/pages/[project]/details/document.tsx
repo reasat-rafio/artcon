@@ -53,8 +53,35 @@ const project = {
     },
     {
       name: 'asset',
-      title: 'Image / Video',
+      title: 'Hero Image / Video',
       type: 'asset',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'status',
+      title: 'Top Title (Optional)',
+      type: 'string',
+      description:
+        'This will overwrite the status derived from the provided start and end dates.',
+    },
+
+    {
+      title: 'Button (Optional)',
+      description: 'This will display at hero section.',
+      name: 'cta',
+      type: 'cta',
+    },
+
+    {
+      name: 'tag',
+      type: 'reference',
+      to: [{ type: 'projectTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'gallery',
+      type: 'reference',
+      to: [{ type: 'gallery' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -68,31 +95,6 @@ const project = {
       name: 'associationsList',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'status',
-      title: 'Top Title (Optional)',
-      type: 'string',
-      description:
-        'This will overwrite the status derived from the provided start and end dates.',
-    },
-    {
-      title: 'Button (Optional)',
-      description: 'This will display at hero section.',
-      name: 'cta',
-      type: 'cta',
-    },
-    {
-      name: 'tag',
-      type: 'reference',
-      to: [{ type: 'projectTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'gallery',
-      type: 'reference',
-      to: [{ type: 'gallery' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {

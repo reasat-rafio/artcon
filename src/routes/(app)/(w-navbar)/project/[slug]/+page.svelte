@@ -1,6 +1,6 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
-  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
+  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
@@ -80,7 +80,11 @@
   {/each}
 
   {#if !!otherProjects?.length}
-    <OtherExhibitions title="Other projects" data={otherProjects} />
+    <OthersDocument
+      title="Other projects"
+      data={otherProjects}
+      urlPrefix="/project"
+    />
   {/if}
 
   <Footer {footer} {contact} logo={logoLight} />

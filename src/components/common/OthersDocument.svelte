@@ -11,6 +11,7 @@
 
   export let data: CommonOtherExhibitionProps[];
   export let title: string;
+  export let urlPrefix: string;
   $: data;
 
   let emblaApi: EmblaCarouselType;
@@ -65,19 +66,19 @@
         use:emblaCarouselSvelte={{ plugins: [], options: { align: 'start' } }}
         on:emblaInit={onInit}
       >
-        <div class="flex">
+        <div class="-ml-[0.94rem] flex md:-ml-[1.81rem]">
           {#each data as { slug, type, name, asset, tag }, index}
             <a
-              href="/exhibition/{slug.current}"
-              class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]"
+              href="{urlPrefix}/{slug.current}"
+              class="flex-[0_0_90%] overflow-hidden pl-[0.94rem] md:flex-[0_0_70%] md:pl-[1.81rem] xl:flex-[0_0_50%]"
             >
               <div
-                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4.03rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
+                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg"
               >
                 <Asset {asset} />
               </div>
               <div
-                class={twMerge('border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
+                class={twMerge(' border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
               >
                 <div
                   use:setBlockHeight={index === activeSlideIndex}
@@ -128,7 +129,7 @@
 <style>
   @media screen and (min-width: 1024px) {
     #navContainer {
-      bottom: calc(var(--blockHeight) / 2);
+      bottom: calc(var(--blockHeight) / 2 - 1.125rem);
     }
   }
 </style>
