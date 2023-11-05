@@ -1,11 +1,11 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import type { FormatedItem } from '@/lib/helper';
+  import type { FormattedItem } from '@/lib/helper';
   import type { Exhibition } from '@/lib/types/exhibition.types';
   import { fade } from 'svelte/transition';
 
-  export let list: FormatedItem<Exhibition>[];
+  export let list: FormattedItem<Exhibition>[];
 </script>
 
 <div>
@@ -15,18 +15,18 @@
         <div
           class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3"
         >
-          {#each items as { name, slug, tag, type, previewDisplayImage, _id } (_id)}
+          {#each items as { name, slug, tag, type, asset, _id } (_id)}
             <div in:fade out:fade={{ duration: 0 }}>
               <Card
                 el="a"
                 href={`/exhibition/${slug.current}`}
                 class="flex flex-col gap-y-[20px] "
-                let:Image
+                let:Asset
                 let:Title
                 let:Container
                 let:Subtitle
               >
-                <Image image={previewDisplayImage} />
+                <Asset {asset} />
                 <Container>
                   <div>
                     <Title class="inline">{name}</Title>

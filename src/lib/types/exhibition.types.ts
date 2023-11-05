@@ -1,6 +1,5 @@
 import type { Slug } from 'sanity';
 import type { Asset, CommonImageAsset, SeoProps, Tag } from './common.types';
-import type { SanityAssetDocument } from '@sanity/client';
 
 export interface ExhibitionPageProps {
   seo: SeoProps;
@@ -11,7 +10,7 @@ export interface ExhibitionPageProps {
 
 export interface Exhibition {
   _id: string;
-  previewDisplayImage: SanityAssetDocument;
+  asset: Asset;
   name: string;
   tag: {
     name: string;

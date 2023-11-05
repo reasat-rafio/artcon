@@ -1,11 +1,11 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import type { FormatedItem } from '@/lib/helper';
+  import type { FormattedItem } from '@/lib/helper';
   import type { Vr } from '@/lib/types/vr.types';
   import { fade } from 'svelte/transition';
 
-  export let list: FormatedItem<Vr>[];
+  export let list: FormattedItem<Vr>[];
 </script>
 
 <div>

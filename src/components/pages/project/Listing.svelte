@@ -1,11 +1,11 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import type { FormatedItem } from '@/lib/helper';
+  import type { FormattedItem } from '@/lib/helper';
   import type { Project } from '@/lib/types/project.types';
   import { fade } from 'svelte/transition';
 
-  export let list: FormatedItem<Project>[];
+  export let list: FormattedItem<Project>[];
 </script>
 
 <div>

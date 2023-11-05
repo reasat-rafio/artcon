@@ -23,8 +23,8 @@
   } = data);
 
   $: filteredExhibition = exhibitions;
-  $: aciteveSearchParms = $page.url.searchParams.get('search');
-  $: aciteveSearchParms, filterBySearchParams(aciteveSearchParms);
+  $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSearchParams, filterBySearchParams(activeSearchParams);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
@@ -33,10 +33,10 @@
     sectionImages,
   );
 
-  const filterBySearchParams = (aciteveSearchParms: string | null) => {
-    if (!aciteveSearchParms) return;
+  const filterBySearchParams = (activeSearchParams: string | null) => {
+    if (!activeSearchParams) return;
     const fList = exhibitions.filter(
-      ({ tag: { slug } }) => slug.current === aciteveSearchParms,
+      ({ tag: { slug } }) => slug.current === activeSearchParams,
     );
     filteredExhibition = fList;
   };
