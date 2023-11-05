@@ -18,7 +18,7 @@
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class="container-primary py-section">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

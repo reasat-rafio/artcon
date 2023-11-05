@@ -4,7 +4,7 @@
   export let artists: OtherArtists[];
 </script>
 
-<section class="px-section py-section max-w-section">
+<section class="container-primary py-section">
   <UserListWithTitle title="Other artists">
     <svelte:fragment slot="list" let:CardsContainer let:Card>
       <CardsContainer>

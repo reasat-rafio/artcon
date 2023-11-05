@@ -57,7 +57,7 @@
 <div
   bind:this={rootEl}
   class={twMerge(
-    'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto sm:gap-x-[1.87rem]',
+    'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto sm:gap-x-[1.87rem] xl:pr-[9.69rem]',
     $$props.class,
   )}
 >
@@ -113,7 +113,7 @@
           sizes="(min-width:1024) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="h-full w-full rounded-[20px]"
+          class="h-full max-h-[55.83069rem] w-full rounded-[20px]"
           imageUrlBuilder={imageBuilder}
         />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}

@@ -22,17 +22,17 @@
   } = data);
 
   $: filteredVr = vrs;
-  $: aciteveSearchParms = $page.url.searchParams.get('search');
-  $: aciteveSearchParms, filterBySearchParams(aciteveSearchParms);
+  $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSearchParams, filterBySearchParams(activeSearchParams);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
   $: vrsWithImages = createListingItemWithImage(filteredVr, sectionImages);
 
-  const filterBySearchParams = (aciteveSearchParms: string | null) => {
-    if (!aciteveSearchParms) return;
+  const filterBySearchParams = (activeSearchParams: string | null) => {
+    if (!activeSearchParams) return;
     const fList = vrs.filter(
-      ({ category: { slug } }) => slug.current === aciteveSearchParms,
+      ({ category: { slug } }) => slug.current === activeSearchParams,
     );
     filteredVr = fList;
   };
@@ -50,5 +50,5 @@
     >Our virtual reality</SecondaryNav
   >
   <Listing list={vrsWithImages} />
-  <Footer useContainer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoLight} />
 </div>

@@ -11,7 +11,7 @@
 <div>
   {#if !!list?.length}
     {#each list as { items, image }}
-      <section class="py-section container">
+      <section class="py-section container-primary">
         <div
           class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3"
         >

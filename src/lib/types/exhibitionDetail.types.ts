@@ -88,7 +88,7 @@ export interface SummaryProps {
   _key: string;
   _type: 'exhibition.summary';
   quote?: Quote;
-  vr: VR;
+  vr?: VR;
 }
 
 export interface IncludedArtistsProps {

@@ -27,8 +27,10 @@
 </script>
 
 <svelte:window bind:scrollY bind:innerHeight />
-<aside class="!fixed left-0 top-1/2 z-[1000] hidden -translate-y-1/2 lg:block">
-  <nav class="mx-[40px] flex flex-col space-y-[23px]">
+<aside
+  class="!fixed left-0 top-1/2 z-[1000] hidden w-[11rem] -translate-y-1/2 lg:block 2xl:w-[16rem]"
+>
+  <nav class="ml-[2.5rem] mr-[0.625rem] flex flex-col space-y-[1.438rem]">
     {#each menu as { title, externalUrl, pageUrl }}
       <a
         style="color: {textColor};"
@@ -39,7 +41,7 @@
       >
         <span
           class={twMerge(
-            'transition-all duration-500',
+            'break-words transition-all duration-500',
             $page.url.pathname === pageUrl
               ? 'font-semibold opacity-100'
               : 'opacity-70 hover:font-semibold hover:opacity-100 ',

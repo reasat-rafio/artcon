@@ -24,7 +24,7 @@
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class=" py-section container-primary">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -54,6 +54,8 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <VR {vr} />
+    {#if !!vr}
+      <VR {vr} />
+    {/if}
   </div>
 </section>

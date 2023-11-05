@@ -22,12 +22,12 @@
     emblaApi = event.detail;
   };
 
-  const sliedNext = () => emblaApi.scrollNext();
-  const sliedPrev = () => emblaApi.scrollPrev();
+  const slideNext = () => emblaApi.scrollNext();
+  const slidePrev = () => emblaApi.scrollPrev();
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class="container-primary py-section">
     <div
       use:emblaCarouselSvelte={{ plugins, options }}
       on:emblaInit={onInit}
@@ -42,8 +42,8 @@
 
             <PublicationImage
               {name}
-              {sliedNext}
-              {sliedPrev}
+              {slideNext}
+              {slidePrev}
               class="mb-section"
               image={publicationImage}
             />

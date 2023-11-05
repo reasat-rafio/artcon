@@ -24,8 +24,8 @@
   } = data);
 
   $: filteredPublications = publications;
-  $: aciteveSearchParms = $page.url.searchParams.get('search');
-  $: aciteveSearchParms, filterBySearchParams(aciteveSearchParms);
+  $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSearchParams, filterBySearchParams(activeSearchParams);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
@@ -34,10 +34,10 @@
     sectionImages,
   );
 
-  const filterBySearchParams = (aciteveSearchParms: string | null) => {
-    if (!aciteveSearchParms) return;
+  const filterBySearchParams = (activeSearchParams: string | null) => {
+    if (!activeSearchParams) return;
     const fList = publications.filter(
-      ({ category: { slug } }) => slug.current === aciteveSearchParms,
+      ({ category: { slug } }) => slug.current === activeSearchParams,
     );
     filteredPublications = fList;
   };
@@ -54,5 +54,5 @@
     >Our publication</SecondaryNav
   >
   <Listing list={publicationsWithImages} />
-  <Footer useContainer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoLight} />
 </div>

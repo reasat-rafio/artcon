@@ -16,11 +16,11 @@
   let sectionEl: HTMLElement;
   let showLogo = false;
 
-  $: aciteveSearchParms = $page.url.searchParams.get('search');
+  $: activeSearchParams = $page.url.searchParams.get('search');
   const setLogoVisibility = () =>
     (showLogo = sectionEl.getBoundingClientRect().top <= 10);
 
-  const setSearhParams = (searchQuery: string) => {
+  const setSearchParams = (searchQuery: string) => {
     const searchParams = new URLSearchParams({
       search: searchQuery,
     });
@@ -37,7 +37,7 @@
   class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]"
 >
   <div class="relative">
-    <div class="container flex items-center">
+    <div class="container-primary flex items-center">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
@@ -53,9 +53,9 @@
                 <button
                   class={twMerge(
                     'text-[0.875rem] font-light tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
-                    current === aciteveSearchParms && 'text-[#ED1C24]',
+                    current === activeSearchParams && 'text-[#ED1C24]',
                   )}
-                  on:click|preventDefault={() => setSearhParams(current)}
+                  on:click|preventDefault={() => setSearchParams(current)}
                 >
                   {name}
                 </button>

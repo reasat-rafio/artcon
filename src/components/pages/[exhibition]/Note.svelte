@@ -9,7 +9,7 @@
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class="py-section container-primary">
     {#each notes as { quote, descriptionBlock: { title, subtitle, description } }, index}
       <div>
         {#if !!quote}

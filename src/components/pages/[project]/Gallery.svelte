@@ -13,7 +13,7 @@
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class="container-primary py-section">
     <div class="mb-section">
       <Gallery axiesOnMobile="y" items={images} let:chunk>
         {#each chunk as image}

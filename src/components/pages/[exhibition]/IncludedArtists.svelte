@@ -24,8 +24,8 @@
     }}
   />
 {:else if !!artists?.length}
-  <section class="px-section py-section max-w-section">
-    <UserListWithTitle title="Artist in this ehibition">
+  <section class="container-primary py-section">
+    <UserListWithTitle title="Artist in this exhibition">
       <svelte:fragment slot="list" let:CardsContainer let:Card>
         <CardsContainer>
           {#each artists as { artistPortrait, name, slug }}

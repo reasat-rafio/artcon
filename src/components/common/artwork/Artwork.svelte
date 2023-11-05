@@ -20,7 +20,7 @@
 </script>
 
 <section>
-  <div class="px-section py-section max-w-section">
+  <div class="py-section container-primary">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

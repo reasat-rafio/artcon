@@ -105,6 +105,10 @@
     @apply max-lg:px-[1.25rem] lg:pl-[16rem] lg:pr-[5rem];
   }
 
+  .container-primary {
+    @apply mx-auto w-full max-lg:px-[1rem] lg:w-[calc(100%-22rem)] 2xl:w-[min(calc(100%-32rem),82.5rem)];
+  }
+
   /* Preview */
 
   .preview_container {

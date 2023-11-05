@@ -12,7 +12,7 @@
 
 <section {...$$restProps} class={twMerge($$props.class)}>
   <div
-    class="mx-auto aspect-video h-full max-h-[655px] max-w-[1167px] overflow-hidden"
+    class="mx-auto aspect-video h-full max-h-[655px] max-w-[72.9375rem] overflow-hidden"
   >
     {#if showIframe}
       <iframe

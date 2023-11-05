@@ -8,16 +8,14 @@
 
   export let image: SanityImageAssetDocument;
   export let name: string;
-  export let sliedNext: () => void;
-  export let sliedPrev: () => void;
+  export let slideNext: () => void;
+  export let slidePrev: () => void;
 </script>
 
 <section class={twMerge('', $$props.class)}>
-  <div
-    class="ml-auto grid grid-cols-12 items-center justify-center lg:pl-[6rem] xl:pl-[9rem]"
-  >
+  <div class="ml-auto grid grid-cols-12 items-center justify-center">
     <div class="col-span-1 ml-auto hidden md:block">
-      <button class="" on:click={sliedPrev}>
+      <button class="" on:click={slidePrev}>
         <ChevronLeftRounded />
       </button>
     </div>
@@ -31,7 +29,7 @@
       />
     </div>
     <div class="col-span-1 mr-auto hidden md:block">
-      <button class="" on:click={sliedNext}>
+      <button class="" on:click={slideNext}>
         <ChevronRightRounded />
       </button>
     </div>
@@ -39,10 +37,10 @@
     <div
       class="col-span-12 mt-[1.5rem] flex items-center justify-center gap-x-[0.62rem] md:hidden"
     >
-      <button class="" on:click={sliedNext}>
+      <button class="" on:click={slideNext}>
         <ChevronLeftRounded />
       </button>
-      <button class="" on:click={sliedNext}>
+      <button class="" on:click={slideNext}>
         <ChevronRightRounded />
       </button>
     </div>
