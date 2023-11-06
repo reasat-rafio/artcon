@@ -8,7 +8,7 @@
   import gsap from 'gsap';
 
   export let props: CommonHeroProps;
-  $: ({ text, title, type, asset, cta, _key } = props);
+  $: ({ text, title, type, asset, cta } = props);
 
   let titleEl: HTMLElement;
   let textEl: HTMLElement;

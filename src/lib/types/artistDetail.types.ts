@@ -1,7 +1,7 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type {
+  Asset,
   CommonArtworkSectionProps,
-  CommonHeroProps,
   CommonImageAsset,
   CommonOtherExhibitionProps,
   Cta,
@@ -19,7 +19,10 @@ export interface ArtistDetailPageProps {
   seo: SeoProps;
   siteDocuments: {
     sections: Section[];
-    coverImage: SanityAsset;
+    asset: Asset;
+    status?: string;
+    type?: string;
+    cta?: Cta;
   };
   artworks: ShortArtworks;
   exhibitions: CommonOtherExhibitionProps[];
@@ -30,7 +33,6 @@ export interface ArtistDetailPageProps {
 }
 
 type Section =
-  | CommonHeroProps
   | CommonImageAsset
   | CommonArtworkSectionProps
   | ArtistSummaryProps
@@ -48,7 +50,7 @@ export interface Publication {
   publicationImage: SanityImageAssetDocument;
   name: string;
   description: PortableTextBlock[];
-  exproleLink: ExproleLink;
+  exproleLink: ExploreLink;
   isbn: string;
   slug: Slug;
   subtitle: string;
@@ -56,7 +58,7 @@ export interface Publication {
   publishedBy: string[];
 }
 
-export interface ExproleLink {
+export interface ExploreLink {
   _type: string;
   href: string;
   title: string;

@@ -16,7 +16,7 @@
 
   $: ({
     page: {
-      siteDocuments,
+      siteDocuments: { asset, sections, cta, status, type },
       personalDocuments,
       seo,
       artworks,
@@ -36,15 +36,21 @@
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-{#each siteDocuments.sections as s}
-  {#if s._type === 'common.hero'}
-    <Hero props={s} />
-  {/if}
-{/each}
+<Hero
+  props={{
+    _key: '',
+    _type: 'common.hero',
+    text: status,
+    title: personalDocuments.name,
+    asset,
+    cta,
+    type,
+  }}
+/>
 <div class="relative mt-[100vh] bg-white">
   <Share href="/artist" logo={logoLight}>Our artist</Share>
 
-  {#each siteDocuments.sections as s}
+  {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
     {:else if s._type === 'artist.summary'}

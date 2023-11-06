@@ -34,7 +34,7 @@
       class="overflow-hidden"
     >
       <div class="-ml-[4rem] flex">
-        {#each publications as { quote, subtitle, associationsList, isbn, description, exproleLink, name, publicationImage, publishedBy, slug }}
+        {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy }}
           <div class="flex-[0_0_100%] pl-[4rem]">
             {#if !!quote}
               <Quote class="mb-section" {quote} />

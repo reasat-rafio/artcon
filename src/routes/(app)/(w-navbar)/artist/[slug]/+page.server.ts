@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import groq from 'groq';
 import { error, type ServerLoad } from '@sveltejs/kit';
 import { sanityClient } from '@/lib/sanity/sanityClient';
@@ -45,7 +44,17 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     siteDocuments {
-      ...,
+      status,
+      type,
+      cta,
+      asset {
+        ...,
+        ${asset('image')},
+        video{
+          "webm": video_webm.asset->url,
+          "mov": video_hevc.asset->url,
+        }
+      },
       sections[]{
         ...,
         ${asset('image')},
@@ -54,14 +63,6 @@ const query = (params: Partial<Record<string, string>>) =>
         vr->,
         blocks[]{
           ...,
-          asset {
-              ...,
-            ${asset('image')},
-            video{
-              "webm": video_webm.asset->url,
-              "mov": video_hevc.asset->url,
-            }
-          },
         },
       },
     },
