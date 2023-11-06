@@ -46,7 +46,6 @@
       activeSlideIndex = selectedScrollSnap();
     });
   }
-
   const setBlockHeight = (node: HTMLElement, isActive: boolean) => {
     blockHeight = node.clientHeight;
     return {
@@ -78,12 +77,12 @@
                 <Asset {asset} />
               </div>
               <div
-                class={twMerge(' border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
+                class={twMerge('border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
               >
                 <div
                   use:setBlockHeight={index === activeSlideIndex}
                   class={twMerge(
-                    'space-y-[10px] transition-transform duration-300 odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
+                    'space-y-[10px] transition-transform duration-300',
                     index === activeSlideIndex &&
                       'lg:translate-x-[23%] lg:pr-[23%] 2xl:translate-x-[20%] 2xl:pr-[20%]',
                   )}

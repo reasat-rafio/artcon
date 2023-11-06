@@ -2,7 +2,6 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import H8 from '../../ui/H8.svelte';
   import { twMerge } from 'tailwind-merge';
 
   type EL = 'div' | 'a' | undefined;
@@ -18,10 +17,10 @@
   href={url}
   class={twMerge(
     'group flex h-fit items-center justify-center space-x-[20px]',
-    $$props.class ?? '',
+    $$props.class,
   )}
 >
-  <figure class="h-[80px] w-[80px] rounded-full md:h-[112px] md:w-[112px]">
+  <figure class="h-[3.5rem] w-[3.5rem] rounded-full">
     <SanityImage
       class="h-full w-full rounded-full object-cover"
       src={image}
@@ -30,8 +29,8 @@
       imageUrlBuilder={imageBuilder}
     />
   </figure>
-  <div class="flex-1 space-y-[7px]">
-    <H8>{title}</H8>
-    <H8 el="p" class="text-[#77777C]">{subtitle}</H8>
+  <div class="flex-1 space-y-[7px] font-abc-arizona-serif text-head-8">
+    <h5>{title}</h5>
+    <p class="text-[#77777C]">{subtitle}</p>
   </div>
 </svelte:element>

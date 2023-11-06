@@ -3,13 +3,13 @@
   import Seo from '@/components/common/Seo.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Summary from '@/components/pages/[artist]/Summary.svelte';
-  import OtherArtists from '@/components/pages/[artist]/OtherArtists.svelte';
+  import OtherArtists from '@/components/pages/[artist]/other-artists/OtherArtists.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
   import type { PageProps } from '@/lib/types/common.types';
   import Share from '@/components/widgets/share/Share.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import OtherExhibitions from '@/components/common/OthersDocument.svelte';
+  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
@@ -68,7 +68,7 @@
   {/each}
 
   {#if !!exhibitions?.length}
-    <OtherExhibitions
+    <OthersDocument
       urlPrefix="/exhibition"
       title={`${personalDocuments.name}’s other exhibition with us`}
       data={exhibitions}

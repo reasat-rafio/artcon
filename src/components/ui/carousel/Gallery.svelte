@@ -67,7 +67,6 @@
 </script>
 
 <svelte:window bind:innerWidth />
-
 <section class="grid grid-cols-12">
   <div
     class={twMerge('col-span-12 overflow-hidden')}
