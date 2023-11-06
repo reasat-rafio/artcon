@@ -71,6 +71,7 @@ const query = (params: Partial<Record<string, string>>) =>
           "name": name.en,
           shortBio,
           born,
+          socials
         },
         ...siteDocuments {
         "data": sections[_type == "artist.summary"][0]{

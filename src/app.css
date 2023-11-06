@@ -98,6 +98,14 @@
   .mb-section {
     @apply mb-sm md:mb-[80px] xl:mb-xl;
   }
+
+  .mt-section {
+    @apply mt-sm md:mt-[80px] xl:mt-xl;
+  }
+  .pb-section {
+    @apply pb-sm md:pb-[80px] xl:pb-xl;
+  }
+
   .py-section {
     @apply py-sm md:py-[80px]  xl:py-xl;
   }

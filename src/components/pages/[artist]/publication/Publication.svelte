@@ -10,11 +10,13 @@
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
   import PublicationImage from './PublicationImage.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
 
   export let publications: Publication[];
 
   let plugins: EmblaPluginType[] = [];
-  let options: Partial<EmblaOptionsType> = {};
+  let options: Partial<EmblaOptionsType> = { loop: true };
 
   let emblaApi: EmblaCarouselType;
 
@@ -24,10 +26,25 @@
 
   const slideNext = () => emblaApi.scrollNext();
   const slidePrev = () => emblaApi.scrollPrev();
+
+  let rootEl: HTMLElement;
+  let publicationEl: HTMLElement;
+  // let navigationPositionFromSectionTop = 0;
+  let publicationSectionHeight = 0;
+
+  // const getNavigationPositionFromSectionTop = () => {
+  //   navigationPositionFromSectionTop =
+  //     publicationEl.getBoundingClientRect().top -
+  //     rootEl.getBoundingClientRect().top +
+  //     publicationSectionHeight / 2;
+  // };
+
+  // $: if (!!rootEl && !!publicationEl) getNavigationPositionFromSectionTop();
 </script>
 
-<section>
-  <div class="container-primary py-section">
+<!-- <svelte:window on:resize={getNavigationPositionFromSectionTop} /> -->
+<section bind:this={rootEl}>
+  <div class="container-primary py-section relative">
     <div
       use:emblaCarouselSvelte={{ plugins, options }}
       on:emblaInit={onInit}
@@ -44,11 +61,12 @@
               {name}
               {slideNext}
               {slidePrev}
-              class="mb-section"
+              bind:publicationEl
+              bind:publicationSectionHeight
               image={publicationImage}
             />
 
-            <DescriptionBlock>
+            <DescriptionBlock class="mt-section">
               <svelte:fragment slot="intro" let:C>
                 <div class="space-y-[36px]">
                   <C.HeaderContainer>
@@ -87,5 +105,37 @@
         {/each}
       </div>
     </div>
+
+    <!-- <nav class=""> -->
+    <!-- Mobile -->
+    <!-- <button class="absolute left-1/2" on:click={slideNext}>
+        <ChevronLeftRounded />
+      </button> -->
+    <!-- <button
+        style="top: {navigationPositionFromSectionTop +
+          navigationPositionFromSectionTop / 2}px"
+        class="absolute right-1/2 bg-red-800"
+        on:click={slideNext}
+      >
+        <ChevronRightRounded />
+      </button> -->
+
+    <!-- Desktop button -->
+    <!-- <button
+        style="top: {navigationPositionFromSectionTop}px"
+        class="absolute left-0 hidden translate-x-full rounded-full bg-white md:block"
+        on:click={slidePrev}
+      >
+        <ChevronLeftRounded />
+      </button>
+
+      <button
+        style="top: {navigationPositionFromSectionTop}px"
+        class="absolute right-0 hidden -translate-x-full rounded-full bg-white md:block"
+        on:click={slideNext}
+      >
+        <ChevronRightRounded />
+      </button>
+    </nav> -->
   </div>
 </section>

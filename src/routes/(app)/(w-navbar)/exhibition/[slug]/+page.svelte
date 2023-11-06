@@ -56,6 +56,8 @@
     (isSoloExhibition(artists)
       ? artists.personalDocuments.name
       : 'Group Exhibition');
+
+  $: console.log(artists);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
