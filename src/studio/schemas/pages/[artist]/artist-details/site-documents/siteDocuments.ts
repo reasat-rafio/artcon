@@ -6,10 +6,34 @@ const siteDocuments = {
   type: 'object',
   fields: [
     {
+      name: 'asset',
+      title: 'Hero Image / Video',
+      type: 'asset',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'coverImage',
       type: 'image',
       options: { hotspot: true },
-      validation: (Rule: Rule) => Rule.required(),
+      description:
+        'If the artist is featured on the artist listing page, the provided image will serve as the thumbnail in the hero slider. In the event that no image is provided, the hero image or video within the document will be used.',
+    },
+    {
+      name: 'status',
+      title: 'Top Title',
+      type: 'string',
+      description:
+        'This will overwrite the status derived from the provided start and end dates.',
+    },
+    {
+      name: 'type',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
+      title: 'Button ',
+      name: 'cta',
+      type: 'cta',
     },
     {
       name: 'sections',
@@ -28,7 +52,6 @@ const siteDocuments = {
           },
         ),
       of: [
-        { type: 'common.hero' },
         { type: 'common.imageAsset' },
         { type: 'artist.summary' },
         { type: 'common.artwork' },
