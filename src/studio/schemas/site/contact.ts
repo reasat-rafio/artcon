@@ -1,5 +1,16 @@
+import type { Type } from '@/lib/types/common.types';
+import { toPlainText } from '@portabletext/svelte';
+import { AiOutlinePhone } from 'react-icons/ai';
+import { BiLogoGmail } from 'react-icons/bi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { FcContacts } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import {
+  IoLogoFacebook,
+  IoLogoInstagram,
+  IoLogoYoutube,
+  IoShareSocial,
+} from 'react-icons/io5';
+import type { PortableTextBlock, Rule } from 'sanity';
 
 const contact = {
   name: 'site.contact',
@@ -69,34 +80,20 @@ const contact = {
           type: 'object',
           fields: [
             {
-              name: 'darkIcon',
-              description: 'This icon will use in lighter background',
-              type: 'image',
+              name: 'type',
+              title: 'Type',
+              type: 'string',
+              options: {
+                list: [
+                  'facebook',
+                  'instagram',
+                  'youtube',
+                  'mail',
+                  'phone',
+                  'whatsapp',
+                ],
+              },
               validation: (Rule: Rule) => Rule.required(),
-              fields: [
-                {
-                  name: 'alt',
-                  title: 'Alternative Text',
-                  description: 'Important for SEO and accessibility',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
-            },
-            {
-              name: 'lightIcon',
-              description: 'This icon will use in darker background',
-              type: 'image',
-              validation: (Rule: Rule) => Rule.required(),
-              fields: [
-                {
-                  name: 'alt',
-                  title: 'Alternative Text',
-                  description: 'Important for SEO and accessibility',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
             },
             {
               name: 'info',
@@ -105,6 +102,37 @@ const contact = {
               validation: (Rule: Rule) => Rule.required(),
             },
           ],
+          preview: {
+            select: {
+              title: 'info',
+              type: 'type',
+            },
+            prepare({
+              title,
+              type,
+            }: {
+              type: Type;
+              title: PortableTextBlock[];
+            }) {
+              return {
+                title: toPlainText(title),
+                media:
+                  type === 'facebook'
+                    ? IoLogoFacebook
+                    : type === 'youtube'
+                    ? IoLogoYoutube
+                    : type === 'instagram'
+                    ? IoLogoInstagram
+                    : type === 'mail'
+                    ? BiLogoGmail
+                    : type === 'whatsapp'
+                    ? FaWhatsapp
+                    : type === 'phone'
+                    ? AiOutlinePhone
+                    : IoShareSocial,
+              };
+            },
+          },
         },
       ],
     },
@@ -115,50 +143,7 @@ const contact = {
       of: [
         {
           name: 'social',
-          type: 'object',
-          fields: [
-            {
-              name: 'darkIcon',
-              description: 'This icon will use in lighter background',
-              type: 'image',
-              validation: (Rule: Rule) => Rule.required(),
-              fields: [
-                {
-                  name: 'alt',
-                  title: 'Alternative Text',
-                  description: 'Important for SEO and accessibility',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
-            },
-            {
-              name: 'lightIcon',
-              description: 'This icon will use in darker background',
-              type: 'image',
-              validation: (Rule: Rule) => Rule.required(),
-              fields: [
-                {
-                  name: 'alt',
-                  title: 'Alternative Text',
-                  description: 'Important for SEO and accessibility',
-                  type: 'string',
-                  validation: (Rule: Rule) => Rule.required(),
-                },
-              ],
-            },
-            {
-              name: 'link',
-              type: 'url',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
-          preview: {
-            select: {
-              title: 'link',
-              media: 'lightIcon',
-            },
-          },
+          type: 'social',
         },
       ],
     },

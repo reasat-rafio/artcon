@@ -9,6 +9,7 @@ import type {
   Quote,
   SeoProps,
   ShortArtworks,
+  SocialProps,
   Tag,
   VR,
 } from './common.types';
@@ -93,14 +94,7 @@ export interface PersonalDocuments {
   born: string;
   name: string;
   shortBio: PortableTextBlock[];
-  socials: ArtistSocial[];
-}
-
-interface ArtistSocial {
-  _key: string;
-  _type: string;
-  icon: SanityAsset;
-  link: string;
+  socials: SocialProps[];
 }
 
 export interface ExhibitionsProps {

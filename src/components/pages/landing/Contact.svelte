@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { getSocialIconPath } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ContactProps } from '@/lib/types/common.types';
@@ -32,14 +33,14 @@
       </header>
 
       <ul class="mb-[1.8rem] flex flex-col gap-y-[1.4rem]">
-        {#each socialsWithVisibleLinks as { lightIcon, info }}
+        {#each socialsWithVisibleLinks as { info, type }}
           <li class="flex items-start gap-x-[9px]">
-            <SanityImage
+            <img
               class="h-fit w-[0.85938rem]"
-              src={lightIcon}
-              sizes="15px"
-              alt={lightIcon.alt}
-              imageUrlBuilder={imageBuilder}
+              width="15px"
+              height="15px"
+              src="/icons/socials/light/{getSocialIconPath(type)}"
+              alt="{type}'s icon"
             />
             <div
               class="contact-item-text text-[0.75rem] !leading-[0.95] tracking-[0.015rem]"
@@ -50,15 +51,15 @@
         {/each}
       </ul>
       <ul class="flex gap-x-[1.25rem]">
-        {#each socials as { lightIcon, link }}
+        {#each socials as { type, link }}
           <li>
             <a href={link} target="_blank">
-              <SanityImage
+              <img
                 class="h-[0.938rem] w-[0.938rem]"
-                src={lightIcon}
-                sizes="15px"
-                alt={lightIcon.alt}
-                imageUrlBuilder={imageBuilder}
+                width="15px"
+                height="15px"
+                src="/icons/socials/light/{getSocialIconPath(type)}"
+                alt="{type}'s icon"
               />
             </a>
           </li>

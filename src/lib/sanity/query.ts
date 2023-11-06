@@ -17,14 +17,6 @@ export const siteQuery = groq`{
         ${asset('darkIcon')},
         ${asset('lightIcon')}
       },
-      socialsWithVisibleLinks[]{
-        ...,
-        ${asset('darkIcon')},
-      },
-      socials[]{
-        ...,
-        ${asset('lightIcon')}
-      }
     }
   }`;
 

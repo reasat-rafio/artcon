@@ -1,18 +1,25 @@
 <script lang="ts">
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import { getSocialIconPath } from '@/lib/helper';
+  import type { Type } from '@/lib/types/common.types';
 
   export let link: string;
-  export let icon: SanityAsset;
+  export let type: Type;
 </script>
 
 <a href={link} target="_blank">
-  <SanityImage
+  <!-- <SanityImage
     alt={link}
     src={icon}
     sizes="15px"
     class="h-[15px] w-[15px]"
     imageUrlBuilder={imageBuilder}
+  /> -->
+
+  <img
+    class="h-[0.938rem] w-[0.938rem]"
+    width="15px"
+    height="15px"
+    src="/icons/socials/dark/{getSocialIconPath(type)}"
+    alt="{type}'s icon"
   />
 </a>

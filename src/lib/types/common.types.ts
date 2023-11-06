@@ -47,18 +47,24 @@ export interface ContactProps {
   };
 }
 
+export type Type =
+  | 'facebook'
+  | 'instagram'
+  | 'youtube'
+  | 'mail'
+  | 'whatsapp'
+  | 'phone';
+
 export interface SocialProps {
   _key: string;
   _type: string;
-  darkIcon: SanityAsset;
-  lightIcon: SanityAsset;
+  type: Type;
   link: string;
 }
 export interface SocialsWithVisibleLinkProps {
   _key: string;
   _type: string;
-  darkIcon: SanityAsset;
-  lightIcon: SanityAsset;
+  type: Type;
   info: PortableTextBlock[];
 }
 

@@ -12,6 +12,7 @@ import type {
   CommonHeroListProps,
   CommonHeroProps,
   CommonImageAsset,
+  Type,
 } from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -240,12 +241,21 @@ export const createListingItemWithImage = <T>(
   return formatedArray;
 };
 
-// export const filterBySearchParams = (
-//   flist: { tag: Tag }[],
-//   aciteveSearchParms: string | null,
-// ) => {
-//   if (!aciteveSearchParms) return;
-//   return flist.filter(
-//     ({ tag: { slug } }) => slug.current === aciteveSearchParms,
-//   );
-// };
+export const getSocialIconPath = (type: Type) => {
+  switch (type) {
+    case 'facebook':
+      return 'facebook.svg';
+    case 'instagram':
+      return 'instagram.svg';
+    case 'mail':
+      return 'mail.svg';
+    case 'phone':
+      return 'phone.svg';
+    case 'whatsapp':
+      return 'whatsapp.svg';
+    case 'youtube':
+      return 'youtube.svg';
+    default:
+      return null;
+  }
+};

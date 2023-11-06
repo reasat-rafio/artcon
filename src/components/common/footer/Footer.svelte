@@ -27,7 +27,7 @@
             sizes="90px"
             src={logo}
             imageUrlBuilder={imageBuilder}
-            alt="artcon logo"
+            alt="Artcon logo"
           />
         </figure>
         <div class="hidden xl:block" />

@@ -35,8 +35,8 @@
         </C.HeaderContainer>
 
         <C.SocialContainer>
-          {#each personalDocuments.socials as { link, icon }}
-            <C.Social {link} {icon} />
+          {#each personalDocuments.socials as { link, type }}
+            <C.Social {link} {type} />
           {/each}
         </C.SocialContainer>
       </svelte:fragment>

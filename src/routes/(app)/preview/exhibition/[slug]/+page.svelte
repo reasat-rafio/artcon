@@ -1,21 +1,19 @@
 <script lang="ts">
-  import Seo from '@/components/common/Seo.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { PageProps } from '@/lib/types/common.types';
-  import type { ExhibitionPreviewProps } from '@/lib/types/exhibitionPreview';
-  import { onMount } from 'svelte';
-  import { gsap } from 'gsap';
   import { beforeNavigate, goto } from '$app/navigation';
-  import { fade } from 'svelte/transition';
-  import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import Seo from '@/components/common/Seo.svelte';
   import Asset from '@/components/common/hero/Asset.svelte';
+  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
+  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
-  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
-  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import type { PageProps } from '@/lib/types/common.types';
+  import type { ExhibitionPreviewProps } from '@/lib/types/exhibitionPreview';
+  import { gsap } from 'gsap';
+  import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
 
   export let data: PageProps<ExhibitionPreviewProps>;
   $: ({
