@@ -27,14 +27,6 @@ const collection = {
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
     },
-
-    {
-      name: 'tag',
-      title: 'Tag',
-      type: 'reference',
-      to: [{ type: 'collectionTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
     {
       name: 'artworkImages',
       type: 'array',
@@ -49,6 +41,40 @@ const collection = {
           validation: (Rule: Rule) => Rule.required(),
         },
       ],
+    },
+    {
+      name: 'asset',
+      title: 'Hero Image / Video',
+      type: 'asset',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'sliderImageVideo',
+      type: 'sliderImageVideo',
+      title: 'Slider Image / Video',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'status',
+      title: 'Top Title',
+      type: 'string',
+    },
+    {
+      name: 'type',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
+      title: 'Button',
+      name: 'cta',
+      type: 'cta',
+    },
+    {
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'information',
@@ -80,31 +106,7 @@ const collection = {
         },
       ],
     },
-    {
-      name: 'asset',
-      title: 'Image / Video',
-      type: 'asset',
-      validation: (Rule: Rule) => Rule.required(),
-    },
 
-    {
-      name: 'previewDisplayImage',
-      title: 'Slider Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
     {
       name: 'sections',
       title: 'Sections',
