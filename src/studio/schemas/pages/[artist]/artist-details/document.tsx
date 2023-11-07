@@ -1,6 +1,8 @@
+import { sanityClient } from '@/lib/sanity/sanityClient';
 import type { SanityDocument } from '@sanity/client';
+import groq from 'groq';
 import { FcPortraitMode } from 'react-icons/fc';
-import type { Rule, SanityDefaultPreviewProps } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps, Reference } from 'sanity';
 
 type PreviewProps = SanityDefaultPreviewProps & {
   name: {
@@ -9,6 +11,19 @@ type PreviewProps = SanityDefaultPreviewProps & {
   };
   email: string;
   phone: string;
+};
+
+const checkTheReferenceExistInOtherArtist = async (refs: Reference[]) => {
+  const ids = refs.map((ref) => ref._ref);
+
+  const data = await sanityClient.fetch(
+    groq`*[_type == "artist" && references("${ids.join('", "')}")]{
+      slug
+    }`,
+  );
+  console.log('====================================');
+  console.log(data);
+  console.log('====================================');
 };
 
 const artist = {
@@ -60,7 +75,14 @@ const artist = {
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
-      validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) =>
+        Rule.custom(async (refs: Reference[]) => {
+          // const anyOfTheArtworkLinkedToOtherArtist = false;
+
+          checkTheReferenceExistInOtherArtist(refs);
+
+          return true;
+        }),
     },
 
     {

@@ -39,7 +39,7 @@ export interface SummaryProps {
   _type: 'project.summary';
   key: string;
   quote?: Quote;
-  vr: VR;
+  vr?: VR;
 }
 
 export interface SummaryDescriptionBlock extends DescriptionBlock {

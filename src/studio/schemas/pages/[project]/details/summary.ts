@@ -1,5 +1,4 @@
 import { FaHighlighter } from 'react-icons/fa';
-import type { Rule } from 'sanity';
 
 const summary = {
   name: 'project.summary',
@@ -16,7 +15,6 @@ const summary = {
       title: 'VR',
       type: 'reference',
       to: [{ type: 'vr' }],
-      validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {
