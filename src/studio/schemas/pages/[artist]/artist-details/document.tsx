@@ -60,6 +60,7 @@ const artist = {
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
+      validation: (Rule: Rule) => Rule.required(),
     },
 
     {

@@ -47,10 +47,10 @@
     });
   }
 
-  const setBlockHeight = (node: HTMLElement, isActive: boolean) => {
+  const setBlockHeight = (node: HTMLElement, _: boolean) => {
     blockHeight = node.clientHeight;
     return {
-      update(isActive: boolean) {
+      update(_: boolean) {
         blockHeight = node.clientHeight;
       },
     };
@@ -73,7 +73,7 @@
               class="flex-[0_0_90%] overflow-hidden pl-[0.94rem] md:flex-[0_0_70%] md:pl-[1.81rem] xl:flex-[0_0_50%]"
             >
               <div
-                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg lg:mb-[4rem]"
+                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
               >
                 <Asset {asset} />
               </div>
@@ -83,7 +83,7 @@
                 <div
                   use:setBlockHeight={index === activeSlideIndex}
                   class={twMerge(
-                    'space-y-[10px] transition-transform duration-300 odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
+                    'space-y-[10px] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
                     index === activeSlideIndex &&
                       'lg:translate-x-[23%] lg:pr-[23%] 2xl:translate-x-[20%] 2xl:pr-[20%]',
                   )}
