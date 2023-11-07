@@ -106,16 +106,16 @@ const query = (params: Partial<Record<string, string>>) =>
           "webm": video_webm.asset->url,
           "mov": video_hevc.asset->url,
         }
-      },
-     "type": select(
-        count(artists) == 1 => {
-          ...artists[0]->{
-            ...personalDocuments {
-              "name": name.en,
-            }
+    },
+    "type": select(
+      count(artists) == 1 => {
+        ...artists[0]->{
+          ...personalDocuments {
+            "name": name.en,
           }
-        },
-        count(artists) > 1 => "Group Exhibition",
+        }
+      },
+      count(artists) > 1 => "Group Exhibition",
      ),
     },
   }`;

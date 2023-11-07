@@ -21,6 +21,7 @@ const collection = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
+
     {
       name: 'slug',
       type: 'slug',
@@ -28,8 +29,44 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'information',
+      title: 'Artwork Information',
+      type: 'object',
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'media',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'size',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'artDate',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'frame',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'moreInformation',
+          description: 'example: This work is in a temporary frame. (frame)',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+      ],
+    },
+
+    {
       name: 'artworkImages',
       type: 'array',
+      description: 'First image will be used as the main image',
       validation: (Rule: Rule) => Rule.required().max(4),
       of: [
         {
@@ -76,14 +113,7 @@ const collection = {
       to: [{ type: 'collectionTag' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      name: 'information',
-      title: 'Artwork Information',
-      type: 'array',
-      of: [{ type: 'block' }],
-      description: 'This will display in detail page and the preview page',
-      validation: (Rule: Rule) => Rule.required(),
-    },
+
     {
       name: 'inquiryButton',
       type: 'cta',
@@ -125,13 +155,13 @@ const collection = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'information',
+      subtitle: 'information.artDate',
       media: 'artworkImages',
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepare: ({ title, subtitle, media }: any) => ({
       title,
-      subtitle: toPlainText(subtitle),
+      subtitle,
       media: media[0],
     }),
   },
