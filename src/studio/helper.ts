@@ -70,3 +70,11 @@ export function cleanCSV(csvData: string) {
 
 export const formatDate = (date: string) =>
   DateTime.fromISO(date).toFormat('dd LLL yyyy');
+
+export const removeDraftsPrefix = (string: string): string => {
+  if (string.startsWith('drafts.')) {
+    return string.substring(7);
+  } else {
+    return string;
+  }
+};

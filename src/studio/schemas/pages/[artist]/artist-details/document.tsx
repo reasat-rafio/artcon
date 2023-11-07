@@ -1,8 +1,15 @@
 import { sanityClient } from '@/lib/sanity/sanityClient';
+import { removeDraftsPrefix } from '@/studio/helper';
 import type { SanityDocument } from '@sanity/client';
 import groq from 'groq';
 import { FcPortraitMode } from 'react-icons/fc';
-import type { Rule, SanityDefaultPreviewProps, Reference } from 'sanity';
+import {
+  type Rule,
+  type SanityDefaultPreviewProps,
+  type Reference,
+  defineField,
+  type ArrayRule,
+} from 'sanity';
 
 type PreviewProps = SanityDefaultPreviewProps & {
   name: {
@@ -13,17 +20,27 @@ type PreviewProps = SanityDefaultPreviewProps & {
   phone: string;
 };
 
-const checkTheReferenceExistInOtherArtist = async (refs: Reference[]) => {
-  const ids = refs.map((ref) => ref._ref);
+const referenceExistInOtherArtist = async (
+  refs: Reference[],
+  docId: string,
+) => {
+  const ids = refs?.map((ref) => ref._ref) ?? [];
+  if (ids?.length) {
+    const data: { name: string }[] = await sanityClient.fetch(
+      groq`*[_type == "artist"
+        && _id != "${docId}" && references("${ids.join('", "')}")]{
+          "name": personalDocuments.name.en
+        }`,
+    );
 
-  const data = await sanityClient.fetch(
-    groq`*[_type == "artist" && references("${ids.join('", "')}")]{
-      slug
-    }`,
-  );
-  console.log('====================================');
-  console.log(data);
-  console.log('====================================');
+    return data?.length
+      ? `One of the artworks is linked in the artist name ${data.map(
+          ({ name }) => `${name}'s, `,
+        )}`
+      : true;
+  } else {
+    return "Artist's Artworks is required";
+  }
 };
 
 const artist = {
@@ -69,21 +86,18 @@ const artist = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    {
+    defineField({
       name: 'artworks',
       title: "Artist's Artworks",
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
-      validation: (Rule: Rule) =>
-        Rule.custom(async (refs: Reference[]) => {
-          // const anyOfTheArtworkLinkedToOtherArtist = false;
-
-          checkTheReferenceExistInOtherArtist(refs);
-
-          return true;
+      validation: (Rule: ArrayRule<unknown[]>) =>
+        Rule.custom((refs, { document }) => {
+          const docId = removeDraftsPrefix(document?._id as string);
+          return referenceExistInOtherArtist(refs as Reference[], docId);
         }),
-    },
+    }),
 
     {
       name: 'publications',
