@@ -27,12 +27,16 @@ const query = (params: Partial<Record<string, string>>) =>
     sections[]{
       ...,
       ${asset('image')},
-      vr->,
+      vr->{
+        caption,
+        url
+      },
     },
     "artist": *[_type == 'artist' && references(^._id)][0]{
       ...personalDocuments {
         "name": name.en,
         shortBio,
+        country,
         born,
         socials
       },
@@ -40,16 +44,20 @@ const query = (params: Partial<Record<string, string>>) =>
         "data": sections[_type == "artist.summary"][0]{
           ...,
           ${asset('images[]', { as: 'images' })},
-          vr->,
+          vr->{
+            caption,
+            url
+          },
         }
       }
     },
     "otherCollections":*[_type== "collection" && slug.current != "${
       params.slug
     }"][]{
-      name,
       slug,
-      ${asset('artworkImages[]', { as: 'artworkImages' })},
+      "media": information.media,
+      "year": information.artDate.year,
+      ${asset('artworkImages[0]', { as: 'artworkImage' })},
     }
   }`;
 

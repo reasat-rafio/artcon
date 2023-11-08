@@ -51,6 +51,7 @@ const personalDocuments = {
     },
     {
       name: 'country',
+      validation: (Rule: Rule) => Rule.required(),
       type: 'string',
       options: {
         list: [...countries],

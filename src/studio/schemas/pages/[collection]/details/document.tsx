@@ -1,4 +1,3 @@
-import { toPlainText } from '@portabletext/svelte';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { FaPaintBrush } from 'react-icons/fa';
 import type { Rule } from 'sanity';
@@ -46,9 +45,24 @@ const collection = {
         },
         {
           name: 'artDate',
-          type: 'string',
+          type: 'object',
           validation: (Rule: Rule) => Rule.required(),
+          fields: [
+            {
+              name: 'creationDetails',
+              type: 'string',
+              description: 'Example: Executed in 1970',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'year',
+              type: 'string',
+              description: 'Example: 1970',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
         },
+
         {
           name: 'frame',
           type: 'string',
@@ -62,7 +76,10 @@ const collection = {
         },
       ],
     },
-
+    {
+      name: 'inquiryButton',
+      type: 'cta',
+    },
     {
       name: 'artworkImages',
       type: 'array',
@@ -106,6 +123,7 @@ const collection = {
       name: 'cta',
       type: 'cta',
     },
+
     {
       name: 'tag',
       title: 'Tag',
@@ -114,10 +132,6 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    {
-      name: 'inquiryButton',
-      type: 'cta',
-    },
     {
       name: 'provenance',
       type: 'object',
@@ -155,7 +169,7 @@ const collection = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'information.artDate',
+      subtitle: 'information.artDate.creationDetails',
       media: 'artworkImages',
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
