@@ -3,7 +3,9 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
-  import Summary from '@/components/pages/[collection]/Summary.svelte';
+  import Artist from '@/components/pages/[collection]/Artist.svelte';
+  import Summary from '@/components/pages/[collection]/summary/Summary.svelte';
+  import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
@@ -66,6 +68,10 @@
           },
         }}
       />
+    {:else if props._type === 'common.note'}
+      <Note {props} />
+    {:else if props._type === 'collection.artist'}
+      <Artist props={{ ...props, artist }} />
     {/if}
   {/each}
 

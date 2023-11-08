@@ -2,6 +2,7 @@ import type { PortableTextBlock, Slug } from 'sanity';
 import type {
   Asset,
   CommonImageAsset,
+  CommonNoteProps,
   Cta,
   Quote,
   SeoProps,
@@ -28,11 +29,19 @@ export interface CollectionDetailPageProps {
   provenance: Provenance;
 }
 
-type Section = CommonImageAsset | SummaryProps;
+type Section =
+  | CommonImageAsset
+  | SummaryProps
+  | CommonNoteProps
+  | ArtistSectionProps;
 
 export interface Provenance {
   title: string;
   description: PortableTextBlock[];
+}
+
+export interface ArtistSectionProps {
+  _type: 'collection.artist';
 }
 
 export interface SummaryProps {
@@ -55,19 +64,13 @@ export interface Information {
 
 export interface Artist {
   country: string;
-  data: Data;
+  images: {
+    images: SanityImageAssetDocument[];
+  };
   name: string;
   shortBio: PortableTextBlock[];
   born: string;
   socials: SocialProps[];
-}
-
-export interface Data {
-  quote: Quote;
-  _type: string;
-  _key: string;
-  vr: VR;
-  images: SanityImageAssetDocument[];
 }
 
 export interface OtherCollection {

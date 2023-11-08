@@ -7,12 +7,12 @@
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
   import Image from './Image.svelte';
-  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
   import { twMerge } from 'tailwind-merge';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
 
-  type Artworks = ExhinitionDetailPageProps['artworks'];
+  type Artworks = ExhibitionDetailPageProps['artworks'];
   export let artworks: Artworks;
   let emblaApi: EmblaCarouselType;
 

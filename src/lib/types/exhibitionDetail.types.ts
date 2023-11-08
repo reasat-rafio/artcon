@@ -22,7 +22,7 @@ import type {
 } from './artistDetail.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
-export interface ExhinitionDetailPageProps {
+export interface ExhibitionDetailPageProps {
   _id: string;
   type?: string;
   status?: string;

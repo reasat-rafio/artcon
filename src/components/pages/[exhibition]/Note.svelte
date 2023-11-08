@@ -22,7 +22,9 @@
           <svelte:fragment slot="intro" let:C>
             <C.HeaderContainer>
               <C.Title>{title}</C.Title>
-              <C.Subtitle>{subtitle}</C.Subtitle>
+              {#if subtitle}
+                <C.Subtitle>{subtitle}</C.Subtitle>
+              {/if}
             </C.HeaderContainer>
           </svelte:fragment>
           <svelte:fragment slot="description" let:Description>

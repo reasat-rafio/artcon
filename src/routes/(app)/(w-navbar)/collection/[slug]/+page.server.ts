@@ -41,13 +41,8 @@ const query = (params: Partial<Record<string, string>>) =>
         socials
       },
       ...siteDocuments {
-        "data": sections[_type == "artist.summary"][0]{
-          ...,
+        "images": sections[_type == "artist.summary"][0]{
           ${asset('images[]', { as: 'images' })},
-          vr->{
-            caption,
-            url
-          },
         }
       }
     },

@@ -14,9 +14,9 @@
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { ExhinitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
 
-  export let data: PageProps<ExhinitionDetailPageProps>;
+  export let data: PageProps<ExhibitionDetailPageProps>;
   $: ({
     page: {
       name,
