@@ -1,9 +1,11 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Artist from '@/components/pages/[collection]/Artist.svelte';
+  import OtherCollection from '@/components/pages/[collection]/OtherCollection.svelte';
   import Summary from '@/components/pages/[collection]/summary/Summary.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
@@ -14,6 +16,7 @@
 
   $: ({
     page: {
+      _id,
       name,
       seo,
       cta,
@@ -25,6 +28,7 @@
       provenance,
       artworkImages,
       information,
+      otherCollections,
     },
     site: {
       logos: { logoLight, ogImage },
@@ -75,5 +79,8 @@
     {/if}
   {/each}
 
+  {#if !!otherCollections?.length}
+    <OtherCollection title="Other collections" data={otherCollections} />
+  {/if}
   <Footer {footer} {contact} logo={logoLight} />
 </div>

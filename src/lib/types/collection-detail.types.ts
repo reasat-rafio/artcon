@@ -67,6 +67,7 @@ export interface Artist {
   images: {
     images: SanityImageAssetDocument[];
   };
+
   name: string;
   shortBio: PortableTextBlock[];
   born: string;
@@ -77,5 +78,6 @@ export interface OtherCollection {
   slug: Slug;
   media: string;
   year: string;
-  artworkImage: SanityImageAssetDocument;
+  asset: Asset;
+  artist: { name: string };
 }

@@ -49,10 +49,23 @@ const query = (params: Partial<Record<string, string>>) =>
     "otherCollections":*[_type== "collection" && slug.current != "${
       params.slug
     }"][]{
+      _id,
       slug,
       "media": information.media,
       "year": information.artDate.year,
-      ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      "artist": *[_type == 'artist' && references(^._id)][0]{
+        ...personalDocuments {
+          "name": name.en
+        }
+      },
+      asset {
+        ...,
+        ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+        }
+      },
     }
   }`;
 

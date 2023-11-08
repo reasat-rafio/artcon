@@ -2,16 +2,14 @@
   import Asset from '@/components/common/hero/Asset.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
-  import type { CommonOtherExhibitionProps } from '@/lib/types/common.types';
+  import type { OtherCollection } from '@/lib/types/collection-detail.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import { twMerge } from 'tailwind-merge';
 
-  export let data: CommonOtherExhibitionProps[];
+  export let data: OtherCollection[];
   export let title: string;
-  export let urlPrefix: string;
   $: data;
 
   let emblaApi: EmblaCarouselType;
@@ -22,20 +20,6 @@
     Upcoming: 1,
     Ended: 2,
   } as const;
-
-  data.sort((a, b) => {
-    const { status: statusA } = calculateStatusBetweenDates({
-      startDate: a.startDate,
-      endDate: a.endDate,
-    });
-
-    const { status: statusB } = calculateStatusBetweenDates({
-      startDate: b.startDate,
-      endDate: b.endDate,
-    });
-
-    return statusOrder[statusA] - statusOrder[statusB];
-  });
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
@@ -67,9 +51,9 @@
         on:emblaInit={onInit}
       >
         <div class="-ml-[0.94rem] flex md:-ml-[1.81rem]">
-          {#each data as { slug, type, name, asset, tag }, index}
+          {#each data as { slug, asset, media, year, artist: { name } }, index}
             <a
-              href="{urlPrefix}/{slug.current}"
+              href="/collection/{slug.current}"
               class="flex-[0_0_90%] overflow-hidden pl-[0.94rem] md:flex-[0_0_70%] md:pl-[1.81rem] xl:flex-[0_0_50%]"
             >
               <div
@@ -90,19 +74,9 @@
                 >
                   <header>
                     <h3 class="inline text-head-6">{name}</h3>
-                    {#if !!type}
-                      <h4 class="inline text-head-8">
-                        /
-                        {#if typeof type === 'string'}
-                          {type}
-                        {:else}
-                          {type.name}
-                        {/if}
-                      </h4>
-                    {/if}
                   </header>
                   <h4 class="text-head-8 text-[#77777C]">
-                    {tag.name}
+                    {media} | {year}
                   </h4>
                 </div>
               </div>
