@@ -59,22 +59,19 @@
   class={twMerge(
     'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto sm:gap-x-[1.87rem] xl:pr-[9.69rem]',
     $$props.class,
-  )}
->
+  )}>
   <div class="col-span-12 sm:col-span-4">
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
-      class="hidden sm:block"
-    >
+      class="hidden sm:block">
       <figure bind:this={firstImageEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="30vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
-          imageUrlBuilder={imageBuilder}
-        />
+          imageUrlBuilder={imageBuilder} />
         {#if !!firstImage.img?.caption || !!firstImage?.caption}
           <figurecaption class="caption">
             {firstImage?.caption ?? firstImage.img?.caption}
@@ -85,16 +82,14 @@
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
-      class="block sm:hidden"
-    >
+      class="block sm:hidden">
       <figure class="ml-auto w-[70%]" bind:this={firstImageMobileEl}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
-          imageUrlBuilder={imageBuilder}
-        />
+          imageUrlBuilder={imageBuilder} />
         {#if !!firstImage.img?.caption || !!firstImage?.caption}
           <figurecaption class="caption">
             {firstImage?.caption ?? firstImage.img?.caption}
@@ -106,16 +101,14 @@
   <div class="col-span-12 sm:col-span-8">
     <svelte:element
       this={!!secondImage?.link ? 'a' : 'div'}
-      href={secondImage?.link}
-    >
+      href={secondImage?.link}>
       <figure>
         <SanityImage
           sizes="(min-width:1024) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="h-full max-h-[55.83069rem] w-full rounded-[20px]"
-          imageUrlBuilder={imageBuilder}
-        />
+          class="aspect-square h-full max-h-[55.83069rem] w-full rounded-[20px] object-cover"
+          imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">
             {secondImage?.caption ?? secondImage?.img?.caption}
