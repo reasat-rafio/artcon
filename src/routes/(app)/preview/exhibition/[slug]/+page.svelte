@@ -123,8 +123,7 @@
   ctas={[
     { href: '/exhibition', title: 'Back' },
     { href: `/exhibition/${slug.current}`, title: 'Exhibition' },
-  ]}
-/>
+  ]} />
 <section>
   <MobileImage {sliderImageVideo} />
 
@@ -136,11 +135,12 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="preview_content_container"
-        >
+          class="preview_content_container">
           <NavigationMobile
-            cta={{ href: `/exhibition/${slug.current}`, title: 'Exhibition' }}
-          />
+            cta={{
+              href: `/exhibition/${slug.current}`,
+              title: 'Exhibition',
+            }} />
 
           <Header
             let:Info
@@ -149,15 +149,14 @@
             subtitle={typeof exhibitionType === 'string'
               ? exhibitionType
               : exhibitionType.en}
-            type={isSoloExhibition ? 'Solo Exhibition' : 'Group Exhibition'}
-          >
+            type={isSoloExhibition ? 'Solo Exhibition' : 'Group Exhibition'}>
             <Info>
               <svelte:fragment slot="title-1">
                 {gallery.name}
               </svelte:fragment>
               <svelte:fragment slot="title-2">
                 <span class="font-light">{date}</span>
-                <span class="px-[6px]"> | </span>
+                <span class="px-[6px]">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
               </svelte:fragment>
             </Info>
@@ -165,8 +164,7 @@
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full"
-          >
+            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full">
             <Asset {asset} />
           </div>
 

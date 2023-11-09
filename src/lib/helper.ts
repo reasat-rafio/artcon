@@ -259,3 +259,8 @@ export const getSocialIconPath = (type: Type) => {
       return null;
   }
 };
+
+export function getCountryDetails(country: string) {
+  const [code, name] = country.split('-');
+  return { code: code, name: name };
+}

@@ -11,6 +11,7 @@
   import { PortableText } from '@portabletext/svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
   import ArtworkDetails from './ArtworkDetails.svelte';
+  import type { Cta } from '@/lib/types/common.types';
 
   export let props: SummaryProps & {
     provenance: Provenance;
@@ -22,6 +23,7 @@
       country: string;
     };
     information: Information;
+    inquiryButton: Cta;
   };
 
   $: ({
@@ -31,6 +33,7 @@
     artworkImages,
     artworkName,
     information,
+    inquiryButton,
     vr,
   } = props);
 </script>
@@ -47,7 +50,7 @@
       {artworkImages}
       {artworkName}
       {information}
-    />
+      {inquiryButton} />
 
     {#if provenance?.title && provenance?.description}
       <DescriptionBlock class="mb-section">

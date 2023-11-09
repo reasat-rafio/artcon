@@ -7,8 +7,7 @@
 </script>
 
 <nav
-  class="sticky top-0 z-20 flex w-full items-center justify-between bg-white py-[1.18rem] lg:hidden"
->
+  class="sticky top-0 z-20 flex w-full items-center justify-between bg-white py-[1.18rem] lg:hidden">
   <a href="/">
     <X class="h-[1.0215rem] w-[1.04394rem]" />
   </a>
@@ -17,6 +16,7 @@
     target={cta.newTab ? '_blank' : '_self'}
     variant="fill"
     href={cta.href}
-    color="red-gray">{cta.title}</Cta
-  >
+    color="red-gray">
+    {cta.title}
+  </Cta>
 </nav>

@@ -16,7 +16,6 @@
 
   $: ({
     page: {
-      _id,
       name,
       seo,
       cta,
@@ -29,6 +28,7 @@
       artworkImages,
       information,
       otherCollections,
+      inquiryButton,
     },
     site: {
       logos: { logoLight, ogImage },
@@ -48,8 +48,7 @@
     _type: 'common.hero',
     title: artist.name,
     text: status,
-  }}
-/>
+  }} />
 
 <div class="relative mt-[100vh] bg-white">
   <Share href="/artist" logo={logoLight}>Our collections</Share>
@@ -65,13 +64,13 @@
           artworkName: name,
           artworkImages,
           information,
+          inquiryButton,
           artist: {
             born: artist.born,
             country: artist.country,
             name: artist.name,
           },
-        }}
-      />
+        }} />
     {:else if props._type === 'common.note'}
       <Note {props} />
     {:else if props._type === 'collection.artist'}

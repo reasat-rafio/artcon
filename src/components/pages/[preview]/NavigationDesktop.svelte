@@ -12,27 +12,26 @@
     <Cta
       color="white"
       href={ctas[0].href}
-      class="flex items-center space-x-[0.5rem] "
-      ><svg
+      class="flex items-center space-x-[0.5rem]">
+      <svg
         width="6"
         height="10"
         viewBox="0 0 6 10"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M2.18154 4.99995L6 1.26645L4.90923 0.199951L0 4.99995L4.90923 9.79995L6 8.73345L2.18154 4.99995Z"
-          fill="currentColor"
-        />
+          fill="currentColor" />
       </svg>
-      <span> {ctas[0].title} </span></Cta
-    >
+      <span>{ctas[0].title}</span>
+    </Cta>
 
     <Cta
       target={ctas[1].newTab ? '_blank' : '_self'}
       variant="fill"
       href={ctas[1].href}
-      color="red-gray">{ctas[1].title}</Cta
-    >
+      color="red-gray">
+      {ctas[1].title}
+    </Cta>
   </div>
 </nav>

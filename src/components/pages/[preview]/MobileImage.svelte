@@ -15,8 +15,7 @@
       sizes="(min-width:1024px) 40vw, 100vw"
       alt={sliderImageVideo.image.alt}
       src={sliderImageVideo.image}
-      imageUrlBuilder={imageBuilder}
-    />
+      imageUrlBuilder={imageBuilder} />
   {:else if !!sliderImageVideo?.video}
     <video
       class="absolute h-full w-full object-cover"
@@ -28,8 +27,7 @@
       playsInline
       autoPlay
       muted
-      loop
-    >
+      loop>
       <source src={sliderImageVideo.video?.mov} type="video/mp4; codecs=hvc1" />
       <source src={sliderImageVideo.video?.webm} type="video/webm" />
       Sorry, your browser doesn&apos;t support embedded videos.
