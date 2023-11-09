@@ -62,32 +62,29 @@
     <h2 class="head-xl">{title}</h2>
     <div class="relative">
       <div
-        class="relative mt-[32px] overflow-hidden"
+        class="relative mt-[2rem] overflow-hidden"
         use:emblaCarouselSvelte={{ plugins: [], options: { align: 'start' } }}
-        on:emblaInit={onInit}
-      >
+        on:emblaInit={onInit}>
         <div class="-ml-[0.94rem] flex md:-ml-[1.81rem]">
           {#each data as { slug, type, name, asset, tag }, index}
             <a
               href="{urlPrefix}/{slug.current}"
-              class="flex-[0_0_90%] overflow-hidden pl-[0.94rem] md:flex-[0_0_70%] md:pl-[1.81rem] xl:flex-[0_0_50%]"
-            >
+              class="flex-[0_0_90%] overflow-hidden pl-[0.94rem] md:flex-[0_0_70%] md:pl-[1.81rem] xl:flex-[0_0_50%]">
               <div
-                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]"
-              >
+                class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-lg odd:mr-[0.94rem] even:ml-[94rem] lg:mb-[4rem] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]">
                 <Asset {asset} />
               </div>
               <div
-                class={twMerge(' border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]')}
-              >
+                class={twMerge(
+                  ' border-[#D2D2D3] lg:border-t lg:pt-[2.25rem]',
+                )}>
                 <div
                   use:setBlockHeight={index === activeSlideIndex}
                   class={twMerge(
                     'space-y-[10px] odd:lg:mr-[1.81rem] even:lg:ml-[1.81rem]',
                     // index === activeSlideIndex &&
                     //   'lg:translate-x-[23%] lg:pr-[23%] 2xl:translate-x-[20%] 2xl:pr-[20%]',
-                  )}
-                >
+                  )}>
                   <header>
                     <h3 class="inline text-head-6">{name}</h3>
                     {#if !!type}
@@ -112,8 +109,7 @@
         <div
           id="navContainer"
           style="--blockHeight:{blockHeight}px"
-          class="z-10 space-x-[0.62rem] bg-white max-lg:mt-[2.38rem] max-lg:flex max-lg:justify-center lg:absolute lg:left-0 lg:space-x-[0.3rem]"
-        >
+          class="z-10 space-x-[0.62rem] bg-white max-lg:mt-[2.38rem] max-lg:flex max-lg:justify-center lg:absolute lg:left-0 lg:space-x-[0.3rem]">
           <button on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>

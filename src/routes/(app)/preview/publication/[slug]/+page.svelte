@@ -124,12 +124,10 @@
     description: toPlainText(description),
     ogImage: publicationImage,
   }}
-  siteOgImg={logos?.ogImage}
-/>
+  siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
 <NavigationDesktop
-  ctas={[{ href: '/publication', title: 'Back' }, exproleLink]}
-/>
+  ctas={[{ href: '/publication', title: 'Back' }, exproleLink]} />
 
 <section>
   <MobileImage {sliderImageVideo} />
@@ -142,8 +140,7 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="preview_content_container"
-        >
+          class="preview_content_container">
           <NavigationMobile cta={exproleLink} />
 
           <div class="grid grid-cols-12 xl:gap-[1rem] 2xl:gap-[3rem]">
@@ -153,21 +150,21 @@
                 title={name}
                 {subtitle}
                 type={category.name}
-                let:Info
-              >
+                let:Info>
                 <Info>
                   <svelte:fragment slot="title-1">
                     Published By {#each publishedBy as publisher, index}
-                      <span class="font-medium"
-                        >{publisher}{#if index !== publishedBy.length - 1}
+                      <span class="font-medium">
+                        {publisher}{#if index !== publishedBy.length - 1}
                           {#if index === publishedBy.length - 2}
-                            {' '} <span class="font-light">and</span>
+                            {' '}
+                            <span class="font-light">and</span>
                           {:else}
                             ,
                           {/if}
                         {/if}
-                        {' '}</span
-                      >
+                        {' '}
+                      </span>
                     {/each}
                   </svelte:fragment>
                   <svelte:fragment slot="title-2">
@@ -177,25 +174,25 @@
                 <Info>
                   <svelte:fragment slot="title-1">
                     Price {#if !!prices?.discountPriceBDT}
-                      <span class="text-[#9B9B9B] line-through"
-                        >{prices.priceBDT}</span
-                      >
+                      <span class="text-[#9B9B9B] line-through">
+                        {prices.priceBDT}
+                      </span>
                       <span class="font-semibold">
-                        <span>{prices.discountPriceBDT} BDT</span> /
+                        <span>{prices.discountPriceBDT} BDT</span>
+                        /
                         <span>{prices.priceUSD} USD</span>
                       </span>
                     {:else}
                       <span class="font-semibold">
-                        <span>{prices.priceBDT} BDT</span> /
+                        <span>{prices.priceBDT} BDT</span>
+                        /
                         <span>{prices.priceUSD} USD</span>
                       </span>
                     {/if}
                   </svelte:fragment>
                   <svelte:fragment slot="title-2">
-                    Stock <span class="font-medium"
-                      >{stock}
-                    </span></svelte:fragment
-                  >
+                    Stock <span class="font-medium">{stock}</span>
+                  </svelte:fragment>
                 </Info>
               </Header>
 
@@ -206,19 +203,21 @@
                     imageUrlBuilder={imageBuilder}
                     src={publicationImage}
                     alt={publicationImage.alt}
-                    sizes="100vw"
-                  />
+                    sizes="100vw" />
                 </figure>
               </div>
 
-              <div data-load-animate="y" class="body-1 mb-[2.5rem] font-light">
+              <div
+                data-load-animate="y"
+                class="body-light-m lg:body-light mb-[2.5rem]">
                 <PortableText value={description} />
               </div>
 
               <ul class="mb-[2.5rem] space-y-[0.38rem]" data-load-animate="y">
                 {#each associationsList as { key, value }}
                   <li class="preview-b-light">
-                    <span>{key}</span>{' '}
+                    <span>{key}</span>
+                    {' '}
                     <span class="font-normal">{value}</span>
                   </li>
                 {/each}
@@ -228,8 +227,9 @@
                 class="z-10 mt-[3.88rem]"
                 variant="fill"
                 color="red-gray"
-                href={buyingLink.href}>{buyingLink.title}</Cta
-              >
+                href={buyingLink.href}>
+                {buyingLink.title}
+              </Cta>
             </section>
 
             <section class="hidden xl:col-span-5 xl:block">
@@ -239,8 +239,7 @@
                   imageUrlBuilder={imageBuilder}
                   src={publicationImage}
                   alt={publicationImage.alt}
-                  sizes="40vw"
-                />
+                  sizes="40vw" />
               </figure>
             </section>
           </div>

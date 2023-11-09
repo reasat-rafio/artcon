@@ -62,8 +62,8 @@ export default {
 
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'],
-        'abc-arizona-sans': ['ABC Arizona Sans', 'sans-serif'],
-        'abc-arizona-serif': ['ABC Arizona Serif', 'sans-serif'],
+        // 'abc-arizona-sans': ['ABC Arizona Sans', 'sans-serif'],
+        // 'abc-arizona-serif': ['ABC Arizona Serif', 'sans-serif'],
         'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
       },
       fontSize: {

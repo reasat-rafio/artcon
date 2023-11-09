@@ -125,16 +125,14 @@
     description: toPlainText(description),
     ogImage: coverImage,
   }}
-  siteOgImg={logos?.ogImage}
-/>
+  siteOgImg={logos?.ogImage} />
 
 <svelte:window bind:innerWidth />
 <NavigationDesktop
   ctas={[
     { href: '/vr', title: 'Back' },
     { href: url, title: 'Explore', newTab: true },
-  ]}
-/>
+  ]} />
 <section>
   <MobileImage {sliderImageVideo} />
 
@@ -145,18 +143,15 @@
         <div
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
-          class="preview_content_container"
-        >
+          class="preview_content_container">
           <NavigationMobile
-            cta={{ href: url, title: 'Explore', newTab: true }}
-          />
+            cta={{ href: url, title: 'Explore', newTab: true }} />
           <Header
             topic="Our virtual reality"
             title={name}
             {subtitle}
             type={category.name}
-            let:Info
-          >
+            let:Info>
             <Info>
               <svelte:fragment slot="title-1">
                 {gallery.name}
@@ -170,7 +165,7 @@
           </Header>
 
           <Vr class="mb-[2.5rem]" data-load-animate="y" vr={{ caption, url }} />
-          <div data-load-animate="y" class="body-1 font-light">
+          <div data-load-animate="y" class="body-light-m lg:body-light">
             <PortableText value={description} />
           </div>
         </div>

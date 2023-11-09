@@ -7,11 +7,10 @@
 <svelte:element
   this={el}
   class={twMerge(
-    'font-inter font-light text-dark-gunmetal',
-    variant === 'lg' && 'body-1',
-    variant === 'sm' && 'body-2',
+    'md:body-light font-inter font-light text-dark-gunmetal',
+    variant === 'lg' && 'text-[0.875rem] ',
+    variant === 'sm' && 'text-[0.75rem] ',
     $$props.class,
-  )}
->
+  )}>
   <slot />
 </svelte:element>

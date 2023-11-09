@@ -4,6 +4,6 @@
   export let el: 'h4' | 'h5' | 'h6' = 'h5';
 </script>
 
-<svelte:element this={el} class={twMerge('head-lg', $$props.class)}>
+<svelte:element this={el} class={twMerge('head-6', $$props.class)}>
   <slot />
 </svelte:element>

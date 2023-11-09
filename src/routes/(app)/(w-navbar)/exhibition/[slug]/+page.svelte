@@ -1,12 +1,12 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
-  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
@@ -56,8 +56,6 @@
     (isSoloExhibition(artists)
       ? artists.personalDocuments.name
       : 'Group Exhibition');
-
-  $: console.log(artists);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -70,8 +68,7 @@
     title: name,
     text: heroText,
     type: heroType,
-  }}
-/>
+  }} />
 <div class="relative mt-[100vh] bg-white">
   <Share href="/exhibition" logo={logoLight}>Our Exhibition</Share>
   {#each sections as s}
@@ -87,8 +84,7 @@
             description,
             associationsList,
           },
-        }}
-      />
+        }} />
     {:else if s._type === 'exhibition.includedArtists'}
       <IncludedArtists props={{ ...s, artists }} />
     {:else if s._type === 'common.note'}
@@ -108,8 +104,7 @@
     <OthersDocument
       urlPrefix="/exhibition"
       title="Other exhibition"
-      data={otherExhibitions}
-    />
+      data={otherExhibitions} />
   {/if}
   <Footer {footer} {contact} logo={logoLight} />
 </div>

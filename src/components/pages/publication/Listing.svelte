@@ -13,8 +13,7 @@
     {#each list as { items, image }}
       <section class="py-section container-primary">
         <div
-          class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3"
-        >
+          class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3">
           {#each items as { name, slug, _id, prices: { priceBDT, priceUSD, discountPriceBDT }, publicationImage } (_id)}
             <div in:fade out:fade={{ duration: 0 }}>
               <Card
@@ -23,14 +22,12 @@
                 class="flex flex-col gap-y-[20px]"
                 let:Image
                 let:Title
-                let:Container
-              >
+                let:Container>
                 <Image variant="fit" image={publicationImage} />
                 <Container class="text-center">
                   <Title>{name}</Title>
                   <div
-                    class="font-inter text-[0.8125rem] font-normal uppercase tracking-[0.01625rem] text-[#1D1D25]"
-                  >
+                    class="font-inter text-[0.8125rem] font-normal uppercase tracking-[0.01625rem] text-[#1D1D25]">
                     {#if !!discountPriceBDT}
                       <span class="text-[#77777C] line-through">
                         {priceBDT}
@@ -55,7 +52,7 @@
     {/each}
   {:else}
     <div class="py-section container">
-      <h3 class="head-3xl">No Virtual Reality Found</h3>
+      <h3 class="head-3">No Virtual Reality Found</h3>
     </div>
   {/if}
 </div>

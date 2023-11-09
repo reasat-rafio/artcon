@@ -43,23 +43,23 @@
   style={`filter: blur(${$tweenDelta * 2.5}px) grayscale(${
     $tweenDelta * 50
   }%);`}
-  class={twMerge('h-screen w-full', $$props.class)}
->
+  class={twMerge('h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
 
     <div class=" relative z-30 max-w-6xl px-[1rem] text-center text-white">
       <header class="space-y-[1rem]">
         {#if !!text}
-          <h3 bind:this={textEl} class="head-md translate-y-full opacity-0">
+          <h3
+            bind:this={textEl}
+            class="head-8 lg:head-7 translate-y-full opacity-0">
             {text}
           </h3>
         {/if}
         <div class="overflow-hidden">
           <h1
             bind:this={titleEl}
-            class="head-5xl translate-y-full !leading-none opacity-0"
-          >
+            class="head-1 translate-y-full !leading-none opacity-0">
             {title}
           </h1>
         </div>
@@ -68,8 +68,7 @@
           <div class="overflow-hidden">
             <h2
               bind:this={typeEl}
-              class="translate-y-full whitespace-pre-wrap text-[0.938rem] leading-[1.4rem] opacity-0 lg:text-[1.5rem] lg:leading-[2.25rem]"
-            >
+              class="head-8 lg:head-6 translate-y-full whitespace-pre-wrap opacity-0">
               {type}
             </h2>
           </div>
@@ -81,23 +80,22 @@
             variant="fill"
             color="white"
             class="cta-btn mx-auto translate-y-full opacity-0"
-            href={cta.href}>{cta.title}</Cta
-          >
+            href={cta.href}>
+            {cta.title}
+          </Cta>
         </div>
       {/if}
     </div>
 
     <div
       id="pointer"
-      class="absolute opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
-    >
+      class="absolute opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
       <div
-        class="flex items-center justify-center space-x-[0.5rem] text-[#E8E6E3] lg:space-x-[1.06rem] lg:pr-[2.5rem]"
-      >
+        class="flex items-center justify-center space-x-[0.5rem] text-[#E8E6E3] lg:space-x-[1.06rem] lg:pr-[2.5rem]">
         <span
-          class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]"
-          >Discover our stories</span
-        >
+          class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
+          Discover our stories
+        </span>
         <ChevronDown class="chevron-icon animate-bounce" />
       </div>
     </div>

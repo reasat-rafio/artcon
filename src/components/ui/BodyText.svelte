@@ -12,8 +12,11 @@
 </script>
 
 <p
-  class={twMerge(' text-body-1 text-dark-gunmetal ', fontWeight, $$props.class)}
-  {...$$restProps}
->
+  class={twMerge(
+    'body-light-m lg:body-light text-dark-gunmetal ',
+    fontWeight,
+    $$props.class,
+  )}
+  {...$$restProps}>
   <slot />
 </p>

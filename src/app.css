@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  /* html {
-    scroll-behavior: smooth;
-  } */
-
   @font-face {
     font-family: 'OPTIBerling Agency';
     src: local('OPTIBerling-Agency'), local('optiberling-agency'),
@@ -20,30 +16,6 @@
     font-weight: 500;
     font-display: swap;
   }
-
-  /* @font-face {
-    font-family: 'ABC Arizona Serif';
-    src: url(/fonts/ABCArizonaSerif-Light-Trial.woff2) format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: fallback;
-  }
-
-  @font-face {
-    font-family: 'ABC Arizona Serif';
-    src: url(/fonts/ABCArizonaSerif-LightItalic-Trial.woff2) format('woff2');
-    font-weight: 300;
-    font-style: italic;
-    font-display: fallback;
-  }
-
-  @font-face {
-    font-family: ABC Arizona Sans;
-    src: url(/fonts/ABCArizonaSans-Light-Trial.woff2) format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: fallback;
-  } */
 
   h1,
   h2,
@@ -59,35 +31,80 @@
 }
 
 @layer utilities {
-  .head-5xl {
-    @apply text-[clamp(2.25rem,6vw+1rem,7.5rem)] font-medium leading-none tracking-normal max-md:tracking-[0.72px];
+  /* HEADINGS */
+  .head-1 {
+    @apply text-[clamp(2.25rem,6vw+1rem,7.5rem)] font-medium leading-none tracking-normal  max-md:tracking-[0.72px];
   }
-  .head-4xl {
-    @apply text-head-2 font-medium;
+  .head-2 {
+    @apply text-[clamp(2rem,3vw+1rem,3.125rem)] leading-[115.5%] tracking-[0.04rem] md:leading-[120%] md:tracking-[0.0625rem];
   }
-  .head-3xl {
-    @apply text-[clamp(1.25rem,2vw+1rem,2.25rem)];
+  .head-3 {
+    @apply text-[clamp(1.25rem,2vw+1rem,2.25rem)] font-medium;
   }
-  .head-2xl {
-    @apply text-head-5 text-dark-gunmetal lg:text-head-4;
+  .head-4 {
+    @apply text-[2rem] font-medium leading-[115.5%] tracking-[0.04rem];
+  }
+  .head-5 {
+    @apply text-[1.75rem] font-medium leading-[120%] tracking-[0.035rem];
+  }
+  .head-5-m {
+    @apply text-[1.5rem] font-medium leading-[120%] tracking-[0.03rem];
+  }
+  .head-6 {
+    @apply text-[1.25rem] font-medium leading-[128.5%] tracking-[0.025rem];
+  }
+  .head-7 {
+    @apply text-[1.125rem] font-bold tracking-[0.05625rem];
+  }
+  .head-8 {
+    @apply text-[1rem] font-medium tracking-[0.02rem];
   }
   .head-xl {
     @apply text-[clamp(1.5rem,2vw+1rem,2rem)] leading-[120%] tracking-[0.48px] lg:leading-[115%] lg:tracking-[0.64px];
   }
-  .head-lg {
-    @apply text-head-6;
+
+  /* BODY */
+  .body-semibold {
+    @apply font-inter text-[1rem] font-semibold leading-[170%];
+  }
+  .body-regular {
+    @apply font-inter text-[1rem] leading-[120%];
+  }
+  .body-light {
+    @apply font-inter text-[1rem] font-light leading-[170%];
+  }
+  .body-light-m {
+    @apply font-inter text-[0.875rem] font-light leading-[165%];
   }
 
-  .head-md {
-    @apply text-head-8 font-medium md:text-head-7 md:font-bold;
+  /* TITLE */
+  .title-light {
+    @apply font-inter text-[0.875rem] font-light leading-[120%];
   }
-  .head-sm {
-    @apply text-head-8;
+  .title-semi-bold {
+    @apply font-inter text-[0.625rem] font-semibold leading-[120%];
   }
 
-  .body-1 {
-    @apply text-[14px] md:text-body-1;
+  /* SUB TITLE */
+  .sub-title-regular {
+    @apply text-[0.8125rem] leading-[120%] tracking-[0.01625rem];
   }
+  .sub-title-regular-2 {
+    @apply text-[0.75rem] leading-[120%] tracking-[0.015rem];
+  }
+  .sub-title-medium {
+    @apply text-[0.75rem] font-medium leading-[120%] tracking-[0.015rem];
+  }
+  .sub-title-light {
+    @apply text-[0.75rem] font-light leading-[120%] tracking-[0.015rem];
+  }
+
+  /* BUTTON */
+  .button-medium {
+    @apply text-[0.84375rem] font-medium leading-[120%] tracking-[0.01688rem];
+  }
+
+  /*  */
   .body-2 {
     @apply text-[12px] md:text-body-1;
   }
@@ -143,6 +160,6 @@
     @apply text-[0.75rem] font-light tracking-[0.015rem];
   }
   .caption {
-    @apply mt-[0.69rem] block pl-[0.62rem] text-[0.75rem] font-light text-sonic-silver lg:mt-[1.22rem] lg:pl-[1.88rem] lg:text-[0.875rem];
+    @apply sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-sonic-silver lg:mt-[1.22rem] lg:pl-[1.88rem];
   }
 }

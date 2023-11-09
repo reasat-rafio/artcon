@@ -18,18 +18,16 @@
   class={twMerge(
     'group flex h-fit items-center justify-center space-x-[20px]',
     $$props.class,
-  )}
->
+  )}>
   <figure class="h-[3.5rem] w-[3.5rem] rounded-full">
     <SanityImage
       class="h-full w-full rounded-full object-cover"
       src={image}
       alt={title}
       sizes="120px"
-      imageUrlBuilder={imageBuilder}
-    />
+      imageUrlBuilder={imageBuilder} />
   </figure>
-  <div class="flex-1 space-y-[7px] font-optiberling-agency text-head-8">
+  <div class="head-8 flex-1 space-y-[0.438rem] font-optiberling-agency">
     <h5>{title}</h5>
     <p class="text-[#77777C]">{subtitle}</p>
   </div>

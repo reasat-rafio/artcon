@@ -1,9 +1,8 @@
 <script lang="ts">
-  import type { CommonHeroProps } from '@/lib/types/common.types';
-  import Asset from './Asset.svelte';
   import Cta from '@/components/ui/Cta.svelte';
-  import ChevronDown from '@/components/icons/ChevronDown.svelte';
+  import type { CommonHeroProps } from '@/lib/types/common.types';
   import gsap from 'gsap';
+  import Asset from './Asset.svelte';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -73,32 +72,27 @@
 
 <div
   bind:this={blockEl}
-  class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden"
->
+  class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 max-w-6xl px-[1rem] text-center text-white"
-  >
+    class="relative z-30 max-w-6xl px-[1rem] text-center text-white">
     <header class="space-y-[1rem]">
       {#if !!text}
-        <h3 bind:this={textEl} class="head-md">
+        <h3 bind:this={textEl} class="head-8 lg:head-7">
           {text}
         </h3>
       {/if}
 
       <div class="overflow-hidden">
-        <h1 bind:this={titleEl} class="head-5xl !leading-none">
+        <h1 bind:this={titleEl} class="head-1 !leading-none">
           {title}
         </h1>
       </div>
       {#if !!type}
         <div class="overflow-hidden">
-          <h2
-            bind:this={typeEl}
-            class="whitespace-pre-wrap text-[0.938rem] leading-[1.4rem] lg:text-[1.5rem] lg:leading-[2.25rem]"
-          >
+          <h2 bind:this={typeEl} class="head-3 whitespace-pre-wrap">
             {type}
           </h2>
         </div>
@@ -110,8 +104,9 @@
           variant="fill"
           color="white"
           class="cta-btn mx-auto"
-          href={cta.href}>{cta.title}</Cta
-        >
+          href={cta.href}>
+          {cta.title}
+        </Cta>
       </div>
     {/if}
   </div>

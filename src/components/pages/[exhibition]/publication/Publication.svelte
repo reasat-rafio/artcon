@@ -45,18 +45,17 @@
           caption: name,
           link: `/publications/${slug.current}`,
         },
-      ]}
-    />
+      ]} />
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <div class="space-y-[36px]">
+        <div class="space-y-[2.25rem]">
           <C.HeaderContainer>
             <C.Title>{name}</C.Title>
             <C.Subtitle>{subtitle}</C.Subtitle>
           </C.HeaderContainer>
 
-          <div class="space-y-[6px]">
+          <div class="space-y-[0.375rem]">
             <C.Subtitle variant="sm">
               Published by
               {#each publishedBy as p, i}

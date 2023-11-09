@@ -2,6 +2,6 @@
   import { twMerge } from 'tailwind-merge';
 </script>
 
-<p class={twMerge('text-body-2 font-light md:text-body-1', $$props.class)}>
+<p class={twMerge('md:body-light body-light-m', $$props.class)}>
   <slot />
 </p>

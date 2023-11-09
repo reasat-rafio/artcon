@@ -168,7 +168,7 @@
             <Asset {asset} />
           </div>
 
-          <div data-load-animate="y" class="body-1 font-light">
+          <div data-load-animate="y" class="body-light-m lg:body-light">
             <PortableText value={description} />
           </div>
         </div>

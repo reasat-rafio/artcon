@@ -13,8 +13,7 @@
     {#each list as { items, image }}
       <section class="py-section container-primary">
         <div
-          class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3"
-        >
+          class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3">
           {#each items as { name, slug, tag, type, asset, _id } (_id)}
             <div in:fade out:fade={{ duration: 0 }}>
               <Card
@@ -24,15 +23,13 @@
                 let:Asset
                 let:Title
                 let:Container
-                let:Subtitle
-              >
+                let:Subtitle>
                 <Asset {asset} />
                 <Container>
                   <div>
                     <Title class="inline">{name}</Title>
                     <h6
-                      class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]"
-                    >
+                      class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]">
                       /
                       {#if typeof type === 'string'}
                         {type}
@@ -41,9 +38,9 @@
                       {/if}
                     </h6>
                   </div>
-                  <Subtitle class="font-optiberling-agency text-sonic-silver"
-                    >{tag.name}</Subtitle
-                  >
+                  <Subtitle class="font-optiberling-agency text-sonic-silver">
+                    {tag.name}
+                  </Subtitle>
                 </Container>
               </Card>
             </div>
@@ -57,7 +54,7 @@
     {/each}
   {:else}
     <div class="py-section container">
-      <h3 class="head-3xl">No Exhibition Found</h3>
+      <h3 class="head-3">No Exhibition Found</h3>
     </div>
   {/if}
 </div>

@@ -6,9 +6,8 @@
 <svelte:element
   this={el}
   class={twMerge(
-    'head-xl font-optiberling-agency  text-dark-gunmetal',
+    'head-5-m lg:head-4 font-optiberling-agency  text-dark-gunmetal',
     $$props.class,
-  )}
->
+  )}>
   <slot />
 </svelte:element>
