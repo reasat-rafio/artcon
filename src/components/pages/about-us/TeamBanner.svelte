@@ -19,7 +19,7 @@
   <header
     class="relative z-10 flex h-full w-full items-center justify-center text-white"
   >
-    <h2 class="head-5xl font-abc-arizona-serif">
+    <h2 class="head-5xl font-optiberling-agency">
       {title}
     </h2>
   </header>

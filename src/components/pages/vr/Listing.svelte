@@ -44,7 +44,7 @@
                     / {gallery.name}
                   </h6>
 
-                  <Subtitle class="font-abc-arizona-serif text-sonic-silver"
+                  <Subtitle class="font-optiberling-agency text-sonic-silver"
                     >{category.name}</Subtitle
                   >
                 </Container>

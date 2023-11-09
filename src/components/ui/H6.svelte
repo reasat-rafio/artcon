@@ -1,5 +1,5 @@
 <h6
-  class="{$$props.class ?? ''} font-abc-arizona-serif text-head-6"
+  class="{$$props.class ?? ''} font-optiberling-agency text-head-6"
   {...$$restProps}
 >
   <slot />

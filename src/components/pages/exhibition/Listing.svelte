@@ -41,7 +41,7 @@
                       {/if}
                     </h6>
                   </div>
-                  <Subtitle class="font-abc-arizona-serif text-sonic-silver"
+                  <Subtitle class="font-optiberling-agency text-sonic-silver"
                     >{tag.name}</Subtitle
                   >
                 </Container>

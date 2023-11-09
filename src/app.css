@@ -14,7 +14,7 @@
     font-weight: normal;
     font-display: swap;
   }
-  @font-face {
+  /* @font-face {
     font-family: 'OPTIBerling Agency';
     src:
       local('OPTIBerling-Agency'),
@@ -22,7 +22,7 @@
       url('/fonts/OPTIBerling-Agency-500.otf') format('opentype');
     font-weight: 500;
     font-display: swap;
-  }
+  } */
 
   @font-face {
     font-family: 'ABC Arizona Serif';
@@ -54,7 +54,7 @@
   h4,
   h5,
   h6 {
-    @apply font-abc-arizona-serif font-medium;
+    @apply font-optiberling-agency font-medium;
   }
   body {
     @apply text-dark-gunmetal;

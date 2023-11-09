@@ -29,7 +29,7 @@
       imageUrlBuilder={imageBuilder}
     />
   </figure>
-  <div class="flex-1 space-y-[7px] font-abc-arizona-serif text-head-8">
+  <div class="flex-1 space-y-[7px] font-optiberling-agency text-head-8">
     <h5>{title}</h5>
     <p class="text-[#77777C]">{subtitle}</p>
   </div>
