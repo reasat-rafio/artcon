@@ -9,7 +9,7 @@
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { PublicationPageProps } from '@/lib/types/publication.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
-  import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
+  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import Listing from '@/components/pages/publication/Listing.svelte';
 
   export let data: PageProps<PublicationPageProps>;
@@ -50,9 +50,9 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav tags={categories} href="/" logo={logoLight}
-    >Our publication</SecondaryNav
-  >
+  <SecondaryNav tags={categories} href="/" logo={logoLight}>
+    Our publication
+  </SecondaryNav>
   <Listing list={publicationsWithImages} />
   <Footer {footer} {contact} logo={logoLight} />
 </div>

@@ -4,7 +4,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/vr/Listing.svelte';
-  import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
+  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import {
     createListingItemWithImage,
     formatVrListingProps,
@@ -46,9 +46,9 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} href="/" logo={logoLight}
-    >Our virtual reality</SecondaryNav
-  >
+  <SecondaryNav {tags} href="/" logo={logoLight}>
+    Our virtual reality
+  </SecondaryNav>
   <Listing list={vrsWithImages} />
   <Footer {footer} {contact} logo={logoLight} />
 </div>

@@ -3,7 +3,7 @@
 
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
+  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import {
     createListingItemWithImage,
     formatProjectListingProps,
@@ -52,5 +52,5 @@
 <div class="relative mt-[100vh] bg-white">
   <SecondaryNav {tags} href="/" logo={logoLight}>Our projects</SecondaryNav>
   <Listing list={projectsWithImages} />
-  <Footer useContainer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoLight} />
 </div>

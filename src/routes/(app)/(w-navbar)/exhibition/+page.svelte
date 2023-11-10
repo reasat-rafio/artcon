@@ -4,7 +4,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
-  import SecondaryNav from '@/components/widgets/seondary-nav/SecondaryNav.svelte';
+  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import {
     createListingItemWithImage,
     formatExhibitionListingProps,
