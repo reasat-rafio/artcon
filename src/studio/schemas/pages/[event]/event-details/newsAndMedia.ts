@@ -4,7 +4,7 @@ import type { Rule } from 'sanity';
 
 const newsAndMedia = {
   title: 'News And Media',
-  name: 'exhibition.newsAndMedia',
+  name: 'event.newsAndMedia',
   type: 'object',
   icon: FcNews,
   fields: [
