@@ -162,7 +162,7 @@ const collection = {
         { type: 'collection.summary' },
         { type: 'common.note' },
         { type: 'collection.artist' },
-        { type: 'collection.publications' },
+        { type: 'collection.documentation' },
       ],
     },
   ],

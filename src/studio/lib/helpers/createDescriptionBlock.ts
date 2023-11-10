@@ -18,7 +18,13 @@ const createDescriptionBlock = ({
       {
         name: 'description',
         type: 'array',
-        of: [{ type: 'block' }],
+        of: [
+          {
+            type: 'block',
+            styles: [],
+            lists: [],
+          },
+        ],
         validation: (Rule: Rule) => Rule.required(),
       },
     ],
