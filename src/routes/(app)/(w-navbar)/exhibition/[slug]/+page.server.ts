@@ -57,12 +57,12 @@ const query = (params: Partial<Record<string, string>>) =>
       ${asset('images[]', { as: 'images' })},
       ${asset('artworks[]', { as: 'artworks' })},
       vr->{
-          url,
-          caption
+        url,
+        caption
       },
       newsAndMedia[]{
-          ...,
-          ${asset('image')},
+        ...,
+        ${asset('image')},
       }
     },
     count(artists) == 1 => {
