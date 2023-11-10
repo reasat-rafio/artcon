@@ -5,7 +5,7 @@
   import AboutUs from '@/components/pages/about-us/AboutUs.svelte';
   import TeamBanner from '@/components/pages/about-us/TeamBanner.svelte';
   import Team from '@/components/pages/about-us/team/Team.svelte';
-  import type { AboutUsPageProps } from '@/lib/types/aboutUs.types';
+  import type { AboutUsPageProps } from '@/lib/types/about-us.types';
   import type { PageProps } from '@/lib/types/common.types';
 
   export let data: PageProps<AboutUsPageProps>;

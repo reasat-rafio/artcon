@@ -6,7 +6,7 @@
   import type {
     Gallery,
     SummaryProps,
-  } from '@/lib/types/exhibitionDetail.types';
+  } from '@/lib/types/exhibition-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import type { PortableTextBlock } from 'sanity';
 

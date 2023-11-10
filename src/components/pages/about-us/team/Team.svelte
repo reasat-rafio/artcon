@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TeamProps } from '@/lib/types/aboutUs.types';
+  import type { TeamProps } from '@/lib/types/about-us.types';
   import CoreTeam from './CoreTeam.svelte';
   import UserListWithTitle from '@/components/common/user-list-with-title/UserListWithTitle.svelte';
 
@@ -31,8 +31,7 @@
                   {image}
                   title={name}
                   subtitle={role}
-                  {url}
-                />
+                  {url} />
               {/each}
             </CardsContainer>
           </svelte:fragment>

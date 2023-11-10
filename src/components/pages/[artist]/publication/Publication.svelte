@@ -2,7 +2,7 @@
   import Quote from '@/components/common/Quote.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
-  import type { Publication } from '@/lib/types/artistDetail.types';
+  import type { Publication } from '@/lib/types/artist-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,

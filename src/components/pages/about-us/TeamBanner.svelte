@@ -1,6 +1,6 @@
 <script lang="ts">
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { TeamBannerProps } from '@/lib/types/aboutUs.types';
+  import type { TeamBannerProps } from '@/lib/types/about-us.types';
 
   export let props: TeamBannerProps;
   let { title, image } = props;

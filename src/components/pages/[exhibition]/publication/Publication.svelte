@@ -2,7 +2,7 @@
   import type {
     Publication,
     PublicationProps,
-  } from '@/lib/types/exhibitionDetail.types';
+  } from '@/lib/types/exhibition-detail.types';
   import Quote from '@/components/common/Quote.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';

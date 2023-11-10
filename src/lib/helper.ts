@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import type {
   ArtistsProps,
   SoloExhibitonProps,
-} from './types/exhibitionDetail.types';
+} from './types/exhibition-detail.types';
 import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition.types';
 import type { HeroProps as VrListingHeroProps } from './types/vr.types';
 import type { HeroProps as PublicationListingHeroProps } from './types/publication.types';

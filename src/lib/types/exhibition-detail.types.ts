@@ -19,7 +19,7 @@ import type { PortableTextBlock, Slug } from 'sanity';
 import type {
   ArtistSummaryProps,
   PersonalDocuments,
-} from './artistDetail.types';
+} from './artist-detail.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ExhibitionDetailPageProps {

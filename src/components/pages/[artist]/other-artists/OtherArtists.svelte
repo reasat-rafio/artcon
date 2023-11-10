@@ -2,7 +2,7 @@
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { chunkArray } from '@/lib/helper';
-  import type { OtherArtists } from '@/lib/types/artistDetail.types';
+  import type { OtherArtists } from '@/lib/types/artist-detail.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';

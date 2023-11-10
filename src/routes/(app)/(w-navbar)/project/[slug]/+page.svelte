@@ -9,7 +9,7 @@
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { ProjectDetailPageProps } from '@/lib/types/projectDetail.types';
+  import type { ProjectDetailPageProps } from '@/lib/types/project-detail.types';
 
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
@@ -54,8 +54,7 @@
     title: name,
     text: heroText,
     type: tag.name,
-  }}
-/>
+  }} />
 
 <div class="relative mt-[100vh] bg-white">
   <Share href="/project" logo={logoLight}>Our projects</Share>
@@ -72,8 +71,7 @@
             description,
             associationsList,
           },
-        }}
-      />
+        }} />
     {:else if s._type === 'project.gallery'}
       <Gallery props={s} />
     {/if}
@@ -83,8 +81,7 @@
     <OthersDocument
       title="Other projects"
       data={otherProjects}
-      urlPrefix="/project"
-    />
+      urlPrefix="/project" />
   {/if}
 
   <Footer {footer} {contact} logo={logoLight} />

@@ -3,7 +3,7 @@
   import Quote from '@/components/common/Quote.svelte';
   // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import type { NewsAndMediaProps } from '@/lib/types/exhibitionDetail.types';
+  import type { NewsAndMediaProps } from '@/lib/types/exhibition-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
 

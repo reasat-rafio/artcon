@@ -7,7 +7,7 @@
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
   import Image from './Image.svelte';
-  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibitionDetail.types';
+  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
   import { twMerge } from 'tailwind-merge';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
@@ -44,8 +44,7 @@
     <div
       class="relative overflow-hidden"
       use:emblaCarouselSvelte={{ plugins, options }}
-      on:emblaInit={onInit}
-    >
+      on:emblaInit={onInit}>
       <!-- @TODO fix this -->
       <div class="flex items-center max-lg:ml-[-1.25rem]">
         {#each artworks as artwork, index}
@@ -53,15 +52,13 @@
             {...artwork}
             isSingleArtwork={artworks?.length === 1}
             active={activeSide === index ||
-              (activeSide === artworks.length && index === 0)}
-          />
+              (activeSide === artworks.length && index === 0)} />
         {/each}
       </div>
     </div>
   </div>
   <div
-    class="col-span-12 flex items-center justify-center max-lg:mt-[2rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]"
-  >
+    class="col-span-12 flex items-center justify-center max-lg:mt-[2rem] max-lg:space-x-[0.62rem] lg:col-span-1 lg:flex-col lg:space-y-[0.62rem]">
     <button on:click={() => emblaApi.scrollPrev()}>
       <ChevronLeftRounded />
     </button>

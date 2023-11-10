@@ -9,7 +9,7 @@
   import OtherArtists from '@/components/pages/[artist]/other-artists/OtherArtists.svelte';
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
-  import type { ArtistDetailPageProps } from '@/lib/types/artistDetail.types';
+  import type { ArtistDetailPageProps } from '@/lib/types/artist-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
 
   export let data: PageProps<ArtistDetailPageProps>;

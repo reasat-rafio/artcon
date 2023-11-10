@@ -1,7 +1,7 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
-  import type { GalleryProps } from '@/lib/types/exhibitionDetail.types';
+  import type { GalleryProps } from '@/lib/types/exhibition-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
 

@@ -9,7 +9,7 @@
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { VrPreviewProps } from '@/lib/types/vrPreview';
+  import type { VrPreviewProps } from '@/lib/types/vr-preview';
   import { PortableText, toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';

@@ -10,7 +10,7 @@
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { ExhibitionPreviewProps } from '@/lib/types/exhibitionPreview';
+  import type { ExhibitionPreviewProps } from '@/lib/types/exhibition-preview';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';

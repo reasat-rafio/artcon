@@ -2,7 +2,7 @@
   import BodyText from '@/components/ui/BodyText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { TeamProps } from '@/lib/types/aboutUs.types';
+  import type { TeamProps } from '@/lib/types/about-us.types';
 
   export let coreTeam: TeamProps[];
 </script>

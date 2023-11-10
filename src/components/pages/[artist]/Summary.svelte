@@ -6,7 +6,7 @@
   import type {
     ArtistSummaryProps,
     PersonalDocuments,
-  } from '@/lib/types/artistDetail.types';
+  } from '@/lib/types/artist-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import { DateTime } from 'luxon';
 

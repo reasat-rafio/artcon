@@ -2,7 +2,7 @@
   import type {
     ArtistsProps,
     IncludedArtistsProps,
-  } from '@/lib/types/exhibitionDetail.types';
+  } from '@/lib/types/exhibition-detail.types';
   import Summary from '../[artist]/Summary.svelte';
   import UserListWithTitle from '@/components/common/user-list-with-title/UserListWithTitle.svelte';
   import { isSoloExhibition } from '@/lib/helper';
@@ -21,8 +21,7 @@
       ...artists.data,
       statement: statementProps,
       personalDocuments: artists.personalDocuments,
-    }}
-  />
+    }} />
 {:else if !!artists?.length}
   <section class="container-primary py-section">
     <UserListWithTitle title="Artist in this exhibition">
@@ -34,8 +33,7 @@
               url="/artist/{slug.current}"
               image={artistPortrait}
               title={name}
-              subtitle={'role'}
-            />
+              subtitle={'role'} />
           {/each}
         </CardsContainer>
       </svelte:fragment>

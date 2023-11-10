@@ -1,7 +1,7 @@
 <script lang="ts">
   import Seo from '@/components/common/Seo.svelte';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { PublicationPreviewProps } from '@/lib/types/publicationPreview';
+  import type { PublicationPreviewProps } from '@/lib/types/publication-preview';
   import { toPlainText, PortableText } from '@portabletext/svelte';
   import { onMount } from 'svelte';
   import { gsap } from 'gsap';
