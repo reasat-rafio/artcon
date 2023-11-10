@@ -8,8 +8,8 @@
   import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
-  import Gallery from '@/components/pages/[exhibition]/gallery/Gallery.svelte';
-  import NewsAndMedia from '@/components/pages/[exhibition]/news-media/NewsAndMedia.svelte';
+  import Gallery from '@/components/pages/[exhibition]/Gallery.svelte';
+  import NewsAndMedia from '@/components/pages/[exhibition]/NewsAndMedia.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';

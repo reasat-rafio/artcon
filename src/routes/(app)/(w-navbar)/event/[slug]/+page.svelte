@@ -3,6 +3,9 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
+  import Gallery from '@/components/pages/[event]/Gallery.svelte';
+  import NewsAndMedia from '@/components/pages/[event]/NewsAndMedia.svelte';
+  import Summary from '@/components/pages/[event]/Summary.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -58,6 +61,16 @@
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />
+    {:else if props._type === 'event.summary'}
+      <Summary
+        props={{
+          ...props,
+          descriptionBlock: { associationsList, date, description, gallery },
+        }} />
+    {:else if props._type === 'event.gallery'}
+      <Gallery {props} />
+    {:else if props._type === 'event.newsAndMedia'}
+      <NewsAndMedia {props} />
     {/if}
   {/each}
   <Footer {footer} {contact} logo={logoLight} />
