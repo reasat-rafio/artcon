@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Quote from '@/components/common/Quote.svelte';
   // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
@@ -31,8 +31,7 @@
             let:Container
             let:Title
             let:Subtitle
-            let:Image
-          >
+            let:Image>
             <Image {image} />
             <Container>
               <Title>{title}</Title>

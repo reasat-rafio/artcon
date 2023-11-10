@@ -2,7 +2,7 @@
   import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type {
     ArtistSummaryProps,
     PersonalDocuments,
@@ -27,11 +27,9 @@
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[23px]">
           <C.Title>{personalDocuments.name}</C.Title>
-          <C.Subtitle variant="sm"
-            >b. {DateTime.fromISO(personalDocuments.born).toFormat(
-              'yyyy',
-            )}</C.Subtitle
-          >
+          <C.Subtitle variant="sm">
+            b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
+          </C.Subtitle>
         </C.HeaderContainer>
 
         <C.SocialContainer>
@@ -50,8 +48,7 @@
 
     <ParallaxScrollImage
       class="mb-section"
-      images={[{ img: images[0] }, { img: images[1] }]}
-    />
+      images={[{ img: images[0] }, { img: images[1] }]} />
 
     {#if statement?.title && statement?.description}
       <DescriptionBlock class="mb-section">

@@ -6,6 +6,7 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import Artist from '@/components/pages/[collection]/Artist.svelte';
   import OtherCollection from '@/components/pages/[collection]/OtherCollection.svelte';
+  import Documentations from '@/components/pages/[collection]/documentations/Documentations.svelte';
   import Summary from '@/components/pages/[collection]/summary/Summary.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
@@ -75,6 +76,8 @@
       <Note {props} />
     {:else if props._type === 'collection.artist'}
       <Artist props={{ ...props, artist }} />
+    {:else if props._type === 'collection.documentation'}
+      <Documentations {props} />
     {/if}
   {/each}
 

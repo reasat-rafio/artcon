@@ -1,7 +1,7 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type {
     Gallery,

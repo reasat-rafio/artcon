@@ -33,11 +33,29 @@ type Section =
   | CommonImageAsset
   | SummaryProps
   | CommonNoteProps
-  | ArtistSectionProps;
+  | ArtistSectionProps
+  | DocumentationsProps;
 
 export interface Provenance {
   title: string;
   description: PortableTextBlock[];
+}
+
+export interface DocumentationsProps {
+  _type: 'collection.documentation';
+  documents: Document[];
+}
+
+export interface Document {
+  descriptionBlock: {
+    name: string;
+    author?: string;
+    information?: PortableTextBlock[];
+    cta?: Cta;
+    description: PortableTextBlock[];
+  };
+  quote?: Quote;
+  image: SanityImageAssetDocument;
 }
 
 export interface ArtistSectionProps {

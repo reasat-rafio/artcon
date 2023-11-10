@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { GalleryProps } from '@/lib/types/projectDetail.types';
   import { PortableText } from '@portabletext/svelte';

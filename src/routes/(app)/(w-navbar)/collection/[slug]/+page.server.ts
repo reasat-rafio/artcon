@@ -31,6 +31,10 @@ const query = (params: Partial<Record<string, string>>) =>
         caption,
         url
       },
+      documents[]{
+        ...,
+        ${asset('image')},
+      }
     },
     "artist": *[_type == 'artist' && references(^._id)][0]{
       ...personalDocuments {

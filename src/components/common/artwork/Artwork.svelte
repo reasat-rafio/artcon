@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Quote from '@/components/common/Quote.svelte';
   import Artworks from './Artworks.svelte';
   import Cta from '@/components/ui/Cta.svelte';
@@ -35,9 +35,9 @@
         <Description>
           <PortableText value={description} />
         </Description>
-        <Cta class="mt-[1.56rem] block lg:hidden" href={cta.href}
-          >{cta.title}</Cta
-        >
+        <Cta class="mt-[1.56rem] block lg:hidden" href={cta.href}>
+          {cta.title}
+        </Cta>
       </svelte:fragment>
     </DescriptionBlock>
 

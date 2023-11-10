@@ -1,6 +1,6 @@
 <script lang="ts">
   import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type {
     ArtistSectionProps,
     Artist,
@@ -28,9 +28,9 @@
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[23px]">
           <C.Title>{name}</C.Title>
-          <C.Subtitle variant="sm"
-            >b. {DateTime.fromISO(born).toFormat('yyyy')}</C.Subtitle
-          >
+          <C.Subtitle variant="sm">
+            b. {DateTime.fromISO(born).toFormat('yyyy')}
+          </C.Subtitle>
         </C.HeaderContainer>
 
         <C.SocialContainer>

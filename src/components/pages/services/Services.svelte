@@ -1,6 +1,6 @@
 <script lang="ts">
   import Cta from '@/components/ui/Cta.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ServiceProps } from '@/lib/types/services.types';
@@ -33,8 +33,7 @@
             src={image}
             alt={image.alt}
             imageUrlBuilder={imageBuilder}
-            sizes="70vw"
-          />
+            sizes="70vw" />
         </figure>
       </article>
     {/each}

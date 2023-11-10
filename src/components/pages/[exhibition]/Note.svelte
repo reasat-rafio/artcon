@@ -1,6 +1,6 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { CommonNoteProps } from '@/lib/types/common.types';
   import { PortableText } from '@portabletext/svelte';
 
@@ -17,8 +17,7 @@
         {/if}
 
         <DescriptionBlock
-          class={index + 1 !== notes.length ? 'mb-section' : ''}
-        >
+          class={index + 1 !== notes.length ? 'mb-section' : ''}>
           <svelte:fragment slot="intro" let:C>
             <C.HeaderContainer>
               <C.Title>{title}</C.Title>

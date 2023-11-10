@@ -1,6 +1,6 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { AboutUsProps } from '@/lib/types/aboutUs.types';
   import { PortableText } from '@portabletext/svelte';
 

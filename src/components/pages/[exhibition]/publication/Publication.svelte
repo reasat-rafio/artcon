@@ -4,7 +4,7 @@
     PublicationProps,
   } from '@/lib/types/exhibitionDetail.types';
   import Quote from '@/components/common/Quote.svelte';
-  import DescriptionBlock from '@/components/ui/descripion-block/DescriptionBlock.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import { PortableText } from '@portabletext/svelte';
