@@ -4,6 +4,7 @@ import { FcCalendar } from 'react-icons/fc';
 import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import React from 'react';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+import { orderRankField } from '@sanity/orderable-document-list';
 
 type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
@@ -18,6 +19,7 @@ const event = {
   type: 'document',
   icon: FcCalendar,
   fields: [
+    orderRankField({ type: 'event' }),
     {
       name: 'seo',
       title: 'SEO',
