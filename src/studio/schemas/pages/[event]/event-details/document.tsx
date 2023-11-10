@@ -1,5 +1,17 @@
+import VideoPreview from '@/studio/components/VideoPreview';
+import { formatDate } from '@/studio/helper';
 import { FcCalendar } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps } from 'sanity';
+import React from 'react';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+
+type PrepareProps = SanityDefaultPreviewProps & {
+  image: SanityAsset;
+  webm: string;
+  hevc: string;
+  startDate: string;
+  endDate?: string;
+};
 
 const event = {
   name: 'event',
@@ -106,6 +118,39 @@ const event = {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      startDate: 'startDate',
+      endDate: 'endDate',
+      image: 'asset.image',
+      webm: 'asset.video.video_webm.asset.url',
+      hevc: 'asset.video.video_hevc.asset.url',
+      artists: 'artists',
+    },
+    prepare: ({
+      title,
+      image,
+      webm,
+      hevc,
+      startDate,
+      endDate,
+    }: PrepareProps) => {
+      return {
+        title: title,
+        subtitle: `${formatDate(startDate)} ${
+          endDate ? ` - ${formatDate(endDate)}` : ''
+        }`,
+        media: image ? (
+          image
+        ) : webm && hevc ? (
+          <VideoPreview background="#eee" webm={webm} hevc={hevc} />
+        ) : (
+          FcCalendar
+        ),
+      };
+    },
+  },
 };
 
 export default event;
