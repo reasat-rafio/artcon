@@ -1,5 +1,11 @@
 import type { Slug } from 'sanity';
-import type { Asset, CommonImageAsset, SeoProps, Tag } from './common.types';
+import type {
+  Asset,
+  CommonImageAsset,
+  Cta,
+  SeoProps,
+  Tag,
+} from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface CollectionPageProps {
@@ -20,8 +26,9 @@ export interface HighlightedCollection {
   name: string;
   status?: string;
   type?: string;
-  cta?: string;
+  cta?: Cta;
   asset: Asset;
+  artist: { name: string };
 }
 
 export interface Collection {

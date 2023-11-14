@@ -7,21 +7,26 @@ const query = groq`
     *[_id == "collectionPage"][0]{
         ...,
         sections[]{
-            ...,
-            highlightedCollections[]->{
-                name,
-                status,
-                type,
-                cta,
-                asset {
-                    ...,
-                    ${asset('image')},
-                    video{
-                        "webm": video_webm.asset->url,
-                        "mov": video_hevc.asset->url,
-                    }
-                },
+          ...,
+          highlightedCollections[]->{
+            name,
+            status,
+            type,
+            cta,
+            "artist": *[_type == 'artist' && references(^._id)][0]{
+              ...personalDocuments {
+                "name": name.en
+              }
             },
+            asset {
+              ...,
+              ${asset('image')},
+              video{
+                  "webm": video_webm.asset->url,
+                  "mov": video_hevc.asset->url,
+              }
+            },
+          },
         },
       "collections" : *[_type== "collection"]|order(orderRank){
         _id,
@@ -31,9 +36,9 @@ const query = groq`
         "media": information.media,
         "year": information.artDate.year,
         "artist": *[_type == 'artist' && references(^._id)][0]{
-            ...personalDocuments {
-                "name": name.en
-            }
+          ...personalDocuments {
+            "name": name.en
+          }
         },
       },
       "tags": *[_type == "collectionTag"]|order(orderRank)

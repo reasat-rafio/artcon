@@ -7,6 +7,7 @@ import type { HeroProps as ExhibitionListingHeroProps } from './types/exhibition
 import type { HeroProps as VrListingHeroProps } from './types/vr.types';
 import type { HeroProps as PublicationListingHeroProps } from './types/publication.types';
 import type { HeroProps as ProjectListingHeroProps } from './types/project.types';
+import type { HeroProps as CollectionListingHeroProps } from './types/collection.types';
 
 import type {
   CommonHeroListProps,
@@ -178,6 +179,27 @@ export const formatProjectListingProps = (
   };
 };
 
+export const formatCollectionListingProps = (
+  props: CollectionListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedCollections.map(
+    ({ asset, name, status, type, artist, cta }) => {
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset,
+        type,
+        title: artist?.name || name,
+        text: status,
+        cta,
+      };
+    },
+  );
+  return {
+    blocks: formatedProps,
+  };
+};
+
 export const formatExhibitionListingProps = (
   props: ExhibitionListingHeroProps,
 ): CommonHeroListProps => {
@@ -191,8 +213,8 @@ export const formatExhibitionListingProps = (
       const heroText =
         status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
 
-      const stitle = typeof subtitle === 'string' ? subtitle : subtitle.name;
-      const heroType = type || stitle;
+      const s_title = typeof subtitle === 'string' ? subtitle : subtitle.name;
+      const heroType = type || s_title;
 
       return {
         _type: 'common.hero',
