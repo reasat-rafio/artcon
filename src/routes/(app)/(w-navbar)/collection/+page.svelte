@@ -1,11 +1,16 @@
 <script lang="ts">
   import Seo from '@/components/common/Seo.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
+  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import type { CollectionPageProps } from '@/lib/types/collection.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
-  import { formatCollectionListingProps } from '@/lib/helper';
+  import {
+    createListingItemWithImage,
+    formatCollectionListingProps,
+  } from '@/lib/helper';
+  import Listing from '@/components/pages/collection/Listing.svelte';
+  import { page } from '$app/stores';
 
   export let data: PageProps<CollectionPageProps>;
 
@@ -17,6 +22,26 @@
       contact,
     },
   } = data);
+
+  $: filteredCollections = collections;
+  $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSearchParams, filterBySearchParams(activeSearchParams);
+
+  $: sectionImages = sections.filter(
+    ({ _type }) => _type === 'common.imageAsset',
+  ) as CommonImageAsset[];
+  $: collectionsWithImages = createListingItemWithImage(
+    filteredCollections,
+    sectionImages,
+  );
+
+  const filterBySearchParams = (activeSearchParams: string | null) => {
+    if (!activeSearchParams) return;
+    const fList = collections.filter(
+      ({ tag: { slug } }) => slug.current === activeSearchParams,
+    );
+    filteredCollections = fList;
+  };
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -26,7 +51,7 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} href="/" logo={logoLight}>Our publication</SecondaryNav>
-  <!-- <Listing list={publicationsWithImages} /> -->
+  <SecondaryNav {tags} href="/" logo={logoLight}>Our collection</SecondaryNav>
+  <Listing list={collectionsWithImages} />
   <Footer {footer} {contact} logo={logoLight} />
 </div>

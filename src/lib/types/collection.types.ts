@@ -39,4 +39,5 @@ export interface Collection {
   media: string;
   year: string;
   artist: { name: string };
+  tag: Tag;
 }
