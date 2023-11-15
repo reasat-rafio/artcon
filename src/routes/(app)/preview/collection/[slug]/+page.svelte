@@ -1,12 +1,16 @@
 <script lang="ts">
   import { beforeNavigate, goto } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
+  import CollectionHeader from '@/components/pages/[preview]/CollectionHeader.svelte';
+  import CollectionSlider from '@/components/pages/[preview]/CollectionSlider.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
+  import Information from '@/components/pages/[preview]/Information.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import type { CollectionPreviewProps } from '@/lib/types/collection-preview.types';
   import type { PageProps } from '@/lib/types/common.types';
+  import gsap from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
@@ -18,11 +22,11 @@
       slug,
       sliderImageVideo,
       artworkImages,
-      cta,
+      inquiryButton,
       information,
       provenance,
-      status,
-      type,
+      artist,
+      isAvailable,
     },
     site: { logos },
   } = data);
@@ -131,28 +135,16 @@
               title: 'EXPLORE',
             }} />
 
-          <!-- <Header let:Info topic="Our event" title={name} type={tag.name}>
-            <Info>
-              <svelte:fragment slot="title-1">
-                {gallery.name}
-              </svelte:fragment>
-              <svelte:fragment slot="title-2">
-                <span class="font-light">{date}</span>
-                <span class="px-[6px]">|</span>
-                <span class="font-medium text-[#ED1C24]">{status}</span>
-              </svelte:fragment>
-            </Info>
-          </Header>
+          <CollectionHeader
+            {isAvailable}
+            topic="Our collection"
+            name={artist?.name || name}
+            born={artist.born}
+            country={artist.country} />
 
-          <div
-            data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full">
-            <Asset {asset} />
-          </div>
+          <CollectionSlider {artworkImages} />
 
-          <div data-load-animate="y" class="body-light-m lg:body-light">
-            <PortableText value={description} />
-          </div> -->
+          <Information {name} {provenance} {information} {inquiryButton} />
         </div>
       {/key}
     </section>

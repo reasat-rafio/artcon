@@ -13,6 +13,7 @@
   import { PortableText } from '@portabletext/svelte';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import gsap from 'gsap';
 
   export let data: PageProps<EventPreviewProps>;
   $: ({

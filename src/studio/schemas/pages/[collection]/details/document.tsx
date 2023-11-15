@@ -20,12 +20,18 @@ const collection = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
       name: 'slug',
       type: 'slug',
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'isAvailable',
+      type: 'boolean',
+      title: 'Collection is Available',
+      validation: (Rule: Rule) => Rule.required(),
+      initialValue: true,
     },
     {
       name: 'information',

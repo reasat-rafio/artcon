@@ -14,9 +14,17 @@ const query = (params: Partial<Record<string, string>>) =>
     cta,
     seo,
     inquiryButton,
+    isAvailable,
     provenance,
     information,
     ${asset('artworkImages[]', { as: 'artworkImages' })},
+    "artist": *[_type == 'artist' && references(^._id)][0]{
+      ...personalDocuments {
+        "name": name.en,
+        born,
+        country
+      }
+    },
     sliderImageVideo {
       ...,
       ${asset('image')},
