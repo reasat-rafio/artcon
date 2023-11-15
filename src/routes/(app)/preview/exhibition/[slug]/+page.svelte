@@ -121,7 +121,7 @@
 <svelte:window bind:innerWidth />
 <NavigationDesktop
   ctas={[
-    { href: '/exhibition', title: 'Back' },
+    { href: '/', title: 'Back' },
     { href: `/exhibition/${slug.current}`, title: 'Exhibition' },
   ]} />
 <section>

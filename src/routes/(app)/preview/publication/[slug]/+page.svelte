@@ -126,8 +126,7 @@
   }}
   siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
-<NavigationDesktop
-  ctas={[{ href: '/publication', title: 'Back' }, exproleLink]} />
+<NavigationDesktop ctas={[{ href: '/', title: 'Back' }, exproleLink]} />
 
 <section>
   <MobileImage {sliderImageVideo} />
