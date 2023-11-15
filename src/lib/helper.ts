@@ -56,10 +56,10 @@ export const calculateStatusBetweenDates = ({
   const isoEndDate = endDate ? DateTime.fromISO(endDate) : null;
 
   if (isoEndDate) {
-    const formattedEndDate = isoEndDate.toFormat('d MMMM, yyyy');
+    const formattedEndDate = isoEndDate.toFormat('d MMM, yyyy');
     const formattedStartDate = areSameMonthAndYear(isoStartDate, isoEndDate)
       ? isoStartDate.toFormat('d')
-      : isoStartDate.toFormat('d MMMM');
+      : isoStartDate.toFormat('d MMM');
 
     date = `${formattedStartDate} - ${formattedEndDate}`;
 
@@ -71,7 +71,7 @@ export const calculateStatusBetweenDates = ({
       status = 'Ended';
     }
   } else {
-    const formattedDate = isoStartDate.toFormat('d MMMM, yyyy');
+    const formattedDate = isoStartDate.toFormat('d MMM, yyyy');
     date = formattedDate;
 
     if (isoStartDate.hasSame(currentDateTime, 'day')) {
