@@ -47,7 +47,7 @@
     cta,
     type,
     _type: 'common.hero',
-    title: artist.name,
+    title: artist?.name || name,
     text: status,
   }} />
 

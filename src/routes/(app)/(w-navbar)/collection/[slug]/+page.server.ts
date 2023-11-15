@@ -54,6 +54,7 @@ const query = (params: Partial<Record<string, string>>) =>
       params.slug
     }"][]{
       _id,
+      name,
       slug,
       "media": information.media,
       "year": information.artDate.year,

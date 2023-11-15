@@ -97,5 +97,6 @@ export interface OtherCollection {
   media: string;
   year: string;
   asset: Asset;
-  artist: { name: string };
+  name: string;
+  artist: { name?: string };
 }
