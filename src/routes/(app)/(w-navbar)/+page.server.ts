@@ -47,6 +47,36 @@ const query = groq`
                     },
                     "title":"Our publication",
                 },
+                _type == "event" => {
+                    _id,
+                    _type,
+                    "title": "Our event",
+                    slug,
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
+                },
+                _type == "collection" => {
+                    _id,
+                    _type,
+                    "title": "Our collection",
+                    name,
+                    "subtitle" : *[_type == 'artist' && references(^._id)][0].personalDocuments.name.en,
+                    slug,
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
+                },
                 _type == "exhibition" => {
                     _type,
                     "title":"Our exhibition",

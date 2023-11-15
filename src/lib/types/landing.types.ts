@@ -23,7 +23,7 @@ export type Collection<T> = {
   name: string;
   slug: Slug;
   sliderImageVideo: Asset;
-  subtitle: string;
+  subtitle?: string;
 };
 
 export interface ExhibitionProps {
