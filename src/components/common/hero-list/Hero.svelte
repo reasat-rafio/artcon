@@ -3,12 +3,12 @@
   import Navigation from './Navigation.svelte';
   import Block from './block/Block.svelte';
 
+  import ChevronDown from '@/components/icons/ChevronDown.svelte';
+  import { useDebounce } from '@/lib/helper';
+  import Autoplay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
-  import { useDebounce } from '@/lib/helper';
-  import Autoplay from 'embla-carousel-autoplay';
-  import ChevronDown from '@/components/icons/ChevronDown.svelte';
 
   export let props: CommonHeroListProps;
   let { blocks } = props;
@@ -47,9 +47,8 @@
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [Autoplay()],
-      options: { loop: true, duration: 30 },
-    }}
-  >
+      options: { loop: true, duration: 30, active: blocks?.length > 1 },
+    }}>
     <div class="flex">
       {#each blocks as block, index}
         <Block {index} {block} {activeBlockIndex} {scrollDirection} />
@@ -62,20 +61,17 @@
     {activeBlockIndex}
     on:slideNext={() => useDebounce(() => emblaApi.scrollNext(), DEBOUNCH_TIME)}
     on:sliedPrev={() => useDebounce(() => emblaApi.scrollPrev(), DEBOUNCH_TIME)}
-    blocksLength={blocks.length}
-  />
+    blocksLength={blocks.length} />
 
   <div
     id="pointer"
-    class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2"
-  >
+    class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
     <div
-      class="flex items-center justify-center space-x-[0.5rem] text-[#E8E6E3] lg:space-x-[1.06rem] lg:pr-[2.5rem]"
-    >
+      class="flex items-center justify-center space-x-[0.5rem] text-[#E8E6E3] lg:space-x-[1.06rem] lg:pr-[2.5rem]">
       <span
-        class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]"
-        >Discover our stories</span
-      >
+        class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
+        Discover our stories
+      </span>
       <ChevronDown class="chevron-icon animate-bounce" />
     </div>
   </div>

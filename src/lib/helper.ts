@@ -8,6 +8,7 @@ import type { HeroProps as VrListingHeroProps } from './types/vr.types';
 import type { HeroProps as PublicationListingHeroProps } from './types/publication.types';
 import type { HeroProps as ProjectListingHeroProps } from './types/project.types';
 import type { HeroProps as CollectionListingHeroProps } from './types/collection.types';
+import type { HeroProps as EventListingHeroProps } from './types/event.types';
 
 import type {
   CommonHeroListProps,
@@ -170,6 +171,36 @@ export const formatProjectListingProps = (
         text: heroText,
         type: tag.name,
         cta: { title: 'EXPLORE', href: `/project/${slug.current}` },
+      };
+    },
+  );
+
+  return {
+    blocks: formatedProps,
+  };
+};
+
+export const formatEventListingProps = (
+  props: EventListingHeroProps,
+): CommonHeroListProps => {
+  const formatedProps: CommonHeroProps[] = props.highlightedEvents.map(
+    ({ asset, name, status, type, cta, startDate, endDate }) => {
+      const { date, status: eventStatus } = calculateStatusBetweenDates({
+        startDate,
+        endDate,
+      });
+
+      const heroText =
+        status || (eventStatus !== 'Ongoing' ? date : eventStatus);
+
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset,
+        type,
+        title: name,
+        text: heroText,
+        cta,
       };
     },
   );

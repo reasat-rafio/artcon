@@ -56,5 +56,3 @@ export const load = async () => {
     page: data,
   };
 };
-
-// TODO there is a chance that a artwork isn't related to the artist and artwork hero is using artist name
