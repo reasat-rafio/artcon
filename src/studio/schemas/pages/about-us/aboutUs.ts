@@ -1,5 +1,5 @@
 import { FcOrganization } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const aboutUs = {
   name: 'aboutUsPage.aboutUs',
@@ -32,8 +32,11 @@ const aboutUs = {
   preview: {
     select: {
       title: 'descriptionBlock.title',
-      subtitle: 'descriptionBlock.description',
     },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: 'About Us',
+    }),
   },
 };
 

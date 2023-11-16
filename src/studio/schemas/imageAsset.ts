@@ -1,5 +1,5 @@
 import { FcMms } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 
 const imageAsset = {
   title: 'Image Divider',
@@ -11,9 +11,7 @@ const imageAsset = {
       name: 'image',
       type: 'image',
       validation: (Rule: Rule) => Rule.required(),
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
     },
   ],
   preview: {
@@ -21,6 +19,10 @@ const imageAsset = {
       title: 'image.asset.originalFilename',
       media: 'image',
     },
+    prepare: (props: SanityDefaultPreviewProps) => ({
+      ...props,
+      subtitle: 'Image Divider',
+    }),
   },
 };
 

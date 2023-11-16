@@ -83,8 +83,18 @@ const documentation = {
     },
   ],
   preview: {
-    prepare: () => ({
-      title: 'Documentation',
+    select: { documents: 'documents' },
+    prepare: ({
+      documents,
+    }: {
+      documents: { descriptionBlock?: { name: string } }[];
+    }) => ({
+      title: documents?.length
+        ? documents
+            .map(({ descriptionBlock }) => descriptionBlock?.name)
+            .join(', ')
+        : 'Documentation',
+      subtitle: 'Documentation',
     }),
   },
 };

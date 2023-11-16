@@ -1,5 +1,10 @@
+import { toPlainText } from '@portabletext/svelte';
 import { FaUserShield } from 'react-icons/fa';
-import type { SanityDocument } from 'sanity';
+import type {
+  DefaultPreviewProps,
+  PortableTextBlock,
+  SanityDocument,
+} from 'sanity';
 
 type ExhibitionDocument = SanityDocument & {
   document: { artists: unknown[]; [key: string]: unknown };
@@ -25,8 +30,14 @@ const includedArtists = {
     },
   ],
   preview: {
-    prepare: () => ({
-      title: 'Artist Statement For This Exhibition',
+    select: {
+      title: 'statement.statement',
+    },
+    prepare: ({ title }: DefaultPreviewProps) => ({
+      title: title
+        ? toPlainText(title as PortableTextBlock[])
+        : 'No Statement Yet',
+      subtitle: 'Artist Statement For This Exhibition',
     }),
   },
 };

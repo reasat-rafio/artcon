@@ -1,5 +1,5 @@
 import { VscOrganization } from 'react-icons/vsc';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const team = {
   name: 'aboutUsPage.teamBanner',
@@ -35,6 +35,10 @@ const team = {
       title: 'title',
       media: 'image',
     },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: 'Team Banner',
+    }),
   },
 };
 

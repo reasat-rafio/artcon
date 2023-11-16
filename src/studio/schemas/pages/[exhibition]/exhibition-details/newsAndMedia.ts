@@ -1,6 +1,7 @@
 import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
+import { toPlainText } from '@portabletext/svelte';
 import { FcNews } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, PortableTextBlock, Rule } from 'sanity';
 
 const newsAndMedia = {
   title: 'News And Media',
@@ -78,9 +79,12 @@ const newsAndMedia = {
   ],
   preview: {
     select: {
-      title: 'descriptionBlock.title',
-      subtitle: 'descriptionBlock.description',
+      title: 'descriptionBlock.description',
     },
+    prepare: ({ title }: DefaultPreviewProps) => ({
+      title: toPlainText(title as PortableTextBlock[]),
+      subtitle: 'News And Media',
+    }),
   },
 };
 

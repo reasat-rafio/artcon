@@ -115,7 +115,6 @@ const artist = {
       validation: (Rule: Rule) => Rule.required(),
       options: {
         collapsible: true,
-        collapsed: true,
       },
     },
 

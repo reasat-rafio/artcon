@@ -11,6 +11,7 @@ const publication = {
   preview: {
     prepare: () => ({
       title: "Publication's Publicity Materials",
+      subtitle: "Publication's Publicity Materials",
     }),
   },
 };

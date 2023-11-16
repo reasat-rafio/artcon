@@ -1,6 +1,7 @@
 import createDescriptionBlock from '@/studio/lib/helpers/createDescriptionBlock';
+import { toPlainText } from '@portabletext/svelte';
 import { LuPaintbrush } from 'react-icons/lu';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, PortableTextBlock, Rule } from 'sanity';
 
 const artwork = {
   title: 'Artwork',
@@ -31,9 +32,12 @@ const artwork = {
   ],
   preview: {
     select: {
-      title: 'descriptionBlock.title',
-      subtitle: 'descriptionBlock.description',
+      title: 'descriptionBlock.description',
     },
+    prepare: ({ title }: DefaultPreviewProps) => ({
+      title: toPlainText(title as PortableTextBlock[]),
+      subtitle: 'Artwork',
+    }),
   },
 };
 

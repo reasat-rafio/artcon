@@ -11,6 +11,7 @@ const artist = {
   preview: {
     prepare: () => ({
       title: 'Artist Section',
+      subtitle: 'Artist Section',
     }),
   },
 };

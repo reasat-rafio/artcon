@@ -16,7 +16,8 @@ const hero = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Hero',
+      title: 'Highlighted Exhibitions',
+      subtitle: 'Hero',
     }),
   },
 };

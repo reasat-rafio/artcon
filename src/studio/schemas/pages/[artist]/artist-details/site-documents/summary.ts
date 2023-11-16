@@ -1,6 +1,6 @@
 import { FaHighlighter } from 'react-icons/fa';
 import { FcInfo } from 'react-icons/fc';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const summary = {
   name: 'artist.summary',
@@ -74,8 +74,11 @@ const summary = {
   preview: {
     select: {
       title: 'quote.text',
-      subtitle: 'vr.url',
     },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: 'Summary',
+    }),
   },
 };
 

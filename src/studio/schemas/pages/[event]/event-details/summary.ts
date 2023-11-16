@@ -1,4 +1,5 @@
 import { FaHighlighter } from 'react-icons/fa';
+import type { DefaultPreviewProps } from 'sanity';
 
 const summary = {
   name: 'event.summary',
@@ -21,8 +22,11 @@ const summary = {
   preview: {
     select: {
       title: 'quote.text',
-      subtitle: 'vr.url',
     },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: 'Summary',
+    }),
   },
 };
 

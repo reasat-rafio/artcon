@@ -102,15 +102,14 @@ const commonHero = {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'type',
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
     },
-    prepare: ({ title, subtitle, image, webm, hevc }: PrepareProps) => {
+    prepare: ({ title, image, webm, hevc }: PrepareProps) => {
       return {
         title,
-        subtitle,
+        subtitle: 'Hero',
         media: image ? (
           image
         ) : webm && hevc ? (

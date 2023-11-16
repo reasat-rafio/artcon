@@ -1,5 +1,5 @@
 import { FcReadingEbook } from 'react-icons/fc';
-import type { Rule, SanityDefaultPreviewProps } from 'sanity';
+import type { Rule } from 'sanity';
 
 const publication = {
   title: 'Exhibitions Publicity Materials',
@@ -11,9 +11,7 @@ const publication = {
       name: 'invitationCardImage',
       type: 'image',
       validation: (Rule: Rule) => Rule.required(),
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       fields: [
         {
           name: 'alt',
@@ -34,9 +32,11 @@ const publication = {
     select: {
       media: 'invitationCardImage',
     },
-    prepare: (props: SanityDefaultPreviewProps) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    prepare: (props: any) => ({
       ...props,
-      title: 'Exhibitions Publicity Materials',
+      title: props.media?.caption ?? '',
+      subtitle: 'Exhibitions Publicity Materials',
     }),
   },
 };

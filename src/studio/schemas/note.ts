@@ -45,8 +45,20 @@ const note = {
     },
   ],
   preview: {
-    prepare: () => ({
-      title: 'Art Critics Notes / Articles',
+    select: {
+      notes: 'notes',
+    },
+    prepare: ({
+      notes,
+    }: {
+      notes?: { descriptionBlock: { title: string } }[];
+    }) => ({
+      title: notes?.length
+        ? notes
+            .map(({ descriptionBlock }) => descriptionBlock?.title)
+            .join(', ')
+        : 'Notes',
+      subtitle: 'Art Critics Notes / Articles',
     }),
   },
 };

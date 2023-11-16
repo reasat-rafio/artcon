@@ -29,7 +29,8 @@ const collection = {
   ],
   preview: {
     prepare: () => ({
-      title: 'Slider',
+      title: 'Slider Documents ',
+      subtitle: 'Slider',
     }),
   },
 };
