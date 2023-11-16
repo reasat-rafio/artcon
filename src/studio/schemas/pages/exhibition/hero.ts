@@ -1,3 +1,4 @@
+import LockedPreview from '@/studio/components/LockedPreview';
 import { FcHome } from 'react-icons/fc';
 import type { Rule } from 'sanity';
 
@@ -6,6 +7,7 @@ const hero = {
   title: 'Hero',
   icon: FcHome,
   type: 'object',
+  components: { preview: LockedPreview },
   fields: [
     {
       name: 'highlightedExhibition',

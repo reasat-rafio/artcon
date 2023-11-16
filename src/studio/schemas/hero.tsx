@@ -4,6 +4,7 @@ import React from 'react';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { SanityAssetDocument } from '@sanity/client';
 import { FcHome } from 'react-icons/fc';
+import LockedPreview from '@/studio/components/LockedPreview';
 
 type AsssetFieldProps = {
   parent: {
@@ -25,6 +26,7 @@ const commonHero = {
   type: 'object',
   title: 'Hero',
   icon: FcHome,
+  components: { preview: LockedPreview },
   fields: [
     {
       title: 'Title Top',

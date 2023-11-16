@@ -1,3 +1,5 @@
+import LockedPreview from '@/studio/components/LockedPreview';
+import SliderPreview from '@/studio/components/SliderPreview';
 import { MdOutlineCollections } from 'react-icons/md';
 import type { Rule } from 'sanity';
 
@@ -6,6 +8,7 @@ const collection = {
   name: 'landing.collections',
   type: 'object',
   icon: MdOutlineCollections,
+  components: { preview: LockedPreview },
   fields: [
     {
       name: 'collections',
@@ -17,11 +20,11 @@ const collection = {
           name: 'collection',
           type: 'reference',
           to: [
-            { type: 'vr' },
-            { type: 'exhibition' },
-            { type: 'publication' },
-            { type: 'collection' },
-            { type: 'event' },
+            { type: 'vr', components: { preview: SliderPreview } },
+            { type: 'exhibition', components: { preview: SliderPreview } },
+            { type: 'publication', components: { preview: SliderPreview } },
+            { type: 'collection', components: { preview: SliderPreview } },
+            { type: 'event', components: { preview: SliderPreview } },
           ],
         },
       ],
