@@ -1,4 +1,3 @@
-import VrPreview from '@/studio/components/VrPreview';
 import { orderRankField } from '@sanity/orderable-document-list';
 import type { Rule } from 'sanity';
 import { BiCameraMovie } from 'react-icons/bi';
@@ -15,11 +14,7 @@ const documentary = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
-    // {
-    //   name: 'subtitle',
-    //   type: 'string',
-    //   validation: (Rule: Rule) => Rule.required(),
-    // },
+
     {
       name: 'slug',
       type: 'slug',
@@ -32,6 +27,14 @@ const documentary = {
       type: 'reference',
       to: [{ type: 'documentaryCategory' }],
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'year',
+      type: 'string',
+    },
+    {
+      name: 'duration',
+      type: 'string',
     },
     {
       name: 'coverImage',
@@ -57,17 +60,22 @@ const documentary = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'url',
-      type: 'url',
-      components: { input: VrPreview },
+      name: 'synopsys',
+      type: 'object',
       validation: (Rule: Rule) => Rule.required(),
-    },
-
-    {
-      name: 'description',
-      type: 'array',
-      of: [{ type: 'block' }],
-      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'title',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'description',
+          type: 'array',
+          of: [{ type: 'block' }],
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
     },
     {
       name: 'Button',

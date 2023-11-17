@@ -1,7 +1,7 @@
 import aboutUs from './about-us';
 import collection from './collection';
 import contact from './contact';
-import documentary from './documentary';
+import documentaryPage from './documentary';
 import event from './event';
 import eventDetails from './[event]';
 import exhibition from './exhibition';
@@ -21,6 +21,7 @@ import vr from './[vr]';
 import services from './[service]';
 import publicationDetail from './[publication]';
 import gallery from './[gallery]';
+import documentary from './[documentary]';
 
 export default [
   ...landing,
@@ -29,7 +30,7 @@ export default [
   ...publication,
   ...vrListingPage,
   ...collection,
-  ...documentary,
+  ...documentaryPage,
   ...project,
   ...service,
   ...aboutUs,
@@ -41,6 +42,7 @@ export default [
   ...collectionDetail,
   ...vr,
   ...publicationDetail,
+  ...documentary,
   team,
   gallery,
   services,

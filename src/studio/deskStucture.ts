@@ -32,6 +32,7 @@ import type { ConfigContext } from 'sanity';
 import type { IconType } from 'react-icons/lib';
 import DocumentsPane from 'sanity-plugin-documents-pane';
 import { VscReferences } from 'react-icons/vsc';
+import { BiCameraMovie } from 'react-icons/bi';
 
 // TODO put this in separet file
 interface PageItemProps {
@@ -338,6 +339,29 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               }),
               orderableDocumentListDeskItem({
                 type: 'publicationCategory',
+                S,
+                context,
+                title: 'Category',
+                icon: FaTag,
+              }),
+            ]),
+        ),
+      S.listItem()
+        .title('Documentaries')
+        .icon(BiCameraMovie)
+        .child(
+          S.list()
+            .title('Documentary')
+            .items([
+              orderableDocumentListDeskItem({
+                type: 'documentary',
+                S,
+                context,
+                title: 'Documentary',
+                icon: BiCameraMovie,
+              }),
+              orderableDocumentListDeskItem({
+                type: 'documentaryCategory',
                 S,
                 context,
                 title: 'Category',
