@@ -8,6 +8,14 @@ const query = groq`*[_id =='servicePage'][0]{
     sections[]{
         ...,
         ${asset('image')},
+        asset{
+            ...,
+            ${asset('image')},
+            video{
+              "webm": video_webm.asset->url,
+              "mov": video_hevc.asset->url,
+            }
+        },
         services[]{
             ...,
             ${asset('image')},
