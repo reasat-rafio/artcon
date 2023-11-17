@@ -28,8 +28,8 @@
 
 <svelte:window bind:scrollY bind:innerHeight />
 <aside
-  class="!fixed left-0 top-1/2 z-[1000] hidden w-[11rem] -translate-y-1/2 lg:block 2xl:w-[16rem]"
->
+  style="background: linear-gradient(270deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%);"
+  class="!fixed left-0 top-1/2 z-[1000] hidden h-full w-[11rem] -translate-y-1/2 items-center lg:flex 2xl:w-[16rem]">
   <nav class="ml-[2.5rem] mr-[0.625rem] flex flex-col space-y-[1.438rem]">
     {#each menu as { title, externalUrl, pageUrl }}
       <a
@@ -37,16 +37,14 @@
         href={pageUrl ?? externalUrl}
         class={twMerge(
           'navitem text-button uppercase lg:space-y-[20px] lg:opacity-0 ',
-        )}
-      >
+        )}>
         <span
           class={twMerge(
             'break-words transition-all duration-500',
             $page.url.pathname === pageUrl
               ? 'font-semibold opacity-100'
               : 'opacity-70 hover:font-semibold hover:opacity-100 ',
-          )}
-        >
+          )}>
           {title}
         </span>
       </a>
