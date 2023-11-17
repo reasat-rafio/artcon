@@ -14,14 +14,12 @@ const documentary = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
       name: 'slug',
       type: 'slug',
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
       name: 'category',
       type: 'reference',
@@ -37,10 +35,15 @@ const documentary = {
       type: 'string',
     },
     {
+      name: 'exploreUrl',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'coverImage',
       type: 'image',
       description:
-        "If this vr is featured in listing page hero, it'll be used as the cover image",
+        'This image will be used as the cover image if this documentary is featured in the listing page hero section.',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
       fields: [
@@ -57,6 +60,11 @@ const documentary = {
       name: 'sliderImageVideo',
       type: 'sliderImageVideo',
       title: 'Slider Image / Video',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'documentaryVideo',
+      type: 'youtube',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -78,15 +86,22 @@ const documentary = {
       ],
     },
     {
-      name: 'Button',
-      type: 'cta',
+      name: 'information',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [],
+          lists: [],
+        },
+      ],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
       title: 'name',
-      subtitle: 'description',
+      subtitle: 'information',
       media: 'coverImage',
     },
   },

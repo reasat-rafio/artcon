@@ -43,7 +43,7 @@ const vr = {
       name: 'coverImage',
       type: 'image',
       description:
-        "If this vr is featured in listing page hero, it'll be used as the cover image",
+        'This image will be used as the cover image if this vr is featured in the listing page hero section.',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
       fields: [

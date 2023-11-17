@@ -14,6 +14,7 @@ import keyValuePairs from './keyValuePairs';
 import note from './note';
 import commonArtwork from './artwork';
 import sliderImageVideo from './sliderImageVideo';
+import youtube from './youtube';
 
 export const schemaTypes = [
   ...site,
@@ -23,6 +24,7 @@ export const schemaTypes = [
   cta,
   quote,
   asset,
+  youtube,
   social,
   note,
   portableText,
