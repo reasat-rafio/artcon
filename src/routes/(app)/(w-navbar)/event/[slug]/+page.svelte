@@ -3,6 +3,7 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
+  import Documentation from '@/components/pages/[event]/Documentation.svelte';
   import Gallery from '@/components/pages/[event]/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[event]/NewsAndMedia.svelte';
   import Summary from '@/components/pages/[event]/Summary.svelte';
@@ -12,7 +13,6 @@
   import type { EventDetailPageProps } from '@/lib/types/event-detail.types';
 
   export let data: PageProps<EventDetailPageProps>;
-
   $: ({
     page: {
       name,
@@ -67,6 +67,8 @@
           ...props,
           descriptionBlock: { associationsList, date, description, gallery },
         }} />
+    {:else if props._type === 'event.documentation'}
+      <Documentation {props} />
     {:else if props._type === 'event.gallery'}
       <Gallery {props} />
     {:else if props._type === 'event.newsAndMedia'}

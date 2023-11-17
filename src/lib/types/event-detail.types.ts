@@ -10,7 +10,9 @@ import type {
   Tag,
   VR,
 } from './common.types';
-import type { SanityImageAssetDocument } from '@sanity/client';
+import type {
+s  SanityImageAssetDocument,
+} from '@sanity/client';
 
 export interface EventDetailPageProps {
   _id: string;
@@ -35,7 +37,22 @@ type Section =
   | CommonImageAsset
   | GalleryProps
   | NewsAndMediaProps
-  | SummaryProps;
+  | SummaryProps
+  | DocumentationProps;
+
+export interface DocumentationProps {
+  _key: string;
+  _type: 'event.documentation';
+  quote?: Quote;
+  images: [SanityImageAssetDocument, SanityImageAssetDocument];
+  descriptionBlock: {
+    name: string;
+    author?: string;
+    information?: PortableTextBlock[];
+    cta?: Cta;
+    description: PortableTextBlock[];
+  };
+}
 
 export interface OtherEventsProps {
   name: string;
