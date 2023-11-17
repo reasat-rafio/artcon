@@ -50,6 +50,7 @@ const query = groq`
                 _type == "event" => {
                     _id,
                     _type,
+                    name,
                     "title": "Our event",
                     slug,
                     sliderImageVideo {

@@ -13,6 +13,10 @@
     sliderImageVideo,
     DEFAULT_COLUMN_W_PERCENTAGE,
   } = props);
+
+  $: {
+    console.log(name, _type);
+  }
 </script>
 
 <CollectionLayout
