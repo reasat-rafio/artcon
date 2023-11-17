@@ -29,7 +29,17 @@
 <SvelteSeo
   {title}
   {description}
+  canonical="https://www.artcon.com/"
   openGraph={{
+    type: 'website',
+    title,
+    description,
+    url: 'https://www.artcon.com/',
     images: openGraphImages,
   }}
-/>
+  twitter={{
+    card: 'summary_large_image',
+    title,
+    description,
+    image: urlFor(ogImage).width(600).height(400).auto('format').url(),
+  }} />
