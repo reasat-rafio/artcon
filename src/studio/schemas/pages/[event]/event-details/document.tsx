@@ -115,6 +115,7 @@ const event = {
       of: [
         { type: 'common.imageAsset' },
         { type: 'event.summary' },
+        { type: 'event.documentation' },
         { type: 'event.gallery' },
         { type: 'event.newsAndMedia' },
       ],
