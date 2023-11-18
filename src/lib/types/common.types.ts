@@ -137,7 +137,7 @@ export interface Tag {
 
 export interface Quote {
   author?: string;
-  _type: string;
+  _type: 'quote';
   text: string;
   url?: string;
 }

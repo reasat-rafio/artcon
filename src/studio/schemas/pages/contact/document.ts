@@ -15,7 +15,7 @@ const contactPage = {
       title: 'Sections',
       type: 'array',
       validation: (Rule: Rule) => Rule.required().min(1),
-      of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
+      of: [{ type: 'common.hero' }, { type: 'quote' }],
     },
   ],
   preview: {

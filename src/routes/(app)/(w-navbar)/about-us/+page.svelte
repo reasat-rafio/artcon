@@ -39,5 +39,5 @@
     <Team team={page.team} />
   {/if}
 
-  <Footer useContainer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoLight} />
 </div>
