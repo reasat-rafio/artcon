@@ -6,6 +6,9 @@
   import type { SummaryProps } from '@/lib/types/event-detail.types';
   import { PortableText } from '@portabletext/svelte';
   import type { PortableTextBlock } from 'sanity';
+  import emblaCarouselSvelte, {
+    type EmblaCarouselType,
+  } from 'embla-carousel-svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -17,7 +20,13 @@
   };
 
   export let props: Props;
-  $: ({ quote, vr, descriptionBlock } = props);
+  $: ({ quote, vr, vrOrYtVideoSlider, descriptionBlock } = props);
+
+  let emblaApi: EmblaCarouselType;
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+  };
 </script>
 
 <section>
@@ -51,8 +60,23 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    {#if !!vr}
+    <!-- {#if !!vrOrYtVideoSlider?.length}
+      <div class="relative overflow-hidden">
+        <div
+          class="flex"
+          use:emblaCarouselSvelte={{ plugins: [], options: {} }}
+          on:emblaInit={onInit}>
+          {#each vrOrYtVideoSlider as props}
+            {#if props._type === 'vr'}
+              <VR class="flex-[0_0_100%]" vr={props} />
+            {/if}
+          {/each}
+        </div>
+      </div>
+    {/if} -->
+
+    <!-- {#if !!vr}
       <VR {vr} />
-    {/if}
+    {/if} -->
   </div>
 </section>

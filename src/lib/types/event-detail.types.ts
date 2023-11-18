@@ -9,10 +9,9 @@ import type {
   SeoProps,
   Tag,
   VR,
+  Youtube,
 } from './common.types';
-import type {
-s  SanityImageAssetDocument,
-} from '@sanity/client';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface EventDetailPageProps {
   _id: string;
@@ -95,5 +94,7 @@ export interface SummaryProps {
   _key: string;
   _type: 'event.summary';
   quote?: Quote;
-  vr?: VR;
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
 }
+
+type VrOrYtVideoSlider = VR | Youtube;

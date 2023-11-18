@@ -1,33 +1,26 @@
-import type { StringInputProps } from 'sanity';
-import { Stack, TextInput } from '@sanity/ui';
+import type { PreviewProps } from 'sanity';
+import { Flex, Text } from '@sanity/ui';
 import YouTubePlayer from 'react-player/youtube';
-import React, { useCallback, useState } from 'react';
-import { set, unset } from 'sanity';
+import React from 'react';
 
-export default function YouTubePreview(props: StringInputProps) {
-  const { elementProps, onChange } = props;
-  const [ytUrl, setYtUrl] = useState(elementProps.value);
+interface PreviewYouTubeProps extends PreviewProps {
+  url?: string;
+}
 
-  const handleYtUrlChange = useCallback(
-    (event: React.FormEvent<HTMLInputElement>) => {
-      const nextValue = event.currentTarget.value;
-      setYtUrl(nextValue);
-      onChange(nextValue ? set(nextValue) : unset());
-    },
-    [onChange],
-  );
-
+export default function YouTubePreview(props: PreviewYouTubeProps) {
+  const { url } = props;
   return (
-    <Stack space={2}>
-      {!!ytUrl && (
-        <div className="h-full w-full overflow-hidden">
+    <Flex padding={4} justify={'center'}>
+      {url ? (
+        <div className="!h-[20px] !w-[20px] overflow-hidden object-cover">
           <YouTubePlayer
-            className="aspect-video h-full w-full object-cover"
-            url={ytUrl}
+            className="!h-[20px] !w-[20px] object-cover"
+            url={url}
           />
         </div>
+      ) : (
+        <Text>Add a YouTube URL</Text>
       )}
-      <TextInput {...elementProps} onChange={handleYtUrlChange} />
-    </Stack>
+    </Flex>
   );
 }

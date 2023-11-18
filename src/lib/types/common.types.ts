@@ -143,6 +143,7 @@ export interface Quote {
 }
 
 export interface VR {
+  _type: 'vr';
   caption: string;
   url: string;
 }
@@ -204,4 +205,9 @@ export interface CommonOtherExhibitionProps {
 export interface Association {
   key: string;
   value: string;
+}
+
+export interface Youtube {
+  _type: 'youtube';
+  url: string;
 }
