@@ -17,6 +17,10 @@ const youtube = defineType({
         input: YouTubeInput,
       },
     }),
+    {
+      name: 'caption',
+      type: 'string',
+    },
   ],
   preview: {
     select: {

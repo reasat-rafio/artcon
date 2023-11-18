@@ -210,4 +210,5 @@ export interface Association {
 export interface Youtube {
   _type: 'youtube';
   url: string;
+  caption?: string;
 }

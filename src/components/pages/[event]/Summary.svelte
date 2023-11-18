@@ -1,14 +1,17 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
+  import Youtube from '@/components/common/Youtube.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
   import { PortableText } from '@portabletext/svelte';
-  import type { PortableTextBlock } from 'sanity';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
+  import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -20,7 +23,7 @@
   };
 
   export let props: Props;
-  $: ({ quote, vr, vrOrYtVideoSlider, descriptionBlock } = props);
+  $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
 
   let emblaApi: EmblaCarouselType;
 
@@ -60,23 +63,33 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <!-- {#if !!vrOrYtVideoSlider?.length}
-      <div class="relative overflow-hidden">
-        <div
-          class="flex"
-          use:emblaCarouselSvelte={{ plugins: [], options: {} }}
-          on:emblaInit={onInit}>
+    {#if !!vrOrYtVideoSlider?.length}
+      <div
+        class="relative overflow-hidden"
+        use:emblaCarouselSvelte={{ plugins: [], options: {} }}
+        on:emblaInit={onInit}>
+        <div class="flex">
           {#each vrOrYtVideoSlider as props}
-            {#if props._type === 'vr'}
-              <VR class="flex-[0_0_100%]" vr={props} />
-            {/if}
+            <div class="flex-[0_0_100%]">
+              {#if props._type === 'vr'}
+                <VR vr={props} />
+              {:else if props._type === 'youtube'}
+                <Youtube yt={props} />
+              {/if}
+            </div>
           {/each}
         </div>
       </div>
-    {/if} -->
-
-    <!-- {#if !!vr}
-      <VR {vr} />
-    {/if} -->
+    {/if}
+    <div class="flex justify-end">
+      <nav class="space-x-[0.62rem]">
+        <button on:click={() => emblaApi.scrollPrev()}>
+          <ChevronLeftRounded />
+        </button>
+        <button on:click={() => emblaApi.scrollNext()}>
+          <ChevronRightRounded />
+        </button>
+      </nav>
+    </div>
   </div>
 </section>
