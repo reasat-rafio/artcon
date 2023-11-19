@@ -6,18 +6,20 @@
   export let sliderImageVideo: Asset;
 </script>
 
-<div class="relative overflow-hidden max-lg:hidden lg:flex-[38%]">
+<div class="relative overflow-hidden max-lg:hidden lg:w-[600px] xl:w-[810px]">
   {#if !!sliderImageVideo?.image}
     <SanityImage
+      id="previewImage"
       lqip
       draggable={false}
-      class="absolute h-full w-full object-cover"
+      class="absolute h-full w-full origin-center object-cover"
       sizes="(min-width:1024px) 40vw, 100vw"
       alt={sliderImageVideo.image.alt}
       src={sliderImageVideo.image}
       imageUrlBuilder={imageBuilder} />
   {:else if !!sliderImageVideo?.video}
     <video
+      id="previewImage"
       class="absolute h-full w-full object-cover"
       width="100%"
       height="100%"

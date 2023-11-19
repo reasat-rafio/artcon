@@ -140,7 +140,7 @@
     @apply flex h-[100dvh] w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
   }
   .preview_content_wrapper {
-    @apply flex-[100%] overflow-scroll lg:flex-[63%];
+    @apply flex-[100%] overflow-scroll lg:flex-[calc(100%-600px)] xl:flex-[calc(100%-810px)];
   }
 
   .preview_content_container {

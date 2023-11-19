@@ -24,7 +24,7 @@
 <a
   {href}
   data-sveltekit-preload-data
-  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[810px]"
+  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[600px] xl:w-[810px]"
   on:click|preventDefault={onClickAction}>
   {#if !!sliderImageVideo?.image}
     <SanityImage

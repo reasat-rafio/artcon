@@ -13,7 +13,7 @@
 <svelte:window bind:innerWidth={windowWidth} />
 <section
   class={twMerge(
-    'h-[100dvh] bg-[#0E0E0F] font-inter text-[#F5EEE6] lg:fixed lg:right-0 lg:top-0 lg:block lg:w-[810px]',
+    'h-[100dvh] bg-[#0E0E0F] font-inter text-[#F5EEE6] lg:fixed lg:right-0 lg:top-0 lg:block lg:w-[600px] xl:w-[810px]',
   )}>
   <div
     class="relative z-30 flex h-full flex-col px-[1.25rem] pb-[3.75rem] pt-[calc(100vh*.31)] lg:px-[2rem] lg:pb-[4rem]">

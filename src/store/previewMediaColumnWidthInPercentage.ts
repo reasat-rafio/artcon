@@ -1,8 +1,7 @@
 import { readable } from 'svelte/store';
 
-const COLUM_WIDTH_IN_PX = 810;
-
 export default readable(0, (set) => {
+  let columnWidthInPx = 810;
   if (typeof window === 'undefined') return;
 
   window.addEventListener('resize', calcWidth);
@@ -12,7 +11,8 @@ export default readable(0, (set) => {
   window.dispatchEvent(new Event('resize'));
 
   function calcWidth() {
-    set((COLUM_WIDTH_IN_PX / window.innerWidth) * 100);
+    columnWidthInPx = window.innerWidth >= 1280 ? 810 : 600;
+    set((columnWidthInPx / window.innerWidth) * 100);
   }
 
   return () => {

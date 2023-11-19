@@ -53,7 +53,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -91,10 +91,10 @@
       });
 
       if (innerWidth >= 1024) {
-        tl.to(contentEl, { opacity: 0 }).to('#previewImage', {
+        tl.to('#previewImage', {
           scale: 1,
           duration: 0.4,
-        });
+        }).to(contentEl, { opacity: 0 }, 0.1);
       } else {
         const articleNodeHeight = articleEl?.clientHeight;
         tl.to(contentEl, { opacity: 0 }).to(
