@@ -6,7 +6,6 @@
   import { slide } from 'svelte/transition';
   import type { Asset } from '@/lib/types/common.types';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
 
   export let index: number;
   export let href: string;
@@ -57,8 +56,7 @@
 
 {#if index === $uiStore.selectedPreviewIndex && innerWidth >= 1024}
   <div
-    in:slide={{ axis: 'x', duration: 500 }}
-    out:slide={{ axis: 'x', duration: 600 }}
-    style="width: {100 - $previewMediaColumnWidthInPercentage}vw;"
-    class="bg-white" />
+    in:slide={{ axis: 'x', duration: 600 }}
+    out:slide={{ axis: 'x', duration: 500 }}
+    class="bg-white lg:w-[calc(100vw-600px)] xl:w-[calc(100vw-810px)]" />
 {/if}

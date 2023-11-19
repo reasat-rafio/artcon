@@ -27,9 +27,10 @@
 
   $: {
     // SCROLL TO THE ACTIVE SLIDE
-    if ($uiStore.selectedPreviewIndex != null) {
+    if ($uiStore.selectedPreviewIndex !== null) {
       const offSetWidth =
         (windowWidth / 100) * $previewMediaColumnWidthInPercentage;
+
       tweenedScrollAmount.set(
         windowWidth + offSetWidth * $uiStore.selectedPreviewIndex,
         { duration: 600 },
@@ -50,8 +51,10 @@
       contactWidth +
       collectionContentPlaceHolderWidth;
 
+    console.log({ totalWidths });
+
     uiStore.setContainerWidth(totalWidths);
-    containerWidth.set($uiStore.containerWidth, { duration: 0 });
+    containerWidth.set($uiStore.containerWidth, { duration: 500 });
   }
 
   onMount(() => {
