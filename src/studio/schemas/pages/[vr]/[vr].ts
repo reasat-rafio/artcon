@@ -95,7 +95,7 @@ const vr = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'description',
+      subtitle: 'category.name',
       media: 'coverImage',
     },
   },

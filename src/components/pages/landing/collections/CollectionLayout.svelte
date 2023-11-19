@@ -3,19 +3,15 @@
   import { delay } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import uiStore from '@/store/ui';
-  import type { SanityImageAssetDocument } from '@sanity/client';
   import { slide } from 'svelte/transition';
   import type { Asset } from '@/lib/types/common.types';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
 
   export let index: number;
   export let href: string;
   export let sliderImageVideo: Asset;
-  export let DEFAULT_COLUMN_W_PERCENTAGE: number = 38;
   export let windowWidth = 0;
-
-  // TODO caculate this on top component for better performance
-  // $: width = windowWidth >= 1024 ? `${DEFAULT_COLUMN_W_PERCENTAGE}vw` : '100%';
 
   const onClickAction = async () => {
     uiStore.setActivePreview(index);
@@ -26,11 +22,10 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <a
-  data-sveltekit-preload-data
   {href}
-  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[38vw]"
-  on:click|preventDefault={onClickAction}
->
+  data-sveltekit-preload-data
+  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[810px]"
+  on:click|preventDefault={onClickAction}>
   {#if !!sliderImageVideo?.image}
     <SanityImage
       lqip
@@ -39,8 +34,7 @@
       sizes="(min-width:1024px) 40vw, 100vw"
       alt={sliderImageVideo.image.alt}
       src={sliderImageVideo.image}
-      imageUrlBuilder={imageBuilder}
-    />
+      imageUrlBuilder={imageBuilder} />
   {:else if !!sliderImageVideo?.video}
     <video
       class="absolute h-full w-full object-cover"
@@ -52,8 +46,7 @@
       playsInline
       autoPlay
       muted
-      loop
-    >
+      loop>
       <source src={sliderImageVideo.video?.mov} type="video/mp4; codecs=hvc1" />
       <source src={sliderImageVideo.video?.webm} type="video/webm" />
       Sorry, your browser doesn&apos;t support embedded videos.
@@ -62,11 +55,10 @@
   <slot />
 </a>
 
-{#if index === $uiStore.seclectedPreviewIndex && innerWidth >= 1024}
+{#if index === $uiStore.selectedPreviewIndex && innerWidth >= 1024}
   <div
     in:slide={{ axis: 'x', duration: 500 }}
     out:slide={{ axis: 'x', duration: 600 }}
-    style="width: {100 - DEFAULT_COLUMN_W_PERCENTAGE}vw;"
-    class="bg-white"
-  />
+    style="width: {100 - $previewMediaColumnWidthInPercentage}vw;"
+    class="bg-white" />
 {/if}

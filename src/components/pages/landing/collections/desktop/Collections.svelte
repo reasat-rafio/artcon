@@ -1,22 +1,23 @@
 <script lang="ts">
-  import Vr from '@/components/pages/landing/collections/VR.svelte';
   import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import type { CollectionsProps } from '@/lib/types/landing.types';
   import uiStore from '@/store/ui';
-  import { onMount } from 'svelte';
-  import { tweened } from 'svelte/motion';
-  import { expoOut } from 'svelte/easing';
   import { gsap } from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
+  import { onMount } from 'svelte';
+  import { expoOut } from 'svelte/easing';
+  import { tweened } from 'svelte/motion';
   import Collection from '../Collection.svelte';
+  import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
 
   export let props: CollectionsProps;
   export let rootEl: HTMLElement;
+
   $: ({ collections } = props);
 
   let windowWidth = 0;
-  const DEFAULT_COLUMN_W_PERCENTAGE = 38;
   const tweenedScrollAmount = tweened(0, { duration: 1500, easing: expoOut });
+
   const containerWidth = tweened($uiStore.containerWidth, {
     duration: 200,
     easing: expoOut,
@@ -26,34 +27,39 @@
 
   $: {
     // SCROLL TO THE ACTIVE SLIDE
-    if ($uiStore.seclectedPreviewIndex != null) {
-      const offSetWidth = (windowWidth / 100) * DEFAULT_COLUMN_W_PERCENTAGE;
+    if ($uiStore.selectedPreviewIndex != null) {
+      const offSetWidth =
+        (windowWidth / 100) * $previewMediaColumnWidthInPercentage;
       tweenedScrollAmount.set(
-        windowWidth + offSetWidth * $uiStore.seclectedPreviewIndex,
+        windowWidth + offSetWidth * $uiStore.selectedPreviewIndex,
         { duration: 600 },
       );
     }
   }
 
   $: {
-    const collectionsWidth = collections?.length * DEFAULT_COLUMN_W_PERCENTAGE;
-    const contactWidth = DEFAULT_COLUMN_W_PERCENTAGE;
+    const totalCollectionsProjectedWidth =
+      collections?.length * $previewMediaColumnWidthInPercentage;
+    const contactWidth = $previewMediaColumnWidthInPercentage;
     const collectionContentPlaceHolderWidth =
-      $uiStore.seclectedPreviewIndex !== null
-        ? 100 - DEFAULT_COLUMN_W_PERCENTAGE
+      $uiStore.selectedPreviewIndex !== null
+        ? 100 - $previewMediaColumnWidthInPercentage
         : 0;
     const totalWidths =
-      collectionsWidth + contactWidth + collectionContentPlaceHolderWidth;
+      totalCollectionsProjectedWidth +
+      contactWidth +
+      collectionContentPlaceHolderWidth;
 
-    uiStore.setContaienrWidth(totalWidths);
+    uiStore.setContainerWidth(totalWidths);
     containerWidth.set($uiStore.containerWidth, { duration: 0 });
   }
 
   onMount(() => {
-    if ($uiStore.seclectedPreviewIndex != null) {
-      const offSetWidth = (windowWidth / 100) * DEFAULT_COLUMN_W_PERCENTAGE;
+    if ($uiStore.selectedPreviewIndex != null) {
+      const offSetWidth =
+        (windowWidth / 100) * $previewMediaColumnWidthInPercentage;
       tweenedScrollAmount.set(
-        windowWidth + offSetWidth * $uiStore.seclectedPreviewIndex,
+        windowWidth + offSetWidth * $uiStore.selectedPreviewIndex,
         { duration: 0 },
       );
       uiStore.setActivePreview(null);
@@ -89,12 +95,16 @@
     {#each collections as collection, index}
       {#if collection._type === 'exhibition'}
         <Exhibition
-          props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }}
-        />
+          props={{
+            ...collection,
+            index,
+          }} />
       {:else}
         <Collection
-          props={{ ...collection, index, DEFAULT_COLUMN_W_PERCENTAGE }}
-        />
+          props={{
+            ...collection,
+            index,
+          }} />
       {/if}
     {/each}
   </div>

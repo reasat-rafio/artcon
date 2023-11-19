@@ -15,7 +15,6 @@
 
   let rootEl: HTMLDivElement;
   let windowWidth = 0;
-
   $: showContact = rootEl?.scrollLeft > rootEl?.clientWidth;
 </script>
 
@@ -24,14 +23,12 @@
 <div id="landing-page">
   <div
     bind:this={rootEl}
-    class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden"
-  >
+    class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden">
     {#each page.sections as s}
       {#if s._type === 'common.hero'}
         <Hero
           class="fixed inset-0"
-          props={{ ...s, scrollAmount: rootEl?.scrollLeft }}
-        />
+          props={{ ...s, scrollAmount: rootEl?.scrollLeft }} />
         {#if showContact && windowWidth >= 1024}
           <Contact {contact} />
         {/if}

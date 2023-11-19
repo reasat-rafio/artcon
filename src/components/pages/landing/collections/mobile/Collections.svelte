@@ -21,13 +21,13 @@
     const rootEl = document.querySelector('#landing-page');
 
     let ctx = gsap.context(() => {
-      if ($uiStore.seclectedPreviewIndex !== null && innerWidth < 1024) {
+      if ($uiStore.selectedPreviewIndex !== null && innerWidth < 1024) {
         gsap.to(rootEl, {
           duration: 0,
-          y: `-${($uiStore.seclectedPreviewIndex + 1) * 100}dvh`,
+          y: `-${($uiStore.selectedPreviewIndex + 1) * 100}dvh`,
         });
 
-        currentIndex = $uiStore.seclectedPreviewIndex + 1;
+        currentIndex = $uiStore.selectedPreviewIndex + 1;
         uiStore.setActivePreview(null);
       }
 
@@ -92,8 +92,7 @@
           props={{
             ...collection,
             index,
-          }}
-        />
+          }} />
       {/if}
     {/each}
     <Contact {contact} />

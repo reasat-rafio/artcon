@@ -1,23 +1,23 @@
 import { writable } from 'svelte/store';
 
 type UIStore = {
-  seclectedPreviewIndex: number | null;
+  selectedPreviewIndex: number | null;
   containerWidth: number;
 };
 
 const createUiStore = () => {
   const { subscribe, update } = writable<UIStore>({
-    seclectedPreviewIndex: null,
+    selectedPreviewIndex: null,
     containerWidth: 0,
   });
 
-  const setActivePreview = (acitveIndexOrNull: number | null) => {
+  const setActivePreview = (activeIndexOrNull: number | null) => {
     update(($store) => {
-      $store.seclectedPreviewIndex = acitveIndexOrNull;
+      $store.selectedPreviewIndex = activeIndexOrNull;
       return $store;
     });
   };
-  const setContaienrWidth = (width: number) => {
+  const setContainerWidth = (width: number) => {
     update(($store) => {
       $store.containerWidth = width;
       return $store;
@@ -27,7 +27,7 @@ const createUiStore = () => {
   return {
     subscribe,
     setActivePreview,
-    setContaienrWidth,
+    setContainerWidth: setContainerWidth,
   };
 };
 

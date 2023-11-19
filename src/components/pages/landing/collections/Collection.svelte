@@ -3,26 +3,12 @@
   import CollectionLayout from './CollectionLayout.svelte';
 
   export let props: WithExtra<Collection<unknown>>;
-  $: ({
-    slug,
-    index,
-    title,
-    _type,
-    name,
-    subtitle,
-    sliderImageVideo,
-    DEFAULT_COLUMN_W_PERCENTAGE,
-  } = props);
-
-  $: {
-    console.log(name, _type);
-  }
+  $: ({ slug, index, title, _type, name, subtitle, sliderImageVideo } = props);
 </script>
 
 <CollectionLayout
   href={`preview/${_type}/${slug.current}`}
   {index}
-  {DEFAULT_COLUMN_W_PERCENTAGE}
   {sliderImageVideo}>
   <div
     class="absolute bottom-0 left-0 z-10 text-white transition-transform duration-500 ease-out group-hover:translate-y-[-0.8rem] max-lg:px-[1.25rem] max-lg:pb-[2.8rem] lg:p-[3rem] xl:w-[90%] xl:p-[4rem]">
