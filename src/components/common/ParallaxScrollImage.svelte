@@ -30,6 +30,7 @@
         y: sectionHeight,
         x: 0,
         scrollTrigger: {
+          invalidateOnRefresh: true,
           scrub: 2,
           start: 'top bottom',
           end: 'top top',
@@ -41,6 +42,7 @@
         y: 0,
         x: -sectionWidth,
         scrollTrigger: {
+          invalidateOnRefresh: true,
           scrub: 2,
           start: 'top bottom',
           end: 'top top',
@@ -81,9 +83,9 @@
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
       class="block sm:hidden">
-      <figure class="ml-auto w-[70%]" bind:this={firstImageMobileEl}>
+      <figure class="ml-auto w-[13.4375rem]" bind:this={firstImageMobileEl}>
         <SanityImage
-          class="aspect-square h-[13.4375rem] w-[13.4375rem] rounded-[1.25rem] object-cover"
+          class="aspect-square rounded-[1.25rem] object-cover"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
