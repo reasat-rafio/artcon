@@ -54,20 +54,18 @@
 </script>
 
 <svelte:window bind:innerWidth />
+
 <div
   bind:this={rootEl}
-  class={twMerge(
-    'grid w-full grid-cols-12 max-lg:gap-y-[2.69rem] max-sm:ml-auto sm:gap-x-[1.87rem] xl:pr-[9.69rem]',
-    $$props.class,
-  )}>
-  <div class="col-span-12 sm:col-span-4">
+  class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
+  <div class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:w-[30.30%]">
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
       class="hidden sm:block">
       <figure bind:this={firstImageEl}>
         <SanityImage
-          class="aspect-square w-full rounded-[20px] object-cover"
+          class="aspect-square w-full rounded-[1.25rem] object-cover"
           sizes="30vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -85,7 +83,7 @@
       class="block sm:hidden">
       <figure class="ml-auto w-[70%]" bind:this={firstImageMobileEl}>
         <SanityImage
-          class="aspect-square w-full rounded-[20px] object-cover"
+          class="aspect-square h-[13.4375rem] w-[13.4375rem] rounded-[1.25rem] object-cover"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -98,7 +96,7 @@
       </figure>
     </svelte:element>
   </div>
-  <div class="col-span-12 sm:col-span-8">
+  <div class="flex-1 xl:pr-[9.69rem]">
     <svelte:element
       this={!!secondImage?.link ? 'a' : 'div'}
       href={secondImage?.link}>
@@ -107,7 +105,7 @@
           sizes="(min-width:1024) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="aspect-square h-full max-h-[55.83069rem] w-full rounded-[20px] object-cover"
+          class="aspect-square h-full max-h-[55.83069rem] w-full rounded-[1.25rem] object-cover"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">

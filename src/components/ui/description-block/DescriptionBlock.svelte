@@ -8,13 +8,8 @@
   import Title from './Title.svelte';
 </script>
 
-<article
-  class={twMerge(
-    'grid w-full grid-cols-12 gap-[1.25rem] sm:gap-[2.5rem] xl:gap-[3.125rem] xl:pr-[9.69rem]',
-    $$props.class,
-  )}
->
-  <div class="col-span-12 lg:col-span-5 xl:col-span-4">
+<article class={twMerge('flex w-full flex-col lg:flex-row', $$props.class)}>
+  <div class="w-full max-lg:pb-[2.5rem] lg:mr-[3.125rem] lg:w-[31.06%]">
     <slot
       name="intro"
       C={{
@@ -23,10 +18,9 @@
         HeaderContainer,
         SocialContainer,
         Social,
-      }}
-    />
+      }} />
   </div>
-  <div class="col-span-12 lg:col-span-7 xl:col-span-8">
+  <div class="flex-1 xl:pr-[9.69rem]">
     <slot name="description" {Description} />
   </div>
 </article>
