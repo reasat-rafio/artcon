@@ -151,25 +151,27 @@
               : exhibitionType.en}
             type={isSoloExhibition ? 'Solo Exhibition' : 'Group Exhibition'}>
             <Info>
-              <svelte:fragment slot="title-1">
+              <div class="title-light">
                 {gallery.name}
-              </svelte:fragment>
-              <svelte:fragment slot="title-2">
+              </div>
+              <div class="title-light">
                 <span class="font-light">{date}</span>
                 <span class="px-[6px]">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
-              </svelte:fragment>
+              </div>
             </Info>
           </Header>
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full">
+            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full">
             <Asset {asset} />
           </div>
 
-          <div data-load-animate="y" class="body-light-m lg:body-light">
-            <PortableText value={description} />
+          <div data-load-animate="y">
+            <PortableText
+              class="body-light-m lg:body-light"
+              value={description} />
           </div>
         </div>
       {/key}

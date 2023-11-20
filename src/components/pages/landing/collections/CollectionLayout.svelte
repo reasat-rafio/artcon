@@ -23,7 +23,7 @@
 <a
   {href}
   data-sveltekit-preload-data
-  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[600px] xl:w-[810px]"
+  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[600px] xl:w-[785px]"
   on:click|preventDefault={onClickAction}>
   {#if !!sliderImageVideo?.image}
     <SanityImage
@@ -58,5 +58,5 @@
   <div
     in:slide={{ axis: 'x', duration: 600 }}
     out:slide={{ axis: 'x', duration: 500 }}
-    class="bg-white lg:w-[calc(100vw-600px)] xl:w-[calc(100vw-810px)]" />
+    class="bg-white lg:w-[calc(100vw-600px)] xl:w-[calc(100vw-785px)]" />
 {/if}

@@ -1,20 +1,21 @@
 <script lang="ts">
-  import Seo from '@/components/common/Seo.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
-  import type { PublicationPreviewProps } from '@/lib/types/publication-preview';
-  import { toPlainText, PortableText } from '@portabletext/svelte';
-  import { onMount } from 'svelte';
-  import { gsap } from 'gsap';
-  import { fade } from 'svelte/transition';
   import { beforeNavigate, goto } from '$app/navigation';
+  import Seo from '@/components/common/Seo.svelte';
+  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
+  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
+  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
+  import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
-  import Cta from '@/components/ui/Cta.svelte';
-  import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
-  import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
-  import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import type { PageProps } from '@/lib/types/common.types';
+  import type { PublicationPreviewProps } from '@/lib/types/publication-preview';
+  import { toPlainText } from '@portabletext/svelte';
+  import { gsap } from 'gsap';
+  import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
 
   export let data: PageProps<PublicationPreviewProps>;
 
@@ -151,13 +152,14 @@
                 type={category.name}
                 let:Info>
                 <Info>
-                  <svelte:fragment slot="title-1">
+                  <div
+                    class="text-[0.75rem] font-light leading-[120%] tracking-[0.015rem]">
                     Published By {#each publishedBy as publisher, index}
-                      <span class="font-medium">
+                      <span class="!text-[0.84375rem] font-medium">
                         {publisher}{#if index !== publishedBy.length - 1}
                           {#if index === publishedBy.length - 2}
                             {' '}
-                            <span class="font-light">and</span>
+                            <span class="!text-[0.75rem] font-light">and</span>
                           {:else}
                             ,
                           {/if}
@@ -165,15 +167,15 @@
                         {' '}
                       </span>
                     {/each}
-                  </svelte:fragment>
-                  <svelte:fragment slot="title-2">
-                    <div>ISBN {isbn}</div>
-                  </svelte:fragment>
+                  </div>
+                  <div class="title-light">
+                    ISBN {isbn}
+                  </div>
                 </Info>
                 <Info>
-                  <svelte:fragment slot="title-1">
+                  <div class="sub-title-light">
                     Price {#if !!prices?.discountPriceBDT}
-                      <span class="text-[#9B9B9B] line-through">
+                      <span class="font-normal text-[#9B9B9B] line-through">
                         {prices.priceBDT}
                       </span>
                       <span class="font-semibold">
@@ -188,10 +190,11 @@
                         <span>{prices.priceUSD} USD</span>
                       </span>
                     {/if}
-                  </svelte:fragment>
-                  <svelte:fragment slot="title-2">
-                    Stock <span class="font-medium">{stock}</span>
-                  </svelte:fragment>
+                  </div>
+
+                  <div class="title-light">
+                    Stock <span class="font-medium capitalize">{stock}</span>
+                  </div>
                 </Info>
               </Header>
 
@@ -206,18 +209,18 @@
                 </figure>
               </div>
 
-              <div
-                data-load-animate="y"
-                class="body-light-m lg:body-light mb-[2.5rem]">
-                <PortableText value={description} />
+              <div class="mb-[2.5rem]" data-load-animate="y">
+                <PortableText
+                  class="body-light-m lg:body-light"
+                  value={description} />
               </div>
 
               <ul class="mb-[2.5rem] space-y-[0.38rem]" data-load-animate="y">
                 {#each associationsList as { key, value }}
-                  <li class="preview-b-light">
+                  <li class="sub-title-light">
                     <span>{key}</span>
                     {' '}
-                    <span class="font-normal">{value}</span>
+                    <span class="!font-normal">{value}</span>
                   </li>
                 {/each}
               </ul>
@@ -247,3 +250,5 @@
     </section>
   </article>
 </section>
+<!-- 27px -->
+<!-- 42px -->

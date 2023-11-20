@@ -6,7 +6,7 @@
   export let sliderImageVideo: Asset;
 </script>
 
-<div class="relative overflow-hidden max-lg:hidden lg:w-[600px] xl:w-[810px]">
+<div class="relative overflow-hidden max-lg:hidden lg:w-[600px] xl:w-[785px]">
   {#if !!sliderImageVideo?.image}
     <SanityImage
       id="previewImage"

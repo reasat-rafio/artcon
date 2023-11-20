@@ -4,12 +4,6 @@
 
 <div
   data-load-animate="y"
-  class={twMerge('space-y-[6px] text-[#1B1B1E] ', $$props.class)}
->
-  <div class="text-title-2 font-light">
-    <slot name="title-1" />
-  </div>
-  <div class="text-subtitle-2">
-    <slot name="title-2" />
-  </div>
+  class={twMerge('space-y-[0.38rem] text-[#1B1B1E] ', $$props.class)}>
+  <slot />
 </div>
