@@ -143,7 +143,6 @@
             country={artist.country} />
 
           <CollectionSlider {artworkImages} />
-
           <Information {name} {provenance} {information} {inquiryButton} />
         </div>
       {/key}

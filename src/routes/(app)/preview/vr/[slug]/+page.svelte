@@ -8,9 +8,10 @@
   import Vr from '@/components/pages/[preview]/Vr.svelte';
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { VrPreviewProps } from '@/lib/types/vr-preview';
-  import { PortableText, toPlainText } from '@portabletext/svelte';
+  import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
@@ -153,20 +154,25 @@
             type={category.name}
             let:Info>
             <Info>
-              <svelte:fragment slot="title-1">
+              <div class="title-light">
                 {gallery.name}
-              </svelte:fragment>
-              <svelte:fragment slot="title-2">
+              </div>
+              <div class="title-light">
                 <span class="font-light">{date}</span>
                 <span class="px-[6px]">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
-              </svelte:fragment>
+              </div>
             </Info>
           </Header>
 
-          <Vr class="mb-[2.5rem]" data-load-animate="y" vr={{ caption, url }} />
-          <div data-load-animate="y" class="body-light-m lg:body-light">
-            <PortableText value={description} />
+          <Vr
+            class="mb-[2.5rem]"
+            data-load-animate="y"
+            vr={{ _type: 'vr', caption, url }} />
+          <div data-load-animate="y">
+            <PortableText
+              class="body-light-m lg:body-light"
+              value={description} />
           </div>
         </div>
       {/key}

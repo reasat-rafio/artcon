@@ -8,12 +8,12 @@
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { EventPreviewProps } from '@/lib/types/event-preview';
-  import { PortableText } from '@portabletext/svelte';
+  import gsap from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import gsap from 'gsap';
 
   export let data: PageProps<EventPreviewProps>;
   $: ({
@@ -142,25 +142,27 @@
 
           <Header let:Info topic="Our event" title={name} type={tag.name}>
             <Info>
-              <svelte:fragment slot="title-1">
+              <div class="title-light">
                 {gallery.name}
-              </svelte:fragment>
-              <svelte:fragment slot="title-2">
+              </div>
+              <div class="title-light">
                 <span class="font-light">{date}</span>
                 <span class="px-[6px]">|</span>
                 <span class="font-medium text-[#ED1C24]">{status}</span>
-              </svelte:fragment>
+              </div>
             </Info>
           </Header>
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full">
+            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full sm:max-h-[30.875rem]">
             <Asset {asset} />
           </div>
 
-          <div data-load-animate="y" class="body-light-m lg:body-light">
-            <PortableText value={description} />
+          <div data-load-animate="y">
+            <PortableText
+              class="body-light-m lg:body-light"
+              value={description} />
           </div>
         </div>
       {/key}

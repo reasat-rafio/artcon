@@ -9,19 +9,19 @@
   export let isAvailable: boolean;
 </script>
 
-<section class="mb-[2.5rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
-  <h2 class="preview-h-2" data-load-animate="y">{topic}</h2>
+<section class="mb-[2.5rem] flex flex-col gap-y-[1.94rem]">
+  <h2 class="head-6" data-load-animate="y">{topic}</h2>
   <div class="flex justify-between space-x-1 max-lg:flex-col-reverse">
-    <header class="space-y-[0.3rem]">
+    <header class="space-y-[0.62rem]">
       <div data-load-animate="y">
-        <h1 class="preview-h-1 !inline !leading-none">
+        <h1 class="head-4 !inline !leading-none">
           {name}
-          <span class="body-2 font-optiberling-agency font-light">
-            b. {DateTime.fromISO(born).toFormat('yyyy')}
+          <span class="head-6 !inline">
+            (b. {DateTime.fromISO(born).toFormat('yyyy')})
           </span>
         </h1>
       </div>
-      <h4 class="preview-h-4 uppercase" data-load-animate="y">
+      <h4 class="head-8 uppercase" data-load-animate="y">
         {getCountryDetails(country).name}
       </h4>
     </header>
