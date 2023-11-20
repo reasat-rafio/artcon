@@ -97,17 +97,9 @@
   <div style="width: {$containerWidth}vw;" class="flex">
     {#each collections as collection, index}
       {#if collection._type === 'exhibition'}
-        <Exhibition
-          props={{
-            ...collection,
-            index,
-          }} />
+        <Exhibition props={{ ...collection, index }} />
       {:else}
-        <Collection
-          props={{
-            ...collection,
-            index,
-          }} />
+        <Collection props={{ ...collection, index }} />
       {/if}
     {/each}
   </div>
