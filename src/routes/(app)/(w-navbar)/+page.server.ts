@@ -62,6 +62,21 @@ const query = groq`
                         }
                     },
                 },
+                _type == "documentary" => {
+                    _id,
+                    _type,
+                    name,
+                    "title": "Our documentary",
+                    slug,
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
+                        }
+                    },
+                },
                 _type == "collection" => {
                     _id,
                     _type,

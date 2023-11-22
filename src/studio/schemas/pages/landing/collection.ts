@@ -25,6 +25,7 @@ const collection = {
             { type: 'publication', components: { preview: SliderPreview } },
             { type: 'collection', components: { preview: SliderPreview } },
             { type: 'event', components: { preview: SliderPreview } },
+            { type: 'documentary', components: { preview: SliderPreview } },
           ],
         },
       ],
