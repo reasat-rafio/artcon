@@ -15,7 +15,7 @@
   href={$$props.href}
   {...$$restProps}
   class={twMerge(
-    'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium tracking-[0.01688rem] lg:px-[2.2rem] lg:text-[0.84375rem]',
+    'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium uppercase tracking-[0.01688rem] lg:px-[2.2rem] lg:text-[0.84375rem]',
     variant === 'fill' && 'gradient-base-style relative bg-transparent',
     variant === 'outline'
       ? color === 'gray'
@@ -31,8 +31,7 @@
         : null
       : null,
     $$props.class,
-  )}
->
+  )}>
   <slot />
 </a>
 
