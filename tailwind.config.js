@@ -17,6 +17,9 @@ export default {
     },
 
     extend: {
+      screens: {
+        '3xl': '1600px',
+      },
       zIndex: {
         god: 9999999,
         demigod: 666666,

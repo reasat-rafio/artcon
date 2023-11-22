@@ -15,12 +15,12 @@
 
 <div
   data-load-animate="y"
-  class="grid grid-cols-12 max-sm:gap-y-[2rem] sm:divide-x-[0.5px] sm:divide-[#A5A5A8]">
+  class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-[#A5A5A8]">
   <div
-    class="col-span-12 space-y-[1.25rem] sm:col-span-6 sm:pr-[1.69rem] xl:col-span-4">
-    <h4 class="body-2 font-inter !font-normal">{name}</h4>
+    class="3xl:w-[15.25rem] w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%]">
+    <h4 class="body-regular !font-normal">{name}</h4>
 
-    <ul class="title-light !leading-[143%]">
+    <ul class="title-light !leading-[142.857%]">
       <li>{information.media} (media)</li>
       <li>{information.size} (size)</li>
       <li>{information.artDate.creationDetails} (art date)</li>
@@ -32,9 +32,9 @@
       {/if}
     </ul>
   </div>
-  <div
-    class="col-span-12 space-y-[1.25rem] sm:col-span-6 sm:pl-[1.69rem] xl:col-span-8">
-    <h4 class="body-light-m md:body-regular !font-normal">
+
+  <div class="flex-1 space-y-[1.25rem] 2xl:pl-[1.6875rem]">
+    <h4 class="body-regular !font-normal">
       {provenance.title}
     </h4>
     <div class="title-light !leading-[143%]">

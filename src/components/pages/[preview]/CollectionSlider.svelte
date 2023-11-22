@@ -12,9 +12,9 @@
   data-load-animate="y"
   use:emblaCarouselSvelte={{ plugins: [Autoplay()], options: { loop: true } }}
   class="relative mb-[2rem] w-full overflow-hidden sm:h-full">
-  <div class="flex">
+  <div class="-ml-[1rem] flex">
     {#each artworkImages as img}
-      <figure class="flex flex-[0_0_100%] items-start justify-center">
+      <figure class="flex flex-[0_0_100%] items-start justify-center pl-[1rem]">
         <SanityImage
           class="max-h-[30.875rem] w-fit object-contain"
           src={img}

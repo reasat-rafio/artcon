@@ -250,5 +250,3 @@
     </section>
   </article>
 </section>
-<!-- 27px -->
-<!-- 42px -->

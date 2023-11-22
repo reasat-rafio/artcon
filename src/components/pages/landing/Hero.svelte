@@ -46,7 +46,8 @@
   class={twMerge('h-screen  w-full ', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
     <Asset {asset} />
-
+    <!-- 27px -->
+    <!-- 42px -->
     <div
       class="relative z-30 mt-[42px] max-w-[120rem] px-[1rem] text-center text-white">
       <header>
