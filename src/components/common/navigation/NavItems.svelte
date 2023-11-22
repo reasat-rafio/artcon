@@ -3,7 +3,7 @@
   import type { NavProps } from '@/lib/types/common.types';
   import { onMount } from 'svelte';
   import { twMerge } from 'tailwind-merge';
-  import gsap from 'gsap';
+  import { gsap } from 'gsap';
 
   export let nav: NavProps;
   let { menu } = nav;

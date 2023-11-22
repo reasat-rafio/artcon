@@ -1,46 +1,49 @@
 <script lang="ts">
   import { beforeNavigate, goto } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
-  import Asset from '@/components/common/hero/Asset.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
-  import Header from '@/components/pages/[preview]/header/Header.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { PageProps } from '@/lib/types/common.types';
-  import type { EventPreviewProps } from '@/lib/types/event-preview';
-  import { gsap } from 'gsap';
+  import type { DocumentaryPreviewProps } from '@/lib/types/documentary-preview';
+  import { toPlainText } from '@portabletext/svelte';
+  import getYouTubeID from 'get-youtube-id';
   import { onMount } from 'svelte';
+  import Youtube from 'svelte-youtube-embed';
   import { fade } from 'svelte/transition';
+  import { gsap } from 'gsap';
 
-  export let data: PageProps<EventPreviewProps>;
+  export let data: PageProps<DocumentaryPreviewProps>;
+
   $: ({
     page: {
+      _type,
       name,
-      description,
-      gallery,
-      startDate,
-      endDate,
-      seo,
       slug,
       sliderImageVideo,
-      asset,
-      tag,
+      coverImage,
+      information,
+      exploreUrl,
+      year,
+      duration,
+      category,
+      documentaryVideo,
+      synopsys,
+      thumbnail,
     },
     site: { logos },
   } = data);
+
   let onOutroEnd: () => void;
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
   let innerWidth = 0;
-
-  $: ({ date, status } = calculateStatusBetweenDates({
-    startDate,
-    endDate,
-  }));
+  $: ytID = getYouTubeID(documentaryVideo.url);
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
@@ -115,13 +118,21 @@
   });
 </script>
 
-<Seo {seo} siteOgImg={logos?.ogImage} />
+<Seo
+  seo={{
+    _type,
+    title: name,
+    description: toPlainText(information),
+    ogImage: coverImage,
+  }}
+  siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: `/event/${slug.current}`, title: 'EXPLORE' },
+    { href: exploreUrl, title: 'EXPLORE' },
   ]} />
+
 <section>
   <MobileImage {sliderImageVideo} />
 
@@ -136,36 +147,79 @@
           class="preview_content_container">
           <NavigationMobile
             cta={{
-              href: `/event/${slug.current}`,
+              href: exploreUrl,
               title: 'EXPLORE',
             }} />
 
-          <Header let:Info topic="Our event" title={name} type={tag.name}>
-            <Info>
-              <div class="title-light">
-                {gallery.name}
+          <section
+            class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
+            <h2 class="head-6 !text-[#020202]" data-load-animate="y">
+              Our documentary
+            </h2>
+
+            <header
+              class="space-y-[0.62rem] text-[#1B1B1E]"
+              data-load-animate="y">
+              <h1
+                class="head-4 !inline font-medium !leading-none !text-[#1B1B1E]">
+                {name}
+              </h1>
+
+              <div data-load-animate="y" class="title-light">
+                <span>{category.name}</span>
+                {#if !!year}
+                  <span>
+                    <span class="sub-title-light px-1">|</span>
+                    {year}
+                  </span>
+                {/if}
+                {#if !!duration}
+                  <span>
+                    <span class="sub-title-light px-1">|</span>
+                    {duration}
+                  </span>
+                {/if}
               </div>
-              <div class="title-light">
-                <span class="font-light">{date}</span>
-                <span class="px-[6px]">|</span>
-                <span class="font-medium text-[#ED1C24]">{status}</span>
-              </div>
-            </Info>
-          </Header>
+            </header>
+          </section>
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full sm:max-h-[30.875rem]">
-            <Asset {asset} />
+            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-[1.5625rem] sm:aspect-video sm:h-full">
+            <Youtube id={ytID} altThumb={true} animations={false}>
+              <SanityImage
+                sizes="60vw"
+                imageUrlBuilder={imageBuilder}
+                src={thumbnail}
+                alt={thumbnail?.alt} />
+            </Youtube>
           </div>
 
-          <div data-load-animate="y">
-            <PortableText
-              class="body-light-m lg:body-light"
-              value={description} />
+          <div
+            data-load-animate="y"
+            class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-[#A5A5A8]">
+            <div
+              class="title-light w-full space-y-[1.25rem] !leading-[142.857%] 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
+              <PortableText value={information} />
+            </div>
+
+            <div class="flex-1 space-y-[1.25rem] 2xl:pl-[3rem]">
+              <h4 class="body-regular !font-normal">
+                {synopsys.title}
+              </h4>
+              <div class="description title-light !leading-[143%]">
+                <PortableText value={synopsys.description} />
+              </div>
+            </div>
           </div>
         </div>
       {/key}
     </section>
   </article>
 </section>
+
+<style>
+  :global(p > strong) {
+    font-weight: 400 !important;
+  }
+</style>

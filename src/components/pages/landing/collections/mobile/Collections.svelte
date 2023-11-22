@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { CollectionsProps } from '@/lib/types/landing.types';
-  import { onMount } from 'svelte';
-  import gsap from 'gsap';
-  import { Observer } from 'gsap/dist/Observer';
-  import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
-  import uiStore from '@/store/ui';
-  import type { ContactProps } from '@/lib/types/common.types';
   import Contact from '@/components/pages/landing/Contact.svelte';
+  import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
+  import type { ContactProps } from '@/lib/types/common.types';
+  import type { CollectionsProps } from '@/lib/types/landing.types';
+  import uiStore from '@/store/ui';
+  import { gsap } from 'gsap';
+  import { Observer } from 'gsap/dist/Observer';
+  import { onMount } from 'svelte';
   import Collection from '../Collection.svelte';
 
   export let props: CollectionsProps & { contact: ContactProps };

@@ -4,7 +4,7 @@
   export let topic: string;
   export let title: string;
   export let subtitle: string | undefined = undefined;
-  export let type: string;
+  export let type: string | undefined = undefined;
 </script>
 
 <section class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
@@ -18,7 +18,9 @@
         <h3 class="head-6 !inline !leading-none">{' '} / {subtitle}</h3>
       {/if}
     </div>
-    <h4 class="head-8 !leading-none" data-load-animate="y">{type}</h4>
+    {#if !!type}
+      <h4 class="head-8 !leading-none" data-load-animate="y">{type}</h4>
+    {/if}
   </header>
 
   <div class="flex flex-col gap-y-[1.5rem]">

@@ -10,7 +10,7 @@
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import type { CollectionPreviewProps } from '@/lib/types/collection-preview.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import gsap from 'gsap';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 

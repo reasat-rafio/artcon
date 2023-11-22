@@ -3,7 +3,7 @@
   import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
-  import gsap from 'gsap';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { expoOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';

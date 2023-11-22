@@ -1,7 +1,7 @@
 <script lang="ts">
   import Cta from '@/components/ui/Cta.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
-  import gsap from 'gsap';
+  import { gsap } from 'gsap';
   import Asset from './Asset.svelte';
 
   export let block: CommonHeroProps;

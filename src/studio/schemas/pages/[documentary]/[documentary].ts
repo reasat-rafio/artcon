@@ -57,6 +57,21 @@ const documentary = {
       ],
     },
     {
+      name: 'thumbnail',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
       name: 'sliderImageVideo',
       type: 'sliderImageVideo',
       title: 'Slider Image / Video',
@@ -102,7 +117,7 @@ const documentary = {
     select: {
       title: 'name',
       subtitle: 'information',
-      media: 'coverImage',
+      media: 'thumbnail',
     },
   },
 };

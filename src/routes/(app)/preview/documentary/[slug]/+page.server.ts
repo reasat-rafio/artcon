@@ -4,7 +4,7 @@ import { error, type ServerLoad } from '@sveltejs/kit';
 import groq from 'groq';
 
 const query = (params: Partial<Record<string, string>>) =>
-  groq`*[_type == "publication" && slug.current == "${params.slug}"][0]{
+  groq`*[_type == "documentary" && slug.current == "${params.slug}"][0]{
     ...,
     gallery->,
     category->,
@@ -16,7 +16,8 @@ const query = (params: Partial<Record<string, string>>) =>
         "mov": video_hevc.asset->url,
       }
     },
-    ${asset('publicationImage')},
+    ${asset('coverImage')},
+    ${asset('thumbnail')},
   }`;
 
 export const load: ServerLoad = async ({ params }) => {

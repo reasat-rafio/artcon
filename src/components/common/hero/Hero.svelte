@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CommonHeroProps } from '@/lib/types/common.types';
-  import gsap from 'gsap';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { twMerge } from 'tailwind-merge';
   import ChevronDown from '../../icons/ChevronDown.svelte';
