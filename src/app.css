@@ -79,7 +79,7 @@
 
   /* TITLE */
   .title-regular {
-    @apply font-inter text-[0.875rem] leading-[120%];
+    @apply font-inter text-[0.875rem] font-normal leading-[120%];
   }
   .title-light {
     @apply font-inter text-[0.875rem] font-light leading-[120%];

@@ -152,14 +152,13 @@
                 type={category.name}
                 let:Info>
                 <Info>
-                  <div
-                    class="text-[0.75rem] font-light leading-[120%] tracking-[0.015rem]">
+                  <div class="sub-title-light">
                     Published By {#each publishedBy as publisher, index}
-                      <span class="!text-[0.84375rem] font-medium">
+                      <span class="title-regular">
                         {publisher}{#if index !== publishedBy.length - 1}
                           {#if index === publishedBy.length - 2}
                             {' '}
-                            <span class="!text-[0.75rem] font-light">and</span>
+                            <span class="sub-title-light">and</span>
                           {:else}
                             ,
                           {/if}
