@@ -55,7 +55,7 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} href="/" logo={logoLight}>Our events</SecondaryNav>
+  <SecondaryNav {tags} logo={logoLight}>Our events</SecondaryNav>
   <Listing list={eventsWithImages} />
   <Footer {footer} {contact} logo={logoLight} />
 </div>

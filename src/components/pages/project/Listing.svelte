@@ -11,9 +11,10 @@
 <div>
   {#if !!list?.length}
     {#each list as { items, image }}
-      <section class="py-section container">
+      <section
+        class="py-section container-primary lg:pr-[2rem] xl:pr-[4.375rem]">
         <div
-          class="grid grid-cols-1 gap-x-[25px] gap-y-[56px] md:grid-cols-2 lg:grid-cols-3">
+          class="grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] md:grid-cols-2 xl:grid-cols-3">
           {#each items as { name, slug, tag, _id, asset } (_id)}
             <div in:fade out:fade={{ duration: 0 }}>
               <Card

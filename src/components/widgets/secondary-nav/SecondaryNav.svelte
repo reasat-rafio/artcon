@@ -10,7 +10,6 @@
   import { twMerge } from 'tailwind-merge';
 
   export let logo: SanityAsset;
-  export let href: string;
   export let tags: Tag[];
 
   let sectionEl: HTMLElement;
@@ -39,14 +38,14 @@
 </script>
 
 <svelte:window on:scroll={setLogoVisibility} />
-<nav
-  bind:this={sectionEl}
-  class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
+<nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
   <div class="relative">
-    <div class="container-primary flex items-center">
+    <div
+      class="container-primary flex items-center border-b border-[#D2D2D3] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
       <div class="flex flex-1 items-center">
         {#if !!activeSearchParams}
           <button
+            title="Clear Search Filter"
             transition:slide={{ axis: 'x' }}
             on:click={clearSearchParams}
             class="mr-[1.25rem] h-[45px] w-[45px] lg:mr-[2rem]">

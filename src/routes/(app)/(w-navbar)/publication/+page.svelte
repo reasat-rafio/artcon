@@ -54,7 +54,7 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav tags={categories} href="/" logo={logoLight}>
+  <SecondaryNav tags={categories} logo={logoLight}>
     Our publication
   </SecondaryNav>
   <Listing list={publicationsWithImages} />
