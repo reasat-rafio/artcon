@@ -1,12 +1,12 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import { fade } from 'svelte/transition';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { Tag } from '@/lib/types/common.types';
-  import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import { fade, scale, slide } from 'svelte/transition';
   import { twMerge } from 'tailwind-merge';
 
   export let logo: SanityAsset;
@@ -29,43 +29,56 @@
       noScroll: true,
     });
   };
+
+  const clearSearchParams = () => {
+    goto($page.url.pathname, {
+      replaceState: true,
+      noScroll: true,
+    });
+  };
 </script>
 
 <svelte:window on:scroll={setLogoVisibility} />
 <nav
   bind:this={sectionEl}
-  class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]"
->
+  class="sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
   <div class="relative">
     <div class="container-primary flex items-center">
-      <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
-        <a class="h-[45px] w-[45px]" {href}>
-          <ChevronLeftRounded />
-        </a>
-        <div>
-          <h2 class="text-head-6 font-medium text-dark-gunmetal lg:text-head-4">
-            <slot />
-          </h2>
+      <div class="flex flex-1 items-center">
+        {#if !!activeSearchParams}
+          <button
+            transition:slide={{ axis: 'x' }}
+            on:click={clearSearchParams}
+            class="mr-[1.25rem] h-[45px] w-[45px] lg:mr-[2rem]">
+            <ChevronLeftRounded />
+          </button>
+        {/if}
+        {#key activeSearchParams}
+          <div>
+            <h2
+              class="text-head-6 font-medium text-dark-gunmetal lg:text-head-4">
+              <slot />
+            </h2>
 
-          <ul class=" hidden space-x-2 pt-[0.2rem] sm:flex">
-            {#each tags as { name, slug: { current } }, index}
-              <li class="flex items-center space-x-2">
-                <button
-                  class={twMerge(
-                    'text-[0.875rem] font-light tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
-                    current === activeSearchParams && 'text-[#ED1C24]',
-                  )}
-                  on:click|preventDefault={() => setSearchParams(current)}
-                >
-                  {name}
-                </button>
-                {#if index !== tags.length - 1}
-                  <div class="h-1 w-1 rounded-full bg-[#ED1C24]" />
-                {/if}
-              </li>
-            {/each}
-          </ul>
-        </div>
+            <ul class=" hidden space-x-2 pt-[0.2rem] sm:flex">
+              {#each tags as { name, slug: { current } }, index}
+                <li class="flex items-center space-x-2">
+                  <button
+                    class={twMerge(
+                      'text-[0.875rem] font-light tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
+                      current === activeSearchParams && 'text-[#ED1C24]',
+                    )}
+                    on:click|preventDefault={() => setSearchParams(current)}>
+                    {name}
+                  </button>
+                  {#if index !== tags.length - 1}
+                    <div class="h-1 w-1 rounded-full bg-[#ED1C24]" />
+                  {/if}
+                </li>
+              {/each}
+            </ul>
+          </div>
+        {/key}
       </div>
     </div>
     {#if showLogo}
@@ -76,8 +89,7 @@
             src={logo}
             sizes="100px"
             imageUrlBuilder={imageBuilder}
-            alt="Artcon Logo"
-          />
+            alt="Artcon Logo" />
         </a>
       </div>
     {/if}

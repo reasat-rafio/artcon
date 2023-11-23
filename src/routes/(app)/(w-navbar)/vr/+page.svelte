@@ -30,7 +30,11 @@
   $: vrsWithImages = createListingItemWithImage(filteredVr, sectionImages);
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) return;
+    if (!activeSearchParams) {
+      filteredVr = vrs;
+      return;
+    }
+
     const fList = vrs.filter(
       ({ category: { slug } }) => slug.current === activeSearchParams,
     );

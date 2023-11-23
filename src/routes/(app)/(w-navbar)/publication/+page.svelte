@@ -35,7 +35,11 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) return;
+    if (!activeSearchParams) {
+      filteredPublications = publications;
+      return;
+    }
+
     const fList = publications.filter(
       ({ category: { slug } }) => slug.current === activeSearchParams,
     );

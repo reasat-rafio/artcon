@@ -36,7 +36,10 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) return;
+    if (!activeSearchParams) {
+      filteredCollections = collections;
+      return;
+    }
     const fList = collections.filter(
       ({ tag: { slug } }) => slug.current === activeSearchParams,
     );

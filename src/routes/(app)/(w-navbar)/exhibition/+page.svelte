@@ -34,7 +34,11 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) return;
+    if (!activeSearchParams) {
+      filteredExhibition = exhibitions;
+      return;
+    }
+
     const fList = exhibitions.filter(
       ({ tag: { slug } }) => slug.current === activeSearchParams,
     );

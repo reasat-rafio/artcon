@@ -36,7 +36,10 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) return;
+    if (!activeSearchParams) {
+      filteredEvents = events;
+      return;
+    }
     const fList = events.filter(
       ({ tag: { slug } }) => slug.current === activeSearchParams,
     );
