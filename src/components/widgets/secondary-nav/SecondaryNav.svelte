@@ -41,7 +41,7 @@
 <nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
   <div class="relative">
     <div
-      class="container-primary flex items-center border-b border-[#D2D2D3] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
+      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
       <div class="flex flex-1 items-center">
         {#if !!activeSearchParams}
           <button
@@ -54,24 +54,26 @@
         {/if}
         {#key activeSearchParams}
           <div>
-            <h2
-              class="text-head-6 font-medium text-dark-gunmetal lg:text-head-4">
+            <h2 class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
               <slot />
             </h2>
 
-            <ul class=" hidden space-x-2 pt-[0.2rem] sm:flex">
+            <ul class="hidden pt-[0.425rem] sm:flex">
               {#each tags as { name, slug: { current } }, index}
-                <li class="flex items-center space-x-2">
+                <li class="flex">
                   <button
                     class={twMerge(
-                      'text-[0.875rem] font-light tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
+                      'font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
                       current === activeSearchParams && 'text-[#ED1C24]',
                     )}
                     on:click|preventDefault={() => setSearchParams(current)}>
                     {name}
                   </button>
                   {#if index !== tags.length - 1}
-                    <div class="h-1 w-1 rounded-full bg-[#ED1C24]" />
+                    <div class="flex h-full items-center justify-center">
+                      <div
+                        class="mx-[10.5px] -mt-[10%] h-1 w-1 rounded-full bg-[#ED1C24]" />
+                    </div>
                   {/if}
                 </li>
               {/each}

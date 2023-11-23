@@ -124,7 +124,7 @@
   }
 
   .py-section {
-    @apply py-sm md:py-[80px]  xl:py-xl;
+    @apply py-sm md:py-[80px] xl:py-xl;
   }
   .px-section {
     @apply max-lg:px-[1.25rem] lg:pl-[16rem] lg:pr-[5rem];
