@@ -77,29 +77,34 @@
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 max-w-6xl px-[1rem] text-center text-white">
-    <header class="space-y-[1rem]">
+    class="relative z-30 max-w-[120rem] space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
+    <header class="-mt-[60px] space-y-[2.1875rem]">
       {#if !!text}
-        <h3 bind:this={textEl} class="head-8 lg:head-7">
+        <h3
+          bind:this={textEl}
+          class="head-8 lg:head-7 font-bold !leading-[120%] !tracking-widest">
           {text}
         </h3>
       {/if}
 
-      <div class="overflow-hidden">
+      <div class="overflow-hidden !leading-[100%]">
         <h1 bind:this={titleEl} class="head-1 !leading-none">
           {title}
         </h1>
       </div>
+
       {#if !!type}
         <div class="overflow-hidden">
-          <h2 bind:this={typeEl} class="head-3 whitespace-pre-wrap">
+          <h2
+            bind:this={typeEl}
+            class="head-3 whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
             {type}
           </h2>
         </div>
       {/if}
     </header>
     {#if !!cta?.title}
-      <div class="mt-[1rem] overflow-hidden">
+      <div class="overflow-hidden">
         <Cta
           variant="fill"
           color="white"
