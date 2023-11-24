@@ -20,15 +20,14 @@
               <Card
                 el="a"
                 href={`/preview/publication/${slug.current}`}
-                class="flex flex-col gap-y-[20px]"
+                class="flex flex-col gap-y-[1.25rem]"
                 let:Image
                 let:Title
                 let:Container>
                 <Image variant="fit" image={publicationImage} />
                 <Container class="text-center">
                   <Title>{name}</Title>
-                  <div
-                    class="font-inter text-[0.8125rem] font-normal uppercase tracking-[0.01625rem] text-[#1D1D25]">
+                  <div class="sub-title-regular">
                     {#if !!discountPriceBDT}
                       <span class="text-[#77777C] line-through">
                         {priceBDT}

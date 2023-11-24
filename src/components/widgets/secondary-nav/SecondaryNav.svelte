@@ -83,7 +83,9 @@
       </div>
     </div>
     {#if showLogo}
-      <div transition:fade class="absolute left-[40px] top-0 hidden 2xl:block">
+      <div
+        transition:fade
+        class="absolute left-[40px] top-1/2 hidden -translate-y-1/2 2xl:block">
         <a class="" href="/">
           <SanityImage
             class="h-[50px] object-contain"

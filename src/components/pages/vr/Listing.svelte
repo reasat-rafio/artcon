@@ -20,7 +20,7 @@
               <Card
                 el="a"
                 href={`/preview/vr/${slug.current}`}
-                class="flex flex-col gap-y-[20px]"
+                class="flex flex-col gap-y-[1.25rem]"
                 let:Title
                 let:Container
                 let:Subtitle>

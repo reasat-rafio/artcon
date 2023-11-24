@@ -2,6 +2,6 @@
   import { twMerge } from 'tailwind-merge';
 </script>
 
-<header class={twMerge('space-y-[10px]', $$props.class ?? '')}>
+<header class={twMerge('space-y-[0.625rem]', $$props.class ?? '')}>
   <slot />
 </header>
