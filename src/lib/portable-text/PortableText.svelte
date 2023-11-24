@@ -14,6 +14,7 @@
 
   export let value: InputValue;
   export let components: PortableTextComponents | undefined = undefined;
+  export let boldType: 'light' | 'dense' = 'dense';
 
   const defaultComponents = {
     // block: Block,
@@ -41,13 +42,16 @@
   let componentRef: HTMLDivElement;
 </script>
 
-<div class="description {$$props.class}" bind:this={componentRef}>
+<div
+  style="--weight: {boldType === 'dense' ? '600' : '400'}"
+  class="description {$$props.class}"
+  bind:this={componentRef}>
   <PortableText {...valueProps} {...components} />
 </div>
 
 <style>
   .description :global(strong) {
-    font-weight: 600;
+    font-weight: var(--weight);
   }
   .description :global(p:empty) {
     padding-bottom: 1rem;

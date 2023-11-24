@@ -15,13 +15,13 @@
     seo: SeoProps;
     title: string;
     cta?: CtaProps;
-    privacyPolicy: PortableTextBlock[];
+    termsConditions: PortableTextBlock[];
   };
 
   export let data: PageProps<Props>;
 
   $: ({
-    page: { seo, privacyPolicy, title, cta },
+    page: { seo, termsConditions, title, cta },
     site: {
       logos: { logoLight, ogImage },
       footer,
@@ -38,7 +38,7 @@
     </svelte:fragment>
     <svelte:fragment slot="description" let:Description>
       <Description>
-        <PortableText value={privacyPolicy} />
+        <PortableText boldType="light" value={termsConditions} />
       </Description>
 
       {#if !!cta?.title && !!cta?.href}
