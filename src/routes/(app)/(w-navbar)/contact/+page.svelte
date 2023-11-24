@@ -39,7 +39,7 @@
     {#each sections as props}
       {#if props._type === 'quote'}
         <div class="container-primary pb-section">
-          <Quote class="mb-section" quote={props} />
+          <Quote quote={props} />
         </div>
       {/if}
     {/each}
