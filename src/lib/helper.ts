@@ -9,6 +9,7 @@ import type { HeroProps as PublicationListingHeroProps } from './types/publicati
 import type { HeroProps as ProjectListingHeroProps } from './types/project.types';
 import type { HeroProps as CollectionListingHeroProps } from './types/collection.types';
 import type { HeroProps as EventListingHeroProps } from './types/event.types';
+import type { HeroProps as DocumentaryListingHeroProps } from './types/documentary.types';
 
 import type {
   CommonHeroListProps,
@@ -171,6 +172,28 @@ export const formatProjectListingProps = (
         text: heroText,
         type: tag.name,
         cta: { title: 'EXPLORE', href: `/project/${slug.current}` },
+      };
+    },
+  );
+
+  return {
+    blocks: formatedProps,
+  };
+};
+
+export const formatDocumentaryListingProps = (
+  props: DocumentaryListingHeroProps,
+) => {
+  const formatedProps: CommonHeroProps[] = props.highlightedDocumentaries.map(
+    ({ name, category, coverImage, slug }) => {
+      return {
+        _type: 'common.hero',
+        _key: '',
+        asset: { image: coverImage },
+        type: 'Documentary',
+        title: name,
+        text: category.name,
+        cta: { title: 'Explore', href: `/preview/documentary/${slug.current}` },
       };
     },
   );

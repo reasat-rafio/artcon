@@ -77,7 +77,7 @@
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 max-w-[120rem] space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
+    class="relative z-30 max-w-6xl space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
     <header class="-mt-[60px] space-y-[2.1875rem]">
       {#if !!text}
         <h3
