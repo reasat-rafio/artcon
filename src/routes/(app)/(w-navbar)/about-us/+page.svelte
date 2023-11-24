@@ -35,7 +35,7 @@
     {/if}
   {/each}
 
-  {#if page.team.length}
+  {#if !!page?.team?.length}
     <Team team={page.team} />
   {/if}
 

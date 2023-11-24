@@ -6,6 +6,6 @@
 </script>
 
 <div class={$$props.class}>
-  <h3 class="mb-md text-[2rem] tracking-[0.04rem]">{title}</h3>
+  <h3 class="head-4 mb-md">{title}</h3>
   <slot name="list" {CardsContainer} Card={UserCard} />
 </div>

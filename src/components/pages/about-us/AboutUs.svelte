@@ -1,8 +1,8 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { AboutUsProps } from '@/lib/types/about-us.types';
-  import { PortableText } from '@portabletext/svelte';
 
   export let props: AboutUsProps;
   let {
@@ -11,8 +11,8 @@
   } = props;
 </script>
 
-<section class="py-section">
-  <div class="container">
+<section>
+  <div class="container-primary py-section">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

@@ -25,7 +25,7 @@
   };
 
   $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap, scrollSnapList }) => {
+    emblaApi.on('select', ({ selectedScrollSnap }) => {
       selectedSnap = selectedScrollSnap();
     });
   }
