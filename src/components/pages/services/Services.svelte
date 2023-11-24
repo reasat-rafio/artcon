@@ -1,19 +1,20 @@
 <script lang="ts">
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ServiceProps } from '@/lib/types/services.types';
-  import { PortableText } from '@portabletext/svelte';
 
   export let services: ServiceProps[];
 </script>
 
-<section class="pt-sm md:pt-md lg:pt-lg xl:pt-xl">
-  <div class="container">
-    {#each services as { title, description, image, cta }}
-      <article class="mb-sm md:mb-md lg:mb-lg xl:mb-xl">
-        <DescriptionBlock class="mb-sm md:mb-md lg:mb-lg xl:mb-xl">
+<section class="">
+  <div
+    class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
+    {#each services as { title, description, image, cta }, index}
+      <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
+        <DescriptionBlock>
           <svelte:fragment slot="intro" let:C>
             <C.Title>{title}</C.Title>
           </svelte:fragment>
@@ -29,7 +30,7 @@
 
         <figure>
           <SanityImage
-            class="aspect-video h-full w-full rounded-[25px] object-cover"
+            class="mx-auto aspect-video h-full w-full max-w-[72.75rem] rounded-[25px] object-cover"
             src={image}
             alt={image.alt}
             imageUrlBuilder={imageBuilder}

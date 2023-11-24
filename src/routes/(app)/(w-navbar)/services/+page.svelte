@@ -1,10 +1,10 @@
 <script lang="ts">
   import Seo from '@/components/common/Seo.svelte';
-  import type { ServicesPageProps } from '@/lib/types/services.types';
-  import type { PageProps } from '@/lib/types/common.types';
+  import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Services from '@/components/pages/services/Services.svelte';
-  import Footer from '@/components/common/footer/Footer.svelte';
+  import type { PageProps } from '@/lib/types/common.types';
+  import type { ServicesPageProps } from '@/lib/types/services.types';
 
   export let data: PageProps<ServicesPageProps>;
   let {

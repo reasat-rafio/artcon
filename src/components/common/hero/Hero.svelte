@@ -40,7 +40,7 @@
     {/key}
 
     <div
-      class="relative z-30 max-w-6xl space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">
+      class="relative z-30 max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">
       <header class="-mt-[60px] space-y-[2.1875rem]">
         {#if !!text}
           <h3
