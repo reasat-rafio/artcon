@@ -15,7 +15,7 @@ const documentaryPage = {
       title: 'Sections',
       type: 'array',
       validation: (Rule: Rule) => Rule.required().min(1),
-      of: [{ type: 'common.hero' }, { type: 'common.imageAsset' }],
+      of: [{ type: 'documentaryPage.hero' }, { type: 'common.imageAsset' }],
     },
   ],
   preview: {

@@ -1,3 +1,4 @@
 import documentaryPage from './document';
+import hero from './hero';
 
-export default [documentaryPage];
+export default [documentaryPage, hero];
