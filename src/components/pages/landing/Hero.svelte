@@ -48,7 +48,7 @@
     <Asset {asset} />
 
     <div
-      class="relative z-30 mt-[2.625rem] max-w-[120rem] px-[1rem] text-center text-white">
+      class="relative z-30 mt-[2.625rem] max-w-6xl px-[1rem] text-center text-white">
       <header>
         {#if !!text}
           <h3
