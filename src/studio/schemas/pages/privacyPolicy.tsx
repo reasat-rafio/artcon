@@ -1,6 +1,4 @@
 import type { Rule } from 'sanity';
-import React from 'react';
-import { TbHighlight } from 'react-icons/tb';
 
 const privacyPolicy = {
   name: 'privacyPolicyPage',
@@ -25,29 +23,6 @@ const privacyPolicy = {
           type: 'block',
           lists: [],
           styles: [],
-          marks: {
-            decorators: [
-              {
-                title: 'Header',
-                value: 'header',
-                blockEditor: {
-                  icon: () => <TbHighlight />,
-                  render: ({ children }: { children: React.ReactNode }) => (
-                    <p
-                      style={{
-                        fontSize: 18,
-                        display: 'inline',
-                        fontWeight: 700,
-                      }}>
-                      {children}
-                    </p>
-                  ),
-                },
-              },
-              { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' },
-            ],
-          },
         },
       ],
       validation: (Rule: Rule) => Rule.required(),

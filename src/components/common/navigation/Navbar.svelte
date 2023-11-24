@@ -6,11 +6,16 @@
   import SearchIcon from '../../icons/Search.svelte';
   import { twMerge } from 'tailwind-merge';
   import Hamburger from '../Hamburger.svelte';
+  import { darkNavPaths } from '@/lib/constant';
+  import { page } from '$app/stores';
 
   export let logo: SanityAsset;
 
-  let sarchIsActive = false;
-  const setSearchBarActive = () => (sarchIsActive = true);
+  let searchIsActive = false;
+  const setSearchBarActive = () => (searchIsActive = true);
+
+  $: logo = logo;
+  $: isDarkNavPaths = darkNavPaths.includes($page.url.pathname);
 </script>
 
 <nav class="absolute left-0 top-0 z-[1001] w-full">
@@ -26,26 +31,36 @@
 
     <div
       class={twMerge(
-        'group ml-auto ',
-        sarchIsActive ? 'text-dark-gunmetal' : 'text-white',
+        'group ml-auto',
+        isDarkNavPaths
+          ? 'text-dark-gunmetal'
+          : searchIsActive
+          ? 'text-dark-gunmetal'
+          : 'text-white',
       )}>
       <Hamburger class="block lg:hidden" />
       <button
-        use:clickOutSide={() => (sarchIsActive = false)}
+        use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}
+        class:bg-white={searchIsActive}
         class={twMerge(
           'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
-          sarchIsActive && ' bg-white',
+          isDarkNavPaths ? 'border-dark-gunmetal' : 'border-white',
         )}>
         <input
           class={twMerge(
-            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-white group-hover:placeholder:text-dark-gunmetal',
-            sarchIsActive
-              ? 'w-[250px] text-dark-gunmetal placeholder:text-dark-gunmetal'
-              : 'w-[70px]',
+            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] ',
+            isDarkNavPaths
+              ? 'placeholder:text-dark-gunmetal'
+              : 'placeholder:text-white group-hover:placeholder:text-dark-gunmetal',
+            searchIsActive ? 'w-[250px]' : 'w-[70px]',
+            isDarkNavPaths
+              ? searchIsActive && ''
+              : searchIsActive &&
+                  'text-dark-gunmetal placeholder:text-dark-gunmetal',
           )}
           type="text"
-          placeholder={sarchIsActive
+          placeholder={searchIsActive
             ? 'Search artist, art work, news etc '
             : 'Search'} />
         <div
