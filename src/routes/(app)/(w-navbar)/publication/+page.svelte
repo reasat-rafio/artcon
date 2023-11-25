@@ -2,15 +2,13 @@
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import {
-    createListingItemWithImage,
-    formatPublicationListingProps,
-  } from '@/lib/helper';
+  import { createListingItemWithImage } from '@/lib/helper';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { PublicationPageProps } from '@/lib/types/publication.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import Listing from '@/components/pages/publication/Listing.svelte';
+  import { formatPublicationListingProps } from '@/lib/modify-props';
 
   export let data: PageProps<PublicationPageProps>;
 

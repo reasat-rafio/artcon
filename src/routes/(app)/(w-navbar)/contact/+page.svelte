@@ -4,7 +4,6 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Form from '@/components/pages/contact/Form.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
   import type { ActionData } from './$types';
   import { superForm } from 'sveltekit-superforms/client';
   import { contactSchema } from '@/lib/validator';

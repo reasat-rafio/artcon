@@ -1,17 +1,14 @@
 <script lang="ts">
   import { page } from '$app/stores';
-
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
-  import {
-    createListingItemWithImage,
-    formatProjectListingProps,
-  } from '@/lib/helper';
-  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
-  import type { ProjectPageProps } from '@/lib/types/project.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/project/Listing.svelte';
+  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
+  import { createListingItemWithImage } from '@/lib/helper';
+  import { formatProjectListingProps } from '@/lib/modify-props';
+  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
+  import type { ProjectPageProps } from '@/lib/types/project.types';
 
   export let data: PageProps<ProjectPageProps>;
   $: ({

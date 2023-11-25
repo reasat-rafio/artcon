@@ -5,12 +5,11 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/vr/Listing.svelte';
   import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
-  import {
-    createListingItemWithImage,
-    formatVrListingProps,
-  } from '@/lib/helper';
+  import { createListingItemWithImage } from '@/lib/helper';
+  import { formatVrListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { VrPageProps } from '@/lib/types/vr.types';
+
   export let data: PageProps<VrPageProps>;
   $: ({
     page: { sections, seo, vrs, tags },

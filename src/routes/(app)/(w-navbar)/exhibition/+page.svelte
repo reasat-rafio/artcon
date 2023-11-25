@@ -5,10 +5,8 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
   import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
-  import {
-    createListingItemWithImage,
-    formatExhibitionListingProps,
-  } from '@/lib/helper';
+  import { createListingItemWithImage } from '@/lib/helper';
+  import { formatExhibitionListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { ExhibitionPageProps } from '@/lib/types/exhibition.types';
 

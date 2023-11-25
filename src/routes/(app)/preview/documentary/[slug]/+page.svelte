@@ -12,10 +12,10 @@
   import type { DocumentaryPreviewProps } from '@/lib/types/documentary-preview';
   import { toPlainText } from '@portabletext/svelte';
   import getYouTubeID from 'get-youtube-id';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import Youtube from 'svelte-youtube-embed';
   import { fade } from 'svelte/transition';
-  import { gsap } from 'gsap';
 
   export let data: PageProps<DocumentaryPreviewProps>;
 
