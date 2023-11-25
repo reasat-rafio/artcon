@@ -4,8 +4,8 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { Gallery, SummaryProps } from '@/lib/types/project-detail.types';
-  import { PortableText } from '@portabletext/svelte';
   import type { PortableTextBlock } from 'sanity';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {

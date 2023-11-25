@@ -7,7 +7,8 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
+
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';

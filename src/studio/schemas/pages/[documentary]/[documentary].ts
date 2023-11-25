@@ -95,7 +95,7 @@ const documentary = {
         {
           name: 'description',
           type: 'array',
-          of: [{ type: 'block' }],
+          of: [{ type: 'block', lists: [], styles: [] }],
           validation: (Rule: Rule) => Rule.required(),
         },
       ],
@@ -103,13 +103,7 @@ const documentary = {
     {
       name: 'information',
       type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [],
-          lists: [],
-        },
-      ],
+      of: [{ type: 'block', styles: [], lists: [] }],
       validation: (Rule: Rule) => Rule.required(),
     },
   ],

@@ -56,4 +56,8 @@
   .description :global(p:empty) {
     padding-bottom: 1rem;
   }
+
+  .description :global(a) {
+    text-decoration: underline;
+  }
 </style>

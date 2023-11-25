@@ -5,7 +5,7 @@
     Information,
   } from '@/lib/types/collection-detail.types';
   import type { Cta } from '@/lib/types/common.types';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let name: string;
   export let provenance: Provenance;
@@ -17,7 +17,7 @@
   data-load-animate="y"
   class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-[#A5A5A8]">
   <div
-    class="3xl:w-[15.25rem] w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%]">
+    class="w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%] 3xl:w-[15.25rem]">
     <h4 class="body-regular !font-normal">{name}</h4>
 
     <ul class="title-light !leading-[142.857%]">

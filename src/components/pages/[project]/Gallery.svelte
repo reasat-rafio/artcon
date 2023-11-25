@@ -2,8 +2,8 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { GalleryProps } from '@/lib/types/project-detail.types';
-  import { PortableText } from '@portabletext/svelte';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: GalleryProps;
   $: ({

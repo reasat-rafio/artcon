@@ -4,7 +4,7 @@
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { DocumentationProps } from '@/lib/types/event-detail.types';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: DocumentationProps;
   $: ({

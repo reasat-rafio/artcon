@@ -7,7 +7,7 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
   import Cta from '@/components/ui/Cta.svelte';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: PublicationProps & {
     publication: Publication;

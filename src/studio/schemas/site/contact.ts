@@ -66,7 +66,7 @@ const contact = {
         {
           name: 'address',
           type: 'array',
-          of: [{ type: 'block' }],
+          of: [{ type: 'block', lists: [], styles: [] }],
           validation: (Rule: Rule) => Rule.required(),
         },
       ],
@@ -98,7 +98,7 @@ const contact = {
             {
               name: 'info',
               type: 'array',
-              of: [{ type: 'block' }],
+              of: [{ type: 'block', lists: [], styles: [] }],
               validation: (Rule: Rule) => Rule.required(),
             },
           ],

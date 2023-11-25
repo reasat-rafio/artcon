@@ -8,7 +8,7 @@
     SummaryProps,
   } from '@/lib/types/collection-detail.types';
   import type { Cta } from '@/lib/types/common.types';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
   import ArtworkDetails from './ArtworkDetails.svelte';
 

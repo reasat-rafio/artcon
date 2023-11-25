@@ -4,8 +4,8 @@
   // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/exhibition-detail.types';
-  import { PortableText } from '@portabletext/svelte';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: NewsAndMediaProps;
   $: ({

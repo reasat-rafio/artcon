@@ -25,7 +25,17 @@ const includedArtists = {
       },
       fields: [
         { name: 'title', type: 'string' },
-        { name: 'statement', type: 'array', of: [{ type: 'block' }] },
+        {
+          name: 'statement',
+          type: 'array',
+          of: [
+            {
+              type: 'block',
+              styles: [],
+              lists: [],
+            },
+          ],
+        },
       ],
     },
   ],

@@ -3,11 +3,11 @@
   import Quote from '@/components/common/Quote.svelte';
   import Artworks from './Artworks.svelte';
   import Cta from '@/components/ui/Cta.svelte';
-  import { PortableText } from '@portabletext/svelte';
   import type {
     CommonArtworkSectionProps,
     ShortArtworks,
   } from '@/lib/types/common.types';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: CommonArtworkSectionProps & {
     artworks: ShortArtworks;

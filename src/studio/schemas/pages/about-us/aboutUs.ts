@@ -23,7 +23,7 @@ const aboutUs = {
         {
           name: 'description',
           type: 'array',
-          of: [{ type: 'block' }],
+          of: [{ type: 'block', lists: [], styles: [] }],
           validation: (Rule: Rule) => Rule.required(),
         },
       ],

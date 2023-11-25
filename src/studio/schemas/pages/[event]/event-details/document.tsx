@@ -97,7 +97,7 @@ const event = {
     {
       name: 'description',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'block', lists: [], styles: [] }],
       description: 'This will display in detail page and the preview page',
       validation: (Rule: Rule) => Rule.required(),
     },

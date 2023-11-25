@@ -5,7 +5,7 @@
     ArtistSectionProps,
     Artist,
   } from '@/lib/types/collection-detail.types';
-  import { PortableText } from '@portabletext/svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import { DateTime } from 'luxon';
 
   export let props: ArtistSectionProps & {

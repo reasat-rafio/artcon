@@ -118,7 +118,13 @@ const exhibition = {
     {
       name: 'description',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        {
+          type: 'block',
+          styles: [],
+          lists: [],
+        },
+      ],
       description: 'This will display in detail page and the preview page',
       validation: (Rule: Rule) => Rule.required(),
     },

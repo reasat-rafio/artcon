@@ -1,8 +1,8 @@
 <script lang="ts">
   import { getSocialIconPath } from '@/lib/helper';
   import type { ContactProps } from '@/lib/types/common.types';
-  import { PortableText } from '@portabletext/svelte';
   import { twMerge } from 'tailwind-merge';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let contact: ContactProps;
   $: ({ socialsWithVisibleLinks, socials, title, subtitle } = contact);

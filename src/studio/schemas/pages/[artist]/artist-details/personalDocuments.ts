@@ -91,7 +91,7 @@ const personalDocuments = {
     {
       name: 'shortBio',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'block', lists: [], styles: [] }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -103,7 +103,7 @@ const personalDocuments = {
     {
       name: 'note',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'block', lists: [], styles: [] }],
     },
   ],
 };

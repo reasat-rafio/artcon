@@ -2,12 +2,12 @@
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type {
     Gallery,
     SummaryProps,
   } from '@/lib/types/exhibition-detail.types';
-  import { PortableText } from '@portabletext/svelte';
   import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
