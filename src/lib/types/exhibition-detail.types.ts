@@ -28,7 +28,7 @@ export interface ExhibitionDetailPageProps {
   status?: string;
   cta?: Cta;
   artists: ArtistsProps;
-  artworks: ShortArtworks;
+  artworks: ShortArtworks[];
   asset: Asset;
   associationsList: Association[];
   name: string;

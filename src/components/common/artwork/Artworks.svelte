@@ -1,29 +1,19 @@
 <script lang="ts">
-  import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
   import AutoPlay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
-    type EmblaOptionsType,
-    type EmblaPluginType,
   } from 'embla-carousel-svelte';
-  import Image from './Image.svelte';
-  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
   import { twMerge } from 'tailwind-merge';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import Image from './Image.svelte';
+  import type { ShortArtworks } from '@/lib/types/common.types';
 
-  type Artworks = ExhibitionDetailPageProps['artworks'];
-  export let artworks: Artworks;
+  export let artworks: ShortArtworks[];
+
   let emblaApi: EmblaCarouselType;
-
   let activeSide = 1;
-  let plugins: EmblaPluginType[] = [AutoPlay({ stopOnInteraction: true })];
-  let options: Partial<EmblaOptionsType> = {
-    align: 'start',
-    loop: true,
-  };
-
-  // $: modifedArtworks = flatenArtworkArray(artworks);
   $: if (emblaApi) {
     emblaApi.on('select', ({ selectedScrollSnap }) => {
       activeSide = selectedScrollSnap() + 1;
@@ -33,19 +23,20 @@
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
-  // const flatenArtworkArray = (artworks: Artworks): SanityAsset[] =>
-  //   artworks.flatMap(({ artworkImages }) =>
-  //     artworkImages.flatMap((artwork) => artwork),
-  //   );
 </script>
 
 <div class={twMerge('grid  grid-cols-12', $$props.class)}>
   <div class={'col-span-12 lg:col-span-11'}>
     <div
       class="relative overflow-hidden"
-      use:emblaCarouselSvelte={{ plugins, options }}
+      use:emblaCarouselSvelte={{
+        options: {
+          align: 'start',
+          loop: true,
+        },
+        plugins: [AutoPlay({ stopOnInteraction: true, active: false })],
+      }}
       on:emblaInit={onInit}>
-      <!-- @TODO fix this -->
       <div class="flex items-center max-lg:ml-[-1.25rem]">
         {#each artworks as artwork, index}
           <Image

@@ -12,6 +12,7 @@
   export let props: CommonArtworkSectionProps & {
     artworks: ShortArtworks;
   };
+
   $: ({
     quote,
     artworks,
@@ -24,9 +25,8 @@
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
-    <Artworks class="mb-section hidden lg:grid" {artworks} />
 
-    <DescriptionBlock class="max-lg:mb-section">
+    <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.Title class="lg:mb-10">{title}</C.Title>
         <Cta class="hidden lg:block" href={cta.href}>{cta.title}</Cta>
@@ -41,6 +41,7 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <Artworks class="grid lg:hidden" {artworks} />
+    <!-- @TODO fix the types -->
+    <Artworks class="hidden lg:grid" {artworks} />
   </div>
 </section>

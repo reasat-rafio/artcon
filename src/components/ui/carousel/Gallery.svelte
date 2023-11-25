@@ -72,31 +72,28 @@
     class={twMerge('col-span-12 overflow-hidden')}
     use:sectionInit={innerWidth}
     use:emblaCarouselSvelte={{ plugins, options }}
-    on:emblaInit={onInit}
-  >
+    on:emblaInit={onInit}>
     <div
       bind:this={containerEl}
       class={twMerge(
-        axiesOnMobile === 'y' && 'max-md:mt-[-20px] md:ml-[-20px] md:flex',
-        axiesOnMobile === 'x' && 'ml-[-20px] flex',
-      )}
-    >
+        axiesOnMobile === 'y' &&
+          'max-md:mt-[-1.25rem] md:ml-[-1.25rem] md:flex',
+        axiesOnMobile === 'x' && 'ml-[-1.25rem] flex',
+      )}>
       {#each chunks as chunk}
         <div
           class={twMerge(
-            'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1  md:grid-cols-2 md:gap-y-[56px] xl:grid-cols-3 ',
+            'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3 ',
             axiesOnMobile === 'y' && '',
             $$props.class,
-          )}
-        >
+          )}>
           <slot {chunk} api={emblaApi} />
         </div>
       {/each}
     </div>
   </div>
   <nav
-    class="col-span-12 mt-[1rem] flex items-center justify-center space-x-[0.62rem] max-lg:mt-[2.38rem] lg:justify-end"
-  >
+    class="col-span-12 mt-[1rem] flex items-center justify-center space-x-[0.62rem] max-lg:mt-[2.38rem] lg:justify-end">
     {#if axiesOnMobile === 'x'}
       <button on:click={() => emblaApi.scrollPrev()}>
         <ChevronLeftRounded />
@@ -107,14 +104,12 @@
     {:else}
       <button
         class="rotate-90 md:rotate-0"
-        on:click={() => emblaApi.scrollPrev()}
-      >
+        on:click={() => emblaApi.scrollPrev()}>
         <ChevronLeftRounded />
       </button>
       <button
         class="rotate-90 md:rotate-0"
-        on:click={() => emblaApi.scrollNext()}
-      >
+        on:click={() => emblaApi.scrollNext()}>
         <ChevronRightRounded />
       </button>
     {/if}

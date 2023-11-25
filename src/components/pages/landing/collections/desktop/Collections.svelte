@@ -51,8 +51,6 @@
       contactWidth +
       collectionContentPlaceHolderWidth;
 
-    console.log({ totalWidths });
-
     uiStore.setContainerWidth(totalWidths);
     containerWidth.set($uiStore.containerWidth, { duration: 500 });
   }
@@ -78,7 +76,7 @@
     let ctx = gsap.context(() => {
       Observer.create({
         target: window,
-        type: 'wheel,scrool,touch',
+        type: 'wheel,scroll,touch',
 
         onChange: (self) => {
           tweenedScrollAmount.set(

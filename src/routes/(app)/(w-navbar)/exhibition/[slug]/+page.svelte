@@ -70,7 +70,7 @@
     type: heroType,
   }} />
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/exhibition" logo={logoLight}>Our Exhibition</Share>
+  <Share href="/exhibition" logo={logoLight}>Our exhibition</Share>
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />

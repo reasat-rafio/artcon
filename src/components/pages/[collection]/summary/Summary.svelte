@@ -2,16 +2,15 @@
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
-
   import type {
     Information,
     Provenance,
     SummaryProps,
   } from '@/lib/types/collection-detail.types';
+  import type { Cta } from '@/lib/types/common.types';
   import { PortableText } from '@portabletext/svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
   import ArtworkDetails from './ArtworkDetails.svelte';
-  import type { Cta } from '@/lib/types/common.types';
 
   export let props: SummaryProps & {
     provenance: Provenance;

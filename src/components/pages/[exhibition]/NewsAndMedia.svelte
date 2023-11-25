@@ -21,13 +21,13 @@
       <Quote class="mb-section" {quote} />
     {/if}
 
-    <div class="mb-section">
+    <div class="mb-section lg:mr-[4.375rem]">
       <Gallery items={newsAndMedia} let:chunk>
         {#each chunk as { image, link, subtitle, title }}
           <Card
             el="a"
             href={link}
-            class="space-y-[20px] pl-[20px]"
+            class="space-y-[1.25rem] pl-[1.25rem]"
             let:Container
             let:Title
             let:Subtitle
@@ -35,7 +35,10 @@
             <Image {image} />
             <Container>
               <Title>{title}</Title>
-              <Subtitle class="text-sonic-silver">{subtitle}</Subtitle>
+              <Subtitle
+                class="!font-optiberling-agency !font-medium text-sonic-silver">
+                {subtitle}
+              </Subtitle>
             </Container>
           </Card>
         {/each}

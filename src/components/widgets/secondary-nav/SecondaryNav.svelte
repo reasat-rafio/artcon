@@ -6,7 +6,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { Tag } from '@/lib/types/common.types';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import { fade, scale, slide } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
   import { twMerge } from 'tailwind-merge';
 
   export let logo: SanityAsset;
@@ -45,9 +45,9 @@
       <div class="flex flex-1 items-center">
         {#if !!activeSearchParams}
           <button
-            title="Clear Search Filter"
             transition:slide={{ axis: 'x' }}
             on:click={clearSearchParams}
+            title="Clear Search Filter"
             class="mr-[1.25rem] h-[45px] w-[45px] lg:mr-[2rem]">
             <ChevronLeftRounded />
           </button>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ShareIcon from '@/components/icons/ShareIcon.svelte';
-  import SahrePopup from './Popup.svelte';
+  import SharePopup from './Popup.svelte';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { fade } from 'svelte/transition';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
@@ -19,11 +19,10 @@
 </script>
 
 <svelte:window on:scroll={setLogoVisibility} />
-<nav
-  bind:this={sectionEl}
-  class=" sticky top-0 z-50 overflow-hidden border-b border-[#A5A5A8] bg-white pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
+<nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
   <div class=" relative">
-    <div class="container-primary flex items-center">
+    <div
+      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
@@ -57,5 +56,5 @@
 </nav>
 
 {#if popupSate === 'visiable'}
-  <SahrePopup bind:popupSate />
+  <SharePopup bind:popupSate />
 {/if}
