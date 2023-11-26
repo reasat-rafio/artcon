@@ -10,14 +10,16 @@
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
 
   export let items: T[];
-  export let axiesOnMobile: 'x' | 'y' = 'x';
+  export let axisOnMobile: 'x' | 'y' = 'x';
 
+  export let loop = false;
   let plugins: EmblaPluginType[] = [];
   let innerWidth = 0;
   let containerEl: HTMLElement;
   let emblaApi: EmblaCarouselType;
   let options: Partial<EmblaOptionsType> = {
     axis: 'x',
+    loop,
   };
 
   $: chunks = chunkArray(items, slidesNumber);
@@ -26,7 +28,7 @@
       ? 6
       : innerWidth >= 768
       ? 4
-      : axiesOnMobile === 'y'
+      : axisOnMobile === 'y'
       ? 2
       : 1;
 
@@ -40,7 +42,7 @@
       .childNodes[0] as HTMLElement;
     const grandChildHeight = firstGrandChild.clientHeight;
 
-    if (containerEl && axiesOnMobile === 'y') {
+    if (containerEl && axisOnMobile === 'y') {
       containerEl.style.height =
         innerWidth < 768 ? `${grandChildHeight * 2}px` : 'auto';
     }
@@ -51,7 +53,7 @@
           (chunksEL[0] as HTMLElement).childNodes[0] as HTMLElement
         ).clientHeight;
 
-        if (containerEl && axiesOnMobile === 'y') {
+        if (containerEl && axisOnMobile === 'y') {
           containerEl.style.height =
             innerWidth < 768 ? `${grandChildHeight * 2}px` : 'auto';
         }
@@ -60,10 +62,12 @@
   };
 
   $: if (emblaApi)
-    if (axiesOnMobile === 'y')
+    if (axisOnMobile === 'y')
       if (innerWidth >= 768) {
-        emblaApi.reInit({ axis: 'x' });
-      } else emblaApi.reInit({ axis: 'y' });
+        emblaApi.reInit({ axis: 'x', loop });
+      } else {
+        emblaApi.reInit({ axis: 'y', loop });
+      }
 </script>
 
 <svelte:window bind:innerWidth />
@@ -76,15 +80,14 @@
     <div
       bind:this={containerEl}
       class={twMerge(
-        axiesOnMobile === 'y' &&
-          'max-md:mt-[-1.25rem] md:ml-[-1.25rem] md:flex',
-        axiesOnMobile === 'x' && 'ml-[-1.25rem] flex',
+        axisOnMobile === 'y' && 'max-md:mt-[-1.25rem] md:ml-[-1.25rem] md:flex',
+        axisOnMobile === 'x' && 'ml-[-1.25rem] flex',
       )}>
       {#each chunks as chunk}
         <div
           class={twMerge(
             'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3 ',
-            axiesOnMobile === 'y' && '',
+            axisOnMobile === 'y' && '',
             $$props.class,
           )}>
           <slot {chunk} api={emblaApi} />
@@ -94,7 +97,7 @@
   </div>
   <nav
     class="col-span-12 mt-[1rem] flex items-center justify-center space-x-[0.62rem] max-lg:mt-[2.38rem] lg:justify-end">
-    {#if axiesOnMobile === 'x'}
+    {#if axisOnMobile === 'x'}
       <button on:click={() => emblaApi.scrollPrev()}>
         <ChevronLeftRounded />
       </button>
