@@ -15,8 +15,7 @@
     sizes="100vw"
     alt={image.alt}
     src={image}
-    imageUrlBuilder={imageBuilder}
-  />
+    imageUrlBuilder={imageBuilder} />
 {:else if !!video}
   <video
     class="absolute h-full w-full object-cover"
@@ -28,8 +27,7 @@
     playsInline
     autoPlay
     muted
-    loop
-  >
+    loop>
     <source src={video?.mov} type="video/mp4; codecs=hvc1" />
     <source src={video?.webm} type="video/webm" />
     Sorry, your browser doesn&apos;t support embedded videos.
