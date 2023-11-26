@@ -1,26 +1,19 @@
 <script lang="ts" generics="T">
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import { cn } from '@/lib/cn';
+  import { chunkArray } from '@/lib/helper';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
-    type EmblaOptionsType,
-    type EmblaPluginType,
   } from 'embla-carousel-svelte';
-  import { twMerge } from 'tailwind-merge';
-  import { chunkArray } from '@/lib/helper';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
 
   export let items: T[];
   export let axisOnMobile: 'x' | 'y' = 'x';
 
   export let loop = false;
-  let plugins: EmblaPluginType[] = [];
   let innerWidth = 0;
   let containerEl: HTMLElement;
   let emblaApi: EmblaCarouselType;
-  let options: Partial<EmblaOptionsType> = {
-    axis: 'x',
-    loop,
-  };
 
   $: chunks = chunkArray(items, slidesNumber);
   $: slidesNumber =
@@ -73,21 +66,23 @@
 <svelte:window bind:innerWidth />
 <section class="grid grid-cols-12">
   <div
-    class={twMerge('col-span-12 overflow-hidden')}
+    class="col-span-12 overflow-hidden"
     use:sectionInit={innerWidth}
-    use:emblaCarouselSvelte={{ plugins, options }}
+    use:emblaCarouselSvelte={{
+      plugins: [],
+      options: { axis: 'x', loop },
+    }}
     on:emblaInit={onInit}>
     <div
       bind:this={containerEl}
-      class={twMerge(
-        axisOnMobile === 'y' && 'max-md:mt-[-1.25rem] md:ml-[-1.25rem] md:flex',
-        axisOnMobile === 'x' && 'ml-[-1.25rem] flex',
-      )}>
+      class={cn({
+        'max-md:mt-[-1.56rem] md:ml-[-1.56rem] md:flex': axisOnMobile === 'y',
+        'ml-[-1.56rem] flex': axisOnMobile === 'x',
+      })}>
       {#each chunks as chunk}
         <div
-          class={twMerge(
-            'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3 ',
-            axisOnMobile === 'y' && '',
+          class={cn(
+            'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3',
             $$props.class,
           )}>
           <slot {chunk} api={emblaApi} />

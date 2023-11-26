@@ -4,12 +4,12 @@
   import Image from './Image.svelte';
   import Asset from './Asset.svelte';
   import HeaderContainer from './HeaderContainer.svelte';
-  import { twMerge } from 'tailwind-merge';
+  import { cn } from '@/lib/cn';
 
   export let el: 'a' | 'div' = 'div';
   export let href: string | undefined = undefined;
 </script>
 
-<svelte:element this={el} {href} class={twMerge('', $$props.class)}>
+<svelte:element this={el} {href} class={cn($$props.class)}>
   <slot {Title} {Subtitle} Container={HeaderContainer} {Image} {Asset} />
 </svelte:element>
