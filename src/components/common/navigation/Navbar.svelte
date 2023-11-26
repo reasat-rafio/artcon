@@ -8,6 +8,7 @@
   import Hamburger from '../Hamburger.svelte';
   import { darkNavPaths } from '@/lib/constant';
   import { page } from '$app/stores';
+  import { cn } from '@/lib/cn';
 
   export let logo: SanityAsset;
 
@@ -43,12 +44,12 @@
         use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}
         class:bg-white={searchIsActive}
-        class={twMerge(
+        class={cn(
           'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
           isDarkNavPaths ? 'border-dark-gunmetal' : 'border-white',
         )}>
         <input
-          class={twMerge(
+          class={cn(
             'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] ',
             isDarkNavPaths
               ? 'placeholder:text-dark-gunmetal'
@@ -64,9 +65,7 @@
             ? 'Search artist, art work, news etc '
             : 'Search'} />
         <div
-          class={twMerge(
-            'scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal',
-          )}>
+          class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
           <SearchIcon />
         </div>
       </button>
