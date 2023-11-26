@@ -3,19 +3,31 @@
   import type { HTMLAnchorAttributes } from 'svelte/elements';
   import { twMerge } from 'tailwind-merge';
 
+  type Variant = 'outline' | 'fill';
+  type Color = 'gray' | 'white' | 'black' | 'red-gray';
+
   interface $$Props extends HTMLAnchorAttributes {
-    color?: 'gray' | 'white' | 'black' | 'red-gray';
-    variant?: 'outline' | 'fill';
+    color?: Color;
+    variant?: Variant;
   }
 
   export let color: 'gray' | 'white' | 'black' | 'red-gray' = 'gray';
   export let variant: 'outline' | 'fill' = 'outline';
+
+  const colorClasses: Record<Color, string> = {
+    black: '',
+    gray: '',
+    white: '',
+    'red-gray': '',
+  };
+
+  const variantClasses: Record<Variant, string | Record<Color, string>> = {
+    fill: 'gradient-base-style relative bg-transparent',
+    outline: '',
+  };
 </script>
 
-<a
-  href={$$props.href}
-  {...$$restProps}
-  class={cn(
+<!-- class={twMerge(
     'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium uppercase tracking-[0.01688rem] lg:px-[2.2rem] lg:text-[0.84375rem]',
     variant === 'fill' && 'gradient-base-style relative bg-transparent',
     variant === 'outline'
@@ -32,7 +44,17 @@
         : null
       : null,
     $$props.class,
-  )}>
+  )} -->
+
+<a
+  class={cn(
+    'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium uppercase tracking-[0.01688rem] lg:px-[2.88rem] lg:text-[0.84375rem]',
+    colorClasses[color],
+    variantClasses[variant],
+    $$props.class,
+  )}
+  href={$$props.href}
+  {...$$restProps}>
   <slot />
 </a>
 
