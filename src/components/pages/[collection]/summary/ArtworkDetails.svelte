@@ -7,6 +7,7 @@
   import { twMerge } from 'tailwind-merge';
   import Slider from './Slider.svelte';
   import Info from './Info.svelte';
+  import { cn } from '@/lib/cn';
 
   interface Artist {
     name: string;
@@ -21,31 +22,28 @@
   export let inquiryButton: Cta;
 </script>
 
-<section
-  class={twMerge(
-    'grid w-full grid-cols-12 gap-[1.25rem] sm:gap-[2.5rem] xl:gap-[3.125rem] xl:pr-[9.69rem]',
-    $$props.class,
-  )}>
-  <div
-    class="col-span-12 space-y-[2.5rem] lg:col-span-5 lg:space-y-[3.75rem] xl:col-span-4">
-    <div>
-      <h3 class="head-xl">
+<section class={cn('flex w-full flex-col lg:flex-row', $$props.class)}>
+  <div class="w-full max-lg:pb-[2.5rem] lg:mr-[3.125rem] lg:w-[31.06%]">
+    <div class="space-y-[0.63rem]">
+      <h3 class="head-4">
         {artist.name}
-        <span class="body-2 font-optiberling-agency font-light">
-          b. {DateTime.fromISO(artist.born).toFormat('yyyy')}
+        <span class="head-8 font-optiberling-agency font-light">
+          ( b. {DateTime.fromISO(artist.born).toFormat('yyyy')})
         </span>
       </h3>
 
-      <span class="body-2 font-optiberling-agency font-light uppercase">
+      <span class="head-8 font-optiberling-agency font-light uppercase">
         {getCountryDetails(artist.country).name}
       </span>
     </div>
-
-    <Info class="hidden lg:block" {artworkName} {information} {inquiryButton} />
+    <Info
+      class="mt-[3.75rem] hidden lg:block"
+      {artworkName}
+      {information}
+      {inquiryButton} />
   </div>
-  <div class="col-span-12 lg:col-span-7 xl:col-span-8 max-lg:space-y-[2.5rem]">
+  <div class="flex-1 xl:pr-[9.69rem]">
     <Slider {artworkImages} />
-
     <Info class="block lg:hidden" {artworkName} {information} {inquiryButton} />
   </div>
 </section>

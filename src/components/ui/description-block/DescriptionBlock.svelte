@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { twMerge } from 'tailwind-merge';
   import Description from './Description.svelte';
   import HeaderContainer from './HeaderContainer.svelte';
   import Social from './Social.svelte';
   import SocialContainer from './SocialContainer.svelte';
   import Subtitle from './Subtitle.svelte';
   import Title from './Title.svelte';
+  import { cn } from '@/lib/cn';
 </script>
 
-<article class={twMerge('flex w-full flex-col lg:flex-row', $$props.class)}>
+<article class={cn('flex w-full flex-col lg:flex-row', $$props.class)}>
   <div class="w-full max-lg:pb-[2.5rem] lg:mr-[3.125rem] lg:w-[31.06%]">
     <slot
       name="intro"

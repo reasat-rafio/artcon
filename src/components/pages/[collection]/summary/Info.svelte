@@ -11,7 +11,7 @@
 </script>
 
 <div class={twMerge('space-y-[1.25rem]', $$props.class)}>
-  <h4 class="body-2 font-inter">{artworkName}</h4>
+  <h4 class="body-regular font-inter font-normal">{artworkName}</h4>
 
   <ul class="text-[0.875rem] font-light leading-[1.25rem]">
     <li>{media} (media)</li>

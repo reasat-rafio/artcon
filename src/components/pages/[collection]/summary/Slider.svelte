@@ -14,7 +14,7 @@
   <div class="-ml-[1rem] flex">
     {#each artworkImages as img}
       <figure
-        class="flex flex-[0_0_100%] items-center justify-center pl-[1rem] lg:items-start">
+        class="flex flex-[0_0_100%] items-center justify-center pl-[1rem] lg:items-start lg:justify-end">
         <SanityImage
           class="max-h-[53.75rem] w-full object-contain lg:w-fit"
           sizes="(min-width: 1024px) 50vw, 100vw"
