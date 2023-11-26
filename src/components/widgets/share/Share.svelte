@@ -22,7 +22,7 @@
 <nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
   <div class=" relative">
     <div
-      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.69rem] lg:pt-[1.63rem]">
+      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.44rem] pt-[1.37rem]">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
@@ -37,11 +37,13 @@
         on:click={() => (popupSate = 'visiable')}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full md:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
-          class="text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal" />
+          class="ml-auto text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal" />
       </button>
     </div>
     {#if showLogo}
-      <div transition:fade class="absolute left-[40px] top-0 hidden lg:block">
+      <div
+        transition:fade
+        class="absolute left-[40px] top-1/2 hidden -translate-y-1/2 lg:block">
         <a href="/">
           <SanityImage
             class="h-[50px] object-contain"

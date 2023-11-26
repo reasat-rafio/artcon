@@ -29,7 +29,7 @@
       otherProjects,
     },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, logoLight, ogImage },
       footer,
       contact,
     },
@@ -57,7 +57,7 @@
   }} />
 
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/project" logo={logoLight}>Our projects</Share>
+  <Share href="/project" logo={logoDark}>Our projects</Share>
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
