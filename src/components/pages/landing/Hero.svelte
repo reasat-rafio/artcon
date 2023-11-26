@@ -78,9 +78,8 @@
       {#if !!cta?.title}
         <div class="mt-[4.75rem] overflow-hidden">
           <Cta
-            variant="fill"
-            color="white"
-            class="cta-btn mx-auto translate-y-full uppercase opacity-0"
+            variant="quaternary"
+            className="cta-btn mx-auto translate-y-full uppercase opacity-0"
             href={cta.href}>
             {cta.title}
           </Cta>

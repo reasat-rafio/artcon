@@ -23,7 +23,7 @@
               <PortableText value={description} />
             </Description>
             {#if !!cta?.title}
-              <Cta class="mt-md" href={cta.href}>{cta.title}</Cta>
+              <Cta className="mt-md" href={cta.href}>{cta.title}</Cta>
             {/if}
           </svelte:fragment>
         </DescriptionBlock>

@@ -48,9 +48,11 @@
                     {/if}
                   </C.HeaderContainer>
 
-                  <div class="sub-title-light">
-                    <PortableText value={information} />
-                  </div>
+                  {#if !!information}
+                    <div class="sub-title-light">
+                      <PortableText value={information} />
+                    </div>
+                  {/if}
 
                   {#if !!cta?.title && !!cta?.href}
                     <Cta href={cta.href}>{cta.title}</Cta>

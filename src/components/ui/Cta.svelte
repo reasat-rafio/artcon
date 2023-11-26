@@ -1,57 +1,34 @@
 <script lang="ts">
   import { cn } from '@/lib/cn';
+  import type { ClassValue } from 'clsx';
   import type { HTMLAnchorAttributes } from 'svelte/elements';
-  import { twMerge } from 'tailwind-merge';
 
-  type Variant = 'outline' | 'fill';
-  type Color = 'gray' | 'white' | 'black' | 'red-gray';
+  type Variant = 'primary' | 'secondary' | 'tertiary' | 'quaternary';
 
   interface $$Props extends HTMLAnchorAttributes {
-    color?: Color;
     variant?: Variant;
+    className?: ClassValue | undefined;
   }
 
-  export let color: 'gray' | 'white' | 'black' | 'red-gray' = 'gray';
-  export let variant: 'outline' | 'fill' = 'outline';
+  export let variant: Variant = 'primary';
+  export let className: ClassValue | undefined = undefined;
 
-  const colorClasses: Record<Color, string> = {
-    black: '',
-    gray: '',
-    white: '',
-    'red-gray': '',
-  };
-
-  const variantClasses: Record<Variant, string | Record<Color, string>> = {
-    fill: 'gradient-base-style relative bg-transparent',
-    outline: '',
+  const variantClasses: Record<Variant, string> = {
+    primary: 'border border-[#A5A5A8] text-[#77777C]',
+    secondary:
+      'border border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal',
+    tertiary:
+      'gradient-base-style relative bg-transparent g-red-gray text-white',
+    quaternary:
+      'gradient-base-style relative bg-transparent g-white text-dark-gunmetal',
   };
 </script>
 
-<!-- class={twMerge(
-    'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium uppercase tracking-[0.01688rem] lg:px-[2.2rem] lg:text-[0.84375rem]',
-    variant === 'fill' && 'gradient-base-style relative bg-transparent',
-    variant === 'outline'
-      ? color === 'gray'
-        ? 'border-sonic-silver/60 text-sonic-silver'
-        : color === 'white'
-        ? 'border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal'
-        : null
-      : variant === 'fill'
-      ? color === 'red-gray'
-        ? 'g-red-gray text-white'
-        : color === 'white'
-        ? 'g-white !border-none text-dark-gunmetal'
-        : null
-      : null,
-    $$props.class,
-  )} -->
-
 <a
   class={cn(
-    'block w-fit overflow-hidden rounded-[4rem] border px-[1rem] py-[0.88rem] text-center text-[0.6875rem] font-medium uppercase tracking-[0.01688rem] lg:px-[2.88rem] lg:text-[0.84375rem]',
-    colorClasses[color],
+    'block w-fit min-w-[8.75rem] overflow-hidden rounded-[4rem] px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem] ',
     variantClasses[variant],
-    $$props.class,
+    className,
   )}
   href={$$props.href}
   {...$$restProps}>

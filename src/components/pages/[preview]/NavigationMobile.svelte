@@ -14,9 +14,8 @@
 
   <Cta
     target={cta.newTab ? '_blank' : '_self'}
-    variant="fill"
-    href={cta.href}
-    color="red-gray">
+    variant="tertiary"
+    href={cta.href}>
     {cta.title}
   </Cta>
 </nav>

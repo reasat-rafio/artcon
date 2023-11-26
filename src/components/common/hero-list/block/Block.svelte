@@ -105,11 +105,7 @@
     </header>
     {#if !!cta?.title}
       <div class="overflow-hidden">
-        <Cta
-          variant="fill"
-          color="white"
-          class="cta-btn mx-auto"
-          href={cta.href}>
+        <Cta variant="quaternary" className="cta-btn mx-auto" href={cta.href}>
           {cta.title}
         </Cta>
       </div>

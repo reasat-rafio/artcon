@@ -4,7 +4,6 @@
   import type { Cta } from '@/lib/types/common.types';
   import type { SanityImageAssetDocument } from '@sanity/client';
   import { DateTime } from 'luxon';
-  import { twMerge } from 'tailwind-merge';
   import Slider from './Slider.svelte';
   import Info from './Info.svelte';
   import { cn } from '@/lib/cn';

@@ -10,9 +10,9 @@
 <nav class="fixed top-0 z-[1001] hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
     <Cta
-      color="white"
+      variant="secondary"
       href={ctas[0].href}
-      class="flex items-center space-x-[0.5rem]">
+      className="flex items-center justify-center space-x-[0.5rem]">
       <svg
         width="6"
         height="10"
@@ -28,9 +28,8 @@
 
     <Cta
       target={ctas[1].newTab ? '_blank' : '_self'}
-      variant="fill"
-      href={ctas[1].href}
-      color="red-gray">
+      variant="tertiary"
+      href={ctas[1].href}>
       {ctas[1].title}
     </Cta>
   </div>

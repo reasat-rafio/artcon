@@ -29,13 +29,13 @@
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.Title class="lg:mb-10">{title}</C.Title>
-        <Cta class="hidden lg:block" href={cta.href}>{cta.title}</Cta>
+        <Cta className="hidden lg:block" href={cta.href}>{cta.title}</Cta>
       </svelte:fragment>
       <svelte:fragment slot="description" let:Description>
         <Description>
           <PortableText value={description} />
         </Description>
-        <Cta class="mt-[1.56rem] block lg:hidden" href={cta.href}>
+        <Cta className="mt-[1.56rem] block lg:hidden" href={cta.href}>
           {cta.title}
         </Cta>
       </svelte:fragment>
