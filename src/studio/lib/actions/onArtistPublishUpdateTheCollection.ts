@@ -5,6 +5,20 @@ import type {
   Reference,
 } from 'sanity';
 
+function findRemovedItems(
+  draftArray: Reference[] | null,
+  publishedArray: Reference[] | null,
+) {
+  const removedItems = publishedArray?.filter(
+    (publishedArtwork) =>
+      !draftArray?.some(
+        (draftArtwork) => draftArtwork._ref === publishedArtwork._ref,
+      ),
+  );
+
+  return removedItems;
+}
+
 const onArtistPublishUpdateTheCollection = (
   originalPublishAction: DocumentActionComponent,
   context: DocumentActionsContext,
@@ -16,26 +30,38 @@ const onArtistPublishUpdateTheCollection = (
     return {
       ...originalResult,
       onHandle: async () => {
-        const { draft, id } = props;
-        const artworks = draft?.artworks as Reference[];
+        const { id, draft, published } = props;
+        const draftArtworks = draft?.artworks as Reference[];
+        const publishedArtworks = published?.artworks as Reference[];
 
-        if (artworks?.length) {
-          artworks.map(async ({ _ref }) => {
-            const artworkData: { artist: Reference | null } =
-              await client.fetch(
-                `*[_type == 'collection' && _id == $id][0]{artist}`,
-                { id: _ref },
-              );
+        if (draftArtworks?.length || publishedArtworks?.length) {
+          const removedArtwork = findRemovedItems(
+            draftArtworks,
+            publishedArtworks,
+          );
 
-            if (!artworkData?.artist) {
-              await client
-                .patch(_ref)
-                .set({
-                  artist: { _type: 'reference', _ref: id },
-                })
-                .commit();
-            }
-          });
+          if (removedArtwork?.length) {
+            removedArtwork.map(async ({ _ref }) => {
+              await client.patch(_ref).unset(['artist']).commit();
+            });
+          } else {
+            draftArtworks.map(async ({ _ref }) => {
+              const artworkData: { artist: Reference | null } =
+                await client.fetch(
+                  `*[_type == 'collection' && _id == $id][0]{artist}`,
+                  { id: _ref },
+                );
+
+              if (!artworkData?.artist) {
+                await client
+                  .patch(_ref)
+                  .set({
+                    artist: { _type: 'reference', _ref: id },
+                  })
+                  .commit();
+              }
+            });
+          }
         }
 
         if (originalResult?.onHandle) originalResult.onHandle();

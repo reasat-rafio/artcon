@@ -1,14 +1,11 @@
-import {
-  defineConfig,
-  type DocumentActionComponent,
-  type SchemaTypeDefinition,
-} from 'sanity';
+import { defineConfig, type SchemaTypeDefinition } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { AppStructure, DefaultDocumentNode } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
+import onArtistPublishDeleteTheCollection from './lib/actions/onArtistPublishDeleteTheCollection';
 
 export default defineConfig([
   {
@@ -32,7 +29,7 @@ export default defineConfig([
                     context,
                   );
                 case 'delete':
-                  return onArtistPublishUpdateTheCollection(
+                  return onArtistPublishDeleteTheCollection(
                     originalAction,
                     context,
                   );
