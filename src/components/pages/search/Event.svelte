@@ -10,6 +10,14 @@
 
   let emblaApi: EmblaCarouselType;
   $: chunks = chunkArray($searchStore?.data?.events ?? [], slidesNumber);
+  let carouselCanScrollNext: boolean = true;
+  let carouselCanScrollPrev: boolean;
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+  }
 
   const scrollNext = () => emblaApi.scrollNext();
   const scrollPrev = () => emblaApi.scrollPrev();
@@ -21,6 +29,8 @@
 <ListContainer
   {scrollNext}
   {scrollPrev}
+  {carouselCanScrollNext}
+  {carouselCanScrollPrev}
   title="Our events"
   showNav={chunks.length > 1}>
   <div

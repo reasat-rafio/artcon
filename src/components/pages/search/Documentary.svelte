@@ -10,8 +10,14 @@
 
   let emblaApi: EmblaCarouselType;
   $: chunks = chunkArray($searchStore?.data?.documentaries ?? [], slidesNumber);
-  $: slidesNumber =
-    innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
+  let carouselCanScrollNext: boolean = true;
+  let carouselCanScrollPrev: boolean;
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+  }
 
   const scrollNext = () => emblaApi.scrollNext();
   const scrollPrev = () => emblaApi.scrollPrev();
@@ -23,6 +29,8 @@
 <ListContainer
   {scrollNext}
   {scrollPrev}
+  {carouselCanScrollPrev}
+  {carouselCanScrollNext}
   title="Our documentaries"
   showNav={chunks.length > 1}>
   <div

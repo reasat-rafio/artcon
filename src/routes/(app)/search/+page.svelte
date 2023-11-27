@@ -2,13 +2,13 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Collection from '@/components/pages/search/Collection.svelte';
+  import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
   import Exhibition from '@/components/pages/search/Exhibition.svelte';
   import Navigation from '@/components/pages/search/Navigation.svelte';
   import Project from '@/components/pages/search/Project.svelte';
   import Publication from '@/components/pages/search/Publication.svelte';
   import Vr from '@/components/pages/search/Vr.svelte';
-  import Documentary from '@/components/pages/search/Documentary.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { SearchPageProps } from '@/lib/types/search.types';
   import searchStore from '@/store/search';
@@ -43,6 +43,7 @@
     projects,
     publications,
   });
+
   let innerWidth = 0;
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;

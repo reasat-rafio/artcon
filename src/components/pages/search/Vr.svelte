@@ -1,15 +1,23 @@
 <script lang="ts">
   import { chunkArray } from '@/lib/helper';
+  import searchStore from '@/store/search';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import ListContainer from './ListContainer.svelte';
   import Cards from '../vr/Cards.svelte';
-  import searchStore from '@/store/search';
+  import ListContainer from './ListContainer.svelte';
 
   export let slidesNumber: number;
 
   let emblaApi: EmblaCarouselType;
   $: chunks = chunkArray($searchStore?.data?.vrs ?? [], slidesNumber);
+  let carouselCanScrollNext: boolean = true;
+  let carouselCanScrollPrev: boolean;
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+  }
 
   const scrollNext = () => emblaApi.scrollNext();
   const scrollPrev = () => emblaApi.scrollPrev();
@@ -21,6 +29,8 @@
 <ListContainer
   {scrollNext}
   {scrollPrev}
+  {carouselCanScrollNext}
+  {carouselCanScrollPrev}
   title="Our virtual reality"
   showNav={chunks.length > 1}>
   <div
