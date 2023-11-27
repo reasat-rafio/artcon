@@ -7,7 +7,7 @@
   export let logo: SanityAsset;
 </script>
 
-<nav class="sticky top-0 z-50 overflow-hidden bg-white">
+<nav class="sticky top-0 z-[1001] overflow-hidden bg-white">
   <div class="relative">
     <div class="absolute left-[40px] top-1/2 hidden -translate-y-1/2 lg:block">
       <a href="/">

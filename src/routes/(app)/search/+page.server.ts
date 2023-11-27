@@ -4,8 +4,9 @@ import { error } from '@sveltejs/kit';
 import groq from 'groq';
 
 const query = groq`
-    *[_id == "landingPage"][0]{
-      "exhibitions" : *[_type== "exhibition"]|order(orderRank){
+    *[_id == "searchPage"][0]{
+      ...,
+      "exhibitions" : *[_type== "exhibition"]|order(orderRank)[0...6]{
         _id,
         name,
         slug,
@@ -29,7 +30,7 @@ const query = groq`
           count(artists) > 1 => "Group Exhibition",
         )
       },
-        "events" : *[_type== "event"]|order(orderRank){
+        "events" : *[_type== "event"]|order(orderRank)[0...6]{
             _id,
             slug,
             name,
@@ -43,7 +44,7 @@ const query = groq`
                 }
             },
         },
-        "collections" : *[_type== "collection"]|order(orderRank){
+        "collections" : *[_type== "collection"]|order(orderRank)[0...6]{
             _id,
             slug,
             name,
@@ -57,7 +58,7 @@ const query = groq`
                 }
             },
         },
-        "vrs" : *[_type== "vr"]|order(orderRank){
+        "vrs" : *[_type== "vr"]|order(orderRank)[0...6]{
             _id,
             name,
             slug,
@@ -66,7 +67,7 @@ const query = groq`
             url,
             category->
         },
-        "publications" : *[_type== "publication"]|order(orderRank){
+        "publications" : *[_type== "publication"]|order(orderRank)[0...6]{
             _id,
             name,
             slug,
@@ -74,7 +75,7 @@ const query = groq`
             ${asset('publicationImage')},
             category->,
         },
-        "documentaries" : *[_type== "documentary"]|order(orderRank){
+        "documentaries" : *[_type== "documentary"]|order(orderRank)[0...6]{
             _id,
             slug,
             name,
@@ -82,7 +83,7 @@ const query = groq`
             ${asset('coverImage')}
 
         },
-        "projects" : *[_type== "project"]|order(orderRank){
+        "projects" : *[_type== "project"]|order(orderRank)[0...6]{
             _id,
             name,
             slug,

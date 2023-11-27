@@ -22,6 +22,7 @@ import services from './[service]';
 import publicationDetail from './[publication]';
 import gallery from './[gallery]';
 import documentary from './[documentary]';
+import searchPage from './search';
 
 export default [
   ...landing,
@@ -43,6 +44,7 @@ export default [
   ...vr,
   ...publicationDetail,
   ...documentary,
+  ...searchPage,
   team,
   gallery,
   services,

@@ -22,6 +22,7 @@ import {
   FcPortraitMode,
   FcPrivacy,
   FcRules,
+  FcSearch,
   FcServices,
   FcStackOfPhotos,
   FcVideoProjector,
@@ -169,6 +170,12 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 id: 'contactPage',
                 title: 'Contact',
                 icon: FcContacts,
+              }),
+              pageItem(S, {
+                schemaType: 'searchPage',
+                id: 'searchPage',
+                title: 'Search',
+                icon: FcSearch,
               }),
               pageItem(S, {
                 schemaType: 'privacyPolicyPage',

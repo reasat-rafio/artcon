@@ -5,8 +5,10 @@ import type { Exhibition } from '@/lib/types/exhibition.types';
 import type { Project } from '@/lib/types/project.types';
 import type { Publication } from '@/lib/types/publication.types';
 import type { Vr } from '@/lib/types/vr.types';
+import type { SeoProps } from './common.types';
 
 export interface SearchPageProps {
+  seo: SeoProps;
   exhibitions: Exhibition[];
   events: Event[];
   collections: Collection[];
