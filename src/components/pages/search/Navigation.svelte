@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import SearchIcon from '@/components/icons/Search.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import type { SearchResult } from '@/lib/types/search.types';
+  import searchStore from '@/store/search';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
   import { onMount } from 'svelte';
 
   export let logo: SanityAsset;
@@ -27,7 +29,17 @@
     }
   };
 
-  function doneTyping(value: string) {
+  const callSearchApi = async (q: string) => {
+    try {
+      const res = await fetch(`/api/search?${q}`);
+      const { data }: SearchResult = await res.json();
+      searchStore.setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  async function doneTyping(value: string) {
     const searchParams = new URLSearchParams({
       q: value,
     });
@@ -36,12 +48,22 @@
       replaceState: true,
       noScroll: true,
     });
+
+    await callSearchApi(searchParams.toString());
+  }
+
+  $: if ($searchStore.data) {
+    searchInputEl?.focus();
+    searchInputEl?.click();
   }
 
   onMount(() => {
     if ($page.url.searchParams.get('q')) {
       searchInputEl.value = $page.url.searchParams.get('q') as string;
     }
+
+    searchInputEl.focus();
+    searchInputEl?.click();
   });
 </script>
 
@@ -61,7 +83,7 @@
     <div class="container-primary flex items-center pb-[1.37rem] pt-[2.25rem]">
       <div class="flex flex-col space-y-[1.25rem]">
         <h1 class="body-regular !font-normal">
-          Searched result for {$page.url.searchParams.get('q')}
+          Searched result for {$page.url.searchParams.get('q') ?? ''}
         </h1>
         <button
           class="hidden cursor-pointer space-x-5 rounded-[64px] border border-[#A5A5A8] bg-white px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex">

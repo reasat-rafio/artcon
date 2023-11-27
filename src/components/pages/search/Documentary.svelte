@@ -4,13 +4,11 @@
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import ListContainer from './ListContainer.svelte';
   import Cards from '../documentary/Cards.svelte';
-  import type { Documentary } from '@/lib/types/documentary.types';
-
-  export let documentaries: Documentary[];
+  import searchStore from '@/store/search';
 
   let innerWidth = 0;
   let emblaApi: EmblaCarouselType;
-  $: chunks = chunkArray(documentaries, slidesNumber);
+  $: chunks = chunkArray($searchStore?.data?.documentaries ?? [], slidesNumber);
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
 

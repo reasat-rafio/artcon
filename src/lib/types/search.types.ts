@@ -17,3 +17,8 @@ export interface SearchPageProps {
   documentaries: Documentary[];
   projects: Project[];
 }
+
+export interface SearchResult {
+  success: boolean;
+  data: SearchPageProps;
+}

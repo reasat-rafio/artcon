@@ -8,9 +8,10 @@
   import Project from '@/components/pages/search/Project.svelte';
   import Publication from '@/components/pages/search/Publication.svelte';
   import Vr from '@/components/pages/search/Vr.svelte';
-  import Documentary from '@/components/pages/search/documentary.svelte';
+  import Documentary from '@/components/pages/search/Documentary.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { SearchPageProps } from '@/lib/types/search.types';
+  import searchStore from '@/store/search';
 
   export let data: PageProps<SearchPageProps>;
 
@@ -31,31 +32,42 @@
       contact,
     },
   } = data);
+
+  $: searchStore.setData({
+    seo,
+    vrs,
+    collections,
+    documentaries,
+    events,
+    exhibitions,
+    projects,
+    publications,
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
 <Navigation logo={logoDark} />
 
-{#if !!exhibitions?.length}
-  <Exhibition {exhibitions} />
+{#if !!$searchStore?.data?.exhibitions?.length}
+  <Exhibition />
 {/if}
-{#if !!events?.length}
-  <Event {events} />
+{#if !!$searchStore?.data?.events?.length}
+  <Event />
 {/if}
-{#if !!collections?.length}
-  <Collection {collections} />
+{#if !!$searchStore?.data?.collections?.length}
+  <Collection />
 {/if}
-{#if !!vrs?.length}
-  <Vr {vrs} />
+{#if !!$searchStore?.data?.vrs?.length}
+  <Vr />
 {/if}
-{#if !!publications?.length}
-  <Publication {publications} />
+{#if !!$searchStore?.data?.publications?.length}
+  <Publication />
 {/if}
-{#if !!documentaries?.length}
-  <Documentary {documentaries} />
+{#if !!$searchStore?.data?.documentaries?.length}
+  <Documentary />
 {/if}
-{#if !!projects?.length}
-  <Project {projects} />
+{#if !!$searchStore?.data?.projects?.length}
+  <Project />
 {/if}
 
 <Footer {footer} {contact} logo={logoLight} />

@@ -1,16 +1,14 @@
 <script lang="ts">
   import { chunkArray } from '@/lib/helper';
-  import type { Publication } from '@/lib/types/publication.types';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import ListContainer from './ListContainer.svelte';
   import Cards from '../publication/Cards.svelte';
-
-  export let publications: Publication[];
+  import searchStore from '@/store/search';
 
   let innerWidth = 0;
   let emblaApi: EmblaCarouselType;
-  $: chunks = chunkArray(publications, slidesNumber);
+  $: chunks = chunkArray($searchStore?.data?.publications ?? [], slidesNumber);
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
 

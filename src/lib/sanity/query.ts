@@ -22,6 +22,7 @@ export const siteQuery = groq`{
 
 export const searchQuery = (query: string) => groq`
   *[_id == "searchPage"][0]{
+    ...,
     "exhibitions" : *[_type == "exhibition" && !(_id in path("drafts.**"))
 	  && (name match "${query}*" || tag->name match "${query}*" || artists[]->personalDocuments.name.en match "${query}*" || artworks[]->name match "${query}*" || publication->name match "${query}*" || gallery->name match "${query}*")]
 	  | score(boost(name match "${query}*", 3))

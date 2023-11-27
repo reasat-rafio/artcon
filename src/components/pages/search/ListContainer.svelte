@@ -30,7 +30,7 @@
 
   {#if layoutLoading}
     <div
-      transition:slide={{ duration: 500 }}
+      transition:slide={{ duration: 400 }}
       id="search_result_items"
       style="--leftPos: {headerElLeftPos}px"
       class={cn(

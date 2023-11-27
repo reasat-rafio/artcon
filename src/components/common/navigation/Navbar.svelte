@@ -1,22 +1,31 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import clickOutSide from '@/lib/actions/clickOutSide';
+  import { cn } from '@/lib/cn';
+  import { darkNavPaths } from '@/lib/constant';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import SearchIcon from '../../icons/Search.svelte';
   import { twMerge } from 'tailwind-merge';
+  import SearchIcon from '../../icons/Search.svelte';
   import Hamburger from '../Hamburger.svelte';
-  import { darkNavPaths } from '@/lib/constant';
-  import { page } from '$app/stores';
-  import { cn } from '@/lib/cn';
 
   export let logo: SanityAsset;
 
+  let searchInputEl: HTMLInputElement;
   let searchIsActive = false;
   const setSearchBarActive = () => (searchIsActive = true);
 
   $: logo = logo;
   $: isDarkNavPaths = darkNavPaths.includes($page.url.pathname);
+
+  const redirectToSearchPage = (value: string) => {
+    const searchParams = new URLSearchParams({
+      q: value,
+    });
+    goto('search?' + searchParams.toString());
+  };
 </script>
 
 <nav class="absolute left-0 top-0 z-[1001] w-full">
@@ -49,6 +58,10 @@
           isDarkNavPaths ? 'border-dark-gunmetal' : 'border-white',
         )}>
         <input
+          bind:this={searchInputEl}
+          on:keydown={(e) => {
+            if (e.keyCode === 13) redirectToSearchPage(searchInputEl.value);
+          }}
           class={cn(
             'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] ',
             isDarkNavPaths
@@ -64,10 +77,11 @@
           placeholder={searchIsActive
             ? 'Search artist, art work, news etc '
             : 'Search'} />
-        <div
+        <button
+          on:click={() => redirectToSearchPage(searchInputEl.value)}
           class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
           <SearchIcon />
-        </div>
+        </button>
       </button>
     </div>
   </div>

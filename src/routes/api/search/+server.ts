@@ -18,8 +18,12 @@ const getSearchResultFromQ = async (q: string) => {
   return data;
 };
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url, setHeaders }) => {
   const queryString = url.searchParams.get('q');
+
+  setHeaders({
+    'cache-control': 'max-age=120',
+  });
 
   if (!queryString) {
     const data = await getDefaultSearchResult();
@@ -27,7 +31,6 @@ export const GET: RequestHandler = async ({ url }) => {
   }
 
   const data = await getSearchResultFromQ(queryString);
-  console.log(data);
 
   return json({ success: true, data }, { status: 200 });
 };
