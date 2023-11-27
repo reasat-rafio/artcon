@@ -6,7 +6,7 @@ import groq from 'groq';
 const query = groq`
     *[_id == "searchPage"][0]{
       ...,
-      "exhibitions" : *[_type== "exhibition"]|order(orderRank)[0...6]{
+      "exhibitions" : *[_type== "exhibition"]|order(orderRank)[0...5]{
         _id,
         name,
         slug,
@@ -30,7 +30,7 @@ const query = groq`
           count(artists) > 1 => "Group Exhibition",
         )
       },
-        "events" : *[_type== "event"]|order(orderRank)[0...6]{
+        "events" : *[_type== "event"]|order(orderRank)[0...5]{
             _id,
             slug,
             name,
@@ -44,7 +44,7 @@ const query = groq`
                 }
             },
         },
-        "collections" : *[_type== "collection"]|order(orderRank)[0...6]{
+        "collections" : *[_type== "collection"]|order(orderRank)[0...5]{
             _id,
             slug,
             name,
@@ -58,7 +58,7 @@ const query = groq`
                 }
             },
         },
-        "vrs" : *[_type== "vr"]|order(orderRank)[0...6]{
+        "vrs" : *[_type== "vr"]|order(orderRank)[0...5]{
             _id,
             name,
             slug,
@@ -67,7 +67,7 @@ const query = groq`
             url,
             category->
         },
-        "publications" : *[_type== "publication"]|order(orderRank)[0...6]{
+        "publications" : *[_type== "publication"]|order(orderRank)[0...5]{
             _id,
             name,
             slug,
@@ -75,7 +75,7 @@ const query = groq`
             ${asset('publicationImage')},
             category->,
         },
-        "documentaries" : *[_type== "documentary"]|order(orderRank)[0...6]{
+        "documentaries" : *[_type== "documentary"]|order(orderRank)[0...5]{
             _id,
             slug,
             name,
@@ -83,7 +83,7 @@ const query = groq`
             ${asset('coverImage')}
 
         },
-        "projects" : *[_type== "project"]|order(orderRank)[0...6]{
+        "projects" : *[_type== "project"]|order(orderRank)[0...5]{
             _id,
             name,
             slug,

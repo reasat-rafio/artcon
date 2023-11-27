@@ -20,7 +20,6 @@
   $: if (!!descriptionBlockEl && innerWidth) {
     descriptionBlockElLeftPos = descriptionBlockEl.getBoundingClientRect().left;
   }
-  let a;
 </script>
 
 <svelte:window bind:innerWidth />
