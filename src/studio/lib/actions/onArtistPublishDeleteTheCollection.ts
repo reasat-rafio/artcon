@@ -1,13 +1,13 @@
 import type {
   DocumentActionComponent,
   DocumentActionProps,
-  // DocumentActionsContext,
+  DocumentActionsContext,
   // Reference,
 } from 'sanity';
 
 const onArtistPublishDeleteTheCollection = (
   originalPublishAction: DocumentActionComponent,
-  // context: DocumentActionsContext,
+  context: DocumentActionsContext,
 ) => {
   const BetterAction = (props: DocumentActionProps) => {
     const originalResult = originalPublishAction(props);
@@ -15,6 +15,7 @@ const onArtistPublishDeleteTheCollection = (
 
     return {
       ...originalResult,
+
       onHandle: async () => {
         if (originalResult?.onHandle) originalResult.onHandle();
       },

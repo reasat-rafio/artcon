@@ -5,7 +5,8 @@ import { schemaTypes } from './schemas';
 import { AppStructure, DefaultDocumentNode } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
-import onArtistPublishDeleteTheCollection from './lib/actions/onArtistPublishDeleteTheCollection';
+// import onArtistPublishDeleteTheCollection from './lib/actions/onArtistPublishDeleteTheCollection';
+import onCollectionPublishUpdateTheArtist from './lib/actions/onCollectionPublishUpdateTheArtist';
 
 export default defineConfig([
   {
@@ -28,16 +29,34 @@ export default defineConfig([
                     originalAction,
                     context,
                   );
-                case 'delete':
-                  return onArtistPublishDeleteTheCollection(
-                    originalAction,
-                    context,
-                  );
+                // case 'delete':
+                //   return onArtistPublishDeleteTheCollection(
+                //     originalAction,
+                //     context,
+                //   );
+
                 default:
                   return originalAction;
               }
             });
+          case 'collection':
+            return prev.map((originalAction) => {
+              switch (originalAction.action) {
+                case 'publish':
+                  return onCollectionPublishUpdateTheArtist(
+                    originalAction,
+                    context,
+                  );
+                //  case 'delete':
+                //    return onArtistPublishDeleteTheCollection(
+                //      originalAction,
+                //      context,
+                //    );
 
+                default:
+                  return originalAction;
+              }
+            });
           default:
             return prev;
         }
