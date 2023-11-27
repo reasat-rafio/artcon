@@ -31,14 +31,6 @@
       contact,
     },
   } = data);
-
-  // let vrsData = new Set(vrs);
-  // let collectionsData = new Set(collections);
-  // let documentariesData = new Set(documentaries);
-  // let eventsData = new Set(events);
-  // let exhibitionsData = new Set(exhibitions);
-  // let projectsData = new Set(projects);
-  // let publicationsData = new Set(publications);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />

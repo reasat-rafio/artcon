@@ -3,8 +3,46 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
+  import { onMount } from 'svelte';
 
   export let logo: SanityAsset;
+
+  let searchInputEl: HTMLInputElement;
+  let timer: NodeJS.Timeout;
+  const waitTime = 500;
+
+  const onKeyUpAction = (
+    event: KeyboardEvent & {
+      currentTarget: EventTarget & HTMLInputElement;
+    },
+  ) => {
+    if (!!(event?.target as HTMLInputElement)?.value) {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        doneTyping((event?.target as HTMLInputElement)?.value);
+      }, waitTime);
+    }
+  };
+
+  function doneTyping(value: string) {
+    const searchParams = new URLSearchParams({
+      q: value,
+    });
+
+    goto($page.url.pathname + '?' + searchParams.toString(), {
+      replaceState: true,
+      noScroll: true,
+    });
+  }
+
+  onMount(() => {
+    if ($page.url.searchParams.get('q')) {
+      searchInputEl.value = $page.url.searchParams.get('q') as string;
+    }
+  });
 </script>
 
 <nav class="sticky top-0 z-[1001] overflow-hidden bg-white">
@@ -22,10 +60,14 @@
 
     <div class="container-primary flex items-center pb-[1.37rem] pt-[2.25rem]">
       <div class="flex flex-col space-y-[1.25rem]">
-        <h1 class="body-regular !font-normal">Searched result for</h1>
+        <h1 class="body-regular !font-normal">
+          Searched result for {$page.url.searchParams.get('q')}
+        </h1>
         <button
           class="hidden cursor-pointer space-x-5 rounded-[64px] border border-[#A5A5A8] bg-white px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex">
           <input
+            bind:this={searchInputEl}
+            on:keyup={onKeyUpAction}
             class="w-[23.9375rem] bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
             type="text"
             placeholder={'Search'} />
