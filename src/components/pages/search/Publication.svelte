@@ -1,16 +1,16 @@
 <script lang="ts">
   import { chunkArray } from '@/lib/helper';
-  import type { Exhibition } from '@/lib/types/exhibition.types';
+  import type { Publication } from '@/lib/types/publication.types';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import ListContainer from './ListContainer.svelte';
-  import Cards from '../exhibition/Cards.svelte';
+  import Cards from '../publication/Cards.svelte';
 
-  export let exhibitions: Exhibition[];
+  export let publications: Publication[];
 
   let innerWidth = 0;
   let emblaApi: EmblaCarouselType;
-  $: chunks = chunkArray(exhibitions, slidesNumber);
+  $: chunks = chunkArray(publications, slidesNumber);
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
 
@@ -25,7 +25,7 @@
 <ListContainer
   {scrollNext}
   {scrollPrev}
-  title="Our exhibitions"
+  title="Our publications"
   showNav={chunks.length > 1}>
   <div
     class="!w-full overflow-hidden"

@@ -29,7 +29,7 @@
     id="search_result_items"
     style="--leftPos: {headerElLeftPos}px"
     class={cn(
-      'flex max-w-[85.3rem] flex-col items-center pb-[4.375rem] max-lg:px-[1rem] max-md:mx-auto md:mr-[1rem] xl:flex-row xl:gap-x-[2rem] 2xl:gap-x-[4.375rem]',
+      'flex w-full max-w-[85.3rem] flex-col items-center pb-[4.375rem] max-lg:px-[1rem] max-md:mx-auto md:mr-[1rem] xl:flex-row xl:gap-x-[2rem] 2xl:gap-x-[4.375rem]',
       $$props.class,
     )}>
     <slot />

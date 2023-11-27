@@ -2,12 +2,16 @@
   import type { Event } from '@/lib/types/event.types';
   import { fade } from 'svelte/transition';
   import Card from '@/components/ui/card/Card.svelte';
+  import { cn } from '@/lib/cn';
 
   export let items: Event[];
 </script>
 
 <div
-  class="grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] md:grid-cols-2 xl:grid-cols-3">
+  class={cn(
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] md:grid-cols-2 xl:grid-cols-3',
+    $$props.class,
+  )}>
   {#each items as { name, slug, tag, asset, _id } (_id)}
     <div in:fade out:fade={{ duration: 0 }}>
       <Card
