@@ -16,7 +16,7 @@
     <div in:fade out:fade={{ duration: 0 }}>
       <Card
         el="a"
-        href={`/preview/documentary/${slug.current}`}
+        href={`/preview/audio-visual/${slug.current}`}
         class="flex flex-col gap-y-[1.25rem]"
         let:Asset
         let:Title
