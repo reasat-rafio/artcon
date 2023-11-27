@@ -12,22 +12,6 @@
   export let logo: SanityAsset;
 
   let searchInputEl: HTMLInputElement;
-  let timer: NodeJS.Timeout;
-  const waitTime = 500;
-
-  const onKeyUpAction = (
-    event: KeyboardEvent & {
-      currentTarget: EventTarget & HTMLInputElement;
-    },
-  ) => {
-    if (!!(event?.target as HTMLInputElement)?.value) {
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-        doneTyping((event?.target as HTMLInputElement)?.value);
-      }, waitTime);
-    }
-  };
 
   const callSearchApi = async (q: string) => {
     try {
@@ -39,7 +23,7 @@
     }
   };
 
-  async function doneTyping(value: string) {
+  async function searchAction(value: string) {
     const searchParams = new URLSearchParams({
       q: value,
     });
@@ -83,20 +67,25 @@
     <div class="container-primary flex items-center pb-[1.37rem] pt-[2.25rem]">
       <div class="flex flex-col space-y-[1.25rem]">
         <h1 class="body-regular !font-normal">
-          Searched result for {$page.url.searchParams.get('q') ?? ''}
+          Searched result for <strong>
+            {$page.url.searchParams.get('q') ?? ''}
+          </strong>
         </h1>
         <button
           class="hidden cursor-pointer space-x-5 rounded-[64px] border border-[#A5A5A8] bg-white px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex">
           <input
             bind:this={searchInputEl}
-            on:keyup={onKeyUpAction}
+            on:keydown={(e) => {
+              if (e.keyCode === 13) searchAction(searchInputEl.value);
+            }}
             class="w-[23.9375rem] bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
             type="text"
             placeholder={'Search'} />
-          <div
+          <button
+            on:click={() => searchAction(searchInputEl.value)}
             class="scale-100 text-[#A5A5A8] transition-transform duration-500 hover:scale-125">
             <SearchIcon />
-          </div>
+          </button>
         </button>
       </div>
     </div>

@@ -6,11 +6,10 @@
   import Cards from '../vr/Cards.svelte';
   import searchStore from '@/store/search';
 
-  let innerWidth = 0;
+  export let slidesNumber: number;
+
   let emblaApi: EmblaCarouselType;
   $: chunks = chunkArray($searchStore?.data?.vrs ?? [], slidesNumber);
-  $: slidesNumber =
-    innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
 
   const scrollNext = () => emblaApi.scrollNext();
   const scrollPrev = () => emblaApi.scrollPrev();
@@ -19,7 +18,6 @@
   };
 </script>
 
-<svelte:window bind:innerWidth />
 <ListContainer
   {scrollNext}
   {scrollPrev}
@@ -32,7 +30,7 @@
       plugins: [],
       options: { active: chunks.length > 1 },
     }}>
-    <div class="flex md:ml-[-1.56rem]">
+    <div class="ml-[-1.56rem] flex">
       {#each chunks as chunk}
         <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
       {/each}

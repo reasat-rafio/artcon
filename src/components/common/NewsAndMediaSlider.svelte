@@ -36,7 +36,7 @@
         plugins: [],
         options: { axis: 'x', loop: true },
       }}>
-      <div class="flex md:ml-[-1.56rem]">
+      <div class="ml-[-1.56rem] flex">
         {#each chunks as chunk}
           <div
             class="relative grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[3.5rem] 2xl:grid-cols-3">

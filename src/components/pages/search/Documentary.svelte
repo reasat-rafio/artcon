@@ -6,7 +6,8 @@
   import Cards from '../documentary/Cards.svelte';
   import searchStore from '@/store/search';
 
-  let innerWidth = 0;
+  export let slidesNumber: number;
+
   let emblaApi: EmblaCarouselType;
   $: chunks = chunkArray($searchStore?.data?.documentaries ?? [], slidesNumber);
   $: slidesNumber =
@@ -19,7 +20,6 @@
   };
 </script>
 
-<svelte:window bind:innerWidth />
 <ListContainer
   {scrollNext}
   {scrollPrev}
@@ -32,7 +32,7 @@
       plugins: [],
       options: { active: chunks.length > 1 },
     }}>
-    <div class="flex md:ml-[-1.56rem]">
+    <div class="ml-[-1.56rem] flex">
       {#each chunks as chunk}
         <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
       {/each}

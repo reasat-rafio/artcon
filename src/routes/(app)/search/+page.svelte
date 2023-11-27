@@ -43,31 +43,35 @@
     projects,
     publications,
   });
+  let innerWidth = 0;
+  $: slidesNumber =
+    innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
 </script>
 
+<svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={ogImage} />
 <Navigation logo={logoDark} />
 
 {#if !!$searchStore?.data?.exhibitions?.length}
-  <Exhibition />
+  <Exhibition {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.events?.length}
-  <Event />
+  <Event {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.collections?.length}
-  <Collection />
+  <Collection {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.vrs?.length}
-  <Vr />
+  <Vr {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.publications?.length}
-  <Publication />
+  <Publication {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.documentaries?.length}
-  <Documentary />
+  <Documentary {slidesNumber} />
 {/if}
 {#if !!$searchStore?.data?.projects?.length}
-  <Project />
+  <Project {slidesNumber} />
 {/if}
 
 <Footer {footer} {contact} logo={logoLight} />

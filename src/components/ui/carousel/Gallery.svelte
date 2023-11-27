@@ -76,7 +76,7 @@
     <div
       bind:this={containerEl}
       class={cn({
-        'max-md:mt-[-1.56rem] md:ml-[-1.56rem] md:flex': axisOnMobile === 'y',
+        'ml-[-1.56rem] max-md:mt-[-1.56rem] md:flex': axisOnMobile === 'y',
         'ml-[-1.56rem] flex': axisOnMobile === 'x',
       })}>
       {#each chunks as chunk}
