@@ -92,11 +92,11 @@ const artist = {
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
-      // validation: (Rule: ArrayRule<unknown[]>) =>
-      //   Rule.custom((refs, { document }) => {
-      //     const docId = removeDraftsPrefix(document?._id as string);
-      //     return referenceExistInOtherArtist(refs as Reference[], docId);
-      //   }),
+      validation: (Rule: ArrayRule<unknown[]>) =>
+        Rule.custom((refs, { document }) => {
+          const docId = removeDraftsPrefix(document?._id as string);
+          return referenceExistInOtherArtist(refs as Reference[], docId);
+        }),
     }),
 
     {
