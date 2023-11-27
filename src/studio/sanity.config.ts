@@ -1,13 +1,14 @@
-import { defineConfig, type SchemaTypeDefinition } from 'sanity';
+import {
+  defineConfig,
+  type DocumentActionComponent,
+  type SchemaTypeDefinition,
+} from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { AppStructure, DefaultDocumentNode } from './deskStucture';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
-import { customExibitionAction } from './lib/actions/exhibition/createImprovedAction';
-// import { ExportArtistCSV } from './lib/actions/artist/exportCSV';
-
-// import { testPlugin } from './custom-plugins/test';
+import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
 
 export default defineConfig([
   {
@@ -19,26 +20,31 @@ export default defineConfig([
 
     basePath: '/studio/production',
 
-    // TODO adjust this with newly modified schema structuere
-    // document: {
-    //   actions: (prev, context) => {
-    //     return context.schemaType === 'artist'
-    //       ? [...prev, ExportArtistCSV]
-    //       : prev;
-    //   },
-    // },
     document: {
-      actions: (prev, context) =>
-        prev.map((originalAction) => {
-          const isExhibition = context.schemaType === 'exhibition';
-          const pubOrUnpubAction =
-            originalAction.action === 'publish' ||
-            originalAction.action === 'unpublish';
+      actions: (prev, context) => {
+        switch (context.schemaType) {
+          case 'artist':
+            return prev.map((originalAction) => {
+              switch (originalAction.action) {
+                case 'publish':
+                  return onArtistPublishUpdateTheCollection(
+                    originalAction,
+                    context,
+                  );
+                case 'delete':
+                  return onArtistPublishUpdateTheCollection(
+                    originalAction,
+                    context,
+                  );
+                default:
+                  return originalAction;
+              }
+            });
 
-          return isExhibition && pubOrUnpubAction
-            ? customExibitionAction(originalAction)
-            : originalAction;
-        }),
+          default:
+            return prev;
+        }
+      },
     },
 
     plugins: [
@@ -73,3 +79,20 @@ export default defineConfig([
     },
   },
 ]);
+
+// TODO adjust this with newly modified schema structuere
+// document: {
+//   actions: (prev, context) => {
+//     return context.schemaType === 'artist'
+//       ? [...prev, ExportArtistCSV]
+//       : prev;
+//   },
+// },
+// const isExhibition = context.schemaType === 'exhibition';
+// const pubOrUnpubAction =
+//   originalAction.action === 'publish' ||
+//   originalAction.action === 'unpublish';
+
+// return isExhibition && pubOrUnpubAction
+//   ? customExibitionAction(originalAction)
+//   : originalAction;

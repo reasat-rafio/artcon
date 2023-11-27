@@ -27,6 +27,12 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Artist',
+      name: 'artist',
+      type: 'reference',
+      to: [{ type: 'artist' }],
+    },
+    {
       name: 'isAvailable',
       type: 'boolean',
       title: 'Collection is Available',
