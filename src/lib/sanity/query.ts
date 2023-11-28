@@ -69,9 +69,22 @@ export const searchQuery = (query: string) => groq`
     },
 
     "collections" : *[_type == "collection" && !(_id in path("drafts.**"))
-	  && (name match "${query}*" || tag->name match "${query}*" || gallery->name match "${query}*")]
+	  && (name match "${query}*" || tag->name match "${query}*" || artist->personalDocuments.name.en match "${query}*" || gallery->name match "${query}*")]
 	  | score(boost(name match "${query}*", 3))
-    | order(_score desc) {},
+    | order(_score desc) {
+      _id,
+      slug,
+      name,
+      tag->,
+      ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      "media": information.media,
+      "year": information.artDate.year,
+      "artist": *[_type == 'artist' && references(^._id)][0]{
+        ...personalDocuments {
+          "name": name.en
+        }
+      },
+    },
 
     "vrs" : *[_type == "vr" && !(_id in path("drafts.**"))
 	  && (name match "${query}*" || category->name match "${query}*" || gallery->name match "${query}*")]
