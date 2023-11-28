@@ -10,10 +10,9 @@
 
 <div
   class={twMerge(
-    'relative h-[11.3125rem] overflow-hidden rounded-[12px] sm:h-[14.125rem]',
+    'relative aspect-video h-full overflow-hidden rounded-[12px]',
     $$props.class,
-  )}
->
+  )}>
   {#if !!image}
     <SanityImage
       draggable={false}
@@ -22,8 +21,7 @@
       sizes="100vw"
       alt={image.alt}
       src={image}
-      imageUrlBuilder={imageBuilder}
-    />
+      imageUrlBuilder={imageBuilder} />
   {:else if !!video}
     <video
       class="absolute h-full w-full object-cover"
@@ -35,8 +33,7 @@
       playsInline
       autoPlay
       muted
-      loop
-    >
+      loop>
       <source src={video?.mov} type="video/mp4; codecs=hvc1" />
       <source src={video?.webm} type="video/webm" />
       Sorry, your browser doesn&apos;t support embedded videos.
