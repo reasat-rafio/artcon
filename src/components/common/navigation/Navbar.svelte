@@ -23,7 +23,7 @@
     const searchParams = new URLSearchParams({
       q: value,
     });
-    goto('search?' + searchParams.toString());
+    goto('/search?' + searchParams.toString());
   };
 </script>
 

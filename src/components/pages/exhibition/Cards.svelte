@@ -17,7 +17,7 @@
       <Card
         el="a"
         href={`/exhibition/${slug.current}`}
-        class="flex flex-col gap-y-[1.25rem] "
+        class="flex flex-col gap-y-[1.25rem]"
         let:Asset
         let:Title
         let:Container

@@ -5,6 +5,7 @@
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import Cards from '../vr/Cards.svelte';
   import ListContainer from './ListContainer.svelte';
+  import LoadingWrapper from './LoadingWrapper.svelte';
 
   export let slidesNumber: number;
 
@@ -41,9 +42,11 @@
       options: { active: chunks.length > 1 },
     }}>
     <div class="ml-[-1.56rem] flex">
-      {#each chunks as chunk}
-        <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
-      {/each}
+      <LoadingWrapper>
+        {#each chunks as chunk}
+          <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
+        {/each}
+      </LoadingWrapper>
     </div>
   </div>
 </ListContainer>

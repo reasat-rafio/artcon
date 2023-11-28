@@ -5,6 +5,7 @@
   import ListContainer from './ListContainer.svelte';
   import Cards from '../event/Cards.svelte';
   import searchStore from '@/store/search';
+  import LoadingWrapper from './LoadingWrapper.svelte';
 
   export let slidesNumber: number;
 
@@ -41,9 +42,11 @@
       options: { active: chunks.length > 1 },
     }}>
     <div class="ml-[-1.56rem] flex w-full">
-      {#each chunks as chunk}
-        <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
-      {/each}
+      <LoadingWrapper>
+        {#each chunks as chunk}
+          <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
+        {/each}
+      </LoadingWrapper>
     </div>
   </div>
 </ListContainer>

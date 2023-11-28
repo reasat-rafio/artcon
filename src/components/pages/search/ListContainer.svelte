@@ -3,7 +3,8 @@
   import ChevronRightLongRounded from '@/components/icons/ChevronRightLongRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
-  import { slide } from 'svelte/transition';
+  import searchStore from '@/store/search';
+  import { fade, slide } from 'svelte/transition';
 
   export let title: string;
   export let showNav: boolean;
@@ -28,7 +29,11 @@
   <div
     bind:this={headerEl}
     class="container-primary mb-[1.25rem] border-b-[0.5px] border-[#D2D2D3] py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
-    <h2 class="head-4">{title}</h2>
+    {#if $searchStore.loading}
+      <div in:fade class="h-10 !w-[50%] animate-pulse bg-gray-300"></div>
+    {:else}
+      <h2 in:fade class="head-4">{title}</h2>
+    {/if}
   </div>
 
   {#if layoutLoading}
@@ -44,7 +49,7 @@
       <slot />
 
       <nav
-        class:invisible={!showNav}
+        class:invisible={!showNav || $searchStore.loading}
         class="flex h-full items-center justify-center">
         <div class="hidden space-y-[0.5rem] xl:block">
           {#if carouselCanScrollPrev}
