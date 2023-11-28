@@ -9,7 +9,7 @@
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
   {#each items as { name, slug, _id, category, gallery, url } (_id)}

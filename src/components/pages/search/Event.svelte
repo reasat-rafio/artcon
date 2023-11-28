@@ -34,13 +34,13 @@
   title="Our events"
   showNav={chunks.length > 1}>
   <div
-    class="w-full overflow-hidden"
+    class="!w-full overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [],
       options: { active: chunks.length > 1 },
     }}>
-    <div class="ml-[-1.56rem] flex">
+    <div class="ml-[-1.56rem] flex w-full">
       {#each chunks as chunk}
         <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
       {/each}

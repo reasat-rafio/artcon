@@ -1,15 +1,15 @@
 <script lang="ts">
-  import type { Exhibition } from '@/lib/types/exhibition.types';
-  import { fade } from 'svelte/transition';
   import Card from '@/components/ui/card/Card.svelte';
   import { cn } from '@/lib/cn';
+  import type { Exhibition } from '@/lib/types/exhibition.types';
+  import { fade } from 'svelte/transition';
 
   export let items: Exhibition[];
 </script>
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
   {#each items as { name, slug, tag, type, asset, _id } (_id)}
@@ -17,7 +17,7 @@
       <Card
         el="a"
         href={`/exhibition/${slug.current}`}
-        class="flex flex-col gap-y-[1.25rem]"
+        class="flex flex-col gap-y-[1.25rem] "
         let:Asset
         let:Title
         let:Container

@@ -45,8 +45,7 @@
   });
 
   let innerWidth = 0;
-  $: slidesNumber =
-    innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
+  $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 3;
 </script>
 
 <svelte:window bind:innerWidth />

@@ -3,7 +3,7 @@
   import ChevronRightLongRounded from '@/components/icons/ChevronRightLongRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
-  import { scale, slide } from 'svelte/transition';
+  import { slide } from 'svelte/transition';
 
   export let title: string;
   export let showNav: boolean;
@@ -34,10 +34,11 @@
   {#if layoutLoading}
     <div
       transition:slide={{ duration: 400 }}
-      id="search_result_items"
       style="--leftPos: {headerElLeftPos}px"
+      class:search_result_items={innerWidth >= 1280}
       class={cn(
-        'flex w-full max-w-[85.3rem] flex-col items-center pb-[4.375rem] max-2xl:px-[1rem] max-md:mx-auto md:mr-[1rem] xl:flex-row xl:gap-x-[2rem] 2xl:gap-x-[4.375rem]',
+        'flex w-full flex-col px-[1rem] pb-[4.375rem] lg:mr-[1rem] xl:flex-row xl:items-center xl:gap-x-[2rem] 2xl:gap-x-[4.375rem]',
+        { '!mx-auto w-full lg:w-[calc(100%-22rem)]': innerWidth < 1279 },
         $$props.class,
       )}>
       <slot />
@@ -71,9 +72,10 @@
 </section>
 
 <style>
-  @media screen and (min-width: 768px) {
-    #search_result_items {
-      margin-left: var(--leftPos);
+  @media screen and (min-width: 1280px) {
+    .search_result_items {
+      max-width: calc(85.3rem + var(--leftPos));
+      padding-left: var(--leftPos);
     }
   }
 </style>
