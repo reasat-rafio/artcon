@@ -23,6 +23,7 @@ import publicationDetail from './[publication]';
 import gallery from './[gallery]';
 import documentary from './[documentary]';
 import searchPage from './search';
+import artistPage from './artist';
 
 export default [
   ...landing,
@@ -31,6 +32,7 @@ export default [
   ...publication,
   ...vrListingPage,
   ...collection,
+  ...artistPage,
   ...documentaryPage,
   ...project,
   ...service,

@@ -118,6 +118,12 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 icon: FcStackOfPhotos,
               }),
               pageItem(S, {
+                schemaType: 'artistPage',
+                id: 'artistPage',
+                title: 'Artists Listing',
+                icon: FcPortraitMode,
+              }),
+              pageItem(S, {
                 schemaType: 'eventPage',
                 id: 'eventPage',
                 title: 'Event',
