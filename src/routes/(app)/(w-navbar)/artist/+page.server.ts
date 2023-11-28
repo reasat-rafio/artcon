@@ -9,7 +9,9 @@ const query = groq`
         sections[]{
             ...,
             highlightedArtists[]->{
-                name,
+                ...personalDocuments {
+                    "name": name.en
+                },
                 slug,
                 ...siteDocuments {
                     status,
@@ -30,7 +32,6 @@ const query = groq`
         "artists" : *[_type== "artist"]|order(orderRank){
             _id,
             slug,
-            name,
             tag->,
             ...personalDocuments {
                 "name": name.en,
