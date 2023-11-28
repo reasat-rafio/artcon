@@ -5,7 +5,6 @@
   import ListContainer from './ListContainer.svelte';
   import Cards from '../exhibition/Cards.svelte';
   import searchStore from '@/store/search';
-  import CardSkeleton from '@/components/ui/card/CardSkeleton.svelte';
   import LoadingWrapper from './LoadingWrapper.svelte';
 
   export let slidesNumber: number;
