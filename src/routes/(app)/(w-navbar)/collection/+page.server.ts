@@ -13,10 +13,8 @@ const query = groq`
             status,
             type,
             cta,
-            "artist": *[_type == 'artist' && references(^._id)][0]{
-              ...personalDocuments {
-                "name": name.en
-              }
+            artist->{
+              ...personalDocuments { "name": name.en}
             },
             asset {
               ...,
@@ -32,17 +30,12 @@ const query = groq`
         _id,
         slug,
         name,
-        tag->{
-          name,
-          slug
-        },
+        tag->,
         ${asset('artworkImages[0]', { as: 'artworkImage' })},
         "media": information.media,
         "year": information.artDate.year,
-        "artist": *[_type == 'artist' && references(^._id)][0]{
-          ...personalDocuments {
-            "name": name.en
-          }
+        artist->{
+          ...personalDocuments { "name": name.en}
         },
       },
       "tags": *[_type == "collectionTag"]|order(orderRank)

@@ -36,7 +36,7 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('image')},
       }
     },
-    "artist": *[_type == 'artist' && references(^._id)][0]{
+    artist->{
       ...personalDocuments {
         "name": name.en,
         shortBio,
@@ -58,7 +58,7 @@ const query = (params: Partial<Record<string, string>>) =>
       slug,
       "media": information.media,
       "year": information.artDate.year,
-      "artist": *[_type == 'artist' && references(^._id)][0]{
+      artist-> {
         ...personalDocuments {
           "name": name.en
         }

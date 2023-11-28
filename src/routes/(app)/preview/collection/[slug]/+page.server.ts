@@ -18,7 +18,7 @@ const query = (params: Partial<Record<string, string>>) =>
     provenance,
     information,
     ${asset('artworkImages[]', { as: 'artworkImages' })},
-    "artist": *[_type == 'artist' && references(^._id)][0]{
+    artist-> {
       ...personalDocuments {
         "name": name.en,
         born,
