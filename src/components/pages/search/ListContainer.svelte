@@ -24,10 +24,10 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<section>
+<section transition:slide>
   <div
     bind:this={headerEl}
-    class="container-primary mb-[3.125rem] border-b-[0.5px] border-[#D2D2D3] pb-[2.17rem] pt-[2.58rem]">
+    class="container-primary mb-[1.25rem] border-b-[0.5px] border-[#D2D2D3] py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
     <h2 class="head-4">{title}</h2>
   </div>
 

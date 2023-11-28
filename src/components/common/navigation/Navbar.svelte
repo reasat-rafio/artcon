@@ -7,7 +7,6 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import { twMerge } from 'tailwind-merge';
   import SearchIcon from '../../icons/Search.svelte';
   import Hamburger from '../Hamburger.svelte';
 
@@ -28,8 +27,9 @@
   };
 </script>
 
-<nav class="absolute left-0 top-0 z-[1001] w-full">
-  <div class="mt-[40px] flex w-full items-center pl-[2.5rem] pr-[5.87rem]">
+<nav class={cn('absolute left-0 top-0 z-[1002] w-full', $$props.class)}>
+  <div
+    class="flex w-full items-center px-[1.25rem] pt-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem] lg:pt-[2.5rem]">
     <a class="" href="/">
       <SanityImage
         class="h-[50px] object-contain"
@@ -40,7 +40,7 @@
     </a>
 
     <div
-      class={twMerge(
+      class={cn(
         'group ml-auto',
         isDarkNavPaths
           ? 'text-dark-gunmetal'
@@ -48,7 +48,9 @@
           ? 'text-dark-gunmetal'
           : 'text-white',
       )}>
-      <Hamburger class="block lg:hidden" />
+      <Hamburger
+        color={isDarkNavPaths ? 'black' : 'white'}
+        class="block lg:hidden" />
       <button
         use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}

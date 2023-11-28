@@ -1,6 +1,7 @@
 <script lang="ts">
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
+  import Navbar from '@/components/common/navigation/Navbar.svelte';
   import Collection from '@/components/pages/search/Collection.svelte';
   import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
@@ -50,6 +51,7 @@
 
 <svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={ogImage} />
+<Navbar class="sticky block bg-white lg:hidden" logo={logoDark} />
 <Navigation logo={logoDark} />
 
 {#if !!$searchStore?.data?.exhibitions?.length}

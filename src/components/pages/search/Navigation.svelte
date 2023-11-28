@@ -15,11 +15,14 @@
 
   const callSearchApi = async (q: string) => {
     try {
+      searchStore.setLoading(true);
       const res = await fetch(`/api/search?${q}`);
       const { data }: SearchResult = await res.json();
       searchStore.setData(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      searchStore.setLoading(false);
     }
   };
 
@@ -51,12 +54,13 @@
   });
 </script>
 
-<nav class="sticky top-0 z-[1001] overflow-hidden bg-white">
+<nav class="sticky top-[5rem] z-[1001] overflow-hidden bg-white lg:top-0">
   <div class="relative">
-    <div class="absolute left-[40px] top-1/2 hidden -translate-y-1/2 lg:block">
+    <div
+      class="absolute left-[2.5rem] top-1/2 hidden -translate-y-1/2 lg:block">
       <a href="/">
         <SanityImage
-          class="h-[50px] object-contain"
+          class="h-[3.125rem] object-contain"
           src={logo}
           sizes="100px"
           imageUrlBuilder={imageBuilder}
@@ -64,21 +68,23 @@
       </a>
     </div>
 
-    <div class="container-primary flex items-center pb-[1.37rem] pt-[2.25rem]">
-      <div class="flex flex-col space-y-[1.25rem]">
-        <h1 class="body-regular !font-normal">
+    <div
+      class="container-primary flex items-center pb-[0.75rem] pt-[2rem] lg:pb-[1.37rem] lg:pt-[2.25rem]">
+      <div class="flex w-full flex-col space-y-[0.75rem] lg:space-y-[1.25rem]">
+        <h1
+          class="lg:body-regular max-lg:body-light-m font-light lg:font-normal">
           Searched result for <strong>
             {$page.url.searchParams.get('q') ?? ''}
           </strong>
         </h1>
         <button
-          class="hidden cursor-pointer space-x-5 rounded-[64px] border border-[#A5A5A8] bg-white px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex">
+          class="flex w-full cursor-pointer space-x-2 rounded-[64px] border border-[#A5A5A8] bg-white pb-[0.75rem] pl-[1.75rem] pr-[1.5rem] pt-[0.69rem] transition-colors duration-500 group-hover:bg-white sm:w-[26rem] lg:space-x-5">
           <input
             bind:this={searchInputEl}
             on:keydown={(e) => {
               if (e.keyCode === 13) searchAction(searchInputEl.value);
             }}
-            class="w-[23.9375rem] bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
+            class="flex-1 bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
             type="text"
             placeholder={'Search'} />
           <button

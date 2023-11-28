@@ -7,4 +7,8 @@ export const breakpoints = {
 };
 
 export type Breakpoints = keyof typeof breakpoints;
-export const darkNavPaths = ['/privacy-policy', '/terms-and-conditions'];
+export const darkNavPaths = [
+  '/privacy-policy',
+  '/terms-and-conditions',
+  '/search',
+];

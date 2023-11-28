@@ -3,11 +3,13 @@ import { writable } from 'svelte/store';
 
 type SearchStore = {
   data: SearchPageProps | null;
+  loading: boolean;
 };
 
 const createSearchStore = () => {
   const { subscribe, update } = writable<SearchStore>({
     data: null,
+    loading: false,
   });
 
   const setData = (data: SearchPageProps) => {
@@ -17,9 +19,17 @@ const createSearchStore = () => {
     });
   };
 
+  const setLoading = (loading: boolean) => {
+    update(($store) => {
+      $store.loading = loading;
+      return $store;
+    });
+  };
+
   return {
     subscribe,
     setData,
+    setLoading,
   };
 };
 
