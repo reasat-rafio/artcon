@@ -14,8 +14,8 @@ const query = groq`
                 },
                 slug,
                 ...siteDocuments {
-                    status,
                     type,
+                    text,
                     cta,
                     ${asset('coverImage')},
                     asset {
@@ -39,6 +39,7 @@ const query = groq`
             },
             artworks[0...4]->{
                 name,
+                slug,
                 ${asset('artworkImages[0]', { as: 'artworkImage' })},
             }
         },

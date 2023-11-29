@@ -1,11 +1,5 @@
 import type { Slug } from 'sanity';
-import type {
-  Asset,
-  CommonHeroProps,
-  Cta,
-  SeoProps,
-  Tag,
-} from './common.types';
+import type { Asset, Cta, SeoProps, Tag } from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ArtistPageProps {
@@ -15,18 +9,18 @@ export interface ArtistPageProps {
   tags: Tag[];
 }
 
-type Section = CommonHeroProps;
+type Section = HeroProps;
 
 export interface HeroProps {
-  _type: 'event.hero';
+  _type: 'artist.hero';
   highlightedArtists: HighlightedArtist[];
 }
 
 export interface HighlightedArtist {
   name: string;
   slug: Slug;
-  status?: string;
   type?: string;
+  text?: string;
   cta?: Cta;
   coverImage?: SanityImageAssetDocument;
   asset: Asset;
@@ -42,6 +36,12 @@ export interface Artist {
 }
 
 export interface Artwork {
+  slug: Slug;
   name: string;
   artworkImage: SanityImageAssetDocument;
+}
+
+export interface SortedArtists {
+  title: string;
+  artists: Artist[];
 }

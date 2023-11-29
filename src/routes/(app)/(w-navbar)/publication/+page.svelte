@@ -8,7 +8,7 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
   import Listing from '@/components/pages/publication/Listing.svelte';
-  import { formatPublicationListingProps } from '@/lib/modify-props';
+  import { formatArtistListingProps } from '@/lib/modify-props';
 
   export let data: PageProps<PublicationPageProps>;
 
@@ -48,7 +48,7 @@
 <Seo {seo} siteOgImg={ogImage} />
 {#each sections as s}
   {#if s._type === 'publication.hero'}
-    <Hero props={formatPublicationListingProps(s)} />
+    <Hero props={formatArtistListingProps(s)} />
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">

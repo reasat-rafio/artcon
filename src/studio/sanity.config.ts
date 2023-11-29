@@ -18,50 +18,50 @@ export default defineConfig([
 
     basePath: '/studio/production',
 
-    document: {
-      actions: (prev, context) => {
-        switch (context.schemaType) {
-          case 'artist':
-            return prev.map((originalAction) => {
-              switch (originalAction.action) {
-                case 'publish':
-                  return onArtistPublishUpdateTheCollection(
-                    originalAction,
-                    context,
-                  );
-                // case 'delete':
-                //   return onArtistPublishDeleteTheCollection(
-                //     originalAction,
-                //     context,
-                //   );
+    // document: {
+    //   actions: (prev, context) => {
+    //     switch (context.schemaType) {
+    //       case 'artist':
+    //         return prev.map((originalAction) => {
+    //           switch (originalAction.action) {
+    //             case 'publish':
+    //               return onArtistPublishUpdateTheCollection(
+    //                 originalAction,
+    //                 context,
+    //               );
+    //             // case 'delete':
+    //             //   return onArtistPublishDeleteTheCollection(
+    //             //     originalAction,
+    //             //     context,
+    //             //   );
 
-                default:
-                  return originalAction;
-              }
-            });
-          case 'collection':
-            return prev.map((originalAction) => {
-              switch (originalAction.action) {
-                case 'publish':
-                  return onCollectionPublishUpdateTheArtist(
-                    originalAction,
-                    context,
-                  );
-                //  case 'delete':
-                //    return onArtistPublishDeleteTheCollection(
-                //      originalAction,
-                //      context,
-                //    );
+    //             default:
+    //               return originalAction;
+    //           }
+    //         });
+    //       case 'collection':
+    //         return prev.map((originalAction) => {
+    //           switch (originalAction.action) {
+    //             case 'publish':
+    //               return onCollectionPublishUpdateTheArtist(
+    //                 originalAction,
+    //                 context,
+    //               );
+    //             //  case 'delete':
+    //             //    return onArtistPublishDeleteTheCollection(
+    //             //      originalAction,
+    //             //      context,
+    //             //    );
 
-                default:
-                  return originalAction;
-              }
-            });
-          default:
-            return prev;
-        }
-      },
-    },
+    //             default:
+    //               return originalAction;
+    //           }
+    //         });
+    //       default:
+    //         return prev;
+    //     }
+    //   },
+    // },
 
     plugins: [
       deskTool({

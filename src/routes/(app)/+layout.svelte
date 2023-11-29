@@ -3,6 +3,7 @@
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';
   import '@fontsource-variable/inter';
+  import '@fontsource/outfit/500.css';
 
   export let data: { site: SiteProps };
   $: ({
