@@ -67,13 +67,13 @@
         plugins: [WheelGesturesPlugin()],
       }}>
       <div
-        style="height: calc((70vh - (2.73875rem * 2)) / 12);"
+        style="height: calc((100% - (2.73875rem * 2)) / 12);"
         class="flex flex-col">
-        {#each anchors as anchor}
+        {#each alphabet as anchor}
           <button
             class="font-outfit flex-[0_0_100%] cursor-pointer text-center text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
-              ? 'text-[#ED1C24]'
+              ? 'text-[#967d7e]'
               : 'text-[#A5A5A8]'}">
             {anchor}
           </button>

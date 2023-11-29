@@ -25,14 +25,16 @@
         <h4 class="title-light text-[#77777C]">{tag.name}</h4>
       </header>
 
-      <figure class="ml-auto block">
-        <SanityImage
-          class="aspect-square h-full max-h-[23.375rem] w-full max-w-[23.375rem] rounded-[1.25rem] object-cover"
-          src={artistPortrait}
-          sizes="(min-width: 1024px) 40vw, 100vw"
-          alt={`${name} Portrait`}
-          imageUrlBuilder={imageBuilder} />
-      </figure>
+      <div class="ml-auto block">
+        <div class="relative h-full w-full overflow-hidden rounded-[1.25rem]">
+          <SanityImage
+            class="aspect-square h-full max-h-[23.375rem] w-full max-w-[23.375rem] object-cover grayscale transition-all duration-500 hover:grayscale-0"
+            src={artistPortrait}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            alt={`${name} Portrait`}
+            imageUrlBuilder={imageBuilder} />
+        </div>
+      </div>
     </a>
     <div class="grid grid-cols-2">
       {#if !!artworks?.length}
@@ -42,7 +44,7 @@
             class="relative self-start rounded-[0.75rem] pb-[4.09rem] pl-[3.37rem] pr-[3.39rem] pt-[3.35rem]">
             <figure>
               <SanityImage
-                class="aspect-square h-full w-full rounded-[0.75rem] object-cover"
+                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-all duration-500 hover:scale-110 hover:shadow-2xl"
                 src={artworkImage}
                 sizes="(min-width: 1024px) 15vw, 100vw"
                 alt={name}
