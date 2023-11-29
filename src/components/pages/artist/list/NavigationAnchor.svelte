@@ -3,6 +3,7 @@
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
+  import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 
   export let anchors: string[];
   export let activeAnchor: string;
@@ -19,36 +20,36 @@
     emblaApi = event.detail;
   };
 
-  $: if (emblaApi) {
-    emblaApi.on('scroll', (emblaApi) => {
-      const {
-        limit,
-        target,
-        location,
-        offsetLocation,
-        scrollTo,
-        translate,
-        scrollBody,
-      } = emblaApi.internalEngine();
+  // $: if (emblaApi) {
+  //   emblaApi.on('scroll', (emblaApi) => {
+  //     const {
+  //       limit,
+  //       target,
+  //       location,
+  //       offsetLocation,
+  //       scrollTo,
+  //       translate,
+  //       scrollBody,
+  //     } = emblaApi.internalEngine();
 
-      let edge: number | null = null;
+  //     let edge: number | null = null;
 
-      if (limit.reachedMax(location.get())) edge = limit.max;
-      if (limit.reachedMin(location.get())) edge = limit.min;
+  //     if (limit.reachedMax(location.get())) edge = limit.max;
+  //     if (limit.reachedMin(location.get())) edge = limit.min;
 
-      if (edge !== null) {
-        offsetLocation.set(edge);
-        location.set(edge);
-        target.set(edge);
-        translate.to(edge);
-        translate.toggleActive(false);
-        scrollBody.useDuration(0).useFriction(0);
-        scrollTo.distance(0, false);
-      } else {
-        translate.toggleActive(true);
-      }
-    });
-  }
+  //     if (edge !== null) {
+  //       offsetLocation.set(edge);
+  //       location.set(edge);
+  //       target.set(edge);
+  //       translate.to(edge);
+  //       translate.toggleActive(false);
+  //       scrollBody.useDuration(0).useFriction(0);
+  //       scrollTo.distance(0, false);
+  //     } else {
+  //       translate.toggleActive(true);
+  //     }
+  //   });
+  // }
 </script>
 
 <aside
@@ -63,14 +64,17 @@
       on:emblaInit={onInit}
       use:emblaCarouselSvelte={{
         options: { axis: 'y', skipSnaps: true, containScroll: 'trimSnaps' },
-        plugins: [],
+        plugins: [WheelGesturesPlugin()],
       }}>
       <div
         style="height: calc((70vh - (2.73875rem * 2)) / 12);"
         class="flex flex-col">
-        {#each alphabet as anchor}
+        {#each anchors as anchor}
           <button
-            class="font-outfit flex-[0_0_100%] cursor-pointer text-center text-[0.875rem] font-semibold leading-[150%] text-[#A5A5A8]">
+            class="font-outfit flex-[0_0_100%] cursor-pointer text-center text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
+            activeAnchor
+              ? 'text-[#ED1C24]'
+              : 'text-[#A5A5A8]'}">
             {anchor}
           </button>
         {/each}

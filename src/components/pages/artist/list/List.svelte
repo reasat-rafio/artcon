@@ -36,7 +36,10 @@
 
 <section>
   <div class="container-primary flex gap-x-[11.44rem] pb-[9rem] pt-[3.12rem]">
-    <Artist class="flex-1" artistGroup={sortedArtistWithTitleAsFirstLetter} />
+    <Artist
+      class="flex-1"
+      bind:activeAnchor
+      artistGroup={sortedArtistWithTitleAsFirstLetter} />
     <NavigationAnchor {anchors} {activeAnchor} {activeAnchorIndex} />
   </div>
 </section>
