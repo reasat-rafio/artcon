@@ -4,6 +4,7 @@
   import type { SiteProps } from '@/lib/types/common.types';
   import '@fontsource-variable/inter';
   import '@fontsource/outfit/500.css';
+  import '@fontsource/outfit/600.css';
 
   export let data: { site: SiteProps };
   $: ({
