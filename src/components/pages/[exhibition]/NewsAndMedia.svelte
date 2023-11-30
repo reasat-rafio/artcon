@@ -36,7 +36,7 @@
         class="mb-section"
         let:chunk
         leftPos={descriptionBlockElLeftPos}
-        {newsAndMedia}>
+        newsAndMedia={[...newsAndMedia, ...newsAndMedia]}>
         {#each chunk as { image, link, subtitle, title }}
           <Card
             el="a"

@@ -1,26 +1,39 @@
 <script lang="ts" generics="T">
-  import ChevronRightRounded from '../icons/ChevronRightRounded.svelte';
-
-  import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';
-
   import { cn } from '@/lib/cn';
   import { chunkArray } from '@/lib/helper';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { scale } from 'svelte/transition';
+  import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';
+  import ChevronRightLongRounded from '../icons/ChevronRightLongRounded.svelte';
+  import ChevronRightRounded from '../icons/ChevronRightRounded.svelte';
 
   export let leftPos = 0;
   export let newsAndMedia: T[];
 
   let innerWidth = 0;
   let emblaApi: EmblaCarouselType;
+  let carouselCanScrollPrev: boolean;
+  let carouselCanScrollNext: boolean;
 
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
   $: chunks = chunkArray(newsAndMedia, slidesNumber);
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+  }
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    carouselCanScrollNext = event.detail.canScrollNext();
+    carouselCanScrollPrev = event.detail.canScrollPrev();
   };
+
+  const scrollPrev = () => emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi.scrollNext();
 </script>
 
 <svelte:window bind:innerWidth />
@@ -34,7 +47,7 @@
       on:emblaInit={onInit}
       use:emblaCarouselSvelte={{
         plugins: [],
-        options: { axis: 'x', loop: true },
+        options: { axis: 'x' },
       }}>
       <div class="ml-[-1.56rem] flex">
         {#each chunks as chunk}
@@ -47,25 +60,24 @@
     </div>
 
     <nav class="flex h-full items-center justify-center">
-      <button class="hidden xl:block" on:click={() => emblaApi.scrollNext()}>
-        <svg
-          class="h-[2.8125rem] w-[2.8125rem] transition-transform duration-500 hover:scale-105"
-          xmlns="http://www.w3.org/2000/svg"
-          width="45"
-          height="46"
-          viewBox="0 0 45 46"
-          fill="none">
-          <path
-            d="M23.2334 17.6719L22.4977 18.4234L27.0066 23.0588H17V24.1346H27.0066L22.4977 28.778L23.2334 29.5295L29 23.5967L23.2334 17.6719Z"
-            fill="#252525" />
-          <circle cx="22.5" cy="23.1719" r="22" stroke="#C0C0C0" />
-        </svg>
-      </button>
+      <div class="hidden xl:block">
+        {#if carouselCanScrollPrev}
+          <button transition:scale class="rotate-180" on:click={scrollPrev}>
+            <ChevronRightLongRounded />
+          </button>
+        {/if}
+        {#if carouselCanScrollNext}
+          <button transition:scale on:click={scrollNext}>
+            <ChevronRightLongRounded />
+          </button>
+        {/if}
+      </div>
+
       <div class="mt-[2.38rem] block space-x-[0.62rem] xl:hidden">
-        <button on:click={() => emblaApi.scrollPrev()}>
+        <button on:click={scrollPrev}>
           <ChevronLeftRounded />
         </button>
-        <button on:click={() => emblaApi.scrollNext()}>
+        <button on:click={scrollNext}>
           <ChevronRightRounded />
         </button>
       </div>

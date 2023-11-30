@@ -53,12 +53,12 @@
         class="flex h-full items-center justify-center">
         <div class="hidden space-y-[0.5rem] xl:block">
           {#if carouselCanScrollPrev}
-            <button class="rotate-180" on:click={scrollPrev}>
+            <button transition:slide class="rotate-180" on:click={scrollPrev}>
               <ChevronRightLongRounded />
             </button>
           {/if}
           {#if carouselCanScrollNext}
-            <button on:click={scrollNext}>
+            <button transition:slide on:click={scrollNext}>
               <ChevronRightLongRounded />
             </button>
           {/if}
