@@ -17,9 +17,11 @@
   $: data;
   let emblaApi: EmblaCarouselType;
   let sliderContainerEl: HTMLElement;
-  let activeSlideIndex = 0;
   let blockHeight = 0;
-  const statusOrder = {
+  let sliderItemDesEl: HTMLElement;
+  let slideDescriptionBlockPositionFromTopOfTheContainer = 0;
+  let activeSlideIndex = 0;
+  const STATUS_ORDER = {
     Ongoing: 0,
     Upcoming: 1,
     Ended: 2,
@@ -30,6 +32,11 @@
       activeSlideIndex = selectedScrollSnap();
     });
   }
+
+  onMount(() => {
+    sliderItemDesEl = document.querySelector('.other-doc-info-container')!;
+    getSliderDescriptionBlockPositionFromTopOfTheContainer();
+  });
 
   data.sort((a, b) => {
     const { status: statusA } = calculateStatusBetweenDates({
@@ -42,11 +49,13 @@
       endDate: b.endDate,
     });
 
-    return statusOrder[statusA] - statusOrder[statusB];
+    return STATUS_ORDER[statusA] - STATUS_ORDER[statusB];
   });
+
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
+
   const setBlockHeight = (node: HTMLElement, _: boolean) => {
     blockHeight = node.clientHeight;
     return {
@@ -56,70 +65,95 @@
     };
   };
 
-  let slideCounterPos = 0;
-  onMount(() => {
-    const sliderItemDesEl = document.querySelector(
-      '.other-doc-info-container',
-    )!;
-    const sliderItemDesElHeight = sliderItemDesEl.getBoundingClientRect().top;
-    const containerTopPos = sliderContainerEl.getBoundingClientRect().top;
-    slideCounterPos = sliderItemDesElHeight - containerTopPos;
-  });
+  const getSliderDescriptionBlockPositionFromTopOfTheContainer = () => {
+    if (!!sliderItemDesEl && !!sliderContainerEl) {
+      const sliderItemDesElHeight = sliderItemDesEl.getBoundingClientRect().top;
+      const containerTopPos = sliderContainerEl.getBoundingClientRect().top;
+      slideDescriptionBlockPositionFromTopOfTheContainer =
+        sliderItemDesElHeight - containerTopPos;
+    }
+  };
 </script>
+
+<svelte:window
+  on:resize={getSliderDescriptionBlockPositionFromTopOfTheContainer} />
 
 <section>
   <div
-    class="container-primary border-t border-[#BBBBBE] pb-[7.79rem] pt-[4.375rem]">
+    class="container-primary border-t border-[#D2D2D3] pb-[7.79rem] pt-[4.375rem]">
     <h2 class="head-4 mb-[2rem]">{title}</h2>
-    <div bind:this={sliderContainerEl} class="relative">
-      <div
-        class="relative mx-[4.87rem] overflow-hidden"
-        on:emblaInit={onInit}
-        use:emblaCarouselSvelte={{
-          plugins: [],
-          options: { align: 'start', loop: true },
-        }}>
-        <div class="flex">
-          {#each data as { slug, type, name, asset, tag }, index}
-            <a
-              href="{urlPrefix}/{slug.current}"
-              class="flex-[0_0_90%] overflow-hidden md:flex-[0_0_70%] xl:flex-[0_0_50%]">
-              <div
-                class="relative mb-[4.03rem] mr-[1.81rem] aspect-square overflow-hidden rounded-lg">
-                <Asset {asset} />
-              </div>
-              <div
-                class="other-doc-info-container border-[#D2D2D3] pl-[1.88rem] lg:border-t lg:pt-[2.25rem]">
+
+    <div class="relative h-full md:flex">
+      <div class="flex-1" bind:this={sliderContainerEl}>
+        <div
+          class="relative overflow-hidden"
+          on:emblaInit={onInit}
+          use:emblaCarouselSvelte={{
+            plugins: [],
+            options: { align: 'start', loop: true },
+          }}>
+          <div class="-mr-[0.94rem] flex md:-mr-[1.88rem]">
+            {#each data as { slug, type, name, asset, tag }, index}
+              <a
+                href="{urlPrefix}/{slug.current}"
+                class="flex-[0_0_90%] overflow-hidden xl:flex-[0_0_50%]">
                 <div
-                  use:setBlockHeight={index === activeSlideIndex}
-                  class="max-w-[25rem] space-y-[0.625rem]">
-                  <header>
-                    <h3 class="head-6 inline">{name}</h3>
-                    {#if !!type}
-                      <h4 class="head-8 inline">
-                        /
-                        {#if typeof type === 'string'}
-                          {type}
-                        {:else}
-                          {type.name}
-                        {/if}
-                      </h4>
-                    {/if}
-                  </header>
-                  <h4 class="head-8 text-[#77777C]">
-                    {tag.name}
-                  </h4>
+                  class="relative mb-[1.25rem] mr-[0.94rem] aspect-square origin-left overflow-hidden rounded-lg transition-transform duration-500 md:mr-[1.88rem] xl:mb-[4.03rem] {activeSlideIndex !==
+                  index
+                    ? 'max-xl:scale-90'
+                    : 'scale-100'}">
+                  <Asset {asset} />
                 </div>
-              </div>
-            </a>
-          {/each}
+                <div
+                  class="other-doc-info-container origin-top border-[#D2D2D3] transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
+                  index
+                    ? 'max-xl:scale-75'
+                    : 'scale-100'}">
+                  <div
+                    use:setBlockHeight={index === activeSlideIndex}
+                    class="max-w-[95%] space-y-[0.625rem] lg:max-w-[25rem]">
+                    <header>
+                      <h3 class="head-6 inline">{name}</h3>
+                      {#if !!type}
+                        <h4 class="head-8 inline">
+                          /
+                          {#if typeof type === 'string'}
+                            {type}
+                          {:else}
+                            {type.name}
+                          {/if}
+                        </h4>
+                      {/if}
+                    </header>
+                    <h4 class="head-8 text-[#77777C]">
+                      {tag.name}
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            {/each}
+          </div>
+        </div>
+
+        <div
+          style="top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px);"
+          class="absolute right-0 block pt-[0.4rem] xl:hidden">
+          <div class="sub-title-light bg-white text-[#4A4A51] md:pr-[2.25rem]">
+            {#key activeSlideIndex}
+              <span in:fade out:fade={{ duration: 0 }}>
+                {activeSlideIndex + 1}
+              </span>
+            {/key}
+            /
+            <span>{data.length}</span>
+          </div>
         </div>
       </div>
-
       <div
-        style="top: {slideCounterPos}px;"
-        class="absolute right-0 mr-[calc(1.81rem+4.87rem)] pt-[2.25rem]">
-        <div class="sub-title-light bg-white text-[#4A4A51]">
+        style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
+        class="hidden flex-col xl:flex">
+        <div
+          class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-[#4A4A51]">
           {#key activeSlideIndex}
             <span in:fade out:fade={{ duration: 0 }}>
               {activeSlideIndex + 1}
@@ -128,6 +162,15 @@
           /
           <span>{data.length}</span>
         </div>
+        <nav
+          class="ml-auto space-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
+          <button on:click={() => emblaApi.scrollPrev()}>
+            <ChevronLeftRounded />
+          </button>
+          <button on:click={() => emblaApi.scrollNext()}>
+            <ChevronRightRounded />
+          </button>
+        </nav>
       </div>
     </div>
   </div>
