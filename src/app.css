@@ -5,17 +5,21 @@
 @layer base {
   @font-face {
     font-family: 'OPTIBerling Agency';
-    src: local('OPTIBerling-Agency'), local('optiberling-agency'),
-      url(/fonts/OPTIBerling-Agency.otf);
-    font-weight: normal;
-    font-display: swap;
+    src:
+      local('OPTIBerling-Agency'),
+      local('optiberling-agency'),
+      url(/fonts/OPTIBerling-Agency.otf) format('opentype'),
+      font-weight-normal;
   }
-  @font-face {
+  /* @font-face {
     font-family: 'OPTIBerling Agency';
-    src: url(/fonts/OPTIBerling-Medium.ttf) format('ttf');
-    font-weight: 500;
-    font-display: swap;
-  }
+    src:
+      local('OPTIBerling-Medium'),
+      local('optiberling-medium'),
+      url(/fonts/OPTIBerling-Medium.ttf) format('truetype'),
+      font-weight-medium;
+    font-style: normal;
+  } */
 
   h1,
   h2,
@@ -23,7 +27,7 @@
   h4,
   h5,
   h6 {
-    @apply font-optiberling-agency font-medium;
+    @apply !font-optiberling-agency font-medium;
   }
   body {
     @apply text-dark-gunmetal;

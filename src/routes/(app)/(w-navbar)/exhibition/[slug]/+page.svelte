@@ -37,7 +37,7 @@
       description,
     },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoLight, ogImage, logoDark },
       footer,
       contact,
     },
@@ -70,7 +70,7 @@
     type: heroType,
   }} />
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/exhibition" logo={logoLight}>Our exhibition</Share>
+  <Share href="/exhibition" logo={logoDark}>Our exhibition</Share>
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
