@@ -141,7 +141,7 @@
           class="absolute right-0 block pt-[0.4rem] xl:hidden">
           <div class="sub-title-light bg-white text-[#4A4A51] md:pr-[2.25rem]">
             {#key activeSlideIndex}
-              <span in:fade out:fade={{ duration: 0 }}>
+              <span in:fade>
                 {activeSlideIndex + 1}
               </span>
             {/key}
@@ -157,7 +157,7 @@
         <div
           class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-[#4A4A51]">
           {#key activeSlideIndex}
-            <span in:fade out:fade={{ duration: 0 }}>
+            <span in:fade>
               {activeSlideIndex + 1}
             </span>
           {/key}
