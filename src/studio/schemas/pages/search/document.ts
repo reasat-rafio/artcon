@@ -1,3 +1,5 @@
+import type { DefaultPreviewProps } from 'sanity';
+
 const searchPage = {
   name: 'searchPage',
   title: 'Search Page',
@@ -10,10 +12,11 @@ const searchPage = {
     },
   ],
   preview: {
-    select: {
-      title: 'seo.title',
-      subtitle: 'seo.description',
-    },
+    select: { title: 'seo.title' },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: '/search',
+    }),
   },
 };
 

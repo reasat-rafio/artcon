@@ -64,7 +64,7 @@ export default {
       },
 
       fontFamily: {
-        inter: ['Inter Variable', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
         'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
       },

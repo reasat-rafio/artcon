@@ -1,4 +1,4 @@
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const privacyPolicy = {
   name: 'privacyPolicyPage',
@@ -34,10 +34,11 @@ const privacyPolicy = {
     },
   ],
   preview: {
-    select: {
-      title: 'seo.title',
-      subtitle: 'seo.description',
-    },
+    select: { title: 'seo.title' },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: '/privacy-policy',
+    }),
   },
 };
 

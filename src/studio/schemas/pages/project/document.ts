@@ -1,4 +1,4 @@
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const projectPage = {
   name: 'projectPage',
@@ -19,10 +19,11 @@ const projectPage = {
     },
   ],
   preview: {
-    select: {
-      title: 'seo.title',
-      subtitle: 'seo.description',
-    },
+    select: { title: 'seo.title' },
+    prepare: (props: DefaultPreviewProps) => ({
+      ...props,
+      subtitle: '/project',
+    }),
   },
 };
 

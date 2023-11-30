@@ -47,7 +47,7 @@
     </DescriptionBlock>
 
     <ParallaxScrollImage
-      class="mb-section"
+      class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
       images={[{ img: images[0] }, { img: images[1] }]} />
 
     {#if statement?.title && statement?.description}

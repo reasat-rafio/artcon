@@ -52,20 +52,25 @@
         <div class="space-y-[2.25rem]">
           <C.HeaderContainer>
             <C.Title>{name}</C.Title>
-            <C.Subtitle>{subtitle}</C.Subtitle>
+            <C.Subtitle
+              class="font-inter text-[0.8125rem] font-light leading-[120%]">
+              {subtitle}
+            </C.Subtitle>
           </C.HeaderContainer>
 
-          <div class="space-y-[0.375rem]">
-            <C.Subtitle variant="sm">
+          <div class="">
+            <C.Subtitle class="text-[0.75rem] font-light  text-[#1B1B1E]">
               Published by
               {#each publishedBy as p, i}
-                <div class="inline font-medium text-[#000]">
+                <div class="inline font-light">
                   {#if i === publishedBy.length - 1}
-                    <span class="font-normal">and</span>
+                    <span class="">and</span>
                   {:else if i !== 0}
                     ,
                   {/if}
-                  {p}
+                  <span class="text-[0.875rem] font-medium">
+                    {p}
+                  </span>
                 </div>
               {/each}
             </C.Subtitle>

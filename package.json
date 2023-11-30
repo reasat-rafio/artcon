@@ -23,7 +23,7 @@
     "svelte-youtube-embed": "^0.2.1"
   },
   "devDependencies": {
-    "@fontsource-variable/inter": "^5.0.8",
+    "@fontsource/inter": "^5.0.15",
     "@fontsource/outfit": "^5.0.8",
     "@portabletext/svelte": "^2.0.0",
     "@sanity/client": "^6.4.6",
