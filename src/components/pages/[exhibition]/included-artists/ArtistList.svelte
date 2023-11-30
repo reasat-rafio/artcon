@@ -1,14 +1,15 @@
 <script lang="ts">
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { chunkArray } from '@/lib/helper';
-  import type { OtherArtists } from '@/lib/types/artist-detail.types';
+  import type { GroupExhibitionProps } from '@/lib/types/exhibition-detail.types';
+
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import Card from './Card.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
 
-  export let artists: OtherArtists[];
+  export let artists: GroupExhibitionProps[];
 
   let emblaApi: EmblaCarouselType;
   let innerWidth = 0;
@@ -36,23 +37,23 @@
 
 <svelte:window bind:innerWidth />
 <section
-  class="container-primary pb-section border-t border-[#A5A5A8] pt-[2.26rem]">
-  <h3 class="head-xl mb-md">Other artists</h3>
+  class="container-primary py-section border-t border-[#A5A5A8] pt-[2.26rem]">
+  <h3 class="head-xl mb-md">Artist in this exhibition</h3>
   <div
-    class="relative overflow-hidden md:mx-[2rem] 2xl:mx-[4.87rem]"
+    class="relative overflow-hidden"
     use:emblaCarouselSvelte={{ plugins: [], options: {} }}
     on:emblaInit={onInit}>
     <div class="flex">
       {#each chunksOfArtists as chunk}
         <div
           class="grid flex-[0_0_100%] grid-cols-1 gap-x-[1.25rem] gap-y-[3.38rem] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {#each chunk as { artistPortrait, name, slug, tag }}
+          {#each chunk as { artistPortrait, name, slug }}
             <Card
               el="a"
               url="/artist/{slug.current}"
               image={artistPortrait}
               title={name}
-              subtitle={tag.name} />
+              subtitle={'tag.name'} />
           {/each}
         </div>
       {/each}

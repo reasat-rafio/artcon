@@ -54,7 +54,7 @@ type Section =
   | GalleryProps
   | NewsAndMediaProps;
 
-export type ArtistsProps = SoloExhibitonProps | GroupExhibirtionProps[];
+export type ArtistsProps = SoloExhibitonProps | GroupExhibitionProps[];
 
 export interface SoloExhibitonProps {
   data: ArtistSummaryProps;
@@ -78,7 +78,7 @@ export interface Gallery {
   name: string;
 }
 
-export interface GroupExhibirtionProps {
+export interface GroupExhibitionProps {
   slug: Slug;
   name: string;
   artistPortrait: SanityImageAssetDocument;

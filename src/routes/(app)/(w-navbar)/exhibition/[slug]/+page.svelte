@@ -6,7 +6,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Gallery from '@/components/pages/[exhibition]/Gallery.svelte';
-  import IncludedArtists from '@/components/pages/[exhibition]/IncludedArtists.svelte';
+  import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import NewsAndMedia from '@/components/pages/[exhibition]/NewsAndMedia.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';

@@ -8,8 +8,7 @@
     src:
       local('OPTIBerling-Agency'),
       local('optiberling-agency'),
-      url(/fonts/OPTIBerling-Agency.otf) format('opentype'),
-      font-weight-normal;
+      url(/fonts/OPTIBerling-Agency.otf) format('opentype');
   }
   /* @font-face {
     font-family: 'OPTIBerling Agency';
