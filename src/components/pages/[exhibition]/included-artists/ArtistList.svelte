@@ -17,14 +17,7 @@
 
   $: slidesNumber =
     innerWidth >= 1280 ? 8 : innerWidth >= 1024 ? 6 : innerWidth >= 768 ? 4 : 2;
-
   $: chunksOfArtists = chunkArray(artists, slidesNumber);
-
-  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
-    emblaApi = event.detail;
-    selectedSnap = event.detail.selectedScrollSnap();
-  };
-
   $: if (emblaApi) {
     emblaApi.on('select', ({ selectedScrollSnap }) => {
       selectedSnap = selectedScrollSnap();
@@ -33,6 +26,11 @@
       selectedSnap = selectedScrollSnap();
     });
   }
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+    selectedSnap = event.detail.selectedScrollSnap();
+  };
 </script>
 
 <svelte:window bind:innerWidth />
@@ -47,13 +45,13 @@
       {#each chunksOfArtists as chunk}
         <div
           class="grid flex-[0_0_100%] grid-cols-1 gap-x-[1.25rem] gap-y-[3.38rem] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {#each chunk as { artistPortrait, name, slug }}
+          {#each chunk as { artistPortrait, name, slug, tag }}
             <Card
               el="a"
               url="/artist/{slug.current}"
               image={artistPortrait}
               title={name}
-              subtitle={'tag.name'} />
+              subtitle={tag.name} />
           {/each}
         </div>
       {/each}

@@ -82,6 +82,7 @@ export interface GroupExhibitionProps {
   slug: Slug;
   name: string;
   artistPortrait: SanityImageAssetDocument;
+  tag: Tag;
 }
 
 export interface SummaryProps {

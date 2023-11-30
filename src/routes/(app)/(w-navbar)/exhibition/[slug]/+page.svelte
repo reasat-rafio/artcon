@@ -47,10 +47,8 @@
     startDate,
     endDate,
   }));
-
   $: heroText =
     status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
-
   $: heroType =
     type ||
     (isSoloExhibition(artists)

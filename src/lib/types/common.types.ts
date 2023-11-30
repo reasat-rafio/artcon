@@ -1,6 +1,7 @@
 import type { SanityImageAssetDocument } from '@sanity/client';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { PortableTextBlock, Slug } from 'sanity';
+import type { Information } from './collection-detail.types';
 
 export interface PageProps<T> {
   site: SiteProps;
@@ -188,7 +189,7 @@ export interface CommonArtworkSectionProps {
 
 export interface ShortArtworks {
   artwork: SanityImageAssetDocument;
-  information: PortableTextBlock[];
+  information: Information;
 }
 [];
 

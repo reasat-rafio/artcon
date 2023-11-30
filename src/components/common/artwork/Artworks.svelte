@@ -1,14 +1,13 @@
 <script lang="ts">
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
   import AutoPlay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
-  import { twMerge } from 'tailwind-merge';
   import Image from './Image.svelte';
   import type { ShortArtworks } from '@/lib/types/common.types';
+  import { cn } from '@/lib/cn';
 
   export let artworks: ShortArtworks[];
 
@@ -25,7 +24,7 @@
   };
 </script>
 
-<div class={twMerge('grid  grid-cols-12', $$props.class)}>
+<div class={cn('grid  grid-cols-12', $$props.class)}>
   <div class={'col-span-12 lg:col-span-11'}>
     <div
       class="relative overflow-hidden"

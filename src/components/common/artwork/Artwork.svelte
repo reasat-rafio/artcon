@@ -1,16 +1,16 @@
 <script lang="ts">
-  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Quote from '@/components/common/Quote.svelte';
-  import Artworks from './Artworks.svelte';
   import Cta from '@/components/ui/Cta.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type {
     CommonArtworkSectionProps,
     ShortArtworks,
   } from '@/lib/types/common.types';
-  import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import Artworks from './Artworks.svelte';
 
   export let props: CommonArtworkSectionProps & {
-    artworks: ShortArtworks;
+    artworks: ShortArtworks[];
   };
 
   $: ({
@@ -41,7 +41,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <!-- @TODO fix the types -->
-    <Artworks class="hidden lg:grid" {artworks} />
+    <Artworks {artworks} />
   </div>
 </section>

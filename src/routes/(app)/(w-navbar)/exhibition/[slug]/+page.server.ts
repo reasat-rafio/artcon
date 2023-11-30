@@ -84,10 +84,12 @@ const query = (params: Partial<Record<string, string>>) =>
     },
     count(artists) > 1 => {
       artists[]->{
+        tag->,
         slug,
         ...personalDocuments {
           "name": name.en,
           ${asset('artistPortrait')},
+
         }
       },
     },
