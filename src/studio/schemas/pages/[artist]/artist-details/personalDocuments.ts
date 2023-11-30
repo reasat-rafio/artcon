@@ -79,6 +79,7 @@ const personalDocuments = {
     {
       name: 'born',
       type: 'datetime',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'died',

@@ -7,19 +7,10 @@
 </script>
 
 <a href={link} target="_blank">
-  <!-- <SanityImage
-    alt={link}
-    src={icon}
-    sizes="15px"
-    class="h-[15px] w-[15px]"
-    imageUrlBuilder={imageBuilder}
-  /> -->
-
   <img
     class="h-[0.938rem] w-[0.938rem]"
     width="15px"
     height="15px"
     src="/icons/socials/dark/{getSocialIconPath(type)}"
-    alt="{type}'s icon"
-  />
+    alt="{type}'s icon" />
 </a>

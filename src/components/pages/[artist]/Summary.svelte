@@ -25,9 +25,9 @@
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.HeaderContainer class="mb-[23px]">
+        <C.HeaderContainer class="mb-[1.5rem]">
           <C.Title>{personalDocuments.name}</C.Title>
-          <C.Subtitle variant="sm">
+          <C.Subtitle class="!font-inter" variant="sm">
             b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
           </C.Subtitle>
         </C.HeaderContainer>

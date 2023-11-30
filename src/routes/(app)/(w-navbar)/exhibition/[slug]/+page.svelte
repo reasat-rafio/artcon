@@ -90,7 +90,7 @@
     {:else if s._type === 'exhibition.publication' && !!publication}
       <Publication props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
-      <Artwork props={{ ...s, artworks }} />
+      <Artwork props={{ ...s, artworks, artworkAtLast: true }} />
     {:else if s._type === 'exhibition.gallery'}
       <Gallery props={s} />
     {:else if s._type === 'exhibition.newsAndMedia'}

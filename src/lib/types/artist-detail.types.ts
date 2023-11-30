@@ -25,7 +25,7 @@ export interface ArtistDetailPageProps {
     type?: string;
     cta?: Cta;
   };
-  artworks: ShortArtworks;
+  artworks: ShortArtworks[];
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
   otherArtists: OtherArtists[];

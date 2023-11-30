@@ -24,7 +24,7 @@
   };
 </script>
 
-<div class={cn('grid  grid-cols-12', $$props.class)}>
+<div class={cn('grid grid-cols-12', $$props.class)}>
   <div class={'col-span-12 lg:col-span-11'}>
     <div
       class="relative overflow-hidden"
