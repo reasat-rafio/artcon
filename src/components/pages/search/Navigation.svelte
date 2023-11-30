@@ -8,6 +8,7 @@
   import searchStore from '@/store/search';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { onMount } from 'svelte';
+  import { fade, slide } from 'svelte/transition';
 
   export let logo: SanityAsset;
 
@@ -94,6 +95,7 @@
             class="scale-100 text-[#A5A5A8] transition-transform duration-500 hover:scale-125">
             {#if $searchStore.loading}
               <div
+                in:fade
                 class="h-[1.438rem] w-[1.438rem] animate-spin rounded-full border-t-2 border-solid border-red-500">
               </div>
             {:else}

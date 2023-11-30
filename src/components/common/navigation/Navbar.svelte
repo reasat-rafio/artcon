@@ -19,6 +19,9 @@
 
   $: logo = logo;
   $: isDarkNavPaths = darkNavPaths.includes($page.url.pathname);
+  $: placeholder = searchIsActive
+    ? 'Search artist, art work, news etc '
+    : 'Search';
 
   const redirectToSearchPage = (value: string) => {
     const searchParams = new URLSearchParams({
@@ -55,10 +58,13 @@
       <button
         use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}
-        class:bg-white={searchIsActive}
         class={cn(
           'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
-          isDarkNavPaths ? 'border-dark-gunmetal' : 'border-white',
+          {
+            'border-dark-gunmetal': isDarkNavPaths,
+            'border-white': !isDarkNavPaths,
+            'bg-white': searchIsActive,
+          },
         )}>
         <input
           bind:this={searchInputEl}
@@ -67,20 +73,19 @@
             if (e.keyCode === 13) redirectToSearchPage(searchInputEl.value);
           }}
           class={cn(
-            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] ',
-            isDarkNavPaths
-              ? 'placeholder:text-dark-gunmetal'
-              : 'placeholder:text-white group-hover:placeholder:text-dark-gunmetal',
-            searchIsActive ? 'w-[250px]' : 'w-[70px]',
-            isDarkNavPaths
-              ? searchIsActive && ''
-              : searchIsActive &&
-                  'text-dark-gunmetal placeholder:text-dark-gunmetal',
+            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px]',
+            {
+              'w-[250px]': searchIsActive,
+              'w-[70px]': !searchIsActive,
+              'placeholder:text-dark-gunmetal': isDarkNavPaths,
+              'placeholder:text-white group-hover:placeholder:text-dark-gunmetal':
+                !isDarkNavPaths,
+              'text-dark-gunmetal placeholder:text-dark-gunmetal':
+                !isDarkNavPaths && searchIsActive,
+            },
           )}
           type="text"
-          placeholder={searchIsActive
-            ? 'Search artist, art work, news etc '
-            : 'Search'} />
+          {placeholder} />
         <button
           disabled={$searchStore.loading}
           on:click={() => redirectToSearchPage(searchInputEl.value)}
