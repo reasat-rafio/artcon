@@ -135,6 +135,7 @@
           </div>
         </div>
 
+        <!-- ABSOLUTE POSITIONED SLIDES COUNTER FOR MOBILE -->
         <div
           style="top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px);"
           class="absolute right-0 block pt-[0.4rem] xl:hidden">
@@ -148,6 +149,7 @@
             <span>{data.length}</span>
           </div>
         </div>
+        <!-- END -->
       </div>
       <div
         style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
@@ -172,6 +174,16 @@
           </button>
         </nav>
       </div>
+      <!-- MOBILE NAVIGATION -->
+      <nav
+        class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] lg:col-span-1 lg:flex-col xl:hidden">
+        <button on:click={() => emblaApi.scrollPrev()}>
+          <ChevronLeftRounded />
+        </button>
+        <button on:click={() => emblaApi.scrollNext()}>
+          <ChevronRightRounded />
+        </button>
+      </nav>
     </div>
   </div>
 </section>
