@@ -6,6 +6,7 @@
   import { darkNavPaths } from '@/lib/constant';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import searchStore from '@/store/search';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import SearchIcon from '../../icons/Search.svelte';
   import Hamburger from '../Hamburger.svelte';
@@ -61,6 +62,7 @@
         )}>
         <input
           bind:this={searchInputEl}
+          disabled={$searchStore.loading}
           on:keydown={(e) => {
             if (e.keyCode === 13) redirectToSearchPage(searchInputEl.value);
           }}
@@ -80,9 +82,16 @@
             ? 'Search artist, art work, news etc '
             : 'Search'} />
         <button
+          disabled={$searchStore.loading}
           on:click={() => redirectToSearchPage(searchInputEl.value)}
           class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
-          <SearchIcon />
+          {#if $searchStore.loading}
+            <div
+              class="h-[1.438rem] w-[1.438rem] animate-spin rounded-full border-t-2 border-solid border-red-500">
+            </div>
+          {:else}
+            <SearchIcon />
+          {/if}
         </button>
       </button>
     </div>

@@ -49,7 +49,7 @@
       searchInputEl.value = $page.url.searchParams.get('q') as string;
     }
 
-    searchInputEl.focus();
+    searchInputEl?.focus();
     searchInputEl?.click();
   });
 </script>
@@ -81,6 +81,7 @@
           class="flex w-full cursor-pointer space-x-2 rounded-[64px] border border-[#A5A5A8] bg-white pb-[0.75rem] pl-[1.75rem] pr-[1.5rem] pt-[0.69rem] transition-colors duration-500 group-hover:bg-white sm:w-[26rem] lg:space-x-5">
           <input
             bind:this={searchInputEl}
+            disabled={$searchStore.loading}
             on:keydown={(e) => {
               if (e.keyCode === 13) searchAction(searchInputEl.value);
             }}
@@ -88,9 +89,16 @@
             type="text"
             placeholder={'Search'} />
           <button
+            disabled={$searchStore.loading}
             on:click={() => searchAction(searchInputEl.value)}
             class="scale-100 text-[#A5A5A8] transition-transform duration-500 hover:scale-125">
-            <SearchIcon />
+            {#if $searchStore.loading}
+              <div
+                class="h-[1.438rem] w-[1.438rem] animate-spin rounded-full border-t-2 border-solid border-red-500">
+              </div>
+            {:else}
+              <SearchIcon />
+            {/if}
           </button>
         </button>
       </div>
