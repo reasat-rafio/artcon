@@ -27,7 +27,6 @@
   $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
 
   let emblaApi: EmblaCarouselType;
-
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };

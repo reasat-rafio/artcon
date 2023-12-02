@@ -1,5 +1,6 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import OthersDocument from '@/components/common/OthersDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
@@ -27,6 +28,7 @@
       gallery,
       associationsList,
       description,
+      otherEvents,
     },
     site: {
       logos: { logoLight, ogImage },
@@ -38,6 +40,7 @@
   $: ({ date, status: eventStatus } = calculateStatusBetweenDates({
     startDate,
     endDate,
+    longFormat: true,
   }));
 
   $: heroText = status || (eventStatus !== 'Ongoing' ? date : eventStatus);
@@ -75,5 +78,13 @@
       <NewsAndMedia {props} />
     {/if}
   {/each}
+
+  {#if !!otherEvents?.length}
+    <OthersDocument
+      urlPrefix="/event"
+      title="Other events"
+      data={otherEvents} />
+  {/if}
+
   <Footer {footer} {contact} logo={logoLight} />
 </div>

@@ -33,9 +33,11 @@ function areSameMonthAndYear(date1: DateTime, date2: DateTime) {
 export const calculateStatusBetweenDates = ({
   startDate,
   endDate,
+  longFormat,
 }: {
   startDate: string;
   endDate?: string;
+  longFormat?: boolean;
 }) => {
   const currentDateTime = DateTime.now();
   let status: 'Ongoing' | 'Upcoming' | 'Ended';
@@ -48,6 +50,8 @@ export const calculateStatusBetweenDates = ({
     const formattedEndDate = isoEndDate.toFormat('d MMM, yyyy');
     const formattedStartDate = areSameMonthAndYear(isoStartDate, isoEndDate)
       ? isoStartDate.toFormat('d')
+      : longFormat
+      ? isoStartDate.toFormat('d MMMM')
       : isoStartDate.toFormat('d MMM');
 
     date = `${formattedStartDate} - ${formattedEndDate}`;

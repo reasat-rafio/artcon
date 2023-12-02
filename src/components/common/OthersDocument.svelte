@@ -151,21 +151,35 @@
         </div>
         <!-- END -->
       </div>
-      <div
-        style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
-        class="hidden flex-col xl:flex">
+
+      {#if data?.length > 1}
+        <!-- DESKTOP NAVIGATION -->
         <div
-          class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-[#4A4A51]">
-          {#key activeSlideIndex}
-            <span in:fade>
-              {activeSlideIndex + 1}
-            </span>
-          {/key}
-          /
-          <span>{data.length}</span>
+          style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
+          class="hidden flex-col xl:flex">
+          <div
+            class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-[#4A4A51]">
+            {#key activeSlideIndex}
+              <span in:fade>
+                {activeSlideIndex + 1}
+              </span>
+            {/key}
+            /
+            <span>{data.length}</span>
+          </div>
+          <nav
+            class="ml-auto space-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
+            <button on:click={() => emblaApi.scrollPrev()}>
+              <ChevronLeftRounded />
+            </button>
+            <button on:click={() => emblaApi.scrollNext()}>
+              <ChevronRightRounded />
+            </button>
+          </nav>
         </div>
+        <!-- MOBILE NAVIGATION -->
         <nav
-          class="ml-auto space-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
+          class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] lg:col-span-1 lg:flex-col xl:hidden">
           <button on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>
@@ -173,17 +187,7 @@
             <ChevronRightRounded />
           </button>
         </nav>
-      </div>
-      <!-- MOBILE NAVIGATION -->
-      <nav
-        class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] lg:col-span-1 lg:flex-col xl:hidden">
-        <button on:click={() => emblaApi.scrollPrev()}>
-          <ChevronLeftRounded />
-        </button>
-        <button on:click={() => emblaApi.scrollNext()}>
-          <ChevronRightRounded />
-        </button>
-      </nav>
+      {/if}
     </div>
   </div>
 </section>
