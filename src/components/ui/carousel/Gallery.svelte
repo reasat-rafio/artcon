@@ -1,4 +1,6 @@
 <script lang="ts" generics="T">
+  import { slide } from 'svelte/transition';
+
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
@@ -13,13 +15,31 @@
   let innerWidth = 0;
   let containerEl: HTMLElement;
   let emblaApi: EmblaCarouselType;
+  let carouselCanScrollPrev: boolean;
+  let carouselCanScrollNext: boolean;
 
   $: chunks = chunkArray(items, slidesNumber);
   $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    carouselCanScrollNext = event.detail.canScrollNext();
+    carouselCanScrollPrev = event.detail.canScrollPrev();
   };
+
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+    emblaApi.on('resize', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
+  }
+
+  const scrollPrev = () => emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi.scrollNext();
 </script>
 
 <svelte:window bind:innerWidth />
@@ -44,12 +64,23 @@
     </div>
   </div>
   <nav
-    class="col-span-12 mt-[2.38rem] flex items-center justify-center space-x-[0.62rem] lg:mt-[1.55rem] lg:justify-end">
-    <button on:click={() => emblaApi.scrollPrev()}>
-      <ChevronLeftRounded />
-    </button>
-    <button on:click={() => emblaApi.scrollNext()}>
-      <ChevronRightRounded />
-    </button>
+    class="col-span-12 mt-[2.38rem] flex items-center justify-center lg:mt-[1.55rem] lg:justify-end">
+    {#if carouselCanScrollPrev}
+      <button
+        class:mr-[.31rem]={carouselCanScrollNext}
+        transition:slide={{ axis: 'x' }}
+        on:click={scrollPrev}>
+        <ChevronLeftRounded />
+      </button>
+    {/if}
+
+    {#if carouselCanScrollNext}
+      <button
+        class:ml-[.31rem]={carouselCanScrollNext}
+        transition:slide={{ axis: 'x' }}
+        on:click={scrollNext}>
+        <ChevronRightRounded />
+      </button>
+    {/if}
   </nav>
 </section>

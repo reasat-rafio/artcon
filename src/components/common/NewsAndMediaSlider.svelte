@@ -22,6 +22,10 @@
       carouselCanScrollNext = canScrollNext();
       carouselCanScrollPrev = canScrollPrev();
     });
+    emblaApi.on('resize', ({ canScrollNext, canScrollPrev }) => {
+      carouselCanScrollNext = canScrollNext();
+      carouselCanScrollPrev = canScrollPrev();
+    });
   }
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
