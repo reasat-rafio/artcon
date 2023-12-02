@@ -168,7 +168,7 @@
             <span>{data.length}</span>
           </div>
           <nav
-            class="ml-auto space-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
+            class="ml-auto flex gap-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
             <button on:click={() => emblaApi.scrollPrev()}>
               <ChevronLeftRounded />
             </button>

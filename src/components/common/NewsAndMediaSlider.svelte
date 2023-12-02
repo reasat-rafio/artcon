@@ -73,14 +73,14 @@
         {/if}
       </div>
 
-      <div class="mt-[2.38rem] block space-x-[0.62rem] xl:hidden">
+      <nav class="mt-[2.38rem] flex gap-x-[0.62rem] xl:hidden">
         <button on:click={scrollPrev}>
           <ChevronLeftRounded />
         </button>
         <button on:click={scrollNext}>
           <ChevronRightRounded />
         </button>
-      </div>
+      </nav>
     </nav>
   </div>
 </div>

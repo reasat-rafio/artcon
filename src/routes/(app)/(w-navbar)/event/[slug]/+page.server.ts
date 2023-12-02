@@ -32,7 +32,7 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('images[]', { as: 'images' })},
         vrOrYtVideoSlider[]{
           _type == "vr" => {...}->,
-          _type == "youtube" => {...},
+          _type == "youtube" => {..., ${asset('thumbnail')}},
         },
         newsAndMedia[]{
             ...,

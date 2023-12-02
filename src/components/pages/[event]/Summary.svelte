@@ -5,9 +5,9 @@
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
-  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
@@ -66,7 +66,7 @@
     {#if !!vrOrYtVideoSlider?.length}
       <div
         class="relative overflow-hidden"
-        use:emblaCarouselSvelte={{ plugins: [], options: {} }}
+        use:emblaCarouselSvelte={{ plugins: [], options: { watchDrag: false } }}
         on:emblaInit={onInit}>
         <div class="flex">
           {#each vrOrYtVideoSlider as props}
@@ -80,16 +80,17 @@
           {/each}
         </div>
       </div>
+
+      <div class="mx-auto flex max-w-[72.9375rem] justify-end">
+        <nav class="flex gap-x-[0.62rem]">
+          <button on:click={() => emblaApi.scrollPrev()}>
+            <ChevronLeftRounded />
+          </button>
+          <button on:click={() => emblaApi.scrollNext()}>
+            <ChevronRightRounded />
+          </button>
+        </nav>
+      </div>
     {/if}
-    <div class="flex justify-end">
-      <nav class="space-x-[0.62rem]">
-        <button on:click={() => emblaApi.scrollPrev()}>
-          <ChevronLeftRounded />
-        </button>
-        <button on:click={() => emblaApi.scrollNext()}>
-          <ChevronRightRounded />
-        </button>
-      </nav>
-    </div>
   </div>
 </section>

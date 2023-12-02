@@ -212,4 +212,5 @@ export interface Youtube {
   _type: 'youtube';
   url: string;
   caption?: string;
+  thumbnail?: SanityImageAssetDocument;
 }

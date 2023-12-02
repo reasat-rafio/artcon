@@ -18,6 +18,11 @@ const youtube = defineType({
       },
     }),
     {
+      name: 'thumbnail',
+      type: 'image',
+      options: { hotspot: true },
+    },
+    {
       name: 'caption',
       type: 'string',
     },
@@ -25,6 +30,7 @@ const youtube = defineType({
   preview: {
     select: {
       title: 'url',
+      media: 'thumbnail',
     },
   },
   // components: {
