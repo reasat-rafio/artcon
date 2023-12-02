@@ -31,7 +31,7 @@
       inquiryButton,
     },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoLight, logoDark, ogImage },
       footer,
       contact,
     },
@@ -41,7 +41,6 @@
 <Seo {seo} siteOgImg={ogImage} />
 <Hero
   props={{
-    _key: '',
     asset,
     cta,
     type,
@@ -51,7 +50,7 @@
   }} />
 
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/artist" logo={logoLight}>Our collections</Share>
+  <Share href="/artist" logo={logoDark}>Our collections</Share>
 
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}

@@ -7,7 +7,7 @@
   import Cta from '../../ui/Cta.svelte';
   import Asset from './Asset.svelte';
 
-  export let props: CommonHeroProps;
+  export let props: Omit<CommonHeroProps, '_key'>;
   $: ({ text, title, type, asset, cta } = props);
 
   let titleEl: HTMLElement;

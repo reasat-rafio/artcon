@@ -48,7 +48,6 @@
 <Hero
   props={{
     _type: 'common.hero',
-    _key: '',
     asset,
     cta,
     title: name,

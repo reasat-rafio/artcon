@@ -38,7 +38,6 @@
 <Seo {seo} siteOgImg={ogImage} />
 <Hero
   props={{
-    _key: '',
     _type: 'common.hero',
     text: status,
     title: personalDocuments.name,
