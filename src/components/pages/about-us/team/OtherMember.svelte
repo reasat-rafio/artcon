@@ -1,13 +1,13 @@
 <script lang="ts">
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import { chunkArray } from '@/lib/helper';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import type { TeamProps } from '@/lib/types/about-us.types';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
-  import { chunkArray } from '@/lib/helper';
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import type { TeamProps } from '@/lib/types/about-us.types';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
 
   export let extraTeam: TeamProps[];
 
@@ -16,19 +16,17 @@
   let selectedSnap = 1;
 
   $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
-
   $: chunksOfArtists = chunkArray(extraTeam, slidesNumber);
-
-  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
-    emblaApi = event.detail;
-    selectedSnap = event.detail.selectedScrollSnap();
-  };
-
   $: if (emblaApi) {
     emblaApi.on('select', ({ selectedScrollSnap }) => {
       selectedSnap = selectedScrollSnap();
     });
   }
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+    selectedSnap = event.detail.selectedScrollSnap();
+  };
 </script>
 
 <svelte:window bind:innerWidth />
@@ -58,7 +56,7 @@
                   imageUrlBuilder={imageBuilder} />
               </figure>
               <div class="flex-1 space-y-[0.438rem]">
-                <h5 class="haed-6">{name}</h5>
+                <h4 class="haed-6">{name}</h4>
                 <p class="head-8 font-optiberling-agency text-[#77777C]">
                   {role}
                 </p>

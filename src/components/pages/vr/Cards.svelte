@@ -33,10 +33,10 @@
 
         <Container>
           <Title class="inline">{name}</Title>
-          <h6
+          <h4
             class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]">
             / {gallery.name}
-          </h6>
+          </h4>
 
           <Subtitle class="font-optiberling-agency text-sonic-silver">
             {category.name}

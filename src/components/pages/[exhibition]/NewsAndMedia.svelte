@@ -38,7 +38,7 @@
             let:Image>
             <Image {image} />
             <Container>
-              <Title>{title}</Title>
+              <Title el="h4">{title}</Title>
               <Subtitle
                 class="!font-optiberling-agency !font-medium text-sonic-silver">
                 {subtitle}

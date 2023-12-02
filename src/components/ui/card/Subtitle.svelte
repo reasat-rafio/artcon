@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { twMerge } from 'tailwind-merge';
+  import { cn } from '@/lib/cn';
 </script>
 
-<div class={twMerge('head-8', $$props.class)}>
+<div class={cn('head-8', $$props.class)}>
   <slot />
 </div>

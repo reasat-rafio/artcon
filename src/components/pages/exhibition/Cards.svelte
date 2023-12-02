@@ -26,7 +26,7 @@
         <Container>
           <div>
             <Title class="inline">{name}</Title>
-            <h6
+            <h4
               class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]">
               /
               {#if typeof type === 'string'}
@@ -34,7 +34,7 @@
               {:else}
                 {type.name}
               {/if}
-            </h6>
+            </h4>
           </div>
           <Subtitle class="font-optiberling-agency text-sonic-silver">
             {tag.name}

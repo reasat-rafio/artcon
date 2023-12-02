@@ -28,7 +28,7 @@
       imageUrlBuilder={imageBuilder} />
   </figure>
   <div class="head-8 flex-1 space-y-[0.438rem] font-optiberling-agency">
-    <h5>{title}</h5>
+    <h4>{title}</h4>
     <p class="text-[#77777C]">{subtitle}</p>
   </div>
 </svelte:element>

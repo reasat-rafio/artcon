@@ -1,5 +1,4 @@
 <script lang="ts">
-  import BodyText from '@/components/ui/BodyText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { TeamProps } from '@/lib/types/about-us.types';
@@ -24,7 +23,7 @@
 
       <div
         class="absolute bottom-0 left-0 w-fit space-y-[0.5rem] pb-[23px] pl-[23px] pr-[30px]">
-        <h6 class="body-regular text-white">{name}</h6>
+        <h3 class="body-regular text-white">{name}</h3>
         <p class="title-light text-[#A5A5A8]">{role}</p>
       </div>
     </svelte:element>
