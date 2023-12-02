@@ -1,8 +1,8 @@
 <script lang="ts">
   import CtaBtn from '@/components/ui/Cta.svelte';
+  import { cn } from '@/lib/cn';
   import type { Information } from '@/lib/types/collection-detail.types';
   import type { Cta } from '@/lib/types/common.types';
-  import { twMerge } from 'tailwind-merge';
 
   export let artworkName: string;
   export let inquiryButton: Cta;
@@ -10,7 +10,7 @@
   $: ({ artDate, frame, media, size, moreInformation } = information);
 </script>
 
-<div class={twMerge('space-y-[1.25rem]', $$props.class)}>
+<div class={cn('space-y-[1.25rem]', $$props.class)}>
   <h4 class="body-regular font-inter font-normal">{artworkName}</h4>
 
   <ul class="text-[0.875rem] font-light leading-[1.25rem]">
@@ -25,10 +25,10 @@
     {/if}
   </ul>
 </div>
-<!-- TODO fix the color and variant -->
+
 {#if !!inquiryButton?.title}
-  <div class={twMerge('relative', $$props.class)}>
-    <CtaBtn href={inquiryButton.href}>
+  <div class={cn('relative z-10', $$props.class)}>
+    <CtaBtn variant="tertiary" href={inquiryButton.href}>
       {inquiryButton.title}
     </CtaBtn>
   </div>

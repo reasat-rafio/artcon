@@ -17,21 +17,19 @@
     primary: 'border border-[#A5A5A8] text-[#77777C]',
     secondary:
       'border border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal',
-    tertiary:
-      'gradient-base-style relative bg-transparent g-red-gray text-white',
-    quaternary:
-      'gradient-base-style relative bg-transparent g-white text-dark-gunmetal',
+    tertiary: 'gradient-base-style  bg-transparent g-red-gray text-white',
+    quaternary: 'gradient-base-style bg-transparent g-white text-dark-gunmetal',
   };
 </script>
 
 <a
+  {...$$restProps}
   class={cn(
-    'block w-fit min-w-[8.75rem] overflow-hidden rounded-[4rem] px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem] ',
+    'relative block w-fit min-w-[8.75rem] overflow-hidden rounded-[4rem] px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]',
     variantClasses[variant],
     className,
   )}
-  href={$$props.href}
-  {...$$restProps}>
+  href={$$props.href}>
   <slot />
 </a>
 
