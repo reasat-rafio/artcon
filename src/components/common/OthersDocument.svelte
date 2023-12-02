@@ -27,17 +27,16 @@
     Ended: 2,
   } as const;
 
-  $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap }) => {
-      activeSlideIndex = selectedScrollSnap();
-    });
-  }
-
   onMount(() => {
     sliderItemDesEl = document.querySelector('.other-doc-info-container')!;
     getSliderDescriptionBlockPositionFromTopOfTheContainer();
   });
 
+  $: if (emblaApi) {
+    emblaApi.on('select', ({ selectedScrollSnap }) => {
+      activeSlideIndex = selectedScrollSnap();
+    });
+  }
   data.sort((a, b) => {
     const { status: statusA } = calculateStatusBetweenDates({
       startDate: a.startDate,
@@ -83,7 +82,7 @@
     class="container-primary border-t border-[#D2D2D3] pb-[7.79rem] pt-[4.375rem]">
     <h2 class="head-4 mb-[2rem]">{title}</h2>
 
-    <div class="relative h-full md:flex">
+    <div class="relative h-full xl:flex">
       <div class="flex-1" bind:this={sliderContainerEl}>
         <div
           class="relative overflow-hidden"
@@ -179,7 +178,7 @@
         </div>
         <!-- MOBILE NAVIGATION -->
         <nav
-          class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] lg:col-span-1 lg:flex-col xl:hidden">
+          class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] xl:col-span-1 xl:hidden xl:flex-col">
           <button on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>

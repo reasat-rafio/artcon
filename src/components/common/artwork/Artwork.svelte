@@ -29,11 +29,11 @@
       <Quote class="mb-section" {quote} />
     {/if}
 
-    {#if !artworkAtLast}
+    {#if !artworkAtLast && !!artworks?.length}
       <Artworks class="mb-section" {artworks} />
     {/if}
 
-    <DescriptionBlock class={!artworkAtLast && 'mb-section'}>
+    <DescriptionBlock class={artworkAtLast && 'mb-section'}>
       <svelte:fragment slot="intro" let:C>
         <C.Title class="lg:mb-10">{title}</C.Title>
         <Cta className="hidden lg:block" href={cta.href}>{cta.title}</Cta>
@@ -48,7 +48,7 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    {#if artworkAtLast}
+    {#if artworkAtLast && !!artworks?.length}
       <Artworks {artworks} />
     {/if}
   </div>

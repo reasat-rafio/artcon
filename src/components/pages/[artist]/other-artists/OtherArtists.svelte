@@ -7,31 +7,46 @@
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import Card from './Card.svelte';
+  import { slide } from 'svelte/transition';
 
   export let artists: OtherArtists[];
 
   let emblaApi: EmblaCarouselType;
   let innerWidth = 0;
   let selectedSnap = 1;
+  let carouselCanScrollPrev: boolean;
+  let carouselCanScrollNext: boolean;
 
   $: slidesNumber =
     innerWidth >= 1280 ? 8 : innerWidth >= 1024 ? 6 : innerWidth >= 768 ? 4 : 2;
-
   $: chunksOfArtists = chunkArray(artists, slidesNumber);
+  $: if (emblaApi) {
+    emblaApi.on(
+      'select',
+      ({ selectedScrollSnap, canScrollNext, canScrollPrev }) => {
+        selectedSnap = selectedScrollSnap();
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
+    emblaApi.on(
+      'resize',
+      ({ selectedScrollSnap, canScrollNext, canScrollPrev }) => {
+        selectedSnap = selectedScrollSnap();
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
+  }
 
+  const scrollPrev = () => emblaApi.scrollPrev();
+  const scrollNext = () => emblaApi.scrollNext();
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     selectedSnap = event.detail.selectedScrollSnap();
+    carouselCanScrollNext = event.detail.canScrollNext();
+    carouselCanScrollPrev = event.detail.canScrollPrev();
   };
-
-  $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap }) => {
-      selectedSnap = selectedScrollSnap();
-    });
-    emblaApi.on('resize', ({ selectedScrollSnap }) => {
-      selectedSnap = selectedScrollSnap();
-    });
-  }
 </script>
 
 <svelte:window bind:innerWidth />
@@ -60,16 +75,27 @@
   </div>
   <div
     class="mt-[2.31rem] flex items-center justify-between md:pr-[2rem] 2xl:pr-[4.87rem]">
-    <nav>
-      <div class="space-x-[0.62rem] lg:space-x-[0.3rem]">
-        <button class="bg-white" on:click={() => emblaApi.scrollPrev()}>
-          <ChevronLeftRounded />
-        </button>
-        <button on:click={() => emblaApi.scrollNext()}>
-          <ChevronRightRounded />
-        </button>
-      </div>
-    </nav>
+    <div>
+      <nav>
+        {#if carouselCanScrollPrev}
+          <button
+            class:mr-[.31rem]={carouselCanScrollNext}
+            transition:slide={{ axis: 'x' }}
+            on:click={scrollPrev}>
+            <ChevronLeftRounded />
+          </button>
+        {/if}
+
+        {#if carouselCanScrollNext}
+          <button
+            class:ml-[.31rem]={carouselCanScrollNext}
+            transition:slide={{ axis: 'x' }}
+            on:click={scrollNext}>
+            <ChevronRightRounded />
+          </button>
+        {/if}
+      </nav>
+    </div>
     <span
       class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-[#4A4A51]">
       {selectedSnap + 1}/{chunksOfArtists.length}

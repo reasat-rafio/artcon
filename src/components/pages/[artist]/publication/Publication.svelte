@@ -8,6 +8,7 @@
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import PublicationImage from './PublicationImage.svelte';
+  import Autoplay from 'embla-carousel-autoplay';
 
   export let publications: Publication[];
 
@@ -38,7 +39,10 @@
 <section bind:this={rootEl}>
   <div class="container-primary py-section relative">
     <div
-      use:emblaCarouselSvelte={{ plugins: [], options: { loop: true } }}
+      use:emblaCarouselSvelte={{
+        plugins: [Autoplay({ stopOnInteraction: true })],
+        options: { loop: true },
+      }}
       on:emblaInit={onInit}
       class="overflow-hidden">
       <div class="-ml-[4rem] flex">

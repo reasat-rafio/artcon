@@ -12,6 +12,7 @@
   export let information: Information;
   export let innerWidth = 0;
   export let isSingleArtwork: boolean;
+  export let length: number;
 
   const x = tweened(active ? 1 : 0.6, {
     duration: 500,
@@ -47,7 +48,7 @@
   class="relative h-full flex-[0_0_90%] max-lg:pl-[1.25rem] lg:flex lg:flex-[0_0_50%] lg:items-center lg:justify-center">
   <div>
     <div style="transform: scale({$x}, {$y});">
-      <figure class="relative lg:translate-x-[-10%]">
+      <figure class:lg:translate-x-[-10%]={length > 1} class="relative">
         <SanityImage
           class="h-full w-full rounded-[25px] object-cover"
           sizes="(min-width:1024px) 60vw, 100vw"
