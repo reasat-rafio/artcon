@@ -6,6 +6,7 @@
   import type { NewsAndMediaProps } from '@/lib/types/event-detail.types';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import NewsAndMediaSlider from '@/components/common/NewsAndMediaSlider.svelte';
 
   export let props: NewsAndMediaProps;
   $: ({
@@ -21,7 +22,34 @@
       <Quote class="mb-section" {quote} />
     {/if}
 
-    <div class="mb-section">
+    {#if !!newsAndMedia?.length}
+      <NewsAndMediaSlider
+        class="mb-sm md:mb-[4.63rem]"
+        let:chunk
+        {newsAndMedia}>
+        {#each chunk as { image, link, subtitle, title }}
+          <Card
+            el="a"
+            href={link}
+            class="space-y-[1.25rem] pl-[1.56rem]"
+            let:Container
+            let:Title
+            let:Subtitle
+            let:Image>
+            <Image {image} />
+            <Container>
+              <Title>{title}</Title>
+              <Subtitle
+                class="!font-optiberling-agency !font-medium text-sonic-silver">
+                {subtitle}
+              </Subtitle>
+            </Container>
+          </Card>
+        {/each}
+      </NewsAndMediaSlider>
+    {/if}
+
+    <!-- <div class="mb-section">
       <Gallery items={newsAndMedia} let:chunk>
         {#each chunk as { image, link, subtitle, title }}
           <Card
@@ -40,7 +68,7 @@
           </Card>
         {/each}
       </Gallery>
-    </div>
+    </div> -->
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

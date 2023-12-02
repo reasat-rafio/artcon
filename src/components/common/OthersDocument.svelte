@@ -90,7 +90,7 @@
           on:emblaInit={onInit}
           use:emblaCarouselSvelte={{
             plugins: [],
-            options: { align: 'start', loop: true },
+            options: { align: 'start', loop: true, active: data.length > 1 },
           }}>
           <div class="-mr-[0.94rem] flex md:-mr-[1.88rem]">
             {#each data as { slug, type, name, asset, tag }, index}

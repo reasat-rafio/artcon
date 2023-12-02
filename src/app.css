@@ -116,19 +116,23 @@
   }
 
   .mb-section {
-    @apply mb-sm md:mb-[80px] xl:mb-xl;
+    @apply mb-sm md:mb-[5rem] xl:mb-xl;
   }
 
   .mt-section {
-    @apply mt-sm md:mt-[80px] xl:mt-xl;
+    @apply mt-sm md:mt-[5rem] xl:mt-xl;
   }
   .pb-section {
-    @apply pb-sm md:pb-[80px] xl:pb-xl;
+    @apply pb-sm md:pb-[5rem] xl:pb-xl;
+  }
+  .pt-section {
+    @apply pt-sm md:pt-[5rem] xl:pt-xl;
   }
 
   .py-section {
-    @apply py-sm md:py-[80px] xl:py-xl;
+    @apply py-sm md:py-[5rem] xl:py-xl;
   }
+
   .px-section {
     @apply max-lg:px-[1.25rem] lg:pl-[16rem] lg:pr-[5rem];
   }

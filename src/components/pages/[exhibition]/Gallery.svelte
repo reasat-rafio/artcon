@@ -14,10 +14,10 @@
 
 <section>
   <div class="py-section container-primary">
-    <div class="mb-sm md:mb-[80px] lg:mr-[4.375rem] xl:mb-[74.21px]">
-      <Gallery axiesOnMobile="y" items={images} let:chunk>
+    <div class="mb-sm md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[74.21px]">
+      <Gallery items={images} let:chunk>
         {#each chunk as image}
-          <Card class="max-md:pt-[1.5625rem] md:pl-[1.5625rem]" let:Image>
+          <Card class="pl-[1.5625rem] max-md:pt-[1.5625rem]" let:Image>
             <Image {image} />
           </Card>
         {/each}

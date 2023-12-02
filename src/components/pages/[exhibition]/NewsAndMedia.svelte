@@ -12,17 +12,8 @@
     newsAndMedia,
     descriptionBlock: { description, title },
   } = props);
-
-  let innerWidth = 0;
-  let descriptionBlockEl: HTMLElement;
-  let descriptionBlockElLeftPos = 0;
-
-  $: if (!!descriptionBlockEl && innerWidth) {
-    descriptionBlockElLeftPos = descriptionBlockEl.getBoundingClientRect().left;
-  }
 </script>
 
-<svelte:window bind:innerWidth />
 <section>
   <div class="py-section">
     {#if !!quote}
@@ -33,9 +24,8 @@
 
     {#if !!newsAndMedia?.length}
       <NewsAndMediaSlider
-        class="mb-section"
+        class="container-primary mb-sm md:mb-[4.63rem]"
         let:chunk
-        leftPos={descriptionBlockElLeftPos}
         {newsAndMedia}>
         {#each chunk as { image, link, subtitle, title }}
           <Card
@@ -59,7 +49,7 @@
       </NewsAndMediaSlider>
     {/if}
 
-    <div class="container-primary" bind:this={descriptionBlockEl}>
+    <div class="container-primary">
       <DescriptionBlock>
         <svelte:fragment slot="intro" let:C>
           <C.Title>{title}</C.Title>

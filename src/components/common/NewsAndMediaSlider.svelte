@@ -3,12 +3,10 @@
   import { chunkArray } from '@/lib/helper';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import { scale } from 'svelte/transition';
+  import { slide } from 'svelte/transition';
   import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';
-  import ChevronRightLongRounded from '../icons/ChevronRightLongRounded.svelte';
   import ChevronRightRounded from '../icons/ChevronRightRounded.svelte';
 
-  export let leftPos = 0;
   export let newsAndMedia: T[];
 
   let innerWidth = 0;
@@ -38,10 +36,7 @@
 
 <svelte:window bind:innerWidth />
 <div class={cn($$props.class)}>
-  <div
-    id="news-and-media-slider"
-    style="--leftPos: {leftPos}px"
-    class="flex max-w-[85.3rem] flex-col items-center max-lg:px-[1rem] max-md:mx-auto md:mr-[1rem] xl:flex-row xl:gap-x-[2rem] 2xl:gap-x-[4.375rem]">
+  <div id="news-and-media-slider">
     <div
       class="overflow-hidden"
       on:emblaInit={onInit}
@@ -59,36 +54,25 @@
       </div>
     </div>
 
-    <nav class="flex h-full items-center justify-center">
-      <div class="hidden xl:block">
-        {#if carouselCanScrollPrev}
-          <button transition:scale class="rotate-180" on:click={scrollPrev}>
-            <ChevronRightLongRounded />
-          </button>
-        {/if}
-        {#if carouselCanScrollNext}
-          <button transition:scale on:click={scrollNext}>
-            <ChevronRightLongRounded />
-          </button>
-        {/if}
-      </div>
-
-      <nav class="mt-[2.38rem] flex gap-x-[0.62rem] xl:hidden">
-        <button on:click={scrollPrev}>
+    <nav
+      class="mt-[2.38rem] flex h-full items-center justify-center lg:mt-[1.57rem] lg:justify-end">
+      {#if carouselCanScrollPrev}
+        <button
+          class:mr-[.31rem]={carouselCanScrollNext}
+          transition:slide={{ axis: 'x' }}
+          on:click={scrollPrev}>
           <ChevronLeftRounded />
         </button>
-        <button on:click={scrollNext}>
+      {/if}
+
+      {#if carouselCanScrollNext}
+        <button
+          class:ml-[.31rem]={carouselCanScrollNext}
+          transition:slide={{ axis: 'x' }}
+          on:click={scrollNext}>
           <ChevronRightRounded />
         </button>
-      </nav>
+      {/if}
     </nav>
   </div>
 </div>
-
-<style>
-  @media screen and (min-width: 768px) {
-    #news-and-media-slider {
-      margin-left: var(--leftPos);
-    }
-  }
-</style>
