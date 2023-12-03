@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Overlay from '@/components/common/hero/Overlay.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { Asset } from '@/lib/types/common.types';
@@ -7,6 +8,8 @@
 </script>
 
 <div class="relative overflow-hidden max-lg:hidden lg:w-[600px] xl:w-[785px]">
+  <Overlay />
+
   {#if !!sliderImageVideo?.image}
     <SanityImage
       id="previewImage"

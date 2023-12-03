@@ -6,6 +6,7 @@
   import ChevronDown from '../../icons/ChevronDown.svelte';
   import Cta from '../../ui/Cta.svelte';
   import Asset from './Asset.svelte';
+  import Overlay from './Overlay.svelte';
 
   export let props: Omit<CommonHeroProps, '_key'>;
   $: ({ text, title, type, asset, cta } = props);
@@ -38,6 +39,7 @@
     {#key asset}
       <Asset {asset} />
     {/key}
+    <Overlay />
 
     <div
       class="relative z-30 max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">

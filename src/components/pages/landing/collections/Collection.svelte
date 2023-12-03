@@ -6,8 +6,11 @@
   $: ({ slug, index, title, _type, name, subtitle, sliderImageVideo } = props);
 </script>
 
+<!-- TODO - improve this so it doesn't need ternary operator -->
 <CollectionLayout
-  href={`preview/${_type}/${slug.current}`}
+  href={`/preview/${_type === 'documentary' ? 'audio-visual' : _type}/${
+    slug.current
+  }`}
   {index}
   {sliderImageVideo}>
   <div

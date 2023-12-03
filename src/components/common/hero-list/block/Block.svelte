@@ -3,6 +3,7 @@
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import { gsap } from 'gsap';
   import Asset from './Asset.svelte';
+  import Overlay from '../../hero/Overlay.svelte';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -74,6 +75,7 @@
   bind:this={blockEl}
   class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
+  <Overlay />
 
   <div
     bind:this={contentContainerEl}

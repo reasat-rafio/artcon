@@ -1,5 +1,6 @@
 <script lang="ts">
   import Seo from '@/components/common/Seo.svelte';
+  import Overlay from '@/components/common/hero/Overlay.svelte';
   import Contact from '@/components/pages/landing/Contact.svelte';
   import Hero from '@/components/pages/landing/Hero.svelte';
   import DesktopCollections from '@/components/pages/landing/collections/desktop/Collections.svelte';
@@ -20,10 +21,12 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-<div id="landing-page">
+<div id="landing-page relative">
+  <Overlay />
+
   <div
     bind:this={rootEl}
-    class="lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden">
+    class="relative lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden">
     {#each page.sections as s}
       {#if s._type === 'common.hero'}
         <Hero
