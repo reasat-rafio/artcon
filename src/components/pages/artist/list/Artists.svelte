@@ -8,11 +8,11 @@
   export let activeAnchor: string;
 </script>
 
-<div class={cn($$props.class)}>
+<div class={cn('', $$props.class)}>
   {#each artistGroup as { title, artists }}
-    <section>
+    <section id={title}>
       <h2
-        class="font-outfit mb-[3.31rem] text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#ED1C24]">
+        class="mb-[0.75rem] !font-outfit text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#ED1C24] lg:mb-[3.31rem]">
         {title}
       </h2>
 

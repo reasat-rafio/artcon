@@ -7,7 +7,6 @@
 
   export let anchors: string[];
   export let activeAnchor: string;
-  export let activeAnchorIndex: number;
 
   const alphabet: string[] = [];
   let emblaApi: EmblaCarouselType;
@@ -16,49 +15,22 @@
     alphabet.push(String.fromCharCode(65 + i)); // Uppercase letters
   }
 
+  $: {
+    console.log(activeAnchor);
+  }
+
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
   };
-
-  // $: if (emblaApi) {
-  //   emblaApi.on('scroll', (emblaApi) => {
-  //     const {
-  //       limit,
-  //       target,
-  //       location,
-  //       offsetLocation,
-  //       scrollTo,
-  //       translate,
-  //       scrollBody,
-  //     } = emblaApi.internalEngine();
-
-  //     let edge: number | null = null;
-
-  //     if (limit.reachedMax(location.get())) edge = limit.max;
-  //     if (limit.reachedMin(location.get())) edge = limit.min;
-
-  //     if (edge !== null) {
-  //       offsetLocation.set(edge);
-  //       location.set(edge);
-  //       target.set(edge);
-  //       translate.to(edge);
-  //       translate.toggleActive(false);
-  //       scrollBody.useDuration(0).useFriction(0);
-  //       scrollTo.distance(0, false);
-  //     } else {
-  //       translate.toggleActive(true);
-  //     }
-  //   });
-  // }
 </script>
 
 <aside
   class={cn(
-    'sticky top-0 flex h-screen items-center justify-center',
+    'sticky top-0 hidden h-screen items-center justify-center lg:flex',
     $$props.class,
   )}>
   <div
-    class="h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-[#F8F8F8] py-[2.73875rem] active:cursor-grabbing">
+    class="max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-[#F8F8F8] py-[2.73875rem] active:cursor-grabbing xl:max-h-[47.9rem]">
     <div
       class="relative h-full overflow-hidden px-[0.8055rem]"
       on:emblaInit={onInit}
@@ -66,17 +38,16 @@
         options: { axis: 'y', skipSnaps: true, containScroll: 'trimSnaps' },
         plugins: [WheelGesturesPlugin()],
       }}>
-      <div
-        style="height: calc((100% - (2.73875rem * 2)) / 12);"
-        class="flex flex-col">
-        {#each alphabet as anchor}
-          <button
-            class="font-outfit flex-[0_0_100%] cursor-pointer text-center text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
+      <div class="flex h-full flex-col">
+        {#each anchors as anchor}
+          <a
+            href="#{anchor}"
+            class="mb-[1.83rem] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
-              ? 'text-[#967d7e]'
+              ? 'text-[#ED1C24]'
               : 'text-[#A5A5A8]'}">
             {anchor}
-          </button>
+          </a>
         {/each}
       </div>
     </div>

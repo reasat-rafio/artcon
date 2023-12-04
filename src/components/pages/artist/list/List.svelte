@@ -11,7 +11,6 @@
   let sortedArtistWithTitleAsFirstLetter: SortedArtists[];
   let anchors: string[] = [];
   let activeAnchor = anchors[0];
-  let activeAnchorIndex = 0;
 
   $: {
     const newSortedArtistListWithTitleAsFirstLetter: SortedArtists[] =
@@ -35,11 +34,12 @@
 </script>
 
 <section>
-  <div class="container-primary flex gap-x-[11.44rem] pb-[9rem] pt-[3.12rem]">
+  <div
+    class="container-primary flex pb-[2.5rem] pt-[3.12rem] sm:pb-[4.5rem] lg:gap-x-[2rem] xl:gap-x-[6rem] xl:pb-[9rem] 2xl:gap-x-[11.44rem]">
     <Artist
-      class="flex-1"
+      class="flex-1 max-2xl:space-y-[1.25rem]"
       bind:activeAnchor
       artistGroup={sortedArtistWithTitleAsFirstLetter} />
-    <NavigationAnchor {anchors} {activeAnchor} {activeAnchorIndex} />
+    <NavigationAnchor {anchors} {activeAnchor} />
   </div>
 </section>

@@ -31,6 +31,9 @@
   body {
     @apply text-dark-gunmetal;
   }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
