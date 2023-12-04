@@ -9,10 +9,10 @@
   export let activeAnchor: string;
   export let activeAnchorIndex: number;
 
-  let alphabet: string[] = [];
-  for (let i = 0; i < 26; i++) {
-    alphabet.push(String.fromCharCode(65 + i)); // Uppercase letters
-  }
+  // let alphabet: string[] = [];
+  // for (let i = 0; i < 26; i++) {
+  //   alphabet.push(String.fromCharCode(65 + i)); // Uppercase letters
+  // }
 
   let emblaApi: EmblaCarouselType;
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
