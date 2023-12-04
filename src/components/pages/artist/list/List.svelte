@@ -4,13 +4,15 @@
     SortedArtists,
   } from '@/lib/types/artist.types';
   import Artist from './Artists.svelte';
-  import NavigationAnchor from './NavigationAnchor.svelte';
+  import NavigationAnchorDesktop from './nav-anchor/NavigationAnchorDesktop.svelte';
+  import NavigationAnchorMobile from './nav-anchor/NavigationAnchorMobile.svelte';
 
   export let artists: ArtistProps[];
 
   let sortedArtistWithTitleAsFirstLetter: SortedArtists[];
   let anchors: string[] = [];
   let activeAnchor = anchors[0];
+  $: activeAnchorIndex = anchors.indexOf(activeAnchor);
 
   $: {
     const newSortedArtistListWithTitleAsFirstLetter: SortedArtists[] =
@@ -35,11 +37,20 @@
 
 <section>
   <div
-    class="container-primary flex pb-[2.5rem] pt-[3.12rem] sm:pb-[4.5rem] lg:gap-x-[2rem] xl:gap-x-[6rem] xl:pb-[9rem] 2xl:gap-x-[11.44rem]">
+    class="container-primary flex pb-[2.5rem] pt-[3.12rem] max-xl:flex-col sm:pb-[4.5rem] lg:gap-x-[2rem] xl:gap-x-[6rem] xl:pb-[9rem] 2xl:gap-x-[11.44rem]">
+    <NavigationAnchorMobile
+      class="block xl:hidden"
+      {anchors}
+      {activeAnchor}
+      {activeAnchorIndex} />
     <Artist
       class="flex-1 max-2xl:space-y-[1.25rem]"
       bind:activeAnchor
       artistGroup={sortedArtistWithTitleAsFirstLetter} />
-    <NavigationAnchor {anchors} {activeAnchor} />
+    <NavigationAnchorDesktop
+      class="hidden xl:flex"
+      {anchors}
+      {activeAnchor}
+      {activeAnchorIndex} />
   </div>
 </section>
