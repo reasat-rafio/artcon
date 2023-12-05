@@ -7,16 +7,32 @@
   import Cta from '../../ui/Cta.svelte';
   import Asset from './Asset.svelte';
   import Overlay from './Overlay.svelte';
+  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
   export let props: Omit<CommonHeroProps, '_key'>;
   $: ({ text, title, type, asset, cta } = props);
 
+  let innerWidth = 0;
+  let scrollY = 0;
+  let sectionEl: HTMLElement;
   let titleEl: HTMLElement;
   let textEl: HTMLElement;
   let typeEl: HTMLElement;
-  let innerWidth = 0;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to(sectionEl, {
+      y: -100,
+      scale: 1.01,
+      scrollTrigger: {
+        trigger: sectionEl,
+        start: 'center center',
+        end: 'bottom top',
+        scrub: 0.5,
+      },
+    });
+
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'expoOut', duration: 0.5 },
@@ -33,8 +49,10 @@
   });
 </script>
 
-<svelte:window bind:innerWidth />
-<section class={twMerge('fixed inset-0 h-screen w-full', $$props.class)}>
+<svelte:window bind:innerWidth bind:scrollY />
+<section
+  bind:this={sectionEl}
+  class={twMerge('fixed inset-0 h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full items-center justify-center">
     {#key asset}
       <Asset {asset} />

@@ -4,6 +4,8 @@
   import { gsap } from 'gsap';
   import Asset from './Asset.svelte';
   import Overlay from '../../hero/Overlay.svelte';
+  import { onMount } from 'svelte';
+  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -19,6 +21,22 @@
   let contentContainerEl: HTMLElement;
 
   $: isActive = activeBlockIndex === index;
+  $: activeBlockIndex, runAnimation();
+
+  onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to(blockEl, {
+      y: -100,
+      scale: 1.01,
+      scrollTrigger: {
+        trigger: blockEl,
+        start: 'center center',
+        end: 'bottom top',
+        scrub: 0.5,
+      },
+    });
+  });
 
   const runAnimation = () => {
     if (!assetEl) return;
@@ -67,8 +85,6 @@
       );
     }
   };
-
-  $: activeBlockIndex, runAnimation();
 </script>
 
 <div
