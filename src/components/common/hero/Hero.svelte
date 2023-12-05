@@ -13,7 +13,6 @@
   $: ({ text, title, type, asset, cta } = props);
 
   let innerWidth = 0;
-  let scrollY = 0;
   let sectionEl: HTMLElement;
   let titleEl: HTMLElement;
   let textEl: HTMLElement;
@@ -23,7 +22,7 @@
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(sectionEl, {
-      y: -100,
+      y: -50,
       scale: 1.01,
       scrollTrigger: {
         trigger: sectionEl,
@@ -49,7 +48,7 @@
   });
 </script>
 
-<svelte:window bind:innerWidth bind:scrollY />
+<svelte:window bind:innerWidth />
 <section
   bind:this={sectionEl}
   class={twMerge('fixed inset-0 h-screen w-full', $$props.class)}>

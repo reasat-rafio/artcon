@@ -3,6 +3,7 @@
 </script>
 
 <svg
+  class={$$props.class}
   in:fade
   width="23"
   height="22"

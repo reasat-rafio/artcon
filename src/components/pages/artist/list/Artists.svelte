@@ -3,6 +3,7 @@
 
   import type { SortedArtists } from '@/lib/types/artist.types';
   import Artist from './Artist.svelte';
+  import { fade } from 'svelte/transition';
 
   export let artistGroup: SortedArtists[];
   export let activeAnchor: string;
@@ -17,7 +18,7 @@
       </h2>
 
       <div class="space-y-[2.5rem]">
-        {#each artists as artist, index}
+        {#each artists as artist}
           <Artist bind:activeAnchor {artist} {title} />
         {/each}
       </div>

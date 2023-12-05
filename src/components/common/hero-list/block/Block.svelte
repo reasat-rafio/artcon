@@ -27,7 +27,7 @@
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(blockEl, {
-      y: -100,
+      y: -50,
       scale: 1.01,
       scrollTrigger: {
         trigger: blockEl,
