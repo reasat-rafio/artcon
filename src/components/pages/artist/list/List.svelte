@@ -38,7 +38,7 @@
 
 <section>
   <div
-    class="container-primary flex pb-[2.5rem] pt-[3.12rem] max-xl:flex-col sm:pb-[4.5rem] lg:gap-x-[2rem] xl:gap-x-[6rem] xl:pb-[9rem] 2xl:gap-x-[11.44rem]">
+    class="container-primary flex pb-[2.5rem] max-xl:flex-col sm:pb-[4.5rem] lg:gap-x-[2rem] xl:gap-x-[6rem] xl:pb-[9rem] xl:pt-[3.12rem] 2xl:gap-x-[11.44rem]">
     {#if !!artists?.length}
       <NavigationAnchorMobile
         class="block xl:hidden"

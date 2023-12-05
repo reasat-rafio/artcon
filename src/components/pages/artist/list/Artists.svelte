@@ -13,7 +13,7 @@
   {#each artistGroup as { title, artists }}
     <section id={title}>
       <h2
-        class="mb-[0.75rem] !font-outfit text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#ED1C24] lg:mb-[3.31rem]">
+        class="!font-outfit text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#ED1C24]">
         {title}
       </h2>
 

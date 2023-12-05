@@ -13,10 +13,10 @@
 
   export let logo: SanityAsset;
   export let tags: Tag[];
+  export let searchEl: HTMLInputElement;
 
   let sectionEl: HTMLElement;
   let showLogo = false;
-  let searchEl: HTMLInputElement;
 
   $: activeSearchParams =
     $page.url.searchParams.get('tag') || $page.url.searchParams.get('name');
@@ -33,11 +33,13 @@
 </script>
 
 <svelte:window on:scroll={setLogoVisibility} />
-<nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
+<nav
+  bind:this={sectionEl}
+  class="top-0 z-50 overflow-hidden bg-white xl:sticky">
   <div class="relative">
     <div
-      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
-      <div class="flex items-center">
+      class="container-primary flex border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
+      <div class="flex items-center pr-3">
         {#if !!activeSearchParams}
           <button
             transition:slide={{ axis: 'x' }}
@@ -57,7 +59,7 @@
         {/key}
       </div>
 
-      <div class="ml-auto flex gap-x-[1.375rem]">
+      <div class="ml-auto hidden gap-x-[1.375rem] xl:flex">
         <SortInput />
         <SearchInput bind:searchEl />
       </div>

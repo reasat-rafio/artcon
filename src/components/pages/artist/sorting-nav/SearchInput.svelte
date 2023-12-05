@@ -22,7 +22,10 @@
 </script>
 
 <button
-  class="my-auto hidden h-fit w-full min-w-[23.9375rem] cursor-pointer items-center justify-center space-x-5 rounded-[64px] border border-[#A5A5A8] px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex">
+  class={cn(
+    'my-auto flex h-fit w-full cursor-pointer items-center justify-center space-x-5 rounded-[4rem] border border-[#A5A5A8] py-[0.6875rem] pl-[1.75rem] pr-[1.5rem] transition-colors duration-500 group-hover:bg-white max-2xl:max-w-[23.9375rem] 2xl:w-[23.9375rem]',
+    $$props.class,
+  )}>
   <input
     bind:this={searchEl}
     on:change={setSearchParams}
