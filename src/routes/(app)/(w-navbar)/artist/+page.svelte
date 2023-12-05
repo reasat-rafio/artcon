@@ -46,7 +46,8 @@
       filteredArtists = filterByTag;
     }
     if (!!name) {
-      filteredArtists = filteredArtists?.filter((artist) =>
+      const baseForFilter = !!tag ? filteredArtists : artists;
+      filteredArtists = baseForFilter?.filter((artist) =>
         artist?.name?.toLowerCase()?.includes(name?.toLowerCase() ?? ''),
       );
     }
