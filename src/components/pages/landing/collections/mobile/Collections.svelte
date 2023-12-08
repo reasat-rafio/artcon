@@ -33,7 +33,7 @@
 
       Observer.create({
         target: window,
-        type: 'wheel,scrool,touch',
+        type: 'wheel,scroll,touch',
         wheelSpeed: -1,
         tolerance: 10,
         preventDefault: true,

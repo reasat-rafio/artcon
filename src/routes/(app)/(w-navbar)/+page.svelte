@@ -21,7 +21,7 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
-<div id="landing-page relative">
+<div id="landing-page">
   <Overlay />
 
   <div
