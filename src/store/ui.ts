@@ -1,14 +1,17 @@
+import { set } from 'sanity';
 import { writable } from 'svelte/store';
 
 type UIStore = {
   selectedPreviewIndex: number | null;
   containerWidth: number;
+  mobileNavDropdownOpen: boolean;
 };
 
 const createUiStore = () => {
   const { subscribe, update } = writable<UIStore>({
     selectedPreviewIndex: null,
     containerWidth: 0,
+    mobileNavDropdownOpen: false,
   });
 
   const setActivePreview = (activeIndexOrNull: number | null) => {
@@ -24,10 +27,26 @@ const createUiStore = () => {
     });
   };
 
+  const toggleMobileNavDropdown = () => {
+    update(($store) => {
+      $store.mobileNavDropdownOpen = !$store.mobileNavDropdownOpen;
+      return $store;
+    });
+  };
+
+  const setMobileNavDropdown = (open: boolean) => {
+    update(($store) => {
+      $store.mobileNavDropdownOpen = open;
+      return $store;
+    });
+  };
+
   return {
     subscribe,
     setActivePreview,
-    setContainerWidth: setContainerWidth,
+    toggleMobileNavDropdown,
+    setMobileNavDropdown,
+    setContainerWidth,
   };
 };
 

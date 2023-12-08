@@ -1,18 +1,14 @@
 <script lang="ts">
   import { cn } from '@/lib/cn';
-  import { twMerge } from 'tailwind-merge';
+  import uiStore from '@/store/ui';
 
-  export let dropdown: 'active' | 'inactive' = 'inactive';
   export let color: string = 'white';
-
-  const toggleDropdownState = () =>
-    (dropdown = dropdown === 'active' ? 'inactive' : 'active');
 </script>
 
 <button
   style="--stroke-color: {color}"
-  on:click={toggleDropdownState}
-  class:active={dropdown === 'active'}
+  on:click={uiStore.toggleMobileNavDropdown}
+  class:active={$uiStore.mobileNavDropdownOpen}
   class={cn('hamb', $$props.class)}
   aria-label="Open Menu">
   <span class="sr-only">Open Menu</span>

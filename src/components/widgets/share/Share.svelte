@@ -12,7 +12,7 @@
   export let href: string;
 
   let sectionEl: HTMLElement;
-  let popupSate: 'visiable' | 'hidden' = 'hidden';
+  let popupSate: 'visible' | 'hidden' = 'hidden';
   let showLogo = false;
   const setLogoVisibility = () =>
     (showLogo = sectionEl.getBoundingClientRect().top <= 10);
@@ -34,7 +34,7 @@
 
       <Hamburger color="#1B1B1E" class="block md:hidden" />
       <button
-        on:click={() => (popupSate = 'visiable')}
+        on:click={() => (popupSate = 'visible')}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full md:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
           class="ml-auto text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal" />
@@ -57,6 +57,6 @@
   </div>
 </nav>
 
-{#if popupSate === 'visiable'}
+{#if popupSate === 'visible'}
   <SharePopup bind:popupSate />
 {/if}
