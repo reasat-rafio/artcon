@@ -46,9 +46,9 @@
   };
 
   const socialWindow = (url: string, width: number, height: number) => {
-    var left = (screen.width - width) / 2;
-    var top = (screen.height - height) / 2;
-    var params =
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+    const params =
       'menubar=no,toolbar=no,status=no,width=' +
       width +
       ',height=' +
@@ -60,6 +60,7 @@
     window.open(url, '', params);
   };
 
+  let url = null;
   const shareToSocialMedia = (
     e: MouseEvent & {
       currentTarget: EventTarget & HTMLButtonElement;
@@ -68,7 +69,6 @@
     if (typeof window !== 'undefined' && pageUrl && pageTitle) {
       if (!(e.target instanceof HTMLButtonElement)) return;
 
-      let url = null;
       switch (e.target?.dataset?.type) {
         case 'fb':
           url = 'https://www.facebook.com/sharer.php?u=' + pageUrl;
