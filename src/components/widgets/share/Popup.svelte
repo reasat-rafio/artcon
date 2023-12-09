@@ -13,9 +13,9 @@
   let pageTitle: string;
 
   const SOCIALS = [
-    { name: 'Twitter', icon: '/share-icons/x.svg', type: 'twitter' },
+    { name: 'Gmail', icon: '/share-icons/gm.svg', type: 'gmail' },
     { name: 'Facebook', icon: '/share-icons/fb.svg', type: 'fb' },
-    { name: 'Thread', icon: '/share-icons/th.svg', type: 'linkedin' },
+    { name: 'LinkedIn', icon: '/share-icons/ln.svg', type: 'linkedin' },
     { name: 'WhatsApp', icon: '/share-icons/wa.svg', type: 'whatsapp' },
   ];
 
@@ -74,12 +74,14 @@
           url = 'https://www.facebook.com/sharer.php?u=' + pageUrl;
           socialWindow(url, 570, 570);
           break;
-        case 'twitter':
+        case 'gmail':
           url =
-            'https://twitter.com/intent/tweet?url=' +
-            pageUrl +
-            '&text=' +
-            pageTitle;
+            'mailto:?subject=%22' +
+            pageTitle +
+            '%22&body=Read%20the%20article%20%22' +
+            pageTitle +
+            '%22%20on%20' +
+            pageUrl;
           socialWindow(url, 570, 300);
           break;
 
@@ -89,7 +91,7 @@
           socialWindow(url, 570, 570);
           break;
         case 'whatsapp':
-          url = 'whatsapp://send?text=' + pageTitle + '%20' + pageUrl;
+          url = 'https://wa.me/?text=' + pageTitle + '%20' + pageUrl;
           socialWindow(url, 570, 450);
           break;
 
