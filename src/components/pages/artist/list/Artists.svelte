@@ -1,9 +1,7 @@
 <script lang="ts">
   import { cn } from '@/lib/cn';
-
   import type { SortedArtists } from '@/lib/types/artist.types';
   import Artist from './Artist.svelte';
-  import { fade } from 'svelte/transition';
 
   export let artistGroup: SortedArtists[];
   export let activeAnchor: string;

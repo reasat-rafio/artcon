@@ -23,7 +23,7 @@
 
     gsap.to(sectionEl, {
       y: -50,
-      scale: 1.025,
+      scale: 1.01,
       scrollTrigger: {
         trigger: sectionEl,
         start: '80% center',

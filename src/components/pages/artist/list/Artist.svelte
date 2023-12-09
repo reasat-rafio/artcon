@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Artist } from '@/lib/types/artist.types';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import IntersectionObserver from 'svelte-intersection-observer';
-  import { onMount } from 'svelte';
+  import type { Artist } from '@/lib/types/artist.types';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+  import { onMount } from 'svelte';
+  import IntersectionObserver from 'svelte-intersection-observer';
 
   export let artist: Artist;
   export let title: string;
@@ -15,26 +15,31 @@
   let sectionEl: HTMLElement;
   let artistImgEl: HTMLDivElement;
   let intersecting = false;
-
   $: if (intersecting) activeAnchor = title;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const artworksEl = sectionEl.querySelectorAll('.artworks');
 
-    gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({
-      duration: 1,
+    gsap.to(artistImgEl, {
+      y: 0,
       scrollTrigger: {
         trigger: sectionEl,
-        start: 'top bottom-=100px',
-        end: 'bottom 90%',
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 1,
       },
     });
-    tl.to(artistImgEl, { y: 0, ease: 'ease.out' }, 0).to(
-      artworksEl,
-      { y: 0, ease: 'ease.out', stagger: 0.1 },
-      0.3,
-    );
+    gsap.to(artworksEl, {
+      y: 0,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: sectionEl,
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 3,
+      },
+    });
   });
 </script>
 
@@ -54,7 +59,7 @@
       <div class="block md:ml-auto">
         <div
           bind:this={artistImgEl}
-          class="relative h-full w-full translate-y-[60px] overflow-hidden rounded-[1.25rem]">
+          class="relative h-full w-full translate-y-[30px] overflow-hidden rounded-[1.25rem]">
           <SanityImage
             class="aspect-square h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0 md:max-h-[23.375rem] md:max-w-[23.375rem]"
             src={artistPortrait}
@@ -72,7 +77,7 @@
             class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
             <figure>
               <SanityImage
-                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-all duration-500 hover:scale-110 hover:shadow-2xl"
+                class="aspect-square h-full w-full rounded-[0.75rem] object-cover"
                 src={artworkImage}
                 sizes="(min-width: 1024px) 15vw, 100vw"
                 alt={name}
