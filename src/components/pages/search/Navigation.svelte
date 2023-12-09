@@ -84,7 +84,7 @@
             bind:this={searchInputEl}
             disabled={$searchStore.loading}
             on:keydown={(e) => {
-              if (e.keyCode === 13) searchAction(searchInputEl.value);
+              if (e.key === 'Enter') searchAction(searchInputEl.value);
             }}
             class="flex-1 bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
             type="text"

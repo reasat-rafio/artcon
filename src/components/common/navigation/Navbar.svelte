@@ -70,7 +70,7 @@
           bind:this={searchInputEl}
           disabled={$searchStore.loading}
           on:keydown={(e) => {
-            if (e.keyCode === 13) redirectToSearchPage(searchInputEl.value);
+            if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
           }}
           class={cn(
             'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px]',

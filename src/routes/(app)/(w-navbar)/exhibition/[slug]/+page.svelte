@@ -37,7 +37,7 @@
       description,
     },
     site: {
-      logos: { logoDark, ogImage, logoDark },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },

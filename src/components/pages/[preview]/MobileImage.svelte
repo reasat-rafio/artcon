@@ -10,6 +10,7 @@
   {#if !!sliderImageVideo?.image}
     <SanityImage
       lqip
+      fadeInAnimation={false}
       draggable={false}
       class="absolute h-full w-full object-cover"
       sizes="(min-width:1024px) 40vw, 100vw"
