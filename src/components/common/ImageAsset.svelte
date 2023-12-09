@@ -14,5 +14,5 @@
 
 <div
   style="background-image: url({bg}), url({image.asset.metadata.lqip});"
-  class="h-screen w-full bg-cover bg-fixed bg-center"
-></div>
+  class="h-screen w-full bg-cover bg-fixed bg-center">
+</div>

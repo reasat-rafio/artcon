@@ -240,7 +240,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         ),
 
       S.listItem()
-        .title('Collections')
+        .title('Collection')
         .icon(FaPaintBrush)
         .child(
           S.list()
@@ -288,7 +288,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         ),
 
       S.listItem()
-        .title('Projects')
+        .title('Project')
         .icon(FcStackOfPhotos)
         .child(
           S.list()
@@ -314,7 +314,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
       S.divider(),
 
       S.listItem()
-        .title("VR's")
+        .title('VR')
         .icon(PiVirtualRealityFill)
         .child(
           S.list()
@@ -337,7 +337,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             ]),
         ),
       S.listItem()
-        .title('Publications')
+        .title('Publication')
         .icon(BsFillPostageFill)
         .child(
           S.list()
@@ -360,7 +360,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             ]),
         ),
       S.listItem()
-        .title('Documentaries')
+        .title('Documentary')
         .icon(BiCameraMovie)
         .child(
           S.list()
