@@ -14,12 +14,9 @@
     },
   } = data);
 
-  let windowWidth = 0;
   $: logo = darkNavPaths.includes($page.url.pathname) ? logoDark : logoLight;
-  $: if (windowWidth >= 1024) uiStore.setMobileNavDropdown(false);
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
 <Navbar {logo} />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />

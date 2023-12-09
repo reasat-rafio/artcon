@@ -1,4 +1,3 @@
-import { set } from 'sanity';
 import { writable } from 'svelte/store';
 
 type UIStore = {

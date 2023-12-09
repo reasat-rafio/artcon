@@ -6,27 +6,30 @@
   export let nav: NavProps;
   let { menu } = nav;
 
-  const tweenInBgDuration = 1.2;
+  const TWEEN_IN_BG_DURATION = 1.2;
+  const TWEEN_OUT_BG_DURATION = 0.8;
+  let windowWidth = 0;
+  $: if (windowWidth >= 1024) uiStore.setMobileNavDropdown(false);
+
   function tweenInBg(node: HTMLElement) {
     const animate = gsap.to(node, {
       y: 0,
-      duration: tweenInBgDuration,
+      duration: TWEEN_IN_BG_DURATION,
       ease: 'power4.out',
     });
 
     return {
-      duration: tweenInBgDuration * 1000,
+      duration: TWEEN_IN_BG_DURATION * 1000,
       tick: (t: number) => {
         animate.progress(t);
       },
     };
   }
 
-  const tweenOutBgDuration = 0.8;
   function tweenOut(node: HTMLElement) {
     const animate = gsap.from(node, {
       y: '-100%',
-      duration: tweenOutBgDuration,
+      duration: TWEEN_OUT_BG_DURATION,
       ease: 'power4.out',
     });
 
@@ -37,7 +40,7 @@
     });
 
     return {
-      duration: tweenOutBgDuration * 1000,
+      duration: TWEEN_OUT_BG_DURATION * 1000,
       tick: (t: number) => {
         animate.progress(t);
         dropdownItemsAnimation.progress(t);
@@ -48,12 +51,12 @@
   function tweenOut2(node: HTMLElement) {
     const animate = gsap.from(node, {
       y: '-100%',
-      duration: tweenOutBgDuration,
+      duration: TWEEN_OUT_BG_DURATION,
       ease: 'power4.out',
     });
 
     return {
-      duration: tweenOutBgDuration * 1000,
+      duration: TWEEN_OUT_BG_DURATION * 1000,
       tick: (t: number) => {
         animate.progress(t);
       },
@@ -70,6 +73,7 @@
   };
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} />
 <aside
   in:tweenInBg
   out:tweenOut
