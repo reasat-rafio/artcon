@@ -14,7 +14,7 @@
     site: {
       footer,
       contact,
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
     },
   } = data;
 </script>
@@ -39,5 +39,5 @@
     <Team team={page.team} />
   {/if}
 
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>

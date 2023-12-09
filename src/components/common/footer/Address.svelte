@@ -1,51 +1,45 @@
 <script lang="ts">
-  import type { ContactProps } from '@/lib/types/common.types';
-
-  import InfoBlock from './InfoBlock.svelte';
-  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
-  import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import { cn } from '@/lib/cn';
   import { getSocialIconPath } from '@/lib/helper';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import type { ContactProps } from '@/lib/types/common.types';
+  import InfoBlock from './InfoBlock.svelte';
 
   export let contact: ContactProps;
 
   let [firstSocialWLink, ...restSocialsWLink] = contact.socialsWithVisibleLinks;
 </script>
 
-<div class={$$props.class ?? ''}>
-  <address class="col-span-3 space-y-[26px] text-[#1B1B1E]">
-    <div
-      class="flex space-x-[12px] text-[12px] font-light not-italic tracking-[0.24px]"
-    >
+<div class={cn('w-full lg:pt-[0.75rem] 3xl:pr-[4.71rem]', $$props.class)}>
+  <address class="flex flex-col gap-y-[1.62rem] text-[#1B1B1E]">
+    <div class="sub-title-light flex gap-x-[0.75rem] not-italic 2xl:pr-[5rem]">
       <figure>
         <SanityImage
-          class="h-[0.938rem] w-[0.938rem]"
+          class="h-[0.938rem] w-[0.938rem] object-contain pt-[2.5px]"
           src={contact.address.darkIcon}
           sizes="15px"
           alt={contact.address.darkIcon.alt}
-          imageUrlBuilder={imageBuilder}
-        />
+          imageUrlBuilder={imageBuilder} />
       </figure>
       <div>
         <PortableText value={contact.address.address} />
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-[1.62rem] sm:grid-cols-2">
-      <InfoBlock
-        extraLightHeight
-        type={firstSocialWLink.type}
-        info={firstSocialWLink.info}
-      />
+    <div
+      class="grid grid-cols-1 max-xl:gap-y-[1.62rem] xl:grid-cols-2 xl:gap-x-[2.29rem]">
+      <InfoBlock type={firstSocialWLink.type} info={firstSocialWLink.info} />
 
-      <div class="space-y-[16px]">
+      <div class="flex flex-col gap-y-[1.62rem] xl:gap-y-[1rem]">
         {#each restSocialsWLink as { type, info }}
           <InfoBlock {type} {info} />
         {/each}
       </div>
     </div>
 
-    <ul class="flex space-x-[20px] md:ml-[30px]">
+    <ul class="flex space-x-[1.25rem] lg:pl-[1.4375rem]">
       {#each contact.socials as { type, link }}
         <li>
           <a href={link} target="_blank">
@@ -53,9 +47,8 @@
               class="h-[0.85938rem] w-[0.85938rem]"
               width="15px"
               height="15px"
-              src="/icons/socials/dark/{getSocialIconPath(type)}"
-              alt="{type}'s icon"
-            />
+              src="/icons/socials/black/{getSocialIconPath(type)}"
+              alt="{type}'s icon" />
           </a>
         </li>
       {/each}

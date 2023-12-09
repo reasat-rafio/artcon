@@ -37,7 +37,7 @@
       description,
     },
     site: {
-      logos: { logoLight, ogImage, logoDark },
+      logos: { logoDark, ogImage, logoDark },
       footer,
       contact,
     },
@@ -103,5 +103,5 @@
       title="Other exhibition"
       data={otherExhibitions} />
   {/if}
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>

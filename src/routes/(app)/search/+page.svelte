@@ -29,7 +29,7 @@
       publications,
     },
     site: {
-      logos: { logoLight, logoDark, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
@@ -96,4 +96,4 @@
   </div>
 {/if}
 
-<Footer {footer} {contact} logo={logoLight} />
+<Footer {footer} {contact} logo={logoDark} />

@@ -15,7 +15,7 @@
   $: ({
     page: { sections, seo, events, tags },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
@@ -53,7 +53,7 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} logo={logoLight}>Our events</SecondaryNav>
+  <SecondaryNav {tags} logo={logoDark}>Our events</SecondaryNav>
   <Listing list={eventsWithImages} />
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>

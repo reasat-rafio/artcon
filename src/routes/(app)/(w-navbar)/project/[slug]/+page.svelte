@@ -83,5 +83,5 @@
       urlPrefix="/project" />
   {/if}
 
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>

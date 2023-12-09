@@ -23,7 +23,7 @@
   $: ({
     page: { seo, termsConditions, title, cta },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
@@ -49,4 +49,4 @@
     </svelte:fragment>
   </DescriptionBlock>
 </div>
-<Footer {footer} {contact} logo={logoLight} />
+<Footer {footer} {contact} logo={logoDark} />

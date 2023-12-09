@@ -11,6 +11,6 @@
     class="h-[0.938rem] w-[0.938rem]"
     width="15px"
     height="15px"
-    src="/icons/socials/dark/{getSocialIconPath(type)}"
+    src="/icons/socials/ash/{getSocialIconPath(type)}"
     alt="{type}'s icon" />
 </a>

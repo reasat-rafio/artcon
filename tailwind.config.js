@@ -13,13 +13,11 @@ export default {
         lg: '1024px',
         xl: '1280px',
         '2xl': '1424px',
+        '3xl': '1600px',
       },
     },
 
     extend: {
-      screens: {
-        '3xl': '1600px',
-      },
       zIndex: {
         god: 9999999,
         demigod: 666666,

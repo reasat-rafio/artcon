@@ -14,7 +14,7 @@
   $: ({
     page: { sections, seo },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
@@ -44,5 +44,5 @@
     {/each}
     <Form form={f} formMessage={form?.formMessage} />
   </div>
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>

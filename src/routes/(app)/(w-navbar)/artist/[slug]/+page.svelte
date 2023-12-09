@@ -26,7 +26,7 @@
       publicationsFromExhibitions,
     },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
@@ -46,7 +46,7 @@
     type,
   }} />
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/artist" logo={logoLight}>Our artist</Share>
+  <Share href="/artist" logo={logoDark}>Our artist</Share>
 
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
@@ -75,5 +75,5 @@
     <OtherArtists artists={otherArtists} />
   {/if}
 
-  <Footer {footer} {contact} logo={logoLight} />
+  <Footer {footer} {contact} logo={logoDark} />
 </div>
