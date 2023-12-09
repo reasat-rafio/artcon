@@ -2,7 +2,7 @@ import { defineConfig, type SchemaTypeDefinition } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
-import { AppStructure, DefaultDocumentNode } from './deskStucture';
+import { AppStructure, DefaultDocumentNode } from './deskStructure';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
 // import onArtistPublishDeleteTheCollection from './lib/actions/onArtistPublishDeleteTheCollection';
@@ -18,50 +18,50 @@ export default defineConfig([
 
     basePath: '/studio/production',
 
-    // document: {
-    //   actions: (prev, context) => {
-    //     switch (context.schemaType) {
-    //       case 'artist':
-    //         return prev.map((originalAction) => {
-    //           switch (originalAction.action) {
-    //             case 'publish':
-    //               return onArtistPublishUpdateTheCollection(
-    //                 originalAction,
-    //                 context,
-    //               );
-    //             // case 'delete':
-    //             //   return onArtistPublishDeleteTheCollection(
-    //             //     originalAction,
-    //             //     context,
-    //             //   );
+    document: {
+      actions: (prev, context) => {
+        switch (context.schemaType) {
+          case 'artist':
+            return prev.map((originalAction) => {
+              switch (originalAction.action) {
+                case 'publish':
+                  return onArtistPublishUpdateTheCollection(
+                    originalAction,
+                    context,
+                  );
+                // case 'delete':
+                //   return onArtistPublishDeleteTheCollection(
+                //     originalAction,
+                //     context,
+                //   );
 
-    //             default:
-    //               return originalAction;
-    //           }
-    //         });
-    //       case 'collection':
-    //         return prev.map((originalAction) => {
-    //           switch (originalAction.action) {
-    //             case 'publish':
-    //               return onCollectionPublishUpdateTheArtist(
-    //                 originalAction,
-    //                 context,
-    //               );
-    //             //  case 'delete':
-    //             //    return onArtistPublishDeleteTheCollection(
-    //             //      originalAction,
-    //             //      context,
-    //             //    );
+                default:
+                  return originalAction;
+              }
+            });
+          case 'collection':
+            return prev.map((originalAction) => {
+              switch (originalAction.action) {
+                case 'publish':
+                  return onCollectionPublishUpdateTheArtist(
+                    originalAction,
+                    context,
+                  );
+                //  case 'delete':
+                //    return onArtistPublishDeleteTheCollection(
+                //      originalAction,
+                //      context,
+                //    );
 
-    //             default:
-    //               return originalAction;
-    //           }
-    //         });
-    //       default:
-    //         return prev;
-    //     }
-    //   },
-    // },
+                default:
+                  return originalAction;
+              }
+            });
+          default:
+            return prev;
+        }
+      },
+    },
 
     plugins: [
       deskTool({

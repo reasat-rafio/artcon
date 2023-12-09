@@ -92,6 +92,7 @@ const artist = {
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'collection' }] }],
       group: 'site',
+      // TODO uncomment this when the artist page is ready
       // validation: (Rule: ArrayRule<unknown[]>) =>
       //   Rule.custom((refs, { document }) => {
       //     const docId = removeDraftsPrefix(document?._id as string);

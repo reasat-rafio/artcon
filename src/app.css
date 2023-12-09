@@ -20,6 +20,17 @@
     font-style: normal;
   } */
 
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+  body {
+    @apply text-dark-gunmetal;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
   h1,
   h2,
   h3,
@@ -27,12 +38,6 @@
   h5,
   h6 {
     @apply !font-optiberling-agency font-medium;
-  }
-  body {
-    @apply text-dark-gunmetal;
-  }
-  html {
-    scroll-behavior: smooth;
   }
 }
 
