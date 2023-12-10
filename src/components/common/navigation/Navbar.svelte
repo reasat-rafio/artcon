@@ -31,7 +31,7 @@
   };
 </script>
 
-<nav class={cn('absolute left-0 top-0 z-[1002] w-full', $$props.class)}>
+<nav class={cn('absolute left-0 top-0 z-[1003] w-full', $$props.class)}>
   <div
     class="flex w-full items-center px-[1.25rem] pt-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem] lg:pt-[2.5rem]">
     <a class="" href="/">

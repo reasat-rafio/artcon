@@ -92,7 +92,7 @@
   style={props.style}>
   <img
     bind:this={img}
-    style="--initial-opacity: {fadeInAnimation ? 0 : 1}"
+    style="--initial-opacity: {fadeInAnimation && lqip ? 0 : 1}"
     src={props.builder.url()}
     srcset={props.srcset}
     width={props.width}
@@ -114,22 +114,10 @@
     position: absolute;
     inset: 0;
     opacity: 0;
-    animation: pulse 2.5s infinite;
     background-color: white;
   }
   .blurred-img.loaded::before {
     animation: none;
     content: none;
-  }
-  @keyframes pulse {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 0;
-    }
   }
 </style>

@@ -41,7 +41,7 @@
 <nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
   <div class="relative">
     <div
-      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
+      class="container-primary flex items-center border-b border-[#a0a0a0/50] pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
       <div class="flex flex-1 items-center">
         {#if !!activeSearchParams}
           <button

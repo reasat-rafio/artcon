@@ -77,7 +77,7 @@
 <aside
   in:tweenInBg
   out:tweenOut
-  class="fixed top-0 z-20 h-screen w-screen -translate-y-full bg-red-800">
+  class="fixed top-0 z-[1002] h-screen w-screen -translate-y-full bg-red-800">
   <nav
     in:tweenInBg
     out:tweenOut2

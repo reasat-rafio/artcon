@@ -20,9 +20,9 @@
 
 <svelte:window on:scroll={setLogoVisibility} />
 <nav bind:this={sectionEl} class="sticky top-0 z-50 overflow-hidden bg-white">
-  <div class=" relative">
+  <div class="relative">
     <div
-      class="container-primary flex items-center border-b-[0.5px] border-b-[#a0a0a0] pb-[1.44rem] pt-[1.37rem]">
+      class="container-primary flex items-center border-b border-[#a0a0a0/50] pb-[1.44rem] pt-[1.37rem]">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         <a class="h-[45px] w-[45px]" {href}>
           <ChevronLeftRounded />
