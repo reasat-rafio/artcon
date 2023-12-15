@@ -7,6 +7,8 @@ import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
 import onCollectionPublishUpdateTheArtist from './lib/actions/onCollectionPublishUpdateTheArtist';
 import Logo from '@/studio/components/Logo';
+import { media } from 'sanity-plugin-media';
+import exportTool from '@/studio/components/export';
 
 export default defineConfig([
   {
@@ -54,6 +56,7 @@ export default defineConfig([
     },
 
     plugins: [
+      media(),
       deskTool({
         structure: AppStructure,
         defaultDocumentNode: DefaultDocumentNode,
@@ -64,6 +67,9 @@ export default defineConfig([
       types: schemaTypes as SchemaTypeDefinition[],
     },
     studio: { components: { logo: Logo } },
+    tools: (prev) => {
+      return [...prev, exportTool()];
+    },
   },
   {
     name: 'artcon-production-staging',
@@ -75,6 +81,7 @@ export default defineConfig([
     basePath: '/studio/staging',
 
     plugins: [
+      media(),
       deskTool({
         structure: AppStructure,
         defaultDocumentNode: DefaultDocumentNode,
