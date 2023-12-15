@@ -108,7 +108,7 @@
   aria-label="backdrop"
   on:click={() => (popupSate = 'hidden')}
   on:keypress={() => (popupSate = 'hidden')}
-  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-lg"
+  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-xl"
   transition:fade />
 
 <div

@@ -2,6 +2,7 @@
   import type { NavProps } from '@/lib/types/common.types';
   import uiStore from '@/store/ui';
   import { gsap } from 'gsap';
+  import { onMount } from 'svelte';
 
   export let nav: NavProps;
   let { menu } = nav;
@@ -10,6 +11,23 @@
   const TWEEN_OUT_BG_DURATION = 0.8;
   let windowWidth = 0;
   $: if (windowWidth >= 1024) uiStore.setMobileNavDropdown(false);
+
+  onMount(() => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    const disableScrolling = () => {
+      window.scrollTo({
+        top: scrollTop,
+        left: scrollLeft,
+        behavior: 'instant',
+      });
+    };
+    window.addEventListener('scroll', disableScrolling);
+    return () => {
+      window.removeEventListener('scroll', disableScrolling);
+    };
+  });
 
   function tweenInBg(node: HTMLElement) {
     const animate = gsap.to(node, {
@@ -77,7 +95,7 @@
 <aside
   in:tweenInBg
   out:tweenOut
-  class="fixed top-0 z-[1002] h-screen w-screen -translate-y-full bg-red-800">
+  class="fixed top-0 z-[1002] !h-[101vh] !w-[101vw] -translate-y-full bg-red-800">
   <nav
     in:tweenInBg
     out:tweenOut2
@@ -86,7 +104,6 @@
       {#each menu as { _key, title, externalUrl, pageUrl } (_key)}
         <li class="overflow-hidden text-white">
           <a
-            on:click={() => uiStore.toggleMobileNavDropdown()}
             href={pageUrl || externalUrl}
             class="dropdownItems block translate-y-full pl-8 text-head-6 font-medium uppercase">
             {title}

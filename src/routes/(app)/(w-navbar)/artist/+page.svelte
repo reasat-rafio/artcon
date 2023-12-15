@@ -10,6 +10,7 @@
   import { formatArtistListingProps } from '@/lib/modify-props';
   import type { ArtistPageProps } from '@/lib/types/artist.types';
   import type { PageProps } from '@/lib/types/common.types';
+  import { onMount } from 'svelte';
 
   export let data: PageProps<ArtistPageProps>;
 
@@ -29,6 +30,14 @@
   $: tagSearchParam,
     nameSearchParam,
     filterBySearchParams({ name: nameSearchParam, tag: tagSearchParam });
+
+  onMount(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  });
 
   const filterBySearchParams = ({
     name,

@@ -31,7 +31,7 @@
       otherEvents,
     },
     site: {
-      logos: { logoDark, ogImage },
+      logos: { logoDark, ogImage, logoLight },
       footer,
       contact,
     },
@@ -58,7 +58,7 @@
   }} />
 
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/event" logo={logoDark}>Our events</Share>
+  <Share href="/event" {logoLight} {logoDark}>Our events</Share>
 
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}

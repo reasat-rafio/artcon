@@ -3,13 +3,31 @@
   import uiStore from '@/store/ui';
 
   export let color: string = 'white';
+  export let scrollToTopPosition: number = 0;
+
+  let isScrolling = false;
+
+  function scrollToTop() {
+    window.scrollTo({ top: scrollToTopPosition, left: 0, behavior: 'smooth' });
+    isScrolling = true;
+    checkIfScrolling();
+  }
+
+  function checkIfScrolling() {
+    if (Math.abs(window.scrollY - scrollToTopPosition) < 10) {
+      isScrolling = false;
+      uiStore.toggleMobileNavDropdown();
+    } else if (isScrolling) {
+      window.requestAnimationFrame(checkIfScrolling);
+    }
+  }
 </script>
 
 <button
   style="--stroke-color: {color}"
-  on:click={uiStore.toggleMobileNavDropdown}
+  on:click={scrollToTop}
   class:active={$uiStore.mobileNavDropdownOpen}
-  class={cn('hamb', $$props.class)}
+  class={cn('hamb outline-none', $$props.class)}
   aria-label="Open Menu">
   <span class="sr-only">Open Menu</span>
   <svg class="ham" viewBox="0 0 100 100">
