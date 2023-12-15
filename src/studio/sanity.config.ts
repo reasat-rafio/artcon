@@ -6,11 +6,15 @@ import { AppStructure, DefaultDocumentNode } from './deskStructure';
 import { PUBLIC_SANITY_PROJECT_ID } from '$env/static/public';
 import onArtistPublishUpdateTheCollection from './lib/actions/onArtistPublishUpdateTheCollection';
 import onCollectionPublishUpdateTheArtist from './lib/actions/onCollectionPublishUpdateTheArtist';
+import Logo from '@/studio/components/Logo';
+import { theme as _theme } from './theme';
+const theme = _theme as import('sanity').StudioTheme;
 
 export default defineConfig([
   {
     name: 'artcon-production-workspace',
     title: 'Production ',
+    theme,
 
     projectId: PUBLIC_SANITY_PROJECT_ID,
     dataset: 'production',
@@ -62,10 +66,12 @@ export default defineConfig([
     schema: {
       types: schemaTypes as SchemaTypeDefinition[],
     },
+    studio: { components: { logo: Logo } },
   },
   {
     name: 'artcon-production-staging',
     title: 'Staging ',
+    theme,
 
     projectId: PUBLIC_SANITY_PROJECT_ID,
     dataset: 'staging',
