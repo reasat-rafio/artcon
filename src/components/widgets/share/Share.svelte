@@ -54,13 +54,13 @@
       gsap.killTweensOf(contentWrapperEl);
       gsap.to(sectionEl, {
         backgroundColor: 'white',
-        delay: 0.6,
+        delay: 0.5,
         duration: 0.3,
       });
       gsap.to(contentWrapperEl, {
         borderBottomColor: 'rgba(160, 160, 160, 0.5)',
         borderBottomWidth: '1px',
-        delay: 0.6,
+        delay: 0.5,
         duration: 0.3,
       });
     }
@@ -77,7 +77,7 @@
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
-      class="container-primary flex items-center pb-[1.44rem] pt-[1.37rem]">
+      class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.44rem] lg:pt-[1.37rem]">
       <div class="flex flex-1 items-center space-x-[1.25rem] lg:space-x-[2rem]">
         {#if $uiStore.mobileNavDropdownOpen}
           <a transition:scale href="/">
@@ -103,10 +103,10 @@
       <Hamburger
         color={$uiStore.mobileNavDropdownOpen ? 'white' : '#1B1B1E'}
         scrollToTopPosition={scrollY + positionFromTop}
-        class="block md:hidden" />
+        class="block lg:hidden" />
       <button
         on:click={() => (popupSate = 'visible')}
-        class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full md:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
+        class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
           class="ml-auto text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal" />
       </button>

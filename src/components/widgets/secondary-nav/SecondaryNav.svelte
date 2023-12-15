@@ -73,13 +73,13 @@
       gsap.killTweensOf(contentWrapperEl);
       gsap.to(sectionEl, {
         backgroundColor: 'white',
-        delay: 0.6,
+        delay: 0.5,
         duration: 0.3,
       });
       gsap.to(contentWrapperEl, {
         borderBottomColor: 'rgba(160, 160, 160, 0.5)',
         borderBottomWidth: '1px',
-        delay: 0.6,
+        delay: 0.5,
         duration: 0.3,
       });
     }
@@ -91,7 +91,7 @@
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
-      class="container-primary flex items-center pb-[1.19rem] pt-[1.69rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
+      class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
       <div class="flex flex-1 items-center">
         {#if !!activeSearchParams}
           <button
