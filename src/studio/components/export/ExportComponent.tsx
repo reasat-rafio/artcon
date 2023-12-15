@@ -2,8 +2,8 @@ import { Card, Tab, TabList, TabPanel } from '@sanity/ui';
 import { nanoid } from 'nanoid';
 import React, { useState, type ComponentType } from 'react';
 import { type Tool } from 'sanity';
-import ArtistTab from './ArtistTab';
-import ArtworkTab from './ArtworkTab';
+import ArtistTab from './artist-tab/ArtistTab';
+import ArtworkTab from './artwork-tab/ArtworkTab';
 
 export interface ExportProps {}
 

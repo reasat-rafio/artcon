@@ -25,3 +25,14 @@ export interface ArtistDocument extends SanityDocument {
   shortBio: PortableTextBlock[] | string;
   note: PortableTextBlock[] | string;
 }
+
+export interface IArtist {
+  name: {
+    en: string;
+    bn: string;
+  };
+  country: string;
+  email?: string;
+  phone: string;
+  born: string;
+}

@@ -1,7 +1,7 @@
 import { Heading } from '@sanity/ui';
 import { Card } from '@sanity/ui';
 import React from 'react';
-import type { ITabOptions } from './ExportComponent';
+import type { ITabOptions } from '../ExportComponent';
 
 interface ArtworkTabProps extends ITabOptions {}
 
