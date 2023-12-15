@@ -34,6 +34,7 @@
 
 <svelte:window on:scroll={setLogoVisibility} />
 <nav
+  id="artist-sorting-nav"
   bind:this={sectionEl}
   class="top-0 z-50 overflow-hidden bg-white xl:sticky">
   <div class="relative">

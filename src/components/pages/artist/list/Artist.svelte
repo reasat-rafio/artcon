@@ -27,7 +27,6 @@
         trigger: sectionEl,
         start: 'top center',
         end: 'bottom center',
-        scrub: 1,
       },
     });
     gsap.to(artworksEl, {
@@ -37,7 +36,6 @@
         trigger: sectionEl,
         start: 'top center',
         end: 'bottom center',
-        scrub: 3,
       },
     });
   });

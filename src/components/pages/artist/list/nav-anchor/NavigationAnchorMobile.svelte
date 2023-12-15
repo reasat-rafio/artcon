@@ -9,11 +9,6 @@
   export let activeAnchor: string;
   export let activeAnchorIndex: number;
 
-  // let alphabet: string[] = [];
-  // for (let i = 0; i < 26; i++) {
-  //   alphabet.push(String.fromCharCode(65 + i)); // Uppercase letters
-  // }
-
   let emblaApi: EmblaCarouselType;
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
@@ -22,13 +17,28 @@
   $: if (emblaApi) {
     if (activeAnchorIndex !== -1) emblaApi.scrollTo(activeAnchorIndex);
   }
+
+  const scrollToClickedAnchor = (anchor: string) => {
+    const target = document.querySelector(`#${anchor}`) as HTMLElement;
+    const artistNav = document.querySelector(
+      '#artist-sorting-nav',
+    ) as HTMLElement;
+
+    if (target && artistNav) {
+      window.scroll({
+        behavior: 'smooth',
+        left: 0,
+        top: target.offsetTop + innerHeight,
+      });
+    }
+  };
 </script>
 
 <aside class={cn('sticky top-5 z-10 mb-[2.5rem] hidden', $$props.class)}>
   <div
     class="mx-auto max-w-min cursor-grab overflow-hidden rounded-[2.68506rem] bg-[#F8F8F8] py-[0.62rem] active:cursor-grabbing">
     <div
-      class="relative overflow-hidden px-[1.25rem]"
+      class="relative overflow-hidden px-[calc(1.25rem/2)]"
       on:emblaInit={onInit}
       use:emblaCarouselSvelte={{
         options: { skipSnaps: true, containScroll: 'trimSnaps' },
@@ -36,14 +46,14 @@
       }}>
       <div class="flex">
         {#each anchors as anchor}
-          <a
-            href="#{anchor}"
-            class="mr-[1.83rem] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
+          <button
+            on:click={() => scrollToClickedAnchor(anchor)}
+            class="mx-[calc(1.83rem/2)] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
               ? 'text-[#ED1C24]'
               : 'text-[#A5A5A8]'}">
             {anchor}
-          </a>
+          </button>
         {/each}
       </div>
     </div>
