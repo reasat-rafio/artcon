@@ -3,6 +3,7 @@
   import type { FormattedItem } from '@/lib/helper';
   import type { Documentary } from '@/lib/types/documentary.types';
   import Cards from './Cards.svelte';
+  import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
 
   export let list: FormattedItem<Documentary>[];
 </script>
@@ -20,8 +21,6 @@
       {/if}
     {/each}
   {:else}
-    <div class="py-section container">
-      <h3 class="head-3">No Documentary Found</h3>
-    </div>
+    <NoSearchResultFound />
   {/if}
 </div>

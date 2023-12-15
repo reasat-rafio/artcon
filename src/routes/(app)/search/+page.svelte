@@ -1,4 +1,5 @@
 <script lang="ts">
+  import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Navbar from '@/components/common/navigation/Navbar.svelte';
@@ -13,7 +14,6 @@
   import type { PageProps } from '@/lib/types/common.types';
   import type { SearchPageProps } from '@/lib/types/search.types';
   import searchStore from '@/store/search';
-  import { fade } from 'svelte/transition';
 
   export let data: PageProps<SearchPageProps>;
 
@@ -87,13 +87,8 @@
     <Project {slidesNumber} />
   {/if}
 {:else}
-  <div in:fade class="container-primary min-h-[50vh]">
-    <h2
-      class="pt-[10vh] text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-[#77777C] md:text-[1.5rem] xl:text-[2rem]">
-      Looks like we couldn't find what you're looking for. Try refining your
-      search criteria.
-    </h2>
-  </div>
+  <NoSearchResultFound
+    message="Looks like we couldn't find what you're looking for. Try refining your search criteria." />
 {/if}
 
 <Footer {footer} {contact} logo={logoDark} />

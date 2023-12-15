@@ -3,6 +3,7 @@
   import type { FormattedItem } from '@/lib/helper';
   import type { Vr } from '@/lib/types/vr.types';
   import Cards from './Cards.svelte';
+  import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
 
   export let list: FormattedItem<Vr>[];
 </script>
@@ -20,8 +21,6 @@
       {/if}
     {/each}
   {:else}
-    <div class="py-section container">
-      <h3 class="head-3">No Virtual Reality Found</h3>
-    </div>
+    <NoSearchResultFound />
   {/if}
 </div>

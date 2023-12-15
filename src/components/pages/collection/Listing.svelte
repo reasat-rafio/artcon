@@ -1,5 +1,6 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
+  import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
   import type { FormattedItem } from '@/lib/helper';
   import type { Collection } from '@/lib/types/collection.types';
   import Cards from './Cards.svelte';
@@ -20,8 +21,6 @@
       {/if}
     {/each}
   {:else}
-    <div class="py-section container">
-      <h3 class="head-3">No Virtual Reality Found</h3>
-    </div>
+    <NoSearchResultFound />
   {/if}
 </div>
