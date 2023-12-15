@@ -55,9 +55,12 @@
       <Hamburger
         color={isDarkNavPaths ? 'black' : 'white'}
         class="block lg:hidden" />
-      <button
+      <div
         use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}
+        on:keydown={setSearchBarActive}
+        role="button"
+        tabindex="0"
         class={cn(
           'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
           {
@@ -67,7 +70,9 @@
           },
         )}>
         <input
+          type="text"
           bind:this={searchInputEl}
+          {placeholder}
           disabled={$searchStore.loading}
           on:keydown={(e) => {
             if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
@@ -83,22 +88,14 @@
               'text-dark-gunmetal placeholder:text-dark-gunmetal':
                 !isDarkNavPaths && searchIsActive,
             },
-          )}
-          type="text"
-          {placeholder} />
+          )} />
         <button
           disabled={$searchStore.loading}
           on:click={() => redirectToSearchPage(searchInputEl.value)}
           class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
-          {#if $searchStore.loading}
-            <div
-              class="h-[1.438rem] w-[1.438rem] animate-spin rounded-full border-t-2 border-solid border-red-500">
-            </div>
-          {:else}
-            <SearchIcon />
-          {/if}
+          <SearchIcon />
         </button>
-      </button>
+      </div>
     </div>
   </div>
 </nav>

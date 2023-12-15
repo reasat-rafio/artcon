@@ -24,18 +24,18 @@
   $: activeBlockIndex, runAnimation();
 
   onMount(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to(blockEl, {
-      y: -50,
-      scale: 1.01,
-      scrollTrigger: {
-        trigger: blockEl,
-        start: '80% center',
-        end: 'bottom top',
-        scrub: 1,
-      },
-    });
+    // TODO - Make this smooth or remove this
+    // gsap.registerPlugin(ScrollTrigger);
+    // gsap.to(blockEl, {
+    //   y: -50,
+    //   scale: 1.01,
+    //   scrollTrigger: {
+    //     trigger: blockEl,
+    //     start: '80% center',
+    //     end: 'bottom top',
+    //     scrub: 1,
+    //   },
+    // });
   });
 
   const runAnimation = () => {
