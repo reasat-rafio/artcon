@@ -8,13 +8,21 @@
   let isScrolling = false;
 
   function scrollToTop() {
-    window.scrollTo({ top: scrollToTopPosition, left: 0, behavior: 'smooth' });
-    isScrolling = true;
-    checkIfScrolling();
+    if ($uiStore.mobileNavDropdownOpen) {
+      uiStore.toggleMobileNavDropdown();
+    } else {
+      window.scrollTo({
+        top: scrollToTopPosition,
+        left: 0,
+        behavior: 'smooth',
+      });
+      isScrolling = true;
+      checkIfScrolling();
+    }
   }
 
   function checkIfScrolling() {
-    if (Math.abs(window.scrollY - scrollToTopPosition) < 10) {
+    if (window.scrollY === scrollToTopPosition) {
       isScrolling = false;
       uiStore.toggleMobileNavDropdown();
     } else if (isScrolling) {
@@ -69,8 +77,8 @@
     user-select: none;
   }
   .hamb .ham {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
     transition-duration: 0.3s;
   }
