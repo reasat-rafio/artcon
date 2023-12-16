@@ -56,11 +56,11 @@ export default defineConfig([
     },
 
     plugins: [
-      media(),
       deskTool({
         structure: AppStructure,
         defaultDocumentNode: DefaultDocumentNode,
       }),
+      media(),
       visionTool(),
     ],
     schema: {
@@ -81,11 +81,11 @@ export default defineConfig([
     basePath: '/studio/staging',
 
     plugins: [
-      media(),
       deskTool({
         structure: AppStructure,
         defaultDocumentNode: DefaultDocumentNode,
       }),
+      media(),
       visionTool(),
     ],
     schema: {

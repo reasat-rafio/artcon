@@ -1,17 +1,13 @@
-import { Heading } from '@sanity/ui';
-import { Card } from '@sanity/ui';
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { ITabOptions } from '../ExportComponent';
 import Table from './Table';
+import { Card } from '@sanity/ui';
 
 interface ArtistTabProps extends ITabOptions {}
 
-const ArtistTab: React.FC<ArtistTabProps> = ({ label }) => {
-  useEffect(() => {}, []);
-
+const ArtistTab: React.FC<ArtistTabProps> = () => {
   return (
     <Card border marginTop={2} padding={4} radius={2}>
-      <Heading>{label}</Heading>
       <Table />
     </Card>
   );
