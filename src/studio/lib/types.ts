@@ -27,13 +27,12 @@ export interface ArtistDocument extends SanityDocument {
 }
 
 export interface IArtist {
-  name: {
-    en: string;
-    bn: string;
-  };
+  id: string;
+  'name (en)': string;
+  'name (bn)': string;
   country: string;
   email?: string;
   phone: string;
   born: string;
-  artistPortrait: SanityAsset;
+  artistPortrait: SanityAsset | string;
 }

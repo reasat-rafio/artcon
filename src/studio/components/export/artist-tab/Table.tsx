@@ -1,11 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { CompactTable } from '@table-library/react-table-library/compact';
-import { useTheme } from '@table-library/react-table-library/theme';
-import { getTheme } from '@table-library/react-table-library/baseline';
+import { urlFor } from '@/lib/sanity/sanityClient';
+import { cleanCSV, downloadCSV } from '@/studio/helper';
 import useVersionedClient from '@/studio/hooks/useVersionedClient';
-import groq from 'groq';
 import type { IArtist } from '@/studio/lib/types';
-import { useRowSelect } from '@table-library/react-table-library/select';
 import {
   Autocomplete,
   Box,
@@ -16,17 +12,28 @@ import {
   Spinner,
   Text,
 } from '@sanity/ui';
-import { urlFor } from '@/lib/sanity/sanityClient';
-import { TbSearch } from 'react-icons/tb';
-import { FaFileExport } from 'react-icons/fa';
+import { getTheme } from '@table-library/react-table-library/baseline';
+import { CompactTable } from '@table-library/react-table-library/compact';
+import { useRowSelect } from '@table-library/react-table-library/select';
+import { useTheme } from '@table-library/react-table-library/theme';
+import type {
+  Action,
+  State,
+} from '@table-library/react-table-library/types/common';
+import groq from 'groq';
+import Papa from 'papaparse';
+import React, { useEffect, useMemo, useState } from 'react';
 import { BsPrinterFill } from 'react-icons/bs';
+import { FaFileExport } from 'react-icons/fa';
+import { TbSearch } from 'react-icons/tb';
 
 interface TableProps {}
 
-const query = groq`*[_type == "artist"][]{
+const query = groq`*[_type == "artist"] | order(personalDocuments.name.en asc)[]{
    "id": _id,
     ...personalDocuments {
-        name,
+      "name (en)": name.en,
+      "name (bn)": name.bn,
         country,
         email,
         phone,
@@ -35,17 +42,44 @@ const query = groq`*[_type == "artist"][]{
     }
 }`;
 
+const CUSTOM_HEADERS = [
+  'name (en)',
+  'name (bn)',
+  'portrait',
+  'country',
+  'email',
+  'phone',
+  'born',
+];
+
 const Table: React.FC<TableProps> = () => {
+  const client = useVersionedClient();
   const [loading, setLoading] = useState(false);
   const [artists, setArtists] = useState<IArtist[]>([]);
-  const client = useVersionedClient();
+  const [selectedArtistIds, setSelectedArtistIds] = useState<string[]>([]);
+  const [searchInput, setSearchInput] = useState<string | null>(null);
   const data = useMemo(() => ({ nodes: artists }), [artists]);
+
+  useEffect(() => {
+    if (searchInput) {
+      const filtered = artists.filter((artist) =>
+        artist['name (en)'].toLowerCase().includes(searchInput.toLowerCase()),
+      );
+      setArtists(filtered);
+    } else {
+      fetchData();
+    }
+  }, [searchInput]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const theme = useTheme([
     getTheme(),
     {
       Table: `
-        --data-table-library_grid-template-columns:  44px repeat(6, minmax(0, 1fr));
+        --data-table-library_grid-template-columns:  44px repeat(7, minmax(0, 1fr));
       `,
     },
   ]);
@@ -54,26 +88,31 @@ const Table: React.FC<TableProps> = () => {
     onChange: onSelectChange,
   });
 
-  function onSelectChange(action, state) {
-    console.log(action, state);
+  function onSelectChange(_: Action, state: State) {
+    setSelectedArtistIds(state.ids);
   }
 
   const COLUMNS = [
     {
       label: 'Name',
-      renderCell: (item: IArtist) => item?.name.en,
+      renderCell: (item: IArtist) => (
+        <ul>
+          <li>{item?.['name (en)']},</li>
+          <li>{item?.['name (bn)']}</li>
+        </ul>
+      ),
       select: true,
     },
     {
       label: 'Portrait',
       renderCell: (item: IArtist) => (
         <img
-          className="aspect-square h-[150px] w-[150px] object-cover"
+          className="aspect-square h-[100px] w-[100px] object-cover"
           src={urlFor(item?.artistPortrait)
-            .width(400)
+            .width(150)
             .format('webp')
             .url()}
-          alt={`${item.name.en} portrait`}
+          alt={`${item['name (en)']} portrait`}
         />
       ),
     },
@@ -91,7 +130,6 @@ const Table: React.FC<TableProps> = () => {
       setLoading(true);
       const data = await client.fetch(query);
       setArtists(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -99,9 +137,34 @@ const Table: React.FC<TableProps> = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const exportAsCSV = async () => {
+    const filteredArtist = selectedArtistIds?.length
+      ? artists.filter((artist) => selectedArtistIds.includes(artist.id))
+      : artists;
+    console.log({ filteredArtist });
+
+    const convertedCSV = convertArtistArrayToCSV(filteredArtist);
+    console.log(convertedCSV);
+    downloadCSV(cleanCSV(convertedCSV), 'artists.csv');
+  };
+
+  const convertArtistArrayToCSV = (data: IArtist[]) => {
+    const modifiedData = data.map((item) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, artistPortrait, ...rest } = item;
+      return {
+        ...rest,
+        born: item?.born.substring(0, 10),
+        portrait: urlFor(artistPortrait).url(),
+      };
+    });
+
+    const csv = Papa.unparse(modifiedData, {
+      header: true,
+      columns: CUSTOM_HEADERS,
+    });
+    return csv;
+  };
 
   return (
     <>
@@ -111,8 +174,14 @@ const Table: React.FC<TableProps> = () => {
             fontSize={[2, 2, 3]}
             icon={TbSearch}
             id="autocomplete-example"
-            options={artists.map((artist) => ({ value: artist.name.en }))}
+            options={artists.map((artist) => ({ value: artist['name (en)'] }))}
             placeholder="Search By Name"
+            onQueryChange={(e) => {
+              if (e !== null) setSearchInput(e);
+            }}
+            onChange={(e) => {
+              setSearchInput(e);
+            }}
           />
         </Card>
         <Card flex={[1]} marginLeft={[2, 2, 3, 4]}>
@@ -122,6 +191,7 @@ const Table: React.FC<TableProps> = () => {
               icon={FaFileExport}
               padding={[3, 3, 4]}
               text="Export"
+              onClick={exportAsCSV}
             />
             <Button
               fontSize={[2, 2, 3]}
