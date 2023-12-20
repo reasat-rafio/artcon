@@ -8,12 +8,13 @@
 </script>
 
 <section class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
-  <h1 class="head-6 !leading-none !text-[#020202]" data-load-animate="y">
+  <h1 class="head-6 !text-rich-black !leading-none" data-load-animate="y">
     {topic}
   </h1>
   <header>
-    <div class="mb-[0.62rem] text-[#1B1B1E]" data-load-animate="y">
-      <h2 class="head-4 !inline font-medium !leading-[115.5%] !text-[#1B1B1E]">
+    <div class="mb-[0.62rem] text-eerie-black" data-load-animate="y">
+      <h2
+        class="head-4 !inline font-medium !leading-[115.5%] !text-eerie-black">
         {title}
       </h2>
       {#if !!subtitle}

@@ -12,8 +12,8 @@
   let [firstSocialWLink, ...restSocialsWLink] = contact.socialsWithVisibleLinks;
 </script>
 
-<div class={cn('w-full lg:pt-[0.75rem] 3xl:pr-[4.71rem]', $$props.class)}>
-  <address class="flex flex-col gap-y-[1.62rem] text-[#1B1B1E]">
+<div class={cn('3xl:pr-[4.71rem] w-full lg:pt-[0.75rem]', $$props.class)}>
+  <address class="text-eerie-black flex flex-col gap-y-[1.62rem]">
     <div class="sub-title-light flex gap-x-[0.75rem] not-italic 2xl:pr-[5rem]">
       <figure>
         <SanityImage

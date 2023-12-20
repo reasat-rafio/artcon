@@ -22,7 +22,7 @@
       src="/icons/socials/black/{getSocialIconPath(type)}"
       alt="{type}'s icon" />
   </figure>
-  <div class="sub-title-light !leading-normal !text-[#1B1B1E]">
-    <PortableText value={info} />
+  <div class="sub-title-light !text-eerie-black !leading-normal">
+    <PortableText components={{}} value={info} />
   </div>
 </div>

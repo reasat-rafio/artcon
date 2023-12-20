@@ -14,7 +14,7 @@
   export let className: ClassValue | undefined = undefined;
 
   const variantClasses: Record<Variant, string> = {
-    primary: 'border border-[#A5A5A8] text-[#77777C]',
+    primary: 'border border-quick-silver text-sonic-silver',
     secondary:
       'border border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal',
     tertiary: 'gradient-base-style  bg-transparent g-red-gray text-white',

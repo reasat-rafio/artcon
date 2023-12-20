@@ -53,7 +53,7 @@
         </div>
       </div>
       <button
-        class="rounded-[4rem] border border-[#1D1D25] px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-[#1D1D25]"
+        class="border-raisin-black text-raisin-black rounded-[4rem] border px-[1.3125rem] py-[0.8125rem] text-[0.84375rem]"
         disabled={$delayed}
         type="submit">
         Send massage
@@ -64,7 +64,7 @@
 
 <style lang="postcss">
   .form {
-    @apply rounded-[1.25rem] border border-[#D2D2D3] pb-[1.62rem] pl-[1.87rem] pt-[1.69rem] text-[1rem] leading-[120%];
+    @apply rounded-[1.25rem] border border-light-gray pb-[1.62rem] pl-[1.87rem] pt-[1.69rem] text-[1rem] leading-[120%];
   }
   .bg {
     background: linear-gradient(

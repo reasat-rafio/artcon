@@ -28,7 +28,7 @@
 <section transition:slide>
   <div
     bind:this={headerEl}
-    class="container-primary mb-[1.25rem] border-b-[0.5px] border-[#D2D2D3] py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
+    class="container-primary border-light-gray mb-[1.25rem] border-b-[0.5px] py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
     {#if $searchStore.loading}
       <div in:fade class="h-10 !w-[50%] animate-pulse bg-gray-300"></div>
     {:else}

@@ -58,7 +58,18 @@ export default {
           900: 'rgba(29, 29, 37, 1)',
         },
         'dark-gunmetal': '#1A202C',
+        'eerie-black': '#1B1B1E',
+        'rich-black': '#020202',
+        'raisin-black': '#1d1d25',
+        'cultured-gray': '#F8F8F8',
         'sonic-silver': '#77777C',
+        'quick-silver': '#A5A5A8',
+        'quartz-silver': '#4A4A51',
+        'light-gray': '#D2D2D3',
+        'taupe-gray': '#888888',
+        'pigment-red': '#ED1C24',
+        'imperial-red': '#EA234080',
+        platinum: '#E8E6E3',
       },
 
       fontFamily: {

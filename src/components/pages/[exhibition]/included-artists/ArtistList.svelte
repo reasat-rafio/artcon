@@ -35,7 +35,7 @@
 
 <svelte:window bind:innerWidth />
 <section
-  class="container-primary py-section border-t border-[#A5A5A8] pt-[2.26rem]">
+  class="container-primary py-section border-t border-quick-silver pt-[2.26rem]">
   <h3 class="head-xl mb-md">Artist in this exhibition</h3>
   <div
     class="relative overflow-hidden"
@@ -70,7 +70,7 @@
       </div>
     </nav>
     <span
-      class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-[#4A4A51]">
+      class="text-quartz-silver text-[0.75rem] font-light !leading-none tracking-[0.015rem]">
       {selectedSnap + 1}/{chunksOfArtists.length}
     </span>
   </div>

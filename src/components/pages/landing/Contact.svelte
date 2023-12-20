@@ -59,7 +59,7 @@
       </ul>
     </div>
     <div
-      class="sub-title-light !leading-none text-[#A5A5A8] max-lg:pb-[3.75rem]">
+      class="sub-title-light text-quick-silver !leading-none max-lg:pb-[3.75rem]">
       © ARTCON 2023
     </div>
   </div>

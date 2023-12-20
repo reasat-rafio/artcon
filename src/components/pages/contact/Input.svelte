@@ -29,7 +29,7 @@
 
 <style lang="postcss">
   .form {
-    @apply rounded-[1.25rem] border border-[#D2D2D3] pb-[1.62rem] pl-[1.87rem] pt-[1.69rem] text-[1rem] leading-[120%];
+    @apply border-light-gray rounded-[1.25rem] border pb-[1.62rem] pl-[1.87rem] pt-[1.69rem] text-[1rem] leading-[120%];
   }
   .bg {
     background: linear-gradient(

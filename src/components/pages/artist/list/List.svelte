@@ -54,7 +54,7 @@
     {:else}
       <div in:fade>
         <h2
-          class="pt-[10vh] text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-[#77777C] md:text-[1.5rem] xl:text-[2rem]">
+          class="pt-[10vh] text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-sonic-silver md:text-[1.5rem] xl:text-[2rem]">
           Looks like we couldn't find what you're looking for. Try refining your
           search criteria.
         </h2>

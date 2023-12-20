@@ -27,7 +27,7 @@
           <div>
             <Title class="inline">{name}</Title>
             <h4
-              class="inline text-[1rem] font-medium tracking-[0.02rem] text-[#1B1B1E]">
+              class="text-eerie-black inline text-[1rem] font-medium tracking-[0.02rem]">
               /
               {#if typeof type === 'string'}
                 {type}

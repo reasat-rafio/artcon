@@ -128,8 +128,8 @@
                     <li class="flex">
                       <button
                         class={twMerge(
-                          'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24] lg:text-[0.875rem]',
-                          current === activeSearchParams && 'text-[#ED1C24]',
+                          'hover:text-pigment-red font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 lg:text-[0.875rem]',
+                          current === activeSearchParams && 'text-pigment-red',
                         )}
                         on:click|preventDefault={() =>
                           setSearchParams(current)}>
@@ -138,7 +138,7 @@
                       {#if index !== tags.length - 1}
                         <div class="flex h-full items-center justify-center">
                           <div
-                            class="mx-[6px] -mt-[10%] h-1 w-1 rounded-full bg-[#ED1C24] lg:mx-[10.5px]" />
+                            class="bg-pigment-red mx-[6px] -mt-[10%] h-1 w-1 rounded-full lg:mx-[10.5px]" />
                         </div>
                       {/if}
                     </li>

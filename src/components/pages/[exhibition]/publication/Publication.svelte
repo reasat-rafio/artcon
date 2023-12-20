@@ -59,7 +59,7 @@
           </C.HeaderContainer>
 
           <div class="">
-            <C.Subtitle class="text-[0.75rem] font-light  text-[#1B1B1E]">
+            <C.Subtitle class="text-eerie-black text-[0.75rem]  font-light">
               Published by
               {#each publishedBy as p, i}
                 <div class="inline font-light">

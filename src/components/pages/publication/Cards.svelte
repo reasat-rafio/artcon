@@ -26,7 +26,7 @@
           <Title>{name}</Title>
           <div class="sub-title-regular">
             {#if !!discountPriceBDT}
-              <span class="text-[#77777C] line-through">
+              <span class="text-sonic-silver line-through">
                 {priceBDT}
               </span>
               <span>{discountPriceBDT} BDT</span>

@@ -91,7 +91,7 @@
       id="pointer"
       class="absolute -mt-[44px] opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-mt-[41px] lg:-translate-y-1/2">
       <div
-        class="flex items-center justify-center space-x-[0.5rem] text-[#E8E6E3] lg:space-x-[1.06rem] lg:pr-[4.07rem]">
+        class="text-platinum flex items-center justify-center space-x-[0.5rem] lg:space-x-[1.06rem] lg:pr-[4.07rem]">
         <span
           class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
           Discover our stories

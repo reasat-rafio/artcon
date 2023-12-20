@@ -26,7 +26,7 @@
       </h4>
     </header>
     <span
-      class="sub-title-regular lg:title-regular my-[0.5rem] h-fit border-l-[1.5px] border-[#ED1C24] pl-[0.81rem] !leading-none text-[#4A4A51]">
+      class="sub-title-regular lg:title-regular text-quartz-silver border-pigment-red my-[0.5rem] h-fit border-l-[1.5px] pl-[0.81rem] !leading-none">
       {#if isAvailable}
         Available
       {:else}

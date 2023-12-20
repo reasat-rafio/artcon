@@ -79,7 +79,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-[#D2D2D3] pb-[7.79rem] pt-[4.375rem]">
+    class="container-primary border-light-gray border-t pb-[7.79rem] pt-[4.375rem]">
     <h2 class="head-4 mb-[2rem]">{title}</h2>
 
     <div class="relative h-full xl:flex">
@@ -104,7 +104,7 @@
                   <Asset {asset} />
                 </div>
                 <div
-                  class="other-doc-info-container origin-top border-[#D2D2D3] transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
+                  class="other-doc-info-container border-light-gray origin-top transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
                   index
                     ? 'max-xl:scale-75'
                     : 'scale-100'}">
@@ -124,7 +124,7 @@
                         </h4>
                       {/if}
                     </header>
-                    <h4 class="head-8 text-[#77777C]">
+                    <h4 class="head-8 text-sonic-silver">
                       {tag.name}
                     </h4>
                   </div>
@@ -138,7 +138,8 @@
         <div
           style="top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px);"
           class="absolute right-0 block pt-[0.4rem] xl:hidden">
-          <div class="sub-title-light bg-white text-[#4A4A51] md:pr-[2.25rem]">
+          <div
+            class="sub-title-light text-quartz-silver bg-white md:pr-[2.25rem]">
             {#key activeSlideIndex}
               <span in:fade>
                 {activeSlideIndex + 1}
@@ -157,7 +158,7 @@
           style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
           class="hidden flex-col xl:flex">
           <div
-            class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-[#4A4A51]">
+            class="sub-title-light text-quartz-silver ml-auto bg-white pb-[3.9rem] pr-[2.56rem]">
             {#key activeSlideIndex}
               <span in:fade>
                 {activeSlideIndex + 1}
@@ -167,7 +168,7 @@
             <span>{data.length}</span>
           </div>
           <nav
-            class="ml-auto flex gap-x-[0.62rem] border-t border-[#D2D2D3] pl-[3.38rem] pt-[2.25rem]">
+            class="border-light-gray ml-auto flex gap-x-[0.62rem] border-t pl-[3.38rem] pt-[2.25rem]">
             <button on:click={() => emblaApi.scrollPrev()}>
               <ChevronLeftRounded />
             </button>

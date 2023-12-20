@@ -15,9 +15,9 @@
 
 <div
   data-load-animate="y"
-  class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-[#A5A5A8]">
+  class="2xl:divide-quick-silver flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem]">
   <div
-    class="w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%] 3xl:w-[15.25rem]">
+    class="3xl:w-[15.25rem] w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%]">
     <h4 class="body-regular !font-normal">{name}</h4>
 
     <ul class="title-light !leading-[142.857%]">

@@ -57,7 +57,7 @@
               </figure>
               <div class="flex-1 space-y-[0.438rem]">
                 <h4 class="haed-6">{name}</h4>
-                <p class="head-8 font-optiberling-agency text-[#77777C]">
+                <p class="head-8 font-optiberling-agency text-sonic-silver">
                   {role}
                 </p>
               </div>
@@ -81,7 +81,7 @@
       </div>
     </nav>
     <span
-      class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-[#4A4A51]">
+      class="text-quartz-silver text-[0.75rem] font-light !leading-none tracking-[0.015rem]">
       {selectedSnap + 1}/{chunksOfArtists.length}
     </span>
   </div>

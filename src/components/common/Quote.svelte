@@ -8,7 +8,7 @@
 
 <section class={twMerge('max-w-[44.375rem]', $$props.class)}>
   <div
-    class="head-2 bg-gradient-to-r from-[#EA234080] to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
+    class="head-2 from-imperial-red bg-gradient-to-r to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
     <blockquote class="inline" cite={url}>
       <p class="inline">“{text}”</p>
     </blockquote>

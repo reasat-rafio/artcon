@@ -51,7 +51,7 @@
 
 <svelte:window bind:innerWidth />
 <section
-  class="container-primary pb-section border-t border-[#A5A5A8] pt-[2.26rem]">
+  class="container-primary pb-section border-t border-quick-silver pt-[2.26rem]">
   <h3 class="head-xl mb-md">Other artists</h3>
   <div
     class="relative overflow-hidden md:mx-[2rem] 2xl:mx-[4.87rem]"
@@ -97,7 +97,7 @@
       </nav>
     </div>
     <span
-      class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-[#4A4A51]">
+      class="text-quartz-silver text-[0.75rem] font-light !leading-none tracking-[0.015rem]">
       {selectedSnap + 1}/{chunksOfArtists.length}
     </span>
   </div>

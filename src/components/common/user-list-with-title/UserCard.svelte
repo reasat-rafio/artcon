@@ -19,19 +19,17 @@
   class={twMerge(
     'group flex h-fit items-center justify-center space-x-[20px]',
     $$props.class ?? '',
-  )}
->
+  )}>
   <figure class="h-[80px] w-[80px] rounded-full md:h-[112px] md:w-[112px]">
     <SanityImage
       class="h-full w-full rounded-full object-cover"
       src={image}
       alt={title}
       sizes="120px"
-      imageUrlBuilder={imageBuilder}
-    />
+      imageUrlBuilder={imageBuilder} />
   </figure>
   <div class="flex-1 space-y-[7px]">
     <H8>{title}</H8>
-    <H8 el="p" class="text-[#77777C]">{subtitle}</H8>
+    <H8 el="p" class="text-sonic-silver">{subtitle}</H8>
   </div>
 </svelte:element>

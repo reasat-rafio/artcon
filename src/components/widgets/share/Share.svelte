@@ -108,7 +108,7 @@
         on:click={() => (popupSate = 'visible')}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
-          class="ml-auto text-[#A5A5A8] transition-colors duration-300 group-hover:text-dark-gunmetal" />
+          class="text-quick-silver ml-auto transition-colors duration-300 group-hover:text-dark-gunmetal" />
       </button>
     </div>
     {#if showLogo}

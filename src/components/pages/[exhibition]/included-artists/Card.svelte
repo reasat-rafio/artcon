@@ -29,6 +29,6 @@
   </figure>
   <div class="head-8 flex-1 space-y-[0.438rem] font-optiberling-agency">
     <h4>{title}</h4>
-    <p class="text-[#77777C]">{subtitle}</p>
+    <p class="text-sonic-silver">{subtitle}</p>
   </div>
 </svelte:element>

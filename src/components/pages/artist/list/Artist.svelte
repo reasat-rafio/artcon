@@ -51,7 +51,7 @@
       class="relative mt-[0.75rem] flex flex-col md:pr-[2rem] lg:mt-[3.13rem] 2xl:pr-[5.81rem]">
       <header class="space-y-[0.4375rem] pb-[1.44rem]">
         <h3 class="title-regular !font-inter">{name}</h3>
-        <h4 class="title-light !font-inter text-[#77777C]">{tag.name}</h4>
+        <h4 class="title-light !font-inter text-sonic-silver">{tag.name}</h4>
       </header>
 
       <div class="block md:ml-auto">

@@ -1,13 +1,16 @@
 <script lang="ts">
-  import type { Cta as CTAProps } from '@/lib/types/common.types';
-
   import Cta from '@/components/ui/Cta.svelte';
+  import type { Cta as CTAProps } from '@/lib/types/common.types';
+  import { fade } from 'svelte/transition';
 
   type CTA = CTAProps & { newTab?: boolean };
   export let ctas: [CTA, CTA];
 </script>
 
-<nav class="fixed top-0 z-[1005] hidden w-full lg:block">
+<nav
+  in:fade={{ duration: 600 }}
+  out:fade={{ duration: 100 }}
+  class="fixed top-0 z-[1005] hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
     <Cta
       variant="secondary"

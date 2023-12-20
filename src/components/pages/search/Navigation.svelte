@@ -79,20 +79,20 @@
           </strong>
         </h1>
         <button
-          class="flex w-full cursor-pointer space-x-2 rounded-[64px] border border-[#A5A5A8] bg-white pb-[0.75rem] pl-[1.75rem] pr-[1.5rem] pt-[0.69rem] transition-colors duration-500 group-hover:bg-white sm:w-[26rem] lg:space-x-5">
+          class="border-quick-silver flex w-full cursor-pointer space-x-2 rounded-[64px] border bg-white pb-[0.75rem] pl-[1.75rem] pr-[1.5rem] pt-[0.69rem] transition-colors duration-500 group-hover:bg-white sm:w-[26rem] lg:space-x-5">
           <input
             bind:this={searchInputEl}
             disabled={$searchStore.loading}
             on:keydown={(e) => {
               if (e.key === 'Enter') searchAction(searchInputEl.value);
             }}
-            class="flex-1 bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] placeholder:text-[#A5A5A8] group-hover:placeholder:text-dark-gunmetal"
+            class="placeholder:text-quick-silver flex-1 bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] group-hover:placeholder:text-dark-gunmetal"
             type="text"
             placeholder={'Search'} />
           <button
             disabled={$searchStore.loading}
             on:click={() => searchAction(searchInputEl.value)}
-            class="scale-100 text-[#A5A5A8] transition-transform duration-500 hover:scale-125">
+            class="text-quick-silver scale-100 transition-transform duration-500 hover:scale-125">
             {#if $searchStore.loading}
               <div
                 in:fade

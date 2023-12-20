@@ -22,8 +22,8 @@
     <li class="flex">
       <button
         class={cn(
-          'font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-[#ED1C24]',
-          { 'text-[#ED1C24]': current === activeSearchParams },
+          'hover:text-pigment-red font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200',
+          { 'text-pigment-red': current === activeSearchParams },
         )}
         on:click|preventDefault={() => setSearchParams(current)}>
         {name}
@@ -31,7 +31,7 @@
       {#if index !== tags.length - 1}
         <div class="flex h-full items-center justify-center">
           <div
-            class="mx-[10.5px] -mt-[10%] h-1 w-1 rounded-full bg-[#ED1C24]" />
+            class="bg-pigment-red mx-[10.5px] -mt-[10%] h-1 w-1 rounded-full" />
         </div>
       {/if}
     </li>

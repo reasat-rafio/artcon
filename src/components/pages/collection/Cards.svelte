@@ -27,7 +27,7 @@
           <div
             class="font-inter text-[0.8125rem] font-light tracking-[0.01625rem]">
             <span>{media}</span>
-            <span class="px-2 text-[0.625rem] text-[#77777C]">|</span>
+            <span class="px-2 text-[0.625rem] text-sonic-silver">|</span>
             <span>{year}</span>
           </div>
         </Container>

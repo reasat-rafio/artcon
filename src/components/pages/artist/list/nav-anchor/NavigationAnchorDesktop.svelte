@@ -42,7 +42,7 @@
     $$props.class,
   )}>
   <div
-    class="max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-[#F8F8F8] py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
+    class="bg-cultured-gray max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
     <div
       class="relative h-full overflow-hidden px-[0.8055rem]"
       on:emblaInit={onInit}
@@ -56,8 +56,8 @@
             on:click={() => scrollToClickedAnchor(anchor)}
             class="my-[calc(1.83rem/2)] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
-              ? 'text-[#ED1C24]'
-              : 'text-[#A5A5A8]'}">
+              ? 'text-pigment-red'
+              : 'text-quick-silver'}">
             {anchor}
           </button>
         {/each}
