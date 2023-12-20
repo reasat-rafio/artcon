@@ -1,6 +1,6 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
-  import OthersDocument from '@/components/common/other-document/OthersDocument.svelte';
+  import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -26,7 +26,7 @@
       publicationsFromExhibitions,
     },
     site: {
-      logos: { logoDark, ogImage },
+      logos: { logoDark, ogImage, logoLight },
       footer,
       contact,
     },
@@ -46,7 +46,7 @@
     type,
   }} />
 <div class="relative mt-[100vh] bg-white">
-  <Share href="/artist" logo={logoDark}>Our artist</Share>
+  <Share href="/artist" {logoDark} {logoLight}>Our artist</Share>
 
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}

@@ -13,6 +13,7 @@
 
   let emblaApi: EmblaCarouselType;
   let activeSide = 1;
+  let scrollSnaps: number[];
 
   $: if (emblaApi) {
     const notEnoughToLoop = !emblaApi.internalEngine().slideLooper.canLoop();
@@ -22,16 +23,23 @@
 
     emblaApi.on(
       'select',
-      ({ selectedScrollSnap }) => (activeSide = selectedScrollSnap() + 1),
+      ({ selectedScrollSnap, scrollSnapList }: EmblaCarouselType) => {
+        activeSide = selectedScrollSnap() + 1;
+        scrollSnaps = scrollSnapList();
+      },
     );
     emblaApi.on(
       'resize',
-      ({ selectedScrollSnap }) => (activeSide = selectedScrollSnap() + 1),
+      ({ selectedScrollSnap, scrollSnapList }: EmblaCarouselType) => {
+        activeSide = selectedScrollSnap() + 1;
+        scrollSnaps = scrollSnapList();
+      },
     );
   }
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    scrollSnaps = event.detail.scrollSnapList();
   };
 </script>
 

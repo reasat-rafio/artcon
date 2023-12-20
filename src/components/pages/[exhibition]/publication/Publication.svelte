@@ -1,13 +1,13 @@
 <script lang="ts">
+  import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
+  import Quote from '@/components/common/Quote.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
+  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type {
     Publication,
     PublicationProps,
   } from '@/lib/types/exhibition-detail.types';
-  import Quote from '@/components/common/Quote.svelte';
-  import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
-  import ParallaxScrollImage from '@/components/common/ParallaxScrollImage.svelte';
-  import Cta from '@/components/ui/Cta.svelte';
-  import PortableText from '@/lib/portable-text/PortableText.svelte';
 
   export let props: PublicationProps & {
     publication: Publication;
@@ -59,7 +59,7 @@
           </C.HeaderContainer>
 
           <div class="">
-            <C.Subtitle class="text-eerie-black text-[0.75rem]  font-light">
+            <C.Subtitle class="text-[0.75rem] font-light  text-eerie-black">
               Published by
               {#each publishedBy as p, i}
                 <div class="inline font-light">
@@ -77,7 +77,9 @@
             <C.Subtitle variant="sm">ISBN {isbn}</C.Subtitle>
           </div>
 
-          <Cta href={exproleLink.href}>{exproleLink.title}</Cta>
+          <Cta className="capitalize" href={exproleLink.href}>
+            {exproleLink.title}
+          </Cta>
         </div>
       </svelte:fragment>
 

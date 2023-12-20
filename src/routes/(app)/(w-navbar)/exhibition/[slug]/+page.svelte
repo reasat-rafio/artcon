@@ -1,6 +1,6 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
-  import OthersDocument from '@/components/common/other-document/OthersDocument.svelte';
+  import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';

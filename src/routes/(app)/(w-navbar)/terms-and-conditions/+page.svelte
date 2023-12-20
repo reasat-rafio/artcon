@@ -42,7 +42,9 @@
       </Description>
 
       {#if !!cta?.title && !!cta?.href}
-        <Cta class="mt-[1.56rem] block lg:hidden" href={cta.href}>
+        <Cta
+          className="mt-[3.12rem] block border-raisin-black text-raisin-black"
+          href={cta.href}>
           {cta.title}
         </Cta>
       {/if}
