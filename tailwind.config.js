@@ -16,7 +16,14 @@ export default {
         '3xl': '1600px',
       },
     },
-
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1424px',
+      '3xl': '1600px',
+    },
     extend: {
       zIndex: {
         god: 9999999,
@@ -34,6 +41,7 @@ export default {
       },
       borderRadius: {
         lg: '20px',
+        '2xl': '64px',
       },
       colors: {
         red: {

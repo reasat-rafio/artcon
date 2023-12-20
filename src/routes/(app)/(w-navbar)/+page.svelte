@@ -23,7 +23,6 @@
 <Seo seo={page?.seo} siteOgImg={logos?.ogImage} />
 <div id="landing-page">
   <Overlay />
-
   <div
     bind:this={rootEl}
     class="relative lg:fixed lg:inset-0 lg:isolate lg:h-[100dvh] lg:w-screen lg:overflow-hidden">

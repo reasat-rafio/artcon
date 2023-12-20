@@ -33,8 +33,8 @@
 
 <nav class={cn('absolute left-0 top-0 z-[1005] w-full', $$props.class)}>
   <div
-    class="flex w-full items-center px-[1.25rem] pt-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem] lg:pt-[2.5rem]">
-    <a class="" href="/">
+    class="flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem]">
+    <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
       <SanityImage
         class="h-[50px] object-contain"
         src={logo}
@@ -44,14 +44,10 @@
     </a>
 
     <div
-      class={cn(
-        'group ml-auto',
-        isDarkNavPaths
-          ? 'text-dark-gunmetal'
-          : searchIsActive
-            ? 'text-dark-gunmetal'
-            : 'text-white',
-      )}>
+      class={cn('group ml-auto pt-[1.25rem] lg:pt-[1.9rem]', {
+        'text-dark-gunmetal': isDarkNavPaths,
+        'text-white': !isDarkNavPaths && !searchIsActive,
+      })}>
       <Hamburger
         color={isDarkNavPaths ? 'black' : 'white'}
         class="block lg:hidden" />
@@ -62,7 +58,7 @@
         role="button"
         tabindex="0"
         class={cn(
-          'hidden cursor-pointer space-x-5 rounded-[64px] border px-[28px] py-[11px] transition-colors duration-500 group-hover:bg-white lg:flex',
+          'hidden cursor-pointer space-x-[1.2rem] rounded-2xl border py-[0.6rem] pl-[1.65rem] pr-[1.4rem] transition-colors duration-500 group-hover:bg-white lg:flex',
           {
             'border-dark-gunmetal': isDarkNavPaths,
             'border-white': !isDarkNavPaths,
@@ -78,10 +74,10 @@
             if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
           }}
           class={cn(
-            'bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px]',
+            'bg-transparent text-[0.84375rem] font-medium tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:font-medium',
             {
               'w-[250px]': searchIsActive,
-              'w-[70px]': !searchIsActive,
+              'w-[47px] ': !searchIsActive,
               'placeholder:text-dark-gunmetal': isDarkNavPaths,
               'placeholder:text-white group-hover:placeholder:text-dark-gunmetal':
                 !isDarkNavPaths,

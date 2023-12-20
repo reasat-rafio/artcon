@@ -1,7 +1,7 @@
 <script lang="ts"></script>
 
 <button
-  class="my-auto flex h-fit w-fit items-center justify-center gap-x-[1.29106rem] whitespace-nowrap rounded-[4rem] border border-quick-silver py-[0.81rem] pl-[1.69rem] pr-[1.56rem] text-[0.84375rem] font-medium text-quick-silver xl:text-sonic-silver">
+  class="my-auto flex h-fit w-fit items-center justify-center gap-x-[1.29106rem] whitespace-nowrap rounded-2xl border border-quick-silver py-[0.81rem] pl-[1.69rem] pr-[1.56rem] text-[0.84375rem] font-medium text-quick-silver xl:text-sonic-silver">
   <span>Sort By</span>
   <svg
     class="h-[0.75rem] w-[1.14463rem]"

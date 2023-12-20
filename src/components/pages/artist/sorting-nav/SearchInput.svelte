@@ -23,14 +23,14 @@
 
 <button
   class={cn(
-    'border-quick-silver my-auto flex h-fit w-full cursor-pointer items-center justify-center space-x-5 rounded-[4rem] border py-[0.6875rem] pl-[1.75rem] pr-[1.5rem] transition-colors duration-500 group-hover:bg-white max-2xl:max-w-[23.9375rem] 2xl:w-[23.9375rem]',
+    'my-auto flex h-fit w-full cursor-pointer items-center justify-center space-x-5 rounded-2xl border border-quick-silver py-[0.6875rem] pl-[1.75rem] pr-[1.5rem] transition-colors duration-500 group-hover:bg-white max-2xl:max-w-[23.9375rem] 2xl:w-[23.9375rem]',
     $$props.class,
   )}>
   <input
     bind:this={searchEl}
     on:change={setSearchParams}
     class={cn(
-      'text-quick-silver w-full bg-transparent text-[0.84375rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:text-[rgba(0,0,0,0.25)]',
+      'w-full bg-transparent text-[0.84375rem] text-quick-silver outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:text-[rgba(0,0,0,0.25)]',
     )}
     type="text"
     placeholder="Search artist" />

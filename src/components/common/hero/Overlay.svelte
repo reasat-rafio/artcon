@@ -1,5 +1,12 @@
+<script lang="ts">
+  import { cn } from '@/lib/cn';
+</script>
+
 <div
-  class="overlay pointer-events-none absolute left-0 top-0 z-20 hidden h-full w-full max-w-[24rem] lg:block" />
+  class={cn(
+    'overlay pointer-events-none absolute left-0 top-0 z-20 hidden h-screen w-full max-w-[24rem] lg:block',
+    $$props.class,
+  )} />
 
 <style>
   .overlay {

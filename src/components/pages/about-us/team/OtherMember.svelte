@@ -18,7 +18,7 @@
   $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
   $: chunksOfArtists = chunkArray(extraTeam, slidesNumber);
   $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap }) => {
+    emblaApi.on('select', ({ selectedScrollSnap }: EmblaCarouselType) => {
       selectedSnap = selectedScrollSnap();
     });
   }
@@ -31,8 +31,8 @@
 
 <svelte:window bind:innerWidth />
 
-<section class="">
-  <h3 class="head-4 mb-md">Other artists</h3>
+<section>
+  <h3 class="head-4 mb-md">Other team members</h3>
 
   <div
     class="relative overflow-hidden"
@@ -68,10 +68,9 @@
     </div>
   </div>
 
-  <div
-    class="mt-[2.31rem] flex items-center justify-between md:pr-[2rem] 2xl:pr-[4.87rem]">
+  <div class="mt-[2.31rem] flex items-center justify-between">
     <nav>
-      <div class="space-x-[0.62rem] lg:space-x-[0.3rem]">
+      <div class="flex gap-x-[0.625rem]">
         <button class="bg-white" on:click={() => emblaApi.scrollPrev()}>
           <ChevronLeftRounded />
         </button>
@@ -81,7 +80,7 @@
       </div>
     </nav>
     <span
-      class="text-quartz-silver text-[0.75rem] font-light !leading-none tracking-[0.015rem]">
+      class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-quartz-silver">
       {selectedSnap + 1}/{chunksOfArtists.length}
     </span>
   </div>

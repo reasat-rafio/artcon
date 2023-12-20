@@ -104,7 +104,7 @@
       href={secondImage?.link}>
       <figure>
         <SanityImage
-          sizes="(min-width:1024) 70vw, 100vw"
+          sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
           class="aspect-square h-full max-h-[55.83069rem] w-full rounded-[1.25rem] object-cover"

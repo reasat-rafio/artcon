@@ -22,8 +22,12 @@
             <Description>
               <PortableText value={description} />
             </Description>
-            {#if !!cta?.title}
-              <Cta className="mt-md" href={cta.href}>{cta.title}</Cta>
+            {#if !!cta?.title && !!cta?.href}
+              <Cta
+                className="mt-md border-raisin-black text-raisin-black capitalize px-[1.94rem] leading-[120%]"
+                href={cta.href}>
+                {cta.title}
+              </Cta>
             {/if}
           </svelte:fragment>
         </DescriptionBlock>
@@ -34,7 +38,7 @@
             src={image}
             alt={image.alt}
             imageUrlBuilder={imageBuilder}
-            sizes="70vw" />
+            sizes="(min-width: 1024px) 70vw, 100vw" />
         </figure>
       </article>
     {/each}

@@ -53,7 +53,7 @@
         </div>
       </div>
       <button
-        class="border-raisin-black text-raisin-black rounded-[4rem] border px-[1.3125rem] py-[0.8125rem] text-[0.84375rem]"
+        class="rounded-2xl border border-raisin-black px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-raisin-black"
         disabled={$delayed}
         type="submit">
         Send massage
