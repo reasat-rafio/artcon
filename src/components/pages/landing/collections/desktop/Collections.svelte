@@ -16,7 +16,7 @@
   $: ({ collections } = props);
 
   let windowWidth = 0;
-  const tweenedScrollAmount = tweened(0, { duration: 1500, easing: expoOut });
+  const tweenedScrollAmount = tweened(0, { easing: expoOut });
 
   const containerWidth = tweened($uiStore.containerWidth, {
     duration: 200,
@@ -56,22 +56,20 @@
   }
 
   onMount(() => {
-    if ($uiStore.selectedPreviewIndex != null) {
+    if ($uiStore.selectedPreviewIndex !== null) {
       const offSetWidth =
         (windowWidth / 100) * $previewMediaColumnWidthInPercentage;
-      tweenedScrollAmount.set(
-        windowWidth + offSetWidth * $uiStore.selectedPreviewIndex,
-        { duration: 0 },
-      );
-      uiStore.setActivePreview(null);
+
+      tweenedScrollAmount
+        .set(windowWidth + offSetWidth * $uiStore.selectedPreviewIndex, {
+          duration: 0.1,
+        })
+        .then(() => uiStore.setActivePreview(null));
     }
 
     gsap.registerPlugin(Observer);
     const el = document.querySelector('#landing-page');
-    gsap.to(el, {
-      duration: 0,
-      y: 0,
-    });
+    gsap.to(el, { duration: 0, y: 0 });
 
     let ctx = gsap.context(() => {
       Observer.create({
@@ -81,6 +79,7 @@
         onChange: (self) => {
           tweenedScrollAmount.set(
             rootEl?.scrollLeft + self.deltaY + self.velocityY * 0.05,
+            { duration: 1500 },
           );
         },
       });

@@ -7,7 +7,7 @@
   export let ctas: [CTA, CTA];
 </script>
 
-<nav class="fixed top-0 z-[1001] hidden w-full lg:block">
+<nav class="fixed top-0 z-[1005] hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
     <Cta
       variant="secondary"
