@@ -15,7 +15,7 @@
   $: ({
     page: { sections, seo, publications, categories },
     site: {
-      logos: { logoDark, ogImage },
+      logos: { logoDark, ogImage, logoLight },
       footer,
       contact,
     },
@@ -52,7 +52,9 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav tags={categories} logo={logoDark}>Our publication</SecondaryNav>
+  <SecondaryNav tags={categories} {logoDark} {logoLight}>
+    Our publication
+  </SecondaryNav>
   <Listing list={publicationsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

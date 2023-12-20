@@ -14,7 +14,7 @@
   $: ({
     page: { sections, seo, vrs, tags },
     site: {
-      logos: { logoDark, ogImage },
+      logos: { logoDark, ogImage, logoLight },
       footer,
       contact,
     },
@@ -49,7 +49,7 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} logo={logoDark}>Our virtual reality</SecondaryNav>
+  <SecondaryNav {tags} {logoDark} {logoLight}>Our virtual reality</SecondaryNav>
   <Listing list={vrsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>
