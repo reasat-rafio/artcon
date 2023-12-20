@@ -22,11 +22,10 @@
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(sectionEl, {
-      y: -50,
-      scale: 1.01,
+      scale: 1.15,
       scrollTrigger: {
         trigger: sectionEl,
-        start: '80% center',
+        start: '100% center',
         end: 'bottom top',
         scrub: 1,
       },
@@ -86,11 +85,11 @@
           </div>
         {/if}
       </header>
-      {#if !!cta?.title}
+      {#if !!cta?.title && !!cta?.href}
         <div class="overflow-hidden">
           <Cta
             variant="quaternary"
-            className="cta-btn mx-auto translate-y-full opacity-0"
+            className="cta-btn mx-auto translate-y-full opacity-0 min-w-[10.9375rem]"
             href={cta.href}>
             {cta.title}
           </Cta>
@@ -102,7 +101,7 @@
       id="pointer"
       class="absolute -mt-[50px] opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
       <div
-        class="text-platinum flex items-center justify-center space-x-[0.5rem] lg:space-x-[1.06rem] lg:pr-[2.5rem]">
+        class="flex items-center justify-center space-x-[0.5rem] text-platinum lg:space-x-[1.06rem] lg:pr-[2.5rem]">
         <span
           class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
           Discover our stories

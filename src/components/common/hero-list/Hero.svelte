@@ -33,7 +33,7 @@
   };
 
   $: if (emblaApi) {
-    emblaApi.on('scroll', (e) => {
+    emblaApi.on('scroll', (e: EmblaCarouselType) => {
       const direction = DIRECTION_MAP[String(readDirection(e)) as '-1' | '1'];
       scrollDirection = direction as 'forward' | 'backward';
       activeBlockIndex = e.selectedScrollSnap();
@@ -60,14 +60,14 @@
     {scrollDirection}
     {activeBlockIndex}
     on:slideNext={() => useDebounce(() => emblaApi.scrollNext(), DEBOUNCH_TIME)}
-    on:sliedPrev={() => useDebounce(() => emblaApi.scrollPrev(), DEBOUNCH_TIME)}
+    on:slidePrev={() => useDebounce(() => emblaApi.scrollPrev(), DEBOUNCH_TIME)}
     blocksLength={blocks.length} />
 
   <div
     id="pointer"
     class="absolute max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-mt-[76px] lg:-translate-y-1/2">
     <div
-      class="text-platinum flex items-center justify-center space-x-[0.5rem] lg:space-x-[1.06rem] lg:pr-[4.07rem]">
+      class="flex items-center justify-center space-x-[0.5rem] text-platinum lg:space-x-[1.06rem] lg:pr-[4.07rem]">
       <span
         class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
         Discover our stories

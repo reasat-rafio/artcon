@@ -4,8 +4,6 @@
   import { gsap } from 'gsap';
   import Asset from './Asset.svelte';
   import Overlay from '../../hero/Overlay.svelte';
-  import { onMount } from 'svelte';
-  import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
   export let block: CommonHeroProps;
   export let index: number;
@@ -22,21 +20,6 @@
 
   $: isActive = activeBlockIndex === index;
   $: activeBlockIndex, runAnimation();
-
-  onMount(() => {
-    // TODO - Make this smooth or remove this
-    // gsap.registerPlugin(ScrollTrigger);
-    // gsap.to(blockEl, {
-    //   y: -50,
-    //   scale: 1.01,
-    //   scrollTrigger: {
-    //     trigger: blockEl,
-    //     start: '80% center',
-    //     end: 'bottom top',
-    //     scrub: 1,
-    //   },
-    // });
-  });
 
   const runAnimation = () => {
     if (!assetEl) return;
@@ -121,9 +104,12 @@
         </div>
       {/if}
     </header>
-    {#if !!cta?.title}
+    {#if !!cta?.title && !!cta?.href}
       <div class="overflow-hidden">
-        <Cta variant="quaternary" className="cta-btn mx-auto" href={cta.href}>
+        <Cta
+          variant="quaternary"
+          className="cta-btn mx-auto min-w-[10.9375rem]"
+          href={cta.href}>
           {cta.title}
         </Cta>
       </div>

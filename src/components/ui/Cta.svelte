@@ -25,7 +25,7 @@
 <a
   {...$$restProps}
   class={cn(
-    'relative block h-fit w-fit min-w-[8.75rem] overflow-hidden rounded-2xl px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]',
+    'relative block h-fit w-fit min-w-[8.75rem] overflow-hidden rounded-2xl px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase leading-tight tracking-[0.01688rem]',
     variantClasses[variant],
     className,
   )}

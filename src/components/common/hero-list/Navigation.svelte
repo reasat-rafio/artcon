@@ -18,7 +18,7 @@
       class="flex items-center space-x-1 font-optiberling-agency font-medium">
       {#key activeBlockIndex}
         <button
-          on:click={() => dispatch('sliedPrev')}
+          on:click={() => dispatch('slidePrev')}
           in:fly={{
             y: scrollDirection === 'forward' ? 5 : -5,
             duration: 600,
