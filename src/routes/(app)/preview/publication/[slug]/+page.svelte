@@ -144,7 +144,7 @@
           <NavigationMobile cta={exproleLink} />
 
           <div class="grid grid-cols-12 xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="col-span-12 xl:col-span-7">
+            <section class="col-span-12 2xl:col-span-7">
               <Header
                 topic="Our publication"
                 title={name}
@@ -197,7 +197,7 @@
                 </Info>
               </Header>
 
-              <div class="mb-[2.5rem] flex w-full justify-center xl:hidden">
+              <div class="mb-[2.5rem] flex w-full justify-center 2xl:hidden">
                 <figure data-load-animate="y">
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
@@ -223,18 +223,17 @@
                   </li>
                 {/each}
               </ul>
-              <Cta
-                data-load-animate="y"
-                class="z-10 mt-[3.88rem]"
-                variant="fill"
-                color="red-gray"
-                href={buyingLink.href}>
-                {buyingLink.title}
-              </Cta>
+              <div class="pt-[1.38rem]" data-load-animate="y">
+                <Cta href={buyingLink.href} variant="tertiary">
+                  {buyingLink.title}
+                </Cta>
+              </div>
             </section>
 
-            <section class="hidden xl:col-span-5 xl:block">
-              <figure data-load-animate="y" class="mt-[20%] max-h-[23.75rem]">
+            <section class="hidden 2xl:col-span-5 2xl:block">
+              <figure
+                data-load-animate="y"
+                class="max-h-[23.75rem] 2xl:mt-[9.44rem]">
                 <SanityImage
                   class="rounded-[0.9375rem] object-contain"
                   imageUrlBuilder={imageBuilder}
