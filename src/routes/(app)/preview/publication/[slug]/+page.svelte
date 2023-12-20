@@ -224,7 +224,10 @@
                 {/each}
               </ul>
               <div class="pt-[1.38rem]" data-load-animate="y">
-                <Cta href={buyingLink.href} variant="tertiary">
+                <Cta
+                  className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                  href={buyingLink.href}
+                  variant="tertiary">
                   {buyingLink.title}
                 </Cta>
               </div>

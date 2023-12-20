@@ -16,7 +16,7 @@
   const variantClasses: Record<Variant, string> = {
     primary: 'border border-quick-silver text-sonic-silver',
     secondary:
-      'border border-white text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal',
+      'border border-white/50 text-white transition-colors duration-500 hover:bg-white hover:text-dark-gunmetal',
     tertiary: 'gradient-base-style  bg-transparent g-red-gray text-white',
     quaternary: 'gradient-base-style bg-transparent g-white text-dark-gunmetal',
   };
@@ -25,7 +25,7 @@
 <a
   {...$$restProps}
   class={cn(
-    'relative block w-fit min-w-[8.75rem] overflow-hidden rounded-[4rem] px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]',
+    'relative block h-fit w-fit min-w-[8.75rem] overflow-hidden rounded-[4rem] px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]',
     variantClasses[variant],
     className,
   )}
