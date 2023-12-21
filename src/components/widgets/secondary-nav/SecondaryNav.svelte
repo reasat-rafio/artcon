@@ -120,30 +120,34 @@
                   class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
                   <slot />
                 </h2>
-
-                <ul
-                  in:fade={{ delay: 500 }}
-                  class="flex flex-wrap gap-y-1 pt-[0.425rem]">
-                  {#each tags as { name, slug: { current } }, index}
-                    <li class="flex">
-                      <button
-                        class={twMerge(
-                          'hover:text-pigment-red font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 lg:text-[0.875rem]',
-                          current === activeSearchParams && 'text-pigment-red',
-                        )}
-                        on:click|preventDefault={() =>
-                          setSearchParams(current)}>
-                        {name}
-                      </button>
-                      {#if index !== tags.length - 1}
-                        <div class="flex h-full items-center justify-center">
-                          <div
-                            class="bg-pigment-red mx-[6px] -mt-[10%] h-1 w-1 rounded-full lg:mx-[10.5px]" />
-                        </div>
-                      {/if}
-                    </li>
-                  {/each}
-                </ul>
+                {#if !!tags?.length}
+                  <ul
+                    in:fade={{ delay: 500 }}
+                    class="flex flex-wrap gap-y-1 pt-[0.425rem]">
+                    {#each tags as { name, slug: { current } }, index}
+                      <li class="flex">
+                        <button
+                          class={twMerge(
+                            'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
+                            current === activeSearchParams &&
+                              'text-pigment-red',
+                          )}
+                          on:click|preventDefault={() =>
+                            setSearchParams(current)}>
+                          {name}
+                        </button>
+                        {#if index !== tags.length - 1}
+                          <div class="flex h-full items-center justify-center">
+                            <div
+                              class="mx-[0.375rem] -mt-[10%] rounded-full text-pigment-red lg:mx-[0.656rem]">
+                              •
+                            </div>
+                          </div>
+                        {/if}
+                      </li>
+                    {/each}
+                  </ul>
+                {/if}
               {/if}
             </div>
           {/key}
