@@ -10,6 +10,7 @@
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import SearchIcon from '../../icons/Search.svelte';
   import Hamburger from '../Hamburger.svelte';
+  import uiStore from '@/store/ui';
 
   export let logo: SanityAsset;
 
@@ -17,8 +18,12 @@
   let searchIsActive = false;
   const setSearchBarActive = () => (searchIsActive = true);
 
-  $: logo = logo;
   $: isDarkNavPaths = darkNavPaths.includes($page.url.pathname);
+  $: hamburgerColor = isDarkNavPaths
+    ? $uiStore.mobileNavDropdownOpen
+      ? 'white'
+      : 'black'
+    : 'white';
   $: placeholder = searchIsActive
     ? 'Search artist, art work, news etc '
     : 'Search';
@@ -34,23 +39,23 @@
 <nav class={cn('absolute left-0 top-0 z-[1005] w-full', $$props.class)}>
   <div
     class="flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem]">
-    <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
-      <SanityImage
-        class="h-[50px] object-contain"
-        src={logo}
-        sizes="100px"
-        imageUrlBuilder={imageBuilder}
-        alt="Artcon Logo" />
-    </a>
+    {#key logo?.asset?._id}
+      <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
+        <SanityImage
+          class="h-[50px] object-contain"
+          src={logo}
+          sizes="100px"
+          imageUrlBuilder={imageBuilder}
+          alt="Artcon Logo" />
+      </a>
+    {/key}
 
     <div
       class={cn('group ml-auto pt-[1.25rem] lg:pt-[1.9rem]', {
         'text-dark-gunmetal': isDarkNavPaths,
         'text-white': !isDarkNavPaths && !searchIsActive,
       })}>
-      <Hamburger
-        color={isDarkNavPaths ? 'black' : 'white'}
-        class="block lg:hidden" />
+      <Hamburger color={hamburgerColor} class="block lg:hidden" />
       <div
         use:clickOutSide={() => (searchIsActive = false)}
         on:click={setSearchBarActive}

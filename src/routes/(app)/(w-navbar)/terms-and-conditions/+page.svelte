@@ -31,7 +31,7 @@
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-<div class="py-section container-primary">
+<div class="container-primary py-[7rem] lg:py-xl">
   <DescriptionBlock class="max-lg:mb-section">
     <svelte:fragment slot="intro" let:C>
       <C.Title class="lg:mb-10">{title}</C.Title>
