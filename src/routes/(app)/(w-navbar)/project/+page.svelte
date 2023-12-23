@@ -4,7 +4,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/project/Listing.svelte';
-  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
+  import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
   import { createListingItemWithImage } from '@/lib/helper';
   import { formatProjectListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
@@ -50,7 +50,7 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} {logoDark} {logoLight}>Our projects</SecondaryNav>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>Our projects</FilteringNavbar>
   <Listing list={projectsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

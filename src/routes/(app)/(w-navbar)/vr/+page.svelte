@@ -4,7 +4,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/vr/Listing.svelte';
-  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
+  import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
   import { createListingItemWithImage } from '@/lib/helper';
   import { formatVrListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
@@ -49,7 +49,9 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} {logoDark} {logoLight}>Our virtual reality</SecondaryNav>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>
+    Our virtual reality
+  </FilteringNavbar>
   <Listing list={vrsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

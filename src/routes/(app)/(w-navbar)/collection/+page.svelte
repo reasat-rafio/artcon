@@ -4,7 +4,7 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/collection/Listing.svelte';
-  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
+  import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
   import { createListingItemWithImage } from '@/lib/helper';
   import { formatCollectionListingProps } from '@/lib/modify-props';
   import type { CollectionPageProps } from '@/lib/types/collection.types';
@@ -52,7 +52,9 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav {tags} {logoDark} {logoLight}>Our collection</SecondaryNav>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>
+    Our collection
+  </FilteringNavbar>
   <Listing list={collectionsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

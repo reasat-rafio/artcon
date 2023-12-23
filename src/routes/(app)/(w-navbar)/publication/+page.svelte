@@ -6,7 +6,7 @@
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { PublicationPageProps } from '@/lib/types/publication.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
-  import SecondaryNav from '@/components/widgets/secondary-nav/SecondaryNav.svelte';
+  import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
   import Listing from '@/components/pages/publication/Listing.svelte';
   import { formatPublicationListingProps } from '@/lib/modify-props';
 
@@ -52,9 +52,9 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <SecondaryNav tags={categories} {logoDark} {logoLight}>
+  <FilteringNavbar tags={categories} {logoDark} {logoLight}>
     Our publication
-  </SecondaryNav>
+  </FilteringNavbar>
   <Listing list={publicationsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>
