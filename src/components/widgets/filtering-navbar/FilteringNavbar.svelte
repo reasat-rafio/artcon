@@ -11,8 +11,8 @@
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { onMount } from 'svelte';
   import { fade, scale, slide } from 'svelte/transition';
-  import { twMerge } from 'tailwind-merge';
   import { gsap } from 'gsap';
+  import SortingDropdown from '../sorting-dropdown/SortingDropdown.svelte';
 
   export let logoLight: SanityAsset;
   export let logoDark: SanityAsset;
@@ -39,9 +39,9 @@
   };
 
   const setSearchParams = (searchQuery: string) => {
-    const searchParams = new URLSearchParams({
-      search: searchQuery,
-    });
+    const searchParams = new URLSearchParams($page.url.searchParams.toString());
+    searchParams.set('search', searchQuery);
+
     goto($page.url.pathname + '?' + searchParams.toString(), {
       replaceState: true,
       noScroll: true,
@@ -87,7 +87,7 @@
 </script>
 
 <svelte:window bind:scrollY on:scroll={setLogoVisibility} />
-<nav bind:this={sectionEl} class={cn('sticky top-0 z-[1003] overflow-hidden ')}>
+<nav bind:this={sectionEl} class={cn('sticky top-0 z-[1003] overflow-visible')}>
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
@@ -115,39 +115,48 @@
                     alt="Artcon Logo" />
                 </a>
               {:else}
-                <h2
-                  in:fade={{ delay: 500 }}
-                  class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
-                  <slot />
-                </h2>
-                {#if !!tags?.length}
-                  <ul
-                    in:fade={{ delay: 500 }}
-                    class="flex flex-wrap gap-y-1 pt-[0.425rem]">
-                    {#each tags as { name, slug: { current } }, index}
-                      <li class="flex">
-                        <button
-                          class={twMerge(
-                            'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
-                            current === activeSearchParams &&
-                              'text-pigment-red',
-                          )}
-                          on:click|preventDefault={() =>
-                            setSearchParams(current)}>
-                          {name}
-                        </button>
-                        {#if index !== tags.length - 1}
-                          <div class="flex h-full items-center justify-center">
-                            <div
-                              class="mx-[0.375rem] -mt-[10%] rounded-full text-pigment-red lg:mx-[0.656rem]">
-                              •
-                            </div>
-                          </div>
-                        {/if}
-                      </li>
-                    {/each}
-                  </ul>
-                {/if}
+                <div class="flex h-full items-end space-x-5">
+                  <div class="flex-1">
+                    <h2
+                      in:fade={{ delay: 500 }}
+                      class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
+                      <slot name="name" />
+                    </h2>
+                    {#if !!tags?.length}
+                      <ul
+                        in:fade={{ delay: 500 }}
+                        class="hidden flex-wrap gap-y-1 pt-[0.425rem] lg:flex">
+                        {#each tags as { name, slug: { current } }, index}
+                          <li class="flex">
+                            <button
+                              class={cn(
+                                'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
+                                {
+                                  'text-pigment-red':
+                                    current === activeSearchParams,
+                                },
+                              )}
+                              on:click|preventDefault={() =>
+                                setSearchParams(current)}>
+                              {name}
+                            </button>
+                            {#if index !== tags.length - 1}
+                              <div
+                                class="flex h-full items-center justify-center">
+                                <div
+                                  class="mx-[0.375rem] -mt-[10%] rounded-full text-pigment-red lg:mx-[0.656rem]">
+                                  •
+                                </div>
+                              </div>
+                            {/if}
+                          </li>
+                        {/each}
+                      </ul>
+                    {/if}
+                  </div>
+
+                  <slot name="sorting-dropdown" {SortingDropdown} />
+                </div>
               {/if}
             </div>
           {/key}

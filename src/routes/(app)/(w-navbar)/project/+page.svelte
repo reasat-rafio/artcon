@@ -50,7 +50,9 @@
   {/if}
 {/each}
 <div class="relative mt-[100vh] bg-white">
-  <FilteringNavbar {tags} {logoDark} {logoLight}>Our projects</FilteringNavbar>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>
+    <svelte:fragment slot="name">Our projects</svelte:fragment>
+  </FilteringNavbar>
   <Listing list={projectsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

@@ -53,7 +53,9 @@
 {/each}
 
 <div class="relative mt-[100vh] bg-white">
-  <FilteringNavbar {tags} {logoDark} {logoLight}>Our events</FilteringNavbar>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>
+    <svelte:fragment slot="name">Our events</svelte:fragment>
+  </FilteringNavbar>
   <Listing list={eventsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

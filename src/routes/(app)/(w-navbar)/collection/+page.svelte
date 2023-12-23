@@ -53,7 +53,10 @@
 {/each}
 <div class="relative mt-[100vh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
-    Our collection
+    <svelte:fragment slot="name">Our collection</svelte:fragment>
+    <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>
+      <SortingDropdown />
+    </svelte:fragment>
   </FilteringNavbar>
   <Listing list={collectionsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />

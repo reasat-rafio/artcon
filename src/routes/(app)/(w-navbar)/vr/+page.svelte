@@ -50,7 +50,7 @@
 
 <div class="relative mt-[100vh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
-    Our virtual reality
+    <svelte:fragment slot="name">Our virtual reality</svelte:fragment>
   </FilteringNavbar>
   <Listing list={vrsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
