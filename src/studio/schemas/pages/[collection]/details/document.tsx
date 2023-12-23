@@ -40,6 +40,32 @@ const collection = {
       initialValue: true,
     },
     {
+      name: 'displayNew',
+      type: 'boolean',
+      description:
+        'Toggling this to true will display the new tag on the collection',
+      validation: (Rule: Rule) => Rule.required(),
+      initialValue: false,
+      hidden: ({
+        document: { displaySold },
+      }: {
+        document: { displaySold: boolean };
+      }) => displaySold,
+    },
+    {
+      name: 'displaySold',
+      type: 'boolean',
+      description:
+        'Toggling this to true will display the sold tag on the collection',
+      validation: (Rule: Rule) => Rule.required(),
+      initialValue: false,
+      hidden: ({
+        document: { displayNew },
+      }: {
+        document: { displayNew: boolean };
+      }) => displayNew,
+    },
+    {
       name: 'information',
       title: 'Artwork Information',
       type: 'object',
