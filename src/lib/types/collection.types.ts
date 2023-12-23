@@ -40,4 +40,6 @@ export interface Collection {
   year: string;
   artist: { name: string };
   tag: Tag;
+  displayNew: boolean;
+  displaySold: boolean;
 }

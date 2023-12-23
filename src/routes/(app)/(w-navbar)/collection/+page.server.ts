@@ -31,6 +31,8 @@ const query = groq`
         slug,
         name,
         tag->,
+        displayNew,
+        displaySold,
         ${asset('artworkImages[0]', { as: 'artworkImage' })},
         "media": information.media,
         "year": information.artDate.year,

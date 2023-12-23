@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { cn } from '@/lib/cn';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
-  import { twMerge } from 'tailwind-merge';
 
   export let image: SanityAsset;
   export let variant: 'fit' | 'cover' = 'cover';
@@ -10,27 +10,21 @@
 
 {#if variant === 'cover'}
   <figure
-    class={twMerge(
-      'h-auto max-md:aspect-video md:h-[14.125rem]',
-      $$props.class,
-    )}
-  >
+    class={cn('h-auto max-md:aspect-video md:h-[14.125rem]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
       class="h-full w-full rounded-[12px] object-cover"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
-      alt={image?.alt}
-    />
+      alt={image?.alt} />
   </figure>
 {:else if variant === 'fit'}
-  <figure class={twMerge('h-auto sm:h-[25rem]', $$props.class)}>
+  <figure class={cn('h-auto sm:h-[25rem]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
       class="h-full w-full object-contain object-bottom"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
-      alt={image?.alt}
-    />
+      alt={image?.alt} />
   </figure>
 {/if}

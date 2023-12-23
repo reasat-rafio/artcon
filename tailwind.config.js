@@ -78,6 +78,7 @@ export default {
         'pigment-red': '#ED1C24',
         'imperial-red': '#EA234080',
         platinum: '#E8E6E3',
+        alabaster: '#F5EEE6',
       },
 
       fontFamily: {

@@ -44,7 +44,6 @@ const collection = {
       type: 'boolean',
       description:
         'Toggling this to true will display the new tag on the collection',
-      validation: (Rule: Rule) => Rule.required(),
       initialValue: false,
       hidden: ({
         document: { displaySold },
@@ -57,7 +56,6 @@ const collection = {
       type: 'boolean',
       description:
         'Toggling this to true will display the sold tag on the collection',
-      validation: (Rule: Rule) => Rule.required(),
       initialValue: false,
       hidden: ({
         document: { displayNew },
