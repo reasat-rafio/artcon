@@ -23,7 +23,13 @@
 
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSortParams = $page.url.searchParams.get('sort');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
+  // $: activeSortParams, filterBySearchParams(activeSearchParams);
+
+  $: {
+    console.log(activeSortParams);
+  }
 
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',

@@ -1,16 +1,16 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import { scale } from 'svelte/transition';
+  import { fade, scale, slide } from 'svelte/transition';
 
+  $: activeSortParams = $page.url.searchParams.get('sort');
   let showDropDown = false;
-
   let options = [
     { name: 'Available', value: 'available' },
     { name: 'Sold', value: 'sold' },
     { name: 'Newest', value: 'newest' },
     { name: 'Oldest', value: 'oldest' },
-  ] as const;
+  ];
 
   const handleDropdownFocusLoss = ({
     relatedTarget,
@@ -42,17 +42,43 @@
     on:click={() => (showDropDown = !showDropDown)}
     on:focusout={handleDropdownFocusLoss}
     class="flex min-w-[8.75rem] items-center justify-center gap-x-[1.29106rem] rounded-2xl border border-quick-silver pb-[0.875rem] pl-[1.6875rem] pr-[1.56431rem] pt-[0.8125rem] text-[0.84375rem] font-medium tracking-[0.01688rem] text-sonic-silver">
-    <span>Sort by</span>
-    <svg
-      width="19"
-      height="12"
-      viewBox="0 0 19 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M0.657227 12H6.76188V10H0.657227V12ZM0.657227 0V2H18.9712V0H0.657227ZM0.657227 7H12.8665V5H0.657227V7Z"
-        fill="#77777C" />
-    </svg>
+    {#key activeSortParams}
+      <span in:scale>{activeSortParams || 'Sort by'}</span>
+    {/key}
+
+    {#if activeSortParams}
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+          fill="#77777C" />
+      </svg>
+    {:else}
+      <svg
+        width="19"
+        height="12"
+        viewBox="0 0 19 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          class="line1"
+          d="M0.657227 12H6.76188V10H0.657227V12Z"
+          fill="#77777C" />
+        <path
+          class="line2"
+          d="M0.657227 0V2H18.9712V0H0.657227Z"
+          fill="#77777C" />
+        <path
+          class="line3"
+          d="M0.657227 7H12.8665V5H0.657227V7Z"
+          fill="#77777C" />
+      </svg>
+    {/if}
+
     {#if showDropDown}
       <ul
         in:scale={{ duration: 400 }}
