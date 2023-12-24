@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, prices: { priceBDT, priceUSD, discountPriceBDT }, publicationImage } (_id)}
-    <div animate:flip={{ duration: 400 }}>
+    <div animate:flip={{ duration: 500 }}>
       <Card
         el="a"
         href={`/preview/publication/${slug.current}`}

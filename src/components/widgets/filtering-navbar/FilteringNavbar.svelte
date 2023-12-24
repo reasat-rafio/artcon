@@ -89,7 +89,7 @@
 <svelte:window bind:scrollY on:scroll={setLogoVisibility} />
 <nav
   bind:this={sectionEl}
-  class={cn('sticky top-0 z-[1003] overflow-visible ')}>
+  class={cn('sticky top-0 z-[1003] overflow-visible bg-white')}>
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
@@ -123,37 +123,34 @@
                     class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
                     <slot name="name" />
                   </h2>
-                  {#if !!tags?.length}
-                    <ul
-                      in:fade={{ delay: 500 }}
-                      class="hidden flex-wrap gap-y-1 pt-[0.425rem] lg:flex">
-                      {#each tags as { name, slug: { current } }, index}
-                        <li class="flex">
-                          <button
-                            class={cn(
-                              'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
-                              {
-                                'text-pigment-red':
-                                  current === activeSearchParams,
-                              },
-                            )}
-                            on:click|preventDefault={() =>
-                              setSearchParams(current)}>
-                            {name}
-                          </button>
-                          {#if index !== tags.length - 1}
+                  <ul
+                    in:fade={{ delay: 500 }}
+                    class="hidden flex-wrap gap-y-1 pt-[0.425rem] lg:flex">
+                    {#each tags as { name, slug: { current } }, index}
+                      <li class="flex">
+                        <button
+                          class={cn(
+                            'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
+                            {
+                              'text-pigment-red':
+                                current === activeSearchParams,
+                            },
+                          )}
+                          on:click|preventDefault={() =>
+                            setSearchParams(current)}>
+                          {name}
+                        </button>
+                        {#if index !== tags.length - 1}
+                          <div class="flex h-full items-center justify-center">
                             <div
-                              class="flex h-full items-center justify-center">
-                              <div
-                                class="mx-[0.375rem] -mt-[10%] rounded-full text-pigment-red lg:mx-[0.656rem]">
-                                •
-                              </div>
+                              class="mx-[0.375rem] -mt-[10%] rounded-full text-pigment-red lg:mx-[0.656rem]">
+                              •
                             </div>
-                          {/if}
-                        </li>
-                      {/each}
-                    </ul>
-                  {/if}
+                          </div>
+                        {/if}
+                      </li>
+                    {/each}
+                  </ul>
                 </div>
 
                 <slot name="sorting-dropdown" {SortingDropdown} />

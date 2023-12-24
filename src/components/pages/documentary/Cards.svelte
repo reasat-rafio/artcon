@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, category, coverImage } (_id)}
-    <div animate:flip={{ duration: 400 }}>
+    <div animate:flip={{ duration: 500 }}>
       <Card
         el="a"
         href={`/preview/audio-visual/${slug.current}`}
