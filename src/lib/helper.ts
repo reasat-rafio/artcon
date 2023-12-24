@@ -51,8 +51,8 @@ export const calculateStatusBetweenDates = ({
     const formattedStartDate = areSameMonthAndYear(isoStartDate, isoEndDate)
       ? isoStartDate.toFormat('d')
       : longFormat
-      ? isoStartDate.toFormat('d MMMM')
-      : isoStartDate.toFormat('d MMM');
+        ? isoStartDate.toFormat('d MMMM')
+        : isoStartDate.toFormat('d MMM');
 
     date = `${formattedStartDate} - ${formattedEndDate}`;
 
@@ -132,25 +132,25 @@ export type FormattedItem<T> = {
 
 export const createListingItemWithImage = <T>(
   items: T[],
-  imges: CommonImageAsset[],
+  images: CommonImageAsset[],
   chunkSize: number = 6,
 ) => {
-  const formatedArray: FormattedItem<T>[] = [];
+  const formattedArray: FormattedItem<T>[] = [];
 
   for (let i = 0; i < items.length; i += chunkSize) {
     const chunkOfItem = items.slice(i, i + chunkSize);
 
     if (i + chunkSize >= items.length) {
-      formatedArray.push({ items: chunkOfItem });
+      formattedArray.push({ items: chunkOfItem });
     } else {
-      const chunkOfImage = imges[i / chunkSize];
+      const chunkOfImage = images[i / chunkSize];
       if (chunkOfImage !== undefined) {
-        formatedArray.push({ items: chunkOfItem, image: chunkOfImage });
+        formattedArray.push({ items: chunkOfItem, image: chunkOfImage });
       } else {
-        formatedArray.push({ items: chunkOfItem });
+        formattedArray.push({ items: chunkOfItem });
       }
     }
   }
 
-  return formatedArray;
+  return formattedArray;
 };

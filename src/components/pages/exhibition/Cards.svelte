@@ -2,7 +2,7 @@
   import Card from '@/components/ui/card/Card.svelte';
   import { cn } from '@/lib/cn';
   import type { Exhibition } from '@/lib/types/exhibition.types';
-  import { fade } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
 
   export let items: Exhibition[];
 </script>
@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, tag, type, asset, _id } (_id)}
-    <div in:fade out:fade={{ duration: 0 }}>
+    <div animate:flip={{ duration: 400 }}>
       <Card
         el="a"
         href={`/exhibition/${slug.current}`}
@@ -27,7 +27,7 @@
           <div>
             <Title class="inline">{name}</Title>
             <h4
-              class="text-eerie-black inline text-[1rem] font-medium tracking-[0.02rem]">
+              class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
               /
               {#if typeof type === 'string'}
                 {type}

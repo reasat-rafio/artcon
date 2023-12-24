@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Documentary } from '@/lib/types/documentary.types';
   import Card from '@/components/ui/card/Card.svelte';
-  import { fade } from 'svelte/transition';
   import { cn } from '@/lib/cn';
+  import { flip } from 'svelte/animate';
 
   export let items: Documentary[];
 </script>
@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, category, coverImage } (_id)}
-    <div in:fade out:fade={{ duration: 0 }}>
+    <div animate:flip={{ duration: 400 }}>
       <Card
         el="a"
         href={`/preview/audio-visual/${slug.current}`}

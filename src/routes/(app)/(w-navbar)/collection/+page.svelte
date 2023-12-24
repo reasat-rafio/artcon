@@ -24,12 +24,9 @@
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSortParams = $page.url.searchParams.get('sort');
-  $: activeSearchParams, filterBySearchParams(activeSearchParams);
-  // $: activeSortParams, filterBySearchParams(activeSearchParams);
-
-  $: {
-    console.log(activeSortParams);
-  }
+  $: activeSearchParams,
+    activeSortParams,
+    filterBySearchParams(activeSearchParams, activeSortParams);
 
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
@@ -39,15 +36,57 @@
     sectionImages,
   );
 
-  const filterBySearchParams = (activeSearchParams: string | null) => {
-    if (!activeSearchParams) {
-      filteredCollections = collections;
+  const filterBySearchParams = (
+    activeSearchParams: string | null,
+    activeSortParams: string | null,
+  ) => {
+    let collectionsCopy = collections;
+
+    if (!activeSearchParams && !activeSortParams) {
+      filteredCollections = collectionsCopy;
       return;
     }
-    const fList = collections.filter(
-      ({ tag: { slug } }) => slug.current === activeSearchParams,
-    );
-    filteredCollections = fList;
+
+    if (!!activeSearchParams) {
+      const filteredCollection = collectionsCopy.filter(
+        ({ tag: { slug } }) => slug.current === activeSearchParams,
+      );
+      collectionsCopy = filteredCollection;
+    }
+
+    if (!!activeSortParams) {
+      switch (activeSortParams) {
+        case 'available':
+          collectionsCopy = collectionsCopy.filter(
+            ({ isAvailable }) => isAvailable === true,
+          );
+          break;
+        case 'sold':
+          collectionsCopy = collectionsCopy.filter(
+            ({ displaySold }) => displaySold === true,
+          );
+          break;
+        case 'newest':
+          collectionsCopy = collectionsCopy.sort(
+            (a, b) =>
+              new Date(b._createdAt).getTime() -
+              new Date(a._createdAt).getTime(),
+          );
+          break;
+        case 'oldest':
+          collectionsCopy = collectionsCopy.sort(
+            (a, b) =>
+              new Date(a._createdAt).getTime() -
+              new Date(b._createdAt).getTime(),
+          );
+          break;
+        default:
+          collectionsCopy = collections;
+          break;
+      }
+    }
+
+    filteredCollections = collectionsCopy;
   };
 </script>
 

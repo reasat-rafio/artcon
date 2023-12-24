@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Vr } from '@/lib/types/vr.types';
   import Card from '@/components/ui/card/Card.svelte';
-  import { fade } from 'svelte/transition';
   import { cn } from '@/lib/cn';
+  import { flip } from 'svelte/animate';
 
   export let items: Vr[];
 </script>
@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, category, gallery, url } (_id)}
-    <div in:fade out:fade={{ duration: 0 }}>
+    <div animate:flip={{ duration: 400 }}>
       <Card
         el="a"
         href={`/preview/vr/${slug.current}`}
@@ -34,7 +34,7 @@
         <Container>
           <Title class="inline">{name}</Title>
           <h4
-            class="text-eerie-black inline text-[1rem] font-medium tracking-[0.02rem]">
+            class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
             / {gallery.name}
           </h4>
 

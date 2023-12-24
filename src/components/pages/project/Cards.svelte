@@ -2,7 +2,7 @@
   import Card from '@/components/ui/card/Card.svelte';
   import { cn } from '@/lib/cn';
   import type { Project } from '@/lib/types/project.types';
-  import { fade } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
 
   export let items: Project[];
 </script>
@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, tag, _id, asset } (_id)}
-    <div in:fade out:fade={{ duration: 0 }}>
+    <div animate:flip={{ duration: 400 }}>
       <Card
         el="a"
         href={`/project/${slug.current}`}

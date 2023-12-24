@@ -14,10 +14,13 @@
   let carouselCanScrollNext: boolean = true;
   let carouselCanScrollPrev: boolean;
   $: if (emblaApi) {
-    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
+    emblaApi.on(
+      'select',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
   }
 
   const scrollNext = () => emblaApi.scrollNext();

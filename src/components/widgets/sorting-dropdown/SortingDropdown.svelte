@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import { fade, scale, slide } from 'svelte/transition';
+  import { fade, scale } from 'svelte/transition';
 
   $: activeSortParams = $page.url.searchParams.get('sort');
   let showDropDown = false;
@@ -37,33 +37,49 @@
   };
 </script>
 
-<div class="relative h-max">
+<div class="relative hidden h-max lg:block">
   <button
     on:click={() => (showDropDown = !showDropDown)}
     on:focusout={handleDropdownFocusLoss}
     class="flex min-w-[8.75rem] items-center justify-center gap-x-[1.29106rem] rounded-2xl border border-quick-silver pb-[0.875rem] pl-[1.6875rem] pr-[1.56431rem] pt-[0.8125rem] text-[0.84375rem] font-medium tracking-[0.01688rem] text-sonic-silver">
     {#key activeSortParams}
-      <span in:scale>{activeSortParams || 'Sort by'}</span>
+      <span class="capitalize" in:fade>{activeSortParams || 'Sort by'}</span>
     {/key}
 
     {#if activeSortParams}
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 14 14"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-          fill="#77777C" />
-      </svg>
+      <button
+        in:scale
+        on:click|stopPropagation={() => {
+          const searchParams = new URLSearchParams(
+            $page.url.searchParams.toString(),
+          );
+          searchParams.delete('sort');
+          goto($page.url.pathname + '?' + searchParams.toString(), {
+            replaceState: true,
+            noScroll: true,
+          });
+        }}>
+        <svg
+          class="text-sonic-silver transition-colors duration-300 hover:text-imperial-red"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+            fill="currentColor" />
+        </svg>
+      </button>
     {:else}
       <svg
+        in:scale
         width="19"
         height="12"
         viewBox="0 0 19 12"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+        role="button">
         <path
           class="line1"
           d="M0.657227 12H6.76188V10H0.657227V12Z"

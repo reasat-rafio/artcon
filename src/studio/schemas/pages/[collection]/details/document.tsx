@@ -41,6 +41,7 @@ const collection = {
     },
     {
       name: 'displayNew',
+      title: 'New',
       type: 'boolean',
       description:
         'Toggling this to true will display the new tag on the collection',
@@ -53,6 +54,7 @@ const collection = {
     },
     {
       name: 'displaySold',
+      title: 'Sold',
       type: 'boolean',
       description:
         'Toggling this to true will display the sold tag on the collection',

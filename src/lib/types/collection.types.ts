@@ -42,4 +42,6 @@ export interface Collection {
   tag: Tag;
   displayNew: boolean;
   displaySold: boolean;
+  isAvailable: boolean;
+  _createdAt: string;
 }

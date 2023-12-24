@@ -28,11 +28,13 @@ const query = groq`
         },
       "collections" : *[_type== "collection"]|order(orderRank){
         _id,
+        _createdAt,
         slug,
         name,
         tag->,
         displayNew,
         displaySold,
+        isAvailable,
         ${asset('artworkImages[0]', { as: 'artworkImage' })},
         "media": information.media,
         "year": information.artDate.year,

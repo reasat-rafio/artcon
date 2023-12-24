@@ -6,6 +6,7 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import CardTag from './CardTag.svelte';
+  import { flip } from 'svelte/animate';
 
   export let items: Collection[];
 </script>
@@ -16,7 +17,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, artworkImage, artist, media, year, displayNew, displaySold } (_id)}
-    <div in:fade out:fade={{ duration: 0 }}>
+    <div animate:flip={{ duration: 400 }}>
       <Card
         el="a"
         href={`/collection/${slug.current}`}
