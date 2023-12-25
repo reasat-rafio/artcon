@@ -1,14 +1,14 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import SearchIcon from '@/components/icons/Search.svelte';
+  import SearchIcon from './SearchIcon.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { SearchResult } from '@/lib/types/search.types';
   import searchStore from '@/store/search';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { onMount } from 'svelte';
-  import { fade, slide } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
 
   export let logo: SanityAsset;
 
@@ -55,10 +55,10 @@
   });
 </script>
 
-<nav class="sticky top-[5rem] z-[1001] overflow-hidden bg-white lg:top-0">
+<nav
+  class="sticky top-0 z-[1001] overflow-hidden bg-white pb-[0.5rem] pt-[1.25rem] lg:pb-[1.25rem] lg:pt-[2.55rem]">
   <div class="relative">
-    <div
-      class="absolute left-[2.5rem] top-1/2 hidden -translate-y-1/2 lg:block">
+    <div class="absolute left-[2.5rem] top-0 hidden lg:block">
       <a href="/">
         <SanityImage
           class="h-[3.125rem] object-contain"
@@ -69,30 +69,30 @@
       </a>
     </div>
 
-    <div
-      class="container-primary flex items-center pb-[0.75rem] pt-[2rem] lg:pb-[1.37rem] lg:pt-[2.25rem]">
-      <div class="flex w-full flex-col space-y-[0.75rem] lg:space-y-[1.25rem]">
+    <div class="container-primary flex items-center">
+      <div class="flex w-full flex-col gap-y-[0.75rem] lg:gap-y-[1.25rem]">
         <h1
-          class="lg:body-regular max-lg:body-light-m font-light lg:font-normal">
+          class="lg:body-regular max-lg:body-light-m !font-inter font-light lg:font-normal">
           Searched result for <strong>
             {$page.url.searchParams.get('q') ?? ''}
           </strong>
         </h1>
+
         <button
-          class="border-quick-silver flex w-full cursor-pointer space-x-2 rounded-[64px] border bg-white pb-[0.75rem] pl-[1.75rem] pr-[1.5rem] pt-[0.69rem] transition-colors duration-500 group-hover:bg-white sm:w-[26rem] lg:space-x-5">
+          class="flex cursor-pointer gap-x-2 rounded-2xl border border-quick-silver bg-white py-[0.5rem] pl-[1.75rem] pr-[1.5rem] transition-colors duration-500 group-hover:bg-white sm:w-[23.9375rem]">
           <input
             bind:this={searchInputEl}
             disabled={$searchStore.loading}
             on:keydown={(e) => {
               if (e.key === 'Enter') searchAction(searchInputEl.value);
             }}
-            class="placeholder:text-quick-silver flex-1 bg-transparent text-[13.5px] outline-none transition-all duration-500 ease-in-out placeholder:text-[13.5px] group-hover:placeholder:text-dark-gunmetal"
+            class="flex-1 bg-transparent pt-[2px] text-[0.84375rem] font-medium tracking-[0.01688rem] text-[#00000080] outline-none placeholder:text-[0.84375rem] placeholder:font-medium placeholder:tracking-[0.01688rem] placeholder:text-[#00000040]"
             type="text"
-            placeholder={'Search'} />
+            placeholder="grass" />
           <button
             disabled={$searchStore.loading}
             on:click={() => searchAction(searchInputEl.value)}
-            class="text-quick-silver scale-100 transition-transform duration-500 hover:scale-125">
+            class="scale-100 text-quick-silver transition-transform duration-500 hover:scale-125">
             {#if $searchStore.loading}
               <div
                 in:fade

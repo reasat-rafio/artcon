@@ -13,7 +13,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, tag, _id, asset } (_id)}
-    <div animate:flip={{ duration: 500 }}>
+    <div in:fade>
       <Card
         el="a"
         href={`/project/${slug.current}`}

@@ -3,6 +3,7 @@
   import { cn } from '@/lib/cn';
   import type { Event } from '@/lib/types/event.types';
   import { flip } from 'svelte/animate';
+  import { fade } from 'svelte/transition';
 
   export let items: Event[];
 </script>
@@ -13,7 +14,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, tag, asset, _id } (_id)}
-    <div animate:flip={{ duration: 500 }}>
+    <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
         href={`/event/${slug.current}`}

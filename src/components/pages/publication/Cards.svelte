@@ -3,6 +3,7 @@
   import type { Publication } from '@/lib/types/publication.types';
   import { cn } from '@/lib/cn';
   import { flip } from 'svelte/animate';
+  import { fade } from 'svelte/transition';
 
   export let items: Publication[];
 </script>
@@ -13,7 +14,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, prices: { priceBDT, priceUSD, discountPriceBDT }, publicationImage } (_id)}
-    <div animate:flip={{ duration: 500 }}>
+    <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
         href={`/preview/publication/${slug.current}`}

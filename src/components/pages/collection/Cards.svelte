@@ -17,7 +17,7 @@
     $$props.class,
   )}>
   {#each items as { name, slug, _id, artworkImage, artist, media, year, displayNew, displaySold } (_id)}
-    <div animate:flip={{ duration: 500 }}>
+    <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
         href={`/collection/${slug.current}`}
