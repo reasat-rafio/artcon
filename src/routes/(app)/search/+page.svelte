@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -11,6 +12,7 @@
   import Publication from '@/components/pages/search/Publication.svelte';
   import Vr from '@/components/pages/search/Vr.svelte';
   import SearchBar from '@/components/pages/search/search-bar/SearchBar.svelte';
+  import { darkNavPaths } from '@/lib/constant';
   import type { PageProps } from '@/lib/types/common.types';
   import type { SearchPageProps } from '@/lib/types/search.types';
   import searchStore from '@/store/search';
@@ -59,11 +61,17 @@
     !!$searchStore?.data?.publications?.length ||
     !!$searchStore?.data?.documentaries?.length ||
     !!$searchStore?.data?.projects?.length;
+
+  $: logo = darkNavPaths.includes($page.url.pathname)
+    ? $uiStore.mobileNavDropdownOpen
+      ? logoLight
+      : logoDark
+    : logoLight;
 </script>
 
 <svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={ogImage} />
-<SearchBar {logoDark} {logoLight} />
+<SearchBar {logo} />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}
