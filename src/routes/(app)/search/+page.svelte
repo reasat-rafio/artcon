@@ -2,7 +2,6 @@
   import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import Navbar from '@/components/common/navigation/Navbar.svelte';
   import Collection from '@/components/pages/search/Collection.svelte';
   import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
