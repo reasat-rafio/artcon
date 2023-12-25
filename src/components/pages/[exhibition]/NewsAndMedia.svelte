@@ -24,7 +24,7 @@
 
     {#if !!newsAndMedia?.length}
       <NewsAndMediaSlider
-        class="container-primary mb-sm md:mb-[4.63rem]"
+        class="container-primary mb-sm md:mb-[4.63rem] xl:pr-[4.375rem]"
         let:chunk
         {newsAndMedia}>
         {#each chunk as { image, link, subtitle, title }}
