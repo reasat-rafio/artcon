@@ -68,7 +68,7 @@
     )}>
     <a class="flex-1" href="/">
       <SanityImage
-        class="h-[3.125rem] object-contain"
+        class="h-[3.125rem] w-fit object-contain"
         src={logo}
         sizes="100px"
         imageUrlBuilder={imageBuilder}
@@ -82,7 +82,7 @@
         <div class="absolute left-[2.5rem] top-0 hidden lg:block">
           <a href="/">
             <SanityImage
-              class="h-[3.125rem] object-contain"
+              class="h-[3.125rem] w-fit object-contain"
               src={logo}
               sizes="100px"
               imageUrlBuilder={imageBuilder}
