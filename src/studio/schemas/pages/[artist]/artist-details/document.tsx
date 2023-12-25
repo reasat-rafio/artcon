@@ -38,9 +38,7 @@ const referenceExistInOtherArtist = async (
           ({ name }) => `${name}'s, `,
         )}`
       : true;
-  } else {
-    return "Artist's Artworks is required";
-  }
+  } else return true;
 };
 
 const artist = {

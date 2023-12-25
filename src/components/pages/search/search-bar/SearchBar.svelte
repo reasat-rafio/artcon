@@ -10,7 +10,8 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
-  export let logo: SanityAsset;
+  export let logoDark: SanityAsset;
+  export let logoLight: SanityAsset;
 
   let searchInputEl: HTMLInputElement;
 
@@ -62,7 +63,7 @@
       <a href="/">
         <SanityImage
           class="h-[3.125rem] object-contain"
-          src={logo}
+          src={logoDark}
           sizes="100px"
           imageUrlBuilder={imageBuilder}
           alt="Artcon Logo" />

@@ -30,7 +30,7 @@
       publications,
     },
     site: {
-      logos: { logoDark, ogImage },
+      logos: { logoDark, ogImage, logoLight },
       footer,
       nav,
       contact,
@@ -63,7 +63,7 @@
 
 <svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={ogImage} />
-<SearchBar logo={logoDark} />
+<SearchBar {logoDark} {logoLight} />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}
