@@ -12,7 +12,7 @@
   <div class="aspect-video h-full max-h-[655px] overflow-hidden">
     <iframe
       allowfullscreen
-      class="h-full w-full overflow-hidden rounded-[20px] bg-gray-300"
+      class="h-full w-full overflow-hidden rounded-xl bg-gray-300"
       src={url}
       title="Exhibition preview" />
   </div>

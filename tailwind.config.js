@@ -41,6 +41,7 @@ export default {
       },
       borderRadius: {
         lg: '20px',
+        xl: '25px',
         '2xl': '64px',
       },
       colors: {

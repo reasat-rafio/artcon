@@ -185,7 +185,7 @@
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-[1.5625rem] sm:aspect-video sm:h-full">
+            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-xl sm:aspect-video sm:h-full">
             <Youtube id={ytID} altThumb={true} animations={false}>
               <SanityImage
                 sizes="60vw"
@@ -199,7 +199,7 @@
             data-load-animate="y"
             class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-quick-silver">
             <div
-              class="title-light 3xl:w-[13.875rem] w-full space-y-[1.25rem] !leading-[142.857%] 2xl:mr-[3rem] 2xl:w-[40%]">
+              class="title-light w-full space-y-[1.25rem] !leading-[142.857%] 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
               <PortableText value={information} />
             </div>
 

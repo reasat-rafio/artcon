@@ -65,7 +65,7 @@
       class="hidden sm:block">
       <figure bind:this={firstImageEl}>
         <SanityImage
-          class=" aspect-square w-full rounded-[1.5625rem] object-cover"
+          class=" aspect-square w-full rounded-xl object-cover"
           sizes="30vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -83,7 +83,7 @@
       class="block sm:hidden">
       <figure class="ml-auto w-[13.4375rem]" bind:this={firstImageMobileEl}>
         <SanityImage
-          class="aspect-square rounded-[1.5625rem] object-cover"
+          class="aspect-square rounded-xl object-cover"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -105,7 +105,7 @@
           sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="h-full w-full rounded-[1.5625rem] object-cover"
+          class="h-full w-full rounded-xl object-cover"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">
