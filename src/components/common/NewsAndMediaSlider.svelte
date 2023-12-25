@@ -18,14 +18,20 @@
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
   $: chunks = chunkArray(newsAndMedia, slidesNumber);
   $: if (emblaApi) {
-    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
-    emblaApi.on('resize', ({ canScrollNext, canScrollPrev }) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
+    emblaApi.on(
+      'select',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
+    emblaApi.on(
+      'resize',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
   }
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {

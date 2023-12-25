@@ -14,41 +14,30 @@
   export let isSingleArtwork: boolean;
   export let length: number;
 
-  const x = tweened(active ? 1 : 0.6, {
-    duration: 500,
-    easing: cubicInOut,
-  });
-  const y = tweened(active ? 1 : 0.6, {
+  const scale = tweened(active ? 1 : 0.6, {
     duration: 500,
     easing: cubicInOut,
   });
 
-  $: $x = !isSingleArtwork
+  $: $scale = !isSingleArtwork
     ? innerWidth >= 1024
       ? active
         ? 1
         : 0.6
       : active
-      ? 0.95
-      : 1
-    : 1;
-  $: $y = !isSingleArtwork
-    ? innerWidth >= 1024
-      ? active
-        ? 1
-        : 0.6
-      : active
-      ? 0.95
-      : 1
+        ? 0.95
+        : 1
     : 1;
 </script>
 
 <svelte:window bind:innerWidth />
 <div
-  class="relative h-full flex-[0_0_90%] max-lg:pl-[1.25rem] lg:flex lg:flex-[0_0_50%] lg:items-center lg:justify-center">
+  class={cn(
+    'relative h-full flex-[0_0_90%] pl-[1.25rem] lg:flex lg:flex-[0_0_50.01%]',
+  )}>
   <div>
-    <div style="transform: scale({$x}, {$y});">
-      <figure class:lg:translate-x-[-10%]={length > 1} class="relative">
+    <div style="transform: scale({$scale});">
+      <figure class="relative">
         <SanityImage
           class="h-full w-full rounded-[25px] object-cover"
           sizes="(min-width:1024px) 60vw, 100vw"
