@@ -2,7 +2,6 @@
   import Hamburger from '@/components/common/Hamburger.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ShareIcon from '@/components/icons/ShareIcon.svelte';
-  import { cn } from '@/lib/cn';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import uiStore from '@/store/ui';
@@ -73,7 +72,7 @@
   on:resize={setPositionFromTop} />
 <nav
   bind:this={sectionEl}
-  class="sticky top-0 z-[1003] overflow-hidden transition-all duration-300">
+  class="sticky top-0 z-[1004] overflow-hidden transition-all duration-300">
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
@@ -108,7 +107,7 @@
         on:click={() => (popupSate = 'visible')}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
-          class="text-quick-silver ml-auto transition-colors duration-300 group-hover:text-dark-gunmetal" />
+          class="ml-auto text-quick-silver transition-colors duration-300 group-hover:text-dark-gunmetal" />
       </button>
     </div>
     {#if showLogo}

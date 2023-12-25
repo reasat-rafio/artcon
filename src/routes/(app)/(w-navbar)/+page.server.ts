@@ -51,8 +51,11 @@ const query = groq`
                     _id,
                     _type,
                     name,
+                    "subtitle": type,
                     "title": "Our event",
                     slug,
+                    startDate,
+                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -66,6 +69,7 @@ const query = groq`
                     _id,
                     _type,
                     name,
+                    "subtitle" : category->name,
                     "title": "Our documentary",
                     slug,
                     sliderImageVideo {
@@ -98,6 +102,7 @@ const query = groq`
                     "title":"Our exhibition",
                     name,
                     slug,
+                    subtitle,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},

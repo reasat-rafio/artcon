@@ -150,7 +150,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
               pageItem(S, {
                 schemaType: 'documentaryPage',
                 id: 'documentaryPage',
-                title: 'Documentary',
+                title: 'Audio Visual',
                 icon: FcDocument,
               }),
               pageItem(S, {

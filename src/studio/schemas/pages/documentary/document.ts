@@ -2,7 +2,7 @@ import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const documentaryPage = {
   name: 'documentaryPage',
-  title: 'Documentary Page',
+  title: 'Audio Visual',
   type: 'document',
   fields: [
     {
@@ -22,7 +22,7 @@ const documentaryPage = {
     select: { title: 'seo.title' },
     prepare: (props: DefaultPreviewProps) => ({
       ...props,
-      subtitle: '/documentary',
+      subtitle: '/audio-visual',
     }),
   },
 };

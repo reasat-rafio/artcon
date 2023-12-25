@@ -3,8 +3,8 @@
   import Overlay from '@/components/common/hero/Overlay.svelte';
   import Contact from '@/components/pages/landing/Contact.svelte';
   import Hero from '@/components/pages/landing/Hero.svelte';
-  import DesktopCollections from '@/components/pages/landing/collections/desktop/Collections.svelte';
-  import MobileCollections from '@/components/pages/landing/collections/mobile/Collections.svelte';
+  import SliderDesktop from '@/components/pages/landing/slider/SliderDesktop.svelte';
+  import SliderMobile from '@/components/pages/landing/slider/SliderMobile.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { HomePageProps } from '@/lib/types/landing.types';
 
@@ -36,9 +36,9 @@
         {/if}
       {:else if s._type === 'landing.collections'}
         {#if windowWidth < 1024}
-          <MobileCollections props={{ ...s, contact }} />
+          <SliderMobile props={{ ...s, contact }} />
         {:else}
-          <DesktopCollections bind:rootEl props={s} />
+          <SliderDesktop bind:rootEl props={s} />
         {/if}
       {/if}
     {/each}

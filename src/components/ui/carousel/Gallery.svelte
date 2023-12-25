@@ -28,14 +28,20 @@
   };
 
   $: if (emblaApi) {
-    emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
-    emblaApi.on('resize', ({ canScrollNext, canScrollPrev }) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
+    emblaApi.on(
+      'select',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
+    emblaApi.on(
+      'resize',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
   }
 
   const scrollPrev = () => emblaApi.scrollPrev();

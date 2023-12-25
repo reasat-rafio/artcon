@@ -1,13 +1,12 @@
 <script lang="ts">
   import Contact from '@/components/pages/landing/Contact.svelte';
-  import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import type { ContactProps } from '@/lib/types/common.types';
   import type { CollectionsProps } from '@/lib/types/landing.types';
   import uiStore from '@/store/ui';
   import { gsap } from 'gsap';
   import { Observer } from 'gsap/dist/Observer';
   import { onMount } from 'svelte';
-  import Collection from '../Collection.svelte';
+  import SliderItem from './SliderItem.svelte';
 
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
@@ -85,15 +84,7 @@
 <section class="z-40 block translate-y-[100dvh] lg:hidden">
   <div class="flex flex-col">
     {#each collections as collection, index}
-      {#if collection._type === 'exhibition'}
-        <Exhibition props={{ ...collection, index }} />
-      {:else}
-        <Collection
-          props={{
-            ...collection,
-            index,
-          }} />
-      {/if}
+      <SliderItem props={{ ...collection, index }} />
     {/each}
     <Contact {contact} />
   </div>
