@@ -71,7 +71,7 @@
         class="absolute left-[40px] top-1/2 hidden -translate-y-1/2 2xl:block">
         <a class="" href="/">
           <SanityImage
-            class="h-[50px] object-contain"
+            class="h-[50px] w-fit object-contain"
             src={logo}
             sizes="100px"
             imageUrlBuilder={imageBuilder}

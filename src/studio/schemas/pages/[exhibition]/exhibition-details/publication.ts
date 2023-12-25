@@ -22,7 +22,7 @@ const publication = {
         },
         {
           name: 'caption',
-          type: 'text',
+          type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
       ],

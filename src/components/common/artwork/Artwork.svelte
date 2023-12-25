@@ -10,7 +10,7 @@
   import Artworks from './Artworks.svelte';
 
   export let props: CommonArtworkSectionProps & {
-    artworks: ShortArtworks[];
+    artworks?: ShortArtworks[];
     artworkAtLast?: boolean;
   };
 

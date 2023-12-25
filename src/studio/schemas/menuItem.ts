@@ -1,3 +1,4 @@
+import { pages } from '@/lib/constant';
 import { MdLink } from 'react-icons/md';
 import type { Rule } from 'sanity';
 
@@ -24,7 +25,14 @@ const menuItem = {
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
-    { name: 'pageUrl', type: 'string' },
+    {
+      name: 'pageUrl',
+      type: 'string',
+      options: {
+        list: [...pages],
+      },
+    },
+
     { name: 'externalUrl', type: 'url' },
   ],
   preview: {

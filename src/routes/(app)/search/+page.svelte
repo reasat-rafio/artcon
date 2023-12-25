@@ -1,19 +1,21 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import NoSearchResultFound from '@/components/common/NoSearchResultFound.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
+  import MobileNavDropdown from '@/components/common/navigation/MobileNavDropdown.svelte';
   import Collection from '@/components/pages/search/Collection.svelte';
   import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
   import Exhibition from '@/components/pages/search/Exhibition.svelte';
-  import SearchBar from '@/components/pages/search/search-bar/SearchBar.svelte';
   import Project from '@/components/pages/search/Project.svelte';
   import Publication from '@/components/pages/search/Publication.svelte';
   import Vr from '@/components/pages/search/Vr.svelte';
+  import SearchBar from '@/components/pages/search/search-bar/SearchBar.svelte';
+  import { darkNavPaths } from '@/lib/constant';
   import type { PageProps } from '@/lib/types/common.types';
   import type { SearchPageProps } from '@/lib/types/search.types';
   import searchStore from '@/store/search';
-  import MobileNavDropdown from '@/components/common/navigation/MobileNavDropdown.svelte';
   import uiStore from '@/store/ui';
 
   export let data: PageProps<SearchPageProps>;
@@ -59,11 +61,17 @@
     !!$searchStore?.data?.publications?.length ||
     !!$searchStore?.data?.documentaries?.length ||
     !!$searchStore?.data?.projects?.length;
+
+  $: logo = darkNavPaths.includes($page.url.pathname)
+    ? $uiStore.mobileNavDropdownOpen
+      ? logoLight
+      : logoDark
+    : logoLight;
 </script>
 
 <svelte:window bind:innerWidth />
 <Seo {seo} siteOgImg={ogImage} />
-<SearchBar {logoDark} {logoLight} />
+<SearchBar {logo} />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}

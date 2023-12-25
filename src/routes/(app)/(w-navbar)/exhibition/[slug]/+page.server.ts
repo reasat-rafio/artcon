@@ -16,7 +16,7 @@ const query = (params: Partial<Record<string, string>>) =>
     endDate,
     startDate,
     tag->,
-    gallery->{name},
+    gallery->,
     publication->{
       name,
       subtitle,

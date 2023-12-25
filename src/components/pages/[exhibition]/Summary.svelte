@@ -33,6 +33,9 @@
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
           <C.Title>{descriptionBlock.gallery.name}</C.Title>
+          {#if descriptionBlock.gallery?.location}
+            <C.Subtitle>{descriptionBlock.gallery.location}</C.Subtitle>
+          {/if}
           <C.Subtitle>{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         <div class="space-y-[10px] lg:space-y-[13px]">

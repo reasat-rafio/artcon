@@ -42,7 +42,7 @@
     {#key logo?.asset?._id}
       <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
         <SanityImage
-          class="h-[50px] object-contain"
+          class="h-[50px] w-fit object-contain"
           src={logo}
           sizes="100px"
           imageUrlBuilder={imageBuilder}

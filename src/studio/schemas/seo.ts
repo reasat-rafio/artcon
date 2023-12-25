@@ -8,21 +8,21 @@ const seo = {
     {
       name: 'title',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'description',
-      type: 'string',
-      validation: (Rule: Rule) => Rule.required()
+      type: 'text',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'ogImage',
       type: 'image',
       options: {
-        accept: 'image/png, image/jpeg, image/webp'
-      }
-    }
-  ]
+        accept: 'image/png, image/jpeg, image/webp',
+      },
+    },
+  ],
 };
 
 export default seo;

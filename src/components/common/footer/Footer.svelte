@@ -16,7 +16,7 @@
       class="flex flex-col border-t border-quick-silver/80 pb-[2rem] pt-[2.6875rem] max-lg:flex-wrap lg:flex-row">
       <figure class="max-lg:pb-[1.56rem] lg:pr-[5%] 2xl:pr-[6.125rem]">
         <SanityImage
-          class="w-full object-contain max-lg:max-h-[3.125rem] max-lg:max-w-[5.30819rem]"
+          class="w-full object-contain max-lg:max-h-[3.125rem] max-lg:max-w-[5.30819rem] "
           sizes="90px"
           src={logo}
           imageUrlBuilder={imageBuilder}
