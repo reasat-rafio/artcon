@@ -75,7 +75,9 @@ export interface Publication {
 }
 
 export interface Gallery {
+  _id: string;
   name: string;
+  location?: string;
 }
 
 export interface GroupExhibitionProps {
