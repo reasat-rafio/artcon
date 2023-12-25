@@ -38,7 +38,13 @@
 
 <nav class={cn('absolute left-0 top-0 z-[1005] w-full', $$props.class)}>
   <div
-    class="flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[5.87rem]">
+    class={cn(
+      'flex w-full items-center px-[1.25rem] transition-all duration-300 will-change-[padding] lg:pl-[2.5rem]',
+      {
+        'lg:pr-[5.87rem]': $page.url.pathname === '/',
+        'lg:pr-[2.37rem]': $page.url.pathname !== '/',
+      },
+    )}>
     {#key logo?.asset?._id}
       <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
         <SanityImage
