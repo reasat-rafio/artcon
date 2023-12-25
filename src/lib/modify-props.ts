@@ -64,8 +64,8 @@ export const formatVrListingProps = (
         _key: '',
         asset: { image: coverImage },
         title: name,
-        text: subtitle,
-        type: category.name,
+        text: category.name,
+        type: subtitle,
         cta: { title: 'EXPLORE', href: `/preview/vr/${slug.current}` },
       };
     },

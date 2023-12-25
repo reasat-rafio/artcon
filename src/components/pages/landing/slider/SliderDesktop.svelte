@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Exhibition from '@/components/pages/landing/collections/Exhibition.svelte';
   import type { CollectionsProps } from '@/lib/types/landing.types';
   import uiStore from '@/store/ui';
   import { gsap } from 'gsap';
@@ -7,8 +6,8 @@
   import { onMount } from 'svelte';
   import { expoOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
-  import Collection from '../Collection.svelte';
   import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
+  import SliderItem from './SliderItem.svelte';
 
   export let props: CollectionsProps;
   export let rootEl: HTMLElement;
@@ -93,11 +92,7 @@
 <section class="pointer-events-none hidden translate-x-[100vw] lg:block">
   <div style="width: {$containerWidth}vw;" class="flex">
     {#each collections as collection, index}
-      {#if collection._type === 'exhibition'}
-        <Exhibition props={{ ...collection, index }} />
-      {:else}
-        <Collection props={{ ...collection, index }} />
-      {/if}
+      <SliderItem props={{ ...collection, index }} />
     {/each}
   </div>
 </section>

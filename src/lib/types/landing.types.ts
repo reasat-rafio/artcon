@@ -10,12 +10,23 @@ type Section = CommonHeroProps | CollectionsProps;
 
 export interface CollectionsProps {
   _type: 'landing.collections';
-  collections: CollectionProps[];
+  collections: SliderProps[];
 }
 
-type CollectionProps = VrProps | PublicationProps | ExhibitionProps;
+export type SliderProps =
+  | VrProps
+  | PublicationProps
+  | ExhibitionProps
+  | CollectionProps
+  | EventProps
+  | AudioVisualProps;
+
+export type ExhibitionProps = Collection<'exhibition'>;
 export type VrProps = Collection<'vr'>;
 export type PublicationProps = Collection<'publication'>;
+export type CollectionProps = Collection<'exhibition'>;
+export type EventProps = Collection<'event'>;
+export type AudioVisualProps = Collection<'documentary'>;
 
 export type Collection<T> = {
   _type: T;
@@ -24,18 +35,11 @@ export type Collection<T> = {
   slug: Slug;
   sliderImageVideo: Asset;
   subtitle?: string;
+  exhibitionType?: string | { en: string };
+  startDate: string;
+  endDate?: string;
 };
-
-export interface ExhibitionProps {
-  _type: 'exhibition';
-  title: string;
-  slug: Slug;
-  name: string;
-  sliderImageVideo: Asset;
-  exhibitionType: string | { en: string };
-}
 
 export type WithExtra<T> = T & {
   index: number;
-  DEFAULT_COLUMN_W_PERCENTAGE?: number;
 };
