@@ -9,7 +9,7 @@ const documentary = {
   fields: [
     orderRankField({ type: 'documentary' }),
     {
-      title: 'Documentary Name',
+      title: 'Documentary Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),

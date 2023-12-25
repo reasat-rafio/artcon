@@ -11,7 +11,7 @@ const vr = {
   fields: [
     orderRankField({ type: 'vr' }),
     {
-      title: 'VR Name',
+      title: 'VR Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),

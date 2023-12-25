@@ -29,7 +29,7 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Exhibition Name',
+      title: 'Exhibition Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),

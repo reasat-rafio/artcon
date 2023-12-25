@@ -28,7 +28,7 @@ const project = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Project Name',
+      title: 'Project Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),

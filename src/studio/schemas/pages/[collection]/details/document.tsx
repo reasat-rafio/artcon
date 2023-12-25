@@ -15,7 +15,7 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Collection Name',
+      title: 'Collection Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),

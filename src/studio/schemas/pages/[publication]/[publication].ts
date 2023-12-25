@@ -9,7 +9,7 @@ const publication = {
   fields: [
     orderRankField({ type: 'publication' }),
     {
-      title: 'Publication Name',
+      title: 'Publication Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
