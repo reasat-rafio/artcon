@@ -26,20 +26,18 @@
     const sectionWidth = rootEl.getBoundingClientRect().width;
 
     let ctx = gsap.context(() => {
-      gsap.from(firstImageEl, {
-        y: sectionHeight,
-        x: 0,
+      gsap.to(firstImageEl, {
+        y: -sectionHeight,
         scrollTrigger: {
           invalidateOnRefresh: true,
           scrub: 2,
-          start: 'top bottom',
+          start: 'center bottom',
           end: 'top top',
-          trigger: firstImageEl,
+          trigger: rootEl,
         },
       });
 
       gsap.from(firstImageMobileEl, {
-        y: 0,
         x: -sectionWidth,
         scrollTrigger: {
           invalidateOnRefresh: true,
@@ -56,18 +54,18 @@
 </script>
 
 <svelte:window bind:innerWidth />
-
 <div
   bind:this={rootEl}
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
-  <div class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:w-[30.30%]">
+  <div
+    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-end">
     <svelte:element
       this={!!firstImage?.link ? 'a' : 'div'}
       href={firstImage?.link}
       class="hidden sm:block">
       <figure bind:this={firstImageEl}>
         <SanityImage
-          class="aspect-square w-full rounded-[1.25rem] object-cover"
+          class=" aspect-square w-full rounded-[1.5625rem] object-cover"
           sizes="30vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -85,7 +83,7 @@
       class="block sm:hidden">
       <figure class="ml-auto w-[13.4375rem]" bind:this={firstImageMobileEl}>
         <SanityImage
-          class="aspect-square rounded-[1.25rem] object-cover"
+          class="aspect-square rounded-[1.5625rem] object-cover"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -102,12 +100,12 @@
     <svelte:element
       this={!!secondImage?.link ? 'a' : 'div'}
       href={secondImage?.link}>
-      <figure>
+      <figure class="h-full 3xl:h-[55.83069rem]">
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="aspect-square h-full max-h-[55.83069rem] w-full rounded-[1.25rem] object-cover"
+          class="h-full w-full rounded-[1.5625rem] object-cover"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">

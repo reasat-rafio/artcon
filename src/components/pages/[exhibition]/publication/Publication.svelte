@@ -43,7 +43,7 @@
         {
           img: publicationImage,
           caption: name,
-          link: `/publications/${slug.current}`,
+          link: `/preview/publication/${slug.current}`,
         },
       ]} />
 
@@ -58,7 +58,7 @@
             </C.Subtitle>
           </C.HeaderContainer>
 
-          <div class="">
+          <div>
             <C.Subtitle class="text-[0.75rem] font-light  text-eerie-black">
               Published by
               {#each publishedBy as p, i}
