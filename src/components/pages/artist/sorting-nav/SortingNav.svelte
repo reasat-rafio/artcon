@@ -8,7 +8,7 @@
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
   import { fade, slide } from 'svelte/transition';
   import SearchInput from './SearchInput.svelte';
-  import SortInput from './SortInput.svelte';
+  // import SortInput from './SortInput.svelte';
   import Tags from './Tags.svelte';
 
   export let logo: SanityAsset;
@@ -52,7 +52,7 @@
         {/if}
         {#key activeSearchParams}
           <div>
-            <h2 class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
+            <h2 class="font-medium head-6 text-dark-gunmetal lg:text-head-4">
               <slot />
             </h2>
             <Tags {activeSearchParams} {tags} />
@@ -61,7 +61,7 @@
       </div>
 
       <div class="ml-auto hidden gap-x-[1.375rem] xl:flex">
-        <SortInput />
+        <!-- <SortInput /> -->
         <SearchInput bind:searchEl />
       </div>
     </div>

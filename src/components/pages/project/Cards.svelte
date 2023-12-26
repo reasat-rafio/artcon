@@ -2,7 +2,7 @@
   import Card from '@/components/ui/card/Card.svelte';
   import { cn } from '@/lib/cn';
   import type { Project } from '@/lib/types/project.types';
-  import { flip } from 'svelte/animate';
+  import { fade } from 'svelte/animate';
 
   export let items: Project[];
 </script>
