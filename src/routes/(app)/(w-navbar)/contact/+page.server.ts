@@ -35,27 +35,28 @@ export const load = async (event) => {
 export const actions: Actions = {
   default: async (event) => {
     const form = await superValidate(event, contactSchema);
+
     if (!form.valid) return fail(400, { form });
 
-    // const data = form.data;
-    // data.access_key = FORM_ACCESS_KEY;
-    // data.from_name = 'Artcon Website Contact Form Submission';
+    const data = form.data;
+    data.access_key = FORM_ACCESS_KEY;
+    data.from_name = 'Artcon Website Contact Form Submission';
 
-    // const response = await fetch('https://api.web3forms.com/submit', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // });
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    // const result = await response.json();
+    const result = await response.json();
 
-    const formMessage = null;
-    // if (result?.success) {
-    //   formMessage = result.message;
-    // }
+    let formMessage = null;
+    if (result?.success) {
+      formMessage = result.message;
+    }
 
     return { form, formMessage };
   },
