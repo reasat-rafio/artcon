@@ -29,7 +29,7 @@
   h4,
   h5,
   h6 {
-    @apply !font-optiberling-agency font-medium;
+    @apply !font-optiberling-agency font-medium capitalize;
   }
 }
 

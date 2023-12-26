@@ -91,7 +91,7 @@
       {/if}
 
       <div class="overflow-hidden !leading-[100%]">
-        <h1 bind:this={titleEl} class="head-1 !leading-none">
+        <h1 bind:this={titleEl} class="head-1 uppercase !leading-none">
           {title}
         </h1>
       </div>

@@ -8,7 +8,9 @@
 </script>
 
 <section class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
-  <h1 class="head-6 !text-rich-black !leading-none" data-load-animate="y">
+  <h1
+    class="head-6 !lowercase !leading-none !text-rich-black"
+    data-load-animate="y">
     {topic}
   </h1>
   <header>

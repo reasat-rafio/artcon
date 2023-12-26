@@ -51,7 +51,7 @@
 <section
   bind:this={sectionEl}
   class={cn('fixed inset-0 h-screen w-full', $$props.class)}>
-  <div class="relative flex h-full w-full">
+  <div class="relative flex w-full h-full">
     {#key asset}
       <Asset {asset} />
     {/key}
@@ -73,7 +73,7 @@
         <div class="overflow-hidden !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-none opacity-0">
+            class="head-1 translate-y-full uppercase !leading-none opacity-0">
             {title}
           </h1>
         </div>
