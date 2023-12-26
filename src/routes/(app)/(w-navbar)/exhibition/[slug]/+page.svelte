@@ -1,20 +1,16 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
-  import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
-  import Artwork from '@/components/common/artwork/Artwork.svelte';
-  import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
-  import Gallery from '@/components/pages/[exhibition]/Gallery.svelte';
-  import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
-  import NewsAndMedia from '@/components/pages/[exhibition]/NewsAndMedia.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
+  import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
+  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<ExhibitionDetailPageProps>;
   $: ({
@@ -42,6 +38,26 @@
       contact,
     },
   } = data);
+
+  let Artwork: ComponentType;
+  let Gallery: ComponentType;
+  let NewsAndMedia: ComponentType;
+  let OthersDocument: ComponentType;
+  let Footer: ComponentType;
+
+  onMount(async () => {
+    Artwork = (await import('@/components/common/artwork/Artwork.svelte'))
+      .default;
+    Gallery = (await import('@/components/pages/[exhibition]/Gallery.svelte'))
+      .default;
+    NewsAndMedia = (
+      await import('@/components/pages/[exhibition]/NewsAndMedia.svelte')
+    ).default;
+    OthersDocument = (
+      await import('@/components/common/other-document/OtherDocument.svelte')
+    ).default;
+    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
+  });
 
   $: ({ date, status: exhibitionStatus } = calculateStatusBetweenDates({
     startDate,
@@ -89,19 +105,22 @@
     {:else if s._type === 'exhibition.publication' && !!publication}
       <Publication props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
-      <Artwork props={{ ...s, artworks, artworkAtLast: true }} />
+      <svelte:component
+        this={Artwork}
+        props={{ ...s, artworks, artworkAtLast: true }} />
     {:else if s._type === 'exhibition.gallery'}
-      <Gallery props={s} />
+      <svelte:component this={Gallery} props={s} />
     {:else if s._type === 'exhibition.newsAndMedia'}
-      <NewsAndMedia props={s} />
+      <svelte:component this={NewsAndMedia} props={s} />
     {/if}
   {/each}
 
   {#if !!otherExhibitions?.length}
-    <OthersDocument
+    <svelte:component
+      this={OthersDocument}
       urlPrefix="/exhibition"
       title="Other exhibition"
       data={otherExhibitions} />
   {/if}
-  <Footer {footer} {contact} logo={logoDark} />
+  <svelte:component this={Footer} {footer} {contact} logo={logoDark} />
 </div>

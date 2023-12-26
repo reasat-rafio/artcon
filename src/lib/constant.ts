@@ -27,4 +27,11 @@ export const pages = [
   '/services',
   '/terms-and-conditions',
   '/vr',
-] as const;
+];
+
+export const pagesWithOutSlash = removeSlashFromArray(pages);
+function removeSlashFromArray(arr: string[]) {
+  return arr
+    .map((item) => item.replace(/^\//, ''))
+    .filter((item) => item !== '');
+}

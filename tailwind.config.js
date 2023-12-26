@@ -81,11 +81,10 @@ export default {
         platinum: '#E8E6E3',
         alabaster: '#F5EEE6',
       },
-
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
-        'optiberling-agency': ['OPTIBerling Agency', 'sans-serif'],
+        'optiberling-agency': ['OPTIBerling-Agency', 'sans-serif'],
       },
       fontSize: {
         'head-1': ['120px', { lineHeight: '139.2px' }],

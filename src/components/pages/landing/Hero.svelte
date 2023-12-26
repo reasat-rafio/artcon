@@ -1,5 +1,6 @@
 <script lang="ts">
   import Asset from '@/components/common/hero/Asset.svelte';
+  import ScrollIndicator from '@/components/common/hero/ScrollIndicator.svelte';
   import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
@@ -97,17 +98,6 @@
       </div>
     </div>
 
-    <div
-      id="pointer"
-      class="absolute -mt-[50px] opacity-0 max-lg:bottom-[10%] max-lg:left-1/2 max-lg:-translate-x-1/2 lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
-      <div
-        class="flex items-center justify-center space-x-[0.5rem] text-platinum lg:space-x-[1.06rem] lg:pr-[4.07rem]">
-        <span
-          class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
-          Discover our stories
-        </span>
-        <ChevronDown class="chevron-icon animate-bounce text-white" />
-      </div>
-    </div>
+    <ScrollIndicator />
   </div>
 </section>
