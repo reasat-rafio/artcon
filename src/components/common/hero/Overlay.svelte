@@ -12,8 +12,8 @@
   .overlay {
     background: linear-gradient(
       270deg,
-      rgba(0, 0, 0, 0) 5%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 100%
     );
   }
 </style>
