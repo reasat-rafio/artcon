@@ -72,20 +72,22 @@
 
 <div
   bind:this={blockEl}
-  class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden">
+  class="relative flex h-screen w-[100vw] flex-[0_0_100%] overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
   <Overlay />
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 max-w-[76.3rem] space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
-    <header class="-mt-[60px] space-y-[2.1875rem]">
+    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
+    <header class="space-y-[2.1875rem]">
       {#if !!text}
         <h3
           bind:this={textEl}
           class="head-8 lg:head-7 font-bold !leading-[120%] !tracking-widest">
           {text}
         </h3>
+      {:else}
+        <span class="invisible">""</span>
       {/if}
 
       <div class="overflow-hidden !leading-[100%]">
@@ -94,25 +96,28 @@
         </h1>
       </div>
 
-      {#if !!type}
-        <div class="overflow-hidden">
-          <h2
-            bind:this={typeEl}
-            class="head-3 whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
+      <div
+        class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
+        {#if !!type}
+          <h2 bind:this={typeEl}>
             {type}
           </h2>
-        </div>
-      {/if}
+        {:else}
+          <span class="invisible">""</span>
+        {/if}
+      </div>
     </header>
-    {#if !!cta?.title && !!cta?.href}
-      <div class="overflow-hidden">
+    <div class="overflow-hidden">
+      {#if !!cta?.title && !!cta?.href}
         <Cta
           variant="quaternary"
           className="cta-btn mx-auto min-w-[10.9375rem]"
           href={cta.href}>
           {cta.title}
         </Cta>
-      </div>
-    {/if}
+      {:else}
+        <span class="invisible">""</span>
+      {/if}
+    </div>
   </div>
 </div>
