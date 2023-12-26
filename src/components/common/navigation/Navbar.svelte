@@ -39,11 +39,7 @@
 <nav class={cn('absolute left-0 top-0 z-[1005] w-full', $$props.class)}>
   <div
     class={cn(
-      'flex w-full items-center px-[1.25rem] transition-all duration-300 will-change-[padding] lg:pl-[2.5rem]',
-      {
-        'lg:pr-[5.87rem]': $page.url.pathname === '/',
-        'lg:pr-[2.37rem]': $page.url.pathname !== '/',
-      },
+      'flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[2.37rem]',
     )}>
     {#key logo?.asset?._id}
       <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
@@ -57,10 +53,14 @@
     {/key}
 
     <div
-      class={cn('group ml-auto pt-[1.25rem] lg:pt-[1.9rem]', {
-        'text-dark-gunmetal': isDarkNavPaths,
-        'text-white': !isDarkNavPaths && !searchIsActive,
-      })}>
+      class={cn(
+        'group ml-auto pt-[1.25rem] transition-transform  duration-300 will-change-transform lg:pt-[1.9rem]',
+        {
+          'text-dark-gunmetal': isDarkNavPaths,
+          'text-white': !isDarkNavPaths && !searchIsActive,
+          'lg:-translate-x-[3.5rem]': $page.url.pathname === '/',
+        },
+      )}>
       <Hamburger color={hamburgerColor} class="block lg:hidden" />
       <div
         use:clickOutSide={() => (searchIsActive = false)}
