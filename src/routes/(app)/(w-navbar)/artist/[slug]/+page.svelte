@@ -4,12 +4,10 @@
   import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Summary from '@/components/pages/[artist]/Summary.svelte';
-  // import OtherArtists from '@/components/pages/[artist]/other-artists/OtherArtists.svelte';
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artist-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<ArtistDetailPageProps>;
 
@@ -31,22 +29,7 @@
     },
   } = data);
 
-  let OthersDocument: ComponentType;
-  let OtherArtists: ComponentType;
-  let Footer: ComponentType;
   $: allPublications = [...publications, ...publicationsFromExhibitions];
-
-  onMount(async () => {
-    OthersDocument = (
-      await import('@/components/common/other-document/OtherDocument.svelte')
-    ).default;
-    OtherArtists = (
-      await import(
-        '@/components/pages/[artist]/other-artists/OtherArtists.svelte'
-      )
-    ).default;
-    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
-  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -79,16 +62,21 @@
   {/each}
 
   {#if !!exhibitions?.length}
-    <svelte:component
-      this={OthersDocument}
-      urlPrefix="/exhibition"
-      title={`${personalDocuments.name}’s other exhibition with us`}
-      data={exhibitions} />
+    {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
+      <OthersDocument.default
+        urlPrefix="/exhibition"
+        title={`${personalDocuments.name}’s other exhibition with us`}
+        data={exhibitions} />
+    {/await}
   {/if}
 
   {#if !!otherArtists?.length}
-    <svelte:component this={OtherArtists} artists={otherArtists} />
+    {#await import('@/components/pages/[artist]/other-artists/OtherArtists.svelte') then OtherArtists}
+      <OtherArtists.default artists={otherArtists} />
+    {/await}
   {/if}
 
-  <svelte:component this={Footer} {footer} {contact} logo={logoDark} />
+  {#await import('@/components/common/footer/Footer.svelte') then Footer}
+    <Footer.default {footer} {contact} logo={logoLight} />
+  {/await}
 </div>

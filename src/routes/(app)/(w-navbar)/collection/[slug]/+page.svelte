@@ -9,7 +9,6 @@
   import Share from '@/components/widgets/share/Share.svelte';
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<CollectionDetailPageProps>;
 
@@ -35,16 +34,6 @@
       contact,
     },
   } = data);
-
-  let OtherCollection: ComponentType;
-  let Footer: ComponentType;
-
-  onMount(async () => {
-    OtherCollection = (
-      await import('@/components/pages/[collection]/OtherCollection.svelte')
-    ).default;
-    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
-  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -89,10 +78,13 @@
   {/each}
 
   {#if !!otherCollections?.length}
-    <svelte:component
-      this={OtherCollection}
-      title="Other collections"
-      data={otherCollections} />
+    {#await import('@/components/pages/[collection]/OtherCollection.svelte') then OtherCollection}
+      <OtherCollection.default
+        title="Other collections"
+        data={otherCollections} />
+    {/await}
   {/if}
-  <svelte:component this={Footer} {footer} {contact} logo={logoLight} />
+  {#await import('@/components/common/footer/Footer.svelte') then Footer}
+    <Footer.default {footer} {contact} logo={logoLight} />
+  {/await}
 </div>
