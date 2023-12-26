@@ -1,16 +1,15 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Seo from '@/components/common/Seo.svelte';
-  import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Artist from '@/components/pages/[collection]/Artist.svelte';
-  import OtherCollection from '@/components/pages/[collection]/OtherCollection.svelte';
   import Documentations from '@/components/pages/[collection]/documentations/Documentations.svelte';
   import Summary from '@/components/pages/[collection]/summary/Summary.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
+  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<CollectionDetailPageProps>;
 
@@ -36,6 +35,16 @@
       contact,
     },
   } = data);
+
+  let OtherCollection: ComponentType;
+  let Footer: ComponentType;
+
+  onMount(async () => {
+    OtherCollection = (
+      await import('@/components/pages/[collection]/OtherCollection.svelte')
+    ).default;
+    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -80,7 +89,10 @@
   {/each}
 
   {#if !!otherCollections?.length}
-    <OtherCollection title="Other collections" data={otherCollections} />
+    <svelte:component
+      this={OtherCollection}
+      title="Other collections"
+      data={otherCollections} />
   {/if}
-  <Footer {footer} {contact} logo={logoLight} />
+  <svelte:component this={Footer} {footer} {contact} logo={logoLight} />
 </div>
