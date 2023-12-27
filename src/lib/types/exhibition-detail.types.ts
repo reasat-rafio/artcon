@@ -24,8 +24,8 @@ import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ExhibitionDetailPageProps {
   _id: string;
-  type?: string;
-  status?: string;
+  subtitle?: string;
+  topTitle?: string;
   cta?: Cta;
   artists: ArtistsProps;
   artworks: ShortArtworks[];

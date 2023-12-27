@@ -10,13 +10,13 @@
   import ScrollIndicator from './ScrollIndicator.svelte';
 
   export let props: Omit<CommonHeroProps, '_key'>;
-  $: ({ text, title, type, asset, cta } = props);
+  $: ({ subtitle, title, topTitle, asset, cta } = props);
 
   let innerWidth = 0;
   let sectionEl: HTMLElement;
   let titleEl: HTMLElement;
-  let textEl: HTMLElement;
-  let typeEl: HTMLElement;
+  let topTitleEl: HTMLElement;
+  let subtitleEl: HTMLElement;
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -36,9 +36,9 @@
         defaults: { ease: 'expoOut', duration: 0.5 },
         delay: 0.6,
       });
-      if (textEl) tl.to(textEl, { y: 0, opacity: 1 }, '-=0.1');
+      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
       if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
-      if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');
+      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
       tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
       tl.to('#pointer', { opacity: 1 }, '-=0.4');
     });
@@ -60,9 +60,11 @@
       class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
       <header class="space-y-[2.1875rem]">
         <div class="head-8 lg:head-7 !leading-[120%] !tracking-widest">
-          {#if !!text}
-            <h3 class="translate-y-full font-bold opacity-0" bind:this={textEl}>
-              {text}
+          {#if !!topTitle}
+            <h3
+              class="translate-y-full font-bold opacity-0"
+              bind:this={topTitleEl}>
+              {topTitle}
             </h3>
           {:else}
             <span class="invisible">""</span>
@@ -79,9 +81,9 @@
 
         <div
           class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
-          {#if !!type}
-            <h2 bind:this={typeEl} class="translate-y-full opacity-0">
-              {type}
+          {#if !!subtitle}
+            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0">
+              {subtitle}
             </h2>
           {:else}
             <span class="invisible">""</span>

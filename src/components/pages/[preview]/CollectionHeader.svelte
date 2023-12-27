@@ -4,8 +4,8 @@
 
   export let topic: string;
   export let name: string;
-  export let born: string;
-  export let country: string;
+  export let born: string | undefined = undefined;
+  export let country: string | undefined = undefined;
   export let isAvailable: boolean;
 </script>
 
@@ -16,17 +16,21 @@
       <div data-load-animate="y">
         <h1 class="head-4 !inline !leading-none">
           {name}
-          <span class="head-6 !inline">
-            (b. {DateTime.fromISO(born).toFormat('yyyy')})
-          </span>
+          {#if !!born}
+            <span class="head-6 !inline !lowercase">
+              (b. {DateTime.fromISO(born).toFormat('yyyy')})
+            </span>
+          {/if}
         </h1>
       </div>
-      <h4 class="head-8 uppercase" data-load-animate="y">
-        {getCountryDetails(country).name}
-      </h4>
+      {#if !!country}
+        <h4 class="head-8 uppercase" data-load-animate="y">
+          {getCountryDetails(country).name}
+        </h4>
+      {/if}
     </header>
     <span
-      class="sub-title-regular lg:title-regular text-quartz-silver border-pigment-red my-[0.5rem] h-fit border-l-[1.5px] pl-[0.81rem] !leading-none">
+      class="sub-title-regular lg:title-regular my-[0.5rem] h-fit border-l-[1.5px] border-pigment-red pl-[0.81rem] !leading-none text-quartz-silver">
       {#if isAvailable}
         Available
       {:else}

@@ -17,8 +17,8 @@ export interface CollectionDetailPageProps {
   name: string;
   slug: Slug;
   artworkImages: SanityImageAssetDocument[];
-  status?: string;
-  type?: string;
+  subtitle?: string;
+  topTitle?: string;
   cta?: Cta;
   inquiryButton: Cta;
   information: Information;

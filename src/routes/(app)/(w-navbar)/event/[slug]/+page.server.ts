@@ -9,8 +9,8 @@ const query = (params: Partial<Record<string, string>>) =>
     seo,
     name,
     slug,
-    status,
-    type,
+    topTitle,
+    subtitle,
     cta,
     associationsList,
     description,
@@ -45,6 +45,7 @@ const query = (params: Partial<Record<string, string>>) =>
         tag->{name},
         startDate,
         endDate,
+        subtitle,
         asset {
             ...,
             ${asset('image')},

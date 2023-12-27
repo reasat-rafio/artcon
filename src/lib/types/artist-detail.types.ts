@@ -21,8 +21,8 @@ export interface ArtistDetailPageProps {
   siteDocuments: {
     sections: Section[];
     asset: Asset;
-    status?: string;
-    type?: string;
+    subtitle?: string;
+    topTitle?: string;
     cta?: Cta;
   };
   artworks?: ShortArtworks[];

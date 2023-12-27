@@ -10,12 +10,12 @@
   export let activeBlockIndex: number;
   export let scrollDirection: 'forward' | 'backward';
 
-  $: ({ text, title, type, asset, cta } = block);
+  $: ({ title, subtitle, topTitle, asset, cta } = block);
   let blockEl: HTMLElement;
   let titleEl: HTMLElement;
   let assetEl: HTMLElement;
-  let textEl: HTMLElement;
-  let typeEl: HTMLElement;
+  let topTitleEl: HTMLElement;
+  let subtitleEl: HTMLElement;
   let contentContainerEl: HTMLElement;
 
   $: isActive = activeBlockIndex === index;
@@ -80,11 +80,11 @@
     bind:this={contentContainerEl}
     class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
     <header class="space-y-[2.1875rem]">
-      {#if !!text}
+      {#if !!topTitle}
         <h3
-          bind:this={textEl}
+          bind:this={topTitleEl}
           class="head-8 lg:head-7 font-bold !leading-[120%] !tracking-widest">
-          {text}
+          {topTitle}
         </h3>
       {:else}
         <span class="invisible">""</span>
@@ -98,9 +98,9 @@
 
       <div
         class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
-        {#if !!type}
-          <h2 bind:this={typeEl}>
-            {type}
+        {#if !!subtitle}
+          <h2 bind:this={subtitleEl}>
+            {subtitle}
           </h2>
         {:else}
           <span class="invisible">""</span>

@@ -13,7 +13,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start  md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, asset, _id } (_id)}
+  {#each items as { name, slug, tag, asset, _id, subtitle } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -29,7 +29,7 @@
             <Title class="inline">{name}</Title>
           </div>
           <Subtitle class="font-optiberling-agency text-sonic-silver">
-            {tag.name}
+            {subtitle || tag?.name}
           </Subtitle>
         </Container>
       </Card>

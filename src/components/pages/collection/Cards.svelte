@@ -16,6 +16,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
+  <!-- TODO remove the artist name from everywhere if its not needed here -->
   {#each items as { name, slug, _id, artworkImage, artist, media, year, displayNew, displaySold } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
@@ -42,7 +43,7 @@
         </div>
 
         <Container class="text-center">
-          <Title>{artist?.name || name}</Title>
+          <Title>{name}</Title>
           <div
             class="font-inter text-[0.8125rem] font-light tracking-[0.01625rem]">
             <span>{media}</span>

@@ -18,8 +18,8 @@
       otherExhibitions,
       publication,
       cta,
-      status,
-      type,
+      subtitle,
+      topTitle,
       startDate,
       endDate,
       seo,
@@ -38,14 +38,13 @@
     },
   } = data);
 
-  $: ({ date, status: exhibitionStatus } = calculateStatusBetweenDates({
+  $: ({ date, status } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
-  $: heroText =
-    status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
-  $: heroType =
-    type ||
+  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
+  $: _subTitle =
+    subtitle ||
     (isSoloExhibition(artists)
       ? artists.personalDocuments.name
       : 'Group Exhibition');
@@ -58,8 +57,8 @@
     asset,
     cta,
     title: name,
-    text: heroText,
-    type: heroType,
+    topTitle: _topTitle,
+    subtitle: _subTitle,
   }} />
 <div class="relative mt-[100vh] bg-white">
   <Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>

@@ -18,8 +18,8 @@
       seo,
       cta,
       asset,
-      status,
-      type,
+      topTitle,
+      subtitle,
       artist,
       sections,
       provenance,
@@ -41,10 +41,10 @@
   props={{
     asset,
     cta,
-    type,
+    subtitle,
+    topTitle,
     _type: 'common.hero',
     title: artist?.name || name,
-    text: status,
   }} />
 
 <div class="relative mt-[100vh] bg-white">
@@ -53,7 +53,7 @@
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />
-    {:else if props._type === 'collection.summary'}
+    {:else if props._type === 'collection.summary' && !!artist}
       <Summary
         props={{
           ...props,
@@ -70,7 +70,7 @@
         }} />
     {:else if props._type === 'common.note'}
       <Note {props} />
-    {:else if props._type === 'collection.artist'}
+    {:else if props._type === 'collection.artist' && !!artist}
       <Artist props={{ ...props, artist }} />
     {:else if props._type === 'collection.documentation'}
       <Documentations {props} />

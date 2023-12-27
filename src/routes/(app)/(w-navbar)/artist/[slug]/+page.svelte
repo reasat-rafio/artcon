@@ -13,7 +13,7 @@
 
   $: ({
     page: {
-      siteDocuments: { asset, sections, cta, status, type },
+      siteDocuments: { asset, sections, cta, topTitle, subtitle },
       personalDocuments,
       seo,
       artworks,
@@ -36,11 +36,11 @@
 <Hero
   props={{
     _type: 'common.hero',
-    text: status,
+    topTitle,
     title: personalDocuments.name,
     asset,
     cta,
-    type,
+    subtitle,
   }} />
 <div class="relative mt-[100vh] bg-white">
   <Share href="/artist" {logoDark} {logoLight}>Our artist</Share>

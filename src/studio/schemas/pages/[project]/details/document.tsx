@@ -58,13 +58,19 @@ const project = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'status',
+      name: 'topTitle',
       title: 'Top Title (Optional)',
       type: 'string',
       description:
-        'This will overwrite the status derived from the provided start and end dates.',
+        'This will overwrite the top title derived from the provided start and end dates.',
     },
 
+    {
+      name: 'subtitle',
+      title: 'Subtitle (Optional)',
+      type: 'string',
+      description: 'This will replace the tag name.',
+    },
     {
       title: 'Button (Optional)',
       description: 'This will display at hero section.',

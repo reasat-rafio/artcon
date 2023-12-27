@@ -64,14 +64,14 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'status',
+      name: 'topTitle',
       title: 'Top Title (Optional)',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',
     },
     {
-      name: 'type',
+      name: 'subtitle',
       title: 'Subtitle (Optional)',
       type: 'string',
       description:

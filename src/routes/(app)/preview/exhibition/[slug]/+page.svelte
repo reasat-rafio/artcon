@@ -25,6 +25,8 @@
       startDate,
       endDate,
       seo,
+      topTitle,
+      subtitle,
       slug,
       sliderImageVideo,
       asset,
@@ -147,10 +149,16 @@
             let:Info
             topic="Our exhibition"
             title={name}
-            subtitle={typeof exhibitionType === 'string'
-              ? exhibitionType
-              : exhibitionType.en}
-            type={isSoloExhibition ? 'Solo Exhibition' : 'Group Exhibition'}>
+            subtitle={!!subtitle
+              ? subtitle
+              : typeof exhibitionType === 'string'
+                ? exhibitionType
+                : exhibitionType.en}
+            type={!!topTitle
+              ? topTitle
+              : isSoloExhibition
+                ? 'Solo Exhibition'
+                : 'Group Exhibition'}>
             <Info>
               <div class="title-light">
                 {gallery.name}

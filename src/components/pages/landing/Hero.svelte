@@ -11,13 +11,13 @@
   import { twMerge } from 'tailwind-merge';
 
   export let props: CommonHeroProps & { scrollAmount: number };
-  $: ({ text, title, type, asset, cta, scrollAmount } = props);
+  $: ({ topTitle, title, subtitle, asset, cta, scrollAmount } = props);
 
   let windowHeight = 0;
   let windowWidth = 0;
   let titleEl: HTMLElement;
-  let textEl: HTMLElement;
-  let typeEl: HTMLElement;
+  let topTitleEl: HTMLElement;
+  let subtitleEl: HTMLElement;
   $: tweenDelta = tweened(deltaY, { duration: 500, easing: expoOut });
   $: deltaY =
     windowWidth >= 1024 ? Math.min(scrollAmount / windowHeight, 1) : 0;
@@ -28,9 +28,9 @@
         defaults: { ease: 'expoOut', duration: 0.5 },
         delay: 0.6,
       });
-      if (textEl) tl.to(textEl, { y: 0, opacity: 1 }, '-=0.1');
+      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
       if (titleEl) tl.to(titleEl, { y: 0, opacity: 0.75 }, '-=0.2');
-      if (typeEl) tl.to(typeEl, { y: 0, opacity: 1 }, '-=0.3');
+      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
       tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
       tl.to('#pointer', { opacity: 1 }, '-=0.4');
     });
@@ -52,11 +52,11 @@
       class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((338/1080)*100vh)] text-center text-white">
       <header>
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
-          {#if !!text}
+          {#if !!topTitle}
             <h3
-              bind:this={textEl}
+              bind:this={topTitleEl}
               class="translate-y-full !font-inter opacity-0">
-              {text}
+              {topTitle}
             </h3>
           {:else}
             <span class="invisible">""</span>
@@ -73,11 +73,11 @@
 
         <div
           class="head-8 lg:head-6 overflow-hidden !font-medium !leading-[calc(128.5%+0.35rem)]">
-          {#if !!type}
+          {#if !!subtitle}
             <h2
-              bind:this={typeEl}
+              bind:this={subtitleEl}
               class="translate-y-full whitespace-pre-wrap opacity-0">
-              {type}
+              {subtitle}
             </h2>
           {:else}
             <span class="invisible">""</span>

@@ -14,22 +14,22 @@ const query = groq`
           slug,
           endDate,
           startDate,
+          subtitle,
           tag->{
             name,
             slug
           },
           count(artists) > 1 => {
-            "subtitle": "Group Exhibition"
+            "type": "Group Exhibition"
           },
           count(artists) == 1 => {
-            "subtitle": artists[0]->{
+            "type": artists[0]->{
               ...personalDocuments {
                 "name": name.en
               }
             }
           },
-          type,
-          status,
+
           asset{
             ...,
             ${asset('image')},
@@ -44,6 +44,7 @@ const query = groq`
         _id,
         name,
         slug,
+        subtitle,
         tag->{
           name,
           slug

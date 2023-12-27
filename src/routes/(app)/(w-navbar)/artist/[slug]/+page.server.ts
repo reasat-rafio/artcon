@@ -44,8 +44,8 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     siteDocuments {
-      status,
-      type,
+      topTitle,
+      subtitle,
       cta,
       asset {
         ...,

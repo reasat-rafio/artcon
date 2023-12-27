@@ -13,7 +13,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, type, asset, _id } (_id)}
+  {#each items as { name, slug, tag, type, asset, _id, subtitle } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -30,7 +30,9 @@
             <h4
               class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
               /
-              {#if typeof type === 'string'}
+              {#if subtitle}
+                {subtitle}
+              {:else if typeof type === 'string'}
                 {type}
               {:else}
                 {type.name}

@@ -10,8 +10,8 @@ const query = groq`
           ...,
           highlightedCollections[]->{
             name,
-            status,
-            type,
+            topTitle,
+            subtitle,
             cta,
             artist->{
               ...personalDocuments { "name": name.en}

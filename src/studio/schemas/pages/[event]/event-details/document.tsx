@@ -62,18 +62,17 @@ const event = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'status',
+      name: 'topTitle',
       title: 'Top Title (Optional)',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',
     },
     {
-      name: 'type',
+      name: 'subtitle',
       title: 'Subtitle (Optional)',
       type: 'string',
-      description:
-        'This will replace the automatically determined type based on the count of included artists.',
+      description: 'This will replace the tag name.',
     },
     {
       title: 'Button (Optional)',

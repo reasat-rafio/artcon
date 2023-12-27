@@ -1,5 +1,5 @@
 import type { Slug } from 'sanity';
-import type { Asset, CommonHeroProps, SeoProps } from './common.types';
+import type { Asset, CommonHeroProps, SeoProps, Tag } from './common.types';
 
 export interface HomePageProps {
   seo: SeoProps;
@@ -24,7 +24,7 @@ export type SliderProps =
 export type ExhibitionProps = Collection<'exhibition'>;
 export type VrProps = Collection<'vr'>;
 export type PublicationProps = Collection<'publication'>;
-export type CollectionProps = Collection<'exhibition'>;
+export type CollectionProps = Collection<'collection'>;
 export type EventProps = Collection<'event'>;
 export type AudioVisualProps = Collection<'documentary'>;
 
@@ -36,8 +36,8 @@ export type Collection<T> = {
   sliderImageVideo: Asset;
   subtitle?: string;
   exhibitionType?: string | { en: string };
-  startDate: string;
-  endDate?: string;
+  tag?: Tag;
+  artistName?: { en: string };
 };
 
 export type WithExtra<T> = T & {

@@ -12,6 +12,7 @@ export interface Exhibition {
   _id: string;
   asset: Asset;
   name: string;
+  subtitle?: string;
   tag: {
     name: string;
     slug: Slug;
@@ -27,14 +28,17 @@ export interface HeroProps {
   highlightedExhibition: HighlightedExhibition[];
 }
 
+// TODO
+// subtitle?: string;
+// topTitle?: string;
 export interface HighlightedExhibition {
   name: string;
   slug: Slug;
   startDate: string;
   endDate: string;
-  status?: string;
-  type?: string;
+  topTitle?: string;
+  subtitle?: string;
   asset: Asset;
   tag: { name: string }[];
-  subtitle: string | { name: string };
+  type: string | { name: string };
 }

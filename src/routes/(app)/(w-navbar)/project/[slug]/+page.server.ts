@@ -7,7 +7,8 @@ const query = (params: Partial<Record<string, string>>) =>
   groq`*[_type== "project" && slug.current == "${params.slug}"][0]{
     _id,
     name,
-    status,
+    topTitle,
+    subtitle,
     cta,
     seo,
     endDate,
