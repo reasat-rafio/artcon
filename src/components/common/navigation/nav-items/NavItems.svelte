@@ -5,8 +5,8 @@
   import Item from './Item.svelte';
 
   export let nav: NavProps;
-  let { menu } = nav;
 
+  let { menu } = nav;
   let innerHeight = 0;
 
   onMount(() => {

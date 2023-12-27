@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
   import { cn } from '@/lib/cn';
   import { darkNavPaths } from '@/lib/constant';
+  import { onMount } from 'svelte';
 
   export let pageUrl: string | undefined;
   export let externalUrl: string | undefined;
@@ -11,17 +12,38 @@
   let innerHeight = 0;
   let anchorEl: HTMLAnchorElement;
   let textColor: 'white' | 'black';
+  let anchorY = 0;
+  let anchorHeight = 0;
+
   $: isDarkPage = darkNavPaths.includes($page.url.pathname);
-  $: $page.url.pathname, (textColor = isDarkPage ? 'black' : 'white');
+  $: $page.url.pathname, setTextColor();
+
+  onMount(() => {
+    getBoundingClientRect();
+  });
+
+  function setTextColor() {
+    textColor =
+      anchorY + anchorHeight > innerHeight - scrollY ? 'black' : 'white';
+  }
 
   function handleScroll() {
-    const { y, height } = anchorEl.getBoundingClientRect();
-    if (!isDarkPage)
-      textColor = y + height > innerHeight - scrollY ? 'black' : 'white';
+    getBoundingClientRect();
+    if (!isDarkPage) setTextColor();
+  }
+
+  function getBoundingClientRect() {
+    const { y, height } = anchorEl?.getBoundingClientRect();
+    anchorY = y;
+    anchorHeight = height;
   }
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight on:scroll={handleScroll} />
+<svelte:window
+  bind:scrollY
+  bind:innerHeight
+  on:scroll={handleScroll}
+  on:resize={getBoundingClientRect} />
 <a
   bind:this={anchorEl}
   style="color: {textColor};"
