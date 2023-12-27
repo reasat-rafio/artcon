@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { cn } from '@/lib/cn';
   import { darkNavPaths } from '@/lib/constant';
@@ -16,9 +17,15 @@
   let anchorHeight = 0;
 
   $: isDarkPage = darkNavPaths.includes($page.url.pathname);
-  $: $page.url.pathname, setTextColor();
+  $: if ($page.url.pathname) {
+    if (browser) scrollY = window.scrollY;
+
+    if (!isDarkPage) setTextColor();
+    else textColor = 'black';
+  }
 
   onMount(() => {
+    scrollY = window.scrollY;
     getBoundingClientRect();
   });
 
