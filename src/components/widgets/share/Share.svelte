@@ -81,7 +81,7 @@
         {#if $uiStore.mobileNavDropdownOpen}
           <a transition:scale href="/">
             <SanityImage
-              class="h-[50px] object-contain"
+              class="h-[50px] w-fit  object-contain"
               src={logoLight}
               sizes="100px"
               imageUrlBuilder={imageBuilder}

@@ -8,7 +8,7 @@
   let { menu } = nav;
 
   let windowWidth = 0;
-  const TWEEN_IN_BG_DURATION = 1.2;
+  const TWEEN_IN_BG_DURATION = 0.8;
   const TWEEN_OUT_BG_DURATION = 0.8;
   const ANIMATION_PROPS = {
     y: '-100%',
@@ -34,7 +34,7 @@
     };
   });
 
-  function tweenInBg(node: HTMLElement) {
+  function backgroundAnimation(node: HTMLElement) {
     gsap.killTweensOf(node);
     const animate = gsap.to(node, {
       y: 0,
@@ -50,35 +50,9 @@
     };
   }
 
-  function tweenOut(node: HTMLElement) {
-    gsap.killTweensOf(node);
-    gsap.killTweensOf('.dropdownItems');
-    const animate = gsap.from(node, ANIMATION_PROPS);
-
-    return {
-      duration: TWEEN_OUT_BG_DURATION * 1000,
-      tick: (t: number) => {
-        animate.progress(t);
-      },
-    };
-  }
-
-  function tweenOut2(node: HTMLElement) {
-    gsap.killTweensOf(node);
-    const animate = gsap.from(node, ANIMATION_PROPS);
-
-    return {
-      duration: TWEEN_OUT_BG_DURATION * 1000,
-      tick: (t: number) => {
-        animate.progress(t);
-      },
-    };
-  }
-
   const animateDropDownItems = (_: HTMLElement) => {
     const dropdownItems = document.querySelectorAll('.dropdownItems');
     dropdownItems.forEach((item) => gsap.killTweensOf(item));
-
     gsap.to('.dropdownItems', {
       y: 0,
       opacity: 1,
@@ -93,12 +67,10 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <aside
-  in:tweenInBg
-  out:tweenOut
-  class="fixed top-0 z-[1002] !h-[101vh] !w-[101vw] -translate-y-full bg-red-800">
+  transition:backgroundAnimation
+  class="fixed top-0 z-[1002] !h-[100vh] !w-[100vw] -translate-y-full bg-red-800">
   <nav
-    in:tweenInBg
-    out:tweenOut2
+    transition:backgroundAnimation
     class="flex h-full w-full -translate-y-full items-center bg-[#000]">
     <ul use:animateDropDownItems class="flex flex-col gap-y-3 overflow-auto">
       {#each menu as { _key, title, externalUrl, pageUrl } (_key)}
