@@ -11,7 +11,6 @@ export interface PageProps<T> {
 export interface SiteProps {
   logos: {
     favicon: SanityAsset;
-    mobileLogo: SanityAsset;
     ogImage: SanityAsset;
     logoDark: SanityAsset;
     logoLight: SanityAsset;

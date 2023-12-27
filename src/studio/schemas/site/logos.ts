@@ -11,17 +11,17 @@ const logos = {
       name: 'logoLight',
       type: 'image',
       validation: (Rule: Rule) => Rule.required(),
+      description:
+        'Upload the version of the logo intended for display on dark backgrounds.',
     },
     {
       name: 'logoDark',
       type: 'image',
       validation: (Rule: Rule) => Rule.required(),
+      description:
+        'Upload the version of the logo optimized for display on light backgrounds.',
     },
-    {
-      name: 'mobileLogo',
-      type: 'image',
-      validation: (Rule: Rule) => Rule.required(),
-    },
+
     {
       name: 'favicon',
       title: 'Favicon',

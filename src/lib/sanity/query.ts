@@ -8,7 +8,6 @@ export const siteQuery = groq`{
       ...,
       ${asset('logoDark')},
       ${asset('logoLight')},
-      ${asset('mobileLogo')},
     },
     "contact": *[_type == "site.contact"][0] {
       ...,
