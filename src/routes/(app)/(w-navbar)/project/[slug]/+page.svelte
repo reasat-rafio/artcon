@@ -24,7 +24,8 @@
       description,
       gallery,
       cta,
-      status,
+      topTitle,
+      subtitle,
       tag,
       otherProjects,
     },
@@ -35,12 +36,12 @@
     },
   } = data);
 
-  $: ({ date, status: projectStatus } = calculateStatusBetweenDates({
+  $: ({ date, status } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
 
-  $: heroText = status || (projectStatus !== 'Ongoing' ? date : projectStatus);
+  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -51,8 +52,8 @@
     asset,
     cta,
     title: name,
-    text: heroText,
-    type: tag.name,
+    topTitle: _topTitle,
+    subtitle: subtitle || tag.name,
   }} />
 
 <div class="relative mt-[100vh] bg-white">

@@ -11,9 +11,10 @@ const query = groq`
             highlightedEvents[]->{
                 name,
                 slug,
-                status,
-                type,
+                topTitle,
+                subtitle,
                 cta,
+                tag->,
                 endDate,
                 startDate,
                 asset {
@@ -30,6 +31,7 @@ const query = groq`
             _id,
             slug,
             name,
+            subtitle,
             tag->{
                 name,
                 slug

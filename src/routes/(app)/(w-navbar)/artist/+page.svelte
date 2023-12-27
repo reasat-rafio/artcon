@@ -5,7 +5,7 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import List from '@/components/pages/artist/list/List.svelte';
   import SearchInput from '@/components/pages/artist/sorting-nav/SearchInput.svelte';
-  import SortInput from '@/components/pages/artist/sorting-nav/SortInput.svelte';
+  // import SortInput from '@/components/pages/artist/sorting-nav/SortInput.svelte';
   import SortingNav from '@/components/pages/artist/sorting-nav/SortingNav.svelte';
   import { formatArtistListingProps } from '@/lib/modify-props';
   import type { ArtistPageProps } from '@/lib/types/artist.types';
@@ -78,7 +78,7 @@
 
   <div
     class="container-primary flex flex-col justify-between gap-y-[1.25rem] py-[2.5rem] md:flex-row xl:hidden">
-    <SortInput />
+    <!-- <SortInput /> -->
     <SearchInput bind:searchEl class="" />
   </div>
 

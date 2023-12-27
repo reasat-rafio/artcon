@@ -16,7 +16,8 @@ import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 export interface ProjectDetailPageProps {
   _id: string;
   name: string;
-  status?: string;
+  topTitle?: string;
+  subtitle?: string;
   cta?: Cta;
   seo: SeoProps;
   asset: Asset;

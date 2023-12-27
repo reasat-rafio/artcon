@@ -10,7 +10,6 @@
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
-  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<ExhibitionDetailPageProps>;
   $: ({
@@ -19,8 +18,8 @@
       otherExhibitions,
       publication,
       cta,
-      status,
-      type,
+      subtitle,
+      topTitle,
       startDate,
       endDate,
       seo,
@@ -39,34 +38,13 @@
     },
   } = data);
 
-  let Artwork: ComponentType;
-  let Gallery: ComponentType;
-  let NewsAndMedia: ComponentType;
-  let OthersDocument: ComponentType;
-  let Footer: ComponentType;
-
-  onMount(async () => {
-    Artwork = (await import('@/components/common/artwork/Artwork.svelte'))
-      .default;
-    Gallery = (await import('@/components/pages/[exhibition]/Gallery.svelte'))
-      .default;
-    NewsAndMedia = (
-      await import('@/components/pages/[exhibition]/NewsAndMedia.svelte')
-    ).default;
-    OthersDocument = (
-      await import('@/components/common/other-document/OtherDocument.svelte')
-    ).default;
-    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
-  });
-
-  $: ({ date, status: exhibitionStatus } = calculateStatusBetweenDates({
+  $: ({ date, status } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
-  $: heroText =
-    status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
-  $: heroType =
-    type ||
+  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
+  $: _subTitle =
+    subtitle ||
     (isSoloExhibition(artists)
       ? artists.personalDocuments.name
       : 'Group Exhibition');
@@ -79,8 +57,8 @@
     asset,
     cta,
     title: name,
-    text: heroText,
-    type: heroType,
+    topTitle: _topTitle,
+    subtitle: _subTitle,
   }} />
 <div class="relative mt-[100vh] bg-white">
   <Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
@@ -105,22 +83,30 @@
     {:else if s._type === 'exhibition.publication' && !!publication}
       <Publication props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
-      <svelte:component
-        this={Artwork}
-        props={{ ...s, artworks, artworkAtLast: true }} />
+      {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
+        <Artwork.default props={{ ...s, artworks, artworkAtLast: true }} />
+      {/await}
     {:else if s._type === 'exhibition.gallery'}
-      <svelte:component this={Gallery} props={s} />
+      {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
+        <Gallery.default props={s} />
+      {/await}
     {:else if s._type === 'exhibition.newsAndMedia'}
-      <svelte:component this={NewsAndMedia} props={s} />
+      {#await import('@/components/pages/[exhibition]/NewsAndMedia.svelte') then NewsAndMedia}
+        <NewsAndMedia.default props={s} />
+      {/await}
     {/if}
   {/each}
 
   {#if !!otherExhibitions?.length}
-    <svelte:component
-      this={OthersDocument}
-      urlPrefix="/exhibition"
-      title="Other exhibition"
-      data={otherExhibitions} />
+    {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
+      <OthersDocument.default
+        urlPrefix="/exhibition"
+        title="Other exhibition"
+        data={otherExhibitions} />
+    {/await}
   {/if}
-  <svelte:component this={Footer} {footer} {contact} logo={logoDark} />
+
+  {#await import('@/components/common/footer/Footer.svelte') then Footer}
+    <Footer.default {footer} {contact} logo={logoLight} />
+  {/await}
 </div>

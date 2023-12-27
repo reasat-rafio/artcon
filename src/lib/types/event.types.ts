@@ -22,6 +22,7 @@ export interface Event {
   name: string;
   tag: Tag;
   asset: Asset;
+  subtitle?: string;
 }
 
 export interface HeroProps {
@@ -32,10 +33,11 @@ export interface HeroProps {
 export interface HighlightedEvent {
   name: string;
   slug: Slug;
-  status?: string;
-  type?: string;
+  subtitle?: string;
+  topTitle?: string;
   startDate: string;
   endDate?: string;
   cta?: Cta;
   asset: Asset;
+  tag?: Tag;
 }

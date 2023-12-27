@@ -20,7 +20,8 @@ export interface HighlightedProject {
   slug: Slug;
   startDate: string;
   endDate: string;
-  status?: string;
+  topTitle?: string;
+  subtitle?: string;
   asset: Asset;
   tag: Tag;
 }

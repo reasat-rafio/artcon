@@ -360,17 +360,17 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
             ]),
         ),
       S.listItem()
-        .title('Documentary')
+        .title('Audio Visual')
         .icon(BiCameraMovie)
         .child(
           S.list()
-            .title('Documentary')
+            .title('Audio Visual')
             .items([
               orderableDocumentListDeskItem({
                 type: 'documentary',
                 S,
                 context,
-                title: 'Documentary',
+                title: 'Audio Visual',
                 icon: BiCameraMovie,
               }),
               orderableDocumentListDeskItem({

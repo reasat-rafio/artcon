@@ -18,8 +18,8 @@ export interface EventDetailPageProps {
   seo: SeoProps;
   name: string;
   slug: Slug;
-  status?: string;
-  type?: string;
+  subtitle?: string;
+  topTitle?: string;
   cta?: Cta;
   associationsList: Association[];
   description: PortableTextBlock[];

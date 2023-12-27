@@ -10,7 +10,7 @@
 
 {#if variant === 'cover'}
   <figure
-    class={cn('h-auto max-md:aspect-video md:h-[14.125rem]', $$props.class)}>
+    class={cn('h-auto max-3xl:aspect-video 3xl:h-[14.125rem]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
       class="h-full w-full rounded-[12px] object-cover"
@@ -22,7 +22,7 @@
   <figure class={cn('h-auto sm:h-[25rem]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
-      class="h-full w-full object-contain object-bottom"
+      class="object-contain object-bottom w-full h-full"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
       alt={image?.alt} />

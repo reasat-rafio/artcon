@@ -51,11 +51,10 @@ const query = groq`
                     _id,
                     _type,
                     name,
-                    "subtitle": type,
+                    subtitle,
+                    tag->{name},
                     "title": "Our event",
                     slug,
-                    startDate,
-                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -86,7 +85,8 @@ const query = groq`
                     _type,
                     "title": "Our collection",
                     name,
-                    "subtitle" : *[_type == 'artist' && references(^._id)][0].personalDocuments.name.en,
+                    subtitle,
+                    "artistName" : artist->{...personalDocuments {...name {en}}},
                     slug,
                     sliderImageVideo {
                         ...,

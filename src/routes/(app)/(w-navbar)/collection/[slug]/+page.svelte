@@ -9,7 +9,6 @@
   import Share from '@/components/widgets/share/Share.svelte';
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import { onMount, type ComponentType } from 'svelte';
 
   export let data: PageProps<CollectionDetailPageProps>;
 
@@ -19,8 +18,8 @@
       seo,
       cta,
       asset,
-      status,
-      type,
+      topTitle,
+      subtitle,
       artist,
       sections,
       provenance,
@@ -35,16 +34,6 @@
       contact,
     },
   } = data);
-
-  let OtherCollection: ComponentType;
-  let Footer: ComponentType;
-
-  onMount(async () => {
-    OtherCollection = (
-      await import('@/components/pages/[collection]/OtherCollection.svelte')
-    ).default;
-    Footer = (await import('@/components/common/footer/Footer.svelte')).default;
-  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -52,10 +41,10 @@
   props={{
     asset,
     cta,
-    type,
+    subtitle,
+    topTitle,
     _type: 'common.hero',
     title: artist?.name || name,
-    text: status,
   }} />
 
 <div class="relative mt-[100vh] bg-white">
@@ -64,7 +53,7 @@
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />
-    {:else if props._type === 'collection.summary'}
+    {:else if props._type === 'collection.summary' && !!artist}
       <Summary
         props={{
           ...props,
@@ -81,7 +70,7 @@
         }} />
     {:else if props._type === 'common.note'}
       <Note {props} />
-    {:else if props._type === 'collection.artist'}
+    {:else if props._type === 'collection.artist' && !!artist}
       <Artist props={{ ...props, artist }} />
     {:else if props._type === 'collection.documentation'}
       <Documentations {props} />
@@ -89,10 +78,13 @@
   {/each}
 
   {#if !!otherCollections?.length}
-    <svelte:component
-      this={OtherCollection}
-      title="Other collections"
-      data={otherCollections} />
+    {#await import('@/components/pages/[collection]/OtherCollection.svelte') then OtherCollection}
+      <OtherCollection.default
+        title="Other collections"
+        data={otherCollections} />
+    {/await}
   {/if}
-  <svelte:component this={Footer} {footer} {contact} logo={logoLight} />
+  {#await import('@/components/common/footer/Footer.svelte') then Footer}
+    <Footer.default {footer} {contact} logo={logoLight} />
+  {/await}
 </div>

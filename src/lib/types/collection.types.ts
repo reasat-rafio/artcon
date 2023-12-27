@@ -24,8 +24,8 @@ export interface HeroProps {
 
 export interface HighlightedCollection {
   name: string;
-  status?: string;
-  type?: string;
+  subtitle?: string;
+  topTitle?: string;
   cta?: Cta;
   asset: Asset;
   artist: { name: string };

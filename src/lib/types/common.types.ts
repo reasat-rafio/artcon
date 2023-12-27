@@ -11,7 +11,6 @@ export interface PageProps<T> {
 export interface SiteProps {
   logos: {
     favicon: SanityAsset;
-    mobileLogo: SanityAsset;
     ogImage: SanityAsset;
     logoDark: SanityAsset;
     logoLight: SanityAsset;
@@ -101,9 +100,9 @@ export interface Cta {
 export interface CommonHeroProps {
   _type: 'common.hero';
   _key: string;
-  text?: string;
+  subtitle?: string;
   title: string;
-  type?: string;
+  topTitle?: string;
   cta?: Cta;
   asset: Asset;
 }
@@ -200,7 +199,8 @@ export interface CommonOtherExhibitionProps {
   slug: Slug;
   startDate: string;
   endDate?: string;
-  type?: 'Group Exhibition' | { name: string };
+  subtitle?: string;
+  type?: string | { name: string };
 }
 
 export interface Association {

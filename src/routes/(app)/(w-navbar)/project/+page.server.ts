@@ -14,7 +14,7 @@ const query = groq`
           endDate,
           startDate,
           tag->,
-          status,
+          topTitle,
           asset{
             ...,
             ${asset('image')},

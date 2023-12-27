@@ -12,6 +12,7 @@ export interface Exhibition {
   _id: string;
   asset: Asset;
   name: string;
+  subtitle?: string;
   tag: {
     name: string;
     slug: Slug;
@@ -32,9 +33,9 @@ export interface HighlightedExhibition {
   slug: Slug;
   startDate: string;
   endDate: string;
-  status?: string;
-  type?: string;
+  topTitle?: string;
+  subtitle?: string;
   asset: Asset;
   tag: { name: string }[];
-  subtitle: string | { name: string };
+  type: string | { name: string };
 }

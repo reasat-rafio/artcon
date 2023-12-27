@@ -40,7 +40,7 @@ const commonHero = {
     },
     {
       title: 'Subtitle',
-      name: 'type',
+      name: 'subtitle',
       type: 'text',
     },
     {

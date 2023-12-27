@@ -7,8 +7,8 @@ export interface CollectionPreviewProps {
   _id: string;
   _type: string;
   name: string;
-  type?: string;
-  status?: string;
+  subtitle?: string;
+  topTitle?: string;
   slug: Slug;
   cta: Cta;
   inquiryButton: Cta;
@@ -18,7 +18,7 @@ export interface CollectionPreviewProps {
   information: Information;
   provenance: Provenance;
   artworkImages: SanityImageAssetDocument[];
-  artist: {
+  artist?: {
     name: string;
     born: string;
     country: string;

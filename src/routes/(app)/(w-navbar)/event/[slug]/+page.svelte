@@ -18,8 +18,8 @@
     page: {
       name,
       cta,
-      status,
-      type,
+      topTitle,
+      subtitle,
       startDate,
       endDate,
       seo,
@@ -29,6 +29,7 @@
       associationsList,
       description,
       otherEvents,
+      tag,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -37,13 +38,13 @@
     },
   } = data);
 
-  $: ({ date, status: eventStatus } = calculateStatusBetweenDates({
+  $: ({ date, status } = calculateStatusBetweenDates({
     startDate,
     endDate,
     longFormat: true,
   }));
 
-  $: heroText = status || (eventStatus !== 'Ongoing' ? date : eventStatus);
+  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -52,9 +53,9 @@
     _type: 'common.hero',
     asset,
     cta,
-    type,
+    topTitle: _topTitle,
     title: name,
-    text: heroText,
+    subtitle: subtitle || tag?.name,
   }} />
 
 <div class="relative mt-[100vh] bg-white">

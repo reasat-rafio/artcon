@@ -16,14 +16,14 @@ export const formatArtistListingProps = (
   props: ArtistListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedArtists.map(
-    ({ coverImage, name, asset, cta, type, text }) => {
+    ({ coverImage, name, asset, cta, subtitle, topTitle }) => {
       return {
         _type: 'common.hero',
         _key: '',
         asset: coverImage ? { image: coverImage } : asset,
         title: name,
-        text,
-        type,
+        subtitle,
+        topTitle,
         cta,
       };
     },
@@ -64,8 +64,8 @@ export const formatVrListingProps = (
         _key: '',
         asset: { image: coverImage },
         title: name,
-        text: category.name,
-        type: subtitle,
+        topTitle: category.name,
+        subtitle,
         cta: { title: 'EXPLORE', href: `/preview/vr/${slug.current}` },
       };
     },
@@ -79,22 +79,24 @@ export const formatProjectListingProps = (
   props: ProjectListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedProjects.map(
-    ({ asset, name, startDate, endDate, status, slug, tag }) => {
+    ({ asset, name, startDate, endDate, topTitle, slug, subtitle }) => {
       const { date, status: exhibitionStatus } = calculateStatusBetweenDates({
         startDate,
         endDate,
       });
 
-      const heroText =
-        status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
+      const _topTitle =
+        topTitle || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
 
+      // TODO check the type and subtitle
       return {
         _type: 'common.hero',
         _key: '',
         asset,
         title: name,
-        text: heroText,
-        type: tag.name,
+        topTitle: _topTitle,
+        // type: tag.name,
+        subtitle,
         cta: { title: 'EXPLORE', href: `/project/${slug.current}` },
       };
     },
@@ -114,9 +116,9 @@ export const formatDocumentaryListingProps = (
         _type: 'common.hero',
         _key: '',
         asset: { image: coverImage },
-        type: 'Documentary',
+        topTitle: 'Documentary',
         title: name,
-        text: category.name,
+        subtitle: category.name,
         cta: { title: 'Explore', href: `/preview/documentary/${slug.current}` },
       };
     },
@@ -131,22 +133,21 @@ export const formatEventListingProps = (
   props: EventListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedEvents.map(
-    ({ asset, name, status, type, cta, startDate, endDate }) => {
-      const { date, status: eventStatus } = calculateStatusBetweenDates({
+    ({ asset, name, topTitle, subtitle, cta, startDate, endDate, tag }) => {
+      const { date, status } = calculateStatusBetweenDates({
         startDate,
         endDate,
       });
 
-      const heroText =
-        status || (eventStatus !== 'Ongoing' ? date : eventStatus);
+      const _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
 
       return {
         _type: 'common.hero',
         _key: '',
         asset,
-        type,
         title: name,
-        text: heroText,
+        topTitle: _topTitle,
+        subtitle: subtitle || tag?.name,
         cta,
       };
     },
@@ -161,14 +162,14 @@ export const formatCollectionListingProps = (
   props: CollectionListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedCollections.map(
-    ({ asset, name, status, type, artist, cta }) => {
+    ({ asset, name, topTitle, subtitle, artist, cta }) => {
       return {
         _type: 'common.hero',
         _key: '',
         asset,
-        type,
+        subtitle,
         title: artist?.name || name,
-        text: status,
+        topTitle,
         cta,
       };
     },
@@ -182,25 +183,24 @@ export const formatExhibitionListingProps = (
   props: ExhibitionListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedExhibition.map(
-    ({ asset, name, startDate, endDate, status, type, subtitle, slug }) => {
-      const { date, status: exhibitionStatus } = calculateStatusBetweenDates({
+    ({ asset, name, startDate, endDate, type, subtitle, slug, topTitle }) => {
+      const { date, status } = calculateStatusBetweenDates({
         startDate,
         endDate,
       });
 
-      const heroText =
-        status || (exhibitionStatus !== 'Ongoing' ? date : exhibitionStatus);
-
-      const s_title = typeof subtitle === 'string' ? subtitle : subtitle.name;
-      const heroType = type || s_title;
+      const _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
+      const _type = typeof type === 'string' ? type : type?.name;
+      const _subtitle = subtitle || _type;
 
       return {
         _type: 'common.hero',
         _key: '',
         asset,
         title: name,
-        text: heroText,
-        type: heroType,
+        subtitle: _subtitle,
+        topTitle: _topTitle,
+
         cta: { title: 'EXPLORE', href: `/exhibition/${slug.current}` },
       };
     },

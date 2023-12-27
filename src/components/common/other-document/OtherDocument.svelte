@@ -2,6 +2,7 @@
   import Asset from '@/components/common/hero/Asset.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import { cn } from '@/lib/cn';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { CommonOtherExhibitionProps } from '@/lib/types/common.types';
   import emblaCarouselSvelte, {
@@ -92,7 +93,7 @@
             options: { align: 'start', loop: true, active: data.length > 1 },
           }}>
           <div class="-mr-[0.94rem] flex md:-mr-[1.88rem]">
-            {#each data as { slug, type, name, asset, tag }, index}
+            {#each data as { slug, type, name, asset, tag, subtitle }, index}
               <a
                 href="{urlPrefix}/{slug.current}"
                 class="flex-[0_0_90%] overflow-hidden xl:flex-[0_0_50%]">
@@ -103,17 +104,23 @@
                     : 'scale-100'}">
                   <Asset {asset} />
                 </div>
+
                 <div
-                  class="other-doc-info-container origin-top border-light-gray/40 transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
-                  index
-                    ? 'max-xl:scale-75'
-                    : 'scale-100'}">
+                  class={cn(
+                    'other-doc-info-container origin-top border-light-gray/40 transition-transform duration-500 lg:pt-[2.25rem] xl:border-t',
+                    activeSlideIndex !== index
+                      ? 'max-xl:scale-75'
+                      : 'scale-100',
+                  )}>
                   <div
                     use:setBlockHeight={index === activeSlideIndex}
                     class="max-w-[95%] space-y-[0.625rem] lg:max-w-[25rem]">
                     <header>
                       <h3 class="head-6 inline">{name}</h3>
-                      {#if !!type}
+
+                      {#if !!subtitle}
+                        / <h4 class="head-8 inline">{subtitle}</h4>
+                      {:else if !!type}
                         <h4 class="head-8 inline">
                           /
                           {#if typeof type === 'string'}

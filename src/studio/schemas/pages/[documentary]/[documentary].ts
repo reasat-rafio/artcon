@@ -5,6 +5,7 @@ import { BiCameraMovie } from 'react-icons/bi';
 const documentary = {
   name: 'documentary',
   type: 'document',
+  title: 'Audio Visual',
   icon: BiCameraMovie,
   fields: [
     orderRankField({ type: 'documentary' }),

@@ -14,8 +14,8 @@ const query = groq`
                 },
                 slug,
                 ...siteDocuments {
-                    type,
-                    text,
+                    topTitle,
+                    subtitle,
                     cta,
                     ${asset('coverImage')},
                     asset {

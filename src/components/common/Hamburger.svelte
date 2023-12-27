@@ -54,7 +54,6 @@
 <style>
   .hamb {
     position: relative;
-    margin-right: -0.625rem;
     border-width: 0px;
     background-color: transparent;
     padding: 0;

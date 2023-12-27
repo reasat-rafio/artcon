@@ -8,16 +8,18 @@
   export let formMessage: undefined | string;
 
   const { form: f, errors, enhance, delayed } = form;
-
-  //   const clearForm = () =>
-  //     f.update(() => ({
-  //       email: '',
-  //       message: '',
-  //       name: '',
-  //     }));
 </script>
 
-<section class="container-primary">
+<section class="relative container-primary">
+  {#if !!formMessage}
+    <div transition:fade class="absolute top-0 left-0 pb-2 -translate-y-full">
+      <h2
+        class="text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-sonic-silver md:text-[1.5rem] xl:text-[2rem]">
+        {formMessage}
+      </h2>
+    </div>
+  {/if}
+
   <div class="w-full max-w-[64.125rem]">
     <form use:enhance class="w-full space-y-[3.12rem]" method="POST">
       <div class="grid grid-cols-2 gap-[1.88rem]">
@@ -37,11 +39,11 @@
           <textarea
             id="message"
             bind:value={$f.message}
-            name="massage"
+            name="message"
             rows="20"
             placeholder="Type you massage here"
             class:!border-red-500={!!$errors?.message?.length}
-            class="form bg w-full" />
+            class="w-full form bg" />
 
           {#if !!$errors?.message}
             <small
@@ -56,7 +58,11 @@
         class="rounded-2xl border border-raisin-black px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-raisin-black"
         disabled={$delayed}
         type="submit">
-        Send massage
+        {#if $delayed}
+          <span class="animate-pulse">Sending...</span>
+        {:else}
+          Send massage
+        {/if}
       </button>
     </form>
   </div>

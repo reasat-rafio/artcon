@@ -19,14 +19,14 @@ const siteDocuments = {
         'If the artist is featured on the artist listing page, the provided image will serve as the thumbnail in the hero slider. In the event that no image is provided, the hero image or video within the document will be used.',
     },
     {
-      name: 'status',
+      name: 'topTitle',
       title: 'Top Title',
       type: 'string',
       description:
         'This will overwrite the status derived from the provided start and end dates.',
     },
     {
-      name: 'type',
+      name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
     },

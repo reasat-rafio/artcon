@@ -19,8 +19,8 @@ export interface HeroProps {
 export interface HighlightedArtist {
   name: string;
   slug: Slug;
-  type?: string;
-  text?: string;
+  topTitle?: string;
+  subtitle?: string;
   cta?: Cta;
   coverImage?: SanityImageAssetDocument;
   asset: Asset;

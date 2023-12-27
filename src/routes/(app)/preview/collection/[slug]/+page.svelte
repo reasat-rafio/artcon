@@ -139,8 +139,8 @@
             {isAvailable}
             topic="Our collection"
             name={artist?.name || name}
-            born={artist.born}
-            country={artist.country} />
+            born={artist?.born}
+            country={artist?.country} />
 
           <CollectionSlider {artworkImages} />
           <Information {name} {provenance} {information} {inquiryButton} />

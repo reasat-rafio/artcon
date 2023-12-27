@@ -23,7 +23,7 @@
     "svelte-youtube-embed": "^0.2.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@fontsource/inter": "^5.0.16",
     "@fontsource/outfit": "^5.0.8",
     "@portabletext/svelte": "^2.1.5",
@@ -39,8 +39,8 @@
     "@types/luxon": "^3.3.7",
     "@types/papaparse": "^5.3.14",
     "@types/react": "^18.2.45",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
     "autoprefixer": "^10.4.16",
     "embla-carousel-autoplay": "8.0.0-rc17",
     "embla-carousel-svelte": "8.0.0-rc17",

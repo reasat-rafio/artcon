@@ -147,12 +147,12 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'status',
+      name: 'topTitle',
       title: 'Top Title',
       type: 'string',
     },
     {
-      name: 'type',
+      name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
     },
