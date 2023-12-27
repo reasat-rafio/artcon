@@ -22,7 +22,7 @@
   <figure class={cn('h-auto sm:h-[25rem]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
-      class="object-contain object-bottom w-full h-full"
+      class="h-full w-full object-contain object-bottom"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
       alt={image?.alt} />
