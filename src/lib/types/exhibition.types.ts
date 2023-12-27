@@ -28,9 +28,6 @@ export interface HeroProps {
   highlightedExhibition: HighlightedExhibition[];
 }
 
-// TODO
-// subtitle?: string;
-// topTitle?: string;
 export interface HighlightedExhibition {
   name: string;
   slug: Slug;
