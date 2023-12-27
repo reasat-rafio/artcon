@@ -16,7 +16,7 @@
     {placeholder}
     bind:value
     class:!border-red-500={!!error?.length}
-    class="form bg w-full" />
+    class="background w-full rounded-[1.25rem] border border-light-gray pb-[1.26rem] pl-[1.25rem] pt-[1.31rem] text-[1rem] leading-[120%] lg:pb-[1.62rem] lg:pl-[1.87rem] lg:pt-[1.69rem]" />
 
   {#if !!error}
     <small
@@ -28,10 +28,7 @@
 </div>
 
 <style lang="postcss">
-  .form {
-    @apply border-light-gray rounded-[1.25rem] border pb-[1.62rem] pl-[1.87rem] pt-[1.69rem] text-[1rem] leading-[120%];
-  }
-  .bg {
+  .background {
     background: linear-gradient(
       270deg,
       rgba(29, 29, 37, 0.08) 0%,

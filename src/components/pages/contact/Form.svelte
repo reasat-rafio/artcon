@@ -10,9 +10,11 @@
   const { form: f, errors, enhance, delayed } = form;
 </script>
 
-<section class="relative container-primary">
+<section class="container-primary relative">
   {#if !!formMessage}
-    <div transition:fade class="absolute top-0 left-0 pb-2 -translate-y-full">
+    <div
+      transition:fade
+      class="absolute left-0 top-0 -translate-y-full pb-2 max-lg:px-[1rem]">
       <h2
         class="text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-sonic-silver md:text-[1.5rem] xl:text-[2rem]">
         {formMessage}
@@ -27,13 +29,13 @@
           bind:value={$f.name}
           placeholder="Your name"
           name="name"
-          class="col-span-1"
+          class="col-span-2 lg:col-span-1"
           error={$errors.name} />
         <Input
           bind:value={$f.email}
           placeholder="Your mail address"
           name="email"
-          class="col-span-1"
+          class="col-span-2 lg:col-span-1"
           error={$errors.email} />
         <div class="relative col-span-2">
           <textarea
@@ -43,7 +45,7 @@
             rows="20"
             placeholder="Type you massage here"
             class:!border-red-500={!!$errors?.message?.length}
-            class="w-full form bg" />
+            class="form bg w-full" />
 
           {#if !!$errors?.message}
             <small
