@@ -51,7 +51,7 @@ const query = groq`
                     _id,
                     _type,
                     name,
-                    "subtitle": type,
+                    "subtitle": status,
                     "title": "Our event",
                     slug,
                     startDate,

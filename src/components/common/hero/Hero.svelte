@@ -51,7 +51,7 @@
 <section
   bind:this={sectionEl}
   class={cn('fixed inset-0 h-screen w-full', $$props.class)}>
-  <div class="relative flex w-full h-full">
+  <div class="relative flex h-full w-full">
     {#key asset}
       <Asset {asset} />
     {/key}
@@ -59,10 +59,9 @@
     <div
       class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
       <header class="space-y-[2.1875rem]">
-        <div
-          class="head-8 lg:head-7 font-bold !leading-[120%] !tracking-widest opacity-0">
+        <div class="head-8 lg:head-7 !leading-[120%] !tracking-widest">
           {#if !!text}
-            <h3 class="translate-y-full" bind:this={textEl}>
+            <h3 class="translate-y-full font-bold opacity-0" bind:this={textEl}>
               {text}
             </h3>
           {:else}
