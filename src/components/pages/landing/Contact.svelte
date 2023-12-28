@@ -33,7 +33,7 @@
         {#each socialsWithVisibleLinks as { info, type }}
           <li class="flex items-start gap-x-[0.44rem]">
             <img
-              class="h-fit w-[0.85938rem]"
+              class="w-[0.85938rem] object-contain"
               width="15px"
               height="15px"
               src="/icons/socials/light/{getSocialIconPath(type)}"
@@ -50,9 +50,9 @@
           <li>
             <a href={link} target="_blank">
               <img
-                class="h-[0.938rem] w-[0.938rem]"
-                width="15px"
-                height="15px"
+                class="h-[1rem] object-contain"
+                width="20px"
+                height="20px"
                 src="/icons/socials/light/{getSocialIconPath(type)}"
                 alt="{type}'s icon" />
             </a>

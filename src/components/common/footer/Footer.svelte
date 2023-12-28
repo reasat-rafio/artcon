@@ -13,10 +13,11 @@
 <footer>
   <div class="container-primary">
     <div
-      class="flex flex-col border-t border-quick-silver/80 pb-[2rem] pt-[2.6875rem] max-lg:flex-wrap lg:flex-row">
-      <figure class="max-lg:pb-[1.56rem] lg:pr-[5%] 2xl:pr-[6.125rem]">
+      class="flex flex-col border-t border-quick-silver/80 pb-[2rem] pt-[2rem] max-lg:flex-wrap lg:flex-row">
+      <figure
+        class="max-lg:pb-[1.56rem] lg:pr-[5%] 2xl:pr-[6.125rem] 3xl:translate-y-[10px]">
         <SanityImage
-          class="w-full object-contain max-lg:max-h-[3.125rem] max-lg:max-w-[5.30819rem] "
+          class="w-full object-contain max-lg:max-h-[3.125rem] max-lg:max-w-[5.30819rem] lg:h-[3.125rem]"
           sizes="90px"
           src={logo}
           imageUrlBuilder={imageBuilder}
@@ -24,13 +25,13 @@
       </figure>
 
       <div
-        class="flex flex-col justify-between max-lg:pb-[2.5rem] lg:w-[50%] lg:pr-[5%] 3xl:w-[59.8%] 3xl:pr-[9.0625rem]">
+        class="flex flex-col justify-between max-lg:pb-[2.5rem] lg:w-[50%] lg:pr-[5%] 3xl:w-[56%] 3xl:translate-y-[10px] 3xl:pr-[9.0625rem]">
         <p class="body-light">{footer.title}</p>
 
-        <div class="hidden space-x-[2.5rem] lg:flex">
+        <div class="hidden space-x-[2.5rem] lg:flex 3xl:translate-y-[-10px]">
           {#each footer.menu as { title, externalUrl, pageUrl }}
             <a
-              class="title-regular text-quick-silver"
+              class="title-regular text-quick-silver transition-all duration-300 hover:text-dark-gunmetal"
               href={externalUrl || pageUrl}>
               {title}
             </a>
@@ -38,11 +39,12 @@
         </div>
       </div>
 
-      <div class="max-lg:pb-[2.56rem]">
+      <div
+        class="max-lg:pb-[2.56rem] 3xl:translate-x-[10px] 3xl:translate-y-[10px]">
         <Address {contact} />
       </div>
 
-      <div class=" flex space-x-[2.5rem] lg:hidden">
+      <div class="flex gap-x-[2.5rem] lg:hidden">
         {#each footer.menu as { title, externalUrl, pageUrl }}
           <a
             class="title-regular text-quick-silver"
@@ -55,7 +57,13 @@
     <div
       class="flex flex-col justify-between border-t border-light-gray/50 pb-[1.5rem] pt-[1.56rem] max-lg:space-y-[0.63rem] lg:flex-row lg:items-center lg:pb-[2.5rem] lg:pt-[2rem]">
       <p class="title-regular text-quick-silver">© ARTCON 2023</p>
-      <p class="title-light text-quick-silver">Developed by Edistys</p>
+      <p class="title-light text-quick-silver">
+        Developed by <a
+          class="font-semibold text-pigment-red hover:underline"
+          href="https://edistys.dev">
+          Edistys
+        </a>
+      </p>
     </div>
   </div>
 </footer>

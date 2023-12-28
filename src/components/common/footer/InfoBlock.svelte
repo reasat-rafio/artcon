@@ -7,6 +7,7 @@
 
   export let type: Type;
   export let info: PortableTextBlock[];
+  export let iconStyle: string | undefined = undefined;
 </script>
 
 <div
@@ -14,15 +15,15 @@
     'text-subtitle-light flex gap-x-[0.44rem] text-[0.75rem] not-italic',
     $$props.class,
   )}>
-  <figure>
+  <figure class={iconStyle}>
     <img
-      width="15px"
-      height="15px"
-      class="h-[1rem] w-[1rem]"
+      width="20px"
+      height="20px"
+      class="max-w-[15px] object-contain"
       src="/icons/socials/black/{getSocialIconPath(type)}"
       alt="{type}'s icon" />
   </figure>
-  <div class="sub-title-light !text-eerie-black !leading-normal">
+  <div class="sub-title-light !leading-normal !text-eerie-black">
     <PortableText components={{}} value={info} />
   </div>
 </div>

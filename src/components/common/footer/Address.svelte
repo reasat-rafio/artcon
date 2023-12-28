@@ -12,12 +12,12 @@
   let [firstSocialWLink, ...restSocialsWLink] = contact.socialsWithVisibleLinks;
 </script>
 
-<div class={cn('w-full lg:pt-[0.75rem] 3xl:pr-[4.71rem]', $$props.class)}>
+<div class={cn('w-full lg:pt-[0.75rem]', $$props.class)}>
   <address class="flex flex-col gap-y-[1.62rem] text-eerie-black">
     <div class="sub-title-light flex gap-x-[0.75rem] not-italic 2xl:pr-[5rem]">
       <figure>
         <SanityImage
-          class="h-[0.938rem] w-[0.938rem] object-contain pt-[2.5px]"
+          class="w-[13px] object-contain"
           src={contact.address.darkIcon}
           sizes="20px"
           alt={contact.address.darkIcon.alt}
@@ -29,22 +29,25 @@
     </div>
 
     <div
-      class="grid grid-cols-1 max-xl:gap-y-[1.62rem] xl:grid-cols-2 xl:gap-x-[2.29rem]">
-      <InfoBlock type={firstSocialWLink.type} info={firstSocialWLink.info} />
+      class="grid grid-cols-1 max-xl:gap-y-[1.62rem] xl:grid-cols-2 xl:gap-x-[2.29rem] 3xl:translate-y-[-5px]">
+      <InfoBlock
+        iconStyle="3xl:translate-y-[5px]"
+        type={firstSocialWLink.type}
+        info={firstSocialWLink.info} />
 
-      <div class="flex flex-col gap-y-[1.62rem] xl:gap-y-[1rem]">
+      <div class="flex flex-col gap-y-[1.62rem] xl:gap-y-[0.75rem]">
         {#each restSocialsWLink as { type, info }}
-          <InfoBlock {type} {info} />
+          <InfoBlock class="items-center " {type} {info} />
         {/each}
       </div>
     </div>
 
-    <ul class="flex space-x-[1.25rem] lg:pl-[1.4375rem]">
+    <ul class="flex gap-x-[1rem] lg:pl-[1.2rem] 3xl:translate-y-[-10px]">
       {#each contact.socials as { type, link }}
         <li>
           <a href={link} target="_blank">
             <img
-              class="h-[0.85938rem] w-[0.85938rem]"
+              class="h-[15px] object-contain"
               width="20px"
               height="20px"
               src="/icons/socials/black/{getSocialIconPath(type)}"

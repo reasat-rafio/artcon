@@ -77,6 +77,6 @@
   {/if}
 
   {#await import('@/components/common/footer/Footer.svelte') then Footer}
-    <Footer.default {footer} {contact} logo={logoLight} />
+    <Footer.default {footer} {contact} logo={logoDark} />
   {/await}
 </div>
