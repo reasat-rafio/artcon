@@ -154,7 +154,7 @@
           <section
             class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
             <h2 class="head-6 !text-rich-black" data-load-animate="y">
-              Our documentary
+              Our audio visual
             </h2>
 
             <header
@@ -199,12 +199,12 @@
             data-load-animate="y"
             class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-quick-silver">
             <div
-              class="title-light w-full space-y-[1.25rem] !leading-[142.857%] text-dark-gunmetal 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
+              class="title-light w-full space-y-[1.25rem] !leading-[1.4rem] text-dark-gunmetal 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
               <PortableText value={information} />
             </div>
 
             <div class="flex-1 space-y-[1.25rem] 2xl:pl-[3rem]">
-              <h4 class="body-regular !font-normal">
+              <h4 class="body-regular !font-inter !font-normal">
                 {synopsys.title}
               </h4>
               <div
