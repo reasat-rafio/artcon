@@ -145,10 +145,10 @@
               <div class="title-light">
                 {gallery.name}
               </div>
-              <div class="title-light">
+              <div class="sub-title-light">
                 <span class="font-light">{date}</span>
-                <span class="px-[6px]">|</span>
-                <span class="font-medium text-pigment-red">{status}</span>
+                <span class="px-[3px]">|</span>
+                <span class="!font-medium text-pigment-red">{status}</span>
               </div>
             </Info>
           </Header>
