@@ -15,7 +15,7 @@
 
 <div
   data-load-animate="y"
-  class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-quick-silver">
+  class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-[#000]/30 3xl:-mt-[3px]">
   <div
     class="w-full space-y-[1.25rem] 2xl:mr-[1.6875rem] 2xl:w-[40%] 3xl:w-[15.25rem]">
     <h4 class="body-regular !font-inter !font-normal">{name}</h4>
@@ -44,7 +44,7 @@
 </div>
 
 {#if !!inquiryButton?.title}
-  <div class="mt-[2rem]" data-load-animate="y">
+  <div class="mt-[2.5rem]" data-load-animate="y">
     <CtaBtn href={inquiryButton.href}>
       {inquiryButton.title}
     </CtaBtn>

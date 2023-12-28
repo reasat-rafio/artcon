@@ -30,7 +30,7 @@
       {/if}
     </header>
     <span
-      class="sub-title-regular lg:title-regular my-[0.5rem] h-fit border-l-[1.5px] border-pigment-red pl-[0.81rem] !leading-none text-quartz-silver">
+      class="sub-title-regular lg:title-regular my-[0.5rem] h-fit border-l-[2px] border-pigment-red pl-[0.81rem] !leading-none text-quartz-silver">
       {#if isAvailable}
         Available
       {:else}
