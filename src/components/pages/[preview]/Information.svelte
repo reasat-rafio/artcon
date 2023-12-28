@@ -21,10 +21,10 @@
     <h4 class="body-regular !font-inter !font-normal">{name}</h4>
 
     <ul class="title-light !leading-[142.857%]">
-      <li>{information.media} (media)</li>
-      <li>{information.size} (size)</li>
-      <li>{information.artDate.creationDetails} (art date)</li>
-      <li>{information.frame} (frame)</li>
+      <li>{information.media}</li>
+      <li>{information.size}</li>
+      <li>{information.artDate.creationDetails}</li>
+      <li>{information.frame}</li>
       {#if !!information?.moreInformation?.length}
         {#each information.moreInformation as info}
           <li>{info}</li>
