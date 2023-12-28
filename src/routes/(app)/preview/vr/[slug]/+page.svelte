@@ -160,7 +160,7 @@
               <div class="title-light">
                 <span class="font-light">{date}</span>
                 <span class="px-[6px]">|</span>
-                <span class="text-pigment-red font-medium">{status}</span>
+                <span class="font-medium text-pigment-red">{status}</span>
               </div>
             </Info>
           </Header>
@@ -171,7 +171,7 @@
             vr={{ _type: 'vr', caption, url }} />
           <div data-load-animate="y">
             <PortableText
-              class="body-light-m lg:body-light"
+              class="body-light-m lg:body-light text-dark-gunmetal"
               value={description} />
           </div>
         </div>

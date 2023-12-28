@@ -163,9 +163,9 @@
               <div class="title-light">
                 {gallery.name}
               </div>
-              <div class="title-light">
+              <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
-                <span class="px-[6px]">|</span>
+                <span class="px-[3px] text-eerie-black/50">|</span>
                 <span class="font-medium text-pigment-red">{status}</span>
               </div>
             </Info>
@@ -179,7 +179,7 @@
 
           <div data-load-animate="y">
             <PortableText
-              class="body-light-m lg:body-light"
+              class="body-light-m lg:body-light text-dark-gunmetal"
               value={description} />
           </div>
         </div>

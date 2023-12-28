@@ -199,7 +199,7 @@
             data-load-animate="y"
             class="flex h-full flex-col max-2xl:gap-y-[2rem] 2xl:flex-row 2xl:divide-x-[0.03125rem] 2xl:divide-quick-silver">
             <div
-              class="title-light w-full space-y-[1.25rem] !leading-[142.857%] 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
+              class="title-light w-full space-y-[1.25rem] !leading-[142.857%] text-dark-gunmetal 2xl:mr-[3rem] 2xl:w-[40%] 3xl:w-[13.875rem]">
               <PortableText value={information} />
             </div>
 
@@ -207,7 +207,8 @@
               <h4 class="body-regular !font-normal">
                 {synopsys.title}
               </h4>
-              <div class="description title-light !leading-[143%]">
+              <div
+                class="description title-light !leading-[143%] text-dark-gunmetal">
                 <PortableText value={synopsys.description} />
               </div>
             </div>
