@@ -1,7 +1,6 @@
 <script lang="ts">
   import Asset from '@/components/common/hero/Asset.svelte';
   import ScrollIndicator from '@/components/common/hero/ScrollIndicator.svelte';
-  import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import type { CommonHeroProps } from '@/lib/types/common.types';
   import { gsap } from 'gsap';
@@ -49,7 +48,7 @@
     <Asset {asset} />
 
     <div
-      class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((338/1080)*100vh)] text-center text-white">
+      class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100vh)] text-center text-white">
       <header>
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
           {#if !!topTitle}
@@ -72,11 +71,11 @@
         </div>
 
         <div
-          class="head-8 lg:head-6 overflow-hidden !font-medium !leading-[calc(128.5%+0.35rem)]">
+          class="head-8 lg:head-6 overflow-hidden !leading-[calc(128.5%+0.35rem)]">
           {#if !!subtitle}
             <h2
               bind:this={subtitleEl}
-              class="translate-y-full whitespace-pre-wrap opacity-0">
+              class="translate-y-full whitespace-pre-wrap !font-light !normal-case !tracking-[1px] text-platinum opacity-0">
               {subtitle}
             </h2>
           {:else}
@@ -88,7 +87,7 @@
         {#if !!cta?.title}
           <Cta
             variant="quaternary"
-            className="cta-btn mx-auto translate-y-full uppercase opacity-0"
+            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[14px] !tracking-[0.27px] !leading-[16.2px] !font-medium !w-[140px] !rounded-[64px]"
             href={cta.href}>
             {cta.title}
           </Cta>

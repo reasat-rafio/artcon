@@ -143,8 +143,8 @@
           class="preview_content_container">
           <NavigationMobile cta={exproleLink} />
 
-          <div class="grid grid-cols-12 xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="col-span-12 2xl:col-span-7">
+          <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
+            <section class="w-full lg:max-w-[457px]">
               <Header
                 topic="Our publication"
                 title={name}
@@ -167,23 +167,23 @@
                       </span>
                     {/each}
                   </div>
-                  <div class="title-light">
+                  <div class="sub-title-light">
                     ISBN {isbn}
                   </div>
                 </Info>
                 <Info>
                   <div class="sub-title-light">
                     Price {#if !!prices?.discountPriceBDT}
-                      <span class="font-normal text-[#9B9B9B] line-through">
+                      <span class="!font-normal text-[#9B9B9B] line-through">
                         {prices.priceBDT}
                       </span>
-                      <span class="font-semibold">
+                      <span class="font-medium">
                         <span>{prices.discountPriceBDT} BDT</span>
                         /
                         <span>{prices.priceUSD} USD</span>
                       </span>
                     {:else}
-                      <span class="font-semibold">
+                      <span class="font-medium">
                         <span>{prices.priceBDT} BDT</span>
                         /
                         <span>{prices.priceUSD} USD</span>
@@ -197,7 +197,7 @@
                 </Info>
               </Header>
 
-              <div class="mb-[2.5rem] flex w-full justify-center 2xl:hidden">
+              <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
                 <figure data-load-animate="y">
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
@@ -214,7 +214,7 @@
                   value={description} />
               </div>
 
-              <ul class="mb-[2.5rem] space-y-[0.38rem]" data-load-animate="y">
+              <ul class="mb-[2.5rem] space-y-[0.5rem]" data-load-animate="y">
                 {#each associationsList as { key, value }}
                   <li class="sub-title-light">
                     <span>{key}</span>
@@ -233,10 +233,10 @@
               </div>
             </section>
 
-            <section class="hidden 2xl:col-span-5 2xl:block">
+            <section class="hidden 3xl:block">
               <figure
                 data-load-animate="y"
-                class="max-h-[23.75rem] 2xl:mt-[9.44rem]">
+                class="max-h-[23.75rem] 3xl:mt-[9.44rem]">
                 <SanityImage
                   class="rounded-[0.9375rem] object-contain"
                   imageUrlBuilder={imageBuilder}

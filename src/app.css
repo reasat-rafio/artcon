@@ -11,9 +11,23 @@
       url('/fonts/OPTIBerling-Agency.ttf.eot'),
       url('/fonts/OPTIBerling-Agency.ttf.eot?#iefix')
         format('embedded-opentype');
-    font-weight: normal;
-    font-style: normal;
   }
+  /*
+  @font-face {
+    font-family: 'OPTIBerling-Agency';
+    src: url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.eot');
+    src:
+      url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.eot?#iefix')
+        format('embedded-opentype'),
+      url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.woff2')
+        format('woff2'),
+      url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.woff')
+        format('woff'),
+      url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.ttf')
+        format('truetype'),
+      url('https://db.onlinewebfonts.com/t/b19c37fc11087dc7e433276a9353faaf.svg#OPTIBerling-Agency')
+        format('svg');
+  } */
 
   html,
   body {
