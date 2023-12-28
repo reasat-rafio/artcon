@@ -72,7 +72,7 @@
   on:resize={setPositionFromTop} />
 <nav
   bind:this={sectionEl}
-  class="sticky top-0 z-[1004] overflow-hidden transition-all duration-300">
+  class="sticky top-0 z-[1003] overflow-hidden transition-all duration-300">
   <div class="relative">
     <div
       bind:this={contentWrapperEl}

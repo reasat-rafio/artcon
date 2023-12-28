@@ -210,7 +210,7 @@
 
               <div class="mb-[2.5rem]" data-load-animate="y">
                 <PortableText
-                  class="body-light-m lg:body-light"
+                  class="body-light-m lg:body-light text-dark-gunmetal"
                   value={description} />
               </div>
 

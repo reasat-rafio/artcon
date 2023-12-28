@@ -37,7 +37,7 @@
     <h4 class="body-regular !font-inter !font-normal">
       {provenance.title}
     </h4>
-    <div class="title-light !leading-[143%]">
+    <div class="title-light !leading-[143%] text-dark-gunmetal">
       <PortableText value={provenance.description} />
     </div>
   </div>
