@@ -166,6 +166,7 @@
           </Header>
 
           <Vr
+            hideCaption
             class="mb-[2.5rem]"
             data-load-animate="y"
             vr={{ _type: 'vr', caption, url }} />

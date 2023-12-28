@@ -1,7 +1,9 @@
 <script lang="ts">
-  import type { PortableTextComponents } from '@portabletext/svelte';
-  import { PortableText } from '@portabletext/svelte';
-  import type { InputValue } from '@portabletext/svelte/ptTypes';
+  import {
+    PortableText,
+    type PortableTextComponents,
+  } from '@portabletext/svelte';
+  import type { PortableTextBlock } from 'sanity';
   // import Block from './Block.svelte';
   // import Break from './Break.svelte';
   // import Bullet from './Bullet.svelte';
@@ -12,7 +14,7 @@
   // import PrimaryBullet from './PrimaryBullet.svelte';
   // import Styled from './Styled.svelte';
 
-  export let value: InputValue;
+  export let value: PortableTextBlock[];
   export let components: PortableTextComponents | undefined = undefined;
   export let boldType: 'light' | 'dense' = 'dense';
 

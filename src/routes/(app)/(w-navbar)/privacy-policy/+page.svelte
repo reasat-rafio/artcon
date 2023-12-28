@@ -51,4 +51,4 @@
     </svelte:fragment>
   </DescriptionBlock>
 </div>
-<Footer {footer} {contact} logo={logoLight} />
+<Footer {footer} {contact} logo={logoDark} />

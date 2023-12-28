@@ -9,7 +9,7 @@
 
 <section class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
   <h3
-    class="head-6 !normal-case !leading-none !text-rich-black"
+    class="head-6 mb-2 !normal-case !leading-none !text-rich-black"
     data-load-animate="y">
     {topic}
   </h3>

@@ -90,9 +90,9 @@
               'w-[250px]': searchIsActive,
               'w-[47px] ': !searchIsActive,
               'placeholder:text-dark-gunmetal': isDarkNavPaths,
-              'placeholder:text-white group-hover:placeholder:text-dark-gunmetal':
+              'placeholder:text-white group-hover:placeholder:text-[#000]/40':
                 !isDarkNavPaths,
-              'text-dark-gunmetal placeholder:text-dark-gunmetal':
+              'text-dark-gunmetal placeholder:text-[#000]/40':
                 !isDarkNavPaths && searchIsActive,
             },
           )} />

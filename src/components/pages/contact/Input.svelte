@@ -21,7 +21,7 @@
   {#if !!error}
     <small
       transition:fade
-      class="absolute bottom-0 left-0 translate-y-full pl-[calc(1.87rem/2)] text-xs text-red-600">
+      class="absolute bottom-0 left-0 translate-y-full pl-[calc(1.87rem/2)] pt-1 text-xs text-red-600">
       {error}
     </small>
   {/if}
