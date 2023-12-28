@@ -53,13 +53,13 @@
           <C.HeaderContainer>
             <C.Title>{name}</C.Title>
             <C.Subtitle
-              class="font-inter text-[0.8125rem] font-light leading-[120%]">
+              class="font-inter !text-[0.8125rem] font-light leading-[120%]">
               {subtitle}
             </C.Subtitle>
           </C.HeaderContainer>
 
           <div>
-            <C.Subtitle class="text-[0.75rem] font-light  text-eerie-black">
+            <C.Subtitle class="!text-[0.75rem] font-light  text-eerie-black">
               Published by
               {#each publishedBy as p, i}
                 <div class="inline font-light">
@@ -68,13 +68,13 @@
                   {:else if i !== 0}
                     ,
                   {/if}
-                  <span class="text-[0.875rem] font-medium">
+                  <span class="!text-[0.875rem] font-normal">
                     {p}
                   </span>
                 </div>
               {/each}
             </C.Subtitle>
-            <C.Subtitle variant="sm">ISBN {isbn}</C.Subtitle>
+            <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
           </div>
 
           <Cta className="capitalize" href={exproleLink.href}>
