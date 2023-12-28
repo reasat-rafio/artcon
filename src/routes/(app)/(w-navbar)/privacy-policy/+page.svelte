@@ -23,7 +23,7 @@
   $: ({
     page: { seo, privacyPolicy, title, cta },
     site: {
-      logos: { logoLight, ogImage },
+      logos: { logoDark, ogImage },
       footer,
       contact,
     },
