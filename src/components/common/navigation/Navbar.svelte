@@ -97,6 +97,7 @@
             },
           )} />
         <button
+          aria-label="search"
           disabled={$searchStore.loading}
           on:click={() => redirectToSearchPage(searchInputEl.value)}
           class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">

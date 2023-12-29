@@ -8,6 +8,7 @@
   import { tweened } from 'svelte/motion';
   import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
   import SliderItem from './SliderItem.svelte';
+  gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps;
   export let rootEl: HTMLElement;
@@ -66,7 +67,6 @@
         .then(() => uiStore.setActivePreview(null));
     }
 
-    gsap.registerPlugin(Observer);
     const el = document.querySelector('#landing-page');
     gsap.to(el, { duration: 0, y: 0 });
 
