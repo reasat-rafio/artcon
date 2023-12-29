@@ -27,6 +27,7 @@ const query = groq`
         gallery->{name},
         caption,
         url,
+        ${asset('thumbnail')},
         category->{
             name,
             slug

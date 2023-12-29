@@ -18,6 +18,7 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     ${asset('previewImage')},
+    ${asset('thumbnail')},
   }`;
 
 export const load: ServerLoad = async ({ params }) => {

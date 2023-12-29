@@ -1,6 +1,7 @@
 import type { SanityImageAssetDocument } from '@sanity/client';
 import type { PortableTextBlock, Slug } from 'sanity';
 import type { Asset, Tag } from './common.types';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface VrPreviewProps {
   _type: 'vr';
@@ -20,6 +21,7 @@ export interface VrPreviewProps {
   slug: Slug;
   name: string;
   coverImage: SanityImageAssetDocument;
+  thumbnail: SanityAsset;
 }
 
 export interface RefDocument {

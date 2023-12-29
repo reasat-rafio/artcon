@@ -146,6 +146,7 @@ export interface VR {
   _type: 'vr';
   caption: string;
   url: string;
+  thumbnail: SanityAsset;
 }
 
 export interface DescriptionBlock {

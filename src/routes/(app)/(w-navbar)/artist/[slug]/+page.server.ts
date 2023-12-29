@@ -60,7 +60,10 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('image')},
         ${asset('images[]', { as: 'images' })},
         ${asset('coverImage')},
-        vr->,
+        vr->{
+          ...,
+          ${asset('thumbnail')},
+        },
         blocks[]{
           ...,
         },

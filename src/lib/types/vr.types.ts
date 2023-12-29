@@ -1,6 +1,7 @@
 import type { Slug } from 'sanity';
 import type { CommonImageAsset, SeoProps, Tag } from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 export interface VrPageProps {
   seo: SeoProps;
@@ -31,6 +32,7 @@ export interface Vr {
   gallery: Gallery;
   category: Tag;
   url: string;
+  thumbnail: SanityAsset;
 }
 
 export interface Gallery {

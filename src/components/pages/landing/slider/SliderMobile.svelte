@@ -7,6 +7,8 @@
   import { Observer } from 'gsap/dist/Observer';
   import { onMount } from 'svelte';
   import SliderItem from './SliderItem.svelte';
+  import { cn } from '@/lib/cn';
+  gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
@@ -14,75 +16,90 @@
   let animating = false;
   let currentIndex = 0;
   let innerWidth = 0;
+  let isLoaded = false;
 
   onMount(() => {
-    gsap.registerPlugin(Observer);
-    const rootEl = document.querySelector('#landing-page');
+    const rootEl = document.querySelector('#landing-page') as HTMLElement;
 
+    adjustInitialScrollPosition(rootEl);
     let ctx = gsap.context(() => {
-      if ($uiStore.selectedPreviewIndex !== null && innerWidth < 1024) {
-        gsap.to(rootEl, {
-          duration: 0,
-          y: `-${($uiStore.selectedPreviewIndex + 1) * 100}dvh`,
-        });
-
-        currentIndex = $uiStore.selectedPreviewIndex + 1;
-        uiStore.setActivePreview(null);
-      }
-
-      Observer.create({
-        target: window,
-        type: 'wheel,scroll,touch',
-        wheelSpeed: -1,
-        tolerance: 10,
-        preventDefault: true,
-        onDown: () => {
-          if (!animating) {
-            currentIndex = Math.min(
-              Math.max(0, currentIndex - 1),
-              collections.length + 1,
-            );
-            gsap.to(rootEl, {
-              duration: 0.7,
-              y: `-${currentIndex * 100}dvh`,
-              ease: 'expoOut',
-              onStart: () => {
-                animating = true;
-              },
-              onComplete: () => {
-                animating = false;
-              },
-            });
-          }
-        },
-        onUp: () => {
-          if (!animating) {
-            currentIndex = Math.min(
-              Math.max(0, currentIndex + 1),
-              collections.length + 1,
-            );
-            gsap.to(rootEl, {
-              duration: 0.7,
-              y: `-${currentIndex * 100}dvh`,
-              ease: 'expoOut',
-              onStart: () => {
-                animating = true;
-              },
-              onComplete: () => {
-                animating = false;
-              },
-            });
-          }
-        },
-      });
+      if (isLoaded) handleEventObserver(rootEl);
     });
     return () => ctx.revert();
   });
+
+  function loader(_: HTMLElement) {
+    isLoaded = true;
+  }
+
+  function adjustInitialScrollPosition(el: HTMLElement) {
+    if ($uiStore.selectedPreviewIndex !== null && innerWidth < 1024) {
+      gsap.to(el, {
+        duration: 0,
+        y: `-${($uiStore.selectedPreviewIndex + 1) * 100}dvh`,
+      });
+
+      currentIndex = $uiStore.selectedPreviewIndex + 1;
+      uiStore.setActivePreview(null);
+    }
+  }
+
+  function handleEventObserver(el: HTMLElement) {
+    Observer.create({
+      target: window,
+      type: 'wheel,scroll,touch',
+      wheelSpeed: -1,
+      tolerance: 10,
+      preventDefault: true,
+      onDown: () => {
+        if (!animating) {
+          currentIndex = Math.min(
+            Math.max(0, currentIndex - 1),
+            collections.length + 1,
+          );
+          gsap.to(el, {
+            duration: 0.7,
+            y: `-${currentIndex * 100}dvh`,
+            ease: 'expoOut',
+            onStart: () => {
+              animating = true;
+            },
+            onComplete: () => {
+              animating = false;
+            },
+          });
+        }
+      },
+      onUp: () => {
+        if (!animating) {
+          currentIndex = Math.min(
+            Math.max(0, currentIndex + 1),
+            collections.length + 1,
+          );
+          gsap.to(el, {
+            duration: 0.7,
+            y: `-${currentIndex * 100}dvh`,
+            ease: 'expoOut',
+            onStart: () => {
+              animating = true;
+            },
+            onComplete: () => {
+              animating = false;
+            },
+          });
+        }
+      },
+    });
+  }
 </script>
 
 <svelte:window bind:innerWidth />
-<section class="z-40 block translate-y-[100dvh] lg:hidden">
-  <div class="flex flex-col">
+<section
+  use:loader
+  class={cn('z-40 block translate-y-[100dvh] lg:hidden', {
+    'fixed inset-0': !isLoaded,
+  })}>
+  <div id="mobile-slider-wrapper" class="flex flex-col">
     {#each collections as collection, index}
       <SliderItem props={{ ...collection, index }} />
     {/each}
