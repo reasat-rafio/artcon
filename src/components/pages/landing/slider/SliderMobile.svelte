@@ -16,7 +16,6 @@
   let animating = false;
   let currentIndex = 0;
   let innerWidth = 0;
-  let scrollY = 0;
   let isLoaded = false;
 
   onMount(() => {
@@ -34,7 +33,7 @@
   }
 
   function adjustInitialScrollPosition(el: HTMLElement) {
-    if ($uiStore.selectedPreviewIndex !== null) {
+    if ($uiStore.selectedPreviewIndex !== null && innerWidth < 1024) {
       gsap.to(el, {
         duration: 0,
         y: `-${($uiStore.selectedPreviewIndex + 1) * 100}dvh`,
@@ -94,10 +93,10 @@
   }
 </script>
 
-<svelte:window bind:innerWidth bind:scrollY />
+<svelte:window bind:innerWidth />
 <section
   use:loader
-  class={cn('z-40 block translate-y-[100dvh]', {
+  class={cn('z-40 block translate-y-[100dvh] lg:hidden', {
     'fixed inset-0': !isLoaded,
   })}>
   <div id="mobile-slider-wrapper" class="flex flex-col">
