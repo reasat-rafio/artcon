@@ -7,6 +7,7 @@
   import { Observer } from 'gsap/dist/Observer';
   import { onMount } from 'svelte';
   import SliderItem from './SliderItem.svelte';
+  import { cn } from '@/lib/cn';
   gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps & { contact: ContactProps };
@@ -16,21 +17,21 @@
   let currentIndex = 0;
   let innerWidth = 0;
   let scrollY = 0;
-
-  $: scrollStops = Array.from(
-    { length: collections.length + 2 },
-    (_, index) => index * 100,
-  );
+  let isLoaded = false;
 
   onMount(() => {
     const rootEl = document.querySelector('#landing-page') as HTMLElement;
 
     adjustInitialScrollPosition(rootEl);
     let ctx = gsap.context(() => {
-      handleEventObserver(rootEl);
+      if (isLoaded) handleEventObserver(rootEl);
     });
     return () => ctx.revert();
   });
+
+  function loader(_: HTMLElement) {
+    isLoaded = true;
+  }
 
   function adjustInitialScrollPosition(el: HTMLElement) {
     if ($uiStore.selectedPreviewIndex !== null) {
@@ -59,8 +60,7 @@
           );
           gsap.to(el, {
             duration: 0.7,
-            // y: `-${currentIndex * 100}dvh`,
-            y: `-${scrollStops[currentIndex]}dvh`,
+            y: `-${currentIndex * 100}dvh`,
             ease: 'expoOut',
             onStart: () => {
               animating = true;
@@ -79,7 +79,7 @@
           );
           gsap.to(el, {
             duration: 0.7,
-            y: `-${scrollStops[currentIndex]}dvh`,
+            y: `-${currentIndex * 100}dvh`,
             ease: 'expoOut',
             onStart: () => {
               animating = true;
@@ -95,8 +95,12 @@
 </script>
 
 <svelte:window bind:innerWidth bind:scrollY />
-<section class="z-40 block translate-y-[100dvh] lg:hidden">
-  <div class="flex flex-col">
+<section
+  use:loader
+  class={cn('z-40 block translate-y-[100dvh]', {
+    'fixed inset-0': !isLoaded,
+  })}>
+  <div id="mobile-slider-wrapper" class="flex flex-col">
     {#each collections as collection, index}
       <SliderItem props={{ ...collection, index }} />
     {/each}
