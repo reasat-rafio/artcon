@@ -29,7 +29,10 @@ const query = (params: Partial<Record<string, string>>) =>
       ...,
       ${asset('image')},
       ${asset('images[]', { as: 'images' })},
-      vr->,
+      vr->{
+        ...,
+        ${asset('thumbnail')},
+      },
     },
     "otherProjects": *[_type == 'project' && slug.current != "${
       params.slug

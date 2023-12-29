@@ -31,6 +31,7 @@
       category,
       sliderImageVideo,
       coverImage,
+      thumbnail,
     },
     site: { logos },
   } = data);
@@ -169,7 +170,7 @@
             hideCaption
             class="mb-[2.5rem]"
             data-load-animate="y"
-            vr={{ _type: 'vr', caption, url }} />
+            vr={{ _type: 'vr', caption, url, thumbnail }} />
           <div data-load-animate="y">
             <PortableText
               class="body-light-m lg:body-light text-dark-gunmetal"

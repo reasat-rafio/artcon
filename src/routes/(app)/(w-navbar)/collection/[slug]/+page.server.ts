@@ -29,7 +29,8 @@ const query = (params: Partial<Record<string, string>>) =>
       ${asset('image')},
       vr->{
         caption,
-        url
+        url,
+        ${asset('thumbnail')},
       },
       documents[]{
         ...,

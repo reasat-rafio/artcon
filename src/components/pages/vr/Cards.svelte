@@ -13,7 +13,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, category, gallery, url } (_id)}
+  {#each items as { name, slug, _id, category, gallery, thumbnail } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -21,17 +21,9 @@
         class="flex flex-col gap-y-[1.25rem]"
         let:Title
         let:Container
-        let:Subtitle>
-        <div
-          class="pointer-events-none h-auto overflow-hidden rounded-[12px] max-md:aspect-video md:h-[14.125rem]">
-          <iframe
-            class="h-full w-full scale-125 object-cover"
-            title={name}
-            src={url}
-            frameborder="0">
-          </iframe>
-        </div>
-
+        let:Subtitle
+        let:Image>
+        <Image image={thumbnail} />
         <Container>
           <Title class="inline">{name}</Title>
           <h4

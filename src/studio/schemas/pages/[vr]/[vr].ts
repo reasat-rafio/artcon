@@ -69,6 +69,12 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'thumbnail',
+      type: 'image',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
       name: 'caption',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
