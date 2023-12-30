@@ -71,10 +71,15 @@
   <div class="mt-[2.31rem] flex items-center justify-between">
     <nav>
       <div class="flex gap-x-[0.625rem]">
-        <button class="bg-white" on:click={() => emblaApi.scrollPrev()}>
+        <button
+          aria-label="Scroll to previous slide"
+          class="bg-white"
+          on:click={() => emblaApi.scrollPrev()}>
           <ChevronLeftRounded />
         </button>
-        <button on:click={() => emblaApi.scrollNext()}>
+        <button
+          aria-label="Scroll to next slide"
+          on:click={() => emblaApi.scrollNext()}>
           <ChevronRightRounded />
         </button>
       </div>

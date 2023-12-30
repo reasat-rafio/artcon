@@ -8,7 +8,6 @@
   import { onMount } from 'svelte';
   import SliderItem from './SliderItem.svelte';
   import { cn } from '@/lib/cn';
-  import createLoadObserver from '@/lib/createLoadObserver';
   gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps & { contact: ContactProps };

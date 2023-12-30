@@ -19,7 +19,7 @@
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>
-        <C.Title>{title}</C.Title>
+        <C.Title el="h2">{title}</C.Title>
       </svelte:fragment>
       <svelte:fragment slot="description" let:Description>
         <Description>

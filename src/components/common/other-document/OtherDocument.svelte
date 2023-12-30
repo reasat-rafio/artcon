@@ -176,10 +176,14 @@
           </div>
           <nav
             class="ml-auto flex gap-x-[0.62rem] border-t border-light-gray/40 pl-[3.38rem] pt-[2.25rem]">
-            <button on:click={() => emblaApi.scrollPrev()}>
+            <button
+              aria-label="Scroll to previous slide"
+              on:click={() => emblaApi.scrollPrev()}>
               <ChevronLeftRounded />
             </button>
-            <button on:click={() => emblaApi.scrollNext()}>
+            <button
+              aria-label="Scroll to next slide"
+              on:click={() => emblaApi.scrollNext()}>
               <ChevronRightRounded />
             </button>
           </nav>
@@ -187,10 +191,14 @@
         <!-- MOBILE NAVIGATION -->
         <nav
           class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] xl:col-span-1 xl:hidden xl:flex-col">
-          <button on:click={() => emblaApi.scrollPrev()}>
+          <button
+            aria-label="Scroll to previous slide"
+            on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>
-          <button on:click={() => emblaApi.scrollNext()}>
+          <button
+            aria-label="Scroll to next slide"
+            on:click={() => emblaApi.scrollNext()}>
             <ChevronRightRounded />
           </button>
         </nav>

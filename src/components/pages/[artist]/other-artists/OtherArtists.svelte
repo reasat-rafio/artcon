@@ -87,6 +87,7 @@
       <nav>
         {#if carouselCanScrollPrev}
           <button
+            aria-label="Scroll to previous slide"
             class:mr-[.31rem]={carouselCanScrollNext}
             transition:slide={{ axis: 'x' }}
             on:click={scrollPrev}>
@@ -96,6 +97,7 @@
 
         {#if carouselCanScrollNext}
           <button
+            aria-label="Scroll to next slide"
             class:ml-[.31rem]={carouselCanScrollNext}
             transition:slide={{ axis: 'x' }}
             on:click={scrollNext}>

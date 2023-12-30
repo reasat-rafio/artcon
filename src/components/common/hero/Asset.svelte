@@ -13,7 +13,7 @@
     class="absolute h-full w-full object-cover"
     lqip
     sizes="100vw"
-    alt={image.alt}
+    alt={image?.alt || 'Image'}
     src={image}
     imageUrlBuilder={imageBuilder} />
 {:else if !!video}

@@ -26,7 +26,7 @@
   });
 
   $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap }) => {
+    emblaApi.on('select', ({ selectedScrollSnap }: EmblaCarouselType) => {
       activeSlideIndex = selectedScrollSnap();
     });
   }
@@ -59,7 +59,7 @@
 
 <section>
   <div
-    class="container-primary border-light-gray border-t pb-[7.79rem] pt-[4.375rem]">
+    class="container-primary border-t border-light-gray pb-[7.79rem] pt-[4.375rem]">
     <h2 class="head-4 mb-[2rem]">{title}</h2>
 
     <div class="relative h-full xl:flex">
@@ -84,7 +84,7 @@
                   <Asset {asset} />
                 </div>
                 <div
-                  class="other-doc-info-container border-light-gray origin-top transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
+                  class="other-doc-info-container origin-top border-light-gray transition-transform duration-500 lg:pt-[2.25rem] xl:border-t {activeSlideIndex !==
                   index
                     ? 'max-xl:scale-75'
                     : 'scale-100'}">
@@ -111,7 +111,7 @@
           style="top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px);"
           class="absolute right-0 block pt-[0.4rem] xl:hidden">
           <div
-            class="sub-title-light text-quartz-silver bg-white md:pr-[2.25rem]">
+            class="sub-title-light bg-white text-quartz-silver md:pr-[2.25rem]">
             {#key activeSlideIndex}
               <span in:fade>
                 {activeSlideIndex + 1}
@@ -130,7 +130,7 @@
           style="height: {sliderContainerEl?.clientHeight}px; padding-top: calc({slideDescriptionBlockPositionFromTopOfTheContainer}px - 4.8rem);"
           class="hidden flex-col xl:flex">
           <div
-            class="sub-title-light text-quartz-silver ml-auto bg-white pb-[3.9rem] pr-[2.56rem]">
+            class="sub-title-light ml-auto bg-white pb-[3.9rem] pr-[2.56rem] text-quartz-silver">
             {#key activeSlideIndex}
               <span in:fade>
                 {activeSlideIndex + 1}
@@ -140,11 +140,15 @@
             <span>{data.length}</span>
           </div>
           <nav
-            class="border-light-gray ml-auto flex gap-x-[0.62rem] border-t pl-[3.38rem] pt-[2.25rem]">
-            <button on:click={() => emblaApi.scrollPrev()}>
+            class="ml-auto flex gap-x-[0.62rem] border-t border-light-gray pl-[3.38rem] pt-[2.25rem]">
+            <button
+              aria-label="Scroll to previous slide"
+              on:click={() => emblaApi.scrollPrev()}>
               <ChevronLeftRounded />
             </button>
-            <button on:click={() => emblaApi.scrollNext()}>
+            <button
+              aria-label="Scroll to next slide"
+              on:click={() => emblaApi.scrollNext()}>
               <ChevronRightRounded />
             </button>
           </nav>
@@ -152,10 +156,14 @@
         <!-- MOBILE NAVIGATION -->
         <nav
           class="mt-[2.5rem] flex items-center justify-center space-x-[0.62rem] xl:col-span-1 xl:hidden xl:flex-col">
-          <button on:click={() => emblaApi.scrollPrev()}>
+          <button
+            aria-label="Scroll to previous slide"
+            on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>
-          <button on:click={() => emblaApi.scrollNext()}>
+          <button
+            aria-label="Scroll to next slide"
+            on:click={() => emblaApi.scrollNext()}>
             <ChevronRightRounded />
           </button>
         </nav>

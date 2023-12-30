@@ -28,7 +28,7 @@
 <section transition:slide>
   <div
     bind:this={headerEl}
-    class="container-primary border-light-gray mb-[1.25rem] border-b-[0.5px] py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
+    class="container-primary mb-[1.25rem] border-b-[0.5px] border-light-gray py-[1.25rem] lg:mb-[3.125rem] lg:pb-[2.17rem] lg:pt-[2.58rem]">
     {#if $searchStore.loading}
       <div in:fade class="h-10 !w-[50%] animate-pulse bg-gray-300"></div>
     {:else}
@@ -53,21 +53,28 @@
         class="flex h-full items-center justify-center">
         <div class="hidden space-y-[0.5rem] xl:block">
           {#if carouselCanScrollPrev}
-            <button transition:slide class="rotate-180" on:click={scrollPrev}>
+            <button
+              aria-label="Scroll to next slide"
+              transition:slide
+              class="rotate-180"
+              on:click={scrollPrev}>
               <ChevronRightLongRounded />
             </button>
           {/if}
           {#if carouselCanScrollNext}
-            <button transition:slide on:click={scrollNext}>
+            <button
+              aria-label="Scroll to next slide"
+              transition:slide
+              on:click={scrollNext}>
               <ChevronRightLongRounded />
             </button>
           {/if}
         </div>
         <div class="mt-[2.38rem] block space-x-[0.62rem] xl:hidden">
-          <button on:click={scrollPrev}>
+          <button aria-label="Scroll to previous slide" on:click={scrollPrev}>
             <ChevronLeftRounded />
           </button>
-          <button on:click={scrollNext}>
+          <button aria-label="Scroll to right slide" on:click={scrollNext}>
             <ChevronRightRounded />
           </button>
         </div>

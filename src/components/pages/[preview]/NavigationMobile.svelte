@@ -8,7 +8,7 @@
 
 <nav
   class="sticky top-0 z-20 flex w-full items-center justify-between bg-white py-[1.18rem] lg:hidden">
-  <a href="/">
+  <a aria-label="Go back to homepage" href="/">
     <X class="h-[1.0215rem] w-[1.04394rem]" />
   </a>
 

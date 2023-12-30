@@ -88,7 +88,11 @@
               alt="Artcon Logo" />
           </a>
         {:else}
-          <a in:fade={{ delay: 500 }} class="h-[45px] w-[45px]" {href}>
+          <a
+            aria-label="Redirect to previous page"
+            in:fade={{ delay: 500 }}
+            class="flex h-[2rem] w-[2rem] items-center justify-center rounded-full border border-dark-gunmetal text-dark-gunmetal transition-colors duration-300 hover:bg-dark-gunmetal hover:text-white md:h-[2.813rem] md:w-[2.813rem]"
+            {href}>
             <ChevronLeftRounded />
           </a>
           <h2
@@ -104,6 +108,7 @@
         scrollToTopPosition={scrollY + positionFromTop}
         class="block lg:hidden" />
       <button
+        aria-label="Share to social media"
         on:click={() => (popupSate = 'visible')}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon

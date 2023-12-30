@@ -19,10 +19,10 @@
     innerWidth >= 1280 ? 8 : innerWidth >= 1024 ? 6 : innerWidth >= 768 ? 4 : 2;
   $: chunksOfArtists = chunkArray(artists, slidesNumber);
   $: if (emblaApi) {
-    emblaApi.on('select', ({ selectedScrollSnap }) => {
+    emblaApi.on('select', ({ selectedScrollSnap }: EmblaCarouselType) => {
       selectedSnap = selectedScrollSnap();
     });
-    emblaApi.on('resize', ({ selectedScrollSnap }) => {
+    emblaApi.on('resize', ({ selectedScrollSnap }: EmblaCarouselType) => {
       selectedSnap = selectedScrollSnap();
     });
   }
@@ -61,16 +61,21 @@
     class="mt-[2.31rem] flex items-center justify-between md:pr-[2rem] 2xl:pr-[4.87rem]">
     <nav>
       <div class="space-x-[0.62rem] lg:space-x-[0.3rem]">
-        <button class="bg-white" on:click={() => emblaApi.scrollPrev()}>
+        <button
+          aria-label="Scroll to previous slide"
+          class="bg-white"
+          on:click={() => emblaApi.scrollPrev()}>
           <ChevronLeftRounded />
         </button>
-        <button on:click={() => emblaApi.scrollNext()}>
+        <button
+          aria-label="Scroll to next slide"
+          on:click={() => emblaApi.scrollNext()}>
           <ChevronRightRounded />
         </button>
       </div>
     </nav>
     <span
-      class="text-quartz-silver text-[0.75rem] font-light !leading-none tracking-[0.015rem]">
+      class="text-[0.75rem] font-light !leading-none tracking-[0.015rem] text-quartz-silver">
       {selectedSnap + 1}/{chunksOfArtists.length}
     </span>
   </div>

@@ -16,7 +16,7 @@
   <div
     class="flex items-center justify-center max-md:flex-col md:gap-x-[3.75rem]">
     <div class="hidden md:block">
-      <button class="" on:click={slidePrev}>
+      <button aria-label="Scroll to previous slide" on:click={slidePrev}>
         <ChevronLeftRounded />
       </button>
     </div>
@@ -30,17 +30,17 @@
     </div>
 
     <div class="mr-auto hidden md:block">
-      <button class="" on:click={slideNext}>
+      <button aria-label="Scroll to next slide" on:click={slideNext}>
         <ChevronRightRounded />
       </button>
     </div>
 
     <div
       class="mt-[1.5rem] flex items-center justify-center gap-x-[0.62rem] md:hidden">
-      <button class="" on:click={slideNext}>
+      <button aria-label="Scroll to previous slide" on:click={slideNext}>
         <ChevronLeftRounded />
       </button>
-      <button class="" on:click={slidePrev}>
+      <button aria-label="Scroll to next slide" on:click={slidePrev}>
         <ChevronRightRounded />
       </button>
     </div>

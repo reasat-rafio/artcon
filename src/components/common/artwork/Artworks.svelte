@@ -68,7 +68,9 @@
   {#if artworks?.length > 2}
     <nav
       class="mnax-lg:gap-y-[0.62rem] absolute right-0 top-1/2 flex -translate-y-1/2 items-center justify-center max-lg:mt-[2rem] lg:gap-x-[0.62rem]">
-      <button on:click={() => emblaApi.scrollNext()}>
+      <button
+        aria-label="Scroll to next slide"
+        on:click={() => emblaApi.scrollNext()}>
         <ChevronRightRounded />
       </button>
     </nav>

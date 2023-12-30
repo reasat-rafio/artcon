@@ -84,10 +84,14 @@
       <div
         class="mx-auto flex max-w-[72.9375rem] -translate-y-[0.875rem] justify-end">
         <nav class="flex gap-x-[0.62rem]">
-          <button on:click={() => emblaApi.scrollPrev()}>
+          <button
+            aria-label="Scroll to previous slide"
+            on:click={() => emblaApi.scrollPrev()}>
             <ChevronLeftRounded />
           </button>
-          <button on:click={() => emblaApi.scrollNext()}>
+          <button
+            aria-label="Scroll to next slide"
+            on:click={() => emblaApi.scrollNext()}>
             <ChevronRightRounded />
           </button>
         </nav>

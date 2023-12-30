@@ -95,13 +95,15 @@
       bind:this={contentWrapperEl}
       class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
       <div class="flex flex-1 items-center">
-        {#if !!activeSearchParams}
+        {#if !!activeSearchParams && !$uiStore.mobileNavDropdownOpen}
           <button
+            aria-label="Scroll to previous slide"
             transition:slide={{ axis: 'x' }}
             on:click={clearSearchParams}
             title="Clear Search Filter"
-            class="mr-[1.25rem] h-[45px] w-[45px] lg:mr-[2rem]">
-            <ChevronLeftRounded />
+            class="mr-[0.8rem] lg:mr-[2rem]">
+            <ChevronLeftRounded
+              class="h-[2rem] w-[2rem] md:h-[2.813rem] md:w-[2.813rem]" />
           </button>
         {/if}
         <div class="flex w-full items-center justify-center">
@@ -109,14 +111,14 @@
             {#if $uiStore.mobileNavDropdownOpen}
               <a transition:scale href="/">
                 <SanityImage
-                  class="h-[50px] w-fit object-contain"
+                  class="h-[3.125rem] w-fit object-contain"
                   src={logoLight}
                   sizes="100px"
                   imageUrlBuilder={imageBuilder}
                   alt="Artcon Logo" />
               </a>
             {:else}
-              <div class="flex h-full items-end space-x-5">
+              <div class="flex h-full items-end gap-x-5">
                 <div class="flex-1">
                   <h2
                     in:fade={{ delay: 500 }}
@@ -125,12 +127,12 @@
                   </h2>
                   <ul
                     in:fade={{ delay: 500 }}
-                    class="hidden flex-wrap gap-y-1 pt-[0.425rem] lg:flex">
+                    class=" flex flex-wrap gap-y-1 pt-[0.425rem]">
                     {#each tags as { name, slug: { current } }, index}
                       <li class="flex">
                         <button
                           class={cn(
-                            'font-inter text-xs font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red lg:text-[0.875rem]',
+                            'font-inter text-[0.7rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red sm:text-xs lg:text-[0.875rem]',
                             {
                               'text-pigment-red':
                                 current === activeSearchParams,
