@@ -8,6 +8,7 @@
   import { onMount } from 'svelte';
   import SliderItem from './SliderItem.svelte';
   import { cn } from '@/lib/cn';
+  import createLoadObserver from '@/lib/createLoadObserver';
   gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps & { contact: ContactProps };
@@ -22,15 +23,12 @@
     const rootEl = document.querySelector('#landing-page') as HTMLElement;
 
     adjustInitialScrollPosition(rootEl);
+
     let ctx = gsap.context(() => {
       if (isLoaded) handleEventObserver(rootEl);
     });
     return () => ctx.revert();
   });
-
-  function loader(_: HTMLElement) {
-    isLoaded = true;
-  }
 
   function adjustInitialScrollPosition(el: HTMLElement) {
     if ($uiStore.selectedPreviewIndex !== null && innerWidth < 1024) {
@@ -91,15 +89,29 @@
       },
     });
   }
+
+  function loaded(_: HTMLElement) {
+    if (
+      document.readyState === 'interactive' ||
+      document.readyState === 'complete'
+    ) {
+      isLoaded = true;
+    } else {
+      document.onreadystatechange = () => {
+        if (document.readyState == 'complete') {
+          isLoaded = true;
+        }
+      };
+    }
+  }
 </script>
 
 <svelte:window bind:innerWidth />
 <section
-  use:loader
   class={cn('z-40 block translate-y-[100dvh] lg:hidden', {
     'fixed inset-0': !isLoaded,
   })}>
-  <div id="mobile-slider-wrapper" class="flex flex-col">
+  <div use:loaded id="mobile-slider-wrapper" class="flex flex-col">
     {#each collections as collection, index}
       <SliderItem props={{ ...collection, index }} />
     {/each}
