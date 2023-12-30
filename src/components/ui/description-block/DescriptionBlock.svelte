@@ -6,9 +6,15 @@
   import Subtitle from './Subtitle.svelte';
   import Title from './Title.svelte';
   import { cn } from '@/lib/cn';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
 </script>
 
-<article class={cn('flex w-full flex-col lg:flex-row', $$props.class)}>
+<article
+  use:parallaxAnimation
+  class={cn(
+    'flex w-full translate-y-[120px] flex-col lg:flex-row',
+    $$props.class,
+  )}>
   <div class="w-full max-lg:pb-[2.5rem] lg:mr-[3.125rem] lg:w-[31.06%]">
     <slot
       name="intro"

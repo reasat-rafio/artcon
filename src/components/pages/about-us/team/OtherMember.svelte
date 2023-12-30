@@ -1,6 +1,7 @@
 <script lang="ts">
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import { chunkArray } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -31,7 +32,7 @@
 
 <svelte:window bind:innerWidth />
 
-<section>
+<section use:parallaxAnimation class="translate-y-[120px]">
   <h3 class="head-4 mb-md">Other team members</h3>
 
   <div

@@ -3,6 +3,7 @@
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';
   import { fade } from 'svelte/transition';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
 
   export let form: SuperForm<typeof contactSchema>;
   export let formMessage: undefined | string;
@@ -10,7 +11,9 @@
   const { form: f, errors, enhance, delayed } = form;
 </script>
 
-<section class="container-primary relative">
+<section
+  use:parallaxAnimation
+  class="container-primary relative translate-y-[120px]">
   {#if !!formMessage}
     <div
       transition:fade

@@ -1,4 +1,6 @@
 <script lang="ts" generics="T">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
+
   import { cn } from '@/lib/cn';
   import { chunkArray } from '@/lib/helper';
   import type { EmblaCarouselType } from 'embla-carousel-svelte';
@@ -45,7 +47,7 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<div class={cn($$props.class)}>
+<div use:parallaxAnimation class={cn('translate-y-[120px]', $$props.class)}>
   <div id="news-and-media-slider">
     <div
       class="overflow-hidden"

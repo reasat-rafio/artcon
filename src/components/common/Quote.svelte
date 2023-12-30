@@ -1,14 +1,17 @@
 <script lang="ts">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
+  import { cn } from '@/lib/cn';
   import type { Quote } from '@/lib/types/common.types';
-  import { twMerge } from 'tailwind-merge';
 
   export let quote: Quote;
   $: ({ author, text, url } = quote);
 </script>
 
-<section class={twMerge('max-w-[44.375rem]', $$props.class)}>
+<section
+  use:parallaxAnimation
+  class={cn('max-w-[44.375rem] translate-y-[120px]', $$props.class)}>
   <div
-    class="head-2 from-imperial-red bg-gradient-to-r to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
+    class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
     <blockquote class="inline" cite={url}>
       <p class="inline">“{text}”</p>
     </blockquote>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import { cn } from '@/lib/cn';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -12,8 +13,9 @@
 </script>
 
 <section
+  use:parallaxAnimation
   {...$$restProps}
-  class={cn('mx-auto max-w-[72.9375rem]', $$props.class)}>
+  class={cn('mx-auto max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
   <button
     on:click={() => {
       showIframe = true;
