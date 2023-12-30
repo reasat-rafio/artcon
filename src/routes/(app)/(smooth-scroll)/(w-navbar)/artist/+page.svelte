@@ -31,14 +31,6 @@
     nameSearchParam,
     filterBySearchParams({ name: nameSearchParam, tag: tagSearchParam });
 
-  onMount(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  });
-
   const filterBySearchParams = ({
     name,
     tag,
