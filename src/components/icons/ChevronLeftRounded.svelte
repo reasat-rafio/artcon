@@ -1,14 +1,11 @@
 <script lang="ts">
-  import { twMerge } from 'tailwind-merge';
+  import { cn } from '@/lib/cn';
 
   export let color: 'black' | 'white' = 'black';
 </script>
 
 <svg
-  class={twMerge(
-    'transition-transform duration-500 hover:scale-105',
-    $$props.class,
-  )}
+  class={cn('transition-transform duration-500 hover:scale-105', $$props.class)}
   width="45"
   height="45"
   viewBox="0 0 45 45"
