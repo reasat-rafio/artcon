@@ -14,6 +14,8 @@
     <span class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
       Discover our stories
     </span>
-    <ChevronDown class="chevron-icon animate-bounce text-white" />
+    <ChevronDown
+      aria-label="Scroll to next slide"
+      class="chevron-icon animate-bounce text-white" />
   </div>
 </div>

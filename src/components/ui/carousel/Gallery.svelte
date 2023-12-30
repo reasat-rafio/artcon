@@ -73,6 +73,7 @@
     class="col-span-12 mt-[2.38rem] flex items-center justify-center lg:mt-[1.55rem] lg:justify-end">
     {#if carouselCanScrollPrev}
       <button
+        aria-label="Scroll to previous slide"
         class:mr-[.31rem]={carouselCanScrollNext}
         transition:slide={{ axis: 'x' }}
         on:click={scrollPrev}>
@@ -82,6 +83,7 @@
 
     {#if carouselCanScrollNext}
       <button
+        aria-label="Scroll to previous slide"
         class:ml-[.31rem]={carouselCanScrollNext}
         transition:slide={{ axis: 'x' }}
         on:click={scrollNext}>

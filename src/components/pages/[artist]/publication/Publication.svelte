@@ -99,37 +99,5 @@
         {/each}
       </div>
     </div>
-
-    <!-- <nav class=""> -->
-    <!-- Mobile -->
-    <!-- <button class="absolute left-1/2" on:click={slideNext}>
-        <ChevronLeftRounded />
-      </button> -->
-    <!-- <button
-        style="top: {navigationPositionFromSectionTop +
-          navigationPositionFromSectionTop / 2}px"
-        class="absolute right-1/2 bg-red-800"
-        on:click={slideNext}
-      >
-        <ChevronRightRounded />
-      </button> -->
-
-    <!-- Desktop button -->
-    <!-- <button
-        style="top: {navigationPositionFromSectionTop}px"
-        class="absolute left-0 hidden translate-x-full rounded-full bg-white md:block"
-        on:click={slidePrev}
-      >
-        <ChevronLeftRounded />
-      </button>
-
-      <button
-        style="top: {navigationPositionFromSectionTop}px"
-        class="absolute right-0 hidden -translate-x-full rounded-full bg-white md:block"
-        on:click={slideNext}
-      >
-        <ChevronRightRounded />
-      </button>
-    </nav> -->
   </div>
 </section>

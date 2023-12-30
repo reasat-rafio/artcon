@@ -43,6 +43,7 @@
       <div class="flex items-center pr-3">
         {#if !!activeSearchParams}
           <button
+            aria-label="Scroll to previous slide"
             transition:slide={{ axis: 'x' }}
             on:click={clearSearchParams}
             title="Clear Search Filter"
@@ -52,7 +53,7 @@
         {/if}
         {#key activeSearchParams}
           <div>
-            <h2 class="font-medium head-6 text-dark-gunmetal lg:text-head-4">
+            <h2 class="head-6 font-medium text-dark-gunmetal lg:text-head-4">
               <slot />
             </h2>
             <Tags {activeSearchParams} {tags} />

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { zeroPad } from '@/lib/helper';
   import { createEventDispatcher } from 'svelte';
   import { sineOut } from 'svelte/easing';

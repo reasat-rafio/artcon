@@ -2,8 +2,6 @@
   import type { CommonHeroListProps } from '@/lib/types/common.types';
   import Navigation from './Navigation.svelte';
   import Block from './block/Block.svelte';
-
-  import ChevronDown from '@/components/icons/ChevronDown.svelte';
   import { useDebounce } from '@/lib/helper';
   import Autoplay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte, {
