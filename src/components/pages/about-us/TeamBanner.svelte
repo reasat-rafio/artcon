@@ -1,4 +1,5 @@
 <script lang="ts">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { TeamBannerProps } from '@/lib/types/about-us.types';
@@ -16,7 +17,8 @@
     imageUrlBuilder={imageBuilder} />
 
   <header
-    class="absolute inset-0 z-10 flex h-full w-full items-center justify-center text-white">
+    use:parallaxAnimation
+    class="absolute inset-0 z-10 flex h-full w-full translate-y-[120px] items-center justify-center text-white">
     <h2 class="head-1 font-optiberling-agency">
       {title}
     </h2>

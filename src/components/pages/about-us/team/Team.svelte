@@ -2,6 +2,7 @@
   import type { TeamProps } from '@/lib/types/about-us.types';
   import CoreTeam from './CoreTeam.svelte';
   import OtherMember from './OtherMember.svelte';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
 
   export let team: TeamProps[];
   let coreTeam: TeamProps[] = [];
@@ -15,7 +16,9 @@
 
 <section>
   <div class="container-primary py-section">
-    <h2 class="head-4 mb-lg">Meet our team</h2>
+    <h2 use:parallaxAnimation class="head-4 mb-lg translate-y-[120px]">
+      Meet our team
+    </h2>
 
     {#if !!coreTeam?.length}
       <CoreTeam {coreTeam} />

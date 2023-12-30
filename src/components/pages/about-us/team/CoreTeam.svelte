@@ -1,4 +1,5 @@
 <script lang="ts">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { TeamProps } from '@/lib/types/about-us.types';
@@ -7,7 +8,8 @@
 </script>
 
 <div
-  class="col-span-1 mb-xl grid gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[3.56rem] xl:grid-cols-3">
+  use:parallaxAnimation
+  class="col-span-1 mb-xl grid translate-y-[120px] gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[3.56rem] xl:grid-cols-3">
   {#each coreTeam as { image, name, role, url }}
     {@const el = url ? 'a' : 'div'}
     <svelte:element this={el} href={url} class="group relative h-[34.375rem]">

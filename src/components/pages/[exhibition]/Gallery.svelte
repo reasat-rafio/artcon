@@ -4,6 +4,7 @@
   import type { GalleryProps } from '@/lib/types/exhibition-detail.types';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
 
   export let props: GalleryProps;
   $: ({
@@ -14,7 +15,9 @@
 
 <section>
   <div class="py-section container-primary">
-    <div class="mb-sm md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[4.638rem]">
+    <div
+      use:parallaxAnimation
+      class="mb-sm translate-y-[120px] md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[4.638rem]">
       <Gallery items={images} let:chunk>
         {#each chunk as image}
           <Card class="pl-[1.5625rem] max-md:pt-[1.5625rem]" let:Image>

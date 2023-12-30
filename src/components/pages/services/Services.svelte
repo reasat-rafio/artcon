@@ -1,6 +1,7 @@
 <script lang="ts">
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -9,7 +10,7 @@
   export let services: ServiceProps[];
 </script>
 
-<section class="">
+<section>
   <div
     class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
     {#each services as { title, description, image, cta }, index}
@@ -32,7 +33,7 @@
           </svelte:fragment>
         </DescriptionBlock>
 
-        <figure>
+        <figure use:parallaxAnimation class="translate-y-[120px]">
           <SanityImage
             class="mx-auto aspect-video h-full w-full max-w-[72.75rem] rounded-[25px] object-cover"
             src={image}

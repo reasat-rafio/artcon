@@ -1,4 +1,6 @@
 <script lang="ts" generics="T">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
+
   import { slide } from 'svelte/transition';
 
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
@@ -49,7 +51,7 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<section class="grid grid-cols-12">
+<section use:parallaxAnimation class="grid translate-y-[120px] grid-cols-12">
   <div
     class="col-span-12 overflow-hidden"
     use:emblaCarouselSvelte={{
