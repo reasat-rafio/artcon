@@ -41,7 +41,7 @@
           img: invitationCardImage,
         },
         {
-          img: publicationImage,
+          img: { ...publicationImage, alt: name },
           caption: name,
           link: `/preview/publication/${slug.current}`,
         },
