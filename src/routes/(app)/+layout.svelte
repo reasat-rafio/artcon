@@ -2,6 +2,7 @@
   import NavItems from '@/components/common/navigation/nav-items/NavItems.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import type { SiteProps } from '@/lib/types/common.types';
+
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
   import '@fontsource/inter/500.css';
