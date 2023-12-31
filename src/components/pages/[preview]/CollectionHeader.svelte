@@ -11,7 +11,7 @@
 
 <section class="mb-[2.5rem] flex flex-col gap-y-[1.94rem]">
   <h2 class="head-6" data-load-animate="y">{topic}</h2>
-  <div class="flex justify-between space-x-1 max-lg:flex-col-reverse">
+  <div class="flex justify-between gap-x-1 max-lg:flex-col">
     <header class="space-y-[0.62rem]">
       <div data-load-animate="y">
         <h1 class="head-4 !inline !leading-none">
@@ -30,7 +30,7 @@
       {/if}
     </header>
     <span
-      class="sub-title-regular lg:title-regular my-[0.5rem] h-fit border-l-[2px] border-pigment-red pl-[0.81rem] !leading-none text-quartz-silver">
+      class="sub-title-regular lg:title-regular mt-[1.5rem] h-fit border-l-[2px] border-pigment-red pl-[0.81rem] !leading-none text-quartz-silver lg:my-[0.5rem]">
       {#if isAvailable}
         Available
       {:else}
