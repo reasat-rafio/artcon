@@ -9,7 +9,7 @@ const parallaxAnimation = (node: HTMLElement) => {
       scrollTrigger: {
         start: '-120px bottom',
         end: 'bottom bottom',
-        scrub: 2,
+        scrub: 3,
         trigger: node,
       },
     });

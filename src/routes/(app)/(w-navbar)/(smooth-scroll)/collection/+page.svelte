@@ -96,7 +96,7 @@
     <Hero props={formatCollectionListingProps(props)} />
   {/if}
 {/each}
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
     <svelte:fragment slot="name">Our collection</svelte:fragment>
     <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>

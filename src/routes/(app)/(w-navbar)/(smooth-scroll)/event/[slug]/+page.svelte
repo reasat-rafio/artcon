@@ -58,7 +58,7 @@
     subtitle: subtitle || tag?.name,
   }} />
 
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   <Share href="/event" {logoLight} {logoDark}>Our events</Share>
 
   {#each sections as props}

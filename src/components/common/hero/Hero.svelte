@@ -8,29 +8,36 @@
   import Asset from './Asset.svelte';
   import Overlay from './Overlay.svelte';
   import ScrollIndicator from './ScrollIndicator.svelte';
+  gsap.registerPlugin(ScrollTrigger);
 
   export let props: Omit<CommonHeroProps, '_key'>;
   $: ({ subtitle, title, topTitle, asset, cta } = props);
 
   let innerWidth = 0;
-  let sectionEl: HTMLElement;
   let titleEl: HTMLElement;
   let topTitleEl: HTMLElement;
   let subtitleEl: HTMLElement;
 
-  onMount(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.to(sectionEl, {
-      scale: 1.15,
-      scrollTrigger: {
-        trigger: sectionEl,
-        start: '100% center',
-        end: 'bottom top',
-        scrub: 1,
-      },
+  function animation(node: HTMLElement) {
+    const ctx = gsap.context(() => {
+      gsap.to(node, {
+        scale: 1.15,
+        scrollTrigger: {
+          trigger: node,
+          start: '100% center',
+          end: 'bottom top',
+          scrub: 3,
+        },
+      });
     });
+    return {
+      destroy() {
+        ctx.revert();
+      },
+    };
+  }
 
+  onMount(() => {
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: 'expoOut', duration: 0.5 },
@@ -49,7 +56,7 @@
 
 <svelte:window bind:innerWidth />
 <section
-  bind:this={sectionEl}
+  use:animation
   class={cn('fixed inset-0 h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full">
     {#key asset}

@@ -11,7 +11,6 @@
   export let scrollDirection: 'forward' | 'backward';
 
   $: ({ title, subtitle, topTitle, asset, cta } = block);
-  let blockEl: HTMLElement;
   let titleEl: HTMLElement;
   let assetEl: HTMLElement;
   let topTitleEl: HTMLElement;
@@ -21,7 +20,26 @@
   $: isActive = activeBlockIndex === index;
   $: activeBlockIndex, runAnimation();
 
-  const runAnimation = () => {
+  function animation(node: HTMLElement) {
+    const ctx = gsap.context(() => {
+      gsap.to(node, {
+        scale: 1.15,
+        scrollTrigger: {
+          trigger: node,
+          start: '100% center',
+          end: 'bottom top',
+          scrub: 3,
+        },
+      });
+    });
+    return {
+      destroy() {
+        ctx.revert();
+      },
+    };
+  }
+
+  function runAnimation() {
     if (!assetEl) return;
 
     if (isActive) {
@@ -67,11 +85,11 @@
         },
       );
     }
-  };
+  }
 </script>
 
 <div
-  bind:this={blockEl}
+  use:animation
   class="relative flex h-screen w-[100vw] flex-[0_0_100%] overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
   <Overlay />

@@ -26,7 +26,7 @@
   {/if}
 {/each}
 
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   {#each page.sections as s}
     {#if s._type === 'aboutUsPage.aboutUs'}
       <AboutUs props={s} />

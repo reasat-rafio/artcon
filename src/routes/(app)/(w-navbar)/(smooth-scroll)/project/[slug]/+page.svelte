@@ -56,7 +56,7 @@
     subtitle: subtitle || tag.name,
   }} />
 
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   <Share href="/project" {logoLight} {logoDark}>Our projects</Share>
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
