@@ -51,7 +51,7 @@
     <Hero props={formatDocumentaryListingProps(props)} />
   {/if}
 {/each}
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   <FilteringNavbar tags={categories} {logoDark} {logoLight}>
     <svelte:fragment slot="name">Our documentary</svelte:fragment>
   </FilteringNavbar>

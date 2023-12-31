@@ -24,7 +24,7 @@
   {/if}
 {/each}
 
-<div class="relative mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100vh] bg-white">
   {#if page.services.length}
     <Services services={page.services} />
   {/if}

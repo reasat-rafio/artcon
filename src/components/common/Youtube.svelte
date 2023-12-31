@@ -1,4 +1,5 @@
 <script lang="ts">
+  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import { cn } from '@/lib/cn';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
@@ -14,12 +15,13 @@
 </script>
 
 <section
+  use:parallaxAnimation
   {...$$restProps}
-  class={cn('mx-auto max-w-[72.9375rem]', $$props.class)}>
-  <div class="aspect-video h-full max-h-[655px] overflow-hidden">
+  class={cn('mx-auto max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
+  <div class="aspect-video h-full max-h-[40.938rem] overflow-hidden">
     <div
       bind:this={youtubeWrapperEl}
-      class="h-full w-full overflow-hidden rounded-[20px] bg-gray-300">
+      class="h-full w-full overflow-hidden rounded-xl bg-gray-300">
       {#if !!thumbnail}
         <Youtube {id} altThumb={true} animations={false}>
           <figure class="h-full w-full" slot="thumbnail">
