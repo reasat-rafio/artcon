@@ -11,6 +11,7 @@
   import SearchIcon from '../../icons/Search.svelte';
   import Hamburger from '../Hamburger.svelte';
   import uiStore from '@/store/ui';
+  import { fade } from 'svelte/transition';
 
   export let logo: SanityAsset;
 
@@ -62,48 +63,51 @@
         },
       )}>
       <Hamburger color={hamburgerColor} class="block lg:hidden" />
-      <div
-        use:clickOutSide={() => (searchIsActive = false)}
-        on:click={setSearchBarActive}
-        on:keydown={setSearchBarActive}
-        role="button"
-        tabindex="0"
-        class={cn(
-          'hidden cursor-pointer space-x-[1.2rem] rounded-2xl border py-[0.6rem] pl-[1.65rem] pr-[1.4rem] transition-colors duration-500 group-hover:bg-white lg:flex',
-          {
-            'border-dark-gunmetal': isDarkNavPaths,
-            'border-white': !isDarkNavPaths,
-            'bg-white': searchIsActive,
-          },
-        )}>
-        <input
-          type="text"
-          bind:this={searchInputEl}
-          {placeholder}
-          disabled={$searchStore.loading}
-          on:keydown={(e) => {
-            if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
-          }}
+      {#if !$page.url.pathname.includes('search')}
+        <div
+          transition:fade
+          on:click={setSearchBarActive}
+          on:keydown={setSearchBarActive}
+          use:clickOutSide={() => (searchIsActive = false)}
+          role="button"
+          tabindex="0"
           class={cn(
-            'bg-transparent text-[0.84375rem] font-medium tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:font-medium',
+            'hidden cursor-pointer space-x-[1.2rem] rounded-2xl border py-[0.6rem] pl-[1.65rem] pr-[1.4rem] transition-colors duration-500 group-hover:bg-white lg:flex',
             {
-              'w-[250px]': searchIsActive,
-              'w-[47px] ': !searchIsActive,
-              'placeholder:text-dark-gunmetal': isDarkNavPaths,
-              'placeholder:text-white group-hover:placeholder:text-[#000]/40':
-                !isDarkNavPaths,
-              'text-dark-gunmetal placeholder:text-[#000]/40':
-                !isDarkNavPaths && searchIsActive,
+              'border-dark-gunmetal': isDarkNavPaths,
+              'border-white': !isDarkNavPaths,
+              'bg-white': searchIsActive,
             },
-          )} />
-        <button
-          aria-label="search"
-          disabled={$searchStore.loading}
-          on:click={() => redirectToSearchPage(searchInputEl.value)}
-          class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
-          <SearchIcon />
-        </button>
-      </div>
+          )}>
+          <input
+            type="text"
+            bind:this={searchInputEl}
+            {placeholder}
+            disabled={$searchStore.loading}
+            on:keydown={(e) => {
+              if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
+            }}
+            class={cn(
+              'bg-transparent text-[0.84375rem] font-medium tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:font-medium',
+              {
+                'w-[250px]': searchIsActive,
+                'w-[47px] ': !searchIsActive,
+                'placeholder:text-dark-gunmetal': isDarkNavPaths,
+                'placeholder:text-white group-hover:placeholder:text-[#000]/40':
+                  !isDarkNavPaths,
+                'text-dark-gunmetal placeholder:text-[#000]/40':
+                  !isDarkNavPaths && searchIsActive,
+              },
+            )} />
+          <button
+            aria-label="search"
+            disabled={$searchStore.loading}
+            on:click={() => redirectToSearchPage(searchInputEl.value)}
+            class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
+            <SearchIcon />
+          </button>
+        </div>
+      {/if}
     </div>
   </div>
 </nav>
