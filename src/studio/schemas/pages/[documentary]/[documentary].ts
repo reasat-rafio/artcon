@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { orderRankField } from '@sanity/orderable-document-list';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 import { BiCameraMovie } from 'react-icons/bi';
+import { toPlainText } from '@portabletext/svelte';
 
 const documentary = {
   name: 'documentary',
@@ -113,7 +115,18 @@ const documentary = {
       title: 'name',
       subtitle: 'information',
       media: 'thumbnail',
+      year: 'year',
     },
+    prepare: ({
+      title,
+      subtitle,
+      year,
+      media,
+    }: DefaultPreviewProps & { year: string }) => ({
+      title,
+      subtitle: `${year} | ${toPlainText(subtitle as any)}`,
+      media,
+    }),
   },
 };
 

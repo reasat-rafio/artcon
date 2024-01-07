@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { toPlainText } from '@portabletext/svelte';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { BsFillPostageFill } from 'react-icons/bs';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const publication = {
   name: 'publication',
@@ -138,9 +140,20 @@ const publication = {
   preview: {
     select: {
       title: 'name',
+      author: 'subtitle',
       subtitle: 'description',
       media: 'publicationImage',
     },
+    prepare: ({
+      title,
+      subtitle,
+      author,
+      media,
+    }: DefaultPreviewProps & { author: string }) => ({
+      title,
+      subtitle: `${author} | ${toPlainText(subtitle as any)}`,
+      media,
+    }),
   },
 };
 

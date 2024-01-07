@@ -207,13 +207,14 @@ const collection = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'information.artDate.creationDetails',
+      artistName: 'artist.personalDocuments.name.en',
       media: 'artworkImages',
+      date: 'information.artDate.year',
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    prepare: ({ title, subtitle, media }: any) => ({
-      title,
-      subtitle,
+    prepare: ({ title, media, artistName, date }: any) => ({
+      title: artistName,
+      subtitle: `${title} | ${date}`,
       media: media[0],
     }),
   },
