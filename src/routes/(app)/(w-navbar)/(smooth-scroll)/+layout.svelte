@@ -27,6 +27,9 @@
   }
 
   onMount(() => {
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
     const lenisInstance = new Lenis();
     setLenisStore(lenisInstance);
 
