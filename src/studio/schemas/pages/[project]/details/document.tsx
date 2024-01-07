@@ -13,6 +13,7 @@ type PrepareProps = SanityDefaultPreviewProps & {
   artists: unknown[];
   startDate: string;
   endDate?: string;
+  tagName: string;
 };
 
 const project = {
@@ -123,6 +124,7 @@ const project = {
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
+      tagName: 'tag.name',
     },
     prepare: ({
       title,
@@ -131,10 +133,11 @@ const project = {
       hevc,
       startDate,
       endDate,
+      tagName,
     }: PrepareProps) => {
       return {
         title: title,
-        subtitle: `${formatDate(startDate)} ${
+        subtitle: `${tagName} | ${formatDate(startDate)} ${
           endDate ? ` - ${formatDate(endDate)}` : ''
         }`,
         media: image ? (

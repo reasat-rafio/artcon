@@ -12,6 +12,7 @@ type PrepareProps = SanityDefaultPreviewProps & {
   hevc: string;
   startDate: string;
   endDate?: string;
+  tagName: string;
 };
 
 const event = {
@@ -129,6 +130,7 @@ const event = {
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
       artists: 'artists',
+      tagName: 'tag.name',
     },
     prepare: ({
       title,
@@ -137,10 +139,11 @@ const event = {
       hevc,
       startDate,
       endDate,
+      tagName,
     }: PrepareProps) => {
       return {
         title: title,
-        subtitle: `${formatDate(startDate)} ${
+        subtitle: `${tagName} | ${formatDate(startDate)} ${
           endDate ? ` - ${formatDate(endDate)}` : ''
         }`,
         media: image ? (
