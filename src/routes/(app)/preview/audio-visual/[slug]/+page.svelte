@@ -130,7 +130,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: exploreUrl, title: 'EXPLORE' },
+    { href: exploreUrl, title: 'EXPLORE', newTab: true },
   ]} />
 
 <section>
@@ -146,10 +146,7 @@
           out:fade={{ duration: 500 }}
           class="preview_content_container">
           <NavigationMobile
-            cta={{
-              href: exploreUrl,
-              title: 'EXPLORE',
-            }} />
+            cta={{ href: exploreUrl, title: 'EXPLORE', newTab: true }} />
 
           <section
             class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
