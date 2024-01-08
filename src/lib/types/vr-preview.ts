@@ -9,6 +9,7 @@ export interface VrPreviewProps {
   endDate: string;
   description: PortableTextBlock[];
   url: string;
+  link?: string;
   subtitle: string;
   _rev: string;
   gallery: RefDocument;

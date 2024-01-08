@@ -32,6 +32,7 @@
       sliderImageVideo,
       coverImage,
       thumbnail,
+      link,
     },
     site: { logos },
   } = data);
@@ -153,6 +154,7 @@
             title={name}
             {subtitle}
             type={category.name}
+            {link}
             let:Info>
             <Info>
               <div class="title-light">
