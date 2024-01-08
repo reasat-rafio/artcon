@@ -11,7 +11,7 @@
   )}>
   <div
     class="flex items-center justify-center space-x-[0.5rem] text-platinum lg:space-x-[1.06rem] lg:pr-[4.07rem]">
-    <span class="text-[0.84375rem] font-medium uppercase tracking-[0.01688rem]">
+    <span class="text-[0.84375rem] font-normal uppercase tracking-[0.01688rem]">
       Discover our stories
     </span>
     <ChevronDown

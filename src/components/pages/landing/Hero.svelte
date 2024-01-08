@@ -40,7 +40,7 @@
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 <section
-  style={`filter: blur(${$tweenDelta * 2.5}px) grayscale(${
+  style={`filter: blur(${$tweenDelta * 7.5}px) grayscale(${
     $tweenDelta * 50
   }%);`}
   class={twMerge('h-screen w-full ', $$props.class)}>
@@ -75,7 +75,7 @@
           {#if !!subtitle}
             <h2
               bind:this={subtitleEl}
-              class="translate-y-full whitespace-pre-wrap !font-light !normal-case !tracking-[1px] text-platinum opacity-0">
+              class="translate-y-full whitespace-pre-wrap !font-medium !normal-case !tracking-[1px] text-platinum opacity-0">
               {subtitle}
             </h2>
           {:else}
@@ -87,7 +87,7 @@
         {#if !!cta?.title}
           <Cta
             variant="quaternary"
-            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[14px] !tracking-[0.27px] !leading-[16.2px] !font-medium !w-[140px] !rounded-[64px]"
+            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[0.875rem] !tracking-[0.27px] !leading-[16.2px] !font-medium !w-[140px] !rounded-[64px]"
             href={cta.href}>
             {cta.title}
           </Cta>

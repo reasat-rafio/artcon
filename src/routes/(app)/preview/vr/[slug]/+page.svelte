@@ -161,7 +161,7 @@
               <div class="title-light">
                 <span class="font-light">{date}</span>
                 <span class="px-[6px]">|</span>
-                <span class="font-medium text-pigment-red">{status}</span>
+                <span class="font-medium text-eerie-black">{status}</span>
               </div>
             </Info>
           </Header>

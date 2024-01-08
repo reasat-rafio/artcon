@@ -192,7 +192,8 @@
                   </div>
 
                   <div class="title-light">
-                    Stock <span class="font-medium capitalize">{stock}</span>
+                    <span class="sub-title-light">Stock</span>
+                    <span class="font-medium capitalize">{stock}</span>
                   </div>
                 </Info>
               </Header>

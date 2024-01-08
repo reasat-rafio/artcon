@@ -34,26 +34,26 @@
       {#if _type === 'exhibition'}
         /
         {#if !!subtitle}
-          <h4 class="head-6 inline">{subtitle}</h4>
+          <h4 class="head-6 inline !font-medium">{subtitle}</h4>
         {:else if typeof exhibitionType === 'string'}
-          <h4 class="head-6 inline">
+          <h4 class="head-6 inline !font-medium">
             {exhibitionType}
           </h4>
         {:else}
-          <h4 class="head-6 inline">
+          <h4 class="head-6 inline !font-medium">
             {exhibitionType?.en}
           </h4>
         {/if}
       {:else if _type === 'event'}
-        <h4 class="head-6 inline">
+        <h4 class="head-6 inline !font-medium">
           / {subtitle || tag?.name}
         </h4>
       {:else if _type === 'collection' && (!!artistName?.en || !!subtitle)}
-        <h4 class="head-6 inline">
+        <h4 class="head-6 inline !font-medium">
           / {subtitle || artistName?.en}
         </h4>
       {:else if !!subtitle}
-        <h4 class="head-6 inline">
+        <h4 class="head-6 inline !font-medium">
           / {subtitle}
         </h4>
       {/if}

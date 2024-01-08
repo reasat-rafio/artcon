@@ -75,31 +75,34 @@
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}
-{#if searchResultFound}
-  {#if !!$searchStore?.data?.exhibitions?.length}
-    <Exhibition {slidesNumber} />
+
+<div>
+  {#if searchResultFound}
+    {#if !!$searchStore?.data?.exhibitions?.length}
+      <Exhibition {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.events?.length}
+      <Event {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.collections?.length}
+      <Collection {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.vrs?.length}
+      <Vr {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.publications?.length}
+      <Publication {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.documentaries?.length}
+      <Documentary {slidesNumber} />
+    {/if}
+    {#if !!$searchStore?.data?.projects?.length}
+      <Project {slidesNumber} />
+    {/if}
+  {:else}
+    <NoSearchResultFound
+      message="Looks like we couldn't find what you're looking for. Try refining your search criteria." />
   {/if}
-  {#if !!$searchStore?.data?.events?.length}
-    <Event {slidesNumber} />
-  {/if}
-  {#if !!$searchStore?.data?.collections?.length}
-    <Collection {slidesNumber} />
-  {/if}
-  {#if !!$searchStore?.data?.vrs?.length}
-    <Vr {slidesNumber} />
-  {/if}
-  {#if !!$searchStore?.data?.publications?.length}
-    <Publication {slidesNumber} />
-  {/if}
-  {#if !!$searchStore?.data?.documentaries?.length}
-    <Documentary {slidesNumber} />
-  {/if}
-  {#if !!$searchStore?.data?.projects?.length}
-    <Project {slidesNumber} />
-  {/if}
-{:else}
-  <NoSearchResultFound
-    message="Looks like we couldn't find what you're looking for. Try refining your search criteria." />
-{/if}
+</div>
 
 <Footer {footer} {contact} logo={logoDark} />

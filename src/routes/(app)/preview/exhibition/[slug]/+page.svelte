@@ -165,14 +165,14 @@
               <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
                 <span class="px-[3px] text-eerie-black/50">|</span>
-                <span class="font-medium text-pigment-red">{status}</span>
+                <span class="font-medium text-eerie-black">{status}</span>
               </div>
             </Info>
           </Header>
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] h-[65vh] w-full overflow-hidden rounded-[25px] sm:aspect-video sm:h-full sm:max-h-[30.875rem]">
+            class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
             <Asset {asset} />
           </div>
 

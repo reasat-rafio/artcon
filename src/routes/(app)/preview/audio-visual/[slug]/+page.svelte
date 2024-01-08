@@ -185,9 +185,10 @@
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-xl sm:aspect-video sm:h-full">
+            class="-full relative mb-[2.5rem] aspect-video overflow-hidden rounded-xl">
             <Youtube id={ytID} altThumb={true} animations={false}>
               <SanityImage
+                class="h-full w-full object-cover"
                 sizes="60vw"
                 imageUrlBuilder={imageBuilder}
                 src={thumbnail}
