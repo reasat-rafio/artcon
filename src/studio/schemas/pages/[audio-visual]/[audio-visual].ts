@@ -4,7 +4,7 @@ import type { DefaultPreviewProps, Rule } from 'sanity';
 import { BiCameraMovie } from 'react-icons/bi';
 import { toPlainText } from '@portabletext/svelte';
 
-const documentary = {
+const audioVisual = {
   name: 'documentary',
   type: 'document',
   title: 'Audio Visual',
@@ -21,6 +21,12 @@ const documentary = {
       name: 'slug',
       type: 'slug',
       options: { source: 'name' },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'type',
+      type: 'reference',
+      to: [{ type: 'audioVisualType' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -130,4 +136,4 @@ const documentary = {
   },
 };
 
-export default documentary;
+export default audioVisual;

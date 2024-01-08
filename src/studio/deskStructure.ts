@@ -380,6 +380,13 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
                 title: 'Category',
                 icon: FaTag,
               }),
+              orderableDocumentListDeskItem({
+                type: 'audioVisualType',
+                S,
+                context,
+                title: 'Type',
+                icon: FaTag,
+              }),
             ]),
         ),
 

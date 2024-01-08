@@ -2,13 +2,13 @@ import { orderRankField } from '@sanity/orderable-document-list';
 import { GrTag } from 'react-icons/gr';
 import type { Rule } from 'sanity';
 
-const documentaryCategory = {
-  name: 'documentaryCategory',
-  title: 'Tag',
+const audioVisualType = {
+  name: 'audioVisualType',
+  title: 'Type',
   type: 'document',
   icon: GrTag,
   fields: [
-    orderRankField({ type: 'vrCategory' }),
+    orderRankField({ type: 'audioVisualType' }),
 
     {
       name: 'name',
@@ -29,4 +29,4 @@ const documentaryCategory = {
   },
 };
 
-export default documentaryCategory;
+export default audioVisualType;
