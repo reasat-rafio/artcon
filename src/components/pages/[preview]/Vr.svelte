@@ -14,13 +14,13 @@
   let showLoading = false;
 </script>
 
-<section {...$$restProps} class={twMerge('sm:max-w-[1167px]', $$props.class)}>
+<section {...$$restProps} class={twMerge($$props.class)}>
   <button
     on:click={() => {
       showIframe = true;
       showLoading = true;
     }}
-    class="relative mx-auto h-[65vh] w-full overflow-hidden rounded-xl sm:aspect-video sm:h-full sm:max-h-[40.938rem]">
+    class="relative mx-auto aspect-video h-fit w-full overflow-hidden rounded-xl">
     {#if showIframe}
       <iframe
         on:load={() => (showLoading = false)}
