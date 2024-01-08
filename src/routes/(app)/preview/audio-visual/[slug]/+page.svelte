@@ -23,7 +23,7 @@
     page: {
       _type,
       name,
-      slug,
+      type,
       sliderImageVideo,
       coverImage,
       information,
@@ -151,7 +151,7 @@
           <section
             class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
             <h2 class="head-6 !text-rich-black" data-load-animate="y">
-              Our audio visual
+              Our {type.name}
             </h2>
 
             <header

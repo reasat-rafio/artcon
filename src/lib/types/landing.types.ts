@@ -38,6 +38,7 @@ export type Collection<T> = {
   exhibitionType?: string | { en: string };
   tag?: Tag;
   artistName?: { en: string };
+  type?: Tag;
 };
 
 export type WithExtra<T> = T & {
