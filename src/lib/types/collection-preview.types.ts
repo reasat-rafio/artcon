@@ -11,7 +11,7 @@ export interface CollectionPreviewProps {
   topTitle?: string;
   slug: Slug;
   cta: Cta;
-  inquiryButton: Cta;
+  hideInquiryButton?: boolean;
   isAvailable: boolean;
   seo: SeoProps;
   sliderImageVideo: Asset;

@@ -66,6 +66,12 @@ const collection = {
       }) => displayNew,
     },
     {
+      name: 'hideInquiryButton',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Hide the inquiry button on this collection',
+    },
+    {
       name: 'information',
       title: 'Artwork Information',
       type: 'object',
@@ -114,10 +120,7 @@ const collection = {
         },
       ],
     },
-    {
-      name: 'inquiryButton',
-      type: 'cta',
-    },
+
     {
       name: 'artworkImages',
       type: 'array',

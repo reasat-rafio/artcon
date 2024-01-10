@@ -1,7 +1,6 @@
 <script lang="ts">
   import NavItems from '@/components/common/navigation/nav-items/NavItems.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
-  import type { SiteProps } from '@/lib/types/common.types';
 
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
@@ -11,7 +10,7 @@
   import '@fontsource/outfit/500.css';
   import '@fontsource/outfit/600.css';
 
-  export let data: { site: SiteProps };
+  export let data;
   $: ({
     site: {
       nav,

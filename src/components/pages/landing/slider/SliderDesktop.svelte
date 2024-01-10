@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import { expoOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
-  import previewMediaColumnWidthInPercentage from '@/store/previewMediaColumnWidthInPercentage';
+  import previewMediaColumnWidthInPercentage from '@/store/preview-media-column-width-in-percentage';
   import SliderItem from './SliderItem.svelte';
   gsap.registerPlugin(Observer);
 
