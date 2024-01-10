@@ -101,7 +101,7 @@
       {#if !!topTitle}
         <h3
           bind:this={topTitleEl}
-          class="head-8 lg:head-7 font-bold !leading-[120%] !tracking-widest">
+          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
           {topTitle}
         </h3>
       {:else}

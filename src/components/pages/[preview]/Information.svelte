@@ -4,13 +4,19 @@
     Provenance,
     Information,
   } from '@/lib/types/collection-detail.types';
-  import type { Cta } from '@/lib/types/common.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import formPopupStore from '@/store/form-popup-store';
 
   export let name: string;
   export let provenance: Provenance;
   export let information: Information;
-  export let inquiryButton: Cta;
+  export let hideInquiryButton: boolean | undefined = undefined;
+
+  function inquiryAction() {
+    console.log('here');
+
+    formPopupStore.setFormPopupVisibility(true);
+  }
 </script>
 
 <div
@@ -43,10 +49,8 @@
   </div>
 </div>
 
-{#if !!inquiryButton?.title}
+{#if !hideInquiryButton}
   <div class="mt-[2.5rem]" data-load-animate="y">
-    <CtaBtn href={inquiryButton.href}>
-      {inquiryButton.title}
-    </CtaBtn>
+    <CtaBtn el="button" on:click={() => console.log('clicked')}>Inquire</CtaBtn>
   </div>
 {/if}

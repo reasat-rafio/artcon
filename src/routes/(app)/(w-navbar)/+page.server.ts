@@ -70,6 +70,7 @@ const query = groq`
                     name,
                     "subtitle" : category->name,
                     "title": "Our documentary",
+                    type->,
                     slug,
                     sliderImageVideo {
                         ...,

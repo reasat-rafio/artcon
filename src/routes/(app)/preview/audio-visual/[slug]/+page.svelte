@@ -23,7 +23,7 @@
     page: {
       _type,
       name,
-      slug,
+      type,
       sliderImageVideo,
       coverImage,
       information,
@@ -130,7 +130,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: exploreUrl, title: 'EXPLORE' },
+    { href: exploreUrl, title: 'EXPLORE', newTab: true },
   ]} />
 
 <section>
@@ -146,15 +146,12 @@
           out:fade={{ duration: 500 }}
           class="preview_content_container">
           <NavigationMobile
-            cta={{
-              href: exploreUrl,
-              title: 'EXPLORE',
-            }} />
+            cta={{ href: exploreUrl, title: 'EXPLORE', newTab: true }} />
 
           <section
             class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
             <h2 class="head-6 !text-rich-black" data-load-animate="y">
-              Our audio visual
+              Our {type.name}
             </h2>
 
             <header
@@ -185,9 +182,10 @@
 
           <div
             data-load-animate="y"
-            class="relative mb-[2.5rem] max-h-[30.875rem] w-full overflow-hidden rounded-xl sm:aspect-video sm:h-full">
+            class="-full relative mb-[2.5rem] aspect-video overflow-hidden rounded-xl">
             <Youtube id={ytID} altThumb={true} animations={false}>
               <SanityImage
+                class="h-full w-full object-cover"
                 sizes="60vw"
                 imageUrlBuilder={imageBuilder}
                 src={thumbnail}

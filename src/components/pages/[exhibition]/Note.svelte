@@ -22,7 +22,7 @@
             <C.HeaderContainer>
               <C.Title>{title}</C.Title>
               {#if subtitle}
-                <C.Subtitle>{subtitle}</C.Subtitle>
+                <C.Subtitle class="!text-[0.875rem]">{subtitle}</C.Subtitle>
               {/if}
             </C.HeaderContainer>
           </svelte:fragment>

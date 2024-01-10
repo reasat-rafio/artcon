@@ -10,10 +10,10 @@
   export let logo: SanityAsset;
 </script>
 
-<footer>
+<footer class="mt-auto">
   <div class="container-primary">
     <div
-      class="flex flex-col border-t border-quick-silver/80 pb-[2rem] pt-[2rem] max-lg:flex-wrap lg:flex-row">
+      class="flex flex-col border-t border-quick-silver/50 pb-[2rem] pt-[2rem] max-lg:flex-wrap lg:flex-row">
       <figure
         class="max-lg:pb-[1.56rem] lg:pr-[5%] 2xl:pr-[6.125rem] 3xl:translate-y-[10px]">
         <SanityImage
@@ -26,12 +26,14 @@
 
       <div
         class="flex flex-col justify-between max-lg:pb-[2.5rem] lg:w-[50%] lg:pr-[5%] 3xl:w-[56%] 3xl:translate-y-[10px] 3xl:pr-[9.0625rem]">
-        <p class="body-light">{footer.title}</p>
+        <p class="font-inter text-[0.875rem] font-light leading-[170%]">
+          {footer.title}
+        </p>
 
         <div class="hidden space-x-[2.5rem] lg:flex 3xl:translate-y-[-10px]">
           {#each footer.menu as { title, externalUrl, pageUrl }}
             <a
-              class="title-regular text-quick-silver transition-all duration-300 hover:text-dark-gunmetal"
+              class="font-inter text-[12px] font-normal leading-[120%] text-quick-silver transition-all duration-300 hover:text-dark-gunmetal"
               href={externalUrl || pageUrl}>
               {title}
             </a>
@@ -54,12 +56,14 @@
         {/each}
       </div>
     </div>
+
     <div
-      class="flex flex-col justify-between border-t border-light-gray/50 pb-[1.5rem] pt-[1.56rem] max-lg:space-y-[0.63rem] lg:flex-row lg:items-center lg:pb-[2.5rem] lg:pt-[2rem]">
+      class="flex flex-col justify-between border-t border-quick-silver/50 pb-[1.5rem] pt-[1.56rem] max-lg:space-y-[0.63rem] lg:flex-row lg:items-center lg:pb-[2.5rem] lg:pt-[2rem]">
       <p class="title-regular text-quick-silver">© ARTCON 2023</p>
-      <p class="title-light text-quick-silver">
+      <p
+        class="font-inter text-[12px] font-normal leading-[120%] text-quick-silver">
         Developed by <a
-          class="font-semibold text-pigment-red hover:underline"
+          class="font-normal hover:underline"
           href="https://edistys.dev">
           Edistys
         </a>

@@ -8,6 +8,7 @@ const query = (params: Partial<Record<string, string>>) =>
     ...,
     gallery->,
     category->,
+    type->,
     sliderImageVideo {
       ...,
       ${asset('image')},

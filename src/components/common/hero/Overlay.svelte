@@ -13,7 +13,7 @@
     background: linear-gradient(
       270deg,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.5) 100%
+      rgba(0, 0, 0, 0.7) 100%
     );
   }
 </style>

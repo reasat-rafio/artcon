@@ -53,7 +53,7 @@
           <C.HeaderContainer>
             <C.Title>{name}</C.Title>
             <C.Subtitle
-              class="font-inter !text-[0.8125rem] font-light leading-[120%]">
+              class="font-inter !text-[0.875rem] font-light leading-[120%]">
               {subtitle}
             </C.Subtitle>
           </C.HeaderContainer>

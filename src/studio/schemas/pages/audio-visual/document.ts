@@ -1,6 +1,6 @@
 import type { DefaultPreviewProps, Rule } from 'sanity';
 
-const documentaryPage = {
+const audioVisualPage = {
   name: 'documentaryPage',
   title: 'Audio Visual',
   type: 'document',
@@ -27,4 +27,4 @@ const documentaryPage = {
   },
 };
 
-export default documentaryPage;
+export default audioVisualPage;

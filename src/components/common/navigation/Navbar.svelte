@@ -88,7 +88,7 @@
               if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
             }}
             class={cn(
-              'bg-transparent text-[0.84375rem] font-medium tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:font-medium',
+              'bg-transparent text-[0.84375rem] !font-normal tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:!font-normal',
               {
                 'w-[250px]': searchIsActive,
                 'w-[47px] ': !searchIsActive,

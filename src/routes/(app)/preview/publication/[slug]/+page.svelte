@@ -127,7 +127,11 @@
   }}
   siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
-<NavigationDesktop ctas={[{ href: '/', title: 'Back' }, exproleLink]} />
+<NavigationDesktop
+  ctas={[
+    { href: '/', title: 'Back' },
+    { ...exproleLink, newTab: true },
+  ]} />
 
 <section>
   <MobileImage {sliderImageVideo} />
@@ -141,7 +145,7 @@
           on:outroend={onOutroEnd}
           out:fade={{ duration: 500 }}
           class="preview_content_container">
-          <NavigationMobile cta={exproleLink} />
+          <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
             <section class="w-full lg:max-w-[457px]">
@@ -192,7 +196,8 @@
                   </div>
 
                   <div class="title-light">
-                    Stock <span class="font-medium capitalize">{stock}</span>
+                    <span class="sub-title-light">Stock</span>
+                    <span class="font-medium capitalize">{stock}</span>
                   </div>
                 </Info>
               </Header>

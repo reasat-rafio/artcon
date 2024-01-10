@@ -131,7 +131,7 @@
             on:click={shareToSocialMedia}>
             <img src={icon} alt={name} />
           </button>
-          <p class="text-taupe-gray text-[12px] tracking-[0.24px]">{name}</p>
+          <p class="text-[12px] tracking-[0.24px] text-taupe-gray">{name}</p>
         </li>
       {/each}
     </ul>
@@ -161,6 +161,6 @@
 
 <style lang="postcss">
   .text-t2 {
-    @apply text-taupe-gray text-title-2;
+    @apply text-title-2 text-taupe-gray;
   }
 </style>

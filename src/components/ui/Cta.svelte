@@ -8,10 +8,12 @@
   interface $$Props extends HTMLAnchorAttributes {
     variant?: Variant;
     className?: ClassValue | undefined;
+    el?: 'button' | 'a';
   }
 
   export let variant: Variant = 'primary';
   export let className: ClassValue | undefined = undefined;
+  export let el: 'button' | 'a' = 'a';
 
   const variantClasses: Record<Variant, string> = {
     primary: 'border border-quick-silver text-sonic-silver',
@@ -22,7 +24,8 @@
   };
 </script>
 
-<a
+<svelte:element
+  this={el}
   {...$$restProps}
   class={cn(
     'relative block h-fit w-fit min-w-[8.75rem] overflow-hidden rounded-2xl px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase leading-tight tracking-[0.01688rem]',
@@ -31,7 +34,7 @@
   )}
   href={$$props.href}>
   <slot />
-</a>
+</svelte:element>
 
 <style>
   .gradient-base-style::before {

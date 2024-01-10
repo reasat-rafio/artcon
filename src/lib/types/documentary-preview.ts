@@ -7,6 +7,7 @@ export interface DocumentaryPreviewProps {
   _type: string;
   name: string;
   slug: Slug;
+  type: Tag;
   category: Tag;
   year?: string;
   duration?: string;

@@ -1,7 +1,7 @@
 import aboutUs from './about-us';
 import collection from './collection';
 import contact from './contact';
-import documentaryPage from './documentary';
+import audioVisualPage from './audio-visual';
 import event from './event';
 import eventDetails from './[event]';
 import exhibition from './exhibition';
@@ -21,7 +21,7 @@ import vr from './[vr]';
 import services from './[service]';
 import publicationDetail from './[publication]';
 import gallery from './[gallery]';
-import documentary from './[documentary]';
+import audioVisual from './[audio-visual]';
 import searchPage from './search';
 import artistPage from './artist';
 
@@ -33,7 +33,7 @@ export default [
   ...vrListingPage,
   ...collection,
   ...artistPage,
-  ...documentaryPage,
+  ...audioVisualPage,
   ...project,
   ...service,
   ...aboutUs,
@@ -45,7 +45,7 @@ export default [
   ...collectionDetail,
   ...vr,
   ...publicationDetail,
-  ...documentary,
+  ...audioVisual,
   ...searchPage,
   team,
   gallery,

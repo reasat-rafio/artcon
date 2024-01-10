@@ -17,16 +17,23 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'subtitle',
-      type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
       name: 'slug',
       type: 'slug',
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
     },
+    {
+      name: 'subtitle',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'link',
+      type: 'url',
+      description:
+        "This link will be applied to the 'Title' in the vr preview page",
+    },
+
     {
       name: 'gallery',
       type: 'reference',
@@ -65,6 +72,7 @@ const vr = {
     {
       name: 'url',
       type: 'url',
+      title: 'Embedded vr url',
       components: { input: VrPreview },
       validation: (Rule: Rule) => Rule.required(),
     },

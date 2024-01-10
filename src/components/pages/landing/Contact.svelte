@@ -16,7 +16,7 @@
     'h-[100dvh] bg-[#0E0E0F] font-inter text-alabaster lg:fixed lg:right-0 lg:top-0 lg:block lg:w-[600px] xl:w-[785px]',
   )}>
   <div
-    class="relative z-30 flex h-full flex-col px-[1.25rem] pb-[3.75rem] pt-[calc(100dvh*.3125)] lg:px-[2rem] lg:pb-[5.5rem]">
+    class="relative z-30 flex h-full flex-col px-[1.25rem] pb-[3.75rem] pt-[calc(100dvh*.3125)] lg:px-[40px] lg:pb-[5.5rem]">
     <div class="flex flex-1 flex-col">
       <header
         class="mb-[2.77rem] max-w-xl space-y-[0.81rem] font-medium lg:mb-[3.45rem]">
@@ -45,12 +45,12 @@
           </li>
         {/each}
       </ul>
-      <ul class="flex gap-x-[1.25rem]">
+      <ul class="flex gap-x-[1.25rem] lg:translate-x-[19px]">
         {#each socials as { type, link }}
           <li>
             <a href={link} target="_blank">
               <img
-                class="h-[1rem] object-contain"
+                class="h-[1.2rem] object-contain"
                 width="20px"
                 height="20px"
                 src="/icons/socials/light/{getSocialIconPath(type)}"

@@ -8,13 +8,18 @@
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
-  import type { CollectionPreviewProps } from '@/lib/types/collection-preview.types';
+  import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import type { ActionData } from './$types';
+  import { superForm } from 'sveltekit-superforms/client';
+  import { inquirySchema } from '@/lib/validator';
+  import formPopupStore from '@/store/form-popup-store';
 
-  export let data: PageProps<CollectionPreviewProps>;
+  export let form: ActionData;
+  export let data;
   $: ({
     page: {
       name,
@@ -22,7 +27,7 @@
       slug,
       sliderImageVideo,
       artworkImages,
-      inquiryButton,
+      hideInquiryButton,
       information,
       provenance,
       artist,
@@ -36,6 +41,11 @@
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
   let innerWidth = 0;
+  const f = superForm(data.form, {
+    taintedMessage: 'Are you sure you want leave?',
+    validators: inquirySchema,
+    resetForm: true,
+  });
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
@@ -108,6 +118,12 @@
       };
     }
   });
+
+  $: {
+    console.log('====================================');
+    console.log($formPopupStore.show);
+    console.log('====================================');
+  }
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -143,9 +159,13 @@
             country={artist?.country} />
 
           <CollectionSlider {artworkImages} />
-          <Information {name} {provenance} {information} {inquiryButton} />
+          <Information {name} {provenance} {information} {hideInquiryButton} />
         </div>
       {/key}
     </section>
   </article>
 </section>
+
+{#if $formPopupStore.show}
+  <FormPopup form={f} formMessage={form?.formMessage} />
+{/if}
