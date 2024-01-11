@@ -12,9 +12,9 @@
   import type { PageProps } from '@/lib/types/common.types';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
   import type { ActionData } from './$types';
-  import { superForm } from 'sveltekit-superforms/client';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup-store';
 
@@ -45,6 +45,14 @@
     taintedMessage: 'Are you sure you want leave?',
     validators: inquirySchema,
     resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+      console.log(result);
+
+      if (result.type === 'success') {
+        formPopupStore.setFormPopupVisibility(false);
+      }
+    },
   });
 
   onMount(() => {
@@ -118,12 +126,6 @@
       };
     }
   });
-
-  $: {
-    console.log('====================================');
-    console.log($formPopupStore.show);
-    console.log('====================================');
-  }
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -160,6 +162,12 @@
 
           <CollectionSlider {artworkImages} />
           <Information {name} {provenance} {information} {hideInquiryButton} />
+
+          {#if !!form?.formMessage}
+            <p transition:slide class="head-8 text mt-2 text-eerie-black">
+              {form?.formMessage}
+            </p>
+          {/if}
         </div>
       {/key}
     </section>
@@ -167,5 +175,5 @@
 </section>
 
 {#if $formPopupStore.show}
-  <FormPopup form={f} formMessage={form?.formMessage} />
+  <FormPopup form={f} imageUrl={artworkImages[0].asset.url} />
 {/if}

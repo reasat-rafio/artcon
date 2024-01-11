@@ -56,7 +56,10 @@ export const actions: Actions = {
 
     const data = form.data;
     data.access_key = FORM_ACCESS_KEY;
-    data.from_name = 'BM Abroad Website Form Submission';
+    data.from_name = 'Artcon Website Inquiry Form Submission';
+    data.page_url = event.url.href;
+    data.subject =
+      'Inquiry Regarding Collection Commission Availability and Process From Artcon Website';
 
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -69,7 +72,8 @@ export const actions: Actions = {
 
     const result = await response.json();
 
-    let formMessage = null;
+    let formMessage: string | undefined = undefined;
+
     if (result?.success) {
       formMessage = result.message;
     }

@@ -5,17 +5,17 @@
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';
   import { cn } from '@/lib/cn';
+  import { page } from '$app/stores';
+  import XIcon from '@/components/icons/X.svelte';
 
   export let form: SuperForm<typeof inquirySchema>;
-  export let formMessage: undefined | string;
+  export let imageUrl: string;
 
   const { form: f, errors, enhance, delayed } = form;
-  let successEl: HTMLElement;
 
   function clearForm() {
     f.update(() => ({
       email: '',
-      subject: '',
       message: '',
       name: '',
       phone: '',
@@ -29,18 +29,25 @@
   aria-label="backdrop"
   on:click={() => formPopupStore.setFormPopupVisibility(false)}
   on:keypress={() => formPopupStore.setFormPopupVisibility(false)}
-  class="fixed inset-0 w-full h-full cursor-default z-demigod bg-black-800/50 backdrop-blur-xl"
+  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-xl"
   transition:fade />
 
 <div
-  in:scale={{ delay: 200 }}
+  in:scale={{ delay: 200, duration: 300 }}
   out:blur
-  class="fixed left-1/2 top-1/2 z-god h-min max-h-[calc(100vh-1.5rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto">
+  class="fixed left-1/2 top-1/2 z-god h-min max-h-[calc(100vh-1.5rem)] w-full -translate-x-1/2 -translate-y-1/2 overflow-y-auto max-lg:px-5 lg:max-w-xl">
   <form
     method="POST"
     use:enhance
-    class="w-full space-y-[32px] rounded-[12px] bg-white max-lg:px-[20px] max-lg:py-[50px] lg:max-w-3xl lg:p-[50px]"
+    class="relative flex !w-full flex-col gap-y-[2rem] rounded-[0.75rem] bg-white max-lg:px-[1.25rem] max-lg:py-[3.125rem] lg:p-[3.125rem]"
     style="box-shadow: 0px 30px 60px 0px rgba(89, 86, 230, 0.10);">
+    <button
+      on:click|preventDefault={() =>
+        formPopupStore.setFormPopupVisibility(false)}
+      class="absolute right-4 top-4 transition-transform duration-300 hover:scale-150">
+      <XIcon />
+    </button>
+
     <Input
       label="Name"
       name="name"
@@ -61,14 +68,14 @@
       placeholder="your email" />
 
     <Input
-      label="Subject of Inquiry"
-      name="subject"
-      bind:value={$f.subject}
-      error={$errors.subject}
-      placeholder="subject you want to talk" />
+      class="hidden"
+      label="Collection Image Url"
+      name="document_image_url"
+      bind:value={imageUrl}
+      placeholder="Collection Image" />
 
-    <div class="flex w-full flex-col space-y-[16px]">
-      <label class="text-[16px] font-semibold" for="message">Message</label>
+    <div class="flex w-full flex-col gap-y-[1rem]">
+      <label class="text-[1rem] font-semibold" for="message">Message</label>
       <div>
         <textarea
           name="message"
@@ -76,19 +83,19 @@
           id="message"
           bind:value={$f.message}
           rows="5"
-          class="border-black/10 placeholder:text-black/20 w-full rounded-[8px] border-[1.5px] bg-white/10 px-[16px] py-[12px] placeholder:text-[14px]" />
+          class="border-black/10 placeholder:text-black/20 w-full rounded-[8px] border-[1.5px] bg-white/10 px-[1rem] py-[12px] placeholder:text-[14px]" />
         {#if $errors.message}
           <small class="text-red-600">{$errors.message}</small>
         {/if}
       </div>
     </div>
 
-    <div class="flex space-x-[16px] lg:space-x-[32px]">
+    <div class="flex gap-x-[1rem] lg:gap-x-[2rem]">
       <button
         disabled={$delayed}
         type="submit"
         class={cn(
-          'gradient-purple-blue-90 hover:shadow-cta block w-fit rounded-[12px] bg-left px-[18px] py-[13px] text-[16px] font-medium tracking-[0.48px] text-white transition-all duration-300 hover:scale-[1.01] hover:bg-right md:px-[32px]',
+          'gradient-purple-blue-90 hover:shadow-cta block w-fit rounded-[12px] bg-left px-[18px] py-[13px] text-[1rem] font-medium tracking-[0.48px] text-white transition-all duration-300 hover:scale-[1.01] hover:bg-right md:px-[2rem]',
           'flex-1 space-x-[10px]',
         )}>
         {#if $delayed}
@@ -103,7 +110,7 @@
         {:else}
           <img
             loading="lazy"
-            class="inline object-contain w-4 h-4"
+            class="inline h-4 w-4 object-contain"
             src="/icons/message.svg"
             alt="Send Message" />
         {/if}
