@@ -17,9 +17,7 @@ const gallery = {
           name: 'image',
           type: 'image',
           validation: (Rule: Rule) => Rule.required(),
-          options: {
-            hotspot: true,
-          },
+          options: { hotspot: true },
           fields: [
             {
               name: 'alt',
@@ -27,6 +25,12 @@ const gallery = {
               description: 'Important for SEO and accessibility',
               type: 'string',
               validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              title: 'Caption Text',
+              description: 'This is will display under the image popup',
+              type: 'string',
             },
           ],
         },
