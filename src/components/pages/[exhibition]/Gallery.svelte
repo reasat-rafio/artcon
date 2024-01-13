@@ -7,6 +7,7 @@
   import parallaxAnimation from '@/lib/actions/parallaxAnimation';
 
   export let props: GalleryProps;
+
   $: ({
     descriptionBlock: { title, description },
     images,
