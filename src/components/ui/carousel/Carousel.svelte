@@ -1,10 +1,10 @@
 <script lang="ts">
+  import { cn } from '@/lib/cn';
   import emblaCarouselSvelte, {
     type EmblaCarouselType,
     type EmblaOptionsType,
     type EmblaPluginType,
   } from 'embla-carousel-svelte';
-  import { twMerge } from 'tailwind-merge';
 
   export let plugins: EmblaPluginType[] = [];
   export let options: Partial<EmblaOptionsType> = {};
@@ -17,10 +17,9 @@
 </script>
 
 <div
-  class={twMerge('overflow-hidden', $$props.class)}
+  class={cn('overflow-hidden', $$props.class)}
   use:emblaCarouselSvelte={{ plugins, options }}
-  on:emblaInit={onInit}
->
+  on:emblaInit={onInit}>
   <div class="flex">
     <slot api={emblaApi} />
   </div>

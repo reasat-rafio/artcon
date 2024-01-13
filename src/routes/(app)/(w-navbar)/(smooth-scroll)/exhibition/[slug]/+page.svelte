@@ -6,10 +6,12 @@
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
+  import Lightbox from '@/components/widgets/light-box/Lightbox.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionDetailPageProps } from '@/lib/types/exhibition-detail.types';
+  import lightboxStore from '@/store/lightbox';
 
   export let data: PageProps<ExhibitionDetailPageProps>;
   $: ({
@@ -110,3 +112,7 @@
     <Footer.default {footer} {contact} logo={logoDark} />
   {/await}
 </div>
+
+{#if $lightboxStore.showLightbox}
+  <Lightbox />
+{/if}

@@ -95,14 +95,14 @@ devDependencies:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
   embla-carousel-autoplay:
-    specifier: 8.0.0-rc17
-    version: 8.0.0-rc17(embla-carousel@8.0.0-rc17)
+    specifier: 8.0.0-rc15
+    version: 8.0.0-rc15(embla-carousel@8.0.0-rc15)
   embla-carousel-svelte:
-    specifier: 8.0.0-rc17
-    version: 8.0.0-rc17(svelte@4.2.8)
+    specifier: 8.0.0-rc15
+    version: 8.0.0-rc15(svelte@4.2.8)
   embla-carousel-wheel-gestures:
     specifier: 8.0.0-rc05
-    version: 8.0.0-rc05(embla-carousel@8.0.0-rc17)
+    version: 8.0.0-rc05(embla-carousel@8.0.0-rc15)
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
@@ -3280,44 +3280,44 @@ packages:
   /electron-to-chromium@1.4.613:
     resolution: {integrity: sha512-r4x5+FowKG6q+/Wj0W9nidx7QO31BJwmR2uEo+Qh3YLGQ8SbBAFuDFpTxzly/I2gsbrFwBuIjrMp423L3O5U3w==}
 
-  /embla-carousel-autoplay@8.0.0-rc17(embla-carousel@8.0.0-rc17):
-    resolution: {integrity: sha512-U8YweUZg2DJd3IXxTV3UsjFyJEsQuCHOBRyJxoJZ8r1L/SYbYnk7BbknH6N0yfgzeMn6pL27RPEf0vIz+JtFYw==}
+  /embla-carousel-autoplay@8.0.0-rc15(embla-carousel@8.0.0-rc15):
+    resolution: {integrity: sha512-ABTbDJGNb9jzI9OV2vSpbUvxUA0ELmK0SI3yPm8Haj3ghssS+vElfahoDqp7zuFkWBRih6w3B51oMPKdF5J55A==}
     peerDependencies:
-      embla-carousel: 8.0.0-rc17
+      embla-carousel: 8.0.0-rc15
     dependencies:
-      embla-carousel: 8.0.0-rc17
+      embla-carousel: 8.0.0-rc15
     dev: true
 
-  /embla-carousel-reactive-utils@8.0.0-rc17(embla-carousel@8.0.0-rc17):
-    resolution: {integrity: sha512-eluEOK/u5HdjYaTLC4bUG3iTCnyX7RsYix3il0aH4ZECOKa5fS+pVK2vrM17Mgw6C5Hyjcr3r3lfJtGerVzVsQ==}
+  /embla-carousel-reactive-utils@8.0.0-rc15(embla-carousel@8.0.0-rc15):
+    resolution: {integrity: sha512-17Pr+N2vULFS8Lxzi2jaebwVloiFJLpdJMJLKJKQ26NzEmX8pVtHSu3uuTWc8HPwye5HFugqCPJ2QoWWhKs6Kg==}
     peerDependencies:
-      embla-carousel: 8.0.0-rc17
+      embla-carousel: 8.0.0-rc15
     dependencies:
-      embla-carousel: 8.0.0-rc17
+      embla-carousel: 8.0.0-rc15
     dev: true
 
-  /embla-carousel-svelte@8.0.0-rc17(svelte@4.2.8):
-    resolution: {integrity: sha512-Kgs8Bj2dQgnXQdTMHF2nnd7lxtfPx645RFNgqKfvbJ0EqVG6eBUCdpxlrhRFOlRvAA4muQk+22Pu8/ydRZ+pkw==}
+  /embla-carousel-svelte@8.0.0-rc15(svelte@4.2.8):
+    resolution: {integrity: sha512-mQF3I5Uu6hSI/i8Kaitv94DplIxpsdLDdxQJgP6Ubphv3wE2ZR0Lz4NSGuIZB2/ut8ZbBFhRVc0xRSQE7HMlJA==}
     peerDependencies:
       svelte: ^3.49.0 || ^4.0.0
     dependencies:
-      embla-carousel: 8.0.0-rc17
-      embla-carousel-reactive-utils: 8.0.0-rc17(embla-carousel@8.0.0-rc17)
+      embla-carousel: 8.0.0-rc15
+      embla-carousel-reactive-utils: 8.0.0-rc15(embla-carousel@8.0.0-rc15)
       svelte: 4.2.8
     dev: true
 
-  /embla-carousel-wheel-gestures@8.0.0-rc05(embla-carousel@8.0.0-rc17):
+  /embla-carousel-wheel-gestures@8.0.0-rc05(embla-carousel@8.0.0-rc15):
     resolution: {integrity: sha512-KfPlGuOvMterlg01FDd+Iws5wefInkyks4ai3p4n4B5WAiyel+DHs4AFu09UmshcnHpIH5cLJQ6VJCbp/kyy1A==}
     engines: {node: '>=10'}
     peerDependencies:
       embla-carousel: ^8.0.0 || ~8.0.0-rc03
     dependencies:
-      embla-carousel: 8.0.0-rc17
+      embla-carousel: 8.0.0-rc15
       wheel-gestures: 2.2.5
     dev: true
 
-  /embla-carousel@8.0.0-rc17:
-    resolution: {integrity: sha512-evF49b88VOitvqFtlvhvKVSu96Y8A+QSFdhok87Bfm8R7OYuk95FT+o8+M1GQLi/EhGDUlT193HTVAR0Wt2neQ==}
+  /embla-carousel@8.0.0-rc15:
+    resolution: {integrity: sha512-s7VPexK2h8VEYjEVQFnJAPcRnY5YqJYicFxKVVyWXP3Hk9FFDkT0kqVxMM1PcL187qHOUgmGVHOrfC8xWy3OKQ==}
     dev: true
 
   /emoji-regex@8.0.0:
