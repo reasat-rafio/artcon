@@ -61,24 +61,18 @@
             ({ isAvailable }) => isAvailable === true,
           );
           break;
-        case 'sold':
-          collectionsCopy = collectionsCopy.filter(
-            ({ displaySold }) => displaySold === true,
+        case 'artist-name':
+          collectionsCopy = collectionsCopy.sort((a, b) =>
+            a.artist.name.localeCompare(b.artist.name),
           );
           break;
-        case 'newest':
-          collectionsCopy = collectionsCopy.sort(
-            (a, b) =>
-              new Date(b._createdAt).getTime() -
-              new Date(a._createdAt).getTime(),
+        case 'media':
+          collectionsCopy = collectionsCopy.sort((a, b) =>
+            a.media.localeCompare(b.media),
           );
           break;
-        case 'oldest':
-          collectionsCopy = collectionsCopy.sort(
-            (a, b) =>
-              new Date(a._createdAt).getTime() -
-              new Date(b._createdAt).getTime(),
-          );
+        case 'year':
+          collectionsCopy = collectionsCopy.sort((a, b) => +a.year - +b.year);
           break;
         default:
           collectionsCopy = collections;

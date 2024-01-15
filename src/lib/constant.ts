@@ -35,3 +35,10 @@ function removeSlashFromArray(arr: string[]) {
     .map((item) => item.replace(/^\//, ''))
     .filter((item) => item !== '');
 }
+
+export const collectionDropdownOptions = [
+  { name: 'Available', value: 'available' },
+  { name: 'Artist Name', value: 'artist-name' },
+  { name: 'Media', value: 'media' },
+  { name: 'Year', value: 'year' },
+] as const;
