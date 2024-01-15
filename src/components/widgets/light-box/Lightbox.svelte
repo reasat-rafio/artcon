@@ -43,7 +43,7 @@
 <div
   in:scale={{ delay: 200, duration: 300 }}
   out:scale={{ start: 0.8, delay: 0, duration: 300 }}
-  class="fixed left-1/2 top-1/2 z-god flex h-full w-full max-w-screen-xl -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 overflow-y-auto p-3 lg:p-5">
+  class="fixed left-1/2 top-1/2 z-god flex h-full w-full max-w-screen-2xl -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 overflow-y-auto p-3 lg:p-5">
   <Slider bind:sliderApi />
   <ThumbnailSlider bind:sliderApi bind:thumbnailSliderApi {activeIndex} />
 </div>

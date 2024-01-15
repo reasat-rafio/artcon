@@ -10,6 +10,7 @@ const query = (params: Partial<Record<string, string>>) =>
     topTitle,
     subtitle,
     cta,
+    slug,
     seo,
     associationsList,
     description,

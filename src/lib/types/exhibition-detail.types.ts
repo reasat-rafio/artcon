@@ -27,6 +27,7 @@ export interface ExhibitionDetailPageProps {
   subtitle?: string;
   topTitle?: string;
   cta?: Cta;
+  slug: Slug;
   artists: ArtistsProps;
   artworks: ShortArtworks[];
   asset: Asset;

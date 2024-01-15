@@ -8,17 +8,20 @@
     ShortArtworks,
   } from '@/lib/types/common.types';
   import Artworks from './Artworks.svelte';
+  import type { Slug } from 'sanity';
 
   export let props: CommonArtworkSectionProps & {
     artworks?: ShortArtworks[];
     artworkAtLast?: boolean;
+    slug: Slug;
   };
 
   $: ({
     quote,
     artworks,
     artworkAtLast,
-    descriptionBlock: { description, title, cta },
+    descriptionBlock: { description, title },
+    slug,
   } = props);
 </script>
 
@@ -35,8 +38,10 @@
     <DescriptionBlock class={artworkAtLast && 'mb-section'}>
       <svelte:fragment slot="intro" let:C>
         <C.Title class="lg:mb-10">{title}</C.Title>
-        <Cta className="hidden lg:block capitalize" href={cta.href}>
-          {cta.title}
+        <Cta
+          className="hidden lg:block capitalize"
+          href="/exhibition/{slug.current}/artworks">
+          All Artworks
         </Cta>
       </svelte:fragment>
       <svelte:fragment slot="description" let:Description>
@@ -45,8 +50,8 @@
         </Description>
         <Cta
           className="mt-[1.56rem] block lg:hidden capitalize"
-          href={cta.href}>
-          {cta.title}
+          href="/exhibition/{slug.current}/artworks">
+          All Artworks
         </Cta>
       </svelte:fragment>
     </DescriptionBlock>

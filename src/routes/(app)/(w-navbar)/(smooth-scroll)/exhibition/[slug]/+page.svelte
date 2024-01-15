@@ -31,6 +31,7 @@
       gallery,
       associationsList,
       description,
+      slug,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -85,7 +86,8 @@
       <Publication props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
       {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
-        <Artwork.default props={{ ...s, artworks, artworkAtLast: true }} />
+        <Artwork.default
+          props={{ ...s, artworks, artworkAtLast: true, slug }} />
       {/await}
     {:else if s._type === 'exhibition.gallery'}
       {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
