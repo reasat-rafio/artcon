@@ -12,6 +12,7 @@ import type {
   CommonOtherExhibitionProps,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ProjectDetailPageProps {
   _id: string;
@@ -75,7 +76,7 @@ export interface GalleryProps {
   _key: string;
   _type: 'project.gallery';
   descriptionBlock: GalleryDescriptionBlock;
-  images: SanityAsset[];
+  images: SanityImageAssetDocument[];
 }
 export interface GalleryDescriptionBlock extends DescriptionBlock {
   title: string;

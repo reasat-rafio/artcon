@@ -16,7 +16,7 @@
   };
 </script>
 
-<div class="h-[150px]">
+<div class="max-h-[150px] min-h-[100px]">
   <div
     class="relative w-full flex-1 overflow-x-hidden overflow-y-visible"
     use:emblaCarouselSvelte={{
@@ -27,7 +27,7 @@
       plugins: [],
     }}
     on:emblaInit={onInit}>
-    <div class="ml-[-1.25rem] flex h-full w-full">
+    <div class="flex h-full w-full gap-x-[1.25rem]">
       {#each $lightboxStore.allImages as img, index}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div
@@ -35,13 +35,13 @@
             thumbnailSliderApi.scrollTo(index);
             sliderApi.scrollTo(index);
           }}
-          class="relative flex h-full flex-[0_0_15%] pl-[1.25rem] outline-none"
+          class="relative flex h-full flex-[0_0_35%] outline-none md:flex-[0_0_25%] xl:flex-[0_0_15%]"
           role="button"
           tabindex="0">
           <SanityImage
             lqip
             class={cn(
-              'h-full w-full rounded-md border object-cover transition-[border] duration-200',
+              'h-fit w-full rounded-md border object-cover transition-[border] duration-200 ',
               index === activeIndex
                 ? 'border-platinum/60'
                 : 'border-transparent',

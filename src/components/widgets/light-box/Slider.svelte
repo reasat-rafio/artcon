@@ -14,17 +14,19 @@
 </script>
 
 <div
-  class="relative w-full flex-1 overflow-hidden py-[50px]"
+  class="relative w-full flex-1 overflow-hidden"
   use:emblaCarouselSvelte={{
     options: {
       startIndex: $lightboxStore.activeIndex,
+      watchResize: true,
     },
     plugins: [],
   }}
   on:emblaInit={onInit}>
-  <div class="ml-[-1.25rem] flex h-full w-full">
+  <div class="flex h-full w-full items-center gap-x-[1.25rem]">
     {#each $lightboxStore.allImages as img}
-      <div class="relative flex h-full flex-[0_0_100%] pl-[1.25rem]">
+      <div
+        class="relative flex h-fit flex-[0_0_100%] cursor-grab flex-col overflow-hidden active:cursor-grabbing">
         <SanityImage
           lqip
           class="h-full w-full rounded-lg object-cover"
@@ -32,6 +34,10 @@
           src={img}
           imageUrlBuilder={imageBuilder}
           alt={img.alt} />
+
+        {#if !!img?.caption}
+          <span class="caption !text-rich-black">{img.caption}</span>
+        {/if}
       </div>
     {/each}
   </div>
