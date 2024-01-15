@@ -30,7 +30,7 @@
         {#each chunk as image, index}
           <Card
             on:lightboxAction={() => lightboxAction(index)}
-            class="pl-[1.5625rem] max-md:pt-[1.5625rem]"
+            class="pl-[1.5625rem] hover:cursor-zoom-in max-md:pt-[1.5625rem]"
             let:Image>
             <Image {image} />
           </Card>
