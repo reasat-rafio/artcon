@@ -44,6 +44,20 @@ export interface ExhibitionDetailPageProps {
   sections: Section[];
 }
 
+export type ExhibitionArtworksPageProps = Pick<
+  ExhibitionDetailPageProps,
+  | 'name'
+  | 'topTitle'
+  | 'subtitle'
+  | 'cta'
+  | 'seo'
+  | 'endDate'
+  | 'startDate'
+  | 'tag'
+  | 'asset'
+  | 'artworks'
+> & { artists: { personalDocuments: { name: string } } };
+
 type Section =
   | CommonHeroProps
   | CommonImageAsset
@@ -55,9 +69,9 @@ type Section =
   | GalleryProps
   | NewsAndMediaProps;
 
-export type ArtistsProps = SoloExhibitonProps | GroupExhibitionProps[];
+export type ArtistsProps = SoloExhibitionProps | GroupExhibitionProps[];
 
-export interface SoloExhibitonProps {
+export interface SoloExhibitionProps {
   data: ArtistSummaryProps;
   personalDocuments: PersonalDocuments;
 }

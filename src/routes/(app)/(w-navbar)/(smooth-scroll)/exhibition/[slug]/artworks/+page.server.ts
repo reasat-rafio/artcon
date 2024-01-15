@@ -13,6 +13,16 @@ const query = (params: Partial<Record<string, string>>) =>
     endDate,
     startDate,
     tag->,
+    count(artists) == 1 => {
+      artists[0]->{
+        personalDocuments { "name": name.en },
+      },
+    },
+    count(artists) > 1 => {
+      artists[]->{
+        ...personalDocuments {"name": name.en }
+      },
+    },
     asset {
       ...,
       ${asset('image')},
