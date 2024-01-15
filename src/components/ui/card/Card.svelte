@@ -18,6 +18,7 @@
   this={el}
   {href}
   class={cn($$props.class)}
-  on:click={() => dispatch('lightboxAction')}>
+  on:click={() => dispatch('lightboxAction')}
+  {...$$restProps}>
   <slot {Title} {Subtitle} Container={HeaderContainer} {Image} {Asset} />
 </svelte:element>
