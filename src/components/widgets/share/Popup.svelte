@@ -4,6 +4,7 @@
   import { page } from '$app/stores';
   import CopyIcon from '@/components/icons/Copy.svelte';
   import XIcon from '@/components/icons/X.svelte';
+  import Backdrop from '@/components/common/Backdrop.svelte';
 
   export let popupSate: 'visible' | 'hidden';
 
@@ -22,18 +23,6 @@
   onMount(() => {
     pageUrl = encodeURIComponent(document.URL);
     pageTitle = encodeURIComponent(document.title);
-
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-
-    const disableScrolling = () => {
-      window.scrollTo(scrollLeft, scrollTop);
-    };
-
-    window.addEventListener('scroll', disableScrolling);
-    return () => {
-      window.removeEventListener('scroll', disableScrolling);
-    };
   });
 
   const copyToClipBoard = () => {
@@ -102,14 +91,7 @@
   };
 </script>
 
-<div
-  tabindex="0"
-  role="button"
-  aria-label="backdrop"
-  on:click={() => (popupSate = 'hidden')}
-  on:keypress={() => (popupSate = 'hidden')}
-  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-xl"
-  transition:fade />
+<Backdrop on:close={() => (popupSate = 'hidden')} />
 
 <div
   class="fixed left-1/2 top-1/2 z-god h-min max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-[4px] bg-white px-[40px] py-[32px]"

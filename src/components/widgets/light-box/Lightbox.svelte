@@ -6,6 +6,7 @@
   import XIcon from '@/components/icons/X.svelte';
   import ThumbnailSlider from './ThumbnailSlider.svelte';
   import { onMount } from 'svelte';
+  import Backdrop from '@/components/common/Backdrop.svelte';
 
   let sliderApi: EmblaCarouselType;
   let thumbnailSliderApi: EmblaCarouselType;
@@ -37,14 +38,7 @@
   }
 </script>
 
-<div
-  tabindex="0"
-  role="button"
-  aria-label="backdrop"
-  on:click={closeLightbox}
-  on:keypress={closeLightbox}
-  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/70 backdrop-blur-xl"
-  transition:fade />
+<Backdrop class="bg-black-800/70" on:close={closeLightbox} />
 
 <div
   in:scale={{ delay: 200, duration: 300 }}
