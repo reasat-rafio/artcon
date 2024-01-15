@@ -44,7 +44,7 @@
     subtitle,
     topTitle,
     _type: 'common.hero',
-    title: artist?.name || name,
+    title: artist?.name ?? name,
   }} />
 
 <div class="relative z-10 mt-[100vh] bg-white">

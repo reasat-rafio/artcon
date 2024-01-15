@@ -31,7 +31,7 @@
     startDate,
     endDate,
   }));
-  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
+  $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
   $: _subTitle =
     subtitle ?? artists?.personalDocuments?.name ?? 'Group Exhibition';
 </script>

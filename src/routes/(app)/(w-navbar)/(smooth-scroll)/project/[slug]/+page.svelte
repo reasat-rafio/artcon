@@ -41,7 +41,7 @@
     endDate,
   }));
 
-  $: _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
+  $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -53,7 +53,7 @@
     cta,
     title: name,
     topTitle: _topTitle,
-    subtitle: subtitle || tag.name,
+    subtitle: subtitle ?? tag.name,
   }} />
 
 <div class="relative z-10 mt-[100vh] bg-white">
