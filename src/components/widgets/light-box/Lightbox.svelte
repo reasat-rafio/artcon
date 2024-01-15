@@ -43,7 +43,7 @@
   aria-label="backdrop"
   on:click={closeLightbox}
   on:keypress={closeLightbox}
-  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-xl"
+  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/70 backdrop-blur-xl"
   transition:fade />
 
 <div
