@@ -69,22 +69,22 @@
     </a>
     <div class="grid grid-cols-2 max-md:gap-[1.25rem]">
       {#if !!artworks?.length}
-        {#each artworks as { artworkImage, name, slug }}
+        {#each artworks as artwork}
           <a
-            href={`/collection/${slug.current}`}
+            href={`/collection?artist=${slug.current}`}
             class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
             <figure>
               <SanityImage
                 class="aspect-square h-full w-full rounded-[0.75rem] object-cover"
-                src={artworkImage}
+                src={artwork.artworkImage}
                 sizes="(min-width: 1024px) 15vw, 100vw"
-                alt={name}
+                alt={artwork.name}
                 imageUrlBuilder={imageBuilder} />
             </figure>
             <div
               class="pl-[0.63rem] pt-[0.63rem] md:absolute md:bottom-[1.34rem] md:left-[1.57rem]">
               <h5 class="title-regular !font-inter font-normal">
-                {name}
+                {artwork.name}
               </h5>
             </div>
           </a>

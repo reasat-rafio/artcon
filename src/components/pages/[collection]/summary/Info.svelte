@@ -11,13 +11,13 @@
 </script>
 
 <div class={cn('space-y-[1.25rem]', $$props.class)}>
-  <h4 class="body-regular font-inter font-normal">{artworkName}</h4>
+  <h4 class="body-regular !font-inter !font-normal">{artworkName}</h4>
 
   <ul class="text-[0.875rem] font-light leading-[1.25rem]">
-    <li>{media} (media)</li>
-    <li>{size} (size)</li>
-    <li>{artDate.creationDetails} (art date)</li>
-    <li>{frame} (frame)</li>
+    <li>{media}</li>
+    <li>{size}</li>
+    <li>{artDate.creationDetails}</li>
+    <li>{frame}</li>
     {#if !!moreInformation?.length}
       {#each moreInformation as info}
         <li>{info}</li>

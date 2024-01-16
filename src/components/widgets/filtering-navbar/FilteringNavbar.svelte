@@ -25,6 +25,8 @@
   let scrollY = 0;
 
   $: activeSearchParams = $page.url.searchParams.get('search');
+  $: activeSortParams = $page.url.searchParams.get('sort');
+  $: activeArtistParams = $page.url.searchParams.get('artist');
   const setLogoVisibility = () => {
     showLogo = sectionEl.getBoundingClientRect().top <= 10;
     setPositionFromTop();
@@ -88,6 +90,7 @@
 
 <svelte:window bind:scrollY on:scroll={setLogoVisibility} />
 <nav
+  id="filtering-navbar"
   bind:this={sectionEl}
   class={cn('sticky top-0 z-[1003] overflow-visible bg-white')}>
   <div class="relative">
@@ -95,7 +98,7 @@
       bind:this={contentWrapperEl}
       class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
       <div class="flex flex-1 items-center">
-        {#if !!activeSearchParams && !$uiStore.mobileNavDropdownOpen}
+        {#if (!!activeSearchParams || !!activeSortParams || !!activeArtistParams) && !$uiStore.mobileNavDropdownOpen}
           <button
             aria-label="Scroll to previous slide"
             transition:slide={{ axis: 'x' }}

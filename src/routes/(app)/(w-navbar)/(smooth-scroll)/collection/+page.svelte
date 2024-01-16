@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -9,6 +10,7 @@
   import { formatCollectionListingProps } from '@/lib/modify-props';
   import type { CollectionPageProps } from '@/lib/types/collection.types';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
+  import { lenisStore } from '@/store/lenis';
 
   export let data: PageProps<CollectionPageProps>;
 
@@ -21,12 +23,19 @@
     },
   } = data);
 
+  let contentBlockEl: HTMLDivElement;
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSortParams = $page.url.searchParams.get('sort');
+  $: activeArtistParams = $page.url.searchParams.get('artist');
   $: activeSearchParams,
+    activeArtistParams,
     activeSortParams,
-    filterBySearchParams(activeSearchParams, activeSortParams);
+    filterBySearchParams(
+      activeSearchParams,
+      activeSortParams,
+      activeArtistParams,
+    );
 
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
@@ -36,15 +45,29 @@
     sectionImages,
   );
 
+  $: if ($lenisStore && activeArtistParams && contentBlockEl && browser) {
+    $lenisStore.scrollTo(contentBlockEl, {
+      offset: 0,
+    });
+  }
+
   const filterBySearchParams = (
     activeSearchParams: string | null,
     activeSortParams: string | null,
+    activeArtistParams: string | null,
   ) => {
-    let collectionsCopy = collections;
+    let collectionsCopy = [...collections];
 
-    if (!activeSearchParams && !activeSortParams) {
+    if (!activeSearchParams && !activeSortParams && !activeArtistParams) {
       filteredCollections = collectionsCopy;
       return;
+    }
+
+    if (!!activeArtistParams) {
+      const filteredCollection = collectionsCopy.filter(
+        ({ artist: { slug } }) => slug.current === activeArtistParams,
+      );
+      collectionsCopy = filteredCollection;
     }
 
     if (!!activeSearchParams) {
@@ -90,9 +113,13 @@
     <Hero props={formatCollectionListingProps(props)} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
+<div bind:this={contentBlockEl} class="relative z-10 mt-[100vh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">Our collection</svelte:fragment>
+    <svelte:fragment slot="name">
+      {activeArtistParams
+        ? `${activeArtistParams}'s collection`
+        : 'Our collection'}
+    </svelte:fragment>
     <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>
       <SortingDropdown />
     </svelte:fragment>

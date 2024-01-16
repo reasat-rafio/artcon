@@ -28,7 +28,7 @@ export interface HighlightedCollection {
   topTitle?: string;
   cta?: Cta;
   asset: Asset;
-  artist: { name: string };
+  artist: { slug: Slug; name: string };
 }
 
 export interface Collection {
@@ -38,7 +38,7 @@ export interface Collection {
   artworkImage: SanityImageAssetDocument;
   media: string;
   year: string;
-  artist: { name: string };
+  artist: { name: string; slug: Slug };
   tag: Tag;
   displayNew: boolean;
   displaySold: boolean;

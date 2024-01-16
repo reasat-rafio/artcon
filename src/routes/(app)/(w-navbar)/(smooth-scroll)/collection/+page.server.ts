@@ -39,6 +39,7 @@ const query = groq`
         "media": information.media,
         "year": information.artDate.year,
         artist->{
+          slug,
           ...personalDocuments { "name": name.en}
         },
       },
