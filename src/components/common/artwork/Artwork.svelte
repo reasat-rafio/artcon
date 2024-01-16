@@ -40,7 +40,7 @@
         <C.Title class="lg:mb-10">{title}</C.Title>
         <Cta
           className="hidden lg:block capitalize"
-          href="/exhibition/{slug.current}/artworks">
+          href="/exhibition/{slug.current}/collection">
           All Artworks
         </Cta>
       </svelte:fragment>
@@ -50,7 +50,7 @@
         </Description>
         <Cta
           className="mt-[1.56rem] block lg:hidden capitalize"
-          href="/exhibition/{slug.current}/artworks">
+          href="/exhibition/{slug.current}/collection">
           All Artworks
         </Cta>
       </svelte:fragment>
