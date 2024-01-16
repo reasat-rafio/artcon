@@ -18,7 +18,7 @@
 
 <div class="max-h-[150px] min-h-[100px]">
   <div
-    class="relative w-full flex-1 overflow-x-hidden overflow-y-visible"
+    class="relative flex-1 w-full overflow-x-hidden overflow-y-visible"
     use:emblaCarouselSvelte={{
       options: {
         startIndex: $lightboxStore.activeIndex,
@@ -46,7 +46,7 @@
                 ? 'border-platinum/60'
                 : 'border-transparent',
             )}
-            sizes="100vw"
+            sizes="(min-width: 1024px) 15vw, (min-width: 768px) 25vw, 35vw"
             src={img}
             imageUrlBuilder={imageBuilder}
             alt={img.alt} />

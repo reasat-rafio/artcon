@@ -42,7 +42,6 @@
   let contentEl: HTMLElement;
   let innerWidth = 0;
   const f = superForm(data.form, {
-    taintedMessage: 'Are you sure you want leave?',
     validators: inquirySchema,
     resetForm: true,
     onResult: (event) => {
@@ -164,7 +163,7 @@
           <Information {name} {provenance} {information} {hideInquiryButton} />
 
           {#if !!form?.formMessage}
-            <p transition:slide class="head-8 text mt-2 text-eerie-black">
+            <p transition:slide class="mt-2 head-8 text text-eerie-black">
               {form?.formMessage}
             </p>
           {/if}

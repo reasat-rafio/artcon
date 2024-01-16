@@ -6,11 +6,29 @@
   import Input from './Input.svelte';
   import { cn } from '@/lib/cn';
   import XIcon from '@/components/icons/X.svelte';
+  import Backdrop from '@/components/common/Backdrop.svelte';
+  import { onMount } from 'svelte';
 
   export let form: SuperForm<typeof inquirySchema>;
   export let imageUrl: string;
 
   const { form: f, errors, enhance, delayed } = form;
+
+  onMount(() => {
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  });
+
+  function closeFormPopup() {
+    formPopupStore.setFormPopupVisibility(false);
+  }
+
+  function handleKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Escape') closeFormPopup();
+  }
 
   function clearForm() {
     f.update(() => ({
@@ -22,14 +40,7 @@
   }
 </script>
 
-<div
-  tabindex="0"
-  role="button"
-  aria-label="backdrop"
-  on:click={() => formPopupStore.setFormPopupVisibility(false)}
-  on:keypress={() => formPopupStore.setFormPopupVisibility(false)}
-  class="fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/50 backdrop-blur-xl"
-  transition:fade />
+<Backdrop on:close={closeFormPopup} />
 
 <div
   in:scale={{ delay: 200, duration: 300 }}
@@ -89,12 +100,12 @@
       </div>
     </div>
 
-    <div class="flex gap-x-[1rem] lg:gap-x-[2rem]">
+    <div class="flex flex-col-reverse gap-[1rem] sm:flex-row lg:gap-[2rem]">
       <button
         disabled={$delayed}
         type="submit"
         class={cn(
-          'gradient-purple-blue-90 hover:shadow-cta block w-fit rounded-[12px] bg-left px-[18px] py-[13px] text-[1rem] font-medium tracking-[0.48px] text-white transition-all duration-300 hover:scale-[1.01] hover:bg-right md:px-[2rem]',
+          'gradient-purple-blue-90 hover:shadow-cta block w-full rounded-[12px] bg-left px-[18px] py-[13px] text-[1rem] font-medium tracking-[0.48px] text-white transition-all duration-300 hover:scale-[1.01] hover:bg-right sm:w-fit md:px-[2rem]',
           'flex-1 space-x-[10px]',
         )}>
         {#if $delayed}
@@ -118,7 +129,7 @@
       <button
         on:click={clearForm}
         disabled={$delayed}
-        class="border-black/20 text-black/20 block w-fit rounded-[12px] border bg-[length:125%] bg-left px-[18px] py-[13px] text-[16px] font-medium tracking-[0.48px] transition-all duration-300 hover:scale-[1.01] hover:border-red-600 hover:bg-right hover:text-red-600 hover:shadow-xl md:px-[32px]">
+        class="border-black/20 text-black/20 block w-full rounded-[12px] border bg-[length:125%] bg-left px-[18px] py-[13px] text-[16px] font-medium tracking-[0.48px] transition-all duration-300 hover:scale-[1.01] hover:border-red-600 hover:bg-right hover:text-red-600 hover:shadow-xl sm:w-fit md:px-[32px]">
         Clear
       </button>
     </div>
