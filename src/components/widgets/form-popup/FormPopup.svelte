@@ -5,7 +5,6 @@
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';
   import { cn } from '@/lib/cn';
-  import { page } from '$app/stores';
   import XIcon from '@/components/icons/X.svelte';
 
   export let form: SuperForm<typeof inquirySchema>;
