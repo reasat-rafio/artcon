@@ -20,13 +20,13 @@ export interface CollectionDetailPageProps {
   subtitle?: string;
   topTitle?: string;
   cta?: Cta;
-  inquiryButton: Cta;
   information: Information;
   sections: Section[];
   asset: Asset;
   artist: Artist;
   otherCollections: OtherCollection[];
   provenance: Provenance;
+  hideInquiryButton?: boolean;
 }
 
 type Section =

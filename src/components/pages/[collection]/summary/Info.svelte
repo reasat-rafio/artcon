@@ -2,10 +2,10 @@
   import CtaBtn from '@/components/ui/Cta.svelte';
   import { cn } from '@/lib/cn';
   import type { Information } from '@/lib/types/collection-detail.types';
-  import type { Cta } from '@/lib/types/common.types';
+  import formPopupStore from '@/store/form-popup-store';
 
   export let artworkName: string;
-  export let inquiryButton: Cta;
+  export let hideInquiryButton: boolean = false;
   export let information: Information;
   $: ({ artDate, frame, media, size, moreInformation } = information);
 </script>
@@ -26,10 +26,13 @@
   </ul>
 </div>
 
-{#if !!inquiryButton?.title}
+{#if !hideInquiryButton}
   <div class={cn('relative z-10', $$props.class)}>
-    <CtaBtn variant="tertiary" href={inquiryButton.href}>
-      {inquiryButton.title}
+    <CtaBtn
+      el="button"
+      variant="tertiary"
+      onClick={() => formPopupStore.setFormPopupVisibility(true)}>
+      Inquiry
     </CtaBtn>
   </div>
 {/if}

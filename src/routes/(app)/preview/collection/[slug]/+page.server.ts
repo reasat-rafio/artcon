@@ -59,7 +59,7 @@ export const actions: Actions = {
     data.from_name = 'Artcon Website Inquiry Form Submission';
     data.page_url = event.url.href;
     data.subject =
-      'Inquiry Regarding Collection Commission Availability and Process From Artcon Website';
+      'Inquiry Regarding Collection Availability and Process From Artcon Website';
 
     await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
