@@ -2,22 +2,22 @@
   import CtaBtn from '@/components/ui/Cta.svelte';
   import { cn } from '@/lib/cn';
   import type { Information } from '@/lib/types/collection-detail.types';
-  import type { Cta } from '@/lib/types/common.types';
+  import formPopupStore from '@/store/form-popup-store';
 
   export let artworkName: string;
-  export let inquiryButton: Cta;
+  export let hideInquiryButton: boolean = false;
   export let information: Information;
   $: ({ artDate, frame, media, size, moreInformation } = information);
 </script>
 
 <div class={cn('space-y-[1.25rem]', $$props.class)}>
-  <h4 class="body-regular font-inter font-normal">{artworkName}</h4>
+  <h4 class="body-regular !font-inter !font-normal">{artworkName}</h4>
 
   <ul class="text-[0.875rem] font-light leading-[1.25rem]">
-    <li>{media} (media)</li>
-    <li>{size} (size)</li>
-    <li>{artDate.creationDetails} (art date)</li>
-    <li>{frame} (frame)</li>
+    <li>{media}</li>
+    <li>{size}</li>
+    <li>{artDate.creationDetails}</li>
+    <li>{frame}</li>
     {#if !!moreInformation?.length}
       {#each moreInformation as info}
         <li>{info}</li>
@@ -26,10 +26,13 @@
   </ul>
 </div>
 
-{#if !!inquiryButton?.title}
+{#if !hideInquiryButton}
   <div class={cn('relative z-10', $$props.class)}>
-    <CtaBtn variant="tertiary" href={inquiryButton.href}>
-      {inquiryButton.title}
+    <CtaBtn
+      el="button"
+      variant="tertiary"
+      onClick={() => formPopupStore.setFormPopupVisibility(true)}>
+      Inquiry
     </CtaBtn>
   </div>
 {/if}

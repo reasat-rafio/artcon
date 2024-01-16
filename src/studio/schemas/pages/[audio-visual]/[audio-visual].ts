@@ -38,6 +38,7 @@ const audioVisual = {
     {
       name: 'year',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'duration',

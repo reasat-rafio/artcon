@@ -42,7 +42,7 @@
     $$props.class,
   )}>
   <div
-    class="bg-cultured-gray max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
+    class="max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-cultured-gray py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
     <div
       class="relative h-full overflow-hidden px-[0.8055rem]"
       on:emblaInit={onInit}

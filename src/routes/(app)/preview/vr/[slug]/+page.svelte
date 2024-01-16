@@ -13,7 +13,7 @@
   import type { VrPreviewProps } from '@/lib/types/vr-preview';
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { fade } from 'svelte/transition';
 
   export let data: PageProps<VrPreviewProps>;

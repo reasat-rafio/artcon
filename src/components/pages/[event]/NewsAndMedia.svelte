@@ -1,7 +1,6 @@
 <script lang="ts">
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import Quote from '@/components/common/Quote.svelte';
-  // import Carousel from '@/components/ui/carousel/Carousel.svelte';
   import Card from '@/components/ui/card/Card.svelte';
   import type { NewsAndMediaProps } from '@/lib/types/event-detail.types';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
@@ -31,6 +30,7 @@
           <Card
             el="a"
             href={link}
+            target="_blank"
             class="space-y-[1.25rem] pl-[1.56rem]"
             let:Container
             let:Title
@@ -48,27 +48,6 @@
         {/each}
       </NewsAndMediaSlider>
     {/if}
-
-    <!-- <div class="mb-section">
-      <Gallery items={newsAndMedia} let:chunk>
-        {#each chunk as { image, link, subtitle, title }}
-          <Card
-            el="a"
-            href={link}
-            class="space-y-[20px] pl-[20px]"
-            let:Container
-            let:Title
-            let:Subtitle
-            let:Image>
-            <Image {image} />
-            <Container>
-              <Title>{title}</Title>
-              <Subtitle class="text-sonic-silver">{subtitle}</Subtitle>
-            </Container>
-          </Card>
-        {/each}
-      </Gallery>
-    </div> -->
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

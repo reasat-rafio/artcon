@@ -8,7 +8,7 @@
 
 <div in:fade class={cn('container-primary min-h-[50vh]', $$props.class)}>
   <h2
-    class="py-section text-[1rem] font-medium leading-[115.5%] tracking-[0.04rem] text-sonic-silver md:text-[1.5rem] xl:text-[2rem]">
+    class="py-section text-[1rem] font-medium !normal-case leading-[115.5%] tracking-[0.04rem] text-sonic-silver md:text-[1.5rem] xl:text-[2rem]">
     {message}
   </h2>
 </div>

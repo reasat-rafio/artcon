@@ -1,0 +1,44 @@
+<script lang="ts">
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import lightboxStore from '@/store/lightbox';
+  import emblaCarouselSvelte, {
+    type EmblaCarouselType,
+  } from 'embla-carousel-svelte';
+
+  export let sliderApi: EmblaCarouselType;
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    sliderApi = event.detail;
+  };
+</script>
+
+<div
+  class="relative flex-1 w-full overflow-hidden"
+  use:emblaCarouselSvelte={{
+    options: {
+      startIndex: $lightboxStore.activeIndex,
+      watchResize: true,
+    },
+    plugins: [],
+  }}
+  on:emblaInit={onInit}>
+  <div class="flex h-full w-full items-center gap-x-[1.25rem]">
+    {#each $lightboxStore.allImages as img}
+      <div
+        class="relative flex aspect-video w-full flex-[0_0_100%] cursor-grab flex-col overflow-hidden active:cursor-grabbing">
+        <SanityImage
+          lqip
+          class="object-cover w-full h-full rounded-lg"
+          sizes="100vw"
+          src={img}
+          imageUrlBuilder={imageBuilder}
+          alt={img.alt} />
+
+        {#if !!img?.caption}
+          <span class="caption !text-rich-black">{img.caption}</span>
+        {/if}
+      </div>
+    {/each}
+  </div>
+</div>

@@ -146,6 +146,9 @@
   .py-section {
     @apply py-sm md:py-[5rem] xl:py-xl;
   }
+  .my-section {
+    @apply my-sm md:my-[5rem] xl:my-xl;
+  }
 
   .px-section {
     @apply max-lg:px-[1.25rem] lg:pl-[16rem] lg:pr-[5rem];

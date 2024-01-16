@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import type {
   ArtistsProps,
-  SoloExhibitonProps,
+  SoloExhibitionProps,
 } from './types/exhibition-detail.types';
 
 import type { CommonImageAsset, Type } from './types/common.types';
@@ -81,7 +81,7 @@ export const calculateStatusBetweenDates = ({
 
 export const isSoloExhibition = (
   artist: ArtistsProps,
-): artist is SoloExhibitonProps => 'data' in artist;
+): artist is SoloExhibitionProps => 'data' in artist;
 
 export const delay = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));

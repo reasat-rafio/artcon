@@ -15,7 +15,7 @@ const query = groq`
                 ${asset('coverImage')}
             }
         },
-        "documentaries" : *[_type== "documentary"]|order(orderRank){
+        "documentaries" : *[_type== "documentary"]|order(year asc){
             _id,
             slug,
             name,

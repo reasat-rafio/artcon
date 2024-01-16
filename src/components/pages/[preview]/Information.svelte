@@ -13,8 +13,6 @@
   export let hideInquiryButton: boolean | undefined = undefined;
 
   function inquiryAction() {
-    console.log('here');
-
     formPopupStore.setFormPopupVisibility(true);
   }
 </script>
@@ -51,6 +49,6 @@
 
 {#if !hideInquiryButton}
   <div class="mt-[2.5rem]" data-load-animate="y">
-    <CtaBtn el="button" on:click={() => console.log('clicked')}>Inquire</CtaBtn>
+    <CtaBtn el="button" onClick={inquiryAction}>Inquire</CtaBtn>
   </div>
 {/if}

@@ -18,7 +18,7 @@
   export let artist: Artist;
   export let information: Information;
   export let artworkImages: SanityImageAssetDocument[];
-  export let inquiryButton: Cta;
+  export let hideInquiryButton: boolean = false;
 </script>
 
 <section class={cn('flex w-full flex-col lg:flex-row', $$props.class)}>
@@ -39,10 +39,14 @@
       class="mt-[3.75rem] hidden lg:block"
       {artworkName}
       {information}
-      {inquiryButton} />
+      {hideInquiryButton} />
   </div>
   <div class="flex-1 xl:pr-[9.69rem]">
     <Slider {artworkImages} />
-    <Info class="block lg:hidden" {artworkName} {information} {inquiryButton} />
+    <Info
+      class="block lg:hidden"
+      {artworkName}
+      {information}
+      {hideInquiryButton} />
   </div>
 </section>

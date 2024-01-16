@@ -8,7 +8,6 @@ export interface PublicationPreviewProps {
   _createdAt: Date;
   quote?: Quote;
   subtitle: string;
-  buyingLink: Cta;
   prices: Prices;
   slug: Slug;
   gallery: null;

@@ -36,7 +36,7 @@
 
 <aside class={cn('sticky top-5 z-10 mb-[2.5rem] hidden', $$props.class)}>
   <div
-    class="bg-cultured-gray mx-auto max-w-min cursor-grab overflow-hidden rounded-[2.68506rem] py-[0.62rem] active:cursor-grabbing">
+    class="mx-auto max-w-min cursor-grab overflow-hidden rounded-[2.68506rem] bg-cultured-gray py-[0.62rem] active:cursor-grabbing">
     <div
       class="relative overflow-hidden px-[calc(1.25rem/2)]"
       on:emblaInit={onInit}

@@ -7,7 +7,6 @@
     Provenance,
     SummaryProps,
   } from '@/lib/types/collection-detail.types';
-  import type { Cta } from '@/lib/types/common.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
   import ArtworkDetails from './ArtworkDetails.svelte';
@@ -22,7 +21,7 @@
       country: string;
     };
     information: Information;
-    inquiryButton: Cta;
+    hideInquiryButton?: boolean;
   };
 
   $: ({
@@ -32,7 +31,7 @@
     artworkImages,
     artworkName,
     information,
-    inquiryButton,
+    hideInquiryButton,
     vr,
   } = props);
 </script>
@@ -49,7 +48,7 @@
       {artworkImages}
       {artworkName}
       {information}
-      {inquiryButton} />
+      {hideInquiryButton} />
 
     {#if provenance?.title && provenance?.description}
       <DescriptionBlock class="mb-section">

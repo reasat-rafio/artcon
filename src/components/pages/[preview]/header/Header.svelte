@@ -19,14 +19,14 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
+      data-load-animate="y"
       on:click={() => {
         if (!!link) window.open(link, '_blank');
       }}
       class={cn('mb-[0.62rem] text-eerie-black', {
         'origin-left cursor-pointer transition-transform hover:scale-[1.01]':
           !!link,
-      })}
-      data-load-animate="y">
+      })}>
       <h2
         class="head-4 !inline font-medium !leading-[115.5%] !text-eerie-black">
         {title}

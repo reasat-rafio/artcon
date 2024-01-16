@@ -13,7 +13,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3 ',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, prices: { priceBDT, priceUSD, discountPriceBDT }, publicationImage } (_id)}
+  {#each items as { name, slug, _id, prices: { priceBDT, discountPriceBDT }, publicationImage } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -34,8 +34,6 @@
             {:else}
               <span>{priceBDT} BDT</span>
             {/if}
-            <span>/</span>
-            <span>{priceUSD} USD</span>
           </div>
         </Container>
       </Card>

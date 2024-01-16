@@ -6,11 +6,17 @@
   import Documentations from '@/components/pages/[collection]/documentations/Documentations.svelte';
   import Summary from '@/components/pages/[collection]/summary/Summary.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
+  import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
+  import { inquirySchema } from '@/lib/validator';
+  import formPopupStore from '@/store/form-popup-store';
+  import { toasts } from 'svelte-toasts';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import type { ActionData } from './$types';
 
-  export let data: PageProps<CollectionDetailPageProps>;
+  export let data;
 
   $: ({
     page: {
@@ -26,7 +32,7 @@
       artworkImages,
       information,
       otherCollections,
-      inquiryButton,
+      hideInquiryButton,
     },
     site: {
       logos: { logoLight, logoDark, ogImage },
@@ -34,6 +40,25 @@
       contact,
     },
   } = data);
+
+  const f = superForm(data.form, {
+    validators: inquirySchema,
+    resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+
+      if (result.type === 'success') {
+        formPopupStore.setFormPopupVisibility(false);
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+      }
+    },
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -44,7 +69,7 @@
     subtitle,
     topTitle,
     _type: 'common.hero',
-    title: artist?.name || name,
+    title: artist?.name ?? name,
   }} />
 
 <div class="relative z-10 mt-[100vh] bg-white">
@@ -61,7 +86,7 @@
           artworkName: name,
           artworkImages,
           information,
-          inquiryButton,
+          hideInquiryButton,
           artist: {
             born: artist.born,
             country: artist.country,
@@ -88,3 +113,9 @@
     <Footer.default {footer} {contact} logo={logoDark} />
   {/await}
 </div>
+
+{#if $formPopupStore.show}
+  <FormPopup
+    form={f}
+    contextMessage={`The user selected collection is titled ${name} by ${artist?.name}.`} />
+{/if}

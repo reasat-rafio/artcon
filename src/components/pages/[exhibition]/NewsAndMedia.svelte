@@ -31,6 +31,7 @@
           <Card
             el="a"
             href={link}
+            target="_blank"
             class="space-y-[1.25rem] pl-[1.56rem]"
             let:Container
             let:Title

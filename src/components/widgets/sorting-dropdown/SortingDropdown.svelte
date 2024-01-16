@@ -2,15 +2,10 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { fade, scale } from 'svelte/transition';
+  import { collectionDropdownOptions } from '@/lib/constant';
 
   $: activeSortParams = $page.url.searchParams.get('sort');
   let showDropDown = false;
-  let options = [
-    { name: 'Available', value: 'available' },
-    { name: 'Sold', value: 'sold' },
-    { name: 'Newest', value: 'newest' },
-    { name: 'Oldest', value: 'oldest' },
-  ];
 
   const handleDropdownFocusLoss = ({
     relatedTarget,
@@ -100,8 +95,8 @@
         in:scale={{ duration: 400 }}
         out:scale={{ start: 0.8, duration: 400 }}
         style="box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);"
-        class="absolute bottom-0 left-1/2 z-god flex -translate-x-1/2 translate-y-full flex-col rounded-[0.5rem] border-light-gray/50 bg-white pb-[0.69rem] pt-[0.63rem]">
-        {#each options as { name, value }}
+        class="absolute bottom-0 left-1/2 z-god flex w-full -translate-x-1/2 translate-y-full flex-col rounded-[0.5rem] border-light-gray/50 bg-white pb-[0.69rem] pt-[0.63rem]">
+        {#each collectionDropdownOptions as { name, value }}
           <li class="sub-title-regular-2">
             <button
               on:click={() => setSearchParams(value)}

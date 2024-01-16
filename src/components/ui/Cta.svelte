@@ -9,11 +9,13 @@
     variant?: Variant;
     className?: ClassValue | undefined;
     el?: 'button' | 'a';
+    onClick?: () => void;
   }
 
   export let variant: Variant = 'primary';
   export let className: ClassValue | undefined = undefined;
   export let el: 'button' | 'a' = 'a';
+  export let onClick: () => void = () => {};
 
   const variantClasses: Record<Variant, string> = {
     primary: 'border border-quick-silver text-sonic-silver',
@@ -22,11 +24,15 @@
     tertiary: 'gradient-base-style  bg-transparent g-red-gray text-white',
     quaternary: 'gradient-base-style bg-transparent g-white text-dark-gunmetal',
   };
+
+  function handleClick() {}
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
   this={el}
   {...$$restProps}
+  on:click={onClick}
   class={cn(
     'relative block h-fit w-fit min-w-[8.75rem] overflow-hidden rounded-2xl px-[2rem] py-[0.81rem] text-center text-[0.84375rem] font-medium uppercase leading-tight tracking-[0.01688rem]',
     variantClasses[variant],

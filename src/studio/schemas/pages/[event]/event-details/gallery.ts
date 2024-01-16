@@ -26,6 +26,12 @@ const gallery = {
               type: 'string',
               validation: (Rule: Rule) => Rule.required(),
             },
+            {
+              name: 'caption',
+              title: 'Caption Text',
+              description: 'This is will display under the image popup',
+              type: 'string',
+            },
           ],
         },
       ],

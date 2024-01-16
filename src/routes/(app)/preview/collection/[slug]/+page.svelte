@@ -9,14 +9,14 @@
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
-  import { gsap } from 'gsap';
-  import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
-  import type { ActionData } from './$types';
-  import { superForm } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup-store';
+  import { gsap } from 'gsap';
+  import { onMount } from 'svelte';
+  import { fade, slide } from 'svelte/transition';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import type { ActionData } from './$types';
+  import { toasts } from 'svelte-toasts';
 
   export let form: ActionData;
   export let data;
@@ -42,9 +42,22 @@
   let contentEl: HTMLElement;
   let innerWidth = 0;
   const f = superForm(data.form, {
-    taintedMessage: 'Are you sure you want leave?',
     validators: inquirySchema,
     resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+
+      if (result.type === 'success') {
+        formPopupStore.setFormPopupVisibility(false);
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+      }
+    },
   });
 
   onMount(() => {
@@ -118,12 +131,6 @@
       };
     }
   });
-
-  $: {
-    console.log('====================================');
-    console.log($formPopupStore.show);
-    console.log('====================================');
-  }
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -154,7 +161,7 @@
           <CollectionHeader
             {isAvailable}
             topic="Our collection"
-            name={artist?.name || name}
+            name={artist?.name ?? name}
             born={artist?.born}
             country={artist?.country} />
 
@@ -167,5 +174,7 @@
 </section>
 
 {#if $formPopupStore.show}
-  <FormPopup form={f} formMessage={form?.formMessage} />
+  <FormPopup
+    form={f}
+    contextMessage={`The user selected collection is titled ${name} by ${artist?.name}.`} />
 {/if}

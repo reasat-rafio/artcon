@@ -182,7 +182,6 @@ export interface CommonArtworkSectionProps {
   _type: 'common.artwork';
   descriptionBlock: DescriptionBlock & {
     title: string;
-    cta: Cta;
   };
   quote?: Quote;
 }

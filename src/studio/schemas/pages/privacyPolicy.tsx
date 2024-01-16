@@ -27,11 +27,6 @@ const privacyPolicy = {
       ],
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      title: 'Button',
-      name: 'cta',
-      type: 'cta',
-    },
   ],
   preview: {
     select: { title: 'seo.title' },

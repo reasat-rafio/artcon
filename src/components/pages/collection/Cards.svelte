@@ -43,7 +43,7 @@
         </div>
 
         <Container class="text-center">
-          <Title>{name}</Title>
+          <Title>{artist?.name ?? name}</Title>
           <div
             class="font-inter text-[0.8125rem] font-light tracking-[0.01625rem]">
             <span>{media}</span>
