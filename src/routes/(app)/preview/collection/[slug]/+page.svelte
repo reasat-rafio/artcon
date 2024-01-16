@@ -9,15 +9,13 @@
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
+  import { inquirySchema } from '@/lib/validator';
+  import formPopupStore from '@/store/form-popup-store';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade, slide } from 'svelte/transition';
-  import type { ActionData } from './$types';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
-  import Input from '@/components/widgets/form-popup/Input.svelte';
+  import type { ActionData } from './$types';
 
   export let form: ActionData;
   export let data;
@@ -47,7 +45,6 @@
     resetForm: true,
     onResult: (event) => {
       const result = event.result as FormResult<ActionData>;
-      console.log(result);
 
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);

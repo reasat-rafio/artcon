@@ -6,14 +6,21 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ServiceProps } from '@/lib/types/services.types';
+  import formPopupStore from '@/store/form-popup-store';
 
   export let services: ServiceProps[];
+  export let contextMessage: string;
+
+  function handleFormPopup(title: string) {
+    contextMessage = `The user selected service is titled ${title}.`;
+    formPopupStore.setFormPopupVisibility(true);
+  }
 </script>
 
 <section>
   <div
     class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
-    {#each services as { title, description, image, cta }, index}
+    {#each services as { title, description, image }, index}
       <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
         <DescriptionBlock>
           <svelte:fragment slot="intro" let:C>
@@ -25,6 +32,7 @@
             </Description>
             <Cta
               el="button"
+              onClick={() => handleFormPopup(title)}
               className="mt-md border-raisin-black text-raisin-black capitalize px-[1.94rem] leading-[120%]">
               Get Service
             </Cta>

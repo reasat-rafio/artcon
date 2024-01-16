@@ -132,10 +132,6 @@ const publication = {
       type: 'cta',
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      name: 'buyingLink',
-      type: 'cta',
-    },
   ],
   preview: {
     select: {

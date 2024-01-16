@@ -7,17 +7,20 @@
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import Cta from '@/components/ui/Cta.svelte';
+  import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
-  import type { PageProps } from '@/lib/types/common.types';
-  import type { PublicationPreviewProps } from '@/lib/types/publication-preview';
+  import { inquirySchema } from '@/lib/validator';
+  import formPopupStore from '@/store/form-popup-store';
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import type { ActionData } from './$types';
 
-  export let data: PageProps<PublicationPreviewProps>;
+  export let data;
 
   $: ({
     page: {
@@ -25,7 +28,6 @@
       name,
       sliderImageVideo,
       associationsList,
-      buyingLink,
       category,
       description,
       exproleLink,
@@ -44,6 +46,17 @@
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
   let innerWidth = 0;
+  const f = superForm(data.form, {
+    validators: inquirySchema,
+    resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+
+      if (result.type === 'success') {
+        formPopupStore.setFormPopupVisibility(false);
+      }
+    },
+  });
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
@@ -116,6 +129,10 @@
       };
     }
   });
+
+  function inquiryAction() {
+    formPopupStore.setFormPopupVisibility(true);
+  }
 </script>
 
 <Seo
@@ -230,10 +247,11 @@
               </ul>
               <div class="pt-[1.38rem]" data-load-animate="y">
                 <Cta
+                  el="button"
                   className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                  href={buyingLink.href}
+                  onClick={inquiryAction}
                   variant="tertiary">
-                  {buyingLink.title}
+                  Buy now
                 </Cta>
               </div>
             </section>
@@ -256,3 +274,9 @@
     </section>
   </article>
 </section>
+
+{#if $formPopupStore.show}
+  <FormPopup
+    form={f}
+    contextMessage={`The user selected publication is titled ${name} by ${subtitle}.`} />
+{/if}

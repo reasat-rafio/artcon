@@ -3,31 +3,43 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
+  import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type {
-    Cta as CtaProps,
-    PageProps,
-    SeoProps,
-  } from '@/lib/types/common.types';
+  import type { SeoProps } from '@/lib/types/common.types';
+  import { inquirySchema } from '@/lib/validator';
+  import formPopupStore from '@/store/form-popup-store';
   import type { PortableTextBlock } from 'sanity';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import type { ActionData } from './$types';
 
   type Props = {
     seo: SeoProps;
     title: string;
-    cta?: CtaProps;
     privacyPolicy: PortableTextBlock[];
   };
 
-  export let data: PageProps<Props>;
+  export let data;
 
   $: ({
-    page: { seo, privacyPolicy, title, cta },
+    page: { seo, privacyPolicy, title },
     site: {
       logos: { logoDark, ogImage },
       footer,
       contact,
     },
   } = data);
+
+  const f = superForm(data.form, {
+    validators: inquirySchema,
+    resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+
+      if (result.type === 'success') {
+        formPopupStore.setFormPopupVisibility(false);
+      }
+    },
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
@@ -41,14 +53,19 @@
         <PortableText value={privacyPolicy} />
       </Description>
 
-      {#if !!cta?.title && !!cta?.href}
-        <Cta
-          className="mt-[3.12rem] block border-raisin-black text-raisin-black"
-          href={cta.href}>
-          {cta.title}
-        </Cta>
-      {/if}
+      <Cta
+        el="button"
+        onClick={() => formPopupStore.setFormPopupVisibility(true)}
+        className="mt-[3.12rem] block border-raisin-black text-raisin-black">
+        Contact us
+      </Cta>
     </svelte:fragment>
   </DescriptionBlock>
 </div>
 <Footer {footer} {contact} logo={logoDark} />
+
+{#if $formPopupStore.show}
+  <FormPopup
+    form={f}
+    contextMessage={`User pressed "Contact Us" in privacy policy page.`} />
+{/if}
