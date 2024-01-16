@@ -10,7 +10,7 @@
   import { onMount } from 'svelte';
 
   export let form: SuperForm<typeof inquirySchema>;
-  export let imageUrl: string;
+  export let contextMessage: string;
 
   const { form: f, errors, enhance, delayed } = form;
 
@@ -79,10 +79,10 @@
 
     <Input
       class="hidden"
-      label="Collection Image Url"
-      name="document_image_url"
-      bind:value={imageUrl}
-      placeholder="Collection Image" />
+      label="Context"
+      name="context"
+      value={contextMessage}
+      placeholder="Context" />
 
     <div class="flex w-full flex-col gap-y-[1rem]">
       <label class="text-[1rem] font-semibold" for="message">Message</label>

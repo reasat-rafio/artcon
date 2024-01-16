@@ -21,8 +21,8 @@ export const inquirySchema = z.object({
   phone: z.string().regex(phoneRegex, 'Invalid phone number'),
   subject: z.string().optional(),
   page_url: z.string().optional(),
-  document_image_url: z.string().optional(),
   message: z.string().optional(),
+  context: z.string().optional(),
 });
 
 export type InquiryModel = z.infer<typeof inquirySchema>;

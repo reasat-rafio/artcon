@@ -15,5 +15,4 @@ export interface ServiceProps {
   title: string;
   image: SanityAsset;
   description: PortableTextBlock[];
-  cta?: Cta;
 }

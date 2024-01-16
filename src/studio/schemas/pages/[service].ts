@@ -19,11 +19,7 @@ const service = {
       of: [{ type: 'block', lists: [], styles: [] }],
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      title: 'Button',
-      name: 'cta',
-      type: 'cta',
-    },
+
     {
       name: 'image',
       type: 'image',

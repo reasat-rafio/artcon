@@ -23,13 +23,11 @@
             <Description>
               <PortableText value={description} />
             </Description>
-            {#if !!cta?.title && !!cta?.href}
-              <Cta
-                className="mt-md border-raisin-black text-raisin-black capitalize px-[1.94rem] leading-[120%]"
-                href={cta.href}>
-                {cta.title}
-              </Cta>
-            {/if}
+            <Cta
+              el="button"
+              className="mt-md border-raisin-black text-raisin-black capitalize px-[1.94rem] leading-[120%]">
+              Get Service
+            </Cta>
           </svelte:fragment>
         </DescriptionBlock>
 

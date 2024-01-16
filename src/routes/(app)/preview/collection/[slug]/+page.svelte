@@ -17,6 +17,7 @@
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup-store';
+  import Input from '@/components/widgets/form-popup/Input.svelte';
 
   export let form: ActionData;
   export let data;
@@ -155,7 +156,7 @@
           <CollectionHeader
             {isAvailable}
             topic="Our collection"
-            name={artist?.name || name}
+            name={artist?.name ?? name}
             born={artist?.born}
             country={artist?.country} />
 
@@ -163,7 +164,7 @@
           <Information {name} {provenance} {information} {hideInquiryButton} />
 
           {#if !!form?.formMessage}
-            <p transition:slide class="mt-2 head-8 text text-eerie-black">
+            <p transition:slide class="head-8 text mt-2 text-eerie-black">
               {form?.formMessage}
             </p>
           {/if}
@@ -174,5 +175,7 @@
 </section>
 
 {#if $formPopupStore.show}
-  <FormPopup form={f} imageUrl={artworkImages[0].asset.url} />
+  <FormPopup
+    form={f}
+    contextMessage={`The user selected collection is titled ${name} by ${artist?.name}.`} />
 {/if}
