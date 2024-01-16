@@ -16,6 +16,7 @@
   import { fade, slide } from 'svelte/transition';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
+  import { toasts } from 'svelte-toasts';
 
   export let form: ActionData;
   export let data;
@@ -48,6 +49,13 @@
 
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
       }
     },
   });
@@ -159,12 +167,6 @@
 
           <CollectionSlider {artworkImages} />
           <Information {name} {provenance} {information} {hideInquiryButton} />
-
-          {#if !!form?.formMessage}
-            <p transition:slide class="head-8 text mt-2 text-eerie-black">
-              {form?.formMessage}
-            </p>
-          {/if}
         </div>
       {/key}
     </section>

@@ -10,8 +10,8 @@
   import type { ActionData } from './$types';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';
+  import { toasts } from 'svelte-toasts';
 
-  export let form: ActionData;
   export let data;
   let {
     page,
@@ -31,6 +31,14 @@
 
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);
+
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
       }
     },
   });
@@ -53,8 +61,3 @@
 {#if $formPopupStore.show}
   <FormPopup form={f} {contextMessage} />
 {/if}
-<!-- {#if !!form?.formMessage}
-            <p transition:slide class="mt-2 head-8 text text-eerie-black">
-              {form?.formMessage}
-            </p>
-          {/if} -->

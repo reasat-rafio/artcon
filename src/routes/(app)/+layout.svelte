@@ -3,6 +3,7 @@
   import Lightbox from '@/components/widgets/light-box/Lightbox.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
   import lightboxStore from '@/store/lightbox';
+  import { ToastContainer, BootstrapToast } from 'svelte-toasts';
 
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
@@ -31,6 +32,9 @@
 
 <NavItems {nav} />
 <slot />
+<ToastContainer placement="bottom-right" let:data>
+  <BootstrapToast {data} />
+</ToastContainer>
 {#if $lightboxStore.showLightbox}
   <Lightbox />
 {/if}

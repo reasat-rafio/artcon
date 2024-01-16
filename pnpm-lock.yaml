@@ -163,6 +163,9 @@ devDependencies:
   svelte-seo:
     specifier: ^1.5.4
     version: 1.5.4(typescript@5.3.3)
+  svelte-toasts:
+    specifier: ^1.1.2
+    version: 1.1.2
   sveltekit-superforms:
     specifier: ^1.13.3
     version: 1.13.3(@sveltejs/kit@2.3.2)(svelte@4.2.8)(zod@3.22.4)
@@ -6832,6 +6835,10 @@ packages:
       schema-dts: 1.1.2(typescript@5.3.3)
     transitivePeerDependencies:
       - typescript
+    dev: true
+
+  /svelte-toasts@1.1.2:
+    resolution: {integrity: sha512-m+yL4eEKXyJoyjTYaH1j1GFwF0Pi8YDqnVfwWPDmwi4712iZesv+TNCmToSNlav3R5Vkmc8ZBRkT8DOcu3sywQ==}
     dev: true
 
   /svelte-youtube-embed@0.2.1(@sveltejs/kit@2.3.2):

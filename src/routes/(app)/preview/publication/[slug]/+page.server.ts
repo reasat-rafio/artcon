@@ -42,7 +42,7 @@ export const actions: Actions = {
     data.subject =
       'Inquiry Regarding Purchasing Publications on Artcon Website';
 
-    const response = await fetch('https://api.web3forms.com/submit', {
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,14 +51,6 @@ export const actions: Actions = {
       body: JSON.stringify(data),
     });
 
-    const result = await response.json();
-
-    let formMessage: string | undefined = undefined;
-
-    if (result?.success) {
-      formMessage = result.message;
-    }
-
-    return { form, formMessage };
+    return { form };
   },
 };

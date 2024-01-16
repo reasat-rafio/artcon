@@ -42,7 +42,7 @@ export const actions: Actions = {
     data.access_key = FORM_ACCESS_KEY;
     data.from_name = 'Artcon Website Contact Form Submission';
 
-    const response = await fetch('https://api.web3forms.com/submit', {
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,13 +51,6 @@ export const actions: Actions = {
       body: JSON.stringify(data),
     });
 
-    const result = await response.json();
-
-    let formMessage = null;
-    if (result?.success) {
-      formMessage = result.message;
-    }
-
-    return { form, formMessage };
+    return { form };
   },
 };

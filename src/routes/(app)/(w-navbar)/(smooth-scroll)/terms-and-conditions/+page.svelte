@@ -11,6 +11,7 @@
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types.js';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
+  import { toasts } from 'svelte-toasts';
 
   type Props = {
     seo: SeoProps;
@@ -37,6 +38,14 @@
 
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);
+
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
       }
     },
   });

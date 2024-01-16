@@ -16,6 +16,7 @@
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
+  import { toasts } from 'svelte-toasts';
   import { fade } from 'svelte/transition';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
@@ -54,6 +55,13 @@
 
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
       }
     },
   });

@@ -5,8 +5,9 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import Form from '@/components/pages/contact/Form.svelte';
   import type { ActionData } from './$types';
-  import { superForm } from 'sveltekit-superforms/client';
+  import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import { contactSchema } from '@/lib/validator';
+  import { toasts } from 'svelte-toasts';
 
   export let data;
   export let form: ActionData;
@@ -24,6 +25,19 @@
     taintedMessage: 'Are you sure you want leave?',
     validators: contactSchema,
     resetForm: true,
+    onResult: (event) => {
+      const result = event.result as FormResult<ActionData>;
+
+      if (result.type === 'success') {
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+      }
+    },
   });
 </script>
 
@@ -42,7 +56,7 @@
         </div>
       {/if}
     {/each}
-    <Form form={f} formMessage={form?.formMessage} />
+    <Form form={f} />
   </div>
   <Footer {footer} {contact} logo={logoDark} />
 </div>
