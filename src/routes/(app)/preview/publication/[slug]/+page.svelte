@@ -168,7 +168,7 @@
       {#key transitioningOut}
         <div
           on:outroend={onOutroEnd}
-          out:fade={{ duration: 500 }}
+          out:fade={{ duration: 0 }}
           class="preview_content_container">
           <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
 
