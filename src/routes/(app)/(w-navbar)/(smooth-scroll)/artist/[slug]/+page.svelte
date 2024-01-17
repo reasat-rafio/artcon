@@ -21,6 +21,7 @@
       otherArtists,
       publications,
       publicationsFromExhibitions,
+      slug,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -55,7 +56,12 @@
           personalDocuments,
         }} />
     {:else if s._type === 'common.artwork'}
-      <Artwork props={{ ...s, artworks }} />
+      <Artwork
+        props={{
+          ...s,
+          artworks,
+          ctaLink: `/collection?artist=${slug.current}`,
+        }} />
     {:else if s._type === 'artist.publication'}
       <Publication publications={allPublications} />
     {/if}
