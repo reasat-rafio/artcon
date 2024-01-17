@@ -122,7 +122,7 @@
   };
 </script>
 
-<Seo seo={{ ...seo, title: `Artworks | ${name}` }} siteOgImg={ogImage} />
+<Seo seo={{ ...seo, title: `Collection | ${name}` }} siteOgImg={ogImage} />
 <Hero
   props={{
     _type: 'common.hero',

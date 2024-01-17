@@ -136,6 +136,7 @@ export interface PublicationProps {
   _key: string;
   _type: 'exhibition.publication';
   invitationCardImage: SanityImageAssetDocument;
+  fullInvitationCardImage: SanityImageAssetDocument;
 }
 
 export interface GalleryProps {

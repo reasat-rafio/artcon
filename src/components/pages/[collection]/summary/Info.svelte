@@ -2,7 +2,7 @@
   import CtaBtn from '@/components/ui/Cta.svelte';
   import { cn } from '@/lib/cn';
   import type { Information } from '@/lib/types/collection-detail.types';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
 
   export let artworkName: string;
   export let hideInquiryButton: boolean = false;

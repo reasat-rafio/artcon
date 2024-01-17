@@ -7,7 +7,7 @@
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { SeoProps } from '@/lib/types/common.types';
   import { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import type { PortableTextBlock } from 'sanity';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';

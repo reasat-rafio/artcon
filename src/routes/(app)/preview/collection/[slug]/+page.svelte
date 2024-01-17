@@ -10,7 +10,7 @@
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade, slide } from 'svelte/transition';
