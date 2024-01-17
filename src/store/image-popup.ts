@@ -4,14 +4,14 @@ import { writable } from 'svelte/store';
 type ImagePopupStore = {
   show: boolean;
   image: SanityImageAssetDocument | null;
-  caption: string;
+  caption: string | null;
 };
 
 const createImagePopupStore = () => {
   const { subscribe, update } = writable<ImagePopupStore>({
     show: false,
     image: null,
-    caption: '',
+    caption: null,
   });
 
   const setImage = (image: SanityImageAssetDocument, caption: string) => {

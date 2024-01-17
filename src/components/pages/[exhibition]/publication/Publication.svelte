@@ -8,6 +8,7 @@
     Publication,
     PublicationProps,
   } from '@/lib/types/exhibition-detail.types';
+  import imagePopupStore from '@/store/image-popup';
 
   export let props: PublicationProps & {
     publication: Publication;
@@ -25,7 +26,16 @@
       slug,
     },
     invitationCardImage,
+    fullInvitationCardImage,
   } = props);
+
+  function triggerPopup() {
+    imagePopupStore.setVisibility(true);
+    imagePopupStore.setImage(
+      fullInvitationCardImage,
+      fullInvitationCardImage?.caption,
+    );
+  }
 </script>
 
 <section>
@@ -35,10 +45,12 @@
     {/if}
 
     <ParallaxScrollImage
+      on:triggerPopup={triggerPopup}
       class="mb-section"
       images={[
         {
           img: invitationCardImage,
+          triggerPopup: true,
         },
         {
           img: { ...publicationImage, alt: name },

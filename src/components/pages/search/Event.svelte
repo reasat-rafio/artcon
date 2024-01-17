@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { EmblaCarouselType } from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import { chunkArray } from '@/lib/helper';
   import ListContainer from './ListContainer.svelte';

@@ -12,6 +12,8 @@
   import '@fontsource/inter/700.css';
   import '@fontsource/outfit/500.css';
   import '@fontsource/outfit/600.css';
+  import imagePopupStore from '@/store/image-popup';
+  import ImagePopup from '@/components/widgets/image-popup/ImagePopup.svelte';
 
   export let data;
   $: ({
@@ -37,4 +39,7 @@
 </ToastContainer>
 {#if $lightboxStore.showLightbox}
   <Lightbox />
+{/if}
+{#if $imagePopupStore.show}
+  <ImagePopup />
 {/if}

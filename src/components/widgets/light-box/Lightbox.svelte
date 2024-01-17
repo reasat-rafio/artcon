@@ -1,7 +1,7 @@
 <script lang="ts">
   import lightboxStore from '@/store/lightbox';
-  import { type EmblaCarouselSvelteType } from 'embla-carousel-svelte';
-  import { blur, fade, scale } from 'svelte/transition';
+  import { type EmblaCarouselType } from 'embla-carousel';
+  import { scale } from 'svelte/transition';
   import Slider from './Slider.svelte';
   import XIcon from '@/components/icons/X.svelte';
   import ThumbnailSlider from './ThumbnailSlider.svelte';

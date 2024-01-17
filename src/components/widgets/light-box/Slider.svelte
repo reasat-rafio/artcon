@@ -2,9 +2,8 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import lightboxStore from '@/store/lightbox';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { type EmblaCarouselType } from 'embla-carousel';
 
   export let sliderApi: EmblaCarouselType;
 
@@ -14,7 +13,7 @@
 </script>
 
 <div
-  class="relative flex-1 w-full overflow-hidden"
+  class="relative w-full flex-1 overflow-hidden"
   use:emblaCarouselSvelte={{
     options: {
       startIndex: $lightboxStore.activeIndex,
@@ -29,7 +28,7 @@
         class="relative flex aspect-video w-full flex-[0_0_100%] cursor-grab flex-col overflow-hidden active:cursor-grabbing">
         <SanityImage
           lqip
-          class="object-cover w-full h-full rounded-lg"
+          class="h-full w-full rounded-lg object-cover"
           sizes="100vw"
           src={img}
           imageUrlBuilder={imageBuilder}
