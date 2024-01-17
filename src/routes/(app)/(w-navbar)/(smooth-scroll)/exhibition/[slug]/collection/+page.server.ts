@@ -31,19 +31,25 @@ const query = (params: Partial<Record<string, string>>) =>
           "mov": video_hevc.asset->url,
       }
     },
-    artworks[]->{
+    "collections": artworks[]->{
+      _id,
+      _createdAt,
+      slug,
+      name,
+      tag->,
+      displayNew,
+      displaySold,
+      isAvailable,
       information,
-      "artwork": artworkImages[0] {
-        ...,
-        asset->{
-          ...,
-          metadata {
-           lqip,
-          dimensions
-         }
-       }
-      }
+      ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      "media": information.media,
+      "year": information.artDate.year,
+      artist->{
+        slug,
+        ...personalDocuments { "name": name.en}
+      },
     },
+    "tags": *[_type == "collectionTag"]|order(orderRank)
   }`;
 
 export const load: ServerLoad = async ({ params }) => {

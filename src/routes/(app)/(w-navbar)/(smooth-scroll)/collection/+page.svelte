@@ -11,6 +11,7 @@
   import type { CollectionPageProps } from '@/lib/types/collection.types';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import { lenisStore } from '@/store/lenis';
+  import { onMount } from 'svelte';
 
   export let data: PageProps<CollectionPageProps>;
 
@@ -45,11 +46,13 @@
     sectionImages,
   );
 
-  $: if ($lenisStore && activeArtistParams && contentBlockEl && browser) {
-    $lenisStore.scrollTo(contentBlockEl, {
-      offset: 0,
-    });
-  }
+  onMount(() => {
+    setTimeout(() => {
+      if ($lenisStore && activeArtistParams && contentBlockEl && browser) {
+        $lenisStore.scrollTo(contentBlockEl);
+      }
+    }, 100);
+  });
 
   const filterBySearchParams = (
     activeSearchParams: string | null,
