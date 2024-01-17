@@ -17,7 +17,10 @@
 
   let searchInputEl: HTMLInputElement;
   let searchIsActive = false;
-  const setSearchBarActive = () => (searchIsActive = true);
+  const setSearchBarActive = () => {
+    searchIsActive = true;
+    searchInputEl.focus();
+  };
 
   $: isDarkNavPaths = darkNavPaths.includes($page.url.pathname);
   $: hamburgerColor = isDarkNavPaths
@@ -30,9 +33,7 @@
     : 'Search';
 
   const redirectToSearchPage = (value: string) => {
-    const searchParams = new URLSearchParams({
-      q: value,
-    });
+    const searchParams = new URLSearchParams({ q: value });
     goto('/search?' + searchParams.toString());
   };
 </script>

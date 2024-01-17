@@ -95,7 +95,9 @@ export const searchQuery = (query: string) => groq`
       gallery->{name},
       caption,
       url,
-      category->
+      category->,
+      ${asset('thumbnail')},
+
     },
 
     "publications" : *[_type == "publication" && !(_id in path("drafts.**"))
@@ -203,7 +205,8 @@ export const defaultSearchQuery = groq`
             gallery->{name},
             caption,
             url,
-            category->
+            category->,
+            ${asset('thumbnail')},
         },
         "publications" : *[_type== "publication"]|order(orderRank)[0...5]{
             _id,

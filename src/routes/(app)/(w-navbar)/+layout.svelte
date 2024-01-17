@@ -4,6 +4,7 @@
   import { darkNavPaths } from '@/lib/constant';
   import MobileNavDropdown from '@/components/common/navigation/MobileNavDropdown.svelte';
   import uiStore from '@/store/ui';
+  import { page } from '$app/stores';
 
   export let data: { site: SiteProps; pathname: string };
   $: ({
@@ -21,7 +22,9 @@
     : logoLight;
 </script>
 
-<Navbar {logo} />
+{#if !$page.url.href.includes('search')}
+  <Navbar {logo} />
+{/if}
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}

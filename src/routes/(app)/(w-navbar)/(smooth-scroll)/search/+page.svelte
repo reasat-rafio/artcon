@@ -67,6 +67,12 @@
       ? logoLight
       : logoDark
     : logoLight;
+
+  $: {
+    console.log('====================================');
+    console.log($searchStore?.data?.vrs);
+    console.log('====================================');
+  }
 </script>
 
 <svelte:window bind:innerWidth />
