@@ -13,12 +13,11 @@
   import formPopupStore from '@/store/form-popup';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { fade, slide } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
   import { toasts } from 'svelte-toasts';
 
-  export let form: ActionData;
   export let data;
   $: ({
     page: {
