@@ -7,6 +7,7 @@
   import { type EmblaCarouselType } from 'embla-carousel';
 
   export let thumbnailSliderApi: EmblaCarouselType;
+  export let thumbnailSliderEl: HTMLDivElement;
   export let sliderApi: EmblaCarouselType;
   export let activeIndex: number;
 
@@ -15,13 +16,16 @@
   };
 </script>
 
-<div class="max-h-[9.375rem] min-h-[6.25rem]">
+<div
+  bind:this={thumbnailSliderEl}
+  class="h-fit max-h-[9.375rem] min-h-[6.25rem]">
   <div
     class="relative h-full w-full flex-1 overflow-hidden"
     use:emblaCarouselSvelte={{
       options: {
         startIndex: $lightboxStore.activeIndex,
         align: 'start',
+        skipSnaps: true,
       },
       plugins: [],
     }}

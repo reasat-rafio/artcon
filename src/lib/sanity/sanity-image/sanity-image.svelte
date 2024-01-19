@@ -104,6 +104,8 @@
   img {
     opacity: var(--initial-opacity);
     transition: opacity 250ms ease-in-out;
+    height: 100%;
+    width: 100%;
   }
   .blurred-img.loaded img {
     opacity: 1;

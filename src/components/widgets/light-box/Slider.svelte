@@ -24,19 +24,27 @@
   on:emblaInit={onInit}>
   <div class="flex h-full w-full items-center gap-x-[1.25rem]">
     {#each $lightboxStore.allImages as img}
+      {@const url = imageBuilder
+        .image(img)
+        .withOptions({ auto: 'format' })
+        .maxWidth(1920)
+        .url()}
       <div
-        class="relative flex aspect-video w-full flex-[0_0_100%] cursor-grab flex-col overflow-hidden active:cursor-grabbing">
-        <SanityImage
-          lqip
-          class="h-full w-full rounded-lg object-cover"
-          sizes="100vw"
-          src={img}
-          imageUrlBuilder={imageBuilder}
-          alt={img.alt} />
+        class="flex h-full w-full flex-[0_0_100%] items-center justify-center">
+        <figure class="h-fit w-fit sm:h-full">
+          <SanityImage
+            sizes="100vw"
+            class="aspect-auto h-[95%]  rounded-xl object-contain"
+            src={img}
+            imageUrlBuilder={imageBuilder} />
 
-        {#if !!img?.caption}
-          <span class="caption !text-rich-black">{img.caption}</span>
-        {/if}
+          {#if !!img?.caption}
+            <figurecaption
+              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white lg:pl-[1.88rem]">
+              {img.caption}
+            </figurecaption>
+          {/if}
+        </figure>
       </div>
     {/each}
   </div>
