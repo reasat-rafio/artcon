@@ -1,7 +1,5 @@
 <script lang="ts">
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightLongRounded from '@/components/icons/ChevronRightLongRounded.svelte';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
   import searchStore from '@/store/search';
   import { fade, slide } from 'svelte/transition';
@@ -55,27 +53,26 @@
           {#if carouselCanScrollPrev}
             <button
               aria-label="Scroll to next slide"
-              transition:slide
               class="rotate-180"
               on:click={scrollPrev}>
               <ChevronRightLongRounded />
             </button>
           {/if}
           {#if carouselCanScrollNext}
-            <button
-              aria-label="Scroll to next slide"
-              transition:slide
-              on:click={scrollNext}>
+            <button aria-label="Scroll to next slide" on:click={scrollNext}>
               <ChevronRightLongRounded />
             </button>
           {/if}
         </div>
         <div class="mt-[2.38rem] block space-x-[0.62rem] xl:hidden">
-          <button aria-label="Scroll to previous slide" on:click={scrollPrev}>
-            <ChevronLeftRounded />
+          <button
+            aria-label="Scroll to previous slide"
+            class="rotate-180"
+            on:click={scrollPrev}>
+            <ChevronRightLongRounded />
           </button>
           <button aria-label="Scroll to right slide" on:click={scrollNext}>
-            <ChevronRightRounded />
+            <ChevronRightLongRounded />
           </button>
         </div>
       </nav>

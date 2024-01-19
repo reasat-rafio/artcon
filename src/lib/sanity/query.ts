@@ -170,21 +170,35 @@ export const defaultSearchQuery = groq`
           count(artists) > 1 => "Group Exhibition",
         )
       },
-        "events" : *[_type== "event"]|order(orderRank)[0...5]{
-            _id,
-            slug,
-            name,
-            tag->,
-            asset {
-                ...,
-                ${asset('image')},
-                video{
-                    "webm": video_webm.asset->url,
-                    "mov": video_hevc.asset->url,
-                }
-            },
+      "events" : *[_type== "event"]|order(orderRank)[0...5]{
+        _id,
+        slug,
+        name,
+        tag->,
+        asset {
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
         },
-        "collections" : *[_type== "collection"]|order(orderRank)[0...5]{
+      },
+      "artists" : *[_type== "artist"]|order(orderRank)[0...5]{
+        _id,
+        slug,
+        tag->,
+        ...personalDocuments {
+          "name": name.en,
+            ${asset('artistPortrait')},
+          },
+          artworks[0...4]->{
+            name,
+            slug,
+            ${asset('artworkImages[0]', { as: 'artworkImage' })},
+          }
+      },
+      "collections" : *[_type== "collection"]|order(orderRank)[0...5]{
             _id,
             slug,
             name,

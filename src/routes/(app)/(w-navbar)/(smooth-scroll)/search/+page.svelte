@@ -7,6 +7,7 @@
   import Collection from '@/components/pages/search/Collection.svelte';
   import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
+  import Artist from '@/components/pages/search/artist/Artist.svelte';
   import Exhibition from '@/components/pages/search/Exhibition.svelte';
   import Project from '@/components/pages/search/Project.svelte';
   import Publication from '@/components/pages/search/Publication.svelte';
@@ -31,6 +32,7 @@
       exhibitions,
       projects,
       publications,
+      artists,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -49,6 +51,7 @@
     exhibitions,
     projects,
     publications,
+    artists,
   });
 
   let contentEl: HTMLDivElement;
@@ -63,7 +66,8 @@
     !!$searchStore?.data?.vrs?.length ||
     !!$searchStore?.data?.publications?.length ||
     !!$searchStore?.data?.documentaries?.length ||
-    !!$searchStore?.data?.projects?.length;
+    !!$searchStore?.data?.projects?.length ||
+    !!$searchStore?.data?.artists?.length;
 
   $: logo = darkNavPaths.includes($page.url.pathname)
     ? $uiStore.mobileNavDropdownOpen
@@ -101,6 +105,9 @@
       {/if}
       {#if !!$searchStore?.data?.events?.length}
         <Event {slidesNumber} />
+      {/if}
+      {#if !!$searchStore?.data?.artists?.length}
+        <Artist />
       {/if}
       {#if !!$searchStore?.data?.collections?.length}
         <Collection {slidesNumber} />

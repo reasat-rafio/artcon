@@ -6,6 +6,7 @@ import type { Project } from '@/lib/types/project.types';
 import type { Publication } from '@/lib/types/publication.types';
 import type { Vr } from '@/lib/types/vr.types';
 import type { SeoProps } from './common.types';
+import type { Artist } from './artist.types';
 
 export interface SearchPageProps {
   seo: SeoProps;
@@ -16,6 +17,7 @@ export interface SearchPageProps {
   publications: Publication[];
   documentaries: Documentary[];
   projects: Project[];
+  artists: Artist[];
 }
 
 export interface SearchResult {
