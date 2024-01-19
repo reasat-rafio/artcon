@@ -22,9 +22,7 @@
     : logoLight;
 </script>
 
-{#if !$page.url.href.includes('search')}
-  <Navbar {logo} />
-{/if}
+<Navbar {logo} />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}
