@@ -8,7 +8,6 @@
   import { onMount } from 'svelte';
   import SliderItem from './SliderItem.svelte';
   import { cn } from '@/lib/cn';
-  gsap.registerPlugin(Observer);
 
   export let props: CollectionsProps & { contact: ContactProps };
   $: ({ collections, contact } = props);
@@ -19,6 +18,8 @@
   let isLoaded = false;
 
   onMount(() => {
+    gsap.registerPlugin(Observer);
+
     const rootEl = document.querySelector('#landing-page') as HTMLElement;
 
     adjustInitialScrollPosition(rootEl);

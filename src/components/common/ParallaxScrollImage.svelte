@@ -6,7 +6,6 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
-  gsap.registerPlugin(ScrollTrigger);
 
   type Image = {
     img: SanityImageAssetDocument;
@@ -24,6 +23,8 @@
   let innerWidth = 0;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const sectionHeight = rootEl.getBoundingClientRect().height / 2;
     const sectionWidth = rootEl.getBoundingClientRect().width;
 
