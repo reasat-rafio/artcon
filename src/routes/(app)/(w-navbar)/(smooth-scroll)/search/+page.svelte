@@ -7,11 +7,11 @@
   import Collection from '@/components/pages/search/Collection.svelte';
   import Documentary from '@/components/pages/search/Documentary.svelte';
   import Event from '@/components/pages/search/Event.svelte';
-  import Artist from '@/components/pages/search/artist/Artist.svelte';
   import Exhibition from '@/components/pages/search/Exhibition.svelte';
   import Project from '@/components/pages/search/Project.svelte';
   import Publication from '@/components/pages/search/Publication.svelte';
   import Vr from '@/components/pages/search/Vr.svelte';
+  import Artist from '@/components/pages/search/artist/Artist.svelte';
   import SearchBar from '@/components/pages/search/search-bar/SearchBar.svelte';
   import { darkNavPaths } from '@/lib/constant';
   import type { PageProps } from '@/lib/types/common.types';

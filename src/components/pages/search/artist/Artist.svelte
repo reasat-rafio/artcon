@@ -37,7 +37,7 @@
   title="Our Artists"
   showNav={artists?.length > 1}>
   <div
-    class="h-full !w-full overflow-x-hidden"
+    class="h-full !w-full overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [],

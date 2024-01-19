@@ -84,7 +84,23 @@ export const searchQuery = (query: string) => groq`
         }
       },
     },
-
+    "artists" : *[_type == "artist" && !(_id in path("drafts.**"))
+    && (personalDocuments.name.en match "${query}*" || artworks[]->name match "${query}*")]
+     | score(boost(personalDocuments.name.en match "${query}*", 3))
+     | order(_score desc) {
+      _id,
+      slug,
+      tag->,
+      ...personalDocuments {
+        "name": name.en,
+          ${asset('artistPortrait')},
+      },
+      artworks[0...4]->{
+         name,
+        slug,
+        ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      }
+    },
     "vrs" : *[_type == "vr" && !(_id in path("drafts.**"))
 	  && (name match "${query}*" || category->name match "${query}*" || gallery->name match "${query}*")]
 	  | score(boost(name match "${query}*", 3))
