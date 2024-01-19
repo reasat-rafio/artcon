@@ -18,6 +18,7 @@ import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ArtistDetailPageProps {
   seo: SeoProps;
+  slug: Slug;
   siteDocuments: {
     sections: Section[];
     asset: Asset;

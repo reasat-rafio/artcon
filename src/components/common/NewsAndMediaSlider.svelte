@@ -3,7 +3,7 @@
 
   import { cn } from '@/lib/cn';
   import { chunkArray } from '@/lib/helper';
-  import type { EmblaCarouselType } from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import { slide } from 'svelte/transition';
   import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';

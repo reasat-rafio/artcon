@@ -6,7 +6,7 @@
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ServicesPageProps } from '@/lib/types/services.types';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import type { ActionData } from './$types';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';

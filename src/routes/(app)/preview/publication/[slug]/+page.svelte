@@ -12,7 +12,7 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
@@ -168,7 +168,7 @@
       {#key transitioningOut}
         <div
           on:outroend={onOutroEnd}
-          out:fade={{ duration: 500 }}
+          out:fade={{ duration: 0 }}
           class="preview_content_container">
           <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
 

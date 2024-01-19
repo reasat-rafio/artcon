@@ -21,6 +21,7 @@ import type {
   PersonalDocuments,
 } from './artist-detail.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
+import type { Collection } from './collection.types';
 
 export interface ExhibitionDetailPageProps {
   _id: string;
@@ -55,8 +56,11 @@ export type ExhibitionArtworksPageProps = Pick<
   | 'startDate'
   | 'tag'
   | 'asset'
-  | 'artworks'
-> & { artists: { personalDocuments: { name: string } } };
+> & {
+  artists: { personalDocuments: { name: string } };
+  tags: Tag[];
+  collections: Collection[];
+};
 
 type Section =
   | CommonHeroProps
@@ -132,6 +136,7 @@ export interface PublicationProps {
   _key: string;
   _type: 'exhibition.publication';
   invitationCardImage: SanityImageAssetDocument;
+  fullInvitationCardImage: SanityImageAssetDocument;
 }
 
 export interface GalleryProps {

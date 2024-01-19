@@ -3,19 +3,33 @@
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import Hero from '@/components/common/hero-list/Hero.svelte';
+  import Hero from '@/components/common/hero/Hero.svelte';
   import Listing from '@/components/pages/collection/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
-  import { formatCollectionListingProps } from '@/lib/modify-props';
-  import type { CollectionPageProps } from '@/lib/types/collection.types';
-  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
+  import {
+    calculateStatusBetweenDates,
+    createListingItemWithImage,
+  } from '@/lib/helper';
+  import type { PageProps } from '@/lib/types/common.types';
+  import type { ExhibitionArtworksPageProps } from '@/lib/types/exhibition-detail.types';
   import { lenisStore } from '@/store/lenis';
+  import { onMount } from 'svelte';
 
-  export let data: PageProps<CollectionPageProps>;
-
+  export let data: PageProps<ExhibitionArtworksPageProps>;
   $: ({
-    page: { sections, seo, collections, tags },
+    page: {
+      name,
+      cta,
+      subtitle,
+      topTitle,
+      startDate,
+      endDate,
+      seo,
+      collections,
+      asset,
+      artists,
+      tags,
+    },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -24,6 +38,15 @@
   } = data);
 
   let contentBlockEl: HTMLDivElement;
+
+  $: ({ date, status } = calculateStatusBetweenDates({
+    startDate,
+    endDate,
+  }));
+  $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
+  $: _subTitle =
+    subtitle ?? artists?.personalDocuments?.name ?? 'Group Exhibition';
+
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSortParams = $page.url.searchParams.get('sort');
@@ -37,19 +60,18 @@
       activeArtistParams,
     );
 
-  $: sectionImages = sections.filter(
-    ({ _type }) => _type === 'common.imageAsset',
-  ) as CommonImageAsset[];
   $: collectionsWithImages = createListingItemWithImage(
     filteredCollections,
-    sectionImages,
+    [],
   );
 
-  $: if ($lenisStore && activeArtistParams && contentBlockEl && browser) {
-    $lenisStore.scrollTo(contentBlockEl, {
-      offset: 0,
-    });
-  }
+  onMount(() => {
+    setTimeout(() => {
+      if ($lenisStore && contentBlockEl && browser) {
+        $lenisStore.scrollTo(contentBlockEl);
+      }
+    }, 100);
+  });
 
   const filterBySearchParams = (
     activeSearchParams: string | null,
@@ -61,13 +83,6 @@
     if (!activeSearchParams && !activeSortParams && !activeArtistParams) {
       filteredCollections = collectionsCopy;
       return;
-    }
-
-    if (!!activeArtistParams) {
-      const filteredCollection = collectionsCopy.filter(
-        ({ artist: { slug } }) => slug.current === activeArtistParams,
-      );
-      collectionsCopy = filteredCollection;
     }
 
     if (!!activeSearchParams) {
@@ -107,19 +122,20 @@
   };
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
-{#each sections as props}
-  {#if props._type === 'collection.hero'}
-    <Hero props={formatCollectionListingProps(props)} />
-  {/if}
-{/each}
+<Seo seo={{ ...seo, title: `Collection | ${name}` }} siteOgImg={ogImage} />
+<Hero
+  props={{
+    _type: 'common.hero',
+    asset,
+    cta,
+    title: name,
+    topTitle: _topTitle,
+    subtitle: _subTitle,
+  }} />
+
 <div bind:this={contentBlockEl} class="relative z-10 mt-[100vh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">
-      {activeArtistParams
-        ? `${activeArtistParams}'s collection`
-        : 'Our collection'}
-    </svelte:fragment>
+    <svelte:fragment slot="name">{name} collection</svelte:fragment>
     <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>
       <SortingDropdown />
     </svelte:fragment>

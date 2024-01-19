@@ -55,6 +55,7 @@ const query = (params: Partial<Record<string, string>>) =>
       ...,
       ${asset('image')},
       ${asset('invitationCardImage')},
+      ${asset('fullInvitationCardImage')},
       ${asset('images[]', { as: 'images' })},
       ${asset('artworks[]', { as: 'artworks' })},
       vr->{

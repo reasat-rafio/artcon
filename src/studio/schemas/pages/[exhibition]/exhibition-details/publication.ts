@@ -27,6 +27,27 @@ const publication = {
         },
       ],
     },
+    {
+      name: 'fullInvitationCardImage',
+      type: 'image',
+      validation: (Rule: Rule) => Rule.required(),
+      options: { hotspot: true },
+      description: 'This image will display on the popup modal',
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
   ],
   preview: {
     select: {

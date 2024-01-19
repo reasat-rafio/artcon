@@ -2,26 +2,29 @@
   import { twMerge } from 'tailwind-merge';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import type { SanityImageAssetDocument } from '@sanity/client';
-  gsap.registerPlugin(ScrollTrigger);
 
   type Image = {
     img: SanityImageAssetDocument;
     link?: string;
     caption?: string;
+    triggerPopup?: boolean;
   };
   export let images: [Image, Image];
   $: [firstImage, secondImage] = images;
 
+  const dispatch = createEventDispatcher();
   let rootEl: HTMLDivElement;
   let firstImageEl: HTMLElement;
   let firstImageMobileEl: HTMLElement;
   let innerWidth = 0;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const sectionHeight = rootEl.getBoundingClientRect().height / 2;
     const sectionWidth = rootEl.getBoundingClientRect().width;
 
@@ -57,15 +60,18 @@
 <div
   bind:this={rootEl}
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-end">
-    <svelte:element
-      this={!!firstImage?.link ? 'a' : 'div'}
-      href={firstImage?.link}
-      class="hidden sm:block">
-      <figure bind:this={firstImageEl}>
+    <div class="hidden cursor-default sm:block">
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <figure
+        bind:this={firstImageEl}
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
         <SanityImage
-          class="aspect-square w-full rounded-xl object-cover"
+          class="aspect-square w-full rounded-xl object-cover {firstImage?.triggerPopup
+            ? 'cursor-pointer'
+            : 'cursor-default'}"
           sizes="30vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -76,14 +82,17 @@
           </figurecaption>
         {/if}
       </figure>
-    </svelte:element>
-    <svelte:element
-      this={!!firstImage?.link ? 'a' : 'div'}
-      href={firstImage?.link}
-      class="block sm:hidden">
-      <figure class="ml-auto w-[13.4375rem]" bind:this={firstImageMobileEl}>
+    </div>
+    <div class="block sm:hidden">
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+      <figure
+        bind:this={firstImageMobileEl}
+        class="ml-auto w-[13.4375rem]"
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
         <SanityImage
-          class="aspect-square rounded-xl object-cover"
+          class="aspect-square  rounded-xl object-cover {firstImage?.triggerPopup
+            ? 'cursor-pointer'
+            : 'cursor-default'}"
           sizes="70vw"
           src={firstImage.img}
           alt={firstImage.img?.alt}
@@ -94,7 +103,7 @@
           </figurecaption>
         {/if}
       </figure>
-    </svelte:element>
+    </div>
   </div>
   <div class="flex-1 xl:pr-[9.69rem]">
     <svelte:element

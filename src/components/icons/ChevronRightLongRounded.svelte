@@ -1,5 +1,5 @@
 <svg
-  class="h-[2.8125rem] w-[2.8125rem] transition-transform duration-500 hover:scale-105"
+  class="z-30 h-[2.8125rem] w-[2.8125rem] transition-transform duration-500 hover:scale-105"
   xmlns="http://www.w3.org/2000/svg"
   width="45"
   height="46"

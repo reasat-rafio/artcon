@@ -2,9 +2,8 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import lightboxStore from '@/store/lightbox';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { type EmblaCarouselType } from 'embla-carousel';
 
   export let sliderApi: EmblaCarouselType;
 
@@ -14,7 +13,7 @@
 </script>
 
 <div
-  class="relative flex-1 w-full overflow-hidden"
+  class="relative w-full flex-1 overflow-hidden"
   use:emblaCarouselSvelte={{
     options: {
       startIndex: $lightboxStore.activeIndex,
@@ -25,19 +24,27 @@
   on:emblaInit={onInit}>
   <div class="flex h-full w-full items-center gap-x-[1.25rem]">
     {#each $lightboxStore.allImages as img}
+      {@const url = imageBuilder
+        .image(img)
+        .withOptions({ auto: 'format' })
+        .maxWidth(1920)
+        .url()}
       <div
-        class="relative flex aspect-video w-full flex-[0_0_100%] cursor-grab flex-col overflow-hidden active:cursor-grabbing">
-        <SanityImage
-          lqip
-          class="object-cover w-full h-full rounded-lg"
-          sizes="100vw"
-          src={img}
-          imageUrlBuilder={imageBuilder}
-          alt={img.alt} />
+        class="flex h-full w-full flex-[0_0_100%] items-center justify-center">
+        <figure class="h-fit w-fit sm:h-full">
+          <SanityImage
+            sizes="100vw"
+            class="aspect-auto h-[95%]  rounded-xl object-contain"
+            src={img}
+            imageUrlBuilder={imageBuilder} />
 
-        {#if !!img?.caption}
-          <span class="caption !text-rich-black">{img.caption}</span>
-        {/if}
+          {#if !!img?.caption}
+            <figurecaption
+              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white lg:pl-[1.88rem]">
+              {img.caption}
+            </figurecaption>
+          {/if}
+        </figure>
       </div>
     {/each}
   </div>

@@ -13,7 +13,7 @@
   export let props: CommonArtworkSectionProps & {
     artworks?: ShortArtworks[];
     artworkAtLast?: boolean;
-    slug: Slug;
+    ctaLink: string;
   };
 
   $: ({
@@ -22,6 +22,7 @@
     artworkAtLast,
     descriptionBlock: { description, title },
     slug,
+    ctaLink,
   } = props);
 </script>
 
@@ -38,9 +39,7 @@
     <DescriptionBlock class={artworkAtLast && 'mb-section'}>
       <svelte:fragment slot="intro" let:C>
         <C.Title class="lg:mb-10">{title}</C.Title>
-        <Cta
-          className="hidden lg:block capitalize"
-          href="/exhibition/{slug.current}/collection">
+        <Cta className="hidden lg:block capitalize" href={ctaLink}>
           All Artworks
         </Cta>
       </svelte:fragment>
@@ -48,9 +47,7 @@
         <Description>
           <PortableText value={description} />
         </Description>
-        <Cta
-          className="mt-[1.56rem] block lg:hidden capitalize"
-          href="/exhibition/{slug.current}/collection">
+        <Cta className="mt-[1.56rem] block lg:hidden capitalize" href={ctaLink}>
           All Artworks
         </Cta>
       </svelte:fragment>

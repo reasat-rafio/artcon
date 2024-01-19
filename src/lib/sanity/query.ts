@@ -84,7 +84,23 @@ export const searchQuery = (query: string) => groq`
         }
       },
     },
-
+    "artists" : *[_type == "artist" && !(_id in path("drafts.**"))
+    && (personalDocuments.name.en match "${query}*" || artworks[]->name match "${query}*")]
+     | score(boost(personalDocuments.name.en match "${query}*", 3))
+     | order(_score desc) {
+      _id,
+      slug,
+      tag->,
+      ...personalDocuments {
+        "name": name.en,
+          ${asset('artistPortrait')},
+      },
+      artworks[0...4]->{
+         name,
+        slug,
+        ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      }
+    },
     "vrs" : *[_type == "vr" && !(_id in path("drafts.**"))
 	  && (name match "${query}*" || category->name match "${query}*" || gallery->name match "${query}*")]
 	  | score(boost(name match "${query}*", 3))
@@ -95,7 +111,9 @@ export const searchQuery = (query: string) => groq`
       gallery->{name},
       caption,
       url,
-      category->
+      category->,
+      ${asset('thumbnail')},
+
     },
 
     "publications" : *[_type == "publication" && !(_id in path("drafts.**"))
@@ -168,21 +186,35 @@ export const defaultSearchQuery = groq`
           count(artists) > 1 => "Group Exhibition",
         )
       },
-        "events" : *[_type== "event"]|order(orderRank)[0...5]{
-            _id,
-            slug,
-            name,
-            tag->,
-            asset {
-                ...,
-                ${asset('image')},
-                video{
-                    "webm": video_webm.asset->url,
-                    "mov": video_hevc.asset->url,
-                }
-            },
+      "events" : *[_type== "event"]|order(orderRank)[0...5]{
+        _id,
+        slug,
+        name,
+        tag->,
+        asset {
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
         },
-        "collections" : *[_type== "collection"]|order(orderRank)[0...5]{
+      },
+      "artists" : *[_type== "artist"]|order(orderRank)[0...5]{
+        _id,
+        slug,
+        tag->,
+        ...personalDocuments {
+          "name": name.en,
+            ${asset('artistPortrait')},
+          },
+          artworks[0...4]->{
+            name,
+            slug,
+            ${asset('artworkImages[0]', { as: 'artworkImage' })},
+          }
+      },
+      "collections" : *[_type== "collection"]|order(orderRank)[0...5]{
             _id,
             slug,
             name,
@@ -203,7 +235,8 @@ export const defaultSearchQuery = groq`
             gallery->{name},
             caption,
             url,
-            category->
+            category->,
+            ${asset('thumbnail')},
         },
         "publications" : *[_type== "publication"]|order(orderRank)[0...5]{
             _id,

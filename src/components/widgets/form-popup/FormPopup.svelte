@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import { fade, scale, blur } from 'svelte/transition';
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';

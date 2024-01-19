@@ -1,9 +1,11 @@
 <script lang="ts">
   import NavItems from '@/components/common/navigation/nav-items/NavItems.svelte';
+  import ImagePopup from '@/components/widgets/image-popup/ImagePopup.svelte';
   import Lightbox from '@/components/widgets/light-box/Lightbox.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
+  import imagePopupStore from '@/store/image-popup';
   import lightboxStore from '@/store/lightbox';
-  import { ToastContainer, BootstrapToast } from 'svelte-toasts';
+  import { BootstrapToast, ToastContainer } from 'svelte-toasts';
 
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
@@ -37,4 +39,7 @@
 </ToastContainer>
 {#if $lightboxStore.showLightbox}
   <Lightbox />
+{/if}
+{#if $imagePopupStore.show}
+  <ImagePopup />
 {/if}

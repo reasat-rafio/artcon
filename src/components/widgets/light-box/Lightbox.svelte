@@ -1,15 +1,17 @@
 <script lang="ts">
   import lightboxStore from '@/store/lightbox';
-  import { type EmblaCarouselSvelteType } from 'embla-carousel-svelte';
-  import { blur, fade, scale } from 'svelte/transition';
+  import { type EmblaCarouselType } from 'embla-carousel';
+  import { scale } from 'svelte/transition';
   import Slider from './Slider.svelte';
   import XIcon from '@/components/icons/X.svelte';
   import ThumbnailSlider from './ThumbnailSlider.svelte';
   import { onMount } from 'svelte';
   import Backdrop from '@/components/common/Backdrop.svelte';
+  import { cn } from '@/lib/cn';
 
   let sliderApi: EmblaCarouselType;
   let thumbnailSliderApi: EmblaCarouselType;
+  let thumbnailSliderEl: HTMLDivElement;
   $: activeIndex = $lightboxStore.activeIndex;
 
   $: if (thumbnailSliderApi && sliderApi) {
@@ -43,9 +45,17 @@
 <div
   in:scale={{ delay: 200, duration: 300 }}
   out:scale={{ start: 0.8, delay: 0, duration: 300 }}
-  class="fixed left-1/2 top-1/2 z-god flex h-full w-full max-w-screen-2xl -translate-x-1/2 -translate-y-1/2 flex-col gap-y-5 overflow-y-auto p-3 lg:p-5">
+  class={cn(
+    'fixed left-1/2 top-1/2 z-god -translate-x-1/2 -translate-y-1/2',
+    'h-full max-h-screen w-full max-w-2xl overflow-y-auto',
+    'flex flex-col gap-y-5 p-3 lg:p-5',
+  )}>
   <Slider bind:sliderApi />
-  <ThumbnailSlider bind:sliderApi bind:thumbnailSliderApi {activeIndex} />
+  <ThumbnailSlider
+    bind:thumbnailSliderEl
+    bind:sliderApi
+    bind:thumbnailSliderApi
+    {activeIndex} />
 </div>
 
 <button

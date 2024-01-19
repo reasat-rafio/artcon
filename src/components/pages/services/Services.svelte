@@ -6,7 +6,7 @@
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { ServiceProps } from '@/lib/types/services.types';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
 
   export let services: ServiceProps[];
   export let contextMessage: string;

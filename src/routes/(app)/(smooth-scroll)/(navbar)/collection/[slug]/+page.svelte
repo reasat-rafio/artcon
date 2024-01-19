@@ -11,7 +11,7 @@
   import type { CollectionDetailPageProps } from '@/lib/types/collection-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
   import { inquirySchema } from '@/lib/validator';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
   import { toasts } from 'svelte-toasts';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';

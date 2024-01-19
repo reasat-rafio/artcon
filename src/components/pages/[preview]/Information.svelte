@@ -5,7 +5,7 @@
     Information,
   } from '@/lib/types/collection-detail.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import formPopupStore from '@/store/form-popup-store';
+  import formPopupStore from '@/store/form-popup';
 
   export let name: string;
   export let provenance: Provenance;

@@ -86,7 +86,12 @@
     {:else if s._type === 'common.artwork'}
       {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
         <Artwork.default
-          props={{ ...s, artworks, artworkAtLast: true, slug }} />
+          props={{
+            ...s,
+            artworks,
+            artworkAtLast: true,
+            ctaLink: `/exhibition/${slug.current}/collection`,
+          }} />
       {/await}
     {:else if s._type === 'exhibition.gallery'}
       {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}

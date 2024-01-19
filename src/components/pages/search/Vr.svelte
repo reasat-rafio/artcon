@@ -1,7 +1,7 @@
 <script lang="ts">
   import { chunkArray } from '@/lib/helper';
   import searchStore from '@/store/search';
-  import type { EmblaCarouselType } from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import Cards from '../vr/Cards.svelte';
   import ListContainer from './ListContainer.svelte';

@@ -2,17 +2,19 @@
   import { chunkArray } from '@/lib/helper';
   import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import ListContainer from './ListContainer.svelte';
-  import Cards from '../project/Cards.svelte';
+  import ListContainer from '../ListContainer.svelte';
   import searchStore from '@/store/search';
-  import LoadingWrapper from './LoadingWrapper.svelte';
-
-  export let slidesNumber: number;
+  import LoadingWrapper from '../LoadingWrapper.svelte';
+  import Card from './Card.svelte';
+  import { flip } from 'svelte/animate';
+  import { fade } from 'svelte/transition';
+  import type { Artist } from '@/lib/types/artist.types';
 
   let emblaApi: EmblaCarouselType;
-  $: chunks = chunkArray($searchStore?.data?.projects ?? [], slidesNumber);
+
   let carouselCanScrollNext: boolean = true;
   let carouselCanScrollPrev: boolean;
+  $: artists = $searchStore?.data?.artists as Artist[];
   $: if (emblaApi) {
     emblaApi.on('select', ({ canScrollNext, canScrollPrev }) => {
       carouselCanScrollNext = canScrollNext();
@@ -30,21 +32,26 @@
 <ListContainer
   {scrollNext}
   {scrollPrev}
-  {carouselCanScrollNext}
   {carouselCanScrollPrev}
-  title="Our projects"
-  showNav={chunks.length > 1}>
+  {carouselCanScrollNext}
+  title="Our Artists"
+  showNav={artists?.length > 1}>
   <div
-    class="!w-full overflow-hidden"
+    class="h-full !w-full overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [],
-      options: { active: chunks.length > 1 },
+      options: { active: artists?.length > 1 },
     }}>
-    <div class="ml-[-1.56rem] flex">
+    <div class="flex gap-x-[1.56rem]">
       <LoadingWrapper>
-        {#each chunks as chunk}
-          <Cards class="flex-[0_0_100%] pl-[1.56rem]" items={chunk} />
+        {#each artists as artist (artist._id)}
+          <div
+            class="h-full flex-[0_0_100%]"
+            animate:flip={{ duration: 500 }}
+            in:fade>
+            <Card {artist} />
+          </div>
         {/each}
       </LoadingWrapper>
     </div>

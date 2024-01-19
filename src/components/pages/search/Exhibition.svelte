@@ -1,6 +1,6 @@
 <script lang="ts">
   import { chunkArray } from '@/lib/helper';
-  import type { EmblaCarouselType } from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import ListContainer from './ListContainer.svelte';
   import Cards from '../exhibition/Cards.svelte';

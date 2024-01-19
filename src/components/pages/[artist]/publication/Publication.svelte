@@ -4,9 +4,8 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { Publication } from '@/lib/types/artist-detail.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { type EmblaCarouselType } from 'embla-carousel';
   import PublicationImage from './PublicationImage.svelte';
   import Autoplay from 'embla-carousel-autoplay';
 
@@ -21,21 +20,8 @@
 
   const slideNext = () => emblaApi.scrollNext();
   const slidePrev = () => emblaApi.scrollPrev();
-
-  // let publicationEl: HTMLElement;
-  // let publicationSectionHeight = 0;
-  // let navigationPositionFromSectionTop = 0;
-  // const getNavigationPositionFromSectionTop = () => {
-  //   navigationPositionFromSectionTop =
-  //     publicationEl.getBoundingClientRect().top -
-  //     rootEl.getBoundingClientRect().top +
-  //     publicationSectionHeight / 2;
-  // };
-
-  // $: if (!!rootEl && !!publicationEl) getNavigationPositionFromSectionTop();
 </script>
 
-<!-- <svelte:window on:resize={getNavigationPositionFromSectionTop} /> -->
 <section bind:this={rootEl}>
   <div class="container-primary py-section relative">
     <div
@@ -52,8 +38,6 @@
               <Quote class="mb-section" {quote} />
             {/if}
 
-            <!-- bind:publicationSectionHeight -->
-            <!-- bind:publicationEl -->
             <PublicationImage
               {name}
               {slideNext}

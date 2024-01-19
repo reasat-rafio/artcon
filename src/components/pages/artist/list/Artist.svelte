@@ -6,7 +6,6 @@
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
   import { onMount } from 'svelte';
   import IntersectionObserver from 'svelte-intersection-observer';
-  gsap.registerPlugin(ScrollTrigger);
 
   export let artist: Artist;
   export let title: string;
@@ -19,6 +18,8 @@
   $: if (intersecting) activeAnchor = title;
 
   onMount(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const artworksEl = sectionEl.querySelectorAll('.artworks');
 
     gsap.to(artistImgEl, {
