@@ -108,7 +108,8 @@
   <div class="flex-1 xl:pr-[9.69rem]">
     <svelte:element
       this={!!secondImage?.link ? 'a' : 'div'}
-      href={secondImage?.link}>
+      href={secondImage?.link}
+      target="_blank">
       <figure class="h-full 3xl:h-[55.83069rem]">
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"
