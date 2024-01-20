@@ -4,58 +4,65 @@
   import { page } from '$app/stores';
   import { cn } from '@/lib/cn';
   import { darkNavPaths } from '@/lib/constant';
+  import uiStore from '@/store/ui';
   import { onMount } from 'svelte';
 
   export let pageUrl: string | undefined;
   export let externalUrl: string | undefined;
   export let title: string;
+  export let index: number;
 
   let scrollY = 0;
   let innerHeight = 0;
   let anchorEl: HTMLAnchorElement;
-  let textColor: 'white' | 'black';
-  let anchorY = 0;
-  let anchorHeight = 0;
   $: isDarkPage = darkNavPaths.includes($page.url.pathname);
+  $: textColor = $uiStore.navItemsColor[index];
+
+  onMount(() => {
+    if (browser) scrollY = window.scrollY;
+    setTextColor();
+  });
 
   afterNavigate(() => {
     if (browser) scrollY = window.scrollY;
-
-    if (!isDarkPage) setTextColor();
-    else textColor = 'black';
-  });
-
-  onMount(() => {
-    scrollY = window.scrollY;
-    getBoundingClientRect();
+    setTextColor();
   });
 
   function setTextColor() {
-    textColor =
-      anchorY + anchorHeight > innerHeight - scrollY ? 'black' : 'white';
-  }
-
-  function handleScroll() {
-    getBoundingClientRect();
-    if (!isDarkPage) setTextColor();
-  }
-
-  function getBoundingClientRect() {
     const { y, height } = anchorEl?.getBoundingClientRect();
-    anchorY = y;
-    anchorHeight = height;
+    const yOffset = y + height + scrollY;
+
+    if (!!$uiStore.imageAssetPos?.length) {
+      $uiStore.imageAssetPos.forEach(({ y: assetY }) => {
+        const color = isDarkPage
+          ? 'black'
+          : yOffset > assetY && yOffset < assetY + window.innerHeight
+            ? 'white'
+            : 'black';
+
+        uiStore.setNavItemColorAtAIdx(index, color);
+      });
+    } else {
+      const color = isDarkPage
+        ? 'black'
+        : y + height > innerHeight - scrollY
+          ? 'black'
+          : 'white';
+
+      uiStore.setNavItemColorAtAIdx(index, color);
+    }
   }
 </script>
 
 <svelte:window
   bind:scrollY
   bind:innerHeight
-  on:scroll={handleScroll}
-  on:resize={getBoundingClientRect} />
+  on:scroll={setTextColor}
+  on:resize={setTextColor} />
 <a
   bind:this={anchorEl}
   style="color: {textColor};"
-  href={pageUrl || externalUrl}
+  href={pageUrl ?? externalUrl}
   class="navitem text-[0.84375rem] uppercase leading-[120%] tracking-[0.01688rem] lg:opacity-0">
   <span
     class={cn('origin-center  break-words transition-all duration-500', {

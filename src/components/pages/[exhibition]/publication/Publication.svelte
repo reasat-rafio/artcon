@@ -10,9 +10,7 @@
   } from '@/lib/types/exhibition-detail.types';
   import imagePopupStore from '@/store/image-popup';
 
-  export let props: PublicationProps & {
-    publication: Publication;
-  };
+  export let props: PublicationProps & { publication: Publication };
   $: ({
     publication: {
       description,
@@ -76,7 +74,7 @@
               {#each publishedBy as p, i}
                 <div class="inline font-light">
                   {#if i === publishedBy.length - 1}
-                    <span class="">and</span>
+                    <span>and</span>
                   {:else if i !== 0}
                     ,
                   {/if}

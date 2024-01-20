@@ -1,9 +1,13 @@
 import { writable } from 'svelte/store';
 
+type ImageAssetPos = { id: string; y: number };
+
 type UIStore = {
   selectedPreviewIndex: number | null;
   containerWidth: number;
   mobileNavDropdownOpen: boolean;
+  navItemsColor: string[];
+  imageAssetPos: ImageAssetPos[];
 };
 
 const createUiStore = () => {
@@ -11,6 +15,8 @@ const createUiStore = () => {
     selectedPreviewIndex: null,
     containerWidth: 0,
     mobileNavDropdownOpen: false,
+    navItemsColor: [],
+    imageAssetPos: [],
   });
 
   const setActivePreview = (activeIndexOrNull: number | null) => {
@@ -19,6 +25,7 @@ const createUiStore = () => {
       return $store;
     });
   };
+
   const setContainerWidth = (width: number) => {
     update(($store) => {
       $store.containerWidth = width;
@@ -40,12 +47,37 @@ const createUiStore = () => {
     });
   };
 
+  const setNavItemColorAtAIdx = (idx: number, data: string) => {
+    update(($store) => {
+      $store.navItemsColor[idx] = data;
+      return $store;
+    });
+  };
+
+  const pushActiveImageAssetPos = (data: ImageAssetPos) => {
+    update(($store) => {
+      $store.imageAssetPos.push(data);
+      return $store;
+    });
+  };
+
+  const removeActiveImageAssetPos = (id: string) => {
+    update(($store) => {
+      const idx = $store.imageAssetPos.findIndex((el) => el?.id === id);
+      if (idx !== -1) $store.imageAssetPos.splice(idx, 1);
+      return $store;
+    });
+  };
+
   return {
     subscribe,
     setActivePreview,
-    toggleMobileNavDropdown,
     setMobileNavDropdown,
     setContainerWidth,
+    removeActiveImageAssetPos,
+    toggleMobileNavDropdown,
+    pushActiveImageAssetPos,
+    setNavItemColorAtAIdx,
   };
 };
 

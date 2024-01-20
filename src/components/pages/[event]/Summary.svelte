@@ -8,10 +8,8 @@
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
-
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
   import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
@@ -47,7 +45,10 @@
         <div class="space-y-[10px] lg:space-y-[13px]">
           {#each descriptionBlock.associationsList as { key, value }}
             <div>
-              <C.Subtitle el="h4" variant="sm" class="text-sonic-silver">
+              <C.Subtitle
+                el="h4"
+                variant="sm"
+                class="!text-[0.875rem] text-sonic-silver">
                 {key}
               </C.Subtitle>
               <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>

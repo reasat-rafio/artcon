@@ -9,16 +9,15 @@
   export let link: string | undefined = undefined;
 </script>
 
-<section class="mb-[2.25rem] flex flex-col gap-y-[1.5rem] lg:gap-y-[2rem]">
-  <h1
-    class="head-6 mb-2 !normal-case !leading-none !text-rich-black"
-    data-load-animate="y">
+<section class="mb-[2.5rem] flex flex-col gap-y-[1.94rem]">
+  <h1 class="head-6" data-load-animate="y">
     {topic}
   </h1>
-  <header>
+
+  <div>
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div
+    <header
       data-load-animate="y"
       on:click={() => {
         if (!!link) window.open(link, '_blank');
@@ -33,13 +32,13 @@
       {#if !!subtitle}
         <h3 class="head-6 !inline !leading-none">{' '} / {subtitle}</h3>
       {/if}
-    </div>
+    </header>
     {#if !!type}
       <h4 class="head-8 !leading-none text-eerie-black" data-load-animate="y">
         {type}
       </h4>
     {/if}
-  </header>
+  </div>
 
   <div class="flex flex-col gap-y-[1.5rem]">
     <slot {Info} />
