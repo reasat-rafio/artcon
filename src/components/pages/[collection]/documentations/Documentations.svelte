@@ -2,13 +2,12 @@
   import Quote from '@/components/common/Quote.svelte';
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
-  import type { DocumentationsProps } from '@/lib/types/collection-detail.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
-  import PublicationImage from '../../[artist]/publication/PublicationImage.svelte';
+  import type { DocumentationsProps } from '@/lib/types/collection-detail.types';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import PublicationImage from '../../[artist]/publication/PublicationImage.svelte';
 
   export let props: DocumentationsProps;
   $: ({ documents } = props);
@@ -34,7 +33,7 @@
       on:emblaInit={onInit}
       class="overflow-hidden">
       <div class="-ml-[4rem] flex">
-        {#each documents as { quote, descriptionBlock: { name, author, cta, information, description }, image }}
+        {#each documents as { quote, descriptionBlock: { name, author, cta, isbn, publishedBy, description }, image }}
           <div class="flex-[0_0_100%] pl-[4rem]">
             {#if !!quote}
               <Quote class="mb-section" {quote} />
@@ -48,15 +47,39 @@
                   <C.HeaderContainer>
                     <C.Title>{name}</C.Title>
                     {#if !!author}
-                      <C.Subtitle>{author}</C.Subtitle>
+                      <C.Subtitle
+                        class="font-inter !text-[0.875rem] font-light leading-[120%]">
+                        {author}
+                      </C.Subtitle>
                     {/if}
                   </C.HeaderContainer>
 
-                  {#if !!information}
-                    <div class="sub-title-light">
-                      <PortableText value={information} />
-                    </div>
-                  {/if}
+                  <div>
+                    {#if !!publishedBy?.length}
+                      <C.Subtitle
+                        class="!text-[0.75rem] font-light  text-eerie-black">
+                        Published by
+                        {#each publishedBy as p, i}
+                          <div class="inline font-light">
+                            {#if i === publishedBy.length - 1}
+                              <span>and</span>
+                            {:else if i !== 0}
+                              ,
+                            {/if}
+                            <span class="!text-[0.875rem] font-normal">
+                              {p}
+                            </span>
+                          </div>
+                        {/each}
+                      </C.Subtitle>
+                    {/if}
+
+                    {#if !!isbn}
+                      <C.Subtitle class="!text-[0.75rem]">
+                        ISBN {isbn}
+                      </C.Subtitle>
+                    {/if}
+                  </div>
 
                   {#if !!cta?.title && !!cta?.href}
                     <Cta href={cta.href}>{cta.title}</Cta>

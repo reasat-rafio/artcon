@@ -52,24 +52,29 @@
                     <C.Subtitle>{subtitle}</C.Subtitle>
                   </C.HeaderContainer>
 
-                  <div class="space-y-[6px]">
-                    <C.Subtitle variant="sm">
+                  <div>
+                    <C.Subtitle
+                      class="!text-[0.75rem] font-light  text-eerie-black">
                       Published by
                       {#each publishedBy as p, i}
-                        <div class="inline font-medium text-[#000]">
+                        <div class="inline font-light">
                           {#if i === publishedBy.length - 1}
-                            <span class="font-normal">and</span>
+                            <span>and</span>
                           {:else if i !== 0}
                             ,
                           {/if}
-                          {p}
+                          <span class="!text-[0.875rem] font-normal">
+                            {p}
+                          </span>
                         </div>
                       {/each}
                     </C.Subtitle>
-                    <C.Subtitle variant="sm">ISBN {isbn}</C.Subtitle>
+                    <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
                   </div>
 
-                  <Cta href={exproleLink.href}>{exproleLink.title}</Cta>
+                  <Cta className="capitalize" href={exproleLink.href}>
+                    {exproleLink.title}
+                  </Cta>
                 </div>
               </svelte:fragment>
 

@@ -47,7 +47,8 @@ export interface DocumentationProps {
   descriptionBlock: {
     name: string;
     author?: string;
-    information?: PortableTextBlock[];
+    isbn?: string;
+    publishedBy?: string;
     cta?: Cta;
     description: PortableTextBlock[];
   };

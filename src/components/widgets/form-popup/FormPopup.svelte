@@ -93,7 +93,7 @@
           id="message"
           bind:value={$f.message}
           rows="5"
-          class="border-black/10 placeholder:text-black/20 w-full rounded-[8px] border-[1.5px] bg-white/10 px-[1rem] py-[12px] placeholder:text-[14px]" />
+          class="border-black/10 placeholder:text-black/20 w-full rounded-[8px] border-[1.5px] bg-white/10 px-[1rem] py-[12px] placeholder:text-[0.875rem]" />
         {#if $errors.message}
           <small class="text-red-600">{$errors.message}</small>
         {/if}

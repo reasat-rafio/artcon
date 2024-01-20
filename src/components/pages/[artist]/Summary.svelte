@@ -28,7 +28,7 @@
         <C.HeaderContainer class="mb-[1.5rem]">
           <C.Title>{personalDocuments.name}</C.Title>
           <C.Subtitle
-            class="!font-inter !text-[14px] !normal-case !leading-none"
+            class="!font-inter !text-[0.875rem] !normal-case !leading-none"
             variant="sm">
             b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
           </C.Subtitle>

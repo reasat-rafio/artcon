@@ -54,17 +54,14 @@ const documentation = {
           description: 'Example: Anisuzzaman Faruque',
         },
         {
-          name: 'information',
+          name: 'publishedBy',
           type: 'array',
-          description:
-            'Example: Published by ARTcon and Drik Gallery \n ISBN.. ',
-          of: [
-            {
-              type: 'block',
-              styles: [],
-              lists: [],
-            },
-          ],
+          of: [{ type: 'string' }],
+        },
+        {
+          name: 'isbn',
+          title: 'ISBN',
+          type: 'string',
         },
         {
           title: 'Button',
