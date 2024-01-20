@@ -52,13 +52,11 @@
       gsap.killTweensOf(contentWrapperEl);
       gsap.to(sectionEl, {
         backgroundColor: 'white',
-        delay: 0.5,
         duration: 0.3,
       });
       gsap.to(contentWrapperEl, {
         borderBottomColor: 'rgba(160, 160, 160, 0.5)',
         borderBottomWidth: '1px',
-        delay: 0.5,
         duration: 0.3,
       });
     }
