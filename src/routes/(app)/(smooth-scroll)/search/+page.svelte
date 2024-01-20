@@ -84,7 +84,7 @@
 
     if (footerEl && contentEl) {
       footerHeight = footerEl.offsetHeight;
-      contentEl.style.minHeight = `calc(100vh - ${footerHeight}px)`;
+      contentEl.style.minHeight = `calc(100dvh - ${footerHeight}px)`;
     }
   }
 </script>

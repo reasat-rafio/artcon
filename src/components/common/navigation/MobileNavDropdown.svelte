@@ -68,7 +68,7 @@
 <svelte:window bind:innerWidth={windowWidth} />
 <aside
   transition:backgroundAnimation
-  class="fixed left-0 top-0 z-[1002] !h-[100vh] !w-[100vw] -translate-y-full bg-red-800">
+  class="fixed left-0 top-0 z-[1002] !h-[100dvh] !w-[100vw] -translate-y-full bg-red-800">
   <nav
     transition:backgroundAnimation
     class="flex h-full w-full -translate-y-full items-center bg-[#000]">

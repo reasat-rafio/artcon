@@ -48,7 +48,7 @@
     <Asset {asset} />
 
     <div
-      class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100vh)] text-center text-white">
+      class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100dvh)] text-center text-white">
       <header>
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
           {#if !!topTitle}

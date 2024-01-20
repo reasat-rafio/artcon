@@ -1,12 +1,10 @@
 <script lang="ts">
-  import { renderStudio, defineConfig, type StudioProps } from "sanity";
-  import { onMount } from "svelte";
+  import { renderStudio, defineConfig, type StudioProps } from 'sanity';
+  import { onMount } from 'svelte';
 
-  export let config: StudioProps["config"];
+  export let config: StudioProps['config'];
 
   let studioEl: HTMLDivElement;
-
-
 
   onMount(() => {
     if (studioEl) {
@@ -15,16 +13,12 @@
       renderStudio(studioEl, sanityConfig);
     }
   });
-
-
-
 </script>
 
 <svelte:head>
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
+    content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
   <meta name="referrer" content="same-origin" />
 </svelte:head>
@@ -35,7 +29,7 @@
 
 <style>
   #svelte-studio {
-    height: 100vh;
+    height: 100dvh;
   }
 
   #svelte-studio > div {

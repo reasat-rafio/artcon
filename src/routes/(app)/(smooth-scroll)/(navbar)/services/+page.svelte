@@ -51,7 +51,7 @@
   {/if}
 {/each}
 
-<div class="relative z-10 mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100dvh] bg-white">
   {#if !!page?.services?.length}
     <Services bind:contextMessage services={page.services} />
   {/if}

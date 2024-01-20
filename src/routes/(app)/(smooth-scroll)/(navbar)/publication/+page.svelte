@@ -51,7 +51,7 @@
     <Hero props={formatPublicationListingProps(s)} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100dvh] bg-white">
   <FilteringNavbar tags={categories} {logoDark} {logoLight}>
     <svelte:fragment slot="name">Our publication</svelte:fragment>
   </FilteringNavbar>
