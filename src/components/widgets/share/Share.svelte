@@ -4,13 +4,12 @@
   import ShareIcon from '@/components/icons/ShareIcon.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import sharePopupStore from '@/store/share-popup';
   import uiStore from '@/store/ui';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
-  import SharePopup from './SharePopup.svelte';
-  import { gsap } from 'gsap';
-  import sharePopupStore from '@/store/share-popup';
 
   export let logoLight: SanityAsset;
   export let logoDark: SanityAsset;
@@ -72,7 +71,7 @@
   on:resize={setPositionFromTop} />
 <nav
   bind:this={sectionEl}
-  class="sticky top-0 z-[1003] overflow-hidden transition-all duration-300">
+  class="sticky left-0 top-0 z-[1003] mt-[100vh] overflow-hidden transition-all duration-300">
   <div class="relative">
     <div
       bind:this={contentWrapperEl}

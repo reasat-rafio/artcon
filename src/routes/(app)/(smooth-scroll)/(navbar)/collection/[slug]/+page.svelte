@@ -72,9 +72,8 @@
     title: artist?.name ?? name,
   }} />
 
-<div class="relative z-10 mt-[100vh] bg-white">
-  <Share href="/artist" {logoLight} {logoDark}>Our collections</Share>
-
+<Share href="/artist" {logoLight} {logoDark}>Our collections</Share>
+<div class="relative z-10 bg-white">
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />

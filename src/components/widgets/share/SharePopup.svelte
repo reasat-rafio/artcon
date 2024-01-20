@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fade, scale, blur } from 'svelte/transition';
+  import { scale, blur } from 'svelte/transition';
   import { page } from '$app/stores';
   import CopyIcon from '@/components/icons/Copy.svelte';
   import XIcon from '@/components/icons/X.svelte';
@@ -20,7 +20,7 @@
   ];
 
   onMount(() => {
-    pageUrl = encodeURIComponent(document.URL);
+    pageUrl = encodeURIComponent($page.url.href);
     pageTitle = encodeURIComponent(document.title);
   });
 

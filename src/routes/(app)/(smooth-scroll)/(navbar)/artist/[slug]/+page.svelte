@@ -43,9 +43,8 @@
     cta,
     subtitle,
   }} />
-<div class="relative z-10 mt-[100vh] bg-white">
-  <Share href="/artist" {logoDark} {logoLight}>Our artist</Share>
-
+<Share href="/artist" {logoDark} {logoLight}>Our artist</Share>
+<div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />

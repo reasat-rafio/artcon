@@ -24,7 +24,7 @@
         scale: 1.15,
         scrollTrigger: {
           trigger: sectionEl,
-          start: '55% center',
+          start: '70% center',
           end: 'bottom top',
           scrub: 1,
         },

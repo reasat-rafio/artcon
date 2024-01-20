@@ -92,7 +92,7 @@
 <nav
   id="filtering-navbar"
   bind:this={sectionEl}
-  class={cn('sticky top-0 z-[1003] overflow-visible bg-white')}>
+  class={cn('sticky top-0 z-[1003] mt-[100vh] overflow-visible bg-white')}>
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
