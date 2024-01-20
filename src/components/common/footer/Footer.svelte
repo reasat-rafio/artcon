@@ -14,7 +14,8 @@
   <div class="container-primary">
     <div
       class="flex flex-col border-t border-quick-silver/50 pb-[2rem] pt-[2rem] max-lg:flex-wrap lg:flex-row">
-      <figure
+      <a
+        href="/"
         class="max-lg:pb-[1.56rem] lg:pr-[5%] 2xl:pr-[6.125rem] 3xl:translate-y-[10px]">
         <SanityImage
           class="w-full object-contain max-lg:max-h-[3.125rem] max-lg:max-w-[5.30819rem] lg:h-[3.125rem]"
@@ -22,7 +23,7 @@
           src={logo}
           imageUrlBuilder={imageBuilder}
           alt="Artcon logo" />
-      </figure>
+      </a>
 
       <div
         class="flex flex-col justify-between max-lg:pb-[2.5rem] lg:w-[50%] lg:pr-[5%] 3xl:w-[56%] 3xl:translate-y-[10px] 3xl:pr-[9.0625rem]">
