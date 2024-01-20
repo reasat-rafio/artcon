@@ -1,12 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fade, scale, blur } from 'svelte/transition';
+  import { scale, blur } from 'svelte/transition';
   import { page } from '$app/stores';
   import CopyIcon from '@/components/icons/Copy.svelte';
   import XIcon from '@/components/icons/X.svelte';
   import Backdrop from '@/components/common/Backdrop.svelte';
-
-  export let popupSate: 'visible' | 'hidden';
+  import sharePopupStore from '@/store/share-popup';
 
   let clipboardEl: HTMLInputElement;
   let copiedToClipboard = false;
@@ -21,7 +20,7 @@
   ];
 
   onMount(() => {
-    pageUrl = encodeURIComponent(document.URL);
+    pageUrl = encodeURIComponent($page.url.href);
     pageTitle = encodeURIComponent(document.title);
   });
 
@@ -91,7 +90,7 @@
   };
 </script>
 
-<Backdrop on:close={() => (popupSate = 'hidden')} />
+<Backdrop on:close={() => sharePopupStore.setVisibility(false)} />
 
 <div
   class="fixed left-1/2 top-1/2 z-god h-min max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-[4px] bg-white px-[40px] py-[32px]"
@@ -135,7 +134,7 @@
   </div>
 
   <button
-    on:click={() => (popupSate = 'hidden')}
+    on:click={() => sharePopupStore.setVisibility(false)}
     class="absolute right-4 top-4 transition-transform duration-300 hover:scale-150">
     <XIcon />
   </button>

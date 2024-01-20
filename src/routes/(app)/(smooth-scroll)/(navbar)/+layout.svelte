@@ -22,7 +22,7 @@
 </script>
 
 <Navbar {logo} />
+<slot />
 {#if $uiStore.mobileNavDropdownOpen}
   <MobileNavDropdown {nav} />
 {/if}
-<slot />

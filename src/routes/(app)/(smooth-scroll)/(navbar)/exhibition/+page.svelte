@@ -50,10 +50,11 @@
     <Hero props={formatExhibitionListingProps(s)} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
-  <FilteringNavbar {tags} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">Our exhibition</svelte:fragment>
-  </FilteringNavbar>
+
+<FilteringNavbar {tags} {logoDark} {logoLight}>
+  <svelte:fragment slot="name">Our exhibition</svelte:fragment>
+</FilteringNavbar>
+<div class="relative z-10 bg-white">
   <Listing list={exhibitionWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

@@ -48,10 +48,10 @@
   {/if}
 {/each}
 
-<div class="relative z-10 mt-[100vh] bg-white">
-  <FilteringNavbar {tags} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">Our virtual reality</svelte:fragment>
-  </FilteringNavbar>
+<FilteringNavbar {tags} {logoDark} {logoLight}>
+  <svelte:fragment slot="name">Our virtual reality</svelte:fragment>
+</FilteringNavbar>
+<div class="relative z-10 bg-white">
   <Listing list={vrsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

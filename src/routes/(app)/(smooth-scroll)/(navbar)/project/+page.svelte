@@ -49,10 +49,11 @@
     <Hero props={formatProjectListingProps(s)} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
-  <FilteringNavbar {tags} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">Our projects</svelte:fragment>
-  </FilteringNavbar>
+
+<FilteringNavbar {tags} {logoDark} {logoLight}>
+  <svelte:fragment slot="name">Our projects</svelte:fragment>
+</FilteringNavbar>
+<div class="relative z-10 bg-white">
   <Listing list={projectsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

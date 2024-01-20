@@ -51,10 +51,11 @@
     <Hero props={formatDocumentaryListingProps(props)} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
-  <FilteringNavbar tags={categories} {logoDark} {logoLight}>
-    <svelte:fragment slot="name">Our audio visual</svelte:fragment>
-  </FilteringNavbar>
+
+<FilteringNavbar tags={categories} {logoDark} {logoLight}>
+  <svelte:fragment slot="name">Our audio visual</svelte:fragment>
+</FilteringNavbar>
+<div class="relative z-10 bg-white">
   <Listing list={documentariesWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

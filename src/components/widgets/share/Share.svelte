@@ -4,12 +4,12 @@
   import ShareIcon from '@/components/icons/ShareIcon.svelte';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import sharePopupStore from '@/store/share-popup';
   import uiStore from '@/store/ui';
   import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+  import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
-  import SharePopup from './Popup.svelte';
-  import { gsap } from 'gsap';
 
   export let logoLight: SanityAsset;
   export let logoDark: SanityAsset;
@@ -17,7 +17,6 @@
 
   let sectionEl: HTMLElement;
   let contentWrapperEl: HTMLElement;
-  let popupSate: 'visible' | 'hidden' = 'hidden';
   let showLogo = false;
   let positionFromTop = 0;
   let scrollY = 0;
@@ -72,7 +71,7 @@
   on:resize={setPositionFromTop} />
 <nav
   bind:this={sectionEl}
-  class="sticky top-0 z-[1003] overflow-hidden transition-all duration-300">
+  class="sticky left-0 top-0 z-[1003] mt-[100vh] overflow-hidden transition-all duration-300">
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
@@ -109,7 +108,7 @@
         class="block lg:hidden" />
       <button
         aria-label="Share to social media"
-        on:click={() => (popupSate = 'visible')}
+        on:click={() => sharePopupStore.setVisibility(true)}
         class="group hidden aspect-square h-[1.875rem] w-[1.875rem] rounded-full lg:block lg:h-[2.8125rem] lg:w-[2.8125rem]">
         <ShareIcon
           class="ml-auto text-quick-silver transition-colors duration-300 group-hover:text-dark-gunmetal" />
@@ -131,7 +130,3 @@
     {/if}
   </div>
 </nav>
-
-{#if popupSate === 'visible'}
-  <SharePopup bind:popupSate />
-{/if}

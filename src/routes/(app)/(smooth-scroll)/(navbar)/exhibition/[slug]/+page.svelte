@@ -61,8 +61,8 @@
     topTitle: _topTitle,
     subtitle: _subTitle,
   }} />
-<div class="relative z-10 mt-[100vh] bg-white">
-  <Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
+<Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
+<div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />

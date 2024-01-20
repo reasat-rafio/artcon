@@ -6,6 +6,8 @@
   import imagePopupStore from '@/store/image-popup';
   import lightboxStore from '@/store/lightbox';
   import { BootstrapToast, ToastContainer } from 'svelte-toasts';
+  import SharePopup from '@/components/widgets/share/SharePopup.svelte';
+  import sharePopupStore from '@/store/share-popup';
 
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
@@ -42,4 +44,8 @@
 {/if}
 {#if $imagePopupStore.show}
   <ImagePopup />
+{/if}
+
+{#if $sharePopupStore.show}
+  <SharePopup />
 {/if}
