@@ -40,7 +40,7 @@
   }
 </script>
 
-<Backdrop class="bg-black-800/70" on:close={closeLightbox} />
+<Backdrop on:close={closeLightbox} />
 
 <div
   in:scale={{ delay: 200, duration: 300 }}
@@ -61,6 +61,6 @@
 <button
   transition:scale
   on:click={closeLightbox}
-  class="fixed right-2 top-2 z-god transition-transform hover:scale-110 lg:right-5 lg:top-5">
-  <XIcon class="h-5 w-5" />
+  class="fixed transition-transform right-2 top-2 z-god hover:scale-110 lg:right-5 lg:top-5">
+  <XIcon class="w-5 h-5" />
 </button>

@@ -33,8 +33,9 @@
         class="flex h-full w-full flex-[0_0_100%] items-center justify-center">
         <figure class="h-fit w-fit sm:h-full">
           <SanityImage
+            lqip
             sizes="100vw"
-            class="aspect-auto h-[95%]  rounded-xl object-contain"
+            class="aspect-auto h-[95%] rounded-[1rem] object-contain"
             src={img}
             imageUrlBuilder={imageBuilder} />
 

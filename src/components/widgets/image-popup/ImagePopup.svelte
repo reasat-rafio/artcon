@@ -27,7 +27,7 @@
   out:scale={{ start: 0.8, delay: 0, duration: 300 }}
   class="fixed left-1/2 top-1/2 z-god flex h-full w-full max-w-screen-2xl -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center p-3 lg:p-5">
   {#if !!$imagePopupStore.image}
-    <figure class="max-h-screen">
+    <figure class="max-h-[80vh]">
       <SanityImage
         lqip
         class="h-full object-contain "
