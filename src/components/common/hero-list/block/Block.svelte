@@ -96,7 +96,7 @@
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
+    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
     <header class="space-y-[2.1875rem]">
       {#if !!topTitle}
         <h3

@@ -45,7 +45,7 @@
 <div
   in:scale={{ delay: 200, duration: 300 }}
   out:blur
-  class="fixed left-1/2 top-1/2 z-god h-min max-h-[calc(100vh-1.5rem)] w-full -translate-x-1/2 -translate-y-1/2 overflow-y-auto max-lg:px-5 lg:max-w-xl">
+  class="fixed left-1/2 top-1/2 z-god h-min max-h-[calc(100dvh-1.5rem)] w-full -translate-x-1/2 -translate-y-1/2 overflow-y-auto max-lg:px-5 lg:max-w-xl">
   <form
     method="POST"
     use:enhance

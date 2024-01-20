@@ -47,7 +47,7 @@
     <Hero props={s} />
   {/if}
 {/each}
-<div class="relative z-10 mt-[100vh] bg-white">
+<div class="relative z-10 mt-[100dvh] bg-white">
   <div class="py-section">
     {#each sections as props}
       {#if props._type === 'quote'}

@@ -133,7 +133,7 @@
     subtitle: _subTitle,
   }} />
 
-<div bind:this={contentBlockEl} class="relative z-10 mt-[100vh] bg-white">
+<div bind:this={contentBlockEl} class="relative z-10 mt-[100dvh] bg-white">
   <FilteringNavbar {tags} {logoDark} {logoLight}>
     <svelte:fragment slot="name">{name} collection</svelte:fragment>
     <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>

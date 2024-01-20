@@ -64,7 +64,7 @@
     {/key}
     <Overlay />
     <div
-      class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100vh)] text-center text-white max-lg:px-[1rem]">
+      class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
       <header class="space-y-[2.1875rem]">
         <div
           class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
