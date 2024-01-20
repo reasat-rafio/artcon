@@ -1,5 +1,5 @@
 <script lang="ts">
-  import NavItems from '@/components/common/navigation/nav-items/NavItems.svelte';
+  import NavList from '@/components/common/navigation/nav-list/NavList.svelte';
   import ImagePopup from '@/components/widgets/image-popup/ImagePopup.svelte';
   import Lightbox from '@/components/widgets/light-box/Lightbox.svelte';
   import { urlFor } from '@/lib/sanity/sanityClient';
@@ -32,7 +32,7 @@
   <link rel="icon" type="image/png" href={faviconImage} />
 </svelte:head>
 
-<NavItems {nav} />
+<NavList {nav} />
 <slot />
 <ToastContainer placement="bottom-right" let:data>
   <BootstrapToast {data} />
