@@ -25,6 +25,13 @@ export default {
       '3xl': '1600px',
     },
     extend: {
+      dropShadow: {
+        '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
+        '4xl': [
+          '0 25px 35px rgba(0, 0, 0, 0.65)',
+          '0 25px 65px rgba(0, 0, 0, 0.45)',
+        ],
+      },
       zIndex: {
         god: 9999999,
         demigod: 666666,
