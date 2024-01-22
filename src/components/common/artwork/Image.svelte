@@ -4,6 +4,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { Information } from '@/lib/types/collection-detail.types';
   import type { SanityImageAssetDocument } from '@sanity/client';
+  import { createEventDispatcher } from 'svelte';
   import { cubicInOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
 
@@ -13,6 +14,8 @@
   export let innerWidth = 0;
   export let isSingleArtwork: boolean;
   export let length: number;
+
+  const dispatch = createEventDispatcher();
 
   const scale = tweened(active ? 1 : 0.6, {
     duration: 500,
@@ -31,9 +34,10 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<div
+<button
+  on:click={() => dispatch('triggerPopup')}
   class={cn(
-    'relative h-full flex-[0_0_90%] pl-[1.25rem] lg:flex lg:flex-[0_0_50.01%]',
+    'relative h-full flex-[0_0_90%] pl-[1.25rem] outline-none lg:flex lg:flex-[0_0_50.01%]',
   )}>
   <div>
     <div style="transform: scale({$scale});">
@@ -45,7 +49,7 @@
           imageUrlBuilder={imageBuilder}
           alt={artwork.alt} />
 
-        <figurecaption class={cn('caption whitespace-pre-wrap')}>
+        <figurecaption class={cn('caption whitespace-pre-wrap  text-left')}>
           <ul
             class="flex flex-col flex-wrap gap-y-[1px] text-[0.875rem] font-light">
             <li class="leading-none">{information.media}</li>
@@ -62,4 +66,4 @@
       </figure>
     </div>
   </div>
-</div>
+</button>

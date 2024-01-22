@@ -8,7 +8,6 @@
     ShortArtworks,
   } from '@/lib/types/common.types';
   import Artworks from './Artworks.svelte';
-  import type { Slug } from 'sanity';
 
   export let props: CommonArtworkSectionProps & {
     artworks?: ShortArtworks[];
@@ -21,7 +20,6 @@
     artworks,
     artworkAtLast,
     descriptionBlock: { description, title },
-    slug,
     ctaLink,
   } = props);
 </script>
