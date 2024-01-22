@@ -45,10 +45,7 @@ const query = groq`
         name,
         slug,
         subtitle,
-        tag->{
-          name,
-          slug
-        },
+        tag->,
         asset{
           ...,
           ${asset('image')},
@@ -68,7 +65,6 @@ const query = groq`
           count(artists) > 1 => "Group Exhibition",
         )
       },
-      "tags": *[_type == "exhibitionTag"]|order(orderRank)
     }
 `;
 

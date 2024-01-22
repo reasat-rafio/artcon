@@ -7,6 +7,7 @@
   import SearchInput from '@/components/pages/artist/sorting-nav/SearchInput.svelte';
   // import SortInput from '@/components/pages/artist/sorting-nav/SortInput.svelte';
   import SortingNav from '@/components/pages/artist/sorting-nav/SortingNav.svelte';
+  import { uniqueTags } from '@/lib/helper';
   import { formatArtistListingProps } from '@/lib/modify-props';
   import type { ArtistPageProps } from '@/lib/types/artist.types';
   import type { PageProps } from '@/lib/types/common.types';
@@ -15,7 +16,7 @@
   export let data: PageProps<ArtistPageProps>;
 
   $: ({
-    page: { seo, sections, artists, tags },
+    page: { seo, sections, artists },
     site: {
       logos: { logoDark, ogImage },
       footer,
@@ -27,6 +28,7 @@
   $: filteredArtists = artists;
   $: tagSearchParam = $page.url.searchParams.get('tag');
   $: nameSearchParam = $page.url.searchParams.get('name');
+  $: tags = uniqueTags(artists);
   $: tagSearchParam,
     nameSearchParam,
     filterBySearchParams({ name: nameSearchParam, tag: tagSearchParam });

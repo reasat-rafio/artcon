@@ -6,7 +6,7 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/collection/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import { formatCollectionListingProps } from '@/lib/modify-props';
   import type { CollectionPageProps } from '@/lib/types/collection.types';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
@@ -16,7 +16,7 @@
   export let data: PageProps<CollectionPageProps>;
 
   $: ({
-    page: { sections, seo, collections, tags },
+    page: { sections, seo, collections },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -29,6 +29,7 @@
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSortParams = $page.url.searchParams.get('sort');
   $: activeArtistParams = $page.url.searchParams.get('artist');
+  $: tags = uniqueTags(collections);
   $: activeSearchParams,
     activeArtistParams,
     activeSortParams,

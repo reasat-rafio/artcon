@@ -5,14 +5,14 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/vr/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import { formatVrListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { VrPageProps } from '@/lib/types/vr.types';
 
   export let data: PageProps<VrPageProps>;
   $: ({
-    page: { sections, seo, vrs, tags },
+    page: { sections, seo, vrs },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -20,6 +20,7 @@
     },
   } = data);
 
+  $: tags = uniqueTags(vrs);
   $: filteredVr = vrs;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);

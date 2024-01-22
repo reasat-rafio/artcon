@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { PublicationPageProps } from '@/lib/types/publication.types';
   import Hero from '@/components/common/hero-list/Hero.svelte';
@@ -22,6 +22,7 @@
   } = data);
 
   $: filteredPublications = publications;
+  $: tags = uniqueTags(publications);
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
   $: sectionImages = sections.filter(
@@ -52,7 +53,7 @@
   {/if}
 {/each}
 <div class="relative z-10 mt-[100dvh] bg-white">
-  <FilteringNavbar tags={categories} {logoDark} {logoLight}>
+  <FilteringNavbar {tags} {logoDark} {logoLight}>
     <svelte:fragment slot="name">Our publication</svelte:fragment>
   </FilteringNavbar>
   <Listing list={publicationsWithImages} />

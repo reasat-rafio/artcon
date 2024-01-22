@@ -5,14 +5,18 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/exhibition/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import { formatExhibitionListingProps } from '@/lib/modify-props';
-  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
+  import type {
+    CommonImageAsset,
+    PageProps,
+    Tag,
+  } from '@/lib/types/common.types';
   import type { ExhibitionPageProps } from '@/lib/types/exhibition.types';
 
   export let data: PageProps<ExhibitionPageProps>;
   $: ({
-    page: { sections, seo, exhibitions, tags },
+    page: { sections, seo, exhibitions },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -23,6 +27,7 @@
   $: filteredExhibition = exhibitions;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
+  $: tags = uniqueTags(exhibitions);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];

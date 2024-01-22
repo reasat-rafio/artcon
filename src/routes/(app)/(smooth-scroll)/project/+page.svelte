@@ -5,14 +5,14 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/project/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import { formatProjectListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { ProjectPageProps } from '@/lib/types/project.types';
 
   export let data: PageProps<ProjectPageProps>;
   $: ({
-    page: { sections, seo, tags, projects },
+    page: { sections, seo, projects },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -20,6 +20,7 @@
     },
   } = data);
 
+  $: tags = uniqueTags(projects);
   $: filteredProjects = projects;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);

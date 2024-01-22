@@ -9,8 +9,9 @@
   import {
     calculateStatusBetweenDates,
     createListingItemWithImage,
+    uniqueTags,
   } from '@/lib/helper';
-  import type { PageProps } from '@/lib/types/common.types';
+  import type { PageProps, Tag } from '@/lib/types/common.types';
   import type { ExhibitionArtworksPageProps } from '@/lib/types/exhibition-detail.types';
   import { lenisStore } from '@/store/lenis';
   import { onMount } from 'svelte';
@@ -28,7 +29,6 @@
       collections,
       asset,
       artists,
-      tags,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -47,10 +47,12 @@
   $: _subTitle =
     subtitle ?? artists?.personalDocuments?.name ?? 'Group Exhibition';
 
+  $: tags = uniqueTags(collections);
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSortParams = $page.url.searchParams.get('sort');
   $: activeArtistParams = $page.url.searchParams.get('artist');
+
   $: activeSearchParams,
     activeArtistParams,
     activeSortParams,

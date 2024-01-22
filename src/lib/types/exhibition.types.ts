@@ -1,11 +1,10 @@
 import type { Slug } from 'sanity';
-import type { Asset, CommonImageAsset, SeoProps, Tag } from './common.types';
+import type { Asset, CommonImageAsset, SeoProps } from './common.types';
 
 export interface ExhibitionPageProps {
   seo: SeoProps;
   sections: Section[];
   exhibitions: Exhibition[];
-  tags: Tag[];
 }
 
 export interface Exhibition {
@@ -13,10 +12,7 @@ export interface Exhibition {
   asset: Asset;
   name: string;
   subtitle?: string;
-  tag: {
-    name: string;
-    slug: Slug;
-  };
+  tag: Tag;
   slug: Slug;
   type: 'Group Exhibition' | { name: string };
 }
