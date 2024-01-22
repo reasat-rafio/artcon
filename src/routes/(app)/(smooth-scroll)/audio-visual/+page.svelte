@@ -13,7 +13,7 @@
   export let data: PageProps<DocumentaryPageProps>;
 
   $: ({
-    page: { sections, seo, categories, documentaries },
+    page: { sections, seo, documentaries },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
