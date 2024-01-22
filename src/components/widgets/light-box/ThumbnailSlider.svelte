@@ -44,10 +44,8 @@
           <SanityImage
             lqip
             class={cn(
-              'h-full w-full rounded-md border object-cover transition-[border] duration-200 ',
-              index === activeIndex
-                ? 'border-platinum/60'
-                : 'border-transparent',
+              'h-full w-full rounded-md border object-cover transition-all duration-200 ',
+              index === activeIndex ? 'grayscale' : '',
             )}
             sizes="(min-width: 1024px) 15vw, (min-width: 768px) 25vw, 35vw"
             src={img}

@@ -41,7 +41,7 @@
 
           {#if !!img?.caption}
             <figurecaption
-              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white lg:pl-[1.88rem]">
+              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white drop-shadow-2xl lg:pl-[1.88rem]">
               {img.caption}
             </figurecaption>
           {/if}
