@@ -108,10 +108,7 @@ const Table: React.FC<TableProps> = () => {
       renderCell: (item: IArtist) => (
         <img
           className="aspect-square h-[100px] w-[100px] object-cover"
-          src={urlFor(item?.artistPortrait)
-            .width(150)
-            .format('webp')
-            .url()}
+          src={urlFor(item?.artistPortrait).width(150).format('webp').url()}
           alt={`${item['name (en)']} portrait`}
         />
       ),

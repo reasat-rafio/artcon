@@ -16,22 +16,22 @@ const navigations = {
       validation: (Rule: Rule) =>
         Rule.required().custom((content: any[]) => {
           const highlightedMenuItems = (content || []).filter(
-            ({ highlight }) => highlight
+            ({ highlight }) => highlight,
           );
           return highlightedMenuItems.length > 1
             ? {
                 message:
-                  'There can only be one highlighted menu item. Please delete the extra ones.'
+                  'There can only be one highlighted menu item. Please delete the extra ones.',
               }
             : true;
-        })
-    }
+        }),
+    },
   ],
   preview: {
     prepare: () => ({
-      title: 'Navigations'
-    })
-  }
+      title: 'Navigations',
+    }),
+  },
 };
 
 export default navigations;

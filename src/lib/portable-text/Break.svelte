@@ -1,1 +1,1 @@
-<hr class="border-t-[#00000057] my-[15px]" />
+<hr class="my-[15px] border-t-[#00000057]" />

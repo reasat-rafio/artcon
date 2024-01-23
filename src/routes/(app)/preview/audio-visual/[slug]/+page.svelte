@@ -157,13 +157,13 @@
                 <span>{category.name}</span>
                 {#if !!year}
                   <span>
-                    <span class="px-1 sub-title-light">|</span>
+                    <span class="sub-title-light px-1">|</span>
                     {year}
                   </span>
                 {/if}
                 {#if !!duration}
                   <span>
-                    <span class="px-1 sub-title-light">|</span>
+                    <span class="sub-title-light px-1">|</span>
                     {duration}
                   </span>
                 {/if}
@@ -176,7 +176,7 @@
             class="-full relative mb-[2.5rem] aspect-video overflow-hidden rounded-xl">
             <Youtube id={ytID} altThumb={true} animations={false}>
               <SanityImage
-                class="object-cover w-full h-full"
+                class="h-full w-full object-cover"
                 sizes="60vw"
                 imageUrlBuilder={imageBuilder}
                 src={thumbnail}

@@ -15,8 +15,7 @@
   class="relative mb-[2rem] w-full overflow-hidden">
   <div class="-ml-[1rem] flex">
     {#each artworkImages as img, index}
-      <a
-        href="#"
+      <button
         on:click|preventDefault={() => {
           lightboxStore.setLightboxVisibility(true);
           lightboxStore.setActiveIndex(index);
@@ -24,12 +23,12 @@
         }}
         class="flex aspect-video flex-[0_0_100%] items-start justify-center pl-[1rem]">
         <SanityImage
-          class="h-full w-fit object-contain"
+          class="object-contain h-full w-fit"
           src={img}
           imageUrlBuilder={imageBuilder}
           sizes="70vw"
           alt="Artwork" />
-      </a>
+      </button>
     {/each}
   </div>
 </div>

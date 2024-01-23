@@ -18,8 +18,7 @@
 <svelte:element
   this={el}
   class:space-y-2={listItem === 'bullet'}
-  class:number_el={listItem === 'number'}
->
+  class:number_el={listItem === 'number'}>
   <slot />
 </svelte:element>
 

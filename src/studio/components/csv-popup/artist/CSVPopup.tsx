@@ -38,7 +38,7 @@ const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
   const [fields, setFields] = useState<IFields[]>(convertObjectToArray(fData));
   const inputOnChangeAction = (key: string, state: boolean) => {
     const newVal = fields.map((obj) =>
-      obj.key === key ? { ...obj, state: !state } : obj
+      obj.key === key ? { ...obj, state: !state } : obj,
     );
     setFields(newVal);
   };
@@ -52,8 +52,7 @@ const CSVPopup: React.FC<CSVPopupProps> = ({ data, setDialogOpen }) => {
       }}
       width={2}
       zOffset={1000}
-      footer={<Footer fields={fields} />}
-    >
+      footer={<Footer fields={fields} />}>
       <Grid columns={[4]} gap={[4]} padding={4}>
         {fields.map(({ key, state }) => (
           <Card padding={4} key={`${key}-${state}`}>

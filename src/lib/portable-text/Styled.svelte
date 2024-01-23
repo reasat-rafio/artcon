@@ -9,6 +9,6 @@
   } = portableText;
 </script>
 
-<span class="inline-block" style="padding-left: {paddingLeft}px;"
-  ><slot />
+<span class="inline-block" style="padding-left: {paddingLeft}px;">
+  <slot />
 </span>

@@ -7,8 +7,8 @@
     weight === 'light'
       ? 'font-light'
       : weight === 'semibold'
-      ? 'font-semibold'
-      : 'font-normal';
+        ? 'font-semibold'
+        : 'font-normal';
 </script>
 
 <p
