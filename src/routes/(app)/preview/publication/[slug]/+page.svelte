@@ -17,7 +17,6 @@
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
   import { toasts } from 'svelte-toasts';
-  import { fade } from 'svelte/transition';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
 
@@ -42,7 +41,6 @@
     site: { logos },
   } = data);
 
-  let onOutroEnd: () => void;
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
@@ -128,13 +126,6 @@
           '-=0.4',
         );
       }
-
-      navigation.cancel();
-
-      onOutroEnd = async () => {
-        await goto(navigation.to?.url.pathname as string);
-        transitioningOut = false;
-      };
     }
   });
 
@@ -167,9 +158,8 @@
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
-          on:outroend={onOutroEnd}
-          out:fade={{ duration: 0 }}
-          class="preview_content_container">
+          class="preview_content_container"
+          on:outroend={() => (transitioningOut = false)}>
           <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">

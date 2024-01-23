@@ -79,10 +79,10 @@
           {/if}
         </div>
 
-        <div class="overflow-hidden !leading-[100%]">
+        <div class="!drop-shadow-4xl overflow-hidden !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full uppercase !leading-none opacity-0">
+            class="head-1 translate-y-full uppercase !leading-none">
             {title}
           </h1>
         </div>

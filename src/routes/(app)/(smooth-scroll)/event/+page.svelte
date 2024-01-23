@@ -3,16 +3,17 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
-  import Listing from '@/components/pages/vr/Listing.svelte';
+  import Listing from '@/components/pages/event/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
-  import { formatVrListingProps } from '@/lib/modify-props';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
+  import { formatEventListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
-  import type { VrPageProps } from '@/lib/types/vr.types';
+  import type { EventPageProps } from '@/lib/types/event.types';
 
-  export let data: PageProps<VrPageProps>;
+  export let data: PageProps<EventPageProps>;
+
   $: ({
-    page: { sections, seo, vrs, tags },
+    page: { sections, seo, events },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -20,38 +21,41 @@
     },
   } = data);
 
-  $: filteredVr = vrs;
+  $: filteredEvents = events;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
+  $: tags = uniqueTags(events);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
-  $: vrsWithImages = createListingItemWithImage(filteredVr, sectionImages);
+  $: eventsWithImages = createListingItemWithImage(
+    filteredEvents,
+    sectionImages,
+  );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
     if (!activeSearchParams) {
-      filteredVr = vrs;
+      filteredEvents = events;
       return;
     }
-
-    const fList = vrs.filter(
-      ({ category: { slug } }) => slug.current === activeSearchParams,
+    const fList = events.filter(
+      ({ tag: { slug } }) => slug.current === activeSearchParams,
     );
-    filteredVr = fList;
+    filteredEvents = fList;
   };
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-{#each sections as s}
-  {#if s._type === 'vrPage.hero'}
-    <Hero props={formatVrListingProps(s)} />
+{#each sections as props}
+  {#if props._type === 'event.hero'}
+    <Hero props={formatEventListingProps(props)} />
   {/if}
 {/each}
 
 <FilteringNavbar {tags} {logoDark} {logoLight}>
-  <svelte:fragment slot="name">Our virtual reality</svelte:fragment>
+  <svelte:fragment slot="name">Our events</svelte:fragment>
 </FilteringNavbar>
 <div class="relative z-10 bg-white">
-  <Listing list={vrsWithImages} />
+  <Listing list={eventsWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

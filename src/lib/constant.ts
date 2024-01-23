@@ -5,13 +5,16 @@ export const breakpoints = {
   xl: 1280,
   '2xl': 1424,
 };
-
 export type Breakpoints = keyof typeof breakpoints;
+
 export const darkNavPaths = [
   '/privacy-policy',
   '/terms-and-conditions',
   '/search',
 ];
+
+export const excludedNavbarPaths = ['/search', '/preview/*'];
+
 export const pages = [
   '/',
   '/about-us',

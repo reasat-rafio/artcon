@@ -62,7 +62,7 @@
           {/if}
         </div>
 
-        <div class="mb-[1.26rem] overflow-hidden">
+        <div class="!drop-shadow-4xl mb-[1.26rem] overflow-hidden">
           <h1
             bind:this={titleEl}
             class="head-1 translate-y-full !leading-none opacity-0">

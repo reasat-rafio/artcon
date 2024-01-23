@@ -3,16 +3,20 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero-list/Hero.svelte';
-  import Listing from '@/components/pages/project/Listing.svelte';
+  import Listing from '@/components/pages/exhibition/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
-  import { formatProjectListingProps } from '@/lib/modify-props';
-  import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
-  import type { ProjectPageProps } from '@/lib/types/project.types';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
+  import { formatExhibitionListingProps } from '@/lib/modify-props';
+  import type {
+    CommonImageAsset,
+    PageProps,
+    Tag,
+  } from '@/lib/types/common.types';
+  import type { ExhibitionPageProps } from '@/lib/types/exhibition.types';
 
-  export let data: PageProps<ProjectPageProps>;
+  export let data: PageProps<ExhibitionPageProps>;
   $: ({
-    page: { sections, seo, tags, projects },
+    page: { sections, seo, exhibitions },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -20,40 +24,42 @@
     },
   } = data);
 
-  $: filteredProjects = projects;
+  $: filteredExhibition = exhibitions;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
+  $: tags = uniqueTags(exhibitions);
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
   ) as CommonImageAsset[];
-  $: projectsWithImages = createListingItemWithImage(
-    filteredProjects,
+  $: exhibitionWithImages = createListingItemWithImage(
+    filteredExhibition,
     sectionImages,
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
     if (!activeSearchParams) {
-      filteredProjects = projects;
+      filteredExhibition = exhibitions;
       return;
     }
-    const fList = projects.filter(
+
+    const fList = exhibitions.filter(
       ({ tag: { slug } }) => slug.current === activeSearchParams,
     );
-    filteredProjects = fList;
+    filteredExhibition = fList;
   };
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
 {#each sections as s}
-  {#if s._type === 'projectPage.hero'}
-    <Hero props={formatProjectListingProps(s)} />
+  {#if s._type === 'exhibitionPage.hero'}
+    <Hero props={formatExhibitionListingProps(s)} />
   {/if}
 {/each}
 
 <FilteringNavbar {tags} {logoDark} {logoLight}>
-  <svelte:fragment slot="name">Our projects</svelte:fragment>
+  <svelte:fragment slot="name">Our exhibition</svelte:fragment>
 </FilteringNavbar>
 <div class="relative z-10 bg-white">
-  <Listing list={projectsWithImages} />
+  <Listing list={exhibitionWithImages} />
   <Footer {footer} {contact} logo={logoDark} />
 </div>

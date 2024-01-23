@@ -2,10 +2,10 @@
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
   import type { ShortArtworks } from '@/lib/types/common.types';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { type EmblaCarouselType } from 'embla-carousel';
   import Image from './Image.svelte';
+  import lightboxStore from '@/store/lightbox';
 
   export let artworks: ShortArtworks[];
 
@@ -16,14 +16,9 @@
   $: if (emblaApi) {
     emblaApi.on(
       'select',
-      ({
-        selectedScrollSnap,
-        scrollSnapList,
-        canScrollNext,
-      }: EmblaCarouselType) => {
+      ({ selectedScrollSnap, scrollSnapList }: EmblaCarouselType) => {
         activeSide = selectedScrollSnap() + 1;
         scrollSnaps = scrollSnapList();
-        canScrollNext = canScrollNext();
       },
     );
     emblaApi.on(
@@ -38,6 +33,22 @@
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     scrollSnaps = event.detail.scrollSnapList();
+  };
+
+  const triggerLightboxPopup = (index: number) => {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(index);
+    lightboxStore.setAllImages(
+      artworks.map(
+        ({
+          artwork,
+          information: { size, artDate, frame, media, moreInformation },
+        }) => ({
+          ...artwork,
+          caption: `${size}, ${artDate.creationDetails}, ${frame}, ${media}, ${moreInformation?.map((e) => e).join(', ')}`,
+        }),
+      ),
+    );
   };
 </script>
 
@@ -59,6 +70,7 @@
             {...artwork}
             length={artworks.length}
             isSingleArtwork={artworks?.length === 1}
+            on:triggerPopup={() => triggerLightboxPopup(index)}
             active={activeSide === index ||
               (activeSide === artworks.length && index === 0)} />
         {/each}

@@ -13,7 +13,6 @@
   import formPopupStore from '@/store/form-popup';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
   import { toasts } from 'svelte-toasts';
@@ -35,7 +34,6 @@
     site: { logos },
   } = data);
 
-  let onOutroEnd: () => void;
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
@@ -121,13 +119,6 @@
           '-=0.4',
         );
       }
-
-      navigation.cancel();
-
-      onOutroEnd = async () => {
-        await goto(navigation.to?.url.pathname as string);
-        transitioningOut = false;
-      };
     }
   });
 </script>
@@ -147,9 +138,7 @@
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
-        <div
-          on:outroend={onOutroEnd}
-          out:fade={{ duration: 500 }}
+        <div on:outroend={() => (transitioningOut = false)}>
           class="preview_content_container">
           <NavigationMobile
             cta={{

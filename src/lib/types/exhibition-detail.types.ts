@@ -58,7 +58,6 @@ export type ExhibitionArtworksPageProps = Pick<
   | 'asset'
 > & {
   artists: { personalDocuments: { name: string } };
-  tags: Tag[];
   collections: Collection[];
 };
 

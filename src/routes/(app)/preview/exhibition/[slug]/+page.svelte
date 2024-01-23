@@ -34,7 +34,6 @@
     site: { logos },
   } = data);
 
-  let onOutroEnd: () => void;
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
@@ -108,13 +107,6 @@
           '-=0.4',
         );
       }
-
-      navigation.cancel();
-
-      onOutroEnd = async () => {
-        await goto(navigation.to?.url.pathname as string);
-        transitioningOut = false;
-      };
     }
   });
 </script>
@@ -135,8 +127,7 @@
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
-          on:outroend={onOutroEnd}
-          out:fade={{ duration: 500 }}
+          on:outroend={() => (transitioningOut = false)}
           class="preview_content_container">
           <NavigationMobile
             cta={{

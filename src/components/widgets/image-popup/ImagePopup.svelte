@@ -37,7 +37,7 @@
         alt={$imagePopupStore.image.alt} />
 
       {#if !!$imagePopupStore.image?.caption}
-        <figurecaption class="caption !text-rich-black">
+        <figurecaption class="caption !text-white drop-shadow-lg">
           {$imagePopupStore.image?.caption}
         </figurecaption>
       {/if}

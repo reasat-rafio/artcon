@@ -32,28 +32,23 @@
     on:emblaInit={onInit}>
     <div class="flex h-full w-full gap-x-[1.25rem]">
       {#each $lightboxStore.allImages as img, index}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div
+        <button
           on:click={() => {
             thumbnailSliderApi.scrollTo(index);
             sliderApi.scrollTo(index);
           }}
-          class="relative flex h-full w-full flex-[0_0_35%] outline-none md:flex-[0_0_25%] xl:flex-[0_0_15%]"
-          role="button"
-          tabindex="0">
+          class="relative flex h-full w-full flex-[0_0_35%] overflow-hidden rounded-md outline-none md:flex-[0_0_25%] xl:flex-[0_0_15%]">
           <SanityImage
             lqip
             class={cn(
-              'h-full w-full rounded-md border object-cover transition-[border] duration-200 ',
-              index === activeIndex
-                ? 'border-platinum/60'
-                : 'border-transparent',
+              'h-full w-full object-cover transition-all duration-300 hover:scale-105',
+              index === activeIndex ? 'grayscale' : '',
             )}
             sizes="(min-width: 1024px) 15vw, (min-width: 768px) 25vw, 35vw"
             src={img}
             imageUrlBuilder={imageBuilder}
             alt={img.alt} />
-        </div>
+        </button>
       {/each}
     </div>
   </div>

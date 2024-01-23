@@ -5,7 +5,7 @@
   import Hero from '@/components/common/hero-list/Hero.svelte';
   import Listing from '@/components/pages/documentary/Listing.svelte';
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
-  import { createListingItemWithImage } from '@/lib/helper';
+  import { createListingItemWithImage, uniqueTags } from '@/lib/helper';
   import { formatDocumentaryListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { DocumentaryPageProps } from '@/lib/types/documentary.types';
@@ -13,7 +13,7 @@
   export let data: PageProps<DocumentaryPageProps>;
 
   $: ({
-    page: { sections, seo, categories, documentaries },
+    page: { sections, seo, documentaries },
     site: {
       logos: { logoDark, ogImage, logoLight },
       footer,
@@ -21,6 +21,7 @@
     },
   } = data);
 
+  $: tags = uniqueTags(documentaries);
   $: filteredDocumentaries = documentaries;
   $: activeSearchParams = $page.url.searchParams.get('search');
   $: activeSearchParams, filterBySearchParams(activeSearchParams);
@@ -52,7 +53,7 @@
   {/if}
 {/each}
 
-<FilteringNavbar tags={categories} {logoDark} {logoLight}>
+<FilteringNavbar {tags} {logoDark} {logoLight}>
   <svelte:fragment slot="name">Our audio visual</svelte:fragment>
 </FilteringNavbar>
 <div class="relative z-10 bg-white">

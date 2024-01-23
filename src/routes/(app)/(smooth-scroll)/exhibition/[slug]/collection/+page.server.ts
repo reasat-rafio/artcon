@@ -48,8 +48,7 @@ const query = (params: Partial<Record<string, string>>) =>
         slug,
         ...personalDocuments { "name": name.en}
       },
-    },
-    "tags": *[_type == "collectionTag"]|order(orderRank)
+    }
   }`;
 
 export const load: ServerLoad = async ({ params }) => {

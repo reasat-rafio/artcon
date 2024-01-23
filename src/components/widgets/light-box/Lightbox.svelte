@@ -26,6 +26,8 @@
 
   function handleKeyPress(event: KeyboardEvent) {
     if (event.key === 'Escape') closeLightbox();
+    else if (event.key === 'ArrowRight') sliderApi.scrollNext();
+    else if (event.key === 'ArrowLeft') sliderApi.scrollPrev();
   }
   onMount(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -61,6 +63,6 @@
 <button
   transition:scale
   on:click={closeLightbox}
-  class="fixed transition-transform right-2 top-2 z-god hover:scale-110 lg:right-5 lg:top-5">
-  <XIcon class="w-5 h-5" />
+  class="fixed right-2 top-2 z-god transition-transform hover:scale-110 lg:right-5 lg:top-5">
+  <XIcon class="h-5 w-5" />
 </button>

@@ -4,7 +4,7 @@ import type {
   SoloExhibitionProps,
 } from './types/exhibition-detail.types';
 
-import type { CommonImageAsset, Type } from './types/common.types';
+import type { CommonImageAsset, Tag, Type } from './types/common.types';
 
 export function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
   const result = [];
@@ -153,4 +153,28 @@ export const createListingItemWithImage = <T>(
   }
 
   return formattedArray;
+};
+
+export const uniqueTags = <T extends { tag: Tag } | { category: Tag }>(
+  items: T[],
+) => {
+  return items.reduce((uniqueTags, collection) => {
+    if ('tag' in collection) {
+      const {
+        slug: { current },
+      } = collection.tag;
+      if (!uniqueTags.some((tag) => tag.slug.current === current)) {
+        uniqueTags.push(collection.tag);
+      }
+    } else if ('category' in collection) {
+      const {
+        slug: { current },
+      } = collection.category;
+      if (!uniqueTags.some((tag) => tag.slug.current === current)) {
+        uniqueTags.push(collection.category);
+      }
+    }
+
+    return uniqueTags;
+  }, [] as Tag[]);
 };
