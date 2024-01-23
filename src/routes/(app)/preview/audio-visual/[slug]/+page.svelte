@@ -38,7 +38,6 @@
     site: { logos },
   } = data);
 
-  let onOutroEnd: () => void;
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
@@ -107,13 +106,6 @@
           '-=0.4',
         );
       }
-
-      navigation.cancel();
-
-      onOutroEnd = async () => {
-        await goto(navigation.to?.url.pathname as string);
-        transitioningOut = false;
-      };
     }
   });
 </script>
@@ -142,8 +134,7 @@
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
-          on:outroend={onOutroEnd}
-          out:fade={{ duration: 500 }}
+          on:outroend={() => (transitioningOut = false)}
           class="preview_content_container">
           <NavigationMobile
             cta={{ href: exploreUrl, title: 'EXPLORE', newTab: true }} />
@@ -166,13 +157,13 @@
                 <span>{category.name}</span>
                 {#if !!year}
                   <span>
-                    <span class="sub-title-light px-1">|</span>
+                    <span class="px-1 sub-title-light">|</span>
                     {year}
                   </span>
                 {/if}
                 {#if !!duration}
                   <span>
-                    <span class="sub-title-light px-1">|</span>
+                    <span class="px-1 sub-title-light">|</span>
                     {duration}
                   </span>
                 {/if}
@@ -185,7 +176,7 @@
             class="-full relative mb-[2.5rem] aspect-video overflow-hidden rounded-xl">
             <Youtube id={ytID} altThumb={true} animations={false}>
               <SanityImage
-                class="h-full w-full object-cover"
+                class="object-cover w-full h-full"
                 sizes="60vw"
                 imageUrlBuilder={imageBuilder}
                 src={thumbnail}
