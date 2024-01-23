@@ -138,7 +138,8 @@
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
-        <div on:outroend={() => (transitioningOut = false)}>
+        <div
+          on:outroend={() => (transitioningOut = false)}
           class="preview_content_container">
           <NavigationMobile
             cta={{

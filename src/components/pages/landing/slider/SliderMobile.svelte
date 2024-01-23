@@ -15,13 +15,13 @@
   let animating = false;
   let currentIndex = 0;
   let innerWidth = 0;
+  let innerHeight = 0;
   let isLoaded = false;
 
   onMount(() => {
     gsap.registerPlugin(Observer);
 
     const rootEl = document.querySelector('#landing-page') as HTMLElement;
-
     adjustInitialScrollPosition(rootEl);
 
     let ctx = gsap.context(() => {
@@ -106,7 +106,7 @@
   }
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth bind:innerHeight />
 <section
   class={cn('z-40 block translate-y-[100dvh] lg:hidden', {
     'fixed inset-0': !isLoaded,

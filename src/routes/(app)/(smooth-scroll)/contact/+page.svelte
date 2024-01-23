@@ -10,7 +10,6 @@
   import { toasts } from 'svelte-toasts';
 
   export let data;
-  export let form: ActionData;
 
   $: ({
     page: { sections, seo },
