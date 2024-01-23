@@ -15,7 +15,6 @@
   {href}
   class="{hoverEffect
     ? 'hover:text-blue-main/80 transition-colors duration-200 ease-linear'
-    : ''} {highlight ? 'text-theme-primary' : ''} "
->
-  <slot /></a
->
+    : ''} {highlight ? 'text-theme-primary' : ''} ">
+  <slot />
+</a>

@@ -1,9 +1,9 @@
 <li
-  class="flex items-center text-[15px] text-theme-muted bullet-list"
-  data-listitem
->
+  class="text-theme-muted bullet-list flex items-center text-[15px]"
+  data-listitem>
   <span
-    class="w-3.5 h-3.5 border shrink-0 border-theme-primary flex items-center justify-center mr-2.5 rounded-full"
-    ><span class="w-1 h-1 bg-theme-primary rounded-full" />
-  </span><slot />
+    class="border-theme-primary mr-2.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border">
+    <span class="bg-theme-primary h-1 w-1 rounded-full" />
+  </span>
+  <slot />
 </li>

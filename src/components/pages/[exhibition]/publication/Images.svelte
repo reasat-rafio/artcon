@@ -17,7 +17,7 @@
   }
   const parallaxOnScrollAction = (
     node: HTMLElement,
-    _props: ParallaxOnScrollActionProps
+    _props: ParallaxOnScrollActionProps,
   ) => {
     return {
       update({ intersecting }: ParallaxOnScrollActionProps) {
@@ -25,8 +25,8 @@
           let delta = Math.abs(
             Math.min(
               Math.max(node.getBoundingClientRect().top / rootElHeight, 0),
-              1
-            ) - 1
+              1,
+            ) - 1,
           );
 
           const keyframes = {
@@ -49,23 +49,19 @@
   <div
     bind:this={rootEl}
     class="{$$props.class ??
-      ''} grid w-[85%] grid-cols-12 items-center gap-[30px]"
-  >
+      ''} grid w-[85%] grid-cols-12 items-center gap-[30px]">
     <div class="col-span-4">
       <figure
         class="translate-y-[-10%]"
-        use:parallaxOnScrollAction={{ scrollY, intersecting }}
-      >
+        use:parallaxOnScrollAction={{ scrollY, intersecting }}>
         <SanityImage
           class="aspect-square w-full rounded-[20px] object-cover"
           sizes="30vw"
           src={firstImg}
           alt={firstImg.alt}
-          imageUrlBuilder={imageBuilder}
-        />
+          imageUrlBuilder={imageBuilder} />
         <figcaption
-          class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-        >
+          class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver">
           {firstImg.caption}
         </figcaption>
       </figure>
@@ -77,11 +73,9 @@
           src={secondImg}
           alt={secondImg.alt}
           class="h-full w-full rounded-[20px]"
-          imageUrlBuilder={imageBuilder}
-        />
+          imageUrlBuilder={imageBuilder} />
         <figcaption
-          class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver"
-        >
+          class="pl-[20px] pt-[20px] text-title-2 font-light text-sonic-silver">
           {secondImg.caption}
         </figcaption>
       </figure>

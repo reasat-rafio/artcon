@@ -17,8 +17,7 @@
       alt={value?.alt}
       imageUrlBuilder={imageBuilder}
       class="aspect-square h-full w-full overflow-hidden rounded-lg object-cover"
-      sizes="(min-width:768px) 30vw, 100vw"
-    />
+      sizes="(min-width:768px) 30vw, 100vw" />
     <div>
       <H4 class="mb-5">{value.title}</H4>
       <PortableText value={value.description} />
@@ -30,6 +29,5 @@
     alt={value?.alt}
     imageUrlBuilder={imageBuilder}
     sizes="(min-width:768px) 80vw, 100vw"
-    class="mx-auto max-h-[600px] w-full overflow-hidden rounded-lg lg:my-5"
-  />
+    class="mx-auto max-h-[600px] w-full overflow-hidden rounded-lg lg:my-5" />
 {/if}

@@ -1,9 +1,9 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import type {
   AutoWidths,
   SanityDimensionedImage,
   SanityImageWithLqip,
-} from "./types";
+} from './types';
 
 /**
  * Perform a shallow (non-recursive) merge of multiple objects
@@ -33,7 +33,7 @@ export function mergeSingleRecursive<T extends Record<string, any>>(
   items.forEach((item) => {
     Object.entries(item).forEach(([k, v]) => {
       merged[k as keyof T] =
-        merged[k] && v && typeof v === "object"
+        merged[k] && v && typeof v === 'object'
           ? shallowMerge(merged[k], v)
           : v;
     });
@@ -46,13 +46,13 @@ export function mergeSingleRecursive<T extends Record<string, any>>(
  * @param image
  */
 export function isSanityDimensionedImage(
-  image: SanityImageSource
+  image: SanityImageSource,
 ): image is SanityDimensionedImage {
   return (
-    typeof image == "object" &&
-    "asset" in image &&
-    "metadata" in image.asset &&
-    "dimensions" in image.asset.metadata
+    typeof image == 'object' &&
+    'asset' in image &&
+    'metadata' in image.asset &&
+    'dimensions' in image.asset.metadata
   );
 }
 
@@ -61,13 +61,13 @@ export function isSanityDimensionedImage(
  * @param image
  */
 export function isSanityImageWithLqip(
-  image: SanityImageSource
+  image: SanityImageSource,
 ): image is SanityImageWithLqip {
   return (
-    typeof image == "object" &&
-    "asset" in image &&
-    "metadata" in image.asset &&
-    "lqip" in image.asset.metadata
+    typeof image == 'object' &&
+    'asset' in image &&
+    'metadata' in image.asset &&
+    'lqip' in image.asset.metadata
   );
 }
 
@@ -81,13 +81,13 @@ export function isSanityImageWithLqip(
  */
 export function generateWidths(
   autoWidths: AutoWidths,
-  image: SanityImageSource
+  image: SanityImageSource,
 ): number[] {
   const maxWidth = isSanityDimensionedImage(image)
     ? image.asset.metadata.dimensions.width
     : autoWidths.maxWidth;
   const divisions = Math.ceil(maxWidth / autoWidths.step);
   return Array.from({ length: divisions }, (_, i) =>
-    Math.min(Math.floor(autoWidths.step * (i + 1)), maxWidth)
+    Math.min(Math.floor(autoWidths.step * (i + 1)), maxWidth),
   );
 }

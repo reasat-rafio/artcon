@@ -17,8 +17,7 @@ const VideoPreview = ({ webm, hevc, background }: VideoPreviewType) => (
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-    }}
-  >
+    }}>
     <source src={webm} type="video/webm" />
     <source src={hevc} type="video/quicktime" />
   </video>

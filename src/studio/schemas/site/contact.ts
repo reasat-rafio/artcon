@@ -120,16 +120,16 @@ const contact = {
                   type === 'facebook'
                     ? IoLogoFacebook
                     : type === 'youtube'
-                    ? IoLogoYoutube
-                    : type === 'instagram'
-                    ? IoLogoInstagram
-                    : type === 'mail'
-                    ? BiLogoGmail
-                    : type === 'whatsapp'
-                    ? FaWhatsapp
-                    : type === 'phone'
-                    ? AiOutlinePhone
-                    : IoShareSocial,
+                      ? IoLogoYoutube
+                      : type === 'instagram'
+                        ? IoLogoInstagram
+                        : type === 'mail'
+                          ? BiLogoGmail
+                          : type === 'whatsapp'
+                            ? FaWhatsapp
+                            : type === 'phone'
+                              ? AiOutlinePhone
+                              : IoShareSocial,
               };
             },
           },

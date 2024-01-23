@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
