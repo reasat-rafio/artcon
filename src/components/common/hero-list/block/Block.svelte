@@ -97,7 +97,7 @@
   <div
     bind:this={contentContainerEl}
     class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
-    <header class="space-y-[2.1875rem]">
+    <header class="!drop-shadow-5xl space-y-[2.1875rem]">
       {#if !!topTitle}
         <h3
           bind:this={topTitleEl}
@@ -117,7 +117,7 @@
       <div
         class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
         {#if !!subtitle}
-          <h2 bind:this={subtitleEl}>
+          <h2 class="!drop-shadow-5xl" bind:this={subtitleEl}>
             {subtitle}
           </h2>
         {:else}

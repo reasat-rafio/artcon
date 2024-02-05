@@ -31,6 +31,7 @@ export default {
           '0 25px 35px rgba(0, 0, 0, 0.65)',
           '0 25px 65px rgba(0, 0, 0, 0.45)',
         ],
+        '5xl': '0 5px 250px rgba(0, 0, 0, 1)',
       },
       zIndex: {
         god: 9999999,
