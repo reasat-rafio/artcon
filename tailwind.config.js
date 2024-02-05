@@ -28,10 +28,9 @@ export default {
       dropShadow: {
         '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
         '4xl': [
-          '0 25px 35px rgba(0, 0, 0, 0.65)',
-          '0 25px 65px rgba(0, 0, 0, 0.45)',
+          '0 50px 100px rgba(0, 0, 0, 1)',
+          '0 -50px 100px rgba(0, 0, 0, 1)',
         ],
-        '5xl': '0 5px 250px rgba(0, 0, 0, 1)',
       },
       zIndex: {
         god: 9999999,
