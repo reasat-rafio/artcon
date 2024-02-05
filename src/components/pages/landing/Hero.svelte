@@ -49,7 +49,7 @@
 
     <div
       class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100dvh)] text-center text-white">
-      <header>
+      <header class="!drop-shadow-4xl">
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
           {#if !!topTitle}
             <h3
@@ -62,7 +62,7 @@
           {/if}
         </div>
 
-        <div class="mb-[1.26rem] overflow-hidden !drop-shadow-4xl">
+        <div class="mb-[1.26rem] overflow-hidden">
           <h1
             bind:this={titleEl}
             class="head-1 translate-y-full !leading-none opacity-0">

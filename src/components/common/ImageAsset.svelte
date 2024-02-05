@@ -5,7 +5,7 @@
   import uiStore from '@/store/ui';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-  import { onMount } from 'svelte';
+  import { tick } from 'svelte';
   import IntersectionObserver from 'svelte-intersection-observer';
 
   export let props: CommonImageAsset;
@@ -15,24 +15,31 @@
   let imageContainerEl: HTMLDivElement;
   let intersecting = false;
 
-  onMount(() => {
+  function parallaxAnimation(node: HTMLElement) {
+    gsap.registerPlugin(ScrollTrigger);
     setPosition();
 
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context(() => {
-      gsap.to(imageContainerEl, {
-        scale: 1.15,
-        scrollTrigger: {
-          trigger: sectionEl,
-          start: '40% center',
-          end: 'bottom top',
-          scrub: 1,
-        },
+    setPosition();
+    tick().then(() => {
+      const ctx = gsap.context(() => {
+        gsap.to(node, {
+          scale: 1.15,
+          scrollTrigger: {
+            trigger: sectionEl,
+            start: '40% center',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
       });
-    });
 
-    return () => ctx.revert();
-  });
+      return {
+        destroy() {
+          ctx.revert();
+        },
+      };
+    });
+  }
 
   function setPosition() {
     if (intersecting) {
@@ -54,7 +61,10 @@
 <svelte:window on:scroll={setPosition} on:resize={setPosition} />
 <IntersectionObserver element={sectionEl} bind:intersecting>
   <div bind:this={sectionEl} class="h-screen w-full overflow-hidden">
-    <div bind:this={imageContainerEl} class="fixed left-0 top-0 h-full w-full">
+    <div
+      use:parallaxAnimation
+      bind:this={imageContainerEl}
+      class="fixed left-0 top-0 h-full w-full">
       <SanityImage
         src={image}
         sizes="100vw"
