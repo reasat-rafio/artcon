@@ -13,8 +13,11 @@
   class="fixed top-0 z-[1005] hidden w-full lg:block">
   <div class="flex w-full justify-between px-[2.5rem] pt-[2.38rem]">
     <Cta
+      el="button"
       variant="secondary"
-      href={ctas[0].href}
+      onClick={() => {
+        if (typeof window !== 'undefined') window.history.back();
+      }}
       className="flex items-center justify-center space-x-[0.5rem] capitalize pt-[0.81rem] pb-[0.88rem] min-w-[7.26375rem]">
       <svg
         width="6"
