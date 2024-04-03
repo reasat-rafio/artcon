@@ -77,7 +77,7 @@
         <li class="overflow-hidden text-white">
           <a
             href={pageUrl || externalUrl}
-            class="dropdownItems head-8 block translate-y-full pl-8 font-medium uppercase">
+            class="dropdownItems head-8 block translate-y-full whitespace-nowrap pl-8 font-medium uppercase">
             {title}
           </a>
         </li>
