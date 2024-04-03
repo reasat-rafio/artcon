@@ -16,7 +16,7 @@
   {#if !!image}
     <SanityImage
       draggable={false}
-      class="absolute h-full w-full object-cover"
+      class="h-full w-full object-cover"
       lqip
       sizes="100vw"
       alt={image.alt}
