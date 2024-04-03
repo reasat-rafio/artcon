@@ -38,7 +38,7 @@
         alt="VR thumbnail" />
     {:else if state === 'video'}
       <video
-        class="h-full w-full bg-red-500 object-cover"
+        class="h-full w-full object-cover"
         width="100%"
         height="100%"
         disablePictureInPicture
