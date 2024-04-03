@@ -5,11 +5,22 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { VR } from '@/lib/types/common.types';
 
+  type State = 'thumbnail' | 'video' | 'iframe';
+
   export let vr: VR;
   $: ({ caption, url, thumbnail } = vr);
 
-  let showIframe = false;
+  let state: State = 'thumbnail';
   let showLoading = false;
+
+  function onClickAction() {
+    showLoading = true;
+    state = 'video';
+
+    setTimeout(() => {
+      state = 'iframe';
+    }, 6000);
+  }
 </script>
 
 <section
@@ -17,12 +28,31 @@
   {...$$restProps}
   class={cn('mx-auto max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
   <button
-    on:click={() => {
-      showIframe = true;
-      showLoading = true;
-    }}
+    on:click={onClickAction}
     class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl outline-none">
-    {#if showIframe}
+    {#if state === 'thumbnail'}
+      <SanityImage
+        src={thumbnail}
+        sizes="(min-width: 1024px) 70vw, 100vw"
+        class="h-full w-full object-cover"
+        imageUrlBuilder={imageBuilder}
+        alt="VR thumbnail" />
+    {:else if state === 'video'}
+      <video
+        class="h-full w-full bg-red-500 object-cover"
+        width="100%"
+        height="100%"
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate"
+        controls={false}
+        playsInline
+        autoPlay
+        muted>
+        <source src="/video/artconintro.mp4" type="video/mp4; codecs=hvc1" />
+        <source src="/video/artconintro.webm" type="video/webm" />
+        Sorry, your browser doesn&apos;t support embedded videos.
+      </video>
+    {:else if state === 'iframe'}
       <iframe
         on:load={() => (showLoading = false)}
         allowfullscreen
@@ -40,13 +70,6 @@
         )}>
         <span class="title-regular">Loading...</span>
       </div>
-    {:else}
-      <SanityImage
-        src={thumbnail}
-        sizes="(min-width: 1024px) 70vw, 100vw"
-        class="h-full w-full object-cover"
-        imageUrlBuilder={imageBuilder}
-        alt="VR thumbnail" />
     {/if}
   </button>
   {#if !!caption}

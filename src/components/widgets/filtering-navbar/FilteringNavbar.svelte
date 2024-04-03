@@ -110,7 +110,7 @@
         <div class="flex w-full items-center justify-center">
           <div class="flex-1">
             {#if $uiStore.mobileNavDropdownOpen}
-              <a transition:scale href="/">
+              <a in:scale href="/">
                 <SanityImage
                   class="h-[3.125rem] w-fit object-contain"
                   src={logoLight}
