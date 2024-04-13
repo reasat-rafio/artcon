@@ -1,5 +1,6 @@
 <script lang="ts">
   import MobileNavDropdown from '@/components/common/navigation/MobileNavDropdown.svelte';
+  import Navbar from '@/components/common/navigation/Navbar.svelte';
   import NavList from '@/components/common/navigation/nav-list/NavList.svelte';
   import ImagePopup from '@/components/widgets/image-popup/ImagePopup.svelte';
   import Lightbox from '@/components/widgets/light-box/Lightbox.svelte';
@@ -10,8 +11,6 @@
   import lightboxStore from '@/store/lightbox';
   import sharePopupStore from '@/store/share-popup';
   import uiStore from '@/store/ui';
-  import { BootstrapToast, ToastContainer } from 'svelte-toasts';
-
   import '@fontsource/inter/300.css';
   import '@fontsource/inter/400.css';
   import '@fontsource/inter/500.css';
@@ -19,7 +18,7 @@
   import '@fontsource/inter/700.css';
   import '@fontsource/outfit/500.css';
   import '@fontsource/outfit/600.css';
-  import Navbar from '@/components/common/navigation/Navbar.svelte';
+  import { BootstrapToast, ToastContainer } from 'svelte-toasts';
 
   export let data;
   $: ({

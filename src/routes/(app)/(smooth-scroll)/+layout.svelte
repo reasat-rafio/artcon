@@ -8,6 +8,7 @@
   import { useFrame } from '@/lib/lifecycle-functions/useFrame';
   import { useScroll } from '@/lib/lifecycle-functions/useScroll';
   import { browser } from '$app/environment';
+  import { afterNavigate } from '$app/navigation';
 
   if (browser) {
     gsap.registerPlugin(ScrollTrigger);
@@ -40,6 +41,10 @@
 
   useFrame((time) => {
     $lenis?.raf(time);
+  });
+
+  afterNavigate(() => {
+    $lenis?.scrollTo(0, { immediate: true });
   });
 </script>
 
