@@ -9,6 +9,8 @@
   import FilteringNavbar from '@/components/widgets/filtering-navbar/FilteringNavbar.svelte';
   import Listing from '@/components/pages/publication/Listing.svelte';
   import { formatPublicationListingProps } from '@/lib/modify-props';
+  import { beforeNavigate } from '$app/navigation';
+  import uiStore from '@/store/ui';
 
   export let data: PageProps<PublicationPageProps>;
 
@@ -34,6 +36,8 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
+    uiStore.setPreventScrollToTop(true);
+
     if (!activeSearchParams) {
       filteredPublications = publications;
       return;
@@ -44,6 +48,10 @@
     );
     filteredPublications = fList;
   };
+
+  beforeNavigate(() => {
+    uiStore.setPreventScrollToTop(false);
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />

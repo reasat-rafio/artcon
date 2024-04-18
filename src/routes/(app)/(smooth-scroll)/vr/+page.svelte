@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -9,6 +10,7 @@
   import { formatVrListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { VrPageProps } from '@/lib/types/vr.types';
+  import uiStore from '@/store/ui';
 
   export let data: PageProps<VrPageProps>;
   $: ({
@@ -30,6 +32,8 @@
   $: vrsWithImages = createListingItemWithImage(filteredVr, sectionImages);
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
+    uiStore.setPreventScrollToTop(true);
+
     if (!activeSearchParams) {
       filteredVr = vrs;
       return;
@@ -40,6 +44,10 @@
     );
     filteredVr = fList;
   };
+
+  beforeNavigate(() => {
+    uiStore.setPreventScrollToTop(false);
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />

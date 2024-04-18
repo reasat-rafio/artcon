@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -9,6 +10,7 @@
   import { formatProjectListingProps } from '@/lib/modify-props';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import type { ProjectPageProps } from '@/lib/types/project.types';
+  import uiStore from '@/store/ui';
 
   export let data: PageProps<ProjectPageProps>;
   $: ({
@@ -33,6 +35,8 @@
   );
 
   const filterBySearchParams = (activeSearchParams: string | null) => {
+    uiStore.setPreventScrollToTop(true);
+
     if (!activeSearchParams) {
       filteredProjects = projects;
       return;
@@ -42,6 +46,10 @@
     );
     filteredProjects = fList;
   };
+
+  beforeNavigate(() => {
+    uiStore.setPreventScrollToTop(false);
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />

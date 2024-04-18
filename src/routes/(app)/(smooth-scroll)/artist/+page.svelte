@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -11,7 +12,7 @@
   import { formatArtistListingProps } from '@/lib/modify-props';
   import type { ArtistPageProps } from '@/lib/types/artist.types';
   import type { PageProps } from '@/lib/types/common.types';
-  import { onMount } from 'svelte';
+  import uiStore from '@/store/ui';
 
   export let data: PageProps<ArtistPageProps>;
 
@@ -40,6 +41,8 @@
     name: string | null;
     tag: string | null;
   }) => {
+    uiStore.setPreventScrollToTop(true);
+
     if (!name && !tag) {
       filteredArtists = artists;
       return;
@@ -58,6 +61,10 @@
       );
     }
   };
+
+  beforeNavigate(() => {
+    uiStore.setPreventScrollToTop(false);
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />

@@ -6,7 +6,7 @@ import {
 
 export default defineCliConfig({
   api: {
-    projectId: PUBLIC_SANITY_PROJECT_ID,
-    dataset: PUBLIC_SANITY_DATASET,
+    projectId: 'fjt1fjyt',
+    dataset: 'production',
   },
 });

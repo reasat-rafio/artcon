@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
@@ -11,6 +12,7 @@
   import type { CollectionPageProps } from '@/lib/types/collection.types';
   import type { CommonImageAsset, PageProps } from '@/lib/types/common.types';
   import { lenisStore } from '@/store/lenis';
+  import uiStore from '@/store/ui';
   import { onMount } from 'svelte';
 
   export let data: PageProps<CollectionPageProps>;
@@ -60,6 +62,8 @@
     activeSortParams: string | null,
     activeArtistParams: string | null,
   ) => {
+    uiStore.setPreventScrollToTop(true);
+
     let collectionsCopy = [...collections];
 
     if (!activeSearchParams && !activeSortParams && !activeArtistParams) {
@@ -109,6 +113,10 @@
 
     filteredCollections = collectionsCopy;
   };
+
+  beforeNavigate(() => {
+    uiStore.setPreventScrollToTop(false);
+  });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
