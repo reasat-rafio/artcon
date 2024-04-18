@@ -4,6 +4,7 @@ type ImageAssetPos = { id: string; y: number };
 
 type UIStore = {
   selectedPreviewIndex: number | null;
+  preventScrollToTop: boolean;
   containerWidth: number;
   mobileNavDropdownOpen: boolean;
   navItemsColor: string[];
@@ -17,11 +18,19 @@ const createUiStore = () => {
     mobileNavDropdownOpen: false,
     navItemsColor: [],
     imageAssetPos: [],
+    preventScrollToTop: false,
   });
 
   const setActivePreview = (activeIndexOrNull: number | null) => {
     update(($store) => {
       $store.selectedPreviewIndex = activeIndexOrNull;
+      return $store;
+    });
+  };
+
+  const setPreventScrollToTop = (prevent: boolean) => {
+    update(($store) => {
+      $store.preventScrollToTop = prevent;
       return $store;
     });
   };
@@ -77,6 +86,7 @@ const createUiStore = () => {
     removeActiveImageAssetPos,
     toggleMobileNavDropdown,
     pushActiveImageAssetPos,
+    setPreventScrollToTop,
     setNavItemColorAtAIdx,
   };
 };

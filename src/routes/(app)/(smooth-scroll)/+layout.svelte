@@ -9,6 +9,7 @@
   import { useScroll } from '@/lib/lifecycle-functions/useScroll';
   import { browser } from '$app/environment';
   import { afterNavigate } from '$app/navigation';
+  import uiStore from '@/store/ui';
 
   if (browser) {
     gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +30,6 @@
 
   onMount(() => {
     window.history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
 
     const lenisInstance = new Lenis();
     setLenisStore(lenisInstance);
@@ -44,7 +44,7 @@
   });
 
   afterNavigate(() => {
-    $lenis?.scrollTo(0, { immediate: true });
+    if (!$uiStore.preventScrollToTop) $lenis?.scrollTo(0, { immediate: true });
   });
 </script>
 
