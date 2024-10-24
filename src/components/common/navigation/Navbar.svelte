@@ -65,12 +65,14 @@
       )}>
       <Hamburger color={hamburgerColor} class="block lg:hidden" />
       {#if !$page.url.pathname.includes('search')}
-        <div
+        <button
+          aria-label="search"
+          on:click={() => redirectToSearchPage(searchInputEl.value)}
           transition:fade
           on:click={setSearchBarActive}
           on:keydown={setSearchBarActive}
           use:clickOutSide={() => (searchIsActive = false)}
-          role="button"
+          disabled={$searchStore.loading}
           tabindex="0"
           class={cn(
             'hidden cursor-pointer space-x-[1.2rem] rounded-2xl border py-[0.6rem] pl-[1.65rem] pr-[1.4rem] transition-colors duration-500 group-hover:bg-white lg:flex',
@@ -100,14 +102,11 @@
                   !isDarkNavPaths && searchIsActive,
               },
             )} />
-          <button
-            aria-label="search"
-            disabled={$searchStore.loading}
-            on:click={() => redirectToSearchPage(searchInputEl.value)}
+          <span
             class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
             <SearchIcon />
-          </button>
-        </div>
+          </span>
+        </button>
       {/if}
     </div>
   </div>

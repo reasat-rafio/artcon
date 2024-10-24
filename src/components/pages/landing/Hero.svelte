@@ -24,10 +24,9 @@
   onMount(() => {
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: 'expoOut', duration: 0.5 },
-        delay: 0.6,
+        defaults: { ease: 'expoOut', duration: 0.6 },
       });
-      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
+      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 });
       if (titleEl) tl.to(titleEl, { y: 0, opacity: 0.75 }, '-=0.2');
       if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
       tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
