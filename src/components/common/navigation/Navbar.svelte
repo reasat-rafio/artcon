@@ -65,49 +65,60 @@
       )}>
       <Hamburger color={hamburgerColor} class="block lg:hidden" />
       {#if !$page.url.pathname.includes('search')}
-        <div
+        <button
           transition:fade
           on:click={setSearchBarActive}
           on:keydown={setSearchBarActive}
           use:clickOutSide={() => (searchIsActive = false)}
-          role="button"
-          tabindex="0"
           class={cn(
-            'hidden cursor-pointer space-x-[1.2rem] rounded-2xl border py-[0.8rem] pl-[1.85rem] pr-[1.6rem] transition-colors duration-500 group-hover:bg-white lg:flex',
+            'hidden cursor-pointer items-center space-x-[1.2rem] rounded-2xl border py-[0.8rem] pl-[1.85rem] pr-[1.6rem] transition-colors duration-500 group-hover:bg-white lg:flex',
             {
               'border-dark-gunmetal': isDarkNavPaths,
               'border-white': !isDarkNavPaths,
               'bg-white': searchIsActive,
             },
           )}>
-          <input
-            type="text"
-            bind:this={searchInputEl}
-            {placeholder}
-            disabled={$searchStore.loading}
-            on:keydown={(e) => {
-              if (e.key === 'Enter') redirectToSearchPage(searchInputEl.value);
-            }}
-            class={cn(
-              'bg-transparent text-[0.84375rem] !font-normal tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:!font-normal',
-              {
-                'w-[250px]': searchIsActive,
-                'w-[47px] ': !searchIsActive,
-                'placeholder:text-dark-gunmetal': isDarkNavPaths,
-                'placeholder:text-white group-hover:placeholder:text-[#000]/40':
-                  !isDarkNavPaths,
-                'text-dark-gunmetal placeholder:text-[#000]/40':
-                  !isDarkNavPaths && searchIsActive,
-              },
-            )} />
-          <button
-            aria-label="search"
-            disabled={$searchStore.loading}
-            on:click={() => redirectToSearchPage(searchInputEl.value)}
-            class="scale-100 transition-transform duration-500 hover:scale-125 group-hover:text-dark-gunmetal">
-            <SearchIcon />
-          </button>
-        </div>
+          <div class="relative flex flex-1 items-center justify-center">
+            <input
+              type="search"
+              bind:this={searchInputEl}
+              {placeholder}
+              disabled={$searchStore.loading}
+              on:keydown={(e) => {
+                if (e.key === 'Enter')
+                  redirectToSearchPage(searchInputEl.value);
+              }}
+              aria-label="Search"
+              class={cn(
+                'bg-transparent text-[0.84375rem] !font-normal tracking-[0.01688rem] outline-none transition-all duration-500 ease-in-out placeholder:text-[0.84375rem] placeholder:!font-normal',
+                {
+                  'w-[250px]': searchIsActive,
+                  'w-[60px]': !searchIsActive,
+                  'placeholder:text-dark-gunmetal': isDarkNavPaths,
+                  'placeholder:text-white group-hover:placeholder:text-[#000]/40':
+                    !isDarkNavPaths,
+                  'text-dark-gunmetal placeholder:text-[#000]/40':
+                    !isDarkNavPaths && searchIsActive,
+                },
+              )} />
+            <div class="absolute inset-0 -m-3 cursor-text" aria-hidden="true" />
+          </div>
+
+          <div class="relative flex items-center">
+            <button
+              type="submit"
+              aria-label="Submit search"
+              disabled={$searchStore.loading}
+              on:click|stopPropagation={() =>
+                redirectToSearchPage(searchInputEl.value)}
+              class="focus:ring-primary scale-100 transition-transform duration-500 hover:scale-125 focus:outline-none focus:ring-2 focus:ring-offset-2 group-hover:text-dark-gunmetal">
+              <SearchIcon />
+            </button>
+            <div
+              class="absolute inset-0 -m-3 cursor-pointer"
+              aria-hidden="true" />
+          </div>
+        </button>
       {/if}
     </div>
   </div>
