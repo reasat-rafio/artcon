@@ -151,11 +151,13 @@
             <Asset {asset} />
           </div>
 
-          <div data-load-animate="y">
-            <PortableText
-              class="body-light-m lg:body-light text-dark-gunmetal"
-              value={description} />
-          </div>
+          {#if !!description?.length}
+            <div data-load-animate="y">
+              <PortableText
+                class="body-light-m lg:body-light text-dark-gunmetal"
+                value={description} />
+            </div>
+          {/if}
         </div>
       {/key}
     </section>

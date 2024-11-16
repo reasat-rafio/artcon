@@ -32,9 +32,9 @@ export interface ExhibitionDetailPageProps {
   artists: ArtistsProps;
   artworks: ShortArtworks[];
   asset: Asset;
-  associationsList: Association[];
+  associationsList?: Association[];
   name: string;
-  description: PortableTextBlock[];
+  description?: PortableTextBlock[];
   endDate?: string;
   startDate: string;
   gallery: Gallery;

@@ -33,7 +33,6 @@
       category,
       documentaryVideo,
       synopsys,
-      thumbnail,
     },
     site: { logos },
   } = data);
@@ -175,12 +174,14 @@
             data-load-animate="y"
             class="-full relative mb-[2.5rem] aspect-video overflow-hidden rounded-xl">
             <Youtube id={ytID} altThumb={true} animations={false}>
-              <SanityImage
-                class="h-full w-full object-cover"
-                sizes="60vw"
-                imageUrlBuilder={imageBuilder}
-                src={thumbnail}
-                alt={thumbnail?.alt} />
+              {#if !!documentaryVideo?.thumbnail}
+                <SanityImage
+                  class="h-full w-full object-cover "
+                  sizes="60vw"
+                  imageUrlBuilder={imageBuilder}
+                  src={documentaryVideo.thumbnail}
+                  alt={documentaryVideo.thumbnail?.alt} />
+              {/if}
             </Youtube>
           </div>
 

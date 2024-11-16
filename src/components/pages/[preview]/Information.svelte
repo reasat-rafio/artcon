@@ -27,7 +27,9 @@
     <ul class="title-light !leading-[142.857%]">
       <li>{information.media}</li>
       <li>{information.size}</li>
-      <li>{information.artDate.creationDetails}</li>
+      {#if !!information?.artDate?.creationDetails}
+        <li>{information.artDate.creationDetails}</li>
+      {/if}
       <li>{information.frame}</li>
       {#if !!information?.moreInformation?.length}
         {#each information.moreInformation as info}
@@ -38,12 +40,16 @@
   </div>
 
   <div class="flex-1 space-y-[1.25rem] 2xl:pl-[1.6875rem]">
-    <h4 class="body-regular !font-inter !font-normal">
-      {provenance.title}
-    </h4>
-    <div class="title-light !leading-[143%] text-dark-gunmetal">
-      <PortableText value={provenance.description} />
-    </div>
+    {#if !!provenance?.title}
+      <h4 class="body-regular !font-inter !font-normal">
+        {provenance.title}
+      </h4>
+    {/if}
+    {#if !!provenance.description?.length}
+      <div class="title-light !leading-[143%] text-dark-gunmetal">
+        <PortableText value={provenance.description} />
+      </div>
+    {/if}
   </div>
 </div>
 

@@ -128,6 +128,7 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Space / Gallery',
       name: 'gallery',
       type: 'reference',
       to: [{ type: 'gallery' }],
@@ -144,13 +145,11 @@ const exhibition = {
         },
       ],
       description: 'This will display in detail page and the preview page',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'associationsList',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'sections',

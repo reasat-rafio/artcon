@@ -16,7 +16,9 @@
   <ul class="text-[0.875rem] font-light leading-[1.25rem]">
     <li>{media}</li>
     <li>{size}</li>
-    <li>{artDate.creationDetails}</li>
+    {#if artDate?.creationDetails}
+      <li>{artDate.creationDetails}</li>
+    {/if}
     <li>{frame}</li>
     {#if !!moreInformation?.length}
       {#each moreInformation as info}

@@ -116,7 +116,7 @@
   seo={{
     _type,
     title: name,
-    description: toPlainText(description),
+    description: toPlainText(description ?? ''),
     ogImage: coverImage,
   }}
   siteOgImg={logos?.ogImage} />
@@ -142,7 +142,7 @@
           <Header
             topic="Our virtual reality"
             title={name}
-            {subtitle}
+            subtitle={subtitle ?? ''}
             type={category.name}
             {link}
             let:Info>
@@ -151,9 +151,11 @@
                 {gallery.name}
               </div>
               <div class="title-light">
-                <span class="font-light">{date}</span>
-                <span class="px-[6px]">|</span>
-                <span class="font-medium text-eerie-black">{status}</span>
+                {#if !!date && !!status}
+                  <span class="font-light">{date}</span>
+                  <span class="px-[6px]">|</span>
+                  <span class="font-medium text-eerie-black">{status}</span>
+                {/if}
               </div>
             </Info>
           </Header>
@@ -163,11 +165,13 @@
             class="mb-[2.5rem]"
             data-load-animate="y"
             vr={{ _type: 'vr', caption, url, thumbnail }} />
-          <div data-load-animate="y">
-            <PortableText
-              class="body-light-m lg:body-light text-dark-gunmetal"
-              value={description} />
-          </div>
+          {#if !!description?.length}
+            <div data-load-animate="y">
+              <PortableText
+                class="body-light-m lg:body-light text-dark-gunmetal"
+                value={description} />
+            </div>
+          {/if}
         </div>
       {/key}
     </section>

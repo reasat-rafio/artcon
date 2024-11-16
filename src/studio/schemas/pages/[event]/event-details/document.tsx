@@ -89,23 +89,26 @@ const event = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Space / Gallery',
       name: 'gallery',
       type: 'reference',
       to: [{ type: 'gallery' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Description (required)',
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
       description: 'This will display in detail page and the preview page',
-      validation: (Rule: Rule) => Rule.required(),
+      // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Associations List (required)',
       name: 'associationsList',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
-      validation: (Rule: Rule) => Rule.required(),
+      // validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'sections',
@@ -113,8 +116,8 @@ const event = {
       type: 'array',
       validation: (Rule: Rule) => Rule.required().min(1),
       of: [
-        { type: 'common.imageAsset' },
         { type: 'event.summary' },
+        { type: 'common.imageAsset' },
         { type: 'event.documentation' },
         { type: 'event.gallery' },
         { type: 'event.newsAndMedia' },

@@ -28,15 +28,7 @@ const query = (params: Partial<Record<string, string>>) =>
         born,
         country
       }
-    },
-    sliderImageVideo {
-      ...,
-      ${asset('image')},
-      video{
-        "webm": video_webm.asset->url,
-        "mov": video_hevc.asset->url,
-      }
-    },
+    }
   }`;
 
 export const load: ServerLoad = async (event) => {

@@ -1,5 +1,5 @@
 import type { Slug } from 'sanity';
-import type { Asset, Cta, SeoProps } from './common.types';
+import type { Cta, SeoProps } from './common.types';
 import type { Information, Provenance } from './collection-detail.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
@@ -14,7 +14,6 @@ export interface CollectionPreviewProps {
   hideInquiryButton?: boolean;
   isAvailable: boolean;
   seo: SeoProps;
-  sliderImageVideo: Asset;
   information: Information;
   provenance: Provenance;
   artworkImages: SanityImageAssetDocument[];

@@ -37,8 +37,8 @@ type Section =
   | DocumentationsProps;
 
 export interface Provenance {
-  title: string;
-  description: PortableTextBlock[];
+  title?: string;
+  description?: PortableTextBlock[];
 }
 
 export interface DocumentationsProps {
@@ -74,9 +74,9 @@ export interface Information {
   media: string;
   size: string;
   frame: string;
-  artDate: {
-    creationDetails: string;
-    year: string;
+  artDate?: {
+    creationDetails?: string;
+    year?: string;
   };
   moreInformation?: string[];
 }

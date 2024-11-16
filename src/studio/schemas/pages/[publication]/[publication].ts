@@ -17,9 +17,9 @@ const publication = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Subtitle (required)',
       name: 'subtitle',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'slug',
@@ -42,9 +42,9 @@ const publication = {
     },
     {
       name: 'isbn',
-      title: 'ISBN',
+      title: 'ISBN (required)',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
+      // validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'prices',
@@ -116,10 +116,11 @@ const publication = {
       type: 'quote',
     },
     {
+      title: 'Description (required)',
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
-      validation: (Rule: Rule) => Rule.required(),
+      // validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'associationsList',
@@ -127,10 +128,23 @@ const publication = {
       of: [{ type: 'keyValuePairs' }],
       validation: (Rule: Rule) => Rule.required(),
     },
+
     {
       name: 'exproleLink',
-      type: 'cta',
-      validation: (Rule: Rule) => Rule.required(),
+      type: 'object',
+      fields: [
+        {
+          title: 'Button title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          name: 'href',
+          title: 'Button URL',
+          description: `The URL field accepts internal links in the format '/page-slug' or '/parent-slug/slug' (e.g., 'artcon.com/exhibition' becomes '/exhibition'). External URLs must begin with 'https://' or 'http://', while email links should use 'mailto:email@example.com'. Any valid external URL is accepted.`,
+          type: 'string',
+        },
+      ],
     },
   ],
   preview: {

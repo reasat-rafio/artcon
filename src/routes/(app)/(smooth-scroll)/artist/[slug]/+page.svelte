@@ -13,7 +13,7 @@
 
   $: ({
     page: {
-      siteDocuments: { asset, sections, cta, topTitle, subtitle },
+      siteDocuments,
       personalDocuments,
       seo,
       artworks,
@@ -30,58 +30,63 @@
     },
   } = data);
 
-  $: allPublications = [...publications, ...publicationsFromExhibitions];
+  $: allPublications = [
+    ...(publications ?? []),
+    ...(publicationsFromExhibitions ?? []),
+  ];
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
 <Hero
   props={{
     _type: 'common.hero',
-    topTitle,
+    topTitle: siteDocuments?.topTitle,
     title: personalDocuments.name,
-    asset,
-    cta,
-    subtitle,
+    asset: siteDocuments.asset,
+    cta: siteDocuments?.cta,
+    subtitle: siteDocuments?.subtitle,
   }} />
 <Share href="/artist" {logoDark} {logoLight}>Our artist</Share>
 <div class="relative z-10 bg-white">
-  {#each sections as s}
-    {#if s._type === 'common.imageAsset'}
-      <ImageAsset props={s} />
-    {:else if s._type === 'artist.summary'}
-      <Summary
-        props={{
-          ...s,
-          personalDocuments,
-        }} />
-    {:else if s._type === 'common.artwork'}
-      <Artwork
-        props={{
-          ...s,
-          artworks,
-          ctaLink: `/collection?artist=${slug.current}`,
-        }} />
-    {:else if s._type === 'artist.publication'}
-      <Publication publications={allPublications} />
+  {#if !!siteDocuments?.sections?.length}
+    {#each siteDocuments.sections as s}
+      {#if s._type === 'common.imageAsset'}
+        <ImageAsset props={s} />
+      {:else if s._type === 'artist.summary'}
+        <Summary
+          props={{
+            ...s,
+            personalDocuments,
+          }} />
+      {:else if s._type === 'common.artwork'}
+        <Artwork
+          props={{
+            ...s,
+            artworks,
+            ctaLink: `/collection?artist=${slug.current}`,
+          }} />
+      {:else if s._type === 'artist.publication'}
+        <Publication publications={allPublications} />
+      {/if}
+    {/each}
+
+    {#if !!exhibitions?.length}
+      {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
+        <OthersDocument.default
+          urlPrefix="/exhibition"
+          title={`${personalDocuments.name}’s other exhibition with us`}
+          data={exhibitions} />
+      {/await}
     {/if}
-  {/each}
 
-  {#if !!exhibitions?.length}
-    {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
-      <OthersDocument.default
-        urlPrefix="/exhibition"
-        title={`${personalDocuments.name}’s other exhibition with us`}
-        data={exhibitions} />
+    {#if !!otherArtists?.length}
+      {#await import('@/components/pages/[artist]/other-artists/OtherArtists.svelte') then OtherArtists}
+        <OtherArtists.default artists={otherArtists} />
+      {/await}
+    {/if}
+
+    {#await import('@/components/common/footer/Footer.svelte') then Footer}
+      <Footer.default {footer} {contact} logo={logoDark} />
     {/await}
   {/if}
-
-  {#if !!otherArtists?.length}
-    {#await import('@/components/pages/[artist]/other-artists/OtherArtists.svelte') then OtherArtists}
-      <OtherArtists.default artists={otherArtists} />
-    {/await}
-  {/if}
-
-  {#await import('@/components/common/footer/Footer.svelte') then Footer}
-    <Footer.default {footer} {contact} logo={logoDark} />
-  {/await}
 </div>

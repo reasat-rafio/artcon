@@ -35,7 +35,7 @@ export const calculateStatusBetweenDates = ({
   endDate,
   longFormat,
 }: {
-  startDate: string;
+  startDate?: string;
   endDate?: string;
   longFormat?: boolean;
 }) => {
@@ -43,8 +43,8 @@ export const calculateStatusBetweenDates = ({
   let status: 'Ongoing' | 'Upcoming' | 'Ended';
   let date: string;
 
-  const isoStartDate = DateTime.fromISO(startDate);
-  const isoEndDate = endDate ? DateTime.fromISO(endDate) : null;
+  const isoStartDate = DateTime.fromISO(startDate || '');
+  const isoEndDate = endDate ? DateTime.fromISO(endDate || '') : null;
 
   if (isoEndDate) {
     const formattedEndDate = isoEndDate.toFormat('d MMM, yyyy');

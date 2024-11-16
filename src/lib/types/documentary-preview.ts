@@ -15,7 +15,6 @@ export interface DocumentaryPreviewProps {
   coverImage: SanityImageAssetDocument;
   sliderImageVideo: Asset;
   documentaryVideo: Youtube;
-  thumbnail: SanityImageAssetDocument;
   synopsys: {
     title: string;
     description: PortableTextBlock[];

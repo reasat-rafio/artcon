@@ -23,11 +23,12 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Subtitle (required)',
       name: 'subtitle',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'VR Map Link',
       name: 'link',
       type: 'url',
       description:
@@ -35,6 +36,7 @@ const vr = {
     },
 
     {
+      title: 'Space / Gallery',
       name: 'gallery',
       type: 'reference',
       to: [{ type: 'gallery' }],
@@ -44,6 +46,19 @@ const vr = {
       name: 'category',
       type: 'reference',
       to: [{ type: 'vrCategory' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
+      name: 'url',
+      type: 'url',
+      title: 'Embedded vr url',
+      components: { input: VrPreview },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'thumbnail',
+      type: 'image',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
@@ -69,18 +84,6 @@ const vr = {
       title: 'Slider Image / Video',
       validation: (Rule: Rule) => Rule.required(),
     },
-    {
-      name: 'url',
-      type: 'url',
-      title: 'Embedded vr url',
-      components: { input: VrPreview },
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'thumbnail',
-      type: 'image',
-      validation: (Rule: Rule) => Rule.required(),
-    },
 
     {
       name: 'caption',
@@ -88,9 +91,9 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Start Date (required)',
       name: 'startDate',
       type: 'datetime',
-      validation: (Rule: Rule) => Rule.required(),
     },
 
     {
@@ -103,7 +106,6 @@ const vr = {
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
-      validation: (Rule: Rule) => Rule.required(),
     },
   ],
   preview: {

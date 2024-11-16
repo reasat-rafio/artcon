@@ -50,25 +50,11 @@ const audioVisual = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Hero Cover Image',
       name: 'coverImage',
       type: 'image',
       description:
         'This image will be used as the cover image if this documentary is featured in the listing page hero section.',
-      options: { hotspot: true },
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
-    {
-      name: 'thumbnail',
-      type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
       fields: [
@@ -121,7 +107,7 @@ const audioVisual = {
     select: {
       title: 'name',
       subtitle: 'information',
-      media: 'thumbnail',
+      media: 'coverImage',
       year: 'year',
     },
     prepare: ({

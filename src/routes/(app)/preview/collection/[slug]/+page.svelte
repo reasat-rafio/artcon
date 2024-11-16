@@ -23,7 +23,6 @@
       name,
       seo,
       slug,
-      sliderImageVideo,
       artworkImages,
       hideInquiryButton,
       information,
@@ -132,9 +131,9 @@
   ]} />
 
 <section>
-  <MobileImage {sliderImageVideo} />
+  <MobileImage sliderImageVideo={{ image: artworkImages[0] }} />
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage {sliderImageVideo} />
+    <DesktopImage sliderImageVideo={{ image: artworkImages[0] }} />
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}

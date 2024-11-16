@@ -26,25 +26,33 @@
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[1.5rem]">
-          <C.Title>{personalDocuments.name}</C.Title>
-          <C.Subtitle
-            class="!font-inter !text-[0.875rem] !normal-case !leading-none"
-            variant="sm">
-            b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
-          </C.Subtitle>
+          {#if personalDocuments.name}
+            <C.Title>{personalDocuments.name}</C.Title>
+          {/if}
+          {#if personalDocuments?.born}
+            <C.Subtitle
+              class="!font-inter !text-[0.875rem] !normal-case !leading-none"
+              variant="sm">
+              b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
+            </C.Subtitle>
+          {/if}
         </C.HeaderContainer>
 
-        <C.SocialContainer>
-          {#each personalDocuments.socials as { link, type }}
-            <C.Social {link} {type} />
-          {/each}
-        </C.SocialContainer>
+        {#if !!personalDocuments.socials?.length}
+          <C.SocialContainer>
+            {#each personalDocuments?.socials as { link, type }}
+              <C.Social {link} {type} />
+            {/each}
+          </C.SocialContainer>
+        {/if}
       </svelte:fragment>
 
       <svelte:fragment slot="description" let:Description>
-        <Description>
-          <PortableText value={personalDocuments.shortBio} />
-        </Description>
+        {#if !!personalDocuments?.shortBio}
+          <Description>
+            <PortableText value={personalDocuments.shortBio} />
+          </Description>
+        {/if}
       </svelte:fragment>
     </DescriptionBlock>
 

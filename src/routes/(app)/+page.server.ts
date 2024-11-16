@@ -89,12 +89,16 @@ const query = groq`
                     subtitle,
                     "artistName" : artist->{...personalDocuments {...name {en}}},
                     slug,
-                    sliderImageVideo {
-                        ...,
-                        ${asset('image')},
-                        video{
-                            "webm": video_webm.asset->url,
-                            "mov": video_hevc.asset->url,
+                    "sliderImageVideo" : {
+                    "image": artworkImages[0] {
+                            ...,
+                            asset-> {
+                                ...,
+                                metadata {
+                                    lqip,
+                                    dimensions
+                                }
+                            }
                         }
                     },
                 },

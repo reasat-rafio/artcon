@@ -138,7 +138,7 @@
   seo={{
     _type,
     title: name,
-    description: toPlainText(description),
+    description: toPlainText(description ?? ''),
     ogImage: publicationImage,
   }}
   siteOgImg={logos?.ogImage} />
@@ -167,7 +167,7 @@
               <Header
                 topic="Our publication"
                 title={name}
-                {subtitle}
+                subtitle={subtitle ? subtitle : ''}
                 type={category.name}
                 let:Info>
                 <Info>
@@ -186,9 +186,11 @@
                       </span>
                     {/each}
                   </div>
-                  <div class="sub-title-light">
-                    ISBN {isbn}
-                  </div>
+                  {#if !!isbn}
+                    <div class="sub-title-light">
+                      ISBN {isbn}
+                    </div>
+                  {/if}
                 </Info>
                 <Info>
                   <div class="sub-title-light">
@@ -228,11 +230,13 @@
                 </figure>
               </div>
 
-              <div class="mb-[2.5rem]" data-load-animate="y">
-                <PortableText
-                  class="body-light-m lg:body-light text-dark-gunmetal"
-                  value={description} />
-              </div>
+              {#if !!description?.length}
+                <div class="mb-[2.5rem]" data-load-animate="y">
+                  <PortableText
+                    class="body-light-m lg:body-light text-dark-gunmetal"
+                    value={description} />
+                </div>
+              {/if}
 
               <ul class="mb-[2.5rem] space-y-[0.5rem]" data-load-animate="y">
                 {#each associationsList as { key, value }}
@@ -276,5 +280,5 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
-    contextMessage={`The user selected publication is titled ${name} by ${subtitle}.`} />
+    contextMessage={`The user selected publication is titled ${name} by ${subtitle ?? ''}.`} />
 {/if}

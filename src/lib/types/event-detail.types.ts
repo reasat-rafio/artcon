@@ -21,8 +21,8 @@ export interface EventDetailPageProps {
   subtitle?: string;
   topTitle?: string;
   cta?: Cta;
-  associationsList: Association[];
-  description: PortableTextBlock[];
+  associationsList?: Association[];
+  description?: PortableTextBlock[];
   endDate?: string;
   startDate: string;
   tag: Tag;

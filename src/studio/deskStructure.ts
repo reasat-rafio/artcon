@@ -399,7 +399,7 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         icon: FcServices,
       }),
 
-      S.documentTypeListItem('gallery').title('Gallery'),
+      S.documentTypeListItem('gallery').title('Space / Gallery'),
       orderableDocumentListDeskItem({
         type: 'team',
         S,

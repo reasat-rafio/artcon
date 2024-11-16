@@ -13,7 +13,6 @@
   import type { ExhibitionPreviewProps } from '@/lib/types/exhibition-preview';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { fade } from 'svelte/transition';
 
   export let data: PageProps<ExhibitionPreviewProps>;
   $: ({
@@ -167,11 +166,13 @@
             <Asset {asset} />
           </div>
 
-          <div data-load-animate="y">
-            <PortableText
-              class="body-light-m lg:body-light text-dark-gunmetal"
-              value={description} />
-          </div>
+          {#if !!description?.length}
+            <div data-load-animate="y">
+              <PortableText
+                class="body-light-m lg:body-light text-dark-gunmetal"
+                value={description} />
+            </div>
+          {/if}
         </div>
       {/key}
     </section>

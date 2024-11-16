@@ -20,7 +20,7 @@ export interface ArtistDetailPageProps {
   seo: SeoProps;
   slug: Slug;
   siteDocuments: {
-    sections: Section[];
+    sections?: Section[];
     asset: Asset;
     subtitle?: string;
     topTitle?: string;
@@ -30,8 +30,8 @@ export interface ArtistDetailPageProps {
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
   otherArtists: OtherArtists[];
-  publications: Publication[];
-  publicationsFromExhibitions: Publication[];
+  publications?: Publication[];
+  publicationsFromExhibitions?: Publication[];
 }
 
 type Section =
@@ -92,10 +92,10 @@ export interface ArtistSummaryProps {
 }
 
 export interface PersonalDocuments {
-  born: string;
+  born?: string;
   name: string;
-  shortBio: PortableTextBlock[];
-  socials: SocialProps[];
+  shortBio?: PortableTextBlock[];
+  socials?: SocialProps[];
 }
 
 export interface ExhibitionsProps {

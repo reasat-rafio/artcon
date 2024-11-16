@@ -37,20 +37,22 @@
         imageUrlBuilder={imageBuilder}
         alt="VR thumbnail" />
     {:else if state === 'video'}
-      <video
-        class="h-full w-full object-cover"
-        width="100%"
-        height="100%"
-        disablePictureInPicture
-        controlsList="nodownload noplaybackrate"
-        controls={false}
-        playsInline
-        autoPlay
-        muted>
-        <source src="/video/artconintro.mp4" type="video/mp4; codecs=hvc1" />
-        <source src="/video/artconintro.webm" type="video/webm" />
-        Sorry, your browser doesn&apos;t support embedded videos.
-      </video>
+      <div class="h-full w-full bg-[#000]">
+        <video
+          class="h-full w-full scale-75 object-cover"
+          width="100%"
+          height="100%"
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate"
+          controls={false}
+          playsInline
+          autoPlay
+          muted>
+          <source src="/video/artconintro.mp4" type="video/mp4; codecs=hvc1" />
+          <source src="/video/artconintro.webm" type="video/webm" />
+          Sorry, your browser doesn&apos;t support embedded videos.
+        </video>
+      </div>
     {:else if state === 'iframe'}
       <iframe
         on:load={() => (showLoading = false)}

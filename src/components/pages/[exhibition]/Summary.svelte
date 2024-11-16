@@ -14,8 +14,8 @@
     descriptionBlock: {
       gallery: Gallery;
       date: string;
-      associationsList: Association[];
-      description: PortableTextBlock[];
+      associationsList?: Association[];
+      description?: PortableTextBlock[];
     };
   };
 
@@ -38,25 +38,29 @@
           {/if}
           <C.Subtitle>{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
-        <div class="space-y-[10px] lg:space-y-[13px]">
-          {#each descriptionBlock.associationsList as { key, value }}
-            <div>
-              <C.Subtitle
-                el="h4"
-                variant="sm"
-                class="!text-[0.875rem] text-sonic-silver">
-                {key}
-              </C.Subtitle>
-              <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
-            </div>
-          {/each}
-        </div>
+        {#if !!descriptionBlock?.associationsList?.length}
+          <div class="space-y-[10px] lg:space-y-[13px]">
+            {#each descriptionBlock.associationsList as { key, value }}
+              <div>
+                <C.Subtitle
+                  el="h4"
+                  variant="sm"
+                  class="!text-[0.875rem] text-sonic-silver">
+                  {key}
+                </C.Subtitle>
+                <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+              </div>
+            {/each}
+          </div>
+        {/if}
       </svelte:fragment>
 
       <svelte:fragment slot="description" let:Description>
-        <Description>
-          <PortableText value={descriptionBlock.description} />
-        </Description>
+        {#if descriptionBlock?.description?.length}
+          <Description>
+            <PortableText value={descriptionBlock.description} />
+          </Description>
+        {/if}
       </svelte:fragment>
     </DescriptionBlock>
 

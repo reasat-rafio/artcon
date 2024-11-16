@@ -32,6 +32,132 @@ const collection = {
       type: 'reference',
       to: [{ type: 'artist' }],
     },
+
+    {
+      name: 'information',
+      title: 'Artwork Information',
+      type: 'object',
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'media',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'size',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          name: 'artDate',
+          type: 'object',
+          validation: (Rule: Rule) => Rule.required(),
+          fields: [
+            {
+              title: 'Creation Details (required)',
+              name: 'creationDetails',
+              type: 'string',
+              description: 'Example: Executed in 1970',
+              // validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              title: 'Year (required)',
+              name: 'year',
+              type: 'string',
+              description: 'Example: 1970',
+              // validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+
+        {
+          title: 'Frame (required)',
+          name: 'frame',
+          type: 'string',
+        },
+        {
+          name: 'moreInformation',
+          description: 'example: This work is in a temporary frame. (frame)',
+          type: 'array',
+          of: [{ type: 'string' }],
+        },
+      ],
+    },
+
+    {
+      name: 'artworkImages',
+      type: 'array',
+      description: 'First image will be used as the main image',
+      validation: (Rule: Rule) => Rule.required().max(4),
+      of: [
+        {
+          name: 'artworkImage',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
+      name: 'asset',
+      title: 'Hero Image / Video',
+      type: 'asset',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    // {
+    //   name: 'sliderImageVideo',
+    //   type: 'sliderImageVideo',
+    //   title: 'Slider Image / Video',
+    //   // validation: (Rule: Rule) => Rule.required(),
+    // },
+    {
+      name: 'topTitle',
+      title: 'Top Title',
+      type: 'string',
+    },
+    {
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+    },
+    {
+      title: 'Button',
+      name: 'cta',
+      type: 'cta',
+    },
+
+    {
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
+      name: 'provenance',
+      type: 'object',
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          title: 'Title (required)',
+          name: 'title',
+          type: 'string',
+          // validation: (Rule: Rule) => Rule.required(),
+        },
+        {
+          title: 'Description (required)',
+          name: 'description',
+          type: 'array',
+          of: [{ type: 'block', lists: [], styles: [] }],
+          // validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+
     {
       name: 'isAvailable',
       type: 'boolean',
@@ -71,126 +197,6 @@ const collection = {
       initialValue: false,
       description: 'Hide the inquiry button on this collection',
     },
-    {
-      name: 'information',
-      title: 'Artwork Information',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'media',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'size',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'artDate',
-          type: 'object',
-          validation: (Rule: Rule) => Rule.required(),
-          fields: [
-            {
-              name: 'creationDetails',
-              type: 'string',
-              description: 'Example: Executed in 1970',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              name: 'year',
-              type: 'string',
-              description: 'Example: 1970',
-              validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
-        },
-
-        {
-          name: 'frame',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'moreInformation',
-          description: 'example: This work is in a temporary frame. (frame)',
-          type: 'array',
-          of: [{ type: 'string' }],
-        },
-      ],
-    },
-
-    {
-      name: 'artworkImages',
-      type: 'array',
-      description: 'First image will be used as the main image',
-      validation: (Rule: Rule) => Rule.required().max(4),
-      of: [
-        {
-          name: 'artworkImage',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
-    {
-      name: 'asset',
-      title: 'Hero Image / Video',
-      type: 'asset',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'sliderImageVideo',
-      type: 'sliderImageVideo',
-      title: 'Slider Image / Video',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'topTitle',
-      title: 'Top Title',
-      type: 'string',
-    },
-    {
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-    },
-    {
-      title: 'Button',
-      name: 'cta',
-      type: 'cta',
-    },
-
-    {
-      name: 'tag',
-      title: 'Tag',
-      type: 'reference',
-      to: [{ type: 'collectionTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-
-    {
-      name: 'provenance',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'title',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'description',
-          type: 'array',
-          of: [{ type: 'block', lists: [], styles: [] }],
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
 
     {
       name: 'sections',
@@ -199,8 +205,8 @@ const collection = {
       validation: (Rule: Rule) => Rule.required().min(1),
 
       of: [
-        { type: 'common.imageAsset' },
         { type: 'collection.summary' },
+        { type: 'common.imageAsset' },
         { type: 'common.note' },
         { type: 'collection.artist' },
         { type: 'collection.documentation' },

@@ -42,7 +42,7 @@ const siteDocuments = {
       validation: (Rule: Rule) =>
         Rule.custom(
           (sections: { _type: string; [_key: string]: unknown }[]) => {
-            const summaryCount = sections.filter(
+            const summaryCount = sections?.filter(
               (section) => section._type === 'artist.summary',
             ).length;
             if (summaryCount < 1) {
@@ -52,8 +52,8 @@ const siteDocuments = {
           },
         ),
       of: [
-        { type: 'common.imageAsset' },
         { type: 'artist.summary' },
+        { type: 'common.imageAsset' },
         { type: 'common.artwork' },
         { type: 'artist.exhibitions' },
         { type: 'artist.publication' },

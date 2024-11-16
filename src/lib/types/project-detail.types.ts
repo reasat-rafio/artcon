@@ -25,8 +25,8 @@ export interface ProjectDetailPageProps {
   tag: Tag;
   startDate: string;
   endDate?: string;
-  associationsList: Association[];
-  description: PortableTextBlock[];
+  associationsList?: Association[];
+  description?: PortableTextBlock[];
   gallery: Gallery;
   sections: Section[];
   otherProjects: Omit<CommonOtherExhibitionProps, 'type'>[];

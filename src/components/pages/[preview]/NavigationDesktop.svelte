@@ -32,12 +32,14 @@
       <span class="leading-tight">{ctas[0].title}</span>
     </Cta>
 
-    <Cta
-      className="min-w-[8.6875rem] leading-tight py-[0.81rem]"
-      target={ctas[1].newTab ? '_blank' : '_self'}
-      variant="tertiary"
-      href={ctas[1].href}>
-      {ctas[1].title}
-    </Cta>
+    {#if !!ctas[1]?.href && !!ctas[1]?.title}
+      <Cta
+        className="min-w-[8.6875rem] leading-tight py-[0.81rem]"
+        target={ctas[1].newTab ? '_blank' : '_self'}
+        variant="tertiary"
+        href={ctas[1].href}>
+        {ctas[1].title}
+      </Cta>
+    {/if}
   </div>
 </nav>

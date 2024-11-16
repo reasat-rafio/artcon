@@ -23,6 +23,8 @@
       : `/preview/${_type === 'documentary' ? 'audio-visual' : _type}/${
           slug?.current
         }`;
+
+  $: console.log({ sliderImageVideo });
 </script>
 
 <SliderItemWrapper {index} {sliderImageVideo} {href}>

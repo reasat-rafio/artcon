@@ -13,7 +13,7 @@ export interface ExhibitionPreviewProps {
   cta: Cta;
   seo: SeoProps;
   gallery: { name: string };
-  description: PortableTextBlock[];
+  description?: PortableTextBlock[];
   sliderImageVideo: Asset;
   asset: Asset;
   exhibitionType: string | { en: string };
