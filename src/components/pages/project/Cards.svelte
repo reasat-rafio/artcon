@@ -22,7 +22,7 @@
         let:Title
         let:Container
         let:Subtitle>
-        <Asset {asset} />
+        <Asset class="overflow-hidden rounded-[12px]" {asset} />
         <Container>
           <Title>{name}</Title>
           <Subtitle class="font-optiberling-agency text-sonic-silver">

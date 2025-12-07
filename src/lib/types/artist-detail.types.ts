@@ -1,6 +1,7 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type {
   Asset,
+  ArtworkItem,
   CommonArtworkSectionProps,
   CommonImageAsset,
   CommonOtherExhibitionProps,
@@ -27,6 +28,7 @@ export interface ArtistDetailPageProps {
     cta?: Cta;
   };
   artworks?: ShortArtworks[];
+  customArtworks?: ArtworkItem[];
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
   otherArtists: OtherArtists[];

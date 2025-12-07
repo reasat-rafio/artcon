@@ -14,6 +14,7 @@ const query = groq`
           slug,
           endDate,
           startDate,
+          topTitle,
           subtitle,
           tag->{
             name,
@@ -45,6 +46,8 @@ const query = groq`
         name,
         slug,
         subtitle,
+        startDate,
+        endDate,
         tag->,
         asset{
           ...,

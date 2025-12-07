@@ -41,9 +41,9 @@
   )}>
   <div>
     <div style="transform: scale({$scale});">
-      <figure class="relative">
+      <figure class="relative overflow-hidden rounded-[25px]">
         <SanityImage
-          class="h-full w-full rounded-[25px] object-cover"
+          class="h-full w-full rounded-[25px] object-cover transition-transform duration-300 hover:scale-110"
           sizes="(min-width:1024px) 60vw, 100vw"
           src={artwork}
           imageUrlBuilder={imageBuilder}

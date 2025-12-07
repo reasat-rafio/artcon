@@ -98,6 +98,86 @@ const artist = {
     }),
 
     {
+      name: 'customArtworks',
+      title: 'Custom Artworks',
+      description: 'Upload custom artwork images with descriptions for this artist',
+      type: 'array',
+      group: 'site',
+      of: [
+        {
+          type: 'object',
+          name: 'artworkItem',
+          title: 'Artwork Item',
+          fields: [
+            {
+              name: 'image',
+              title: 'Artwork Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'description',
+              title: 'Description',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [
+                    { title: 'Normal', value: 'normal' },
+                    { title: 'H1', value: 'h1' },
+                    { title: 'H2', value: 'h2' },
+                    { title: 'H3', value: 'h3' },
+                    { title: 'H4', value: 'h4' },
+                    { title: 'H5', value: 'h5' },
+                    { title: 'H6', value: 'h6' },
+                    { title: 'Quote', value: 'blockquote' },
+                  ],
+                  lists: [
+                    { title: 'Bullet', value: 'bullet' },
+                    { title: 'Numbered', value: 'number' },
+                  ],
+                  marks: {
+                    decorators: [
+                      { title: 'Strong', value: 'strong' },
+                      { title: 'Emphasis', value: 'em' },
+                      { title: 'Code', value: 'code' },
+                      { title: 'Underline', value: 'underline' },
+                      { title: 'Strike', value: 'strike-through' },
+                    ],
+                    annotations: [
+                      {
+                        name: 'link',
+                        type: 'object',
+                        title: 'Link',
+                        fields: [
+                          {
+                            name: 'href',
+                            type: 'string',
+                            title: 'URL',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+              description: 'The description will be displayed exactly as you write it, preserving formatting.',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'description',
+              media: 'image',
+            },
+          },
+        },
+      ],
+    },
+
+    {
       name: 'publications',
       title: "Artist's Publications",
       type: 'array',

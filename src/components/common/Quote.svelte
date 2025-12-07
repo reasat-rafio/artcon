@@ -13,10 +13,14 @@
   <div
     class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
     <blockquote class="inline" cite={url}>
-      <p class="inline">“{text}”</p>
+      <p class="inline">"{text}"</p>
     </blockquote>
     {#if !!author}
-      <p class="inline">– {author}</p>
+      {#if url}
+        <a href={url} target="_blank" rel="noopener noreferrer" class="inline cursor-pointer italic hover:underline">– {author}</a>
+      {:else}
+        <p class="inline italic">– {author}</p>
+      {/if}
     {/if}
   </div>
 </section>

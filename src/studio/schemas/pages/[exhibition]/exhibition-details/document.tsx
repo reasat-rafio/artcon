@@ -5,7 +5,7 @@ import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import React from 'react';
 import { formatDate } from '@/studio/helper';
 import { orderRankField } from '@sanity/orderable-document-list';
-import type { SanityDocument } from '@sanity/client';
+// import type { SanityDocument } from '@sanity/client';
 
 type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
@@ -88,30 +88,6 @@ const exhibition = {
       title: 'Artist in this ehibition',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
-      validation: (Rule: Rule) => Rule.unique().required(),
-    },
-    {
-      name: 'artworks',
-      title: 'Featured Artworks in this Exhibition',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'collection' }],
-          options: {
-            filter: ({ document }: SanityDocument) => {
-              return {
-                filter: 'artist._ref in $ids',
-                params: {
-                  ids: document?.artists?.map(
-                    (artist: { _ref: string }) => artist._ref,
-                  ) ?? [''],
-                },
-              };
-            },
-          },
-        },
-      ],
       validation: (Rule: Rule) => Rule.unique().required(),
     },
     {

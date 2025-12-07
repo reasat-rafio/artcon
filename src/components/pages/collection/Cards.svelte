@@ -26,7 +26,7 @@
         let:Container>
         <div
           class={cn(
-            'relative mx-auto h-auto w-fit sm:h-[25rem]',
+            'relative mx-auto h-auto w-fit sm:h-[25rem] overflow-hidden rounded-[12px]',
             $$props.class,
           )}>
           {#if displayNew || displaySold}
@@ -35,7 +35,7 @@
 
           <SanityImage
             imageUrlBuilder={imageBuilder}
-            class="h-full w-full object-contain object-bottom"
+            class="h-full w-full object-contain object-bottom transition-transform duration-300 hover:scale-110"
             sizes="(min-width:640px) 35vw, 100vw"
             src={artworkImage}
             alt={artworkImage?.alt} />

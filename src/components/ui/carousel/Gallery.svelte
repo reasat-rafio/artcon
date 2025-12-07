@@ -7,9 +7,8 @@
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import { cn } from '@/lib/cn';
   import { chunkArray } from '@/lib/helper';
-  import emblaCarouselSvelte, {
-    type EmblaCarouselType,
-  } from 'embla-carousel-svelte';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import type { EmblaCarouselType } from 'embla-carousel';
 
   export let items: T[];
   export let loop = false;
@@ -22,6 +21,9 @@
 
   $: chunks = chunkArray(items, slidesNumber);
   $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
+  $: if (emblaApi && chunks) {
+    emblaApi.reInit();
+  }
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
@@ -60,7 +62,7 @@
     }}
     on:emblaInit={onInit}>
     <div bind:this={containerEl} class="ml-[-1.56rem] flex">
-      {#each chunks as chunk}
+      {#each chunks as chunk, chunkIndex (chunkIndex)}
         <div
           class={cn(
             'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3',

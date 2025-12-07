@@ -70,7 +70,7 @@
           class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
           {#if !!topTitle}
             <h3
-              class="translate-y-full !font-medium opacity-0"
+              class="translate-y-full !font-medium opacity-0 whitespace-pre"
               bind:this={topTitleEl}>
               {topTitle}
             </h3>
@@ -82,7 +82,7 @@
         <div class="overflow-hidden !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full uppercase !leading-none">
+            class="head-1 translate-y-full !leading-none whitespace-pre">
             {title}
           </h1>
         </div>
@@ -90,7 +90,7 @@
         <div
           class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
           {#if !!subtitle}
-            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0">
+            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0 whitespace-pre">
               {subtitle}
             </h2>
           {:else}

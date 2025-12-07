@@ -36,6 +36,8 @@ type Section = CommonImageAsset | SummaryProps | GalleryProps;
 
 export interface Gallery {
   name: string;
+  location?: string;
+  url?: string;
 }
 export interface SummaryProps {
   _type: 'project.summary';

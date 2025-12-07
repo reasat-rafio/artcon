@@ -4,6 +4,7 @@
   import type { Event } from '@/lib/types/event.types';
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
 
   export let items: Event[];
 </script>
@@ -13,7 +14,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start  md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, asset, _id, subtitle } (_id)}
+  {#each items as { name, slug, tag, asset, _id, subtitle, startDate, endDate } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -23,16 +24,27 @@
         let:Title
         let:Container
         let:Subtitle>
-        <Asset {asset} />
+        <Asset class="overflow-hidden rounded-[12px]" {asset} />
         <Container>
           <div>
             <Title class="inline">{name}</Title>
+       
+              <div class="flex justify-between">
+                <div  class="font-optiberling-agency text-sonic-silver">
+                   {subtitle || tag?.name}
+                </div>
+               <div>
+                 {#if startDate}
+                  <span class="font-optiberling-agency text-sonic-silver pr-1">
+                    {calculateStatusBetweenDates({ startDate, endDate }).date}
+                  </span>
+                {/if}
+               </div>
+              </div>
           </div>
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
-            {subtitle || tag?.name}
-          </Subtitle>
         </Container>
       </Card>
     </div>
   {/each}
 </div>
+

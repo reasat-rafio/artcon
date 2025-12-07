@@ -64,7 +64,7 @@
       <p
         class="font-inter text-[14px] font-normal leading-[120%] text-quick-silver">
         Developed by <a
-          class="font-semibold hover:underline"
+          class="font-medium hover:underline"
           href="https://edistys.dev">
           Edistys
         </a>

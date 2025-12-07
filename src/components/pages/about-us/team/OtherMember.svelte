@@ -48,9 +48,9 @@
               this={url ? 'a' : 'div'}
               href={url}
               class="group flex h-fit items-center justify-center gap-x-[1.25rem]">
-              <figure class="h-[7rem] w-[7rem] rounded-full">
+              <figure class="h-[7rem] w-[7rem] rounded-full overflow-hidden">
                 <SanityImage
-                  class="h-full w-full rounded-full object-cover"
+                  class="h-full w-full rounded-full object-cover transition-transform duration-300 hover:scale-110"
                   src={image}
                   alt={name}
                   sizes="120px"

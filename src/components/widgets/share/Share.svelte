@@ -88,7 +88,7 @@
           <a
             aria-label="Redirect to previous page"
             in:fade={{ delay: 500 }}
-            class="flex h-[2rem] w-[2rem] items-center justify-center rounded-full border border-dark-gunmetal text-dark-gunmetal transition-colors duration-300 md:h-[2.813rem] md:w-[2.813rem]"
+            class="flex h-[2rem] w-[2rem] items-center justify-center rounded-full border border-gray-300 text-gray-500 transition-colors duration-300 hover:border-dark-gunmetal hover:text-dark-gunmetal md:h-[2.813rem] md:w-[2.813rem]"
             {href}>
             <ChevronLeftRounded />
           </a>

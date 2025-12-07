@@ -16,9 +16,16 @@
   html,
   body {
     overscroll-behavior: none;
+    overflow-x: hidden;
+  }
+  html {
+    width: 100%;
+    max-width: 100vw;
   }
   body {
     @apply text-dark-gunmetal;
+    width: 100%;
+    max-width: 100vw;
   }
 
   h1,
@@ -27,7 +34,7 @@
   h4,
   h5,
   h6 {
-    @apply !font-optiberling-agency font-medium capitalize;
+    @apply !font-optiberling-agency font-medium;
   }
 }
 

@@ -12,12 +12,21 @@ const query = (params: Partial<Record<string, string>>) =>
     cta,
     slug,
     seo,
-    associationsList,
+    associationsList[]{
+      key,
+      value,
+      url
+    },
     description,
     endDate,
     startDate,
     tag->,
-    gallery->,
+    gallery->{
+      _id,
+      name,
+      location,
+      url
+    },
     publication->{
       name,
       subtitle,
@@ -38,26 +47,22 @@ const query = (params: Partial<Record<string, string>>) =>
           "mov": video_hevc.asset->url,
       }
     },
-    artworks[]->{
-      information,
-      "artwork": artworkImages[0] {
-        ...,
-        asset->{
-          ...,
-          metadata {
-           lqip,
-          dimensions
-         }
-       }
-      }
-    },
     sections[]{
       ...,
       ${asset('image')},
       ${asset('invitationCardImage')},
       ${asset('fullInvitationCardImage')},
       ${asset('images[]', { as: 'images' })},
-      ${asset('artworks[]', { as: 'artworks' })},
+      artworks[]{
+        _key,
+        _type,
+        ${asset('image')},
+        description
+      },
+      artworkLink{
+        title,
+        href
+      },
       vr->{
         url,
         caption,

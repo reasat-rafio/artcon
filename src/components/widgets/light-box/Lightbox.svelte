@@ -63,6 +63,6 @@
 <button
   transition:scale
   on:click={closeLightbox}
-  class="fixed right-2 top-2 z-god transition-transform hover:scale-110 lg:right-5 lg:top-5">
+  class="fixed right-5 top-2 z-god transition-transform hover:scale-110 lg:right-10 lg:top-5">
   <XIcon class="h-5 w-5" />
 </button>

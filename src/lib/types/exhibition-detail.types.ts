@@ -10,7 +10,7 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
-  ShortArtworks,
+  // ShortArtworks,
   SocialProps,
   Tag,
   VR,
@@ -30,7 +30,6 @@ export interface ExhibitionDetailPageProps {
   cta?: Cta;
   slug: Slug;
   artists: ArtistsProps;
-  artworks: ShortArtworks[];
   asset: Asset;
   associationsList?: Association[];
   name: string;
@@ -96,6 +95,7 @@ export interface Gallery {
   _id: string;
   name: string;
   location?: string;
+  url?: string;
 }
 
 export interface GroupExhibitionProps {

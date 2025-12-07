@@ -25,7 +25,6 @@
       seo,
       sections,
       artists,
-      artworks,
       asset,
       gallery,
       associationsList,
@@ -88,11 +87,15 @@
         <Artwork.default
           props={{
             ...s,
-            artworks,
+            artworks: s.artworks,
             artworkAtLast: true,
-            ctaLink: `/exhibition/${slug.current}/collection`,
+            ctaLink: s.artworkLink?.href || `/exhibition/${slug.current}/collection`,
+            ctaTitle: s.artworkLink?.title,
           }} />
       {/await}
+      <div style="display: none;">Debug artworkLink: {JSON.stringify(s.artworkLink)}</div>
+      <div style="display: none;">Debug ctaLink: {s.artworkLink?.href || `/exhibition/${slug.current}/collection`}</div>
+      <div style="display: none;">Debug ctaTitle: {s.artworkLink?.title}</div>
     {:else if s._type === 'exhibition.gallery'}
       {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
         <Gallery.default props={s} />

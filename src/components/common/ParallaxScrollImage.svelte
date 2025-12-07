@@ -67,9 +67,10 @@
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <figure
         bind:this={firstImageEl}
-        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
+        class="overflow-hidden rounded-xl">
         <SanityImage
-          class="aspect-square w-full rounded-xl object-cover {firstImage?.triggerPopup
+          class="aspect-square w-full rounded-xl object-cover transition-transform duration-300 hover:scale-110 {firstImage?.triggerPopup
             ? 'cursor-pointer'
             : 'cursor-default'}"
           sizes="30vw"
@@ -87,10 +88,10 @@
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <figure
         bind:this={firstImageMobileEl}
-        class="ml-auto w-[13.4375rem]"
+        class="ml-auto w-[13.4375rem] overflow-hidden"
         on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
         <SanityImage
-          class="aspect-square  rounded-xl object-cover {firstImage?.triggerPopup
+          class="aspect-square rounded-xl object-cover transition-transform duration-300 hover:scale-110 {firstImage?.triggerPopup
             ? 'cursor-pointer'
             : 'cursor-default'}"
           sizes="70vw"
@@ -110,12 +111,12 @@
       this={!!secondImage?.link ? 'a' : 'div'}
       href={secondImage?.link}
       target="_blank">
-      <figure class="h-full 3xl:h-[55.83069rem]">
+      <figure class="h-full 3xl:h-[55.83069rem] overflow-hidden rounded-xl">
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="h-full w-full rounded-xl object-cover"
+          class="h-full w-full rounded-xl object-cover transition-transform duration-300 hover:scale-110"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">

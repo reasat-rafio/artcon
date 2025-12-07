@@ -61,6 +61,16 @@ const query = (params: Partial<Record<string, string>>) =>
         ${asset('image')},
         ${asset('images[]', { as: 'images' })},
         ${asset('coverImage')},
+        artworks[]{
+          _key,
+          _type,
+          ${asset('image')},
+          description
+        },
+        artworkLink{
+          title,
+          href
+        },
         vr->{
           ...,
           ${asset('thumbnail')},
@@ -82,6 +92,12 @@ const query = (params: Partial<Record<string, string>>) =>
           }
         }
       }
+    },
+    customArtworks[]{
+      _key,
+      _type,
+      ${asset('image')},
+      description
     },
     "exhibitions" : *[_type== "exhibition" && references("artists", ^._id)][]{
       name,

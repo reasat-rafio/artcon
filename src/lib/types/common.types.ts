@@ -184,6 +184,15 @@ export interface CommonArtworkSectionProps {
     title: string;
   };
   quote?: Quote;
+  artworkLink?: Cta;
+  artworks?: ArtworkItem[];
+}
+
+export interface ArtworkItem {
+  _key: string;
+  _type: 'artworkItem';
+  image: SanityAsset;
+  description?: PortableTextBlock[];
 }
 
 export interface ShortArtworks {
@@ -206,6 +215,7 @@ export interface CommonOtherExhibitionProps {
 export interface Association {
   key: string;
   value: string;
+  url?: string;
 }
 
 export interface Youtube {

@@ -12,12 +12,20 @@ const query = (params: Partial<Record<string, string>>) =>
     topTitle,
     subtitle,
     cta,
-    associationsList,
+    associationsList[]{
+      key,
+      value,
+      url
+    },
     description,
     endDate,
     startDate,
     tag->,
-    gallery->{name},
+    gallery->{
+      name,
+      location,
+      url
+    },
     asset {
       ...,
       ${asset('image')},

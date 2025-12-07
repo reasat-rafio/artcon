@@ -20,9 +20,9 @@
     'group flex h-fit items-center justify-center space-x-[20px]',
     $$props.class ?? '',
   )}>
-  <figure class="h-[80px] w-[80px] rounded-full md:h-[112px] md:w-[112px]">
+  <figure class="h-[80px] w-[80px] rounded-full md:h-[112px] md:w-[112px] overflow-hidden">
     <SanityImage
-      class="h-full w-full rounded-full object-cover"
+      class="h-full w-full rounded-full object-cover transition-transform duration-300 hover:scale-110"
       src={image}
       alt={title}
       sizes="120px"

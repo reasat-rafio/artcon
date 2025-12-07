@@ -23,6 +23,8 @@ export interface Event {
   tag: Tag;
   asset: Asset;
   subtitle?: string;
+  startDate?: string;
+  endDate?: string;
 }
 
 export interface HeroProps {

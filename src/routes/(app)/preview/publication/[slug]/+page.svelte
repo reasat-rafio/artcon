@@ -13,6 +13,7 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
+  import lightboxStore from '@/store/lightbox';
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
@@ -132,6 +133,17 @@
   function inquiryAction() {
     formPopupStore.setFormPopupVisibility(true);
   }
+
+  function openImagePopup() {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(0);
+    lightboxStore.setAllImages([
+      {
+        ...publicationImage,
+        caption: name,
+      },
+    ]);
+  }
 </script>
 
 <Seo
@@ -214,13 +226,13 @@
 
                   <div class="title-light">
                     <span class="sub-title-light">Stock</span>
-                    <span class="font-medium capitalize">{stock}</span>
+                    <span class="font-medium capitalize">{stock?.replace(/([A-Z])/g, ' $1').trim()}</span>
                   </div>
                 </Info>
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
-                <figure data-load-animate="y">
+                <figure data-load-animate="y" class="cursor-pointer" on:click={openImagePopup} on:keydown={(e) => e.key === 'Enter' && openImagePopup()} role="button" tabindex="0">
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
@@ -253,7 +265,7 @@
                   className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
                   onClick={inquiryAction}
                   variant="tertiary">
-                  Buy now
+                  {stock?.toLowerCase().replace(/\s+/g, '') === 'available' ? 'Buy now' : 'Inquiry'}
                 </Cta>
               </div>
             </section>
@@ -261,7 +273,11 @@
             <section class="hidden 3xl:block">
               <figure
                 data-load-animate="y"
-                class="max-h-[23.75rem] 3xl:mt-[9.44rem]">
+                class="max-h-[23.75rem] 3xl:mt-[9.44rem] cursor-pointer"
+                on:click={openImagePopup}
+                on:keydown={(e) => e.key === 'Enter' && openImagePopup()}
+                role="button"
+                tabindex="0">
                 <SanityImage
                   class="rounded-[0.9375rem] object-contain"
                   imageUrlBuilder={imageBuilder}

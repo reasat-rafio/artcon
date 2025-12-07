@@ -14,7 +14,7 @@
 
   type Props = SummaryProps & {
     descriptionBlock: {
-      gallery: { name: string };
+      gallery: { name: string; location?: string; url?: string };
       date: string;
       associationsList?: Association[];
       description?: PortableTextBlock[];
@@ -39,12 +39,22 @@
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
-          <C.Title>{descriptionBlock.gallery.name}</C.Title>
+          {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
+          {#if galleryUrl}
+            <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+              <C.Title>{descriptionBlock.gallery.name}</C.Title>
+            </a>
+          {:else}
+            <C.Title>{descriptionBlock.gallery.name}</C.Title>
+          {/if}
+          {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
+            <C.Subtitle>{descriptionBlock.gallery.location}</C.Subtitle>
+          {/if}
           <C.Subtitle>{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock.associationsList?.length}
           <div class="space-y-[10px] lg:space-y-[13px]">
-            {#each descriptionBlock.associationsList as { key, value }}
+            {#each descriptionBlock.associationsList as { key, value, url }}
               <div>
                 <C.Subtitle
                   el="h4"
@@ -52,7 +62,13 @@
                   class="!text-[0.875rem] text-sonic-silver">
                   {key}
                 </C.Subtitle>
-                <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                {#if url}
+                  <a href={url} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                    <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                  </a>
+                {:else}
+                  <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                {/if}
               </div>
             {/each}
           </div>

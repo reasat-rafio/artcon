@@ -45,7 +45,7 @@
     class="overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
-      plugins: [Autoplay({ active: false })],
+      plugins: [Autoplay()],
       options: { loop: true, duration: 30, active: blocks?.length > 1 },
     }}>
     <div class="flex">

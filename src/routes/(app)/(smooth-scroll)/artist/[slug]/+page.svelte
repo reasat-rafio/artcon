@@ -1,11 +1,11 @@
 <script lang="ts">
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Seo from '@/components/common/Seo.svelte';
-  import Artwork from '@/components/common/artwork/Artwork.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Summary from '@/components/pages/[artist]/Summary.svelte';
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
+  import ArtworkItems from '@/components/common/artwork/ArtworkItems.svelte';
   import type { ArtistDetailPageProps } from '@/lib/types/artist-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
 
@@ -17,6 +17,7 @@
       personalDocuments,
       seo,
       artworks,
+      customArtworks,
       exhibitions,
       otherArtists,
       publications,
@@ -59,16 +60,21 @@
             personalDocuments,
           }} />
       {:else if s._type === 'common.artwork'}
-        <Artwork
-          props={{
-            ...s,
-            artworks,
-            ctaLink: `/collection?artist=${slug.current}`,
-          }} />
+        {#if s.artworks && s.artworks.length > 0}
+          <section class="py-section container-primary">
+            <ArtworkItems artworks={s.artworks} />
+          </section>
+        {/if}
       {:else if s._type === 'artist.publication'}
         <Publication publications={allPublications} />
       {/if}
     {/each}
+
+    {#if !!customArtworks?.length}
+      <section class="py-section container-primary">
+        <ArtworkItems artworks={customArtworks} />
+      </section>
+    {/if}
 
     {#if !!exhibitions?.length}
       {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}

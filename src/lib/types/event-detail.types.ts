@@ -26,7 +26,7 @@ export interface EventDetailPageProps {
   endDate?: string;
   startDate: string;
   tag: Tag;
-  gallery: { name: string };
+  gallery: { name: string; location?: string; url?: string };
   asset: Asset;
   sections: Section[];
   otherEvents: OtherEventsProps[];

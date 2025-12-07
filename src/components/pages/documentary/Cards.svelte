@@ -23,7 +23,7 @@
         let:Title
         let:Container
         let:Subtitle>
-        <Asset asset={{ image: coverImage }} />
+        <Asset class="overflow-hidden rounded-[12px]" asset={{ image: coverImage }} />
         <Container>
           <div>
             <Title class="inline">{name}</Title>

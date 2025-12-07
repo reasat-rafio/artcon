@@ -13,9 +13,17 @@ const query = (params: Partial<Record<string, string>>) =>
     seo,
     endDate,
     startDate,
-    associationsList,
+    associationsList[]{
+      key,
+      value,
+      url
+    },
     description,
-    gallery->{name},
+    gallery->{
+      name,
+      location,
+      url
+    },
     tag->,
     asset {
       ...,

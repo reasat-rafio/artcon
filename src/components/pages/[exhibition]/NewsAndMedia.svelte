@@ -22,12 +22,25 @@
       </div>
     {/if}
 
+    <div class="container-primary">
+      <DescriptionBlock class="mb-sm md:mb-[4.63rem]">
+        <svelte:fragment slot="intro" let:C>
+          <C.Title>{title}</C.Title>
+        </svelte:fragment>
+        <svelte:fragment slot="description" let:Description>
+          <Description>
+            <PortableText value={description} />
+          </Description>
+        </svelte:fragment>
+      </DescriptionBlock>
+    </div>
+
     {#if !!newsAndMedia?.length}
       <NewsAndMediaSlider
-        class="container-primary mb-sm md:mb-[4.63rem] xl:pr-[4.375rem]"
+        class="container-primary xl:pr-[4.375rem]"
         let:chunk
         {newsAndMedia}>
-        {#each chunk as { image, link, subtitle, title }}
+        {#each chunk as { image, link, subtitle, title }, index (image.asset?._id || link || index)}
           <Card
             el="a"
             href={link}
@@ -49,18 +62,5 @@
         {/each}
       </NewsAndMediaSlider>
     {/if}
-
-    <div class="container-primary">
-      <DescriptionBlock>
-        <svelte:fragment slot="intro" let:C>
-          <C.Title>{title}</C.Title>
-        </svelte:fragment>
-        <svelte:fragment slot="description" let:Description>
-          <Description>
-            <PortableText value={description} />
-          </Description>
-        </svelte:fragment>
-      </DescriptionBlock>
-    </div>
   </div>
 </section>

@@ -43,8 +43,8 @@ export const formatPublicationListingProps = (
         _key: '',
         asset: { image: coverImage },
         title: name,
-        text: subtitle,
-        type: category.name,
+        subtitle: subtitle,
+        topTitle: category.name,
         cta: { title: 'EXPLORE', href: `/preview/publication/${slug.current}` },
       };
     },

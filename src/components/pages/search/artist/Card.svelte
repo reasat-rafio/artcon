@@ -20,7 +20,7 @@
     <div class="block md:ml-auto">
       <div class="relative h-full w-full overflow-hidden rounded-[1.25rem]">
         <SanityImage
-          class="aspect-square h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0 md:max-h-[23.375rem] md:max-w-[23.375rem]"
+          class="aspect-square h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0 hover:scale-110 md:max-h-[23.375rem] md:max-w-[23.375rem]"
           src={artistPortrait}
           sizes="(min-width: 1024px) 40vw, 100vw"
           alt={`${name} Portrait`}
@@ -34,9 +34,9 @@
         <a
           href={`/collection?artist=${slug.current}`}
           class="artworks relative self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
-          <figure>
+          <figure class="overflow-hidden rounded-[0.75rem]">
             <SanityImage
-              class="aspect-square h-full w-full rounded-[0.75rem] object-cover"
+              class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-110"
               src={artwork.artworkImage}
               sizes="(min-width: 1024px) 15vw, 100vw"
               alt={artwork.name}
