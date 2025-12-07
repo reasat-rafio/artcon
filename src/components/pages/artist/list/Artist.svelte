@@ -7,6 +7,8 @@
   import { onMount } from 'svelte';
   import IntersectionObserver from 'svelte-intersection-observer';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import lightboxStore from '@/store/lightbox';
+  import type { SanityImageAssetDocument } from '@sanity/client';
 
   export let artist: Artist;
   export let title: string;
@@ -17,6 +19,14 @@
   let artistImgEl: HTMLDivElement;
   let intersecting = false;
   $: if (intersecting) activeAnchor = title;
+
+  function openImagePopup(index: number) {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(index);
+    lightboxStore.setAllImages(
+      customArtworks.map((artwork) => artwork.image as SanityImageAssetDocument)
+    );
+  }
 
   onMount(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -71,10 +81,12 @@
     </a>
     <div class="grid grid-cols-2 max-md:gap-[1.25rem]">
       {#if !!customArtworks?.length}
-        {#each customArtworks as artwork}
-          <a
-            href={`/collection?artist=${slug.current}`}
-            class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
+        {#each customArtworks as artwork, index}
+          <button
+            type="button"
+            on:click={() => openImagePopup(index)}
+            on:keydown={(e) => e.key === 'Enter' && openImagePopup(index)}
+            class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] cursor-pointer md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
             <figure class="overflow-hidden rounded-[0.75rem]">
               <SanityImage
                 class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-110"
@@ -91,7 +103,7 @@
                 </div>
               </div>
             {/if}
-          </a>
+          </button>
         {/each}
       {/if}
     </div>
