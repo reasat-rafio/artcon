@@ -6,6 +6,8 @@
   import { fade } from 'svelte/transition';
 
   export let items: Publication[];
+  
+  let hoveredId: string | null = null;
 </script>
 
 <div
@@ -18,22 +20,32 @@
       <Card
         el="a"
         href={`/preview/publication/${slug.current}`}
-        class="flex flex-col gap-y-[1.25rem]"
+        class="flex flex-col gap-y-[1.25rem] overflow-hidden"
         let:Image
         let:Title
-        let:Container>
+        let:Container
+        let:Subtitle
+        on:mouseenter={() => (hoveredId = _id)}
+        on:mouseleave={() => (hoveredId = null)}>
         <Image variant="fit" image={publicationImage} />
-        <Container class="text-center">
-          <Title>{name}</Title>
-          <div class="sub-title-regular">
-            {#if !!discountPriceBDT}
-              <span class="text-sonic-silver line-through">
-                {priceBDT}
-              </span>
-              <span>{discountPriceBDT} BDT</span>
-            {:else}
-              <span>{priceBDT} BDT</span>
-            {/if}
+        <Container>
+          <div>
+            <Title class="inline">{name}</Title>
+          </div>
+          <div class="flex justify-between">
+            <Subtitle class="font-optiberling-agency text-sonic-silver">
+              Publication
+            </Subtitle>
+            <span class="font-optiberling-agency text-sonic-silver pr-1">
+              {#if !!discountPriceBDT}
+                <span class="text-sonic-silver line-through">
+                  {priceBDT}
+                </span>
+                <span>{discountPriceBDT} BDT</span>
+              {:else}
+                <span>{priceBDT} BDT</span>
+              {/if}
+            </span>
           </div>
         </Container>
       </Card>

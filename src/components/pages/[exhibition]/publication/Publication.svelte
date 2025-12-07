@@ -73,7 +73,7 @@
               Published by
               {#each publishedBy as p, i}
                 <div class="inline font-light">
-                  {#if i === publishedBy.length - 1}
+                  {#if i === publishedBy.length - 1 && publishedBy.length > 1}
                     <span>and</span>
                   {:else if i !== 0}
                     ,
