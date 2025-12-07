@@ -60,11 +60,16 @@
             personalDocuments,
           }} />
       {:else if s._type === 'common.artwork'}
-        {#if s.artworks && s.artworks.length > 0}
-          <section class="py-section container-primary">
-            <ArtworkItems artworks={s.artworks} />
-          </section>
-        {/if}
+        {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
+          <Artwork.default
+            props={{
+              ...s,
+              artworks: s.artworks,
+              artworkAtLast: true,
+              ctaLink: s.artworkLink?.href || `/artist/${slug.current}/collection`,
+              ctaTitle: s.artworkLink?.title,
+            }} />
+        {/await}
       {:else if s._type === 'artist.publication'}
         <Publication publications={allPublications} />
       {/if}

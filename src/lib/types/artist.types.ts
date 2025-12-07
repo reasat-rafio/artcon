@@ -1,5 +1,5 @@
 import type { Slug } from 'sanity';
-import type { Asset, Cta, SeoProps, Tag } from './common.types';
+import type { Asset, ArtworkItem, Cta, SeoProps, Tag } from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ArtistPageProps {
@@ -32,13 +32,7 @@ export interface Artist {
   tag: Tag;
   name: string;
   artistPortrait: SanityImageAssetDocument;
-  artworks: Artwork[];
-}
-
-export interface Artwork {
-  slug: Slug;
-  name: string;
-  artworkImage: SanityImageAssetDocument;
+  customArtworks: ArtworkItem[];
 }
 
 export interface SortedArtists {
