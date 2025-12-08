@@ -39,14 +39,14 @@ const team = {
   preview: {
     select: {
       name: 'name',
-      type: 'role',
+      type: 'type',
       role: 'role',
       media: 'image',
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     prepare: ({ name, role, type, media }: any) => ({
       title: name,
-      subtitle: `${role} | ${type}`,
+      subtitle: `${type} | ${role}`,
       media,
     }),
   },

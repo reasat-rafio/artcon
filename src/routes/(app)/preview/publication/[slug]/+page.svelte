@@ -232,14 +232,14 @@
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
-                <figure data-load-animate="y" class="cursor-pointer" on:click={openImagePopup} on:keydown={(e) => e.key === 'Enter' && openImagePopup()} role="button" tabindex="0">
+                <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
                     src={publicationImage}
                     alt={publicationImage.alt}
                     sizes="100vw" />
-                </figure>
+                </button>
               </div>
 
               {#if !!description?.length}
@@ -271,20 +271,17 @@
             </section>
 
             <section class="hidden 3xl:block">
-              <figure
+              <button
                 data-load-animate="y"
                 class="max-h-[23.75rem] 3xl:mt-[9.44rem] cursor-pointer"
-                on:click={openImagePopup}
-                on:keydown={(e) => e.key === 'Enter' && openImagePopup()}
-                role="button"
-                tabindex="0">
+                on:click={openImagePopup}>
                 <SanityImage
                   class="rounded-[0.9375rem] object-contain"
                   imageUrlBuilder={imageBuilder}
                   src={publicationImage}
                   alt={publicationImage.alt}
                   sizes="40vw" />
-              </figure>
+              </button>
             </section>
           </div>
         </div>
