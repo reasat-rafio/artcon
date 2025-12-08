@@ -11,9 +11,10 @@ type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
   webm: string;
   hevc: string;
-  artists: unknown[];
+  artists: Array<{ name: string }>;
   startDate: string;
   endDate?: string;
+  gallery?: string;
 };
 
 const exhibition = {
@@ -153,6 +154,7 @@ const exhibition = {
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
       artists: 'artists',
+      gallery: 'gallery.title',
     },
     prepare: ({
       title,
@@ -162,15 +164,24 @@ const exhibition = {
       artists,
       startDate,
       endDate,
-    }: PrepareProps) => {
+      gallery,
+    }: PrepareProps & { gallery: string }) => {
+      // Determine exhibition type: if solo show artist name, if group show "Group Exhibition"
       const exhibitionType =
-        artists?.length === 1 ? 'Solo Exhibition' : 'Group Exhibition';
+        artists?.length === 1
+          ? artists[0]?.name || 'Solo Exhibition'
+          : 'Group Exhibition';
+
+      // Format dates: if same date, show only start date
+      const isSameDate =
+        startDate && endDate && formatDate(startDate) === formatDate(endDate);
+      const dateRange = isSameDate
+        ? formatDate(startDate)
+        : `${formatDate(startDate)}${endDate ? ` - ${formatDate(endDate)}` : ''}`;
 
       return {
         title: `${title} | ${exhibitionType}`,
-        subtitle: `${formatDate(startDate)} ${
-          endDate ? ` - ${formatDate(endDate)}` : ''
-        }`,
+        subtitle: `${gallery || 'Venue TBA'} | ${dateRange}`,
         media: image ? (
           image
         ) : webm && hevc ? (
