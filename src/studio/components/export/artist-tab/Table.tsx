@@ -44,7 +44,6 @@ const formatBornDate = (dateString: string): string => {
 
 const extractCountryName = (country: string): string => {
   if (!country) return '';
-  // Extract country name from format "CODE-CountryName"
   return country.split('-').slice(1).join('-');
 };
 
