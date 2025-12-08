@@ -46,7 +46,7 @@
           information: { size, artDate, frame, media, moreInformation },
         }) => ({
           ...artwork,
-          caption: `${size}, ${artDate.creationDetails}, ${frame}, ${media}, ${moreInformation?.map((e) => e).join(', ')}`,
+          caption: `${size}, ${artDate?.creationDetails || ''}, ${frame}, ${media}, ${moreInformation?.map((e) => e).join(', ')}`,
         }),
       ),
     );
