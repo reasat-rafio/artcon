@@ -41,7 +41,6 @@ const service = {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
       media: 'image',
     },
   },
