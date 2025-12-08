@@ -29,6 +29,25 @@ import { TbSearch } from 'react-icons/tb';
 
 interface TableProps {}
 
+const formatBornDate = (dateString: string): string => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+};
+
+const extractCountryName = (country: string): string => {
+  if (!country) return '';
+  // Extract country name from format "CODE-CountryName"
+  return country.split('-').slice(1).join('-');
+};
+
 const query = groq`*[_type == "artist"] | order(personalDocuments.name.en asc)[]{
    "id": _id,
     ...personalDocuments {
@@ -46,10 +65,10 @@ const CUSTOM_HEADERS = [
   'name (en)',
   'name (bn)',
   'portrait',
+  'born',
   'country',
   'email',
   'phone',
-  'born',
 ];
 
 const Table: React.FC<TableProps> = () => {
@@ -79,7 +98,7 @@ const Table: React.FC<TableProps> = () => {
     getTheme(),
     {
       Table: `
-        --data-table-library_grid-template-columns:  44px repeat(7, minmax(0, 1fr));
+        --data-table-library_grid-template-columns:  44px repeat(5, minmax(0, 1fr));
       `,
     },
   ]);
@@ -99,6 +118,7 @@ const Table: React.FC<TableProps> = () => {
         <ul>
           <li>{item?.['name (en)']},</li>
           <li>{item?.['name (bn)']}</li>
+          <li style={{ fontSize: '0.9em', color: '#666', marginTop: '4px' }}>{formatBornDate(item?.born)}</li>
         </ul>
       ),
       select: true,
@@ -113,12 +133,17 @@ const Table: React.FC<TableProps> = () => {
         />
       ),
     },
-    { label: 'Country', renderCell: (item: IArtist) => item?.country },
-    { label: 'Email', renderCell: (item: IArtist) => item?.email },
-    { label: 'Phone', renderCell: (item: IArtist) => item?.phone },
-    {
-      label: 'Born',
-      renderCell: (item: IArtist) => item?.born.substring(0, 10),
+    { 
+      label: 'Country', 
+      renderCell: (item: IArtist) => extractCountryName(item?.country)
+    },
+    { 
+      label: 'E-mail', 
+      renderCell: (item: IArtist) => item?.email
+    },
+    { 
+      label: 'Phone', 
+      renderCell: (item: IArtist) => item?.phone
     },
   ];
 
@@ -151,7 +176,8 @@ const Table: React.FC<TableProps> = () => {
       const { id, artistPortrait, ...rest } = item;
       return {
         ...rest,
-        born: item?.born.substring(0, 10),
+        born: formatBornDate(item?.born),
+        country: extractCountryName(item?.country),
         portrait: urlFor(artistPortrait).url(),
       };
     });
