@@ -137,6 +137,7 @@
   function openImagePopup() {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(0);
+    lightboxStore.setHideThumbnails(true);
     lightboxStore.setAllImages([
       {
         ...publicationImage,

@@ -15,6 +15,7 @@
 
   const lightboxAction = (globalIndex: number) => {
     lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(images);
     lightboxStore.setActiveIndex(globalIndex);
   };

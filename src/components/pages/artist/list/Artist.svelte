@@ -23,6 +23,7 @@
   function openImagePopup(index: number) {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(index);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(
       customArtworks.map((artwork) => artwork.image as SanityImageAssetDocument)
     );

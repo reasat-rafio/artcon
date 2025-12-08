@@ -54,11 +54,13 @@
     'flex flex-col gap-y-5 p-3 lg:p-5',
   )}>
   <Slider bind:sliderApi />
-  <ThumbnailSlider
-    bind:thumbnailSliderEl
-    bind:sliderApi
-    bind:thumbnailSliderApi
-    {activeIndex} />
+  {#if !$lightboxStore.hideThumbnails}
+    <ThumbnailSlider
+      bind:thumbnailSliderEl
+      bind:sliderApi
+      bind:thumbnailSliderApi
+      {activeIndex} />
+  {/if}
 </div>
 
 <button
@@ -70,20 +72,22 @@
 </button>
 
 <!-- Navigation Buttons -->
-<button
-  aria-label="Previous image"
-  transition:slide={{ axis: 'x' }}
-  on:click={scrollPrev}
-  disabled={!canScrollPrev}
-  class="fixed left-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:left-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
-  <ChevronLeftRounded class="h-12 w-12 text-white drop-shadow-lg" />
-</button>
+{#if !$lightboxStore.hideThumbnails}
+  <button
+    aria-label="Previous image"
+    transition:slide={{ axis: 'x' }}
+    on:click={scrollPrev}
+    disabled={!canScrollPrev}
+    class="fixed left-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:left-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+    <ChevronLeftRounded class="h-12 w-12 text-white drop-shadow-lg" />
+  </button>
 
-<button
-  aria-label="Next image"
-  transition:slide={{ axis: 'x' }}
-  on:click={scrollNext}
-  disabled={!canScrollNext}
-  class="fixed right-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:right-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
-  <ChevronRightRounded class="h-12 w-12 text-white drop-shadow-lg" />
-</button>
+  <button
+    aria-label="Next image"
+    transition:slide={{ axis: 'x' }}
+    on:click={scrollNext}
+    disabled={!canScrollNext}
+    class="fixed right-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:right-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+    <ChevronRightRounded class="h-12 w-12 text-white drop-shadow-lg" />
+  </button>
+{/if}

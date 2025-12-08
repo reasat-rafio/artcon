@@ -19,6 +19,7 @@
         on:click|preventDefault={() => {
           lightboxStore.setLightboxVisibility(true);
           lightboxStore.setActiveIndex(index);
+          lightboxStore.setHideThumbnails(false);
           lightboxStore.setAllImages(artworkImages);
         }}
         class="flex aspect-video flex-[0_0_100%] items-start justify-center pl-[1rem]">

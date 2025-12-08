@@ -11,6 +11,7 @@
   function onClickAction(index: number) {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(index);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(artworkImages);
   }
 </script>

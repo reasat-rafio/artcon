@@ -38,6 +38,7 @@
   const triggerLightboxPopup = (index: number) => {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(index);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(
       artworks.map(
         ({
