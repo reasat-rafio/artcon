@@ -4,12 +4,15 @@
   import Youtube from '@/components/common/Youtube.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import ShareIcon from '@/components/icons/ShareIcon.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
   import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import Autoplay from 'embla-carousel-autoplay';
+  import sharePopupStore from '@/store/share-popup';
   import type { PortableTextBlock } from 'sanity';
 
   type Props = SummaryProps & {
@@ -25,8 +28,17 @@
   $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
 
   let emblaApi: EmblaCarouselType;
+  
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+  };
+
+  $: carouselOptions = {
+    watchDrag: false,
+    loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
+    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
+      ? [Autoplay({ delay: 5000, stopOnInteraction: true, jump: false })]
+      : []
   };
 </script>
 
@@ -87,7 +99,7 @@
     {#if !!vrOrYtVideoSlider?.length}
       <div
         class="relative overflow-hidden"
-        use:emblaCarouselSvelte={{ plugins: [], options: { watchDrag: false } }}
+        use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
         on:emblaInit={onInit}>
         <div class="-ml-[1.25rem] flex">
           {#each vrOrYtVideoSlider as props}
