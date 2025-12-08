@@ -161,7 +161,7 @@ const publication = {
       media,
     }: DefaultPreviewProps & { author: string }) => ({
       title,
-      subtitle: `${author} | ${toPlainText(subtitle as any)}`,
+      subtitle: author,
       media,
     }),
   },
