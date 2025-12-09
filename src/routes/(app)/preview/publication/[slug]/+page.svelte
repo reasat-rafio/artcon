@@ -183,6 +183,19 @@
                 subtitle={subtitle ? subtitle : ''}
                 type={category.name}
                 let:Info>
+                {#if !!associationsList?.length}
+                  <Info>
+                    <ul class="mb-[2.5rem] space-y-[0.5rem]">
+                      {#each associationsList as { key, value }}
+                        <li class="sub-title-light">
+                          <span>{key}</span>
+                          {' '}
+                          <span class="!font-normal">{value}</span>
+                        </li>
+                      {/each}
+                    </ul>
+                  </Info>
+                {/if}
                 <Info>
                   <div class="sub-title-light">
                     Published By {#each publishedBy as publisher, index}
@@ -251,15 +264,6 @@
                 </div>
               {/if}
 
-              <ul class="mb-[2.5rem] space-y-[0.5rem]" data-load-animate="y">
-                {#each associationsList as { key, value }}
-                  <li class="sub-title-light">
-                    <span>{key}</span>
-                    {' '}
-                    <span class="!font-normal">{value}</span>
-                  </li>
-                {/each}
-              </ul>
               <div class="pt-[1.38rem]" data-load-animate="y">
                 <Cta
                   el="button"

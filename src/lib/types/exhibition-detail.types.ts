@@ -89,6 +89,7 @@ export interface Publication {
   publishedBy: string[];
   publicationImage: SanityImageAssetDocument;
   subtitle: string;
+  associationsList?: Association[];
 }
 
 export interface Gallery {

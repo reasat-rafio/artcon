@@ -15,6 +15,8 @@
       gallery: Gallery;
       date: string;
       associationsList?: Association[];
+      organizedBy?: string[];
+      publishedBy?: string[];
       description?: PortableTextBlock[];
     };
   };

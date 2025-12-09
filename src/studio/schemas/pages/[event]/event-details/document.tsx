@@ -111,6 +111,20 @@ const event = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      title: 'Organised by',
+      name: 'organizedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that organized this event',
+    },
+    {
+      title: 'Published by',
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that published this event',
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',

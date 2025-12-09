@@ -129,6 +129,20 @@ const exhibition = {
       of: [{ type: 'keyValuePairs' }],
     },
     {
+      title: 'Organised by',
+      name: 'organizedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that organized this exhibition',
+    },
+    {
+      title: 'Published by',
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that published this exhibition',
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',

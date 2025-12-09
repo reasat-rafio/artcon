@@ -48,9 +48,10 @@ export interface DocumentationProps {
     name: string;
     author?: string;
     isbn?: string;
-    publishedBy?: string;
+    publishedBy?: string[];
     cta?: Cta;
     description: PortableTextBlock[];
+    associationsList?: Association[];
   };
 }
 

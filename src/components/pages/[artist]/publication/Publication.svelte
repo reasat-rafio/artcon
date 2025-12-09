@@ -32,7 +32,7 @@
       on:emblaInit={onInit}
       class="overflow-hidden">
       <div class="-ml-[4rem] flex">
-        {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy }}
+        {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList }}
           <div class="flex-[0_0_100%] pl-[4rem]">
             {#if !!quote}
               <Quote class="mb-section" {quote} />
@@ -53,6 +53,23 @@
                   </C.HeaderContainer>
 
                   <div>
+                    {#if !!associationsList?.length}
+                      <div class="mb-[1.5rem]">
+                        <div class="space-y-[0.5rem]">
+                          {#each associationsList as { key, value }}
+                            <div>
+                              <C.Subtitle
+                                class="!text-[0.75rem] font-light text-eerie-black">
+                                {key}
+                              </C.Subtitle>
+                              <C.Subtitle class="!text-[0.875rem] font-normal">
+                                {value}
+                              </C.Subtitle>
+                            </div>
+                          {/each}
+                        </div>
+                      </div>
+                    {/if}
                     <C.Subtitle
                       class="!text-[0.75rem] font-light  text-eerie-black">
                       Published by

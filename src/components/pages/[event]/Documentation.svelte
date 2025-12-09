@@ -10,7 +10,7 @@
   $: ({
     quote,
     images,
-    descriptionBlock: { description, name, author, cta, isbn, publishedBy },
+    descriptionBlock: { description, name, author, cta, isbn, publishedBy, associationsList },
   } = props);
 </script>
 
@@ -35,6 +35,22 @@
           </C.HeaderContainer>
 
           <div>
+            {#if !!associationsList?.length}
+              <div class="mb-[1.5rem]">
+                <div class="space-y-[0.5rem]">
+                  {#each associationsList as { key, value }}
+                    <div>
+                      <C.Subtitle class="!text-[0.75rem] font-light text-eerie-black">
+                        {key}
+                      </C.Subtitle>
+                      <C.Subtitle class="!text-[0.875rem] font-normal">
+                        {value}
+                      </C.Subtitle>
+                    </div>
+                  {/each}
+                </div>
+              </div>
+            {/if}
             {#if !!publishedBy?.length}
               <C.Subtitle class="!text-[0.75rem] font-light  text-eerie-black">
                 Published by
