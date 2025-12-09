@@ -6,6 +6,16 @@
   import { fade } from 'svelte/transition';
 
   export let items: Documentary[];
+
+  function formatDate(dateString: string | undefined): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(date);
+  }
 </script>
 
 <div
@@ -13,7 +23,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, category, coverImage } (_id)}
+  {#each items as { name, slug, _id, category, coverImage, year } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -28,9 +38,16 @@
           <div>
             <Title class="inline">{name}</Title>
           </div>
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
-            {category.name}
-          </Subtitle>
+          <div class="flex justify-between">
+            <Subtitle class="font-optiberling-agency text-sonic-silver">
+              {category.name}
+            </Subtitle>
+            {#if year}
+              <span class="font-optiberling-agency text-sonic-silver pr-1">
+                {year}
+              </span>
+            {/if}
+          </div>
         </Container>
       </Card>
     </div>

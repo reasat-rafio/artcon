@@ -21,6 +21,7 @@ export interface Documentary {
   name: string;
   category: Tag;
   coverImage: SanityImageAssetDocument;
+  year?: string;
 }
 
 export interface HighlightedDocumentary {
@@ -28,4 +29,5 @@ export interface HighlightedDocumentary {
   slug: Slug;
   category: Tag;
   coverImage: SanityImageAssetDocument;
+  year?: string;
 }
