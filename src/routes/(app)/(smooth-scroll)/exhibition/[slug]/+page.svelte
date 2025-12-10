@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
@@ -50,18 +51,19 @@
       : 'Group Exhibition');
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
-<Hero
-  props={{
-    _type: 'common.hero',
-    asset,
-    cta,
-    title: name,
-    topTitle: _topTitle,
-    subtitle: _subTitle,
-  }} />
-<Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
-<div class="relative z-10 bg-white">
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
+  <Hero
+    props={{
+      _type: 'common.hero',
+      asset,
+      cta,
+      title: name,
+      topTitle: _topTitle,
+      subtitle: _subTitle,
+    }} />
+  <Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
+  <div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
@@ -116,7 +118,8 @@
     {/await}
   {/if}
 
-  {#await import('@/components/common/footer/Footer.svelte') then Footer}
-    <Footer.default {footer} {contact} logo={logoDark} />
-  {/await}
-</div>
+    {#await import('@/components/common/footer/Footer.svelte') then Footer}
+      <Footer.default {footer} {contact} logo={logoDark} />
+    {/await}
+  </div>
+{/key}

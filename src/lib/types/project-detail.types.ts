@@ -17,7 +17,7 @@ import type { SanityImageAssetDocument } from '@sanity/client';
 export interface ProjectDetailPageProps {
   _id: string;
   name: string;
-  topTitle?: string;
+  topTitle?: string; // Optional top title
   subtitle?: string;
   cta?: Cta;
   seo: SeoProps;

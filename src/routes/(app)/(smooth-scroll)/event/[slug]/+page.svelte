@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
@@ -30,6 +31,7 @@
       description,
       otherEvents,
       tag,
+      slug,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -47,19 +49,20 @@
   $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
-<Hero
-  props={{
-    _type: 'common.hero',
-    asset,
-    cta,
-    topTitle: _topTitle,
-    title: name,
-    subtitle: subtitle ?? tag?.name,
-  }} />
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
+  <Hero
+    props={{
+      _type: 'common.hero',
+      asset,
+      cta,
+      topTitle: _topTitle,
+      title: name,
+      subtitle: subtitle ?? tag?.name,
+    }} />
 
-<Share href="/event" {logoLight} {logoDark}>Our events</Share>
-<div class="relative z-10 bg-white">
+  <Share href="/event" {logoLight} {logoDark}>Our events</Share>
+  <div class="relative z-10 bg-white">
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />
@@ -78,12 +81,13 @@
     {/if}
   {/each}
 
-  {#if !!otherEvents?.length}
-    <OthersDocument
-      urlPrefix="/event"
-      title="Other events"
-      data={otherEvents} />
-  {/if}
+    {#if !!otherEvents?.length}
+      <OthersDocument
+        urlPrefix="/event"
+        title="Other events"
+        data={otherEvents} />
+    {/if}
 
-  <Footer {footer} {contact} logo={logoDark} />
-</div>
+    <Footer {footer} {contact} logo={logoDark} />
+  </div>
+{/key}

@@ -50,6 +50,7 @@
           src={logo}
           sizes="100px"
           imageUrlBuilder={imageBuilder}
+          loading="eager"
           alt="Artcon Logo" />
       </a>
     {/key}

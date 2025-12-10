@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
@@ -14,6 +15,7 @@
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
     page: {
+      _id,
       name,
       startDate,
       endDate,
@@ -44,20 +46,21 @@
   $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
 
-<Hero
-  props={{
-    _type: 'common.hero',
-    asset,
-    cta,
-    title: name,
-    topTitle: _topTitle,
-    subtitle: subtitle ?? tag.name,
-  }} />
+  <Hero
+    props={{
+      _type: 'common.hero',
+      asset,
+      cta,
+      title: name,
+      topTitle: _topTitle,
+      subtitle: subtitle ?? tag.name,
+    }} />
 
-<Share href="/project" {logoLight} {logoDark}>Our projects</Share>
-<div class="relative z-10 bg-white">
+  <Share href="/project" {logoLight} {logoDark}>Our projects</Share>
+  <div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}
       <ImageAsset props={s} />
@@ -77,12 +80,13 @@
     {/if}
   {/each}
 
-  {#if !!otherProjects?.length}
-    <OthersDocument
-      title="Other projects"
-      data={otherProjects}
-      urlPrefix="/project" />
-  {/if}
+    {#if !!otherProjects?.length}
+      <OthersDocument
+        title="Other projects"
+        data={otherProjects}
+        urlPrefix="/project" />
+    {/if}
 
-  <Footer {footer} {contact} logo={logoDark} />
-</div>
+    <Footer {footer} {contact} logo={logoDark} />
+  </div>
+{/key}

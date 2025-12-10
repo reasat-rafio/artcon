@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
@@ -33,6 +34,7 @@
       information,
       otherCollections,
       hideInquiryButton,
+      slug,
     },
     site: {
       logos: { logoLight, logoDark, ogImage },
@@ -61,19 +63,20 @@
   });
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
-<Hero
-  props={{
-    asset,
-    cta,
-    subtitle,
-    topTitle,
-    _type: 'common.hero',
-    title: artist?.name ?? name,
-  }} />
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
+  <Hero
+    props={{
+      asset,
+      cta,
+      subtitle,
+      topTitle,
+      _type: 'common.hero',
+      title: artist?.name ?? name,
+    }} />
 
-<Share href="/artist" {logoLight} {logoDark}>Our collections</Share>
-<div class="relative z-10 bg-white">
+  <Share href="/artist" {logoLight} {logoDark}>Our collections</Share>
+  <div class="relative z-10 bg-white">
   {#each sections as props}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset {props} />
@@ -101,17 +104,18 @@
     {/if}
   {/each}
 
-  {#if !!otherCollections?.length}
-    {#await import('@/components/pages/[collection]/OtherCollection.svelte') then OtherCollection}
-      <OtherCollection.default
-        title="Other collections"
-        data={otherCollections} />
+    {#if !!otherCollections?.length}
+      {#await import('@/components/pages/[collection]/OtherCollection.svelte') then OtherCollection}
+        <OtherCollection.default
+          title="Other collections"
+          data={otherCollections} />
+      {/await}
+    {/if}
+    {#await import('@/components/common/footer/Footer.svelte') then Footer}
+      <Footer.default {footer} {contact} logo={logoDark} />
     {/await}
-  {/if}
-  {#await import('@/components/common/footer/Footer.svelte') then Footer}
-    <Footer.default {footer} {contact} logo={logoDark} />
-  {/await}
-</div>
+  </div>
+{/key}
 
 {#if $formPopupStore.show}
   <FormPopup
