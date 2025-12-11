@@ -103,6 +103,19 @@ const vr = {
       type: 'datetime',
     },
     {
+      title: 'Status',
+      name: 'isActive',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Active', value: 'active' },
+          { title: 'Inactive', value: 'inactive' },
+        ],
+      },
+      description: 'Choose whether this VR experience is Active or Inactive',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],

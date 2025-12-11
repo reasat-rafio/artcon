@@ -23,6 +23,7 @@ export interface VrPreviewProps {
   name: string;
   coverImage: SanityImageAssetDocument;
   thumbnail: SanityAsset;
+  isActive: 'active' | 'inactive';
 }
 
 export interface RefDocument {

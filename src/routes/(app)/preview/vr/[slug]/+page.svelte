@@ -32,6 +32,7 @@
       coverImage,
       thumbnail,
       link,
+      isActive,
     },
     site: { logos },
   } = data);
@@ -41,10 +42,15 @@
   let contentEl: HTMLElement;
   let innerWidth = 0;
 
-  $: ({ date, status } = calculateStatusBetweenDates({
+  // $: ({ date, status } = calculateStatusBetweenDates({
+  //   startDate,
+  //   endDate,
+  // }));
+  $: ({ date } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
+  $: status = isActive === 'active' ? 'Active' : 'Inactive';
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
