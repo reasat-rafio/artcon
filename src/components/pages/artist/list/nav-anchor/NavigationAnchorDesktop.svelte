@@ -57,7 +57,7 @@
             class="my-[calc(1.83rem/2)] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
               ? 'text-pigment-red'
-              : 'text-quick-silver'}">
+              : 'text-dark-gunmetal'}">
             {anchor}
           </button>
         {/each}
