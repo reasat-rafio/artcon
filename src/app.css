@@ -177,6 +177,6 @@
     @apply text-[0.75rem] font-light tracking-[0.015rem];
   }
   .caption {
-    @apply sub-title-light md:title-light mt-[0.69rem] block  pl-[0.62rem] font-light text-sonic-silver lg:mt-[1.22rem] lg:pl-[1.88rem];
+    @apply sub-title-light md:title-light mt-[0.69rem] block  pl-[0.62rem] font-light text-sonic-silver lg:mt-[1.22rem] lg:pl-[1rem];
   }
 }

@@ -30,12 +30,12 @@
             <Title class="inline">{name}</Title>
        
               <div class="flex justify-between">
-                <div  class="font-optiberling-agency text-sonic-silver">
+                <div class="font-optiberling-agency text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
                    {subtitle || tag?.name}
                 </div>
-               <div>
+               <div class="flex-shrink-0">
                  {#if startDate}
-                  <span class="font-optiberling-agency text-sonic-silver pr-1">
+                  <span class="font-optiberling-agency text-sonic-silver pr-1 whitespace-nowrap">
                     {calculateStatusBetweenDates({ startDate, endDate }).date}
                   </span>
                 {/if}
