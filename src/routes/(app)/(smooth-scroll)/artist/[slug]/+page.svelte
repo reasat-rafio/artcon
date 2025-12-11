@@ -7,7 +7,7 @@
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import ArtworkItems from '@/components/common/artwork/ArtworkItems.svelte';
-  import type { ArtistDetailPageProps } from '@/lib/types/artist-detail.types';
+  import type { ArtistDetailPageProps, Publication as PublicationType } from '@/lib/types/artist-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
 
   export let data: PageProps<ArtistDetailPageProps>;
@@ -35,7 +35,12 @@
   $: allPublications = [
     ...(publications ?? []),
     ...(publicationsFromExhibitions ?? []),
-  ];
+  ].reduce<PublicationType[]>((unique, pub) => {
+    const isDuplicate = unique.some(
+      (item) => item._createdAt === pub._createdAt || item.slug?.current === pub.slug?.current
+    );
+    return isDuplicate ? unique : [...unique, pub];
+  }, []);
 </script>
 
 {#key $page.params.slug}
@@ -73,7 +78,7 @@
             }} />
         {/await}
       {:else if s._type === 'artist.publication'}
-        <Publication publications={allPublications} />
+        <Publication publications={allPublications} artistName={personalDocuments.name} />
       {/if}
     {/each}
 
@@ -87,7 +92,7 @@
       {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
         <OthersDocument.default
           urlPrefix="/exhibition"
-          title={`${personalDocuments.name}’s other exhibition with us`}
+          title="Other exhibition with us"
           data={exhibitions} />
       {/await}
     {/if}

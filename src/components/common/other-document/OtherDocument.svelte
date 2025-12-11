@@ -98,7 +98,7 @@
                 href="{urlPrefix}/{slug.current}"
                 class="flex-[0_0_90%] overflow-hidden xl:flex-[0_0_50%]">
                 <div
-                  class="relative mb-[1.25rem] mr-[0.94rem] aspect-square origin-left overflow-hidden rounded-lg transition-transform duration-500 md:mr-[1.88rem] xl:mb-[4.03rem] {activeSlideIndex !==
+                  class="relative mb-[1.25rem] mr-[0.94rem] aspect-square max-w-[400px] origin-left overflow-hidden rounded-lg transition-transform duration-500 md:mr-[1.88rem] xl:mb-[4.03rem] {activeSlideIndex !==
                   index
                     ? 'max-xl:scale-90'
                     : 'scale-100'}">
