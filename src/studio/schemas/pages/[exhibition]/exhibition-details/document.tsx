@@ -85,6 +85,20 @@ const exhibition = {
       type: 'cta',
     },
     {
+      name: 'exhibitionType',
+      title: 'Exhibition Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Solo Exhibition', value: 'solo' },
+          { title: 'Group Exhibition', value: 'group' },
+        ],
+        layout: 'dropdown',
+      },
+      validation: (Rule: Rule) => Rule.required(),
+      description: 'This determines the exhibition type. "Group Exhibition Members" section will only show on website when "Group Exhibition" is selected.',
+    },
+    {
       name: 'artists',
       title: 'Artist in this ehibition',
       type: 'array',
@@ -99,10 +113,13 @@ const exhibition = {
     },
     {
       name: 'tag',
-      title: 'Exhibition Type',
+      title: 'Tag',
       type: 'reference',
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
+      description: 'This will automatically update based on Exhibition Type',
+      readOnly: true,
+      hidden: true,
     },
     {
       title: 'Space / Gallery',
@@ -156,6 +173,7 @@ const exhibition = {
         { type: 'common.artwork' },
         { type: 'exhibition.gallery' },
         { type: 'exhibition.newsAndMedia' },
+        { type: 'exhibition.team' },
       ],
     },
   ],
@@ -169,6 +187,7 @@ const exhibition = {
       hevc: 'asset.video.video_hevc.asset.url',
       artists: 'artists',
       gallery: 'gallery.title',
+      exhibitionType: 'exhibitionType',
     },
     prepare: ({
       title,
@@ -179,12 +198,17 @@ const exhibition = {
       startDate,
       endDate,
       gallery,
-    }: PrepareProps & { gallery: string }) => {
-      // Determine exhibition type: if solo show artist name, if group show "Group Exhibition"
-      const exhibitionType =
-        artists?.length === 1
-          ? artists[0]?.name || 'Solo Exhibition'
-          : 'Group Exhibition';
+      exhibitionType,
+    }: PrepareProps & { gallery: string; exhibitionType?: 'solo' | 'group' }) => {
+      // Determine exhibition type label based on exhibitionType field
+      const exhibitionTypeLabel =
+        exhibitionType === 'solo'
+          ? artists?.[0]?.name || 'Solo Exhibition'
+          : exhibitionType === 'group'
+            ? 'Group Exhibition'
+            : artists?.length === 1
+              ? artists[0]?.name || 'Solo Exhibition'
+              : 'Group Exhibition';
 
       // Format dates: if same date, show only start date
       const isSameDate =
@@ -194,7 +218,7 @@ const exhibition = {
         : `${formatDate(startDate)}${endDate ? ` - ${formatDate(endDate)}` : ''}`;
 
       return {
-        title: `${title} | ${exhibitionType}`,
+        title: `${title} | ${exhibitionTypeLabel}`,
         subtitle: `${gallery || 'Venue TBA'} | ${dateRange}`,
         media: image ? (
           image

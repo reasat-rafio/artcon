@@ -14,7 +14,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate } (_id)}
+  {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate, exhibitionType } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -33,7 +33,11 @@
             <h4
               class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
               /
-              {#if subtitle}
+              {#if exhibitionType === 'group'}
+                Group Exhibition
+              {:else if exhibitionType === 'solo'}
+                {typeof type === 'string' ? type : type.name}
+              {:else if subtitle}
                 {subtitle}
               {:else if typeof type === 'string'}
                 {type}
@@ -42,18 +46,25 @@
               {/if}
             </h4>
           </div>
-         <div class="flex justify-between">
-           <Subtitle class="font-optiberling-agency text-sonic-silver">
-            {tag.name} 
-          </Subtitle> 
-          {#if startDate}
-            <span class="font-optiberling-agency text-sonic-silver pr-1">
-              {calculateStatusBetweenDates({ startDate, endDate }).date}
-            </span>
-          {/if}
-         </div>
+          <div class="flex justify-between">
+            <Subtitle class="font-optiberling-agency text-sonic-silver">
+              {#if exhibitionType === 'group'}
+                Group Exhibition
+              {:else if exhibitionType === 'solo'}
+                Solo Art Exhibition
+              {:else}
+                {tag.name}
+              {/if}
+            </Subtitle>
+            {#if startDate}
+              <span class="font-optiberling-agency text-sonic-silver pr-1">
+                {calculateStatusBetweenDates({ startDate, endDate }).date}
+              </span>
+            {/if}
+          </div>
         </Container>
       </Card>
     </div>
   {/each}
 </div>
+

@@ -29,6 +29,7 @@ export interface ExhibitionDetailPageProps {
   topTitle?: string;
   cta?: Cta;
   slug: Slug;
+  exhibitionType: 'solo' | 'group';
   artists: ArtistsProps;
   asset: Asset;
   associationsList?: Association[];
@@ -69,7 +70,8 @@ type Section =
   | CommonArtworkSectionProps
   | IncludedArtistsProps
   | GalleryProps
-  | NewsAndMediaProps;
+  | NewsAndMediaProps
+  | TeamProps;
 
 export type ArtistsProps = SoloExhibitionProps | GroupExhibitionProps[];
 
@@ -165,6 +167,19 @@ export interface NewsAndMedia {
   link: string;
   _key: string;
   title: string;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  image: SanityImageAssetDocument;
+}
+
+export interface TeamProps {
+  _key: string;
+  _type: 'exhibition.team';
+  title: string;
+  members: TeamMember[];
 }
 
 export interface FeaturedProps {

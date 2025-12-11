@@ -183,14 +183,24 @@ export const formatExhibitionListingProps = (
   props: ExhibitionListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedExhibition.map(
-    ({ asset, name, startDate, endDate, type, subtitle, slug, topTitle }) => {
+    ({ asset, name, startDate, endDate, type, subtitle, slug, topTitle, exhibitionType }) => {
       const { date, status } = calculateStatusBetweenDates({
         startDate,
         endDate,
       });
 
       const _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
-      const _type = typeof type === 'string' ? type : type?.name;
+      
+      // Use exhibitionType field if available, otherwise fall back to type
+      let _type: string;
+      if (exhibitionType === 'group') {
+        _type = 'Group Exhibition';
+      } else if (exhibitionType === 'solo') {
+        _type = typeof type === 'object' ? type?.name : 'Solo Exhibition';
+      } else {
+        _type = typeof type === 'string' ? type : type?.name;
+      }
+      
       const _subtitle = subtitle || _type;
 
       return {

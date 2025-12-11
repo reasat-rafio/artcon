@@ -7,6 +7,7 @@
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
+  import Team from '@/components/pages/[exhibition]/team/Team.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates, isSoloExhibition } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -31,6 +32,7 @@
       associationsList,
       description,
       slug,
+      exhibitionType,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -46,9 +48,15 @@
   $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
   $: _subTitle =
     subtitle ??
-    (isSoloExhibition(artists)
-      ? artists.personalDocuments.name
-      : 'Group Exhibition');
+    (exhibitionType === 'group'
+      ? 'Group Exhibition'
+      : exhibitionType === 'solo' && isSoloExhibition(artists)
+        ? artists.personalDocuments.name
+        : exhibitionType === 'solo'
+          ? 'Solo Exhibition'
+          : isSoloExhibition(artists)
+            ? artists.personalDocuments.name
+            : 'Group Exhibition');
 </script>
 
 {#key $page.params.slug}
@@ -106,6 +114,10 @@
       {#await import('@/components/pages/[exhibition]/NewsAndMedia.svelte') then NewsAndMedia}
         <NewsAndMedia.default props={s} />
       {/await}
+    {:else if s._type === 'exhibition.team' && exhibitionType === 'group'}
+      <div class="container-primary py-section">
+        <Team props={s} />
+      </div>
     {/if}
   {/each}
 

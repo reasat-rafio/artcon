@@ -12,6 +12,7 @@ const query = (params: Partial<Record<string, string>>) =>
     cta,
     slug,
     seo,
+    exhibitionType,
     associationsList[]{
       key,
       value,
@@ -53,6 +54,10 @@ const query = (params: Partial<Record<string, string>>) =>
       ${asset('invitationCardImage')},
       ${asset('fullInvitationCardImage')},
       ${asset('images[]', { as: 'images' })},
+      members[]{
+        ...,
+        ${asset('image')},
+      },
       artworks[]{
         _key,
         _type,

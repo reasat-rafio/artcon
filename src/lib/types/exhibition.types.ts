@@ -14,6 +14,7 @@ export interface Exhibition {
   subtitle?: string;
   tag: Tag;
   slug: Slug;
+  exhibitionType?: 'solo' | 'group';
   type: 'Group Exhibition' | { name: string };
   startDate?: string;
   endDate?: string;
@@ -35,5 +36,6 @@ export interface HighlightedExhibition {
   subtitle?: string;
   asset: Asset;
   tag: { name: string }[];
+  exhibitionType?: 'solo' | 'group';
   type: string | { name: string };
 }
