@@ -86,7 +86,7 @@
         {#if !!cta?.title}
           <Cta
             variant="quaternary"
-            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[0.875rem] !tracking-[0.27px] !leading-[16.2px] !font-medium !w-[140px] !rounded-[64px]"
+            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[0.875rem] !tracking-[0.27px] !leading-[16.2px] !font-medium !max-w-[90%] sm:!max-w-[none] !rounded-[64px]"
             href={cta.href}>
             {cta.title}
           </Cta>

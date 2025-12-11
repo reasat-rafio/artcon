@@ -18,17 +18,19 @@
   let topTitleEl: HTMLElement;
   let subtitleEl: HTMLElement;
 
-  function animation(node: HTMLElement) {
+  function animation(node: HTMLElement, shouldApply: boolean) {
     const ctx = gsap.context(() => {
-      gsap.to(node, {
-        scale: 1.15,
-        scrollTrigger: {
-          trigger: node,
-          start: '100% center',
-          end: 'bottom top',
-          scrub: 3,
-        },
-      });
+      if (shouldApply) {
+        gsap.to(node, {
+          scale: 1.15,
+          scrollTrigger: {
+            trigger: node,
+            start: '100% center',
+            end: 'bottom top',
+            scrub: 3,
+          },
+        });
+      }
     });
     return {
       destroy() {
@@ -56,7 +58,7 @@
 
 <svelte:window bind:innerWidth />
 <section
-  use:animation
+  use:animation={innerWidth >= 1024}
   class={cn('fixed inset-0 h-screen w-full', $$props.class)}>
   <div class="relative flex h-full w-full">
     {#key asset}
