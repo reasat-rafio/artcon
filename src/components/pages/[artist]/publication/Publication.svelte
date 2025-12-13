@@ -110,7 +110,7 @@
       <!-- Carousel for multiple publications -->
       <div
         use:emblaCarouselSvelte={{
-          plugins: [Autoplay({ stopOnInteraction: true })],
+          plugins: [Autoplay({ delay: 6000, stopOnInteraction: true })],
           options: { loop: true },
         }}
         on:emblaInit={onInit}

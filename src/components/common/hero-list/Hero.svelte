@@ -46,6 +46,7 @@
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
       plugins: [Autoplay()],
+   // plugins: [Autoplay({ delay: 6000, playOnInit: false, stopOnLastSnap: true })],
       options: { loop: true, duration: 30, active: blocks?.length > 1 },
     }}>
     <div class="flex">

@@ -42,7 +42,7 @@
     $$props.class,
   )}>
   <div
-    class="max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-cultured-gray py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
+    class="max-h-[70vh] cursor-grab overflow-hidden rounded-[2.29rem] bg-white border-2 border-light-gray shadow-md py-[calc(2.73875rem/2)] active:cursor-grabbing xl:max-h-[47.9rem]">
     <div
       class="relative h-full overflow-hidden px-[0.8055rem]"
       on:emblaInit={onInit}
@@ -57,7 +57,7 @@
             class="my-[calc(1.83rem/2)] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
               ? 'text-pigment-red'
-              : 'text-dark-gunmetal'}">
+              : 'text-eerie-black'}">
             {anchor}
           </button>
         {/each}
