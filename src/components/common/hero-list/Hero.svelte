@@ -8,6 +8,7 @@
     type EmblaCarouselType,
   } from 'embla-carousel-svelte';
   import ScrollIndicator from '../hero/ScrollIndicator.svelte';
+  import { onDestroy } from 'svelte';
 
   export let props: CommonHeroListProps;
   let { blocks } = props;
@@ -15,6 +16,8 @@
   let emblaApi: EmblaCarouselType;
   let scrollDirection: 'forward' | 'backward';
   let activeBlockIndex = 0;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
   const DEBOUNCH_TIME = 200;
   const DIRECTION_MAP = {
     '-1': 'forward',
@@ -23,6 +26,24 @@
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', (e: EmblaCarouselType) => {
+      const direction = DIRECTION_MAP[String(readDirection(e)) as '-1' | '1'];
+      scrollDirection = direction as 'forward' | 'backward';
+      activeBlockIndex = e.selectedScrollSnap();
+      
+      const currentIndex = e.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
 
   const readDirection = (embla: EmblaCarouselType) => {
@@ -31,13 +52,9 @@
     return Math.sign(diffToTarget);
   };
 
-  $: if (emblaApi) {
-    emblaApi.on('scroll', (e: EmblaCarouselType) => {
-      const direction = DIRECTION_MAP[String(readDirection(e)) as '-1' | '1'];
-      scrollDirection = direction as 'forward' | 'backward';
-      activeBlockIndex = e.selectedScrollSnap();
-    });
-  }
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section bind:this={rootEl} class="fixed inset-0 h-screen w-full">
@@ -45,8 +62,7 @@
     class="overflow-hidden"
     on:emblaInit={onInit}
     use:emblaCarouselSvelte={{
-      plugins: [Autoplay()],
-   // plugins: [Autoplay({ delay: 6000, playOnInit: false, stopOnLastSnap: true })],
+      plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
       options: { loop: true, duration: 30, active: blocks?.length > 1 },
     }}>
     <div class="flex">

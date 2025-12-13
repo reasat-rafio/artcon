@@ -8,26 +8,46 @@
   import Autoplay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import PublicationImage from '../../[artist]/publication/PublicationImage.svelte';
+  import { onDestroy } from 'svelte';
 
   export let props: DocumentationsProps;
   $: ({ documents } = props);
 
   let emblaApi: EmblaCarouselType;
   let rootEl: HTMLElement;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
 
   const slideNext = () => emblaApi.scrollNext();
   const slidePrev = () => emblaApi.scrollPrev();
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section bind:this={rootEl}>
   <div class="container-primary py-section relative">
     <div
       use:emblaCarouselSvelte={{
-        plugins: [Autoplay({ stopOnInteraction: true })],
+        plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
         options: { loop: true },
       }}
       on:emblaInit={onInit}

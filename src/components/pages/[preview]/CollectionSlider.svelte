@@ -3,15 +3,43 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import lightboxStore from '@/store/lightbox';
   import type { SanityImageAssetDocument } from '@sanity/client';
+  import type { EmblaCarouselType } from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import { onDestroy } from 'svelte';
 
   export let artworkImages: SanityImageAssetDocument[];
+
+  let emblaApi: EmblaCarouselType;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
+  };
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <div
   data-load-animate="y"
-  use:emblaCarouselSvelte={{ plugins: [Autoplay()], options: { loop: true } }}
+  use:emblaCarouselSvelte={{ plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })], options: { loop: true } }}
+  on:emblaInit={onInit}
   class="relative mb-[2rem] w-full overflow-hidden">
   <div class="-ml-[1rem] flex">
     {#each artworkImages as img, index}

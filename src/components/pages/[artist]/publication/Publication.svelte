@@ -8,21 +8,43 @@
   import { type EmblaCarouselType } from 'embla-carousel';
   import PublicationImage from './PublicationImage.svelte';
   import Autoplay from 'embla-carousel-autoplay';
+  import { onDestroy } from 'svelte';
 
   export let publications: Publication[];
   export let artistName: string = '';
 
   let emblaApi: EmblaCarouselType;
   let rootEl: HTMLElement;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
 
   $: isSinglePublication = publications.length === 1;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      const slideCount = emblaApi.scrollSnapList().length;
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
 
   const slideNext = () => emblaApi?.scrollNext();
   const slidePrev = () => emblaApi?.scrollPrev();
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section bind:this={rootEl}>
@@ -110,7 +132,7 @@
       <!-- Carousel for multiple publications -->
       <div
         use:emblaCarouselSvelte={{
-          plugins: [Autoplay({ delay: 6000, stopOnInteraction: true })],
+          plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
           options: { loop: true },
         }}
         on:emblaInit={onInit}

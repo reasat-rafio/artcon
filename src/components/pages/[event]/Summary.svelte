@@ -14,6 +14,7 @@
   import Autoplay from 'embla-carousel-autoplay';
   import sharePopupStore from '@/store/share-popup';
   import type { PortableTextBlock } from 'sanity';
+  import { onDestroy } from 'svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -28,18 +29,37 @@
   $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
 
   let emblaApi: EmblaCarouselType;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
   
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
 
   $: carouselOptions = {
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
     plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 5000, stopOnInteraction: true, jump: false })]
+      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
       : []
   };
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section>

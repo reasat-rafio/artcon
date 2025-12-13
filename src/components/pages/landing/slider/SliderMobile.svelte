@@ -47,8 +47,8 @@
       target: window,
       type: 'wheel,scroll,touch',
       wheelSpeed: -1,
-      tolerance: 10,
-      preventDefault: true,
+      tolerance: 50, // was 10
+      preventDefault: false,
       onDown: () => {
         if (!animating) {
           currentIndex = Math.min(
@@ -56,9 +56,9 @@
             collections.length + 1,
           );
           gsap.to(el, {
-            duration: 0.7,
+            duration: 0.5, // was 0.7
             y: `-${currentIndex * 100}dvh`,
-            ease: 'expoOut',
+            ease: 'power2.out', // was 'expoOut'
             onStart: () => {
               animating = true;
             },
@@ -75,9 +75,9 @@
             collections.length + 1,
           );
           gsap.to(el, {
-            duration: 0.7,
+            duration: 0.5, // was 0.7
             y: `-${currentIndex * 100}dvh`,
-            ease: 'expoOut',
+            ease: 'power2.out', // was 'expoOut'
             onStart: () => {
               animating = true;
             },
