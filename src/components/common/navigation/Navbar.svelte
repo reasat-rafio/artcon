@@ -17,6 +17,7 @@
 
   let searchInputEl: HTMLInputElement;
   let searchIsActive = false;
+  
   const setSearchBarActive = () => {
     searchIsActive = true;
     searchInputEl.focus();
@@ -44,13 +45,17 @@
       'flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[2.37rem]',
     )}>
     {#key logo?.asset?._id}
-      <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
+      <a class="block pt-[1.25rem] lg:pt-[2.5rem]" href="/">
         <SanityImage
-          class="h-[50px] w-fit object-contain"
+          class="h-[50px] w-[100px] object-contain"
+          style="min-height: 50px; min-width: 100px;"
           src={logo}
           sizes="100px"
           imageUrlBuilder={imageBuilder}
           loading="eager"
+          fetchpriority="high"
+          fadeInAnimation={false}
+          lqip={false}
           alt="Artcon Logo" />
       </a>
     {/key}

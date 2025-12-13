@@ -117,9 +117,7 @@ const exhibition = {
       type: 'reference',
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
-      description: 'This will automatically update based on Exhibition Type',
-      readOnly: true,
-      hidden: true,
+      description: 'Select a tag for this exhibition (e.g., Solo Exhibition, Group Exhibition, etc.)',
     },
     {
       title: 'Space / Gallery',

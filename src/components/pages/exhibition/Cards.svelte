@@ -48,13 +48,7 @@
           </div>
           <div class="flex justify-between">
             <Subtitle class="font-optiberling-agency text-sonic-silver">
-              {#if exhibitionType === 'group'}
-                Group Exhibition
-              {:else if exhibitionType === 'solo'}
-                Solo Art Exhibition
-              {:else}
-                {tag.name}
-              {/if}
+              {tag.name}
             </Subtitle>
             {#if startDate}
               <span class="font-optiberling-agency text-sonic-silver pr-1">
