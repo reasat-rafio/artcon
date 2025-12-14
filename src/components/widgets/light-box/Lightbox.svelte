@@ -46,8 +46,8 @@
 <Backdrop on:close={closeLightbox} />
 
 <div
-  in:scale={{ delay: 200, duration: 300 }}
-  out:scale={{ start: 0.8, delay: 0, duration: 300 }}
+  in:scale={{ start: 0.92, delay: 200, duration: 300 }}
+  out:scale={{ start: 0.92, delay: 0, duration: 300 }}
   class={cn(
     'fixed left-1/2 top-1/2 z-god -translate-x-1/2 -translate-y-1/2',
     'h-full max-h-screen w-full max-w-2xl overflow-y-auto',

@@ -58,6 +58,14 @@
           theme: 'dark',
           type: 'success',
         });
+      } else if (result.type === 'failure') {
+        toasts.add({
+          description: 'Failed to submit form. Please check your inputs.',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'error',
+        });
       }
     },
   });

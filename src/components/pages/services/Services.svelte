@@ -20,16 +20,11 @@
 <section>
   <div
     class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
-    {#each services as { title, description, image }, index}
+    {#each services as { title, description, descriptionMedia }, index}
       <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
         <DescriptionBlock>
           <svelte:fragment slot="intro" let:C>
             <C.Title el="h2">{title}</C.Title>
-          </svelte:fragment>
-          <svelte:fragment slot="description" let:Description>
-            <Description>
-              <PortableText value={description} />
-            </Description>
             <Cta
               el="button"
               onClick={() => handleFormPopup(title)}
@@ -37,16 +32,40 @@
               Get Service
             </Cta>
           </svelte:fragment>
+          <svelte:fragment slot="description" let:Description>
+            {#if descriptionMedia}
+              <figure class="mb-md">
+                {#if descriptionMedia.image}
+                  <SanityImage
+                    class="mx-auto aspect-video h-full w-full rounded-[25px] object-cover"
+                    src={descriptionMedia.image}
+                    alt={descriptionMedia.image.alt || ''}
+                    imageUrlBuilder={imageBuilder}
+                    sizes="(min-width: 1024px) 50vw, 100vw" />
+                {:else if descriptionMedia.video}
+                  <video
+                    class="mx-auto aspect-video h-full w-full rounded-[25px] object-cover"
+                    width="100%"
+                    height="100%"
+                    disablePictureInPicture
+                    controlsList="nodownload noplaybackrate"
+                    controls={false}
+                    playsInline
+                    autoPlay
+                    muted
+                    loop>
+                    <source src={descriptionMedia.video.mov} type="video/mp4; codecs=hvc1" />
+                    <source src={descriptionMedia.video.webm} type="video/webm" />
+                    Sorry, your browser doesn&apos;t support embedded videos.
+                  </video>
+                {/if}
+              </figure>
+            {/if}
+            <Description>
+              <PortableText value={description} />
+            </Description>
+          </svelte:fragment>
         </DescriptionBlock>
-
-        <figure use:parallaxAnimation class="translate-y-[120px]">
-          <SanityImage
-            class="mx-auto aspect-video h-full w-full max-w-[72.75rem] rounded-[25px] object-cover"
-            src={image}
-            alt={image.alt}
-            imageUrlBuilder={imageBuilder}
-            sizes="(min-width: 1024px) 70vw, 100vw" />
-        </figure>
       </article>
     {/each}
   </div>

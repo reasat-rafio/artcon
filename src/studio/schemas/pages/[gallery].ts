@@ -21,6 +21,12 @@ const gallery = {
       title: 'URL',
       description: 'Link to the gallery location (e.g., Google Maps)',
     },
+    {
+      name: 'getServiceButton',
+      title: 'Get Service Button',
+      type: 'cta',
+      description: 'Button to link to services page',
+    },
   ],
   preview: {
     select: {

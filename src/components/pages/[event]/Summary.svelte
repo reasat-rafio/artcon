@@ -1,20 +1,10 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
-  import VR from '@/components/common/Vr.svelte';
-  import Youtube from '@/components/common/Youtube.svelte';
-  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
-  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
-  import ShareIcon from '@/components/icons/ShareIcon.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import type { Association } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
-  import type { EmblaCarouselType } from 'embla-carousel';
-  import emblaCarouselSvelte from 'embla-carousel-svelte';
-  import Autoplay from 'embla-carousel-autoplay';
-  import sharePopupStore from '@/store/share-popup';
   import type { PortableTextBlock } from 'sanity';
-  import { onDestroy } from 'svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -26,40 +16,7 @@
   };
 
   export let props: Props;
-  $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
-
-  let emblaApi: EmblaCarouselType;
-  let autoplayInstance: any;
-  let hasStartedMoving = false;
-  
-  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
-    emblaApi = event.detail;
-    autoplayInstance = emblaApi.plugins()?.autoplay;
-    
-    emblaApi.on('select', () => {
-      const currentIndex = emblaApi.selectedScrollSnap();
-      
-      if (currentIndex !== 0 && !hasStartedMoving) {
-        hasStartedMoving = true;
-      }
-      
-      if (currentIndex === 0 && hasStartedMoving) {
-        autoplayInstance?.stop();
-      }
-    });
-  };
-
-  $: carouselOptions = {
-    watchDrag: false,
-    loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
-    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
-      : []
-  };
-
-  onDestroy(() => {
-    autoplayInstance?.stop();
-  });
+  $: ({ quote, descriptionBlock } = props);
 </script>
 
 <section>
@@ -115,40 +72,5 @@
         {/if}
       </svelte:fragment>
     </DescriptionBlock>
-
-    {#if !!vrOrYtVideoSlider?.length}
-      <div
-        class="relative overflow-hidden"
-        use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
-        on:emblaInit={onInit}>
-        <div class="-ml-[1.25rem] flex">
-          {#each vrOrYtVideoSlider as props}
-            <div class="flex-[0_0_100%] pl-[1.25rem]">
-              {#if props._type === 'vr'}
-                <VR vr={props} />
-              {:else if props._type === 'youtube'}
-                <Youtube yt={props} />
-              {/if}
-            </div>
-          {/each}
-        </div>
-      </div>
-
-      <div
-        class="mx-auto flex max-w-[72.9375rem] -translate-y-[0.875rem] justify-end">
-        <nav class="flex gap-x-[0.62rem]">
-          <button
-            aria-label="Scroll to previous slide"
-            on:click={() => emblaApi.scrollPrev()}>
-            <ChevronLeftRounded />
-          </button>
-          <button
-            aria-label="Scroll to next slide"
-            on:click={() => emblaApi.scrollNext()}>
-            <ChevronRightRounded />
-          </button>
-        </nav>
-      </div>
-    {/if}
   </div>
 </section>

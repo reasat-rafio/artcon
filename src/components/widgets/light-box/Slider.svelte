@@ -31,13 +31,13 @@
           <SanityImage
             lqip
             sizes="100vw"
-            class="mx-auto aspect-auto h-[95%] w-fit rounded-[1rem] object-contain"
+            class="mx-auto aspect-auto h-[92%] w-fit rounded-[1rem] object-contain"
             src={img}
             imageUrlBuilder={imageBuilder} />
 
           {#if !!img?.caption}
             <figurecaption
-              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white drop-shadow-2xl lg:pl-[1.88rem]">
+              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white drop-shadow-2xl lg:pl-[1.88rem] bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg leading-relaxed">
               {img.caption}
             </figurecaption>
           {/if}

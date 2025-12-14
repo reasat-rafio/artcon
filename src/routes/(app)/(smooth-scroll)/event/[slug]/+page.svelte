@@ -9,6 +9,7 @@
   import Gallery from '@/components/pages/[event]/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[event]/NewsAndMedia.svelte';
   import Summary from '@/components/pages/[event]/Summary.svelte';
+  import Video from '@/components/pages/[event]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -72,6 +73,8 @@
           ...props,
           descriptionBlock: { associationsList, date, description, gallery },
         }} />
+    {:else if props._type === 'event.video'}
+      <Video {props} />
     {:else if props._type === 'event.documentation'}
       <Documentation {props} />
     {:else if props._type === 'event.gallery'}

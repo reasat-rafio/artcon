@@ -7,6 +7,7 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import Gallery from '@/components/pages/[project]/Gallery.svelte';
   import Summary from '@/components/pages/[project]/Summary.svelte';
+  import Video from '@/components/pages/[project]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -75,6 +76,8 @@
             associationsList,
           },
         }} />
+    {:else if s._type === 'project.video'}
+      <Video props={s} />
     {:else if s._type === 'project.gallery'}
       <Gallery props={s} />
     {/if}

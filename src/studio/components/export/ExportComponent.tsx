@@ -47,6 +47,7 @@ const Export: ComponentType<{ tool: Tool<ExportProps> }> = () => {
               aria-controls={`${name}-panel`}
               selected={activeTabId === id}
               onClick={() => setActiveTabId(id)}
+              style={{ color: 'var(--card-fg-color, #e8e8e8)' }}
             />
           ))}
         </TabList>

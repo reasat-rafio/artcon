@@ -1,4 +1,4 @@
-import type { CommonHeroProps, Cta, SeoProps } from './common.types';
+import type { Asset, CommonHeroProps, Cta, SeoProps } from './common.types';
 import type { PortableTextBlock } from 'sanity';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 
@@ -13,6 +13,6 @@ type Section = CommonHeroProps;
 export interface ServiceProps {
   _key: string;
   title: string;
-  image: SanityAsset;
+  descriptionMedia?: Asset;
   description: PortableTextBlock[];
 }

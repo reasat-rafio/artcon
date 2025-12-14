@@ -13,6 +13,7 @@ import type {
   SocialProps,
   Tag,
   VR,
+  Youtube,
 } from './common.types';
 import type { PortableTextBlock, Slug } from 'sanity';
 import type { SanityImageAssetDocument } from '@sanity/client';
@@ -41,7 +42,8 @@ type Section =
   | CommonArtworkSectionProps
   | ArtistSummaryProps
   | PublicationSectionPros
-  | ExhibitionsProps;
+  | ExhibitionsProps
+  | VideoProps;
 
 export interface PublicationSectionPros {
   _type: 'artist.publication';
@@ -118,3 +120,11 @@ export interface Exhibition {
   image: SanityAsset;
   quote?: Quote;
 }
+
+export interface VideoProps {
+  _key: string;
+  _type: 'artist.video';
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
+}
+
+type VrOrYtVideoSlider = VR | Youtube;

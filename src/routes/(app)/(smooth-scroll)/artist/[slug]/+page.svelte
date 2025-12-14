@@ -4,6 +4,7 @@
   import Seo from '@/components/common/Seo.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Summary from '@/components/pages/[artist]/Summary.svelte';
+  import Video from '@/components/pages/[artist]/Video.svelte';
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import ArtworkItems from '@/components/common/artwork/ArtworkItems.svelte';
@@ -66,6 +67,8 @@
             ...s,
             personalDocuments,
           }} />
+      {:else if s._type === 'artist.video'}
+        <Video props={s} />
       {:else if s._type === 'common.artwork'}
         {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
           <Artwork.default

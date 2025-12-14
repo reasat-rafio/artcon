@@ -14,6 +14,6 @@
   on:click={() => dispatch('close')}
   on:keypress={() => dispatch('close')}
   class={cn(
-    'fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/30 backdrop-blur-xl',
+    'fixed inset-0 z-demigod h-full w-full cursor-default bg-black-800/70 backdrop-blur-xl',
     $$props.class,
   )} />

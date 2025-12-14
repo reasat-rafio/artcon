@@ -55,6 +55,7 @@ const siteDocuments = {
         { type: 'artist.summary' },
         { type: 'common.imageAsset' },
         { type: 'common.artwork' },
+        { type: 'artist.video' },
         { type: 'artist.exhibitions' },
         { type: 'artist.publication' },
       ],

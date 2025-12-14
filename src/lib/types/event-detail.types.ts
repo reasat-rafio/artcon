@@ -37,6 +37,7 @@ type Section =
   | GalleryProps
   | NewsAndMediaProps
   | SummaryProps
+  | VideoProps
   | DocumentationProps;
 
 export interface DocumentationProps {
@@ -96,6 +97,11 @@ export interface SummaryProps {
   _key: string;
   _type: 'event.summary';
   quote?: Quote;
+}
+
+export interface VideoProps {
+  _key: string;
+  _type: 'event.video';
   vrOrYtVideoSlider?: VrOrYtVideoSlider[];
 }
 

@@ -125,11 +125,17 @@ const Table: React.FC<TableProps> = () => {
     {
       label: 'Portrait',
       renderCell: (item: IArtist) => (
-        <img
-          className="aspect-square h-[100px] w-[100px] object-cover"
-          src={urlFor(item?.artistPortrait).width(150).format('webp').url()}
-          alt={`${item['name (en)']} portrait`}
-        />
+        item?.artistPortrait ? (
+          <img
+            className="aspect-square h-[100px] w-[100px] object-cover"
+            src={urlFor(item.artistPortrait).width(150).format('webp').url()}
+            alt={`${item['name (en)']} portrait`}
+          />
+        ) : (
+          <div className="aspect-square h-[100px] w-[100px] bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+            No Image
+          </div>
+        )
       ),
     },
     { 
@@ -177,7 +183,7 @@ const Table: React.FC<TableProps> = () => {
         ...rest,
         born: formatBornDate(item?.born),
         country: extractCountryName(item?.country),
-        portrait: urlFor(artistPortrait).url(),
+        portrait: artistPortrait ? urlFor(artistPortrait).url() : '',
       };
     });
 

@@ -128,6 +128,7 @@ const project = {
       of: [
         { type: 'project.summary' },
         { type: 'common.imageAsset' },
+        { type: 'project.video' },
         { type: 'project.gallery' },
       ],
     },

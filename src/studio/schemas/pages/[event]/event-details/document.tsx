@@ -131,6 +131,7 @@ const event = {
       validation: (Rule: Rule) => Rule.required().min(1),
       of: [
         { type: 'event.summary' },
+        { type: 'event.video' },
         { type: 'common.imageAsset' },
         { type: 'event.documentation' },
         { type: 'event.gallery' },

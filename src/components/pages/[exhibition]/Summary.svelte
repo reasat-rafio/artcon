@@ -33,19 +33,19 @@
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
+        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px] space-y-0">
           {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
           {#if galleryUrl}
             <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
-              <C.Title>{descriptionBlock.gallery.name}</C.Title>
+              <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
             </a>
           {:else}
-            <C.Title>{descriptionBlock.gallery.name}</C.Title>
+            <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
           {/if}
           {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
-            <C.Subtitle>{descriptionBlock.gallery.location}</C.Subtitle>
+            <C.Subtitle class="!leading-none !mt-0 !mb-0">{descriptionBlock.gallery.location}</C.Subtitle>
           {/if}
-          <C.Subtitle class="mt-[10px]">{descriptionBlock.date}</C.Subtitle>
+          <C.Subtitle class="!mt-[30px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock?.associationsList?.length}
           <div class="space-y-[10px] lg:space-y-[13px]">

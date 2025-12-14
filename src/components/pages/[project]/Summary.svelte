@@ -63,6 +63,15 @@
             {/each}
           </div>
         {/if}
+        {#if descriptionBlock.gallery.getServiceButton}
+          <a
+            href={descriptionBlock.gallery.getServiceButton.href}
+            target="{descriptionBlock.gallery.getServiceButton.href.startsWith('http') ? '_blank' : '_self'}"
+            rel="{descriptionBlock.gallery.getServiceButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
+            class="mt-[20px] inline-block rounded-full border border-black px-[30px] py-[10px] text-sm font-medium transition-colors hover:bg-black hover:text-white lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            {descriptionBlock.gallery.getServiceButton.title}
+          </a>
+        {/if}
       </svelte:fragment>
 
       <svelte:fragment slot="description" let:Description>

@@ -5,6 +5,7 @@ import exhibitions from './site-documents/exhibitions';
 import publication from './site-documents/publication';
 import siteDocuments from './site-documents/siteDocuments';
 import summary from './site-documents/summary';
+import video from './site-documents/video';
 
 export default [
   artist,
@@ -14,4 +15,5 @@ export default [
   artwork,
   exhibitions,
   publication,
+  video,
 ];

@@ -14,34 +14,22 @@ const service = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'descriptionMedia',
+      type: 'asset',
+      title: 'Description Image / Video (Optional)',
+      description: 'Optional image or video to show before the description',
+    },
+    {
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
-    {
-      name: 'image',
-      type: 'image',
-      validation: (Rule: Rule) => Rule.required(),
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'image',
+      media: 'descriptionMedia.image',
     },
   },
 };

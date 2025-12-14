@@ -10,6 +10,7 @@ import type {
   Asset,
   Cta,
   CommonOtherExhibitionProps,
+  Youtube,
 } from './common.types';
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type { SanityImageAssetDocument } from '@sanity/client';
@@ -32,12 +33,13 @@ export interface ProjectDetailPageProps {
   otherProjects: Omit<CommonOtherExhibitionProps, 'type'>[];
 }
 
-type Section = CommonImageAsset | SummaryProps | GalleryProps;
+type Section = CommonImageAsset | SummaryProps | GalleryProps | VideoProps;
 
 export interface Gallery {
   name: string;
   location?: string;
   url?: string;
+  getServiceButton?: Cta;
 }
 export interface SummaryProps {
   _type: 'project.summary';
@@ -83,3 +85,11 @@ export interface GalleryProps {
 export interface GalleryDescriptionBlock extends DescriptionBlock {
   title: string;
 }
+
+export interface VideoProps {
+  _key: string;
+  _type: 'project.video';
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
+}
+
+type VrOrYtVideoSlider = VR | Youtube;

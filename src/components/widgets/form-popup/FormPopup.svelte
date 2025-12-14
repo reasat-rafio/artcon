@@ -12,7 +12,7 @@
   export let form: SuperForm<typeof inquirySchema>;
   export let contextMessage: string;
 
-  const { form: f, errors, enhance, delayed } = form;
+  const { form: f, errors, enhance, delayed, reset } = form;
 
   onMount(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -31,12 +31,12 @@
   }
 
   function clearForm() {
-    f.update(() => ({
-      email: '',
-      message: '',
-      name: '',
-      phone: '',
-    }));
+    reset();
+  }
+
+  // Set the context message when component mounts or updates
+  $: if (contextMessage) {
+    $f.context = contextMessage;
   }
 </script>
 
@@ -77,12 +77,8 @@
       error={$errors.email}
       placeholder="your email" />
 
-    <Input
-      class="hidden"
-      label="Context"
-      name="context"
-      value={contextMessage}
-      placeholder="Context" />
+    <!-- Hidden field for context -->
+    <input type="hidden" name="context" bind:value={$f.context} />
 
     <div class="flex w-full flex-col gap-y-[1rem]">
       <label class="text-[1rem] font-semibold" for="message">Message</label>
