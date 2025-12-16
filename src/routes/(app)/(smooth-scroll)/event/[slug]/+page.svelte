@@ -29,6 +29,7 @@
       asset,
       gallery,
       associationsList,
+      socials,
       description,
       otherEvents,
       tag,
@@ -72,7 +73,7 @@
       <Summary
         props={{
           ...props,
-          descriptionBlock: { associationsList, date, description, gallery },
+          descriptionBlock: { associationsList, socials, date, description, gallery },
         }} />
     {:else if props._type === 'event.video'}
       <Video {props} />

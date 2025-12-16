@@ -7,6 +7,7 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
+  SocialProps,
   Tag,
   VR,
   Youtube,
@@ -22,6 +23,7 @@ export interface EventDetailPageProps {
   topTitle?: string;
   cta?: Cta;
   associationsList?: Association[];
+  socials?: SocialProps[];
   description?: PortableTextBlock[];
   endDate?: string;
   startDate: string;

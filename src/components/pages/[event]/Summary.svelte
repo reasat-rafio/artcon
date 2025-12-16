@@ -2,7 +2,7 @@
   import Quote from '@/components/common/Quote.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { Association } from '@/lib/types/common.types';
+  import type { Association, SocialProps } from '@/lib/types/common.types';
   import type { SummaryProps } from '@/lib/types/event-detail.types';
   import type { PortableTextBlock } from 'sanity';
 
@@ -11,6 +11,7 @@
       gallery: { name: string; location?: string; url?: string };
       date: string;
       associationsList?: Association[];
+      socials?: SocialProps[];
       description?: PortableTextBlock[];
     };
   };
@@ -61,6 +62,13 @@
               </div>
             {/each}
           </div>
+        {/if}
+        {#if !!descriptionBlock.socials?.length}
+          <C.SocialContainer class="mt-[20px] lg:mt-[30px]">
+            {#each descriptionBlock.socials as { link, type }}
+              <C.Social {link} {type} />
+            {/each}
+          </C.SocialContainer>
         {/if}
       </svelte:fragment>
 
