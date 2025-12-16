@@ -74,6 +74,7 @@
 {#key $page.params.slug}
   <Seo {seo} siteOgImg={ogImage} />
   <Hero
+    currentSlug={slug.current}
     props={{
       asset,
       cta,

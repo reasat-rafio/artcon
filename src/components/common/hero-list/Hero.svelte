@@ -11,6 +11,7 @@
   import { onDestroy } from 'svelte';
 
   export let props: CommonHeroListProps;
+  export let currentSlug: string | undefined = undefined;
   let { blocks } = props;
   let rootEl: HTMLElement;
   let emblaApi: EmblaCarouselType;
@@ -67,7 +68,7 @@
     }}>
     <div class="flex">
       {#each blocks as block, index}
-        <Block {index} {block} {activeBlockIndex} {scrollDirection} />
+        <Block {index} {block} {activeBlockIndex} {scrollDirection} {currentSlug} />
       {/each}
     </div>
   </div>

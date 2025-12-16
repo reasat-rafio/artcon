@@ -96,6 +96,7 @@ export interface Cta {
   _type?: 'cta';
   title: string;
   href: string;
+  slug?: string;
 }
 export interface CommonHeroProps {
   _type: 'common.hero';

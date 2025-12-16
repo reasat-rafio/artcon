@@ -51,6 +51,7 @@
   <Seo {seo} siteOgImg={ogImage} />
 
   <Hero
+    currentSlug={$page.params.slug}
     props={{
       _type: 'common.hero',
       asset,

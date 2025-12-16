@@ -9,8 +9,10 @@
   export let index: number;
   export let activeBlockIndex: number;
   export let scrollDirection: 'forward' | 'backward';
+  export let currentSlug: string | undefined = undefined;
 
   $: ({ title, subtitle, topTitle, asset, cta } = block);
+  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
   let titleEl: HTMLElement;
   let assetEl: HTMLElement;
   let topTitleEl: HTMLElement;
@@ -126,7 +128,7 @@
       </div>
     </header>
     <div class="overflow-hidden">
-      {#if !!cta?.title && !!cta?.href}
+      {#if shouldShowCta && cta}
         <Cta
           variant="quaternary"
           className="cta-btn mx-auto min-w-[10.9375rem]"

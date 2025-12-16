@@ -11,7 +11,9 @@
   gsap.registerPlugin(ScrollTrigger);
 
   export let props: Omit<CommonHeroProps, '_key'>;
+  export let currentSlug: string | undefined = undefined;
   $: ({ subtitle, title, topTitle, asset, cta } = props);
+  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
 
   let innerWidth = 0;
   let titleEl: HTMLElement;
@@ -102,7 +104,7 @@
       </header>
 
       <div class="overflow-hidden">
-        {#if !!cta?.title && !!cta?.href}
+        {#if shouldShowCta && cta}
           <Cta
             variant="quaternary"
             className="cta-btn mx-auto translate-y-full opacity-0 min-w-[10.9375rem]"
