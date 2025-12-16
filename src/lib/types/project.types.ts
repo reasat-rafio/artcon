@@ -30,6 +30,7 @@ export interface Project {
   _id: string;
   name: string;
   slug: Slug;
+  subtitle?: string;
   asset: Asset;
   tag: Tag;
 }

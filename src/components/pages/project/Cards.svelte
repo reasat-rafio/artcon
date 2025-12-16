@@ -12,7 +12,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, _id, asset } (_id)}
+  {#each items as { name, slug, tag, _id, asset, subtitle } (_id)}
     <div in:fade>
       <Card
         el="a"
@@ -24,7 +24,7 @@
         let:Subtitle>
         <Asset class="overflow-hidden rounded-[12px]" {asset} />
         <Container>
-          <Title>{name}</Title>
+          <Title>{name}{#if subtitle} / {subtitle}{/if}</Title>
           <Subtitle class="font-optiberling-agency text-sonic-silver">
             {tag.name}
           </Subtitle>

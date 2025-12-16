@@ -30,6 +30,7 @@ const query = groq`
         _id,
         name,
         slug,
+        subtitle,
         tag->,
         asset{
             ...,
