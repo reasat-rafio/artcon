@@ -144,6 +144,12 @@ const exhibition = {
       of: [{ type: 'keyValuePairs' }],
     },
     {
+      title: 'Social Links',
+      name: 'socials',
+      type: 'array',
+      of: [{ type: 'social' }],
+    },
+    {
       title: 'Organised by',
       name: 'organizedBy',
       type: 'array',

@@ -30,6 +30,7 @@
       asset,
       gallery,
       associationsList,
+      socials,
       description,
       slug,
       exhibitionType,
@@ -85,6 +86,7 @@
             gallery,
             description,
             associationsList,
+            socials,
           },
         }} />
     {:else if s._type === 'exhibition.includedArtists'}

@@ -18,6 +18,12 @@ const query = (params: Partial<Record<string, string>>) =>
       value,
       url
     },
+    socials[]{
+      _key,
+      _type,
+      type,
+      link
+    },
     description,
     endDate,
     startDate,

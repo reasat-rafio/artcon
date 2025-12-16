@@ -33,6 +33,7 @@ export interface ExhibitionDetailPageProps {
   artists: ArtistsProps;
   asset: Asset;
   associationsList?: Association[];
+  socials?: SocialProps[];
   name: string;
   description?: PortableTextBlock[];
   endDate?: string;
