@@ -1,5 +1,6 @@
 <script lang="ts">
   import { beforeNavigate, goto } from '$app/navigation';
+  import Quote from '@/components/common/Quote.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
@@ -38,6 +39,7 @@
       isbn,
       prices,
       stock,
+      quote,
     },
     site: { logos },
   } = data);
@@ -295,6 +297,11 @@
                   alt={publicationImage.alt}
                   sizes="40vw" />
               </button>
+              {#if !!quote}
+                <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
+                  <Quote {quote} class="!translate-y-0" />
+                </div>
+              {/if}
             </section>
           </div>
         </div>

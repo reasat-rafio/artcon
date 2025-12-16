@@ -20,6 +20,7 @@ const query = (params: Partial<Record<string, string>>) =>
       }
     },
     ${asset('publicationImage')},
+    quote,
   }`;
 
 export const load: ServerLoad = async (event) => {
