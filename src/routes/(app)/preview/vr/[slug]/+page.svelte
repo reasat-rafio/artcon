@@ -50,7 +50,12 @@
     startDate,
     endDate,
   }));
-  $: status = isActive === 'active' ? 'Active' : 'Inactive';
+  $: status = 
+    isActive === 'active' 
+      ? 'Active' 
+      : isActive === 'temporarily-inactive' 
+        ? 'Temporarily Inactive' 
+        : 'Inactive';
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');

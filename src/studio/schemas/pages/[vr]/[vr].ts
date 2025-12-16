@@ -109,10 +109,11 @@ const vr = {
       options: {
         list: [
           { title: 'Active', value: 'active' },
+          { title: 'Temporarily Inactive', value: 'temporarily-inactive' },
           { title: 'Inactive', value: 'inactive' },
         ],
       },
-      description: 'Choose whether this VR experience is Active or Inactive',
+      description: 'Choose whether this VR experience is Active, Temporarily Inactive, or Inactive',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
