@@ -135,7 +135,7 @@
                           class={cn(
                             'font-inter text-[0.7rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red sm:text-xs lg:text-[0.875rem]',
                             {
-                              'text-pigment-red':
+                              '!font-bold':
                                 current === activeSearchParams,
                             },
                           )}
