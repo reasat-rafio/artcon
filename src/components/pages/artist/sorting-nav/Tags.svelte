@@ -23,7 +23,7 @@
       <button
         class={cn(
           'font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red',
-          { 'text-pigment-red': current === activeSearchParams },
+          { '!font-bold': current === activeSearchParams },
         )}
         on:click|preventDefault={() => setSearchParams(current)}>
         {name}
