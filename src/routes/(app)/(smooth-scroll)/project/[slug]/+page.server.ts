@@ -16,8 +16,10 @@ const query = (params: Partial<Record<string, string>>) =>
     associationsList[]{
       key,
       value,
-      url
+      url,
+      buttonText
     },
+    associationsButton,
     description,
     gallery->{
       name,

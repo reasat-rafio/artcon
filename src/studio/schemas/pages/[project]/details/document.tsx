@@ -107,6 +107,12 @@ const project = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'associationsButton',
+      title: 'External link Button (Optional)',
+      type: 'cta',
+      description: 'Button to display below the associations list',
+    },
+    {
       title: 'Organised by',
       name: 'organizedBy',
       type: 'array',

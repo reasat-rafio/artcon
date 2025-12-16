@@ -217,6 +217,7 @@ export interface Association {
   key: string;
   value: string;
   url?: string;
+  buttonText?: string;
 }
 
 export interface Youtube {

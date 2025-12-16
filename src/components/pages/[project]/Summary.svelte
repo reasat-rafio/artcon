@@ -2,7 +2,7 @@
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
-  import type { Association } from '@/lib/types/common.types';
+  import type { Association, Cta } from '@/lib/types/common.types';
   import type { Gallery, SummaryProps } from '@/lib/types/project-detail.types';
   import type { PortableTextBlock } from 'sanity';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
@@ -12,6 +12,7 @@
       gallery: Gallery;
       date: string;
       associationsList?: Association[];
+      associationsButton?: Cta;
       description?: PortableTextBlock[];
     };
   };
@@ -44,7 +45,7 @@
         </C.HeaderContainer>
         {#if !!descriptionBlock?.associationsList?.length}
           <div class="space-y-[10px] lg:space-y-[13px]">
-            {#each descriptionBlock.associationsList as { key, value, url }}
+            {#each descriptionBlock.associationsList as { key, value }}
               <div>
                 <C.Subtitle
                   el="h4"
@@ -52,16 +53,19 @@
                   class="!text-[0.875rem] text-sonic-silver">
                   {key}
                 </C.Subtitle>
-                {#if url}
-                  <a href={url} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
-                    <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
-                  </a>
-                {:else}
-                  <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
-                {/if}
+                <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
               </div>
             {/each}
           </div>
+        {/if}
+        {#if descriptionBlock.associationsButton}
+          <a
+            href={descriptionBlock.associationsButton.href}
+            target="{descriptionBlock.associationsButton.href.startsWith('http') ? '_blank' : '_self'}"
+            rel="{descriptionBlock.associationsButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
+            class="mt-[20px] inline-block rounded-full border border-black px-[30px] py-[10px] text-sm font-medium transition-colors hover:bg-black hover:text-white lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            {descriptionBlock.associationsButton.title}
+          </a>
         {/if}
         {#if descriptionBlock.gallery.getServiceButton}
           <a

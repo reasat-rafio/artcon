@@ -19,6 +19,18 @@ const keyValuePairs = {
       description: 'example: Bangladesh National Museum, Dhaka',
       validation: (Rule: Rule) => Rule.required(),
     },
+    {
+      name: 'url',
+      type: 'url',
+      title: 'External Link (Optional)',
+      description: 'Add an external link for this association (e.g., client website)',
+    },
+    {
+      name: 'buttonText',
+      type: 'string',
+      title: 'Button Text (Optional)',
+      description: 'Text for the button (e.g., "Visit Website"). Only shows if URL is provided.',
+    },
   ],
   preview: {
     select: {

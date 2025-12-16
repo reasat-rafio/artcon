@@ -24,6 +24,7 @@
       seo,
       asset,
       associationsList,
+      associationsButton,
       description,
       gallery,
       cta,
@@ -75,6 +76,7 @@
             gallery,
             description,
             associationsList,
+            associationsButton,
           },
         }} />
     {:else if s._type === 'project.video'}

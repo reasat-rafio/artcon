@@ -27,6 +27,7 @@ export interface ProjectDetailPageProps {
   startDate: string;
   endDate?: string;
   associationsList?: Association[];
+  associationsButton?: Cta;
   description?: PortableTextBlock[];
   gallery: Gallery;
   sections: Section[];
