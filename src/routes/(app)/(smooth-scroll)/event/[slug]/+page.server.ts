@@ -68,6 +68,16 @@ const query = (params: Partial<Record<string, string>>) =>
                 "mov": video_hevc.asset->url,
             }
         },
+        "documentationImages": sections[_type == "event.documentation"][0].images[]{
+            ...,
+            asset-> {
+                ...,
+                metadata {
+                    lqip,
+                    dimensions
+                }
+            }
+        },
     }
   }`;
 

@@ -7,6 +7,8 @@
   import type { EmblaCarouselType } from 'embla-carousel';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import { slide } from 'svelte/transition';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
 
   export let data: CommonOtherExhibitionProps[];
   export let title: string;
@@ -70,12 +72,28 @@
             options: { align: 'start', loop: false },
           }}>
           <div class="-ml-[1.563rem] flex">
-            {#each data as { slug, type, name, asset, tag, subtitle }}
+            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, documentationImages, invitationCardImage }}
+              {@const isUpcoming = calculateStatusBetweenDates({ startDate, endDate }).status === 'Upcoming'}
+              {@const displayImage = isUpcoming 
+                ? (urlPrefix === '/exhibition' ? invitationCardImage : documentationImages?.[0]) 
+                : null}
               <a
                 href="{urlPrefix}/{slug.current}"
                 class="flex-[0_0_100%] pl-[1.563rem] md:flex-[0_0_50%] xl:flex-[0_0_33.333%]">
-                <div class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-[0.75rem]">
-                  <Asset {asset} />
+                <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem]" 
+                     class:aspect-square={!displayImage}
+                     style={displayImage ? 'aspect-ratio: 3/4' : ''}>
+                  {#if displayImage}
+                    <SanityImage
+                      lqip
+                      class="h-full w-full object-contain"
+                      sizes="(min-width:1280px) 33vw, (min-width:768px) 50vw, 100vw"
+                      alt={displayImage.alt || 'Invitation Card'}
+                      src={displayImage}
+                      imageUrlBuilder={imageBuilder} />
+                  {:else}
+                    <Asset {asset} />
+                  {/if}
                 </div>
 
                 <div class="space-y-[0.625rem]">

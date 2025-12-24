@@ -132,6 +132,16 @@ const query = (params: Partial<Record<string, string>>) =>
           "mov": video_hevc.asset->url,
         }
     },
+    "invitationCardImage": sections[_type == "exhibition.publication"][0].invitationCardImage{
+        ...,
+        asset-> {
+            ...,
+            metadata {
+                lqip,
+                dimensions
+            }
+        }
+    },
     "type": select(
       count(artists) == 1 => {
         ...artists[0]->{

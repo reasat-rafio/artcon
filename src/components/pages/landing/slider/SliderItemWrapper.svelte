@@ -1,31 +1,56 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { delay } from '@/lib/helper';
+  import { delay, calculateStatusBetweenDates } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import uiStore from '@/store/ui';
   import { slide } from 'svelte/transition';
   import type { Asset } from '@/lib/types/common.types';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
+  import type { SanityImageAssetDocument } from '@sanity/client';
 
   export let index: number;
   export let href: string;
   export let sliderImageVideo: Asset;
-  export let windowWidth = 0;
+  export let _type: string = '';
+  export let startDate: string | undefined = undefined;
+  export let endDate: string | undefined = undefined;
+  export let documentationImages: SanityImageAssetDocument[] | undefined = undefined;
+  export let invitationCardImage: SanityImageAssetDocument | undefined = undefined;
 
   const onClickAction = async () => {
     uiStore.setActivePreview(index);
     await delay(600);
     goto(href);
   };
+
+  $: isUpcomingExhibitionOrEvent = 
+    (_type === 'exhibition' || _type === 'event') && 
+    startDate &&
+    calculateStatusBetweenDates({ startDate, endDate }).status === 'Upcoming';
+
+  $: displayImage = isUpcomingExhibitionOrEvent 
+    ? (_type === 'exhibition' ? invitationCardImage : documentationImages?.[0])
+    : null;
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
 <a
   {href}
   data-sveltekit-preload-data
-  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[600px] xl:w-[785px]"
+  class="group pointer-events-auto relative w-full overflow-hidden lg:w-[600px] xl:w-[785px]"
+  class:h-[100dvh]={!displayImage}
+  class:h-[120dvh]={displayImage}
   on:click|preventDefault={onClickAction}>
-  {#if !!sliderImageVideo?.image}
+  {#if displayImage}
+    <SanityImage
+      lqip
+      fadeInAnimation={false}
+      draggable={false}
+      class="absolute h-full w-full object-contain"
+      sizes="(min-width:1024px) 40vw, 100vw"
+      alt={displayImage.alt || 'Invitation Card'}
+      src={displayImage}
+      imageUrlBuilder={imageBuilder} />
+  {:else if !!sliderImageVideo?.image}
     <SanityImage
       lqip
       fadeInAnimation={false}

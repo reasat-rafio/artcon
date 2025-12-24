@@ -83,10 +83,11 @@ const event = {
     },
     {
       name: 'tag',
-      title: 'Event Type',
+      title: 'Event Category',
       type: 'reference',
       to: [{ type: 'eventTag' }],
       validation: (Rule: Rule) => Rule.required(),
+      description: 'Category of the event (e.g., Auction, Book launch). The status (Upcoming/Ongoing/Ended) is automatically calculated from the dates.',
     },
     {
       title: 'Space / Gallery',

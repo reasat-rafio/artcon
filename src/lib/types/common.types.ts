@@ -211,6 +211,8 @@ export interface CommonOtherExhibitionProps {
   endDate?: string;
   subtitle?: string;
   type?: string | { name: string };
+  documentationImages?: SanityImageAssetDocument[];
+  invitationCardImage?: SanityImageAssetDocument;
 }
 
 export interface Association {

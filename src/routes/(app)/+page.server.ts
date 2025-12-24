@@ -55,12 +55,24 @@ const query = groq`
                     tag->{name},
                     "title": "Our event",
                     slug,
+                    startDate,
+                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
                         video{
                             "webm": video_webm.asset->url,
                             "mov": video_hevc.asset->url,
+                        }
+                    },
+                    "documentationImages": sections[_type == "event.documentation"][0].images[]{
+                        ...,
+                        asset-> {
+                            ...,
+                            metadata {
+                                lqip,
+                                dimensions
+                            }
                         }
                     },
                 },
@@ -108,12 +120,24 @@ const query = groq`
                     name,
                     slug,
                     subtitle,
+                    startDate,
+                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
                         video{
                             "webm": video_webm.asset->url,
                             "mov": video_hevc.asset->url,
+                        }
+                    },
+                    "invitationCardImage": sections[_type == "exhibition.publication"][0].invitationCardImage{
+                        ...,
+                        asset-> {
+                            ...,
+                            metadata {
+                                lqip,
+                                dimensions
+                            }
                         }
                     },
                     "exhibitionType": select(
