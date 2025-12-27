@@ -67,7 +67,7 @@
       </div>
 
       <div
-        class="mx-auto flex max-w-[72.9375rem] -translate-y-[0.875rem] justify-end">
+        class="mx-auto flex max-w-[72.9375rem] translate-y-[20px] justify-center md:justify-end mt-[1rem] md:mt-0">
         <nav class="flex gap-x-[0.62rem]">
           <button
             aria-label="Scroll to previous slide"

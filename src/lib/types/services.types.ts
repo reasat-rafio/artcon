@@ -15,4 +15,5 @@ export interface ServiceProps {
   title: string;
   descriptionMedia?: Asset;
   description: PortableTextBlock[];
+  fullWidthImage?: SanityAsset & { alt?: string };
 }

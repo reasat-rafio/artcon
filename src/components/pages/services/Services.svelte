@@ -20,7 +20,7 @@
 <section>
   <div
     class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
-    {#each services as { title, description, descriptionMedia }, index}
+    {#each services as { title, description, descriptionMedia, fullWidthImage }, index}
       <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
         <DescriptionBlock>
           <svelte:fragment slot="intro" let:C>
@@ -66,6 +66,17 @@
             </Description>
           </svelte:fragment>
         </DescriptionBlock>
+
+        {#if fullWidthImage}
+          <figure class="service-image">
+            <SanityImage
+              class="h-full w-full object-cover rounded-[25px]"
+              src={fullWidthImage}
+              alt={fullWidthImage.alt || title}
+              imageUrlBuilder={imageBuilder}
+              sizes="(min-width: 1024px) 1200px, 100vw" />
+          </figure>
+        {/if}
       </article>
     {/each}
   </div>

@@ -15,8 +15,10 @@ const query = (params: Partial<Record<string, string>>) =>
     associationsList[]{
       key,
       value,
-      url
+      url,
+      ${asset('logo')}
     },
+    associationsButton,
     socials[]{
       _key,
       _type,

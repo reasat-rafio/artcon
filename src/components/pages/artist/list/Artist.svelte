@@ -72,7 +72,7 @@
           bind:this={artistImgEl}
           class="relative h-full w-full translate-y-[30px] overflow-hidden rounded-[1.25rem]">
           <SanityImage
-            class="aspect-square h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0 hover:scale-110 md:max-h-[23.375rem] md:max-w-[23.375rem]"
+            class="aspect-square h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0 hover:scale-105 md:max-h-[23.375rem] md:max-w-[23.375rem]"
             src={artistPortrait}
             sizes="(min-width: 1024px) 40vw, 100vw"
             alt={`${name} Portrait`}
@@ -90,7 +90,7 @@
             class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] cursor-pointer md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
             <figure class="overflow-hidden rounded-[0.75rem]">
               <SanityImage
-                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-110"
+                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-105"
                 src={artwork.image}
                 sizes="(min-width: 1024px) 15vw, 100vw"
                 alt="Artwork by {name}"

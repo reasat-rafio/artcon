@@ -17,7 +17,8 @@ const query = (params: Partial<Record<string, string>>) =>
       key,
       value,
       url,
-      buttonText
+      buttonText,
+      ${asset('logo')}
     },
     associationsButton,
     description,

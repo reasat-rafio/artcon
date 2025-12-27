@@ -46,6 +46,7 @@
     <ParallaxScrollImage
       on:triggerPopup={triggerPopup}
       class="mb-section"
+      disableHoverEffect={true}
       images={[
         {
           img: invitationCardImage,
@@ -104,8 +105,8 @@
             <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
           </div>
 
-          <Cta variant="tertiary" className="capitalize !min-w-[12rem] !px-[2.5rem] !py-[1rem] !text-[1rem] ![background:linear-gradient(90deg,rgb(100,100,100)_0%,rgb(220,50,50)_100%)]" href={exproleLink.href}>
-            {exproleLink.title}
+          <Cta variant="tertiary" className="capitalize !min-w-[12rem] !px-[2.5rem] !py-[1rem] !text-[1rem] ![background:linear-gradient(90deg,rgb(100,100,100)_0%,rgb(220,50,50)_100%)]" href={`/preview/publication/${slug.current}`}>
+            Preview
           </Cta>
         </div>
       </svelte:fragment>

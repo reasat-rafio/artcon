@@ -34,6 +34,12 @@ const artwork = {
           title: 'Artwork Item',
           fields: [
             {
+              name: 'title',
+              title: 'Artwork Title',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
               name: 'image',
               title: 'Artwork Image',
               type: 'image',

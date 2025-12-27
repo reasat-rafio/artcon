@@ -23,6 +23,7 @@ const query = groq`
       "publications" : *[_type== "publication"]|order(orderRank){
         _id,
         name,
+        subtitle,
         slug,
         prices,
         ${asset('publicationImage')},

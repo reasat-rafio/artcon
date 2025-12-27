@@ -3,7 +3,8 @@
   import VR from '@/components/common/Vr.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { Association, SocialProps } from '@/lib/types/common.types';
+  import type { Association, SocialProps, Cta } from '@/lib/types/common.types';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type {
     Gallery,
     SummaryProps,
@@ -15,6 +16,7 @@
       gallery: Gallery;
       date: string;
       associationsList?: Association[];
+      associationsButton?: Cta;
       socials?: SocialProps[];
       organizedBy?: string[];
       publishedBy?: string[];
@@ -46,16 +48,27 @@
           {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
             <C.Subtitle class="!leading-none !mt-0 !mb-0">{descriptionBlock.gallery.location}</C.Subtitle>
           {/if}
-          <C.Subtitle class="!mt-[30px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
+          <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock?.associationsList?.length}
           <div class="space-y-[10px] lg:space-y-[13px]">
-            {#each descriptionBlock.associationsList as { key, value, url }}
+            {#each descriptionBlock.associationsList as { key, value, url, logo }}
               <div>
+                {#if logo}
+                  <div class="mb-2 flex">
+                    <div class="w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] rounded-full overflow-hidden bg-gray-100">
+                      <img 
+                        src={imageBuilder.image(logo).width(100).height(100).url()}
+                        alt={key} 
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                {/if}
                 <C.Subtitle
                   el="h4"
                   variant="sm"
-                  class="!text-[0.625rem] text-sonic-silver">
+                  class="!text-[0.875rem] text-sonic-silver">
                   {key}
                 </C.Subtitle>
                 {#if url}
@@ -68,6 +81,15 @@
               </div>
             {/each}
           </div>
+        {/if}
+        {#if descriptionBlock.associationsButton}
+          <a
+            href={descriptionBlock.associationsButton.href}
+            target="{descriptionBlock.associationsButton.href.startsWith('http') ? '_blank' : '_self'}"
+            rel="{descriptionBlock.associationsButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
+            class="mt-[20px] inline-block rounded-full border border-black bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-black hover:text-black lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            {descriptionBlock.associationsButton.title}
+          </a>
         {/if}
         {#if !!descriptionBlock.socials?.length}
           <C.SocialContainer class="mt-[20px] lg:mt-[30px]">

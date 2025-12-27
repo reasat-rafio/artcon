@@ -14,6 +14,7 @@
     triggerPopup?: boolean;
   };
   export let images: [Image, Image];
+  export let disableHoverEffect = false;
   $: [firstImage, secondImage] = images;
 
   const dispatch = createEventDispatcher();
@@ -70,7 +71,7 @@
         on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
         class="overflow-hidden rounded-xl max-w-[30vw]">
         <SanityImage
-          class="max-h-[500px] w-full h-auto rounded-xl object-contain transition-transform duration-300 hover:scale-110 {firstImage?.triggerPopup
+          class="max-h-[500px] w-full h-auto rounded-xl object-contain {firstImage?.triggerPopup
             ? 'cursor-pointer'
             : 'cursor-default'}"
           sizes="30vw"
@@ -91,7 +92,7 @@
         class="ml-auto w-[13.4375rem] overflow-hidden"
         on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
         <SanityImage
-          class="w-full h-auto rounded-xl object-contain transition-transform duration-300 hover:scale-110 {firstImage?.triggerPopup
+          class="w-full h-auto rounded-xl object-contain {firstImage?.triggerPopup
             ? 'cursor-pointer'
             : 'cursor-default'}"
           sizes="70vw"
@@ -116,7 +117,7 @@
           sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
           alt={secondImage.img?.alt}
-          class="w-full h-auto rounded-xl object-contain transition-transform duration-300 hover:scale-110"
+          class="w-full h-auto rounded-xl object-contain"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
           <figurecaption class="caption">

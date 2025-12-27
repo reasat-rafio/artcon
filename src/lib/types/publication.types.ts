@@ -14,6 +14,7 @@ type Section = HeroProps | CommonImageAsset;
 export interface Publication {
   _id: string;
   name: string;
+  subtitle: string;
   slug: Slug;
   publicationImage: SanityImageAssetDocument;
   category: Tag;

@@ -5,7 +5,7 @@
   import type { Artist } from '@/lib/types/artist.types';
 
   export let artist: Artist;
-  $: ({ artistPortrait, artworks, name, slug, tag } = artist);
+  $: ({ artistPortrait, customArtworks, name, slug, tag } = artist);
 </script>
 
 <div class={cn('grid grid-cols-1 max-md:space-y-[1.25rem] md:grid-cols-2')}>
@@ -29,23 +29,23 @@
     </div>
   </a>
   <div class="grid grid-cols-2 max-md:gap-[1.25rem]">
-    {#if !!artworks?.length}
-      {#each artworks as artwork}
+    {#if !!customArtworks?.length}
+      {#each customArtworks as artwork}
         <a
           href={`/collection?artist=${slug.current}`}
           class="artworks relative self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
           <figure class="overflow-hidden rounded-[0.75rem]">
             <SanityImage
               class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-110"
-              src={artwork.artworkImage}
+              src={artwork.image}
               sizes="(min-width: 1024px) 15vw, 100vw"
-              alt={artwork.name}
+              alt={`Artwork by ${name}`}
               imageUrlBuilder={imageBuilder} />
           </figure>
           <div
             class="pl-[0.63rem] pt-[0.63rem] md:absolute md:bottom-[1.34rem] md:left-[1.57rem]">
             <h5 class="title-regular !font-inter font-normal">
-              {artwork.name}
+              {artwork.title}
             </h5>
           </div>
         </a>

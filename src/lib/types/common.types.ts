@@ -192,6 +192,7 @@ export interface CommonArtworkSectionProps {
 export interface ArtworkItem {
   _key: string;
   _type: 'artworkItem';
+  title: string;
   image: SanityAsset;
   description?: PortableTextBlock[];
 }
@@ -219,7 +220,7 @@ export interface Association {
   key: string;
   value: string;
   url?: string;
-  buttonText?: string;
+  logo?: SanityAsset;
 }
 
 export interface Youtube {

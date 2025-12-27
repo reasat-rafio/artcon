@@ -169,7 +169,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { ...exproleLink, newTab: true },
+    { href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true },
   ]} />
 
 <section>
@@ -183,7 +183,7 @@
         <div
           class="preview_content_container"
           on:outroend={() => (transitioningOut = false)}>
-          <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
+          <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true }} />
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
             <section class="w-full lg:max-w-[457px]">
@@ -288,10 +288,10 @@
             <section class="hidden 3xl:block">
               <button
                 data-load-animate="y"
-                class="max-h-[23.75rem] 3xl:mt-[9.44rem] cursor-pointer"
+                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
                 on:click={openImagePopup}>
                 <SanityImage
-                  class="rounded-[0.9375rem] object-contain"
+                  class="rounded-[0.9375rem] object-contain w-full h-auto"
                   imageUrlBuilder={imageBuilder}
                   src={publicationImage}
                   alt={publicationImage.alt}

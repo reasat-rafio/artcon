@@ -15,7 +15,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3 ',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, prices: { priceBDT, discountPriceBDT }, publicationImage } (_id)}
+  {#each items as { name, subtitle, slug, _id, prices: { priceBDT, discountPriceBDT }, publicationImage } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -27,26 +27,24 @@
         let:Subtitle
         on:mouseenter={() => (hoveredId = _id)}
         on:mouseleave={() => (hoveredId = null)}>
-        <Image variant="fit" image={publicationImage} />
-        <Container>
+        <Image variant="fit" image={publicationImage} class="!rounded-none" />
+        <Container class="flex flex-col items-center text-center gap-y-1">
           <div>
-            <Title class="inline">{name}</Title>
+            <Title class="inline">{name} / {subtitle}</Title>
           </div>
-          <div class="flex justify-between">
-            <Subtitle class="font-optiberling-agency text-sonic-silver">
-              Publication
-            </Subtitle>
-            <span class="font-optiberling-agency text-sonic-silver pr-1">
-              {#if !!discountPriceBDT}
-                <span class="text-sonic-silver line-through">
-                  {priceBDT}
-                </span>
-                <span>{discountPriceBDT} BDT</span>
-              {:else}
-                <span>{priceBDT} BDT</span>
-              {/if}
-            </span>
-          </div>
+          <Subtitle class="font-optiberling-agency text-sonic-silver">
+            Book
+          </Subtitle>
+          <span class="font-optiberling-agency text-sonic-silver">
+            {#if !!discountPriceBDT}
+              <span class="text-sonic-silver line-through">
+                {priceBDT}
+              </span>
+              <span>{discountPriceBDT} BDT</span>
+            {:else}
+              <span>{priceBDT} BDT</span>
+            {/if}
+          </span>
         </Container>
       </Card>
     </div>
