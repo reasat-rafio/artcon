@@ -11,7 +11,7 @@
   } = props;
 </script>
 
-<section>
+<section class="w-full max-w-full overflow-hidden">
   <div class="container-primary py-section">
     {#if !!quote}
       <Quote class="mb-section" {quote} />

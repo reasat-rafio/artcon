@@ -34,7 +34,7 @@
       {/if}
     </header>
     {#if !!type}
-      <h4 class="head-8 !leading-none text-eerie-black" data-load-animate="y">
+      <h4 class="head-8 !leading-none whitespace-pre-wrap text-eerie-black" data-load-animate="y">
         {type}
       </h4>
     {/if}

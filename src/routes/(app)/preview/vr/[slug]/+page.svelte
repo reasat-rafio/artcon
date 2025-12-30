@@ -66,7 +66,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
           animationNodes,
           {
             y: 100,

@@ -7,17 +7,17 @@
   export let extraTeam: TeamProps[];
 </script>
 
-<section use:parallaxAnimation class="translate-y-[120px]">
+<section use:parallaxAnimation class="w-full max-w-full translate-y-[120px]">
   <h3 class="head-4 mb-md">Other team members</h3>
 
   <div
-    class="grid grid-cols-1 gap-x-[3.56rem] gap-y-[3.12rem] sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+    class="grid w-full max-w-full grid-cols-1 gap-x-[1.5rem] gap-y-[2rem] sm:grid-cols-2 md:grid-cols-2 md:gap-x-[2.5rem] md:gap-y-[3.12rem] lg:grid-cols-3 lg:gap-x-[3.56rem]">
     {#each extraTeam as { image, name, type, role, url }}
       <svelte:element
         this={url ? 'a' : 'div'}
         href={url}
-        class="group flex h-fit items-center justify-center gap-x-[1.25rem]">
-        <figure class="h-[7rem] w-[7rem] rounded-full overflow-hidden">
+        class="group flex h-fit w-full max-w-full items-center justify-start gap-x-[1.25rem]">
+        <figure class="h-[7rem] w-[7rem] flex-shrink-0 overflow-hidden rounded-full">
           <SanityImage
             class="h-full w-full rounded-full object-cover transition-transform duration-300 hover:scale-110"
             src={image}

@@ -12,7 +12,7 @@ export interface EventPreviewProps {
   slug: Slug;
   cta: Cta;
   seo: SeoProps;
-  gallery: { name: string };
+  gallery: { name: string; location?: string; url?: string };
   description?: PortableTextBlock[];
   sliderImageVideo: Asset;
   asset: Asset;

@@ -8,7 +8,7 @@
   let { title, image } = props;
 </script>
 
-<div class="relative h-screen w-full">
+<div class="relative h-screen w-full max-w-full overflow-hidden">
   <SanityImage
     src={image}
     sizes="100vw"
@@ -18,8 +18,8 @@
 
   <header
     use:parallaxAnimation
-    class="absolute inset-0 z-10 flex h-full w-full translate-y-[120px] items-center justify-center text-white">
-    <h2 class="head-1 font-optiberling-agency">
+    class="absolute inset-0 z-10 flex h-full w-full max-w-full translate-y-[120px] items-center justify-center px-4 text-white">
+    <h2 class="head-1 max-w-full break-words text-center font-optiberling-agency">
       {title}
     </h2>
   </header>

@@ -30,7 +30,7 @@
         <Image variant="fit" image={publicationImage} class="!rounded-none" />
         <Container class="flex flex-col items-center text-center gap-y-1">
           <div>
-            <Title class="inline">{name} / {subtitle}</Title>
+            <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
           </div>
           <Subtitle class="font-optiberling-agency text-sonic-silver">
             Book

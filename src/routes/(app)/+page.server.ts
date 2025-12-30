@@ -22,6 +22,7 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
+                    "type": category->{name},
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -37,6 +38,7 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
+                    "type": category->{name},
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -100,6 +102,7 @@ const query = groq`
                     name,
                     subtitle,
                     "artistName" : artist->{...personalDocuments {...name {en}}},
+                    tag->{name},
                     slug,
                     "sliderImageVideo" : {
                     "image": artworkImages[0] {
@@ -140,8 +143,7 @@ const query = groq`
                             }
                         }
                     },
-                    "exhibitionType": select(
-                        count(artists) > 1 => "Group Exhibition",
+                    "artistName": select(
                         count(artists) == 1 => artists[0]-> {
                             ...personalDocuments {
                                 ...name{
@@ -149,6 +151,10 @@ const query = groq`
                                 }
                             }
                         },
+                    ),
+                    "exhibitionType": select(
+                        count(artists) > 1 => "Group Exhibition",
+                        count(artists) == 1 => "Solo Exhibition",
                     )
                 }
             }

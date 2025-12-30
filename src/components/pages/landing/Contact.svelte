@@ -8,6 +8,7 @@
   $: ({ socialsWithVisibleLinks, socials, title, subtitle } = contact);
 
   let windowWidth = 0;
+  const currentYear = new Date().getFullYear();
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -62,7 +63,7 @@
     </div>
     <div
       class="sub-title-light !leading-none text-quick-silver max-lg:pb-[3.75rem]">
-      © ARTCON 2023
+      © ARTCON {currentYear}
     </div>
   </div>
 </section>

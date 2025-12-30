@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { delay, calculateStatusBetweenDates } from '@/lib/helper';
+  import { delay } from '@/lib/helper';
+  import { calculateStatusBetweenDates } from '@/lib/helper';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
   import uiStore from '@/store/ui';
   import { slide } from 'svelte/transition';
@@ -11,6 +12,7 @@
   export let index: number;
   export let href: string;
   export let sliderImageVideo: Asset;
+ export let windowWidth = 0;
   export let _type: string = '';
   export let startDate: string | undefined = undefined;
   export let endDate: string | undefined = undefined;
@@ -33,24 +35,13 @@
     : null;
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} />
 <a
   {href}
   data-sveltekit-preload-data
-  class="group pointer-events-auto relative w-full overflow-hidden lg:w-[600px] xl:w-[785px]"
-  class:h-[100dvh]={!displayImage}
-  class:h-[120dvh]={displayImage}
+  class="group pointer-events-auto relative h-[100dvh] w-full overflow-hidden lg:w-[600px] xl:w-[785px]"
   on:click|preventDefault={onClickAction}>
-  {#if displayImage}
-    <SanityImage
-      lqip
-      fadeInAnimation={false}
-      draggable={false}
-      class="absolute h-full w-full object-contain"
-      sizes="(min-width:1024px) 40vw, 100vw"
-      alt={displayImage.alt || 'Invitation Card'}
-      src={displayImage}
-      imageUrlBuilder={imageBuilder} />
-  {:else if !!sliderImageVideo?.image}
+  {#if !!sliderImageVideo?.image}
     <SanityImage
       lqip
       fadeInAnimation={false}

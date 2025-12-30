@@ -9,9 +9,9 @@
 
 <section
   use:parallaxAnimation
-  class={cn('max-w-[44.375rem] translate-y-[120px]', $$props.class)}>
+  class={cn('max-w-[44.375rem] w-full translate-y-[120px]', $$props.class)}>
   <div
-    class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent">
+    class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent break-words">
     <blockquote class="inline" cite={url}>
       <p class="inline">"{text}"</p>
     </blockquote>

@@ -12,7 +12,7 @@
 <article
   use:parallaxAnimation
   class={cn(
-    'flex w-full translate-y-[120px] flex-col lg:flex-row',
+    'flex w-full max-w-full translate-y-[120px] flex-col lg:flex-row',
     $$props.class,
   )}>
   <div class="w-full max-lg:pb-[2.5rem] lg:mr-[3.125rem] lg:w-[31.06%]">
@@ -26,7 +26,7 @@
         Social,
       }} />
   </div>
-  <div class="flex-1 xl:pr-[9.69rem]">
+  <div class="flex-1 max-w-full xl:pr-[3rem]">
     <slot name="description" {Description} />
   </div>
 </article>

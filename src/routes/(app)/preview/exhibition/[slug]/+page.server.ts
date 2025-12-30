@@ -15,7 +15,7 @@ const query = (params: Partial<Record<string, string>>) =>
     slug,
     cta,
     seo,
-    gallery->{name},
+    gallery->{name, url, location},
     description,
     sliderImageVideo {
       ...,

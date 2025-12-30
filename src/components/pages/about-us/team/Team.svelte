@@ -14,7 +14,7 @@
   }
 </script>
 
-<section>
+<section class="w-full max-w-full overflow-hidden">
   <div class="container-primary py-section">
     <h2 use:parallaxAnimation class="head-4 mb-lg translate-y-[120px]">
       Meet our team

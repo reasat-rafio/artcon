@@ -53,7 +53,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -149,9 +149,18 @@
                 ? 'Solo Exhibition'
                 : 'Group Exhibition'}>
             <Info>
-              <div class="title-light">
-                {gallery.name}
-              </div>
+              {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
+              {#if galleryUrl}
+                <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                  <div class="title-light">
+                    {gallery.name}
+                  </div>
+                </a>
+              {:else}
+                <div class="title-light">
+                  {gallery.name}
+                </div>
+              {/if}
               <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
                 <span class="px-[3px] text-eerie-black/50">|</span>
