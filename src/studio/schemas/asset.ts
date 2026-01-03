@@ -50,7 +50,7 @@ const asset = {
           options: {
             accept: 'video/webm,video/x-matroska',
           },
-          validation: (Rule: Rule) => Rule.required(),
+          validation: (Rule: Rule) => Rule.optional(),
         },
         {
           name: 'video_hevc',
@@ -59,7 +59,7 @@ const asset = {
           options: {
             accept: 'video/quicktime,video/mp4',
           },
-          validation: (Rule: Rule) => Rule.required(),
+          validation: (Rule: Rule) => Rule.optional(),
         },
       ],
     },

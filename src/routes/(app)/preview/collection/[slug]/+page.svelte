@@ -1,37 +1,49 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
+  import Quote from '@/components/common/Quote.svelte';
   import Seo from '@/components/common/Seo.svelte';
-  import CollectionHeader from '@/components/pages/[preview]/CollectionHeader.svelte';
-  import CollectionSlider from '@/components/pages/[preview]/CollectionSlider.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
-  import Information from '@/components/pages/[preview]/Information.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
   import NavigationMobile from '@/components/pages/[preview]/NavigationMobile.svelte';
+  import Header from '@/components/pages/[preview]/header/Header.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
+  import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
+  import lightboxStore from '@/store/lightbox';
+  import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
+  import { toasts } from 'svelte-toasts';
   import { superForm, type FormResult } from 'sveltekit-superforms/client';
   import type { ActionData } from './$types';
-  import { toasts } from 'svelte-toasts';
 
   export let data;
+
   $: ({
     page: {
+      _type,
       name,
-      seo,
-      slug,
+      sliderImageVideo,
+      associationsList,
+      category,
+      description,
+      exproleLink,
+      subtitle,
       artworkImages,
-      hideInquiryButton,
-      information,
-      provenance,
+      publishedBy,
+      quote,
       artist,
-      isAvailable,
+      stock,
     },
     site: { logos },
   } = data);
+
+  $: collectionImage = artworkImages?.[0];
 
   let transitioningOut = false;
   let articleEl: HTMLElement;
@@ -73,7 +85,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.08, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -128,41 +140,147 @@
       }
     }
   });
+
+  function inquiryAction() {
+    formPopupStore.setFormPopupVisibility(true);
+  }
+
+  function openImagePopup() {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(0);
+    lightboxStore.setHideThumbnails(artworkImages?.length <= 1);
+    lightboxStore.setAllImages(
+      artworkImages?.map((img: any) => ({
+        ...img,
+        caption: name,
+      })) || []
+    );
+  }
 </script>
 
-<Seo {seo} siteOgImg={logos?.ogImage} />
+<Seo
+  seo={{
+    _type,
+    title: name,
+    description: toPlainText(description ?? ''),
+    ogImage: collectionImage,
+  }}
+  siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: `/collection/${slug.current}`, title: 'EXPLORE' },
+    { href: exproleLink?.href || '#', title: exproleLink?.title || 'Explore', newTab: true },
   ]} />
 
 <section>
-  <MobileImage sliderImageVideo={{ image: artworkImages[0] }} />
+  <MobileImage {sliderImageVideo} />
+
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage sliderImageVideo={{ image: artworkImages[0] }} />
+    <DesktopImage {sliderImageVideo} />
 
     <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
-          on:outroend={() => (transitioningOut = false)}
-          class="preview_content_container">
-          <NavigationMobile
-            cta={{
-              href: `/collection/${slug.current}`,
-              title: 'EXPLORE',
-            }} />
+          class="preview_content_container"
+          on:outroend={() => (transitioningOut = false)}>
+          <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Explore', newTab: true }} />
 
-          <CollectionHeader
-            {isAvailable}
-            topic="Our collection"
-            name={artist?.name ?? name}
-            born={artist?.born}
-            country={artist?.country} />
+          <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
+            <section class="w-full lg:max-w-[457px]">
+              <Header
+                topic="Our collection"
+                title={name}
+                subtitle={subtitle ?? ''}
+                type={category.title}
+                let:Info>
+                {#if !!associationsList?.length}
+                  <Info>
+                    <ul class="mb-[2.5rem] space-y-[0.5rem]">
+                      {#each associationsList as { key, value }}
+                        <li class="sub-title-light">
+                          <span>{key}</span>
+                          {' '}
+                          <span class="!font-normal">{value}</span>
+                        </li>
+                      {/each}
+                    </ul>
+                  </Info>
+                {/if}
+                <Info>
+                  <div class="sub-title-light">
+                    Published By {#each publishedBy as publisher, index}
+                      <span class="title-regular">
+                        {publisher}{#if index !== publishedBy.length - 1}
+                          {#if index === publishedBy.length - 2}
+                            {' '}
+                            <span class="sub-title-light">and</span>
+                          {:else}
+                            ,
+                          {/if}
+                        {/if}
+                        {' '}
+                      </span>
+                    {/each}
+                  </div>
+                </Info>
+                <Info>
+                  <div class="title-light">
+                    <span class="sub-title-light">Stock</span>
+                    <span class="font-medium capitalize">{stock?.replace(/([A-Z])/g, ' $1').trim()}</span>
+                  </div>
+                </Info>
+              </Header>
 
-          <CollectionSlider {artworkImages} />
-          <Information {name} {provenance} {information} {hideInquiryButton} />
+              <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
+                <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
+                  <SanityImage
+                    class="rounded-[0.9375rem] object-contain"
+                    imageUrlBuilder={imageBuilder}
+                    src={collectionImage}
+                    alt={collectionImage.alt}
+                    sizes="100vw" />
+                </button>
+              </div>
+
+              {#if !!description?.length}
+                <div class="mb-[2.5rem]" data-load-animate="y">
+                  <PortableText
+                    class="body-light-m lg:body-light text-dark-gunmetal"
+                    value={description} />
+                </div>
+              {/if}
+
+              <div class="pt-[1.38rem]" data-load-animate="y">
+                <Cta
+                  el="button"
+                  className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                  onClick={inquiryAction}
+                  variant="tertiary">
+                  {stock?.toLowerCase().replace(/\s+/g, '') === 'available' ? 'Buy now' : 'Inquiry'}
+                </Cta>
+              </div>
+            </section>
+
+            <section class="hidden 3xl:block">
+              <button
+                data-load-animate="y"
+                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
+                on:click={openImagePopup}>
+                <SanityImage
+                  class="rounded-[0.9375rem] object-contain w-full h-auto"
+                  imageUrlBuilder={imageBuilder}
+                  src={collectionImage}
+                  alt={collectionImage.alt}
+                  sizes="40vw" />
+              </button>
+              {#if !!quote}
+                <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
+                  <Quote {quote} class="!translate-y-0" />
+                </div>
+              {/if}
+            </section>
+          </div>
         </div>
       {/key}
     </section>
@@ -172,5 +290,5 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
-    contextMessage={`The user selected collection is titled ${name} by ${artist?.name}.`} />
+    contextMessage={`The user selected collection is titled ${name}${artist?.name ? ` by ${artist.name}` : subtitle ? ` by ${subtitle}` : ''}.`} />
 {/if}

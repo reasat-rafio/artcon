@@ -391,13 +391,25 @@ export const AppStructure = (S: StructureBuilder, context: ConfigContext) =>
         ),
 
       S.divider(),
-      orderableDocumentListDeskItem({
-        type: 'service',
-        S,
-        context,
-        title: 'Services',
-        icon: FcServices,
-      }),
+      S.listItem()
+        .title('Services')
+        .icon(FcServices)
+        .child(
+          S.list()
+            .title('Services')
+            .items([
+              S.listItem()
+                .id('allServices')
+                .title('All Services')
+                .icon(FcServices)
+                .child(
+                  S.editor()
+                    .id('allServices')
+                    .title('All Services')
+                    .schemaType('allServices'),
+                ),
+            ]),
+        ),
 
       S.documentTypeListItem('gallery').title('Space / Gallery'),
       orderableDocumentListDeskItem({

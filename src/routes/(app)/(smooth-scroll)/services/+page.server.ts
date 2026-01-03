@@ -19,14 +19,33 @@ const query = groq`*[_id =='servicePage'][0]{
               "mov": video_hevc.asset->url,
             }
         },
-        services[]{
-            ...,
-            ${asset('image')},
-        },
     },
-    "services": *[_type == "service"]|order(orderRank){
+    "allServices": *[_type == "allServices"][0]{
       ...,
-      ${asset('image')}
+      summary{
+        ...,
+        description,
+        media{
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
+      },
+      sections[]{
+        ...,
+        ${asset('image')},
+        contentMedia{
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
+      }
     }
 }`;
 

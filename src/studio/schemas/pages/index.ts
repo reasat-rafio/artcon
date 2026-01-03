@@ -9,7 +9,7 @@ import exhibitionDetails from './[exhibition]';
 import landing from './landing';
 import project from './project';
 import publication from './publication';
-import service from './service';
+import service from './service/document';
 import vrListingPage from './vr';
 import artistDetails from './[artist]';
 import privacyPolicy from './privacyPolicy';

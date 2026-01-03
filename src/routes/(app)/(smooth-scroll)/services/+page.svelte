@@ -2,7 +2,9 @@
   import Seo from '@/components/common/Seo.svelte';
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
+  import Summary from '@/components/pages/services/Summary.svelte';
   import Services from '@/components/pages/services/Services.svelte';
+  import Share from '@/components/widgets/share/Share.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ServicesPageProps } from '@/lib/types/services.types';
@@ -16,7 +18,7 @@
   let {
     page,
     site: {
-      logos: { ogImage, logoDark },
+      logos: { ogImage, logoDark, logoLight },
       footer,
       contact,
     },
@@ -59,9 +61,24 @@
   {/if}
 {/each}
 
-<div class="relative z-10 mt-[100dvh] bg-white">
-  {#if !!page?.services?.length}
-    <Services bind:contextMessage services={page.services} />
+<Share href="/" {logoLight} {logoDark}>Our services</Share>
+
+<div class="relative z-10 bg-white">
+  {#if !!page?.allServices?.summary?.quote}
+    <Summary
+      props={{
+        ...page.allServices.summary,
+        descriptionBlock: {
+          gallery: { name: 'Our services', location: '', url: '' },
+          date: '',
+          description: page.allServices.summary.description || [],
+          associationsList: [],
+          socials: [],
+        },
+      }} />
+  {/if}
+  {#if !!page?.allServices?.sections?.length}
+    <Services bind:contextMessage services={page.allServices.sections} />
   {/if}
   <Footer {footer} {contact} logo={logoDark} />
 </div>

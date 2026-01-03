@@ -1,6 +1,6 @@
 import { orderRankField } from '@sanity/orderable-document-list';
 import { FaPaintBrush } from 'react-icons/fa';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const collection = {
   name: 'collection',
@@ -9,16 +9,15 @@ const collection = {
   fields: [
     orderRankField({ type: 'collection' }),
     {
-      name: 'seo',
-      title: 'SEO',
-      type: 'seo',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
       title: 'Collection Title',
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      title: 'Subtitle (required)',
+      name: 'subtitle',
+      type: 'string',
     },
     {
       name: 'slug',
@@ -32,10 +31,91 @@ const collection = {
       type: 'reference',
       to: [{ type: 'artist' }],
     },
+    {
+      name: 'category',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
 
     {
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'coverImage',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
+      name: 'sliderImageVideo',
+      type: 'sliderImageVideo',
+      title: 'Slider Image / Video',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'quote',
+      type: 'quote',
+    },
+    {
+      title: 'Description (required)',
+      name: 'description',
+      type: 'array',
+      of: [{ type: 'block', lists: [], styles: [] }],
+      // validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'associationsList',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    {
+      name: 'exproleLink',
+      type: 'object',
+      fields: [
+        {
+          title: 'Button title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          name: 'href',
+          title: 'Button URL',
+          description: `The URL field accepts internal links in the format '/page-slug' or '/parent-slug/slug' (e.g., 'artcon.com/exhibition' becomes '/exhibition'). External URLs must begin with 'https://' or 'http://', while email links should use 'mailto:email@example.com'. Any valid external URL is accepted.`,
+          type: 'string',
+        },
+      ],
+    },
+    {
+      name: 'stock',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Available', value: 'available' },
+          { title: 'Out of Stock', value: 'outOfStock' },
+        ],
+      },
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
+    // Fields needed for listing page (keep for backwards compatibility)
+    {
       name: 'information',
-      title: 'Artwork Information',
+      title: 'Artwork Information (for listing)',
       type: 'object',
       validation: (Rule: Rule) => Rule.required(),
       fields: [
@@ -59,18 +139,15 @@ const collection = {
               name: 'creationDetails',
               type: 'string',
               description: 'Example: Executed in 1970',
-              // validation: (Rule: Rule) => Rule.required(),
             },
             {
               title: 'Year (required)',
               name: 'year',
               type: 'string',
               description: 'Example: 1970',
-              // validation: (Rule: Rule) => Rule.required(),
             },
           ],
         },
-
         {
           title: 'Frame (required)',
           name: 'frame',
@@ -84,11 +161,10 @@ const collection = {
         },
       ],
     },
-
     {
       name: 'artworkImages',
       type: 'array',
-      description: 'First image will be used as the main image',
+      description: 'First image will be used as the main image (for listing)',
       validation: (Rule: Rule) => Rule.required().max(4),
       of: [
         {
@@ -103,67 +179,25 @@ const collection = {
     },
     {
       name: 'asset',
-      title: 'Hero Image / Video',
+      title: 'Hero Image / Video (for listing page highlight)',
       type: 'asset',
-      validation: (Rule: Rule) => Rule.required(),
     },
-    // {
-    //   name: 'sliderImageVideo',
-    //   type: 'sliderImageVideo',
-    //   title: 'Slider Image / Video',
-    //   // validation: (Rule: Rule) => Rule.required(),
-    // },
     {
       name: 'topTitle',
-      title: 'Top Title',
+      title: 'Top Title (for listing page highlight)',
       type: 'string',
     },
     {
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-    },
-    {
-      title: 'Button',
+      title: 'Button (for listing page highlight)',
       name: 'cta',
       type: 'cta',
     },
-
     {
       name: 'tag',
       title: 'Tag',
       type: 'reference',
       to: [{ type: 'collectionTag' }],
       validation: (Rule: Rule) => Rule.required(),
-    },
-
-    {
-      name: 'provenance',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          title: 'Title (required)',
-          name: 'title',
-          type: 'string',
-          // validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          title: 'Description (required)',
-          name: 'description',
-          type: 'array',
-          of: [{ type: 'block', lists: [], styles: [] }],
-          // validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
-
-    {
-      name: 'isAvailable',
-      type: 'boolean',
-      title: 'Collection is Available',
-      validation: (Rule: Rule) => Rule.required(),
-      initialValue: true,
     },
     {
       name: 'displayNew',
@@ -192,39 +226,29 @@ const collection = {
       }) => displayNew,
     },
     {
-      name: 'hideInquiryButton',
+      name: 'isAvailable',
       type: 'boolean',
-      initialValue: false,
-      description: 'Hide the inquiry button on this collection',
-    },
-
-    {
-      name: 'sections',
-      title: 'Sections',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.required().min(1),
-
-      of: [
-        { type: 'collection.summary' },
-        { type: 'common.imageAsset' },
-        { type: 'common.note' },
-        { type: 'collection.artist' },
-        { type: 'collection.documentation' },
-      ],
+      title: 'Collection is Available',
+      validation: (Rule: Rule) => Rule.required(),
+      initialValue: true,
     },
   ],
   preview: {
     select: {
       title: 'name',
-      artistName: 'artist.personalDocuments.name.en',
+      author: 'subtitle',
+      category: 'category.title',
       media: 'artworkImages',
-      date: 'information.artDate.year',
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    prepare: ({ title, media, artistName, date }: any) => ({
-      title: artistName,
-      subtitle: `${title} | ${date}`,
-      media: media[0],
+    prepare: ({
+      title,
+      author,
+      category,
+      media,
+    }: DefaultPreviewProps & { author: string; category: string }) => ({
+      title,
+      subtitle: `${author} | ${category}`,
+      media: media?.[0],
     }),
   },
 };

@@ -20,7 +20,7 @@
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
-        href={`/collection/${slug.current}`}
+        href={`/preview/collection/${slug.current}`}
         class="relative flex flex-col gap-y-[1.25rem]"
         let:Title
         let:Container>

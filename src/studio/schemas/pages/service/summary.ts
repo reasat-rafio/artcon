@@ -1,6 +1,5 @@
-import type { DefaultPreviewProps, Rule } from 'sanity';
 import { FaHighlighter } from 'react-icons/fa';
-import allServices from './allServices';
+import type { DefaultPreviewProps } from 'sanity';
 
 const summary = {
   name: 'servicePage.summary',
@@ -37,31 +36,4 @@ const summary = {
   },
 };
 
-const servicePage = {
-  name: 'servicePage',
-  title: 'Service Page',
-  type: 'document',
-  fields: [
-    {
-      name: 'seo',
-      title: 'SEO',
-      type: 'seo',
-    },
-    {
-      name: 'sections',
-      title: 'Sections',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.required().min(1),
-      of: [{ type: 'common.hero' }],
-    },
-  ],
-  preview: {
-    select: { title: 'seo.title' },
-    prepare: (props: DefaultPreviewProps) => ({
-      ...props,
-      subtitle: '/services',
-    }),
-  },
-};
-
-export default [...allServices, servicePage, summary];
+export default summary;
