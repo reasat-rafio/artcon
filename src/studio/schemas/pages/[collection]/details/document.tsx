@@ -15,15 +15,21 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Subtitle (required)',
+      title: 'Subtitle',
       name: 'subtitle',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'slug',
       type: 'slug',
       options: { source: 'name' },
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      title: 'Top Title',
+      name: 'topTitle',
+      type: 'string',
     },
     {
       title: 'Artist',
@@ -37,7 +43,13 @@ const collection = {
       to: [{ type: 'collectionTag' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
+    {
+      name: 'tag',
+      title: 'Tag',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
     {
       name: 'publishedBy',
       type: 'array',
@@ -45,7 +57,8 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'coverImage',
+      name: 'collectorImage',
+      title: 'Collector Image',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
@@ -54,6 +67,22 @@ const collection = {
           name: 'alt',
           title: 'Alternative Text',
           description: 'Important for SEO and accessibility',
+          type: 'string',
+          validation: (Rule: Rule) => Rule.required(),
+        },
+      ],
+    },
+    {
+      name: 'thumbnail',
+      title: 'Thumbnail (for listing card)',
+      description: 'This image will be displayed on the collection listing page card',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
@@ -70,25 +99,27 @@ const collection = {
       type: 'quote',
     },
     {
-      title: 'Description (required)',
+      title: 'Description',
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
-      // validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'associationsList',
+      title: 'Associations List',
+      description: 'Key-value pairs like Catalogue no, First published, Language, etc.',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
       name: 'exproleLink',
+      title: 'Explore Link',
       type: 'object',
       fields: [
         {
-          title: 'Button title',
+          title: 'Button Title',
           name: 'title',
           type: 'string',
         },
@@ -102,6 +133,7 @@ const collection = {
     },
     {
       name: 'stock',
+      title: 'Stock',
       type: 'string',
       options: {
         list: [
@@ -112,125 +144,15 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    // Fields needed for listing page (keep for backwards compatibility)
-    {
-      name: 'information',
-      title: 'Artwork Information (for listing)',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          name: 'media',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'size',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'artDate',
-          type: 'object',
-          validation: (Rule: Rule) => Rule.required(),
-          fields: [
-            {
-              title: 'Creation Details (required)',
-              name: 'creationDetails',
-              type: 'string',
-              description: 'Example: Executed in 1970',
-            },
-            {
-              title: 'Year (required)',
-              name: 'year',
-              type: 'string',
-              description: 'Example: 1970',
-            },
-          ],
-        },
-        {
-          title: 'Frame (required)',
-          name: 'frame',
-          type: 'string',
-        },
-        {
-          name: 'moreInformation',
-          description: 'example: This work is in a temporary frame. (frame)',
-          type: 'array',
-          of: [{ type: 'string' }],
-        },
-      ],
-    },
-    {
-      name: 'artworkImages',
-      type: 'array',
-      description: 'First image will be used as the main image (for listing)',
-      validation: (Rule: Rule) => Rule.required().max(4),
-      of: [
-        {
-          name: 'artworkImage',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-          validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
     {
       name: 'asset',
-      title: 'Hero Image / Video (for listing page highlight)',
+      title: 'Hero Image / Video',
       type: 'asset',
     },
     {
-      name: 'topTitle',
-      title: 'Top Title (for listing page highlight)',
-      type: 'string',
-    },
-    {
-      title: 'Button (for listing page highlight)',
+      title: 'Button',
       name: 'cta',
       type: 'cta',
-    },
-    {
-      name: 'tag',
-      title: 'Tag',
-      type: 'reference',
-      to: [{ type: 'collectionTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'displayNew',
-      title: 'New',
-      type: 'boolean',
-      description:
-        'Toggling this to true will display the new tag on the collection',
-      initialValue: false,
-      hidden: ({
-        document: { displaySold },
-      }: {
-        document: { displaySold: boolean };
-      }) => displaySold,
-    },
-    {
-      name: 'displaySold',
-      title: 'Sold',
-      type: 'boolean',
-      description:
-        'Toggling this to true will display the sold tag on the collection',
-      initialValue: false,
-      hidden: ({
-        document: { displayNew },
-      }: {
-        document: { displayNew: boolean };
-      }) => displayNew,
-    },
-    {
-      name: 'isAvailable',
-      type: 'boolean',
-      title: 'Collection is Available',
-      validation: (Rule: Rule) => Rule.required(),
-      initialValue: true,
     },
   ],
   preview: {
@@ -238,7 +160,7 @@ const collection = {
       title: 'name',
       author: 'subtitle',
       category: 'category.title',
-      media: 'artworkImages',
+      media: 'thumbnail',
     },
     prepare: ({
       title,
@@ -248,7 +170,7 @@ const collection = {
     }: DefaultPreviewProps & { author: string; category: string }) => ({
       title,
       subtitle: `${author} | ${category}`,
-      media: media?.[0],
+      media,
     }),
   },
 };

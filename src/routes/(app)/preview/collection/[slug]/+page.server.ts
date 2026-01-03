@@ -23,7 +23,8 @@ const query = (params: Partial<Record<string, string>>) =>
         "mov": video_hevc.asset->url,
       }
     },
-    ${asset('artworkImages[]', { as: 'artworkImages' })},
+    ${asset('collectorImage')},
+    ${asset('thumbnail')},
     quote,
     exproleLink,
     stock,

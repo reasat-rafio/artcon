@@ -34,7 +34,7 @@
       description,
       exproleLink,
       subtitle,
-      artworkImages,
+      collectorImage,
       publishedBy,
       quote,
       artist,
@@ -43,7 +43,7 @@
     site: { logos },
   } = data);
 
-  $: collectionImage = artworkImages?.[0];
+  $: displayImage = collectorImage;
 
   let transitioningOut = false;
   let articleEl: HTMLElement;
@@ -148,13 +148,8 @@
   function openImagePopup() {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(0);
-    lightboxStore.setHideThumbnails(artworkImages?.length <= 1);
-    lightboxStore.setAllImages(
-      artworkImages?.map((img: any) => ({
-        ...img,
-        caption: name,
-      })) || []
-    );
+    lightboxStore.setHideThumbnails(true);
+    lightboxStore.setAllImages([{ ...collectorImage, caption: name }]);
   }
 </script>
 
@@ -163,7 +158,7 @@
     _type,
     title: name,
     description: toPlainText(description ?? ''),
-    ogImage: collectionImage,
+    ogImage: displayImage,
   }}
   siteOgImg={logos?.ogImage} />
 <svelte:window bind:innerWidth />
@@ -237,8 +232,8 @@
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
-                    src={collectionImage}
-                    alt={collectionImage.alt}
+                    src={displayImage}
+                    alt={displayImage?.alt}
                     sizes="100vw" />
                 </button>
               </div>
@@ -270,8 +265,8 @@
                 <SanityImage
                   class="rounded-[0.9375rem] object-contain w-full h-auto"
                   imageUrlBuilder={imageBuilder}
-                  src={collectionImage}
-                  alt={collectionImage.alt}
+                  src={displayImage}
+                  alt={displayImage?.alt}
                   sizes="40vw" />
               </button>
               {#if !!quote}

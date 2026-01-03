@@ -16,7 +16,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, artworkImage, artist, media, year, displayNew, displaySold } (_id)}
+  {#each items as { name, slug, _id, thumbnail, subtitle, category, displayNew, displaySold } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -26,7 +26,7 @@
         let:Container>
         <div
           class={cn(
-            'relative mx-auto h-auto w-fit sm:h-[25rem] overflow-hidden rounded-[12px]',
+            'relative mx-auto h-[25rem] w-full overflow-hidden rounded-[12px]',
             $$props.class,
           )}>
           {#if displayNew || displaySold}
@@ -35,19 +35,16 @@
 
           <SanityImage
             imageUrlBuilder={imageBuilder}
-            class="h-full w-full object-contain object-bottom transition-transform duration-300 hover:scale-110"
+            class="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
             sizes="(min-width:640px) 35vw, 100vw"
-            src={artworkImage}
-            alt={artworkImage?.alt} />
+            src={thumbnail}
+            alt={thumbnail?.alt} />
         </div>
 
         <Container class="text-center">
-          <Title>{artist?.name ?? name}</Title>
-          <div
-            class="font-inter text-[0.8125rem] font-light tracking-[0.01625rem]">
-            <span>{media}</span>
-            <span class="px-2 text-[0.625rem] text-sonic-silver">|</span>
-            <span>{year}</span>
+          <Title>{name}{subtitle ? ` / ${subtitle}` : ''}</Title>
+          <div class="head-8 font-optiberling-agency text-sonic-silver">
+            <span>{category?.name ?? ''}</span>
           </div>
         </Container>
       </Card>
