@@ -187,7 +187,7 @@
                 topic="Our collection"
                 title={name}
                 subtitle={subtitle ?? ''}
-                type={category.title}
+                type={category.name}
                 let:Info>
                 {#if !!associationsList?.length}
                   <Info>
