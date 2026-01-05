@@ -84,19 +84,6 @@ const artist = {
       validation: (Rule: Rule) => Rule.required(),
     },
 
-    defineField({
-      name: 'artworks',
-      title: "Artist's Artworks",
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'collection' }] }],
-      group: 'site',
-      validation: (Rule: ArrayRule<unknown[]>) =>
-        Rule.custom((refs, { document }) => {
-          const docId = removeDraftsPrefix(document?._id as string);
-          return referenceExistInOtherArtist(refs as Reference[], docId);
-        }),
-    }),
-
     {
       name: 'customArtworks',
       title: 'Custom Artworks',
