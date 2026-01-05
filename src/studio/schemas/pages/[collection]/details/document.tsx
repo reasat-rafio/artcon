@@ -32,12 +32,6 @@ const collection = {
       type: 'string',
     },
     {
-      title: 'Artist',
-      name: 'artist',
-      type: 'reference',
-      to: [{ type: 'artist' }],
-    },
-    {
       name: 'category',
       type: 'reference',
       to: [{ type: 'collectionTag' }],
@@ -158,18 +152,18 @@ const collection = {
   preview: {
     select: {
       title: 'name',
-      author: 'subtitle',
-      category: 'category.title',
+      subtitle: 'subtitle',
+      category: 'category.name',
       media: 'thumbnail',
     },
     prepare: ({
       title,
-      author,
+      subtitle,
       category,
       media,
-    }: DefaultPreviewProps & { author: string; category: string }) => ({
+    }: DefaultPreviewProps & { subtitle: string; category: string }) => ({
       title,
-      subtitle: `${author} | ${category}`,
+      subtitle: `${subtitle} | ${category}`,
       media,
     }),
   },

@@ -150,18 +150,18 @@ const publication = {
   preview: {
     select: {
       title: 'name',
-      author: 'subtitle',
-      category: 'category.title',
+      subtitle: 'subtitle',
+      category: 'category.name',
       media: 'publicationImage',
     },
     prepare: ({
       title,
-      author,
+      subtitle,
       category,
       media,
-    }: DefaultPreviewProps & { author: string; category: string }) => ({
+    }: DefaultPreviewProps & { subtitle: string; category: string }) => ({
       title,
-      subtitle: `${author} | ${category}`,
+      subtitle: `${subtitle} | ${category}`,
       media,
     }),
   },
