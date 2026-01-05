@@ -19,8 +19,10 @@ const query = groq`
             _id,
             slug,
             name,
+            type->,
             category->,
             year,
+            duration,
             ${asset('coverImage')}
 
         },

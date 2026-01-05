@@ -23,7 +23,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, category, coverImage, year } (_id)}
+  {#each items as { name, slug, _id, type, category, coverImage, duration } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -40,11 +40,11 @@
           </div>
           <div class="flex justify-between">
             <Subtitle class="font-optiberling-agency text-sonic-silver">
-              {category.name}
+              {type.name} / <span class="font-bold">{category.name}</span>
             </Subtitle>
-            {#if year}
+            {#if duration}
               <span class="font-optiberling-agency text-sonic-silver pr-1">
-                {year}
+                {duration}
               </span>
             {/if}
           </div>
