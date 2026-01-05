@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
   import Asset from '@/components/common/hero/Asset.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
@@ -172,7 +172,9 @@
           <div
             data-load-animate="y"
             class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
-            <Asset {asset} />
+            <a href={`/exhibition/${slug.current}`} class="cursor-pointer block h-full w-full">
+              <Asset {asset} />
+            </a>
           </div>
 
           {#if !!description?.length}
