@@ -33,13 +33,7 @@ const collection = {
     },
     {
       name: 'category',
-      type: 'reference',
-      to: [{ type: 'collectionTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
-      name: 'tag',
-      title: 'Tag',
+      title: 'Category',
       type: 'reference',
       to: [{ type: 'collectionTag' }],
       validation: (Rule: Rule) => Rule.required(),

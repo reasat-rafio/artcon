@@ -133,7 +133,7 @@
               title: 'EXPLORE',
             }} />
 
-          <Header let:Info topic="Our event" title={subtitle ? `${name} / ${subtitle}` : name} type={tag.name}>
+          <Header let:Info topic="Our event" title={name} subtitle={subtitle} type={tag.name}>
             <Info>
               <div class="title-light">
                 {#if gallery.url || (gallery.location && (gallery.location.startsWith('http://') || gallery.location.startsWith('https://')))}

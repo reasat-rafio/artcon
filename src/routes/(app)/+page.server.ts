@@ -11,7 +11,7 @@ const query = groq`
             asset{
                 ...,
                 ${asset('image')},
-                video{
+                video {
                     "webm": video_webm.asset->url,
                     "mov": video_hevc.asset->url,
                 }
