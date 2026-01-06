@@ -103,7 +103,7 @@
       {#if !!topTitle}
         <h3
           bind:this={topTitleEl}
-          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest whitespace-pre">
+          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest max-lg:line-clamp-2 lg:whitespace-pre">
           {topTitle}
         </h3>
       {:else}
@@ -111,7 +111,7 @@
       {/if}
 
       <div class="overflow-hidden !leading-[100%]">
-        <h1 bind:this={titleEl} class="head-1 !leading-none whitespace-pre">
+        <h1 bind:this={titleEl} class="head-1 !leading-none max-lg:line-clamp-2 lg:whitespace-pre">
           {title}
         </h1>
       </div>
