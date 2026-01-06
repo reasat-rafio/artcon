@@ -116,6 +116,7 @@
   class={cn('z-40 block lg:hidden', {
     'fixed inset-0': !isLoaded,
     'translate-y-[100dvh]': innerWidth >= 1024,
+    'mt-[100dvh]': innerWidth < 1024,
   })}>
   <div use:loaded id="mobile-slider-wrapper" class="flex flex-col">
     {#each collections as collection, index}
