@@ -43,15 +43,25 @@
 
   onMount(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'expoOut', duration: 0.5 },
-        delay: 0.6,
-      });
-      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
-      if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
-      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
-      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
-      tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      // Only animate on desktop (>= 1024px)
+      if (innerWidth >= 1024) {
+        const tl = gsap.timeline({
+          defaults: { ease: 'expoOut', duration: 0.5 },
+          delay: 0.6,
+        });
+        if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
+        if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+        if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
+        tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
+        tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      } else {
+        // On mobile, show elements immediately without animation
+        if (topTitleEl) gsap.set(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) gsap.set(titleEl, { y: 0, opacity: 1 });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 0, opacity: 1 });
+        gsap.set('.cta-btn', { y: 0, opacity: 1 });
+        gsap.set('#pointer', { opacity: 1 });
+      }
     });
 
     return () => ctx.revert();

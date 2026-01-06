@@ -17,7 +17,7 @@
     imageUrlBuilder={imageBuilder} />
 
   <header
-    use:parallaxAnimation
+    use:parallaxAnimation={{ disableOnMobile: true }}
     class="absolute inset-0 z-10 flex h-full w-full max-w-full translate-y-[120px] items-center justify-center px-4 text-white">
     <h2 class="head-1 max-w-full break-words text-center font-optiberling-agency">
       {title}

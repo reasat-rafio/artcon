@@ -43,51 +43,54 @@
   }
 
   function handleEventObserver(el: HTMLElement) {
-    Observer.create({
-      target: window,
-      type: 'wheel,scroll,touch',
-      wheelSpeed: -1,
-      tolerance: 50, // was 10
-      preventDefault: false,
-      onDown: () => {
-        if (!animating) {
-          currentIndex = Math.min(
-            Math.max(0, currentIndex - 1),
-            collections.length + 1,
-          );
-          gsap.to(el, {
-            duration: 0.5, // was 0.7
-            y: `-${currentIndex * 100}dvh`,
-            ease: 'power2.out', // was 'expoOut'
-            onStart: () => {
-              animating = true;
-            },
-            onComplete: () => {
-              animating = false;
-            },
-          });
-        }
-      },
-      onUp: () => {
-        if (!animating) {
-          currentIndex = Math.min(
-            Math.max(0, currentIndex + 1),
-            collections.length + 1,
-          );
-          gsap.to(el, {
-            duration: 0.5, // was 0.7
-            y: `-${currentIndex * 100}dvh`,
-            ease: 'power2.out', // was 'expoOut'
-            onStart: () => {
-              animating = true;
-            },
-            onComplete: () => {
-              animating = false;
-            },
-          });
-        }
-      },
-    });
+    // Mobile: Normal scroll behavior. Desktop: Custom scroll animations
+    if (innerWidth >= 1024) {
+      Observer.create({
+        target: window,
+        type: 'wheel,scroll,touch',
+        wheelSpeed: -1,
+        tolerance: 50,
+        preventDefault: false,
+        onDown: () => {
+          if (!animating) {
+            currentIndex = Math.min(
+              Math.max(0, currentIndex - 1),
+              collections.length + 1,
+            );
+            gsap.to(el, {
+              duration: 0.5,
+              y: `-${currentIndex * 100}dvh`,
+              ease: 'power2.out',
+              onStart: () => {
+                animating = true;
+              },
+              onComplete: () => {
+                animating = false;
+              },
+            });
+          }
+        },
+        onUp: () => {
+          if (!animating) {
+            currentIndex = Math.min(
+              Math.max(0, currentIndex + 1),
+              collections.length + 1,
+            );
+            gsap.to(el, {
+              duration: 0.5,
+              y: `-${currentIndex * 100}dvh`,
+              ease: 'power2.out',
+              onStart: () => {
+                animating = true;
+              },
+              onComplete: () => {
+                animating = false;
+              },
+            });
+          }
+        },
+      });
+    }
   }
 
   function loaded(_: HTMLElement) {

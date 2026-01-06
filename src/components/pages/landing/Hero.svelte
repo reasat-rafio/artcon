@@ -23,14 +23,24 @@
 
   onMount(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'expoOut', duration: 0.6 },
-      });
-      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 });
-      if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
-      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
-      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
-      tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      // Only animate on desktop (>= 1024px)
+      if (windowWidth >= 1024) {
+        const tl = gsap.timeline({
+          defaults: { ease: 'expoOut', duration: 0.6 },
+        });
+        if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+        if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
+        tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
+        tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      } else {
+        // On mobile, show elements immediately without animation
+        if (topTitleEl) gsap.set(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) gsap.set(titleEl, { y: 0, opacity: 1 });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 0, opacity: 1 });
+        gsap.set('.cta-btn', { y: 0, opacity: 1 });
+        gsap.set('#pointer', { opacity: 1 });
+      }
     });
 
     return () => ctx.revert();
@@ -39,9 +49,9 @@
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 <section
-  style={`filter: blur(${$tweenDelta * 7.5}px) grayscale(${
+  style={windowWidth >= 1024 ? `filter: blur(${$tweenDelta * 7.5}px) grayscale(${
     $tweenDelta * 50
-  }%);`}
+  }%);` : ''}
   class={twMerge('h-screen w-full ', $$props.class)}>
   <div class="relative flex h-full w-full">
     <Asset {asset} />
