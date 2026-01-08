@@ -57,7 +57,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-light-gray/40 pb-[7.79rem] pt-[4.375rem]">
+    class="container-primary border-t border-light-gray/40 pb-[5.84rem] pt-[3.28rem]">
     <div class="mb-[2rem] flex items-center justify-between">
       <h2 class="head-4">{title}</h2>
       <span class="sub-title-light text-quartz-silver">1/{data.length}</span>

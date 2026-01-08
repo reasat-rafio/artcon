@@ -55,7 +55,7 @@
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
     plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+      ? [Autoplay({ delay: 4000, stopOnInteraction: false, jump: false })]
       : []
   };
 
@@ -65,18 +65,18 @@
 </script>
 
 <section>
-  <div class="pt-section container-primary pb-sm md:pb-[4.94rem]">
+  <div class="pt-[1.875rem] container-primary pb-[1.875rem] md:pt-[3.75rem] md:pb-[3.75rem] xl:pt-[6.75rem]">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
+        <C.HeaderContainer class="mb-[1.875rem]">
           {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
           {#if galleryUrl}
-            <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
-              <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
+            <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors">
+              <C.Title class="!leading-none !mb-0 hover:!text-gray-500">{descriptionBlock.gallery.name}</C.Title>
             </a>
           {:else}
             <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
@@ -87,7 +87,7 @@
           <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock.associationsList?.length}
-          <div class="space-y-[10px] lg:space-y-[13px]">
+          <div class="mb-[1.875rem] space-y-[10px] lg:space-y-[13px]">
             {#each descriptionBlock.associationsList as { key, value, url, logo }}
               <div>
                 {#if logo}
@@ -123,12 +123,12 @@
             href={descriptionBlock.associationsButton.href}
             target="{descriptionBlock.associationsButton.href.startsWith('http') ? '_blank' : '_self'}"
             rel="{descriptionBlock.associationsButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
-            class="mt-[20px] inline-block rounded-full border border-black bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-black hover:text-black lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            class="mt-[1.875rem] inline-block rounded-full border border-black bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-black hover:text-black lg:px-[40px] lg:py-[12px] lg:text-base">
             {descriptionBlock.associationsButton.title}
           </a>
         {/if}
         {#if !!descriptionBlock.socials?.length}
-          <C.SocialContainer class="mt-[20px] lg:mt-[30px]">
+          <C.SocialContainer class="mt-[1.875rem]">
             {#each descriptionBlock.socials as { link, type }}
               <C.Social {link} {type} />
             {/each}

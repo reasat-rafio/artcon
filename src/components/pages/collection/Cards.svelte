@@ -43,7 +43,7 @@
 
         <Container class="text-center">
           <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
-          <div class="head-8 font-optiberling-agency text-sonic-silver">
+          <div class="head-8 font-inter text-sonic-silver">
             <span>{category?.name ?? ''}</span>
           </div>
         </Container>

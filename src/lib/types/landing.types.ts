@@ -48,6 +48,7 @@ export type Collection<T> = {
   tag?: Tag;
   artistName?: { en: string };
   type?: Tag;
+  exproleLink?: { href?: string; title?: string };
 };
 
 export type WithExtra<T> = T & {

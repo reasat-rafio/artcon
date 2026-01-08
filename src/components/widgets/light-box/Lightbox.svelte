@@ -79,7 +79,7 @@
     on:click={scrollPrev}
     disabled={!canScrollPrev}
     class="fixed left-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:left-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
-    <ChevronLeftRounded class="h-12 w-12 text-white drop-shadow-lg" />
+    <ChevronLeftRounded color="white" class="h-12 w-12 text-white drop-shadow-lg" />
   </button>
 
   <button
@@ -88,6 +88,6 @@
     on:click={scrollNext}
     disabled={!canScrollNext}
     class="fixed right-5 top-1/2 z-god -translate-y-1/2 transition-transform hover:scale-110 hover:enabled:scale-110 lg:right-10 p-2 lg:p-3 bg-black/40 rounded-full flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
-    <ChevronRightRounded class="h-12 w-12 text-white drop-shadow-lg" />
+    <ChevronRightRounded color="white" class="h-12 w-12 text-white drop-shadow-lg" />
   </button>
 {/if}

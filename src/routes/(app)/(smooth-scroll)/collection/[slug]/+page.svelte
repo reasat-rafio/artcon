@@ -208,7 +208,7 @@
                 {/if}
                 <Info>
                   <div class="sub-title-light">
-                    Published By {#each publishedBy as publisher, index}
+                    Published by {#each publishedBy as publisher, index}
                       <span class="title-regular">
                         {publisher}{#if index !== publishedBy.length - 1}
                           {#if index === publishedBy.length - 2}

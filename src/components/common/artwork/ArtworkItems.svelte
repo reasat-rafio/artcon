@@ -6,6 +6,7 @@
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import { type EmblaCarouselType } from 'embla-carousel';
   import ArtworkItemImage from './ArtworkItemImage.svelte';
+  import lightboxStore from '@/store/lightbox';
 
   export let artworks: ArtworkItem[];
 
@@ -37,6 +38,27 @@
     emblaApi = event.detail;
     scrollSnaps = event.detail.scrollSnapList();
   };
+
+  const triggerLightboxPopup = (index: number) => {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(index);
+    lightboxStore.setHideThumbnails(false);
+    lightboxStore.setAllImages(
+      artworks.map(({ image, description }) => {
+        const caption = description?.map((block: any) => {
+          if (block._type === 'block') {
+            return block.children?.map((child: any) => child.text).join('') || '';
+          }
+          return '';
+        }).filter(Boolean).join('\n') || '';
+        
+        return {
+          ...image,
+          caption,
+        } as any;
+      }),
+    );
+  };
 </script>
 
 <div class={cn('relative', className)}>
@@ -57,7 +79,8 @@
             {artwork}
             isSingleArtwork={artworks?.length === 1}
             active={activeSide === index ||
-              (activeSide === artworks.length && index === 0)} />
+              (activeSide === artworks.length && index === 0)}
+            on:triggerPopup={() => triggerLightboxPopup(index)} />
         {/each}
       </div>
     </div>

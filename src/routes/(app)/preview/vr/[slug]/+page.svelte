@@ -158,9 +158,24 @@
             {link}
             let:Info>
             <Info>
-              <div class="title-light">
-                {gallery.name}
-              </div>
+              {#if gallery?.url}
+                <a 
+                  href={gallery.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="title-light cursor-pointer transition-colors hover:!text-gray-500">
+                  {gallery.name}
+                </a>
+              {:else}
+                <div class="title-light">
+                  {gallery.name}
+                </div>
+              {/if}
+              {#if gallery?.location}
+                <div class="title-light">
+                  {gallery.location}
+                </div>
+              {/if}
               <div class="title-light">
                 {#if !!date && !!status}
                   <span class="font-light">{date}</span>

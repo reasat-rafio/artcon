@@ -45,7 +45,7 @@
 
 <div
   class="relative overflow-hidden"
-  use:emblaCarouselSvelte={{ plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })], options: {} }}
+  use:emblaCarouselSvelte={{ plugins: [Autoplay({ delay: 4000, stopOnInteraction: false })], options: {} }}
   on:emblaInit={onInit}>
   <div class="-ml-[1rem] flex">
     {#each artworkImages as img, index}

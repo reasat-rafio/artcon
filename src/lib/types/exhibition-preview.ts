@@ -17,4 +17,16 @@ export interface ExhibitionPreviewProps {
   sliderImageVideo: Asset;
   asset: Asset;
   exhibitionType: string | { en: string };
+  invitationCard?: {
+    invitationCardImage?: {
+      url: string;
+      alt?: string;
+      caption?: string;
+    };
+    fullInvitationCardImage?: {
+      url: string;
+      alt?: string;
+      caption?: string;
+    };
+  };
 }

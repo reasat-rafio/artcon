@@ -24,6 +24,7 @@ export interface HeroProps {
 
 export interface HighlightedCollection {
   name: string;
+  slug: Slug;
   subtitle?: string;
   topTitle?: string;
   cta?: Cta;

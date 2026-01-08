@@ -71,7 +71,7 @@ export const calculateStatusBetweenDates = ({
     const formattedDate = isoStartDate.toFormat('d MMM, yyyy');
     date = formattedDate;
 
-    if (isoStartDate.hasSame(currentDateTime, 'day')) {
+    if (isoStartDate <= currentDateTime) {
       status = 'Ongoing';
     } else if (isoStartDate > currentDateTime) {
       status = 'Upcoming';
@@ -163,14 +163,14 @@ export const uniqueTags = <T extends { tag: Tag } | { category: Tag }>(
   items: T[],
 ) => {
   return items.reduce((uniqueTags, collection) => {
-    if ('tag' in collection) {
+    if ('tag' in collection && collection.tag) {
       const {
         slug: { current },
       } = collection.tag;
       if (!uniqueTags.some((tag) => tag.slug.current === current)) {
         uniqueTags.push(collection.tag);
       }
-    } else if ('category' in collection) {
+    } else if ('category' in collection && collection.category) {
       const {
         slug: { current },
       } = collection.category;

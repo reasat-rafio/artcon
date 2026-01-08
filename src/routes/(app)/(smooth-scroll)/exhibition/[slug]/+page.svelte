@@ -64,6 +64,7 @@
   <Seo {seo} siteOgImg={ogImage} />
   <Hero
     currentSlug={slug.current}
+    {status}
     props={{
       _type: 'common.hero',
       asset,

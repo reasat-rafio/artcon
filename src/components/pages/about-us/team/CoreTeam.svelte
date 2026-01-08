@@ -26,10 +26,10 @@
       <div
         class="absolute bottom-0 left-0 w-fit space-y-[0.5rem] pb-[23px] pl-[23px] pr-[30px]">
         <h3
-          class="body-regular !font-inter !font-normal !leading-snug text-white">
+          class="!font-inter !font-normal !leading-snug text-white text-[1.375rem]">
           {name}
         </h3>
-        <p class="title-light text-quick-silver">{role}</p>
+        <p class="text-quick-silver text-[1.125rem] font-inter font-light leading-[120%]">{role}</p>
       </div>
     </svelte:element>
   {/each}

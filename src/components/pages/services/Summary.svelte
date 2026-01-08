@@ -26,7 +26,7 @@
 </script>
 
 <section>
-  <div class="container-primary py-sm md:py-[80px] xl:pb-[107px] xl:pt-xl">
+  <div class="container-primary py-[1.875rem] md:py-[3.75rem] xl:pb-[6.75rem] xl:pt-[6.75rem]">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

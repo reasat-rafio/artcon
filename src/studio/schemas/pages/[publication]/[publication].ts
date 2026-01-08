@@ -47,6 +47,13 @@ const publication = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'creditList',
+      title: 'Credit List',
+      description: 'Key-value pairs for credits like Author, Editor, Designer, etc.',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+    },
+    {
       name: 'prices',
       type: 'object',
       validation: (Rule: Rule) => Rule.required(),
@@ -75,8 +82,8 @@ const publication = {
       type: 'string',
       options: {
         list: [
-          { title: 'Available', value: 'available' },
-          { title: 'Out of Stock', value: 'outOfStock' },
+          { title: 'Available', value: 'Available' },
+          { title: 'Out of Stock', value: 'Out of Stock' },
         ],
       },
       validation: (Rule: Rule) => Rule.required(),

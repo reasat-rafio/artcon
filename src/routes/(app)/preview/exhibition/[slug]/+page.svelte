@@ -29,6 +29,7 @@
       sliderImageVideo,
       asset,
       exhibitionType,
+      invitationCard,
     },
     site: { logos },
   } = data);
@@ -151,7 +152,7 @@
             <Info>
               {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
               {#if galleryUrl}
-                <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
                   <div class="title-light">
                     {gallery.name}
                   </div>
@@ -169,20 +170,50 @@
             </Info>
           </Header>
 
-          <div
-            data-load-animate="y"
-            class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
-            <a href={`/exhibition/${slug.current}`} class="cursor-pointer block h-full w-full">
-              <Asset {asset} />
-            </a>
-          </div>
-
-          {#if !!description?.length}
-            <div data-load-animate="y">
-              <PortableText
-                class="body-light-m lg:body-light text-dark-gunmetal"
-                value={description} />
+          {#if status === 'Upcoming'}
+            <!-- Upcoming Exhibition Layout: Description Left, Invitation Card/Thumbnail Right -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
+              <!-- Left: Description -->
+              {#if !!description?.length}
+                <div data-load-animate="y" class="order-2 lg:order-1">
+                  <PortableText
+                    class="body-light-m lg:body-light text-dark-gunmetal"
+                    value={description} />
+                </div>
+              {/if}
+              
+              <!-- Right: Invitation Card or Thumbnail -->
+              <div
+                data-load-animate="y"
+                class="relative overflow-hidden rounded-[25px] order-1 lg:order-2"
+                style="width: 365px; height: 553px;">
+                {#if invitationCard?.invitationCardImage}
+                  <img
+                    src={invitationCard.invitationCardImage.url}
+                    alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
+                    class="w-full h-full object-cover" />
+                {:else}
+                  <Asset {asset} />
+                {/if}
+              </div>
             </div>
+          {:else}
+            <!-- Regular Layout: Thumbnail and Description Stacked -->
+            <div
+              data-load-animate="y"
+              class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
+              <a href={`/exhibition/${slug.current}`} class="cursor-pointer block h-full w-full">
+                <Asset {asset} />
+              </a>
+            </div>
+
+            {#if !!description?.length}
+              <div data-load-animate="y">
+                <PortableText
+                  class="body-light-m lg:body-light text-dark-gunmetal"
+                  value={description} />
+              </div>
+            {/if}
           {/if}
         </div>
       {/key}

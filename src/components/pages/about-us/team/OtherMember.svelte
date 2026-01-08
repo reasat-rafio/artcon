@@ -26,8 +26,8 @@
             imageUrlBuilder={imageBuilder} />
         </figure>
         <div class="flex-1 space-y-[0.438rem]">
-          <h4 class="haed-6">{name}</h4>
-          <p class="head-8 font-optiberling-agency text-sonic-silver">
+          <h4 class="text-[1.375rem] font-medium leading-[128.5%] tracking-[0.04rem]">{name}</h4>
+          <p class="text-[1.125rem] font-optiberling-agency text-sonic-silver font-medium tracking-[0.02rem]">
             {role}
           </p>
         </div>

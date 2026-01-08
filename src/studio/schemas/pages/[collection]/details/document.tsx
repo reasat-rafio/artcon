@@ -39,12 +39,6 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'publishedBy',
-      type: 'array',
-      of: [{ type: 'string' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
       name: 'collectorImage',
       title: 'Collector Image',
       type: 'image',
@@ -123,12 +117,6 @@ const collection = {
       name: 'stock',
       title: 'Stock',
       type: 'string',
-      options: {
-        list: [
-          { title: 'Available', value: 'available' },
-          { title: 'Out of Stock', value: 'outOfStock' },
-        ],
-      },
       validation: (Rule: Rule) => Rule.required(),
     },
 

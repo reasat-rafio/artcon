@@ -19,7 +19,7 @@
     'group flex h-fit items-center justify-center space-x-[20px]',
     $$props.class,
   )}>
-  <figure class="h-[3.5rem] w-[3.5rem] rounded-full overflow-hidden">
+  <figure class="h-[7rem] w-[7rem] flex-shrink-0 rounded-full overflow-hidden">
     <SanityImage
       class="h-full w-full rounded-full object-cover transition-transform duration-300 hover:scale-110"
       src={image}
@@ -27,8 +27,8 @@
       sizes="120px"
       imageUrlBuilder={imageBuilder} />
   </figure>
-  <div class="head-8 flex-1 space-y-[0.438rem] font-optiberling-agency">
-    <h5>{title}</h5>
-    <p class="text-sonic-silver">{subtitle}</p>
+  <div class="flex-1 space-y-[0.438rem] font-optiberling-agency">
+    <h5 class="text-[1.375rem] font-medium tracking-[0.02rem]">{title}</h5>
+    <p class="text-sonic-silver text-[1.125rem] font-medium tracking-[0.02rem]">{subtitle}</p>
   </div>
 </svelte:element>

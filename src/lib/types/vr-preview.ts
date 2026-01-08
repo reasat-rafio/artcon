@@ -34,4 +34,5 @@ export interface RefDocument {
   _type: string;
   name: string;
   location?: string;
+  url?: string;
 }

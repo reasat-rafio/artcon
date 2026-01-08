@@ -14,7 +14,7 @@
     triggerPopup?: boolean;
   };
   export let images: [Image, Image];
-  export let disableHoverEffect = false;
+  // export let disableHoverEffect = false;
   $: [firstImage, secondImage] = images;
 
   const dispatch = createEventDispatcher();

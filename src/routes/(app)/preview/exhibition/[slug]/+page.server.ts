@@ -33,6 +33,18 @@ const query = (params: Partial<Record<string, string>>) =>
         "mov": video_hevc.asset->url,
       }
     },
+    "invitationCard": sections[_type == "exhibition.publication"][0]{
+      "invitationCardImage": invitationCardImage{
+        "url": asset->url,
+        "alt": alt,
+        "caption": caption
+      },
+      "fullInvitationCardImage": fullInvitationCardImage{
+        "url": asset->url,
+        "alt": alt,
+        "caption": caption
+      }
+    },
     "exhibitionType": select(
       count(artists) > 1 => "Group Exhibition",
       count(artists) == 1 => artists[0]-> {

@@ -9,8 +9,7 @@ const query = groq`
         sections[]{
           ...,
           highlightedCollections[]->{
-            name,
-            topTitle,
+            name,            slug,            topTitle,
             subtitle,
             cta,
             artist->{

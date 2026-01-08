@@ -39,6 +39,7 @@
       quote,
       artist,
       stock,
+      cta,
     },
     site: { logos },
   } = data);
@@ -141,10 +142,6 @@
     }
   });
 
-  function inquiryAction() {
-    formPopupStore.setFormPopupVisibility(true);
-  }
-
   function openImagePopup() {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(0);
@@ -203,26 +200,9 @@
                   </Info>
                 {/if}
                 <Info>
-                  <div class="sub-title-light">
-                    Published By {#each publishedBy as publisher, index}
-                      <span class="title-regular">
-                        {publisher}{#if index !== publishedBy.length - 1}
-                          {#if index === publishedBy.length - 2}
-                            {' '}
-                            <span class="sub-title-light">and</span>
-                          {:else}
-                            ,
-                          {/if}
-                        {/if}
-                        {' '}
-                      </span>
-                    {/each}
-                  </div>
-                </Info>
-                <Info>
                   <div class="title-light">
                     <span class="sub-title-light">Stock</span>
-                    <span class="font-medium capitalize">{stock?.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    <span class="font-medium">{stock}</span>
                   </div>
                 </Info>
               </Header>
@@ -246,15 +226,17 @@
                 </div>
               {/if}
 
-              <div class="pt-[1.38rem]" data-load-animate="y">
-                <Cta
-                  el="button"
-                  className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                  onClick={inquiryAction}
-                  variant="tertiary">
-                  {stock?.toLowerCase().replace(/\s+/g, '') === 'available' ? 'Buy now' : 'Inquiry'}
-                </Cta>
-              </div>
+              {#if cta}
+                <div class="pt-[1.38rem]" data-load-animate="y">
+                  <Cta
+                    el="a"
+                    href={cta.href || '#'}
+                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                    variant="tertiary">
+                    {cta.title || 'Button'}
+                  </Cta>
+                </div>
+              {/if}
             </section>
 
             <section class="hidden 3xl:block">

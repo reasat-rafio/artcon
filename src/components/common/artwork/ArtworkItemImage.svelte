@@ -6,11 +6,14 @@
   import PortableText from '@/lib/portable-text/PortableText.svelte';
   import { cubicInOut } from 'svelte/easing';
   import { tweened } from 'svelte/motion';
+  import { createEventDispatcher } from 'svelte';
 
   export let active: boolean;
   export let artwork: ArtworkItem;
   export let innerWidth = 0;
   export let isSingleArtwork: boolean;
+
+  const dispatch = createEventDispatcher();
 
   const scale = tweened(active ? 1 : 0.6, {
     duration: 500,
@@ -29,15 +32,16 @@
 </script>
 
 <svelte:window bind:innerWidth />
-<div
+<button
+  on:click={() => dispatch('triggerPopup')}
   class={cn(
     'relative h-full flex-[0_0_90%] pl-[1.25rem] outline-none lg:flex lg:flex-[0_0_50.01%]',
   )}>
   <div>
     <div style="transform: scale({$scale});">
-      <figure class="relative overflow-hidden rounded-[25px]">
+      <figure class="group relative overflow-hidden rounded-[25px]">
         <SanityImage
-          class="h-full w-full rounded-[25px] object-cover"
+          class="h-full w-full rounded-[25px] object-cover transition-transform duration-300 hover:scale-105"
           sizes="(min-width:1024px) 60vw, 100vw"
           src={artwork.image}
           imageUrlBuilder={imageBuilder}
@@ -53,4 +57,4 @@
       </figure>
     </div>
   </div>
-</div>
+</button>

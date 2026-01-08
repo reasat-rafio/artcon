@@ -1,3 +1,5 @@
+@import '@fontsource/inter';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -131,7 +133,7 @@
   }
 
   .py-section {
-    @apply py-sm md:py-[5rem] xl:py-xl;
+    @apply py-[1.875rem] md:py-[3.75rem] xl:py-[6.75rem];
   }
   .my-section {
     @apply my-sm md:my-[5rem] xl:my-xl;

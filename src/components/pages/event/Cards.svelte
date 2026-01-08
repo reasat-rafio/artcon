@@ -15,10 +15,12 @@
     $$props.class,
   )}>
   {#each items as { name, slug, tag, asset, _id, subtitle, startDate, endDate } (_id)}
+    {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
+    {@const cardHref = status === 'Upcoming' ? `/preview/event/${slug.current}` : `/event/${slug.current}`}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
-        href={`/event/${slug.current}`}
+        href={cardHref}
         class="flex flex-col gap-y-[1.25rem]"
         let:Asset
         let:Title
@@ -28,19 +30,24 @@
         <Container>
           <div>
             <Title class="inline">{name}</Title>
-       
-              <div class="flex justify-between">
-                <div class="font-optiberling-agency text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
-                   {subtitle || tag?.name}
-                </div>
-               <div class="flex-shrink-0">
-                 {#if startDate}
-                  <span class="font-optiberling-agency text-sonic-silver pr-1 whitespace-nowrap">
-                    {calculateStatusBetweenDates({ startDate, endDate }).date}
-                  </span>
-                {/if}
-               </div>
-              </div>
+            {#if subtitle}
+              <h4
+                class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
+                / {subtitle}
+              </h4>
+            {/if}
+          </div>
+          <div class="flex justify-between">
+            <div class="font-inter text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
+              {tag?.name}
+            </div>
+            <div class="flex-shrink-0">
+              {#if startDate}
+                <span class="font-inter text-sonic-silver pr-1 whitespace-nowrap">
+                  {calculateStatusBetweenDates({ startDate, endDate }).date}
+                </span>
+              {/if}
+            </div>
           </div>
         </Container>
       </Card>

@@ -12,8 +12,10 @@
 
   export let props: Omit<CommonHeroProps, '_key'>;
   export let currentSlug: string | undefined = undefined;
+  export let status: 'Ongoing' | 'Upcoming' | 'Ended' | undefined = undefined;
   $: ({ subtitle, title, topTitle, asset, cta } = props);
   $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
+  $: ctaButtonText = status === 'Upcoming' ? 'Upcoming' : (cta?.title || 'Explore');
 
   let innerWidth = 0;
   let titleEl: HTMLElement;
@@ -119,7 +121,7 @@
             variant="quaternary"
             className="cta-btn mx-auto translate-y-full opacity-0 min-w-[10.9375rem]"
             href={cta.href}>
-            {cta.title}
+            {ctaButtonText}
           </Cta>
         {:else}
           <span class="invisible">""</span>

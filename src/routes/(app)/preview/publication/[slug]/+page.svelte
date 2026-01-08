@@ -37,6 +37,7 @@
       publicationImage,
       publishedBy,
       isbn,
+      creditList,
       prices,
       stock,
       quote,
@@ -193,66 +194,68 @@
                 subtitle={subtitle ? subtitle : ''}
                 type={category.name}
                 let:Info>
-                {#if !!associationsList?.length}
+                <div class="space-y-[1.5825rem]">
                   <Info>
-                    <ul class="mb-[2.5rem] space-y-[0.5rem]">
-                      {#each associationsList as { key, value }}
-                        <li class="sub-title-light">
-                          <span>{key}</span>
-                          {' '}
-                          <span class="!font-normal">{value}</span>
-                        </li>
-                      {/each}
-                    </ul>
-                  </Info>
-                {/if}
-                <Info>
-                  <div class="sub-title-light">
-                    Published By {#each publishedBy as publisher, index}
-                      <span class="title-regular">
-                        {publisher}{#if index !== publishedBy.length - 1}
-                          {#if index === publishedBy.length - 2}
-                            {' '}
-                            <span class="sub-title-light">and</span>
-                          {:else}
-                            ,
-                          {/if}
-                        {/if}
-                        {' '}
-                      </span>
-                    {/each}
-                  </div>
-                  {#if !!isbn}
                     <div class="sub-title-light">
-                      ISBN {isbn}
+                      Published by {#each publishedBy as publisher, index}
+                        <span class="title-regular">
+                          {publisher}{#if index !== publishedBy.length - 1}
+                            {#if index === publishedBy.length - 2}
+                              {' '}
+                              <span class="sub-title-light">and</span>
+                            {:else}
+                              ,
+                            {/if}
+                          {/if}
+                          {' '}
+                        </span>
+                      {/each}
                     </div>
-                  {/if}
-                </Info>
-                <Info>
-                  <div class="sub-title-light">
-                    Price {#if !!prices?.discountPriceBDT}
-                      <span class="!font-normal text-[#9B9B9B] line-through">
-                        {prices.priceBDT}
-                      </span>
-                      <span class="font-medium">
-                        <span>{prices.discountPriceBDT} BDT</span>
-                        /
-                        <span>{prices.priceUSD} USD</span>
-                      </span>
-                    {:else}
-                      <span class="font-medium">
-                        <span>{prices.priceBDT} BDT</span>
-                        /
-                        <span>{prices.priceUSD} USD</span>
-                      </span>
+                    {#if !!isbn}
+                      <div class="sub-title-light">
+                        ISBN {isbn}
+                      </div>
                     {/if}
-                  </div>
+                  </Info>
+                  {#if !!creditList?.length}
+                    <Info>
+                      <ul class="mt-[1.5625rem] mb-[1.5625rem] space-y-[0.5rem]">
+                        {#each creditList as { key, value }}
+                          <li class="sub-title-light">
+                            <span>{key}</span>
+                            {' '}
+                            <span class="!font-normal">{value}</span>
+                          </li>
+                        {/each}
+                      </ul>
+                    </Info>
+                  {/if}
+                  <Info>
+                    <div class="sub-title-light">
+                      Price {#if !!prices?.discountPriceBDT}
+                        <span class="!font-normal text-[#9B9B9B] line-through">
+                          {prices.priceBDT}
+                        </span>
+                        <span class="font-medium">
+                          <span>{prices.discountPriceBDT} BDT</span>
+                          /
+                          <span>{prices.priceUSD} USD</span>
+                        </span>
+                      {:else}
+                        <span class="font-medium">
+                          <span>{prices.priceBDT} BDT</span>
+                          /
+                          <span>{prices.priceUSD} USD</span>
+                        </span>
+                      {/if}
+                    </div>
 
-                  <div class="title-light">
-                    <span class="sub-title-light">Stock</span>
-                    <span class="font-medium capitalize">{stock?.replace(/([A-Z])/g, ' $1').trim()}</span>
-                  </div>
-                </Info>
+                    <div class="title-light">
+                      <span class="sub-title-light">Stock</span>
+                      <span class="font-medium">{stock}</span>
+                    </div>
+                  </Info>
+                </div>
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
@@ -274,13 +277,27 @@
                 </div>
               {/if}
 
+              {#if !!associationsList?.length}
+                <div class="mb-[2.5rem]" data-load-animate="y">
+                  <ul class="space-y-[0.5rem]">
+                    {#each associationsList as { key, value }}
+                      <li class="sub-title-light">
+                        <span>{key}</span>
+                        {' '}
+                        <span class="!font-normal">{value}</span>
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+
               <div class="pt-[1.38rem]" data-load-animate="y">
                 <Cta
                   el="button"
                   className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
                   onClick={inquiryAction}
                   variant="tertiary">
-                  {stock?.toLowerCase().replace(/\s+/g, '') === 'available' ? 'Buy now' : 'Inquiry'}
+                  {stock === 'Available' ? 'Buy now' : 'Inquiry'}
                 </Cta>
               </div>
             </section>

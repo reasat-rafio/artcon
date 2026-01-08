@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { SliderProps, WithExtra } from '@/lib/types/landing.types';
   import SliderItemWrapper from './SliderItemWrapper.svelte';
+  import Cta from '@/components/ui/Cta.svelte';
 
   export let props: WithExtra<SliderProps>;
 
@@ -16,6 +17,7 @@
     type,
     tag,
     artistName,
+    exproleLink,
   } = props);
   $: href =
     _type === 'exhibition'

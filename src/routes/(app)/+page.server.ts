@@ -104,6 +104,7 @@ const query = groq`
                     "artistName" : artist->{...personalDocuments {...name {en}}},
                     tag->{name},
                     slug,
+                    exproleLink,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},

@@ -7,17 +7,25 @@ const keyValuePairs = {
   icon: FcInfo,
   fields: [
     {
-      name: 'logo',
-      type: 'image',
-      title: 'Logo (Optional)',
-      description: 'Logo for this association in circle size (like arrow in back button)',
-    },
-    {
       title: 'Role',
       name: 'key',
       type: 'string',
       description: 'example: Organised by',
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'logo',
+      type: 'image',
+      title: 'Logo (Optional)',
+      description: 'Logo for this association (fixed height, width adjusts automatically)',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
+        },
+      ],
     },
     {
       name: 'value',

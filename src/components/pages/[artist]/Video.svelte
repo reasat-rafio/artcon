@@ -37,7 +37,7 @@
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
     plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+      ? [Autoplay({ delay: 4000, stopOnInteraction: false, jump: false })]
       : []
   };
 

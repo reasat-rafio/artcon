@@ -25,7 +25,7 @@
         <Asset class="overflow-hidden rounded-[12px]" {asset} />
         <Container>
           <Title>{name}{#if subtitle} / <span class="head-8">{subtitle}</span>{/if}</Title>
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
+          <Subtitle class="font-inter text-sonic-silver">
             {tag.name}
           </Subtitle>
         </Container>
