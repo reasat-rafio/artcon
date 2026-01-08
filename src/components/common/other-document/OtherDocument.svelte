@@ -78,25 +78,15 @@
             }}>
             <div class="-ml-[1.563rem] flex">
             {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, documentationImages, invitationCardImage }}
-              {@const isUpcoming = calculateStatusBetweenDates({ startDate, endDate }).status === 'Upcoming'}
-              {@const displayImage = isUpcoming 
-                ? (urlPrefix === '/exhibition' ? invitationCardImage : documentationImages?.[0]) 
-                : null}
+              {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
+              {@const href = status === 'Upcoming' 
+                ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
+                : `${urlPrefix}/${slug.current}`}
               <a
-                href="{urlPrefix}/{slug.current}"
+                href={href}
                 class="flex-[0_0_100%] pl-[1.563rem] md:flex-[0_0_50%] xl:flex-[0_0_33.333%]">
                 <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  {#if displayImage}
-                    <SanityImage
-                      lqip
-                      class="h-full w-full object-contain"
-                      sizes="(min-width:1280px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt={displayImage.alt || 'Invitation Card'}
-                      src={displayImage}
-                      imageUrlBuilder={imageBuilder} />
-                  {:else}
-                    <Asset {asset} />
-                  {/if}
+                  <Asset {asset} />
                 </div>
 
                 <div class="space-y-[0.625rem]">
@@ -127,23 +117,13 @@
         {:else}
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.563rem]">
             {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, documentationImages, invitationCardImage }}
-              {@const isUpcoming = calculateStatusBetweenDates({ startDate, endDate }).status === 'Upcoming'}
-              {@const displayImage = isUpcoming 
-                ? (urlPrefix === '/exhibition' ? invitationCardImage : documentationImages?.[0]) 
-                : null}
-              <a href="{urlPrefix}/{slug.current}">
+              {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
+              {@const href = status === 'Upcoming' 
+                ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
+                : `${urlPrefix}/${slug.current}`}
+              <a href={href}>
                 <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  {#if displayImage}
-                    <SanityImage
-                      lqip
-                      class="h-full w-full object-contain"
-                      sizes="(min-width:1280px) 33vw, (min-width:768px) 50vw, 100vw"
-                      alt={displayImage.alt || 'Invitation Card'}
-                      src={displayImage}
-                      imageUrlBuilder={imageBuilder} />
-                  {:else}
-                    <Asset {asset} />
-                  {/if}
+                  <Asset {asset} />
                 </div>
 
                 <div class="space-y-[0.625rem]">
