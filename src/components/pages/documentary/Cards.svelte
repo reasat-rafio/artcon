@@ -39,11 +39,11 @@
             <Title class="inline">{name}</Title>
           </div>
           <div class="flex justify-between">
-            <Subtitle class="font-optiberling-agency text-sonic-silver">
+            <Subtitle class="font-inter text-sonic-silver">
               {type.name} / <span class="font-bold">{category.name}</span>
             </Subtitle>
             {#if duration}
-              <span class="font-optiberling-agency text-sonic-silver pr-1">
+              <span class="font-inter text-sonic-silver pr-1">
                 {duration}
               </span>
             {/if}

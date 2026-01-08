@@ -53,7 +53,7 @@
                 </figure>
               {/if}
               {#if item.summary?.text}
-                <p class="text-sm">{item.summary.text}</p>
+                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px]">{item.summary.text}</p>
               {/if}
             </svelte:fragment>
           </DescriptionBlock>

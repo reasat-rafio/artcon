@@ -188,7 +188,7 @@
                 let:Info>
                 {#if !!associationsList?.length}
                   <Info>
-                    <ul class="mb-[2.5rem] space-y-[0.5rem]">
+                    <ul class="space-y-[0.5rem]">
                       {#each associationsList as { key, value }}
                         <li class="sub-title-light">
                           <span>{key}</span>
@@ -200,7 +200,7 @@
                   </Info>
                 {/if}
                 <Info>
-                  <div class="title-light">
+                  <div class="mt-[1.875rem] title-light">
                     <span class="sub-title-light">Stock</span>
                     <span class="font-medium">{stock}</span>
                   </div>

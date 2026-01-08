@@ -31,7 +31,7 @@
             / {gallery.name}
           </h4>
 
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
+          <Subtitle class="font-inter text-sonic-silver">
             {category.name}
           </Subtitle>
         </Container>

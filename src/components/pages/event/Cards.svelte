@@ -38,7 +38,7 @@
             {/if}
           </div>
           <div class="flex justify-between">
-            <div class="font-inter text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
+            <div class="font-inter font-medium text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
               {tag?.name}
             </div>
             <div class="flex-shrink-0">

@@ -9,8 +9,11 @@
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionPreviewProps } from '@/lib/types/exhibition-preview';
+  import lightboxStore from '@/store/lightbox';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
 
@@ -109,6 +112,20 @@
       }
     }
   });
+
+  function openInvitationCardPopup() {
+    if (invitationCard?.fullInvitationCardImage) {
+      lightboxStore.setLightboxVisibility(true);
+      lightboxStore.setActiveIndex(0);
+      lightboxStore.setHideThumbnails(true);
+      lightboxStore.setAllImages([
+        {
+          ...invitationCard.fullInvitationCardImage,
+          caption: name,
+        },
+      ]);
+    }
+  }
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -162,6 +179,11 @@
                   {gallery.name}
                 </div>
               {/if}
+              {#if gallery.location && !gallery.location.startsWith('http')}
+                <div class="title-light !font-inter !mt-1">
+                  {gallery.location}
+                </div>
+              {/if}
               <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
                 <span class="px-[3px] text-eerie-black/50">|</span>
@@ -170,51 +192,36 @@
             </Info>
           </Header>
 
-          {#if status === 'Upcoming'}
-            <!-- Upcoming Exhibition Layout: Description Left, Invitation Card/Thumbnail Right -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
-              <!-- Left: Description -->
-              {#if !!description?.length}
-                <div data-load-animate="y" class="order-2 lg:order-1">
-                  <PortableText
-                    class="body-light-m lg:body-light text-dark-gunmetal"
-                    value={description} />
-                </div>
-              {/if}
-              
-              <!-- Right: Invitation Card or Thumbnail -->
-              <div
-                data-load-animate="y"
-                class="relative overflow-hidden rounded-[25px] order-1 lg:order-2"
-                style="width: 365px; height: 553px;">
-                {#if invitationCard?.invitationCardImage}
-                  <img
-                    src={invitationCard.invitationCardImage.url}
-                    alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
-                    class="w-full h-full object-cover" />
-                {:else}
-                  <Asset {asset} />
-                {/if}
-              </div>
-            </div>
-          {:else}
-            <!-- Regular Layout: Thumbnail and Description Stacked -->
-            <div
-              data-load-animate="y"
-              class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
-              <a href={`/exhibition/${slug.current}`} class="cursor-pointer block h-full w-full">
-                <Asset {asset} />
-              </a>
-            </div>
-
+          <!-- Two Column Layout: Description Left, Image Right -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
+            <!-- Left: Description -->
             {#if !!description?.length}
-              <div data-load-animate="y">
+              <div data-load-animate="y" class="order-2 lg:order-1">
                 <PortableText
                   class="body-light-m lg:body-light text-dark-gunmetal"
                   value={description} />
               </div>
             {/if}
-          {/if}
+
+            <!-- Right: Invitation Card Image or Publication Image -->
+            <div data-load-animate="y" class="order-1 lg:order-2 flex justify-center lg:justify-start">
+              {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
+                <button class="cursor-pointer hover:opacity-90 transition-opacity" on:click={openInvitationCardPopup}>
+                  <img
+                    src={invitationCard.invitationCardImage.url}
+                    alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
+                    class="object-contain w-full h-auto" />
+                </button>
+              {:else if data.page.publication?.publicationImage}
+                <SanityImage
+                  class="object-contain w-full h-auto"
+                  imageUrlBuilder={imageBuilder}
+                  src={data.page.publication.publicationImage}
+                  alt={data.page.publication.publicationImage.alt}
+                  sizes="100vw" />
+              {/if}
+            </div>
+          </div>
         </div>
       {/key}
     </section>

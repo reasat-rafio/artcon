@@ -1,5 +1,6 @@
 import type { Asset, Cta, SeoProps } from './common.types';
 import type { PortableTextBlock, Slug } from 'sanity';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface ExhibitionPreviewProps {
   _id: string;
@@ -17,16 +18,15 @@ export interface ExhibitionPreviewProps {
   sliderImageVideo: Asset;
   asset: Asset;
   exhibitionType: string | { en: string };
+  publication?: {
+    publicationImage?: SanityImageAssetDocument;
+  };
   invitationCard?: {
     invitationCardImage?: {
       url: string;
       alt?: string;
       caption?: string;
     };
-    fullInvitationCardImage?: {
-      url: string;
-      alt?: string;
-      caption?: string;
-    };
+    fullInvitationCardImage?: SanityImageAssetDocument;
   };
 }
