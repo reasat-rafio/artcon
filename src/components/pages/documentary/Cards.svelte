@@ -40,7 +40,7 @@
           </div>
           <div class="flex justify-between">
             <Subtitle class="font-inter text-sonic-silver">
-              {type.name} / <span class="font-bold">{category.name}</span>
+              {type.name} / {category.name}
             </Subtitle>
             {#if duration}
               <span class="font-inter text-sonic-silver pr-1">

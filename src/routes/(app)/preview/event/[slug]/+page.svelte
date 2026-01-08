@@ -156,25 +156,17 @@
             </Info>
           </Header>
 
-          <!-- Event Preview Layout: Description Left, Thumbnail Right (for all statuses) -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start mt-[1.5rem] lg:mt-0">
-            <!-- Left: Description -->
-            {#if !!description?.length}
-              <div data-load-animate="y" class="order-2 lg:order-1">
-                <PortableText
-                  class="body-light-m lg:body-light text-dark-gunmetal"
-                  value={description} />
-              </div>
-            {/if}
-            
-            <!-- Right: Thumbnail -->
-            <div
-              data-load-animate="y"
-              class="relative overflow-hidden rounded-[25px] order-1 lg:order-2 flex justify-center lg:justify-start"
-              style="width: 365px; height: 553px;">
-              <Asset {asset} />
-            </div>
+          <div data-load-animate="y" class="mb-[2.5rem] w-full rounded-[25px] overflow-hidden relative aspect-video">
+            <Asset {asset} />
           </div>
+
+          {#if !!description?.length}
+            <div data-load-animate="y">
+              <PortableText
+                class="body-light-m lg:body-light text-dark-gunmetal"
+                value={description} />
+            </div>
+          {/if}
         </div>
       {/key}
     </section>

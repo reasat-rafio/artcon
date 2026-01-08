@@ -200,7 +200,7 @@
                   </Info>
                 {/if}
                 <Info>
-                  <div class="mt-[1.875rem] title-light">
+                  <div class="mt-[0.27rem] title-light">
                     <span class="sub-title-light">Stock</span>
                     <span class="font-medium">{stock}</span>
                   </div>

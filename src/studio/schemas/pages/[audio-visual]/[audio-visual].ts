@@ -107,8 +107,8 @@ const audioVisual = {
       title: 'name',
       media: 'coverImage',
       year: 'year',
-      type: 'type.title',
-      category: 'category.title',
+      type: 'type.name',
+      category: 'category.name',
     },
     prepare: ({
       title,
