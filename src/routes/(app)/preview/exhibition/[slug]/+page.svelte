@@ -192,9 +192,7 @@
             </Info>
           </Header>
 
-          <!-- Two Column Layout: Description Left, Image Right -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
-            <!-- Left: Description -->
             {#if !!description?.length}
               <div data-load-animate="y" class="order-2 lg:order-1">
                 <PortableText
@@ -203,14 +201,15 @@
               </div>
             {/if}
 
-            <!-- Right: Invitation Card Image or Publication Image -->
-            <div data-load-animate="y" class="order-1 lg:order-2 flex justify-center lg:justify-start">
+            <div data-load-animate="y" class="order-1 lg:order-2 flex justify-center lg:justify-start w-full">
               {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
-                <button class="cursor-pointer hover:opacity-90 transition-opacity" on:click={openInvitationCardPopup}>
-                  <img
-                    src={invitationCard.invitationCardImage.url}
+                <button class="cursor-pointer hover:opacity-90 transition-opacity w-full max-w-full" on:click={openInvitationCardPopup}>
+                  <SanityImage
+                    class="object-contain w-full h-auto"
+                    imageUrlBuilder={imageBuilder}
+                    src={invitationCard.invitationCardImage}
                     alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
-                    class="object-contain w-full h-auto" />
+                    sizes="100vw" />
                 </button>
               {:else if data.page.publication?.publicationImage}
                 <SanityImage

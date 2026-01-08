@@ -37,11 +37,7 @@ const query = (params: Partial<Record<string, string>>) =>
       ${asset('publicationImage')}
     },
     "invitationCard": sections[_type == "exhibition.publication"][0]{
-      "invitationCardImage": invitationCardImage{
-        "url": asset->url,
-        "alt": alt,
-        "caption": caption
-      },
+      ${asset('invitationCardImage')},
       ${asset('fullInvitationCardImage')}
     },
     "exhibitionType": select(

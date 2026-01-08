@@ -22,11 +22,7 @@ export interface ExhibitionPreviewProps {
     publicationImage?: SanityImageAssetDocument;
   };
   invitationCard?: {
-    invitationCardImage?: {
-      url: string;
-      alt?: string;
-      caption?: string;
-    };
+    invitationCardImage?: SanityImageAssetDocument;
     fullInvitationCardImage?: SanityImageAssetDocument;
   };
 }
