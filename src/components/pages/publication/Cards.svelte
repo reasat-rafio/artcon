@@ -32,10 +32,10 @@
           <div>
             <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
           </div>
-          <div class="font-inter text-sonic-silver text-[14px] font-[400]">
+          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
             Book
           </div>
-          <span class="font-inter text-sonic-silver text-[14px] font-[400]">
+          <span class="font-inter text-sonic-silver text-[14px] font-[300]">
             {#if !!discountPriceBDT}
               <span class="text-sonic-silver line-through">
                 {priceBDT}

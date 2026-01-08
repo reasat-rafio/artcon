@@ -43,7 +43,7 @@
 
         <Container class="text-center">
           <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
-          <div class="font-inter text-sonic-silver text-[14px] font-[400]">
+          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
             <span>{category?.name ?? ''}</span>
           </div>
         </Container>
