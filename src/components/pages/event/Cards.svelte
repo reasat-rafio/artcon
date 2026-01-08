@@ -38,12 +38,12 @@
             {/if}
           </div>
           <div class="flex justify-between">
-            <div class="font-inter font-medium text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2">
+            <div class="font-inter text-sonic-silver break-words overflow-wrap-anywhere flex-1 pr-2 text-[14px] font-[400]">
               {tag?.name}
             </div>
             <div class="flex-shrink-0">
               {#if startDate}
-                <span class="font-inter text-sonic-silver pr-1 whitespace-nowrap">
+                <span class="font-inter text-sonic-silver pr-1 whitespace-nowrap text-[14px] font-[400]">
                   {calculateStatusBetweenDates({ startDate, endDate }).date}
                 </span>
               {/if}

@@ -31,7 +31,7 @@
 
     let ctx = gsap.context(() => {
       gsap.to(firstImageEl, {
-        y: -sectionHeight,
+        y: -sectionHeight/1.12,
         scrollTrigger: {
           invalidateOnRefresh: true,
           scrub: 2,

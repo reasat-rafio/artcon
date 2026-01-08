@@ -49,11 +49,11 @@
             </h4>
           </div>
           <div class="flex justify-between">
-            <Subtitle class="font-inter text-sonic-silver">
+            <div class="font-inter text-sonic-silver text-[14px] font-[400]">
               {tag.name}
-            </Subtitle>
+            </div>
             {#if startDate}
-              <span class="font-inter text-sonic-silver pr-1">
+              <span class="font-inter text-sonic-silver pr-1 text-[14px] font-[400]">
                 {calculateStatusBetweenDates({ startDate, endDate }).date}
               </span>
             {/if}

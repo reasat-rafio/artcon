@@ -31,9 +31,9 @@
             / {gallery.name}
           </h4>
 
-          <Subtitle class="font-inter text-sonic-silver">
+          <div class="font-inter text-sonic-silver text-[14px] font-[400]">
             {category.name}
-          </Subtitle>
+          </div>
         </Container>
       </Card>
     </div>
