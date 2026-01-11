@@ -177,7 +177,7 @@
                   {gallery.name}
                 {/if}
                 {#if gallery.location && !gallery.location.startsWith('http')}
-                  <span> , </span>
+                  <span>, </span>
                   {gallery.location}
                 {/if}
               </div>
