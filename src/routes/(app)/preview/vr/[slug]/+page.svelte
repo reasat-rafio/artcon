@@ -171,7 +171,7 @@
                   {gallery.name}
                 {/if}
                 {#if gallery?.location}
-                  <span>,&nbsp;</span>
+                  <span> , </span>
                   {gallery.location}
                 {/if}
               </div>

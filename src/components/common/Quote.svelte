@@ -17,11 +17,13 @@
       <p class="inline">"{text}"</p>
     </blockquote>
     {#if !!author}
-      {#if url}
-        <a href={url} target="_blank" rel="noopener noreferrer" class="inline cursor-pointer italic hover:underline" style="font-size: {authorSize}">– {author}</a>
-      {:else}
-        <p class="inline italic" style="font-size: {authorSize}">– {author}</p>
-      {/if}
+      <div class="block mt-[0.2em]" style="font-size: {authorSize}">
+        {#if url}
+          <a href={url} target="_blank" rel="noopener noreferrer" class="inline cursor-pointer italic hover:underline">– {author}</a>
+        {:else}
+          <p class="inline italic">– {author}</p>
+        {/if}
+      </div>
     {/if}
   </div>
 </section>

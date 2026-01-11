@@ -15,7 +15,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3 ',
     $$props.class,
   )}>
-  {#each items as { name, subtitle, slug, _id, prices: { priceBDT, discountPriceBDT }, publicationImage } (_id)}
+  {#each items as { name, subtitle, slug, _id, category, prices: { priceBDT, discountPriceBDT }, publicationImage } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -27,24 +27,29 @@
         let:Subtitle
         on:mouseenter={() => (hoveredId = _id)}
         on:mouseleave={() => (hoveredId = null)}>
-        <Image variant="fit" image={publicationImage} class="!rounded-none" />
-        <Container class="flex flex-col items-center text-center gap-y-1">
-          <div>
-            <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
+        <Image variant="fit" image={publicationImage} class="!rounded-none w-full" />
+        <Container class="flex flex-col gap-y-3">
+          <Title 
+            class="text-left truncate" 
+            title={`${name} / ${subtitle}`}
+          >
+            {name} / <span class="head-8">{subtitle}</span>
+          </Title>
+          <div class="flex items-center justify-between">
+            <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+              {category?.name || 'Book'}
+            </div>
+            <div class="flex items-center gap-x-2 font-inter text-[14px]">
+              {#if !!discountPriceBDT}
+                <span class="text-sonic-silver line-through text-[12px]">
+                  {priceBDT}
+                </span>
+                <span class="font-medium max-w-[500px]">{discountPriceBDT} BDT</span>
+              {:else}
+                <span class="font-medium max-w-[500px]">{priceBDT} BDT</span>
+              {/if}
+            </div>
           </div>
-          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
-            Book
-          </div>
-          <span class="font-inter text-sonic-silver text-[14px] font-[300]">
-            {#if !!discountPriceBDT}
-              <span class="text-sonic-silver line-through">
-                {priceBDT}
-              </span>
-              <span>{discountPriceBDT} BDT</span>
-            {:else}
-              <span>{priceBDT} BDT</span>
-            {/if}
-          </span>
         </Container>
       </Card>
     </div>
