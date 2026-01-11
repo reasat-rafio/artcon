@@ -1,5 +1,5 @@
 import type { Slug } from 'sanity';
-import type { CommonImageAsset, SeoProps, Tag } from './common.types';
+import type { CommonImageAsset, SeoProps, Tag, Asset } from './common.types';
 import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface PublicationPageProps {
@@ -17,6 +17,8 @@ export interface Publication {
   subtitle: string;
   slug: Slug;
   publicationImage: SanityImageAssetDocument;
+  thumbnail?: SanityImageAssetDocument;
+  heroImageVideo: Asset;
   category: Tag;
   prices: {
     priceBDT: number;
@@ -35,5 +37,5 @@ export interface HighlightedPublication {
   subtitle: string;
   slug: Slug;
   category: Tag;
-  coverImage: SanityImageAssetDocument;
+  heroImageVideo: Asset;
 }

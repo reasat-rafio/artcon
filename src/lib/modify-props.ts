@@ -39,11 +39,11 @@ export const formatPublicationListingProps = (
   props: PublicationListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedPublication.map(
-    ({ coverImage, name, subtitle, slug, category }) => {
+    ({ heroImageVideo, name, subtitle, slug, category }) => {
       return {
         _type: 'common.hero',
         _key: '',
-        asset: { image: coverImage },
+        asset: heroImageVideo,
         title: name,
         subtitle: subtitle,
         topTitle: category.name,

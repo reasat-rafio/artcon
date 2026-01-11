@@ -89,7 +89,16 @@ const publication = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'coverImage',
+      name: 'heroImageVideo',
+      title: 'Hero Image / Video',
+      description: 'This image or video will be displayed on the publication hero carousel',
+      type: 'sliderImageVideo',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'thumbnail',
+      title: 'Thumbnail (for listing card)',
+      description: 'This image will be displayed on the publication listing page card',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
@@ -97,7 +106,6 @@ const publication = {
         {
           name: 'alt',
           title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
