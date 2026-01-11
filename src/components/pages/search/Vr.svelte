@@ -32,7 +32,7 @@
   {scrollPrev}
   {carouselCanScrollNext}
   {carouselCanScrollPrev}
-  title="Our virtual reality"
+  title="Our Virtual Reality"
   showNav={chunks.length > 1}>
   <div
     class="!w-full overflow-hidden"

@@ -151,7 +151,7 @@
           <NavigationMobile
             cta={{ href: url, title: 'Explore', newTab: true }} />
           <Header
-            topic="Our virtual reality"
+            topic="Our Virtual Reality"
             title={name}
             subtitle={subtitle ?? ''}
             type={category.name}

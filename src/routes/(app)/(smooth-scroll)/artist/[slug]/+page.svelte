@@ -56,7 +56,7 @@
       cta: siteDocuments?.cta,
       subtitle: siteDocuments?.subtitle,
     }} />
-  <Share href="/artist" {logoDark} {logoLight}>Our artist</Share>
+  <Share href="/artist" {logoDark} {logoLight}>Our Artist</Share>
   <div class="relative z-10 bg-white">
   {#if !!siteDocuments?.sections?.length}
     {#each siteDocuments.sections as s}

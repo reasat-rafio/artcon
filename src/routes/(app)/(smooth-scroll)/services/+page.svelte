@@ -61,7 +61,7 @@
   {/if}
 {/each}
 
-<Share href="/" {logoLight} {logoDark}>Our services</Share>
+<Share href="/" {logoLight} {logoDark}>Our Services</Share>
 
 <div class="relative z-10 bg-white">
   {#if !!page?.allServices?.summary?.quote}
@@ -69,7 +69,7 @@
       props={{
         ...page.allServices.summary,
         descriptionBlock: {
-          gallery: { name: 'Our services', location: '', url: '' },
+          gallery: { name: 'Our Services', location: '', url: '' },
           date: '',
           description: page.allServices.summary.description || [],
           associationsList: [],

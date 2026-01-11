@@ -73,7 +73,7 @@
       topTitle: _topTitle,
       subtitle: _subTitle,
     }} />
-  <Share href="/exhibition" {logoLight} {logoDark}>Our exhibition</Share>
+  <Share href="/exhibition" {logoLight} {logoDark}>Our Exhibition</Share>
   <div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}

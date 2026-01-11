@@ -189,7 +189,7 @@
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
             <section class="w-full lg:max-w-[457px]">
               <Header
-                topic="Our publication"
+                topic="Our Publication"
                 title={name}
                 subtitle={subtitle ? subtitle : ''}
                 type={category.name}

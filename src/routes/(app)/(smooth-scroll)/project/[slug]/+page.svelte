@@ -62,7 +62,7 @@
       subtitle: subtitle ?? tag.name,
     }} />
 
-  <Share href="/project" {logoLight} {logoDark}>Our projects</Share>
+  <Share href="/project" {logoLight} {logoDark}>Our Projects</Share>
   <div class="relative z-10 bg-white">
   {#each sections as s}
     {#if s._type === 'common.imageAsset'}

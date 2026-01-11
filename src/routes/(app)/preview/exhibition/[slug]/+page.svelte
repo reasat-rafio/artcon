@@ -154,7 +154,7 @@
 
           <Header
             let:Info
-            topic="Our exhibition"
+            topic="Our Exhibition"
             title={name}
             subtitle={!!subtitle
               ? subtitle
