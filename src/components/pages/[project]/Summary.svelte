@@ -55,7 +55,7 @@
                   {key}
                 </C.Subtitle>
                 {#if logo}
-                  <div class="mb-2 flex items-center">
+                  <div class="flex items-center py-[6px]">
                     <img 
                       src={imageBuilder.image(logo).height(50).url()}
                       alt={logo.alt || key} 
