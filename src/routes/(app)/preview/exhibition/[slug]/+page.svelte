@@ -168,22 +168,19 @@
                 : 'Group Exhibition'}>
             <Info>
               {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
-              {#if galleryUrl}
-                <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
-                  <div class="title-light">
+              <div class="title-light !font-inter">
+                {#if galleryUrl}
+                  <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
                     {gallery.name}
-                  </div>
-                </a>
-              {:else}
-                <div class="title-light">
+                  </a>
+                {:else}
                   {gallery.name}
-                </div>
-              {/if}
-              {#if gallery.location && !gallery.location.startsWith('http')}
-                <div class="title-light !font-inter !mt-1">
+                {/if}
+                {#if gallery.location && !gallery.location.startsWith('http')}
+                  <span>,&nbsp;</span>
                   {gallery.location}
-                </div>
-              {/if}
+                {/if}
+              </div>
               <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
                 <span class="px-[3px] text-eerie-black/50">|</span>

@@ -147,6 +147,10 @@
                 {:else}
                   {gallery.name}
                 {/if}
+                {#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}
+                  <span>,&nbsp;</span>
+                  {gallery.location}
+                {/if}
               </div>
               <div class="sub-title-light mt-1">
                 <span class="font-light">{date}</span>
