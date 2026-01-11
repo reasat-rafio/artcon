@@ -5,6 +5,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import breakpoint from '@/store/breakpoint';
   import type { SanityImageAssetDocument } from '@sanity/client';
 
   type Image = {
@@ -14,6 +15,7 @@
     triggerPopup?: boolean;
   };
   export let images: [Image, Image];
+  export let disableParallaxOnDesktop = false;
   // export let disableHoverEffect = false;
   $: [firstImage, secondImage] = images;
 
@@ -30,16 +32,19 @@
     const sectionWidth = rootEl.getBoundingClientRect().width;
 
     let ctx = gsap.context(() => {
-      gsap.to(firstImageEl, {
-        y: -sectionHeight/1.12,
-        scrollTrigger: {
-          invalidateOnRefresh: true,
-          scrub: 2,
-          start: 'center bottom',
-          end: 'top top',
-          trigger: rootEl,
-        },
-      });
+      // Only apply desktop parallax if not disabled
+      if (!disableParallaxOnDesktop) {
+        gsap.to(firstImageEl, {
+          y: -sectionHeight/1.12,
+          scrollTrigger: {
+            invalidateOnRefresh: true,
+            scrub: 2,
+            start: 'center bottom',
+            end: 'top top',
+            trigger: rootEl,
+          },
+        });
+      }
 
       gsap.from(firstImageMobileEl, {
         x: -sectionWidth,
@@ -63,7 +68,7 @@
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-end">
+    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-start">
     <div class="hidden cursor-default sm:block">
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <figure

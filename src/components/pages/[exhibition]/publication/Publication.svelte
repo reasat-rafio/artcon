@@ -47,6 +47,7 @@
       on:triggerPopup={triggerPopup}
       class="mb-section"
       disableHoverEffect={true}
+      disableParallaxOnDesktop={true}
       images={[
         {
           img: invitationCardImage,
