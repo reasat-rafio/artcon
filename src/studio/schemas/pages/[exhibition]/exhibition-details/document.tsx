@@ -195,7 +195,8 @@ const exhibition = {
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
-      artists: 'artists',
+      subtitle: 'subtitle',
+      type: 'type.name',
       gallery: 'gallery.title',
       exhibitionType: 'exhibitionType',
     },
@@ -204,21 +205,32 @@ const exhibition = {
       image,
       webm,
       hevc,
-      artists,
+      subtitle,
+      type,
       startDate,
       endDate,
       gallery,
       exhibitionType,
-    }: PrepareProps & { gallery: string; exhibitionType?: 'solo' | 'group' }) => {
+    }: PrepareProps & { gallery: string; subtitle?: string; type?: string; exhibitionType?: 'solo' | 'group' }) => {
       // Determine exhibition type label based on exhibitionType field
       const exhibitionTypeLabel =
         exhibitionType === 'solo'
-          ? artists?.[0]?.name || 'Solo Exhibition'
+          ? 'Solo Exhibition'
           : exhibitionType === 'group'
             ? 'Group Exhibition'
-            : artists?.length === 1
-              ? artists[0]?.name || 'Solo Exhibition'
-              : 'Group Exhibition';
+            : 'Exhibition';
+
+      // Determine the subtitle to show - prioritize the Subtitle field
+      let displaySubtitle = subtitle || '';
+      if (!displaySubtitle) {
+        if (exhibitionType === 'group') {
+          displaySubtitle = 'Group Exhibition';
+        } else if (exhibitionType === 'solo') {
+          displaySubtitle = type || 'Solo Exhibition';
+        } else {
+          displaySubtitle = type || 'Exhibition';
+        }
+      }
 
       // Format dates: if same date, show only start date
       const isSameDate =
@@ -229,7 +241,7 @@ const exhibition = {
 
       return {
         title: `${title} | ${exhibitionTypeLabel}`,
-        subtitle: `${gallery || 'Venue TBA'} | ${dateRange}`,
+        subtitle: `${displaySubtitle} | ${gallery || 'Venue TBA'} | ${dateRange}`,
         media: image ? (
           image
         ) : webm && hevc ? (
