@@ -88,19 +88,19 @@
             on:click={() => openImagePopup(index)}
             on:keydown={(e) => e.key === 'Enter' && openImagePopup(index)}
             class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] cursor-pointer md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
-            <figure class="overflow-hidden rounded-[0.75rem]">
+            <figure class="overflow-hidden rounded-[0.75rem] group">
               <SanityImage
-                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 hover:scale-105"
+                class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 group-hover:scale-110"
                 src={artwork.image}
                 sizes="(min-width: 1024px) 15vw, 100vw"
                 alt="Artwork by {name}"
                 imageUrlBuilder={imageBuilder} />
             </figure>
-            {#if artwork.description}
+            {#if artwork.title}
               <div
                 class="pl-[0.63rem] pt-[0.63rem] md:absolute md:bottom-[1.34rem] md:left-[1.57rem]">
                 <div class="title-regular !font-inter font-normal">
-                  <PortableText value={artwork.description} />
+                  {artwork.title}
                 </div>
               </div>
             {/if}

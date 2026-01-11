@@ -43,7 +43,7 @@
     <div style="transform: scale({$scale});">
       <figure class="group relative overflow-hidden rounded-[25px]">
         <SanityImage
-          class="h-full w-full rounded-[25px] object-cover transition-transform duration-300 hover:scale-105"
+          class="h-full w-full rounded-[25px] object-cover"
           sizes="(min-width:1024px) 60vw, 100vw"
           src={artwork}
           imageUrlBuilder={imageBuilder}
@@ -54,7 +54,7 @@
             class="flex flex-col flex-wrap gap-y-[1px] text-[0.875rem] font-light">
             <li class="leading-none">{information.media}</li>
             <li>{information.size}</li>
-            <li>{information.artDate.creationDetails}</li>
+            <li>{information.artDate?.creationDetails}</li>
             <li>{information.frame}</li>
             {#if !!information?.moreInformation?.length}
               {#each information.moreInformation as info}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { toPlainText } from '@portabletext/svelte';
+// import { toPlainText } from '@portabletext/svelte';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { BsFillPostageFill } from 'react-icons/bs';
 import type { DefaultPreviewProps, Rule } from 'sanity';
@@ -83,10 +83,51 @@ const publication = {
       options: {
         list: [
           { title: 'Available', value: 'Available' },
+          { title: 'Not Available', value: 'Not Available' },
           { title: 'Out of Stock', value: 'Out of Stock' },
+          { title: 'Online', value: 'Online' },
         ],
       },
       validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'externalLinkButton',
+      title: 'External Linked Button',
+      description: 'This button will be shown when stock is set to "Online". It will replace the Buy Now/Inquiry button.',
+      type: 'object',
+      hidden: ({ parent }: any) => parent?.stock !== 'Online',
+      fields: [
+        {
+          name: 'buttonText',
+          title: 'Button Text',
+          type: 'string',
+          validation: (Rule: Rule) =>
+            Rule.custom((buttonText: string | undefined, context: any) => {
+              const stock = (context.document as any)?.stock;
+              if (stock === 'Online' && !buttonText) {
+                return 'Button text is required when stock is set to Online';
+              }
+              return true;
+            }),
+        },
+        {
+          name: 'externalUrl',
+          title: 'External URL',
+          description: 'The external URL where the button will redirect (must start with https:// or http://)',
+          type: 'url',
+          validation: (Rule: Rule) =>
+            Rule.custom((externalUrl: string | undefined, context: any) => {
+              const stock = (context.document as any)?.stock;
+              if (stock === 'Online' && !externalUrl) {
+                return 'External URL is required when stock is set to Online';
+              }
+              if (externalUrl && !externalUrl.match(/^https?:\/\/.+/)) {
+                return 'URL must start with https:// or http://';
+              }
+              return true;
+            }),
+        },
+      ],
     },
     {
       name: 'heroImageVideo',

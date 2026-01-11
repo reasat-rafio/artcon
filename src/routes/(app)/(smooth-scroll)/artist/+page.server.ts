@@ -40,6 +40,7 @@ const query = groq`
             "customArtworks": siteDocuments.sections[_type == "common.artwork"][0].artworks[0...4]{
                 _key,
                 _type,
+                title,
                 ${asset('image')},
                 description
             }

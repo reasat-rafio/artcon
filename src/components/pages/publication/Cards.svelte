@@ -44,9 +44,9 @@
                 <span class="text-sonic-silver line-through text-[14px]">
                   {priceBDT}
                 </span>
-                <span class="font-[400]">{discountPriceBDT} BDT</span>
+                <span class="font-[500]">{discountPriceBDT} BDT</span>
               {:else}
-                <span class="font-[400]">{priceBDT} BDT</span>
+                <span class="font-[500]">{priceBDT} BDT</span>
               {/if}
             </div>
           </div>

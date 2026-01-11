@@ -40,6 +40,7 @@
       creditList,
       prices,
       stock,
+      externalLinkButton,
       quote,
     },
     site: { logos },
@@ -250,10 +251,12 @@
                       {/if}
                     </div>
 
-                    <div class="title-light">
-                      <span class="sub-title-light">Stock</span>
-                      <span class="font-medium">{stock}</span>
-                    </div>
+                    {#if stock !== 'Not Available'}
+                      <div class="title-light">
+                        <span class="sub-title-light">Stock</span>
+                        <span class="font-medium">{stock === 'Online' ? 'Available' : stock}</span>
+                      </div>
+                    {/if}
                   </Info>
                 </div>
               </Header>
@@ -292,13 +295,25 @@
               {/if}
 
               <div class="pt-[1.38rem]" data-load-animate="y">
-                <Cta
-                  el="button"
-                  className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                  onClick={inquiryAction}
-                  variant="tertiary">
-                  {stock === 'Available' ? 'Buy now' : 'Inquiry'}
-                </Cta>
+                {#if stock === 'Online' && externalLinkButton?.externalUrl}
+                  <Cta
+                    el="a"
+                    href={externalLinkButton.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                    variant="tertiary">
+                    {externalLinkButton.buttonText || 'View Online'}
+                  </Cta>
+                {:else}
+                  <Cta
+                    el="button"
+                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                    onClick={inquiryAction}
+                    variant="tertiary">
+                    {stock === 'Available' ? 'Buy now' : 'Inquiry'}
+                  </Cta>
+                {/if}
               </div>
             </section>
 
