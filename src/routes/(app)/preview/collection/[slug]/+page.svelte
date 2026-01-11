@@ -253,7 +253,7 @@
               </button>
               {#if !!quote}
                 <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
-                  <Quote {quote} class="!translate-y-0" />
+                  <Quote {quote} authorSize="24px" class="!translate-y-0" />
                 </div>
               {/if}
             </section>
