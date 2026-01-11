@@ -110,8 +110,8 @@
         <span class="invisible">""</span>
       {/if}
 
-      <div class="overflow-hidden !leading-[100%]">
-        <h1 bind:this={titleEl} class="head-1 !leading-none max-lg:line-clamp-2">
+      <div class="overflow-visible !leading-[100%]">
+        <h1 bind:this={titleEl} class="head-1 !leading-tight max-lg:line-clamp-2">
           {title}
         </h1>
       </div>
