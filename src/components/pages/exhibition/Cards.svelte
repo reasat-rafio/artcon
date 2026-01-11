@@ -49,7 +49,7 @@
             </h4>
           </div>
           <div class="flex justify-between">
-            <div class="font-inter text-sonic-silver text-[14px] font-[400]">
+            <div class="font-inter text-sonic-silver text-[14px] font-[300]">
               {tag.name}
             </div>
             {#if startDate}

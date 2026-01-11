@@ -41,12 +41,12 @@
             </div>
             <div class="flex items-center gap-x-2 font-inter text-[14px]">
               {#if !!discountPriceBDT}
-                <span class="text-sonic-silver line-through text-[12px]">
+                <span class="text-sonic-silver line-through text-[14px]">
                   {priceBDT}
                 </span>
-                <span class="font-medium max-w-[500px]">{discountPriceBDT} BDT</span>
+                <span class="font-[400]">{discountPriceBDT} BDT</span>
               {:else}
-                <span class="font-medium max-w-[500px]">{priceBDT} BDT</span>
+                <span class="font-[400]">{priceBDT} BDT</span>
               {/if}
             </div>
           </div>

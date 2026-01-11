@@ -39,8 +39,8 @@
             <Title class="inline">{name}</Title>
           </div>
           <div class="flex justify-between">
-            <div class="font-inter text-sonic-silver text-[14px] font-[400]">
-              {type.name} / {category.name}
+            <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+              {category.name} / {type.name}
             </div>
             {#if duration}
               <span class="font-inter text-sonic-silver pr-1 text-[14px] font-[300]">
