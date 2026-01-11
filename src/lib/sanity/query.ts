@@ -32,6 +32,9 @@ export const searchQuery = (query: string) => groq`
       subtitle,
       slug,
       tag->,
+      startDate,
+      endDate,
+      exhibitionType,
       asset{
         ...,
         ${asset('image')},
@@ -60,6 +63,8 @@ export const searchQuery = (query: string) => groq`
       name,
       topTitle,
       subtitle,
+      startDate,
+      endDate,
       tag->,
       asset {
           ...,
@@ -78,8 +83,11 @@ export const searchQuery = (query: string) => groq`
       _id,
       slug,
       name,
+      subtitle,
+      thumbnail,
       tag->,
-      ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      displayNew,
+      displaySold,
       "media": information.media,
       "year": information.artDate.year,
       "artist": *[_type == 'artist' && references(^._id)][0]{
@@ -133,7 +141,11 @@ export const searchQuery = (query: string) => groq`
       name,
       subtitle,
       slug,
-      prices,
+      "prices": {
+        "priceBDT": prices.priceBDT,
+        "discountPriceBDT": prices.discountPriceBDT,
+        "priceUSD": prices.priceUSD
+      },
       ${asset('publicationImage')},
       category->,
     },
@@ -145,7 +157,10 @@ export const searchQuery = (query: string) => groq`
       _id,
       slug,
       name,
+      type->,
       category->,
+      duration,
+      year,
       ${asset('coverImage')}
     },
 
@@ -181,6 +196,9 @@ export const defaultSearchQuery = groq`
         subtitle,
         slug,
         tag->,
+        startDate,
+        endDate,
+        exhibitionType,
         asset{
           ...,
           ${asset('image')},
@@ -206,6 +224,8 @@ export const defaultSearchQuery = groq`
         name,
         topTitle,
         subtitle,
+        startDate,
+        endDate,
         tag->,
         asset {
           ...,
@@ -238,8 +258,11 @@ export const defaultSearchQuery = groq`
             _id,
             slug,
             name,
+            subtitle,
+            thumbnail,
             tag->,
-            ${asset('artworkImages[0]', { as: 'artworkImage' })},
+            displayNew,
+            displaySold,
             "media": information.media,
             "year": information.artDate.year,
             "artist": *[_type == 'artist' && references(^._id)][0]{
@@ -264,7 +287,11 @@ export const defaultSearchQuery = groq`
             name,
             subtitle,
             slug,
-            prices,
+            "prices": {
+              "priceBDT": prices.priceBDT,
+              "discountPriceBDT": prices.discountPriceBDT,
+              "priceUSD": prices.priceUSD
+            },
             ${asset('publicationImage')},
             category->,
         },
@@ -272,7 +299,10 @@ export const defaultSearchQuery = groq`
             _id,
             slug,
             name,
+            type->,
             category->,
+            duration,
+            year,
             ${asset('coverImage')}
         },
         "projects" : *[_type== "project"]|order(orderRank)[0...5]{
