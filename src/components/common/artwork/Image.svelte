@@ -13,7 +13,6 @@
   export let information: Information;
   export let innerWidth = 0;
   export let isSingleArtwork: boolean;
-  export let length: number;
 
   const dispatch = createEventDispatcher();
 

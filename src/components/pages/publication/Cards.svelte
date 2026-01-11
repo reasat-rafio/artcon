@@ -39,9 +39,9 @@
             <div class="font-inter text-sonic-silver text-[14px] font-[300]">
               {category?.name || 'Book'}
             </div>
-            <div class="flex items-center gap-x-2 font-inter text-[14px]">
+            <div class="flex items-center gap-x-1 font-inter text-[14px]">
               {#if !!discountPriceBDT}
-                <span class="text-sonic-silver line-through text-[14px]">
+                <span class="text-sonic-silver line-through text-[14px] font-[300]">
                   {priceBDT}
                 </span>
                 <span class="font-[500]">{discountPriceBDT} BDT</span>

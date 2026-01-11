@@ -43,7 +43,7 @@
             </div>
             <div class="flex-shrink-0">
               {#if startDate}
-                <span class="font-inter text-sonic-silver pr-1 whitespace-nowrap text-[14px] font-[400]">
+                <span class="font-inter text-sonic-silver pr-1 whitespace-nowrap text-[14px] font-[300]">
                   {calculateStatusBetweenDates({ startDate, endDate }).date}
                 </span>
               {/if}
