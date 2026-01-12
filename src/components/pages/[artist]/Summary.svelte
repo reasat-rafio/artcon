@@ -58,6 +58,7 @@
 
     <ParallaxScrollImage
       class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
+      disableParallaxOnDesktop={true}
       images={[{ img: images[0] }, { img: images[1] }]} />
 
     {#if statement?.title && statement?.description}

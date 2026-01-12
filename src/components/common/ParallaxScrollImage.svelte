@@ -68,7 +68,7 @@
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-end">
+    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-start">
     <div class="hidden cursor-default sm:block">
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <figure
