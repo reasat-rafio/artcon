@@ -15,7 +15,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3 ',
     $$props.class,
   )}>
-  {#each items as { name, subtitle, slug, _id, category, prices: { priceBDT, discountPriceBDT }, thumbnail, publicationImage } (_id)}
+  {#each items as { name, subtitle, slug, _id, category, prices, thumbnail, publicationImage } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -39,16 +39,18 @@
             <div class="font-inter text-sonic-silver text-[14px] font-[300]">
               {category?.name || 'Book'}
             </div>
-            <div class="flex items-center gap-x-1 font-inter text-[14px]">
-              {#if !!discountPriceBDT}
-                <span class="text-sonic-silver line-through text-[14px] font-[300]">
-                  {priceBDT}
-                </span>
-                <span class="font-[500]">{discountPriceBDT} BDT</span>
-              {:else}
-                <span class="font-[500]">{priceBDT} BDT</span>
-              {/if}
-            </div>
+            {#if prices?.priceBDT || prices?.discountPriceBDT}
+              <div class="flex items-center gap-x-1 font-inter text-[14px]">
+                {#if !!prices?.discountPriceBDT}
+                  <span class="text-sonic-silver line-through text-[14px] font-[300]">
+                    {prices.priceBDT}
+                  </span>
+                  <span class="font-[500]">{prices.discountPriceBDT} BDT</span>
+                {:else}
+                  <span class="font-[500]">{prices.priceBDT} BDT</span>
+                {/if}
+              </div>
+            {/if}
           </div>
         </Container>
       </Card>

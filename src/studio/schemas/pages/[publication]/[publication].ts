@@ -56,13 +56,11 @@ const publication = {
     {
       name: 'prices',
       type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
           title: 'Price in BDT',
           name: 'priceBDT',
           type: 'number',
-          validation: (Rule: Rule) => Rule.required(),
         },
         {
           title: 'Discount Price in BDT',
@@ -73,7 +71,6 @@ const publication = {
           title: 'Price in USD',
           name: 'priceUSD',
           type: 'number',
-          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },

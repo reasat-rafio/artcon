@@ -13,14 +13,14 @@
     href="/artist/{slug.current}"
     class="relative mt-[0.75rem] flex flex-col md:pr-[2rem] lg:mt-[3.13rem] 2xl:pr-[5.81rem]">
     <header class="space-y-[0.4375rem] pb-[1.44rem]">
-      <h3 class="title-regular !font-inter">{name}</h3>
-      <h4 class="title-light !font-inter text-sonic-silver">{tag.name}</h4>
+      <h3 class="text-[1.375rem] font-optiberling-agency font-medium">{name}</h3>
+      <h4 class="text-[1.125rem] font-optiberling-agency font-medium text-sonic-silver">{tag.name}</h4>
     </header>
 
     <div class="block md:ml-auto">
       <div class="relative h-full w-full overflow-hidden rounded-[1.25rem]">
         <SanityImage
-          class="aspect-square h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0 hover:scale-110 md:max-h-[23.375rem] md:max-w-[23.375rem]"
+          class="aspect-square h-full w-full object-cover grayscale transition-all duration-600 hover:grayscale-0 hover:scale-110 md:max-h-[23.375rem] md:max-w-[23.375rem]"
           src={artistPortrait}
           sizes="(min-width: 1024px) 40vw, 100vw"
           alt={`${name} Portrait`}

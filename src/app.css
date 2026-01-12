@@ -133,8 +133,9 @@
   }
 
   .py-section {
-    @apply py-[1.875rem] md:py-[3.75rem] xl:py-[4.5rem];
+    @apply py-sm md:py-[5rem] xl:py-xl;
   }
+
   .my-section {
     @apply my-sm md:my-[5rem] xl:my-xl;
   }

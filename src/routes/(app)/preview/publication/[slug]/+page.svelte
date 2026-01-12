@@ -231,33 +231,35 @@
                       </ul>
                     </Info>
                   {/if}
-                  <Info>
-                    <div class="sub-title-light">
-                      Price {#if !!prices?.discountPriceBDT}
-                        <span class="!font-normal text-[#9B9B9B] line-through">
-                          {prices.priceBDT}
-                        </span>
-                        <span class="font-medium">
-                          <span>{prices.discountPriceBDT} BDT</span>
-                          /
-                          <span>{prices.priceUSD} USD</span>
-                        </span>
-                      {:else}
-                        <span class="font-medium">
-                          <span>{prices.priceBDT} BDT</span>
-                          /
-                          <span>{prices.priceUSD} USD</span>
-                        </span>
-                      {/if}
-                    </div>
-
-                    {#if stock !== 'Not Available'}
-                      <div class="title-light">
-                        <span class="sub-title-light">Stock</span>
-                        <span class="font-medium">{stock === 'Online' ? 'Available' : stock}</span>
+                  {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
+                    <Info>
+                      <div class="sub-title-light">
+                        Price {#if !!prices?.discountPriceBDT}
+                          <span class="!font-normal text-[#9B9B9B] line-through">
+                            {prices.priceBDT}
+                          </span>
+                          <span class="font-medium">
+                            <span>{prices.discountPriceBDT} BDT</span>
+                            /
+                            <span>{prices.priceUSD} USD</span>
+                          </span>
+                        {:else}
+                          <span class="font-medium">
+                            <span>{prices.priceBDT} BDT</span>
+                            /
+                            <span>{prices.priceUSD} USD</span>
+                          </span>
+                        {/if}
                       </div>
-                    {/if}
-                  </Info>
+
+                      {#if stock !== 'Not Available'}
+                        <div class="title-light">
+                          <span class="sub-title-light">Stock</span>
+                          <span class="font-medium">{stock === 'Online' ? 'Available' : stock}</span>
+                        </div>
+                      {/if}
+                    </Info>
+                  {/if}
                 </div>
               </Header>
 

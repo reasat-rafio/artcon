@@ -72,7 +72,7 @@
           bind:this={artistImgEl}
           class="relative h-full w-full translate-y-[30px] overflow-hidden rounded-[1.25rem]">
           <SanityImage
-            class="aspect-square h-full w-full object-cover grayscale transition-all duration-300 hover:grayscale-0 hover:scale-105 md:max-h-[23.375rem] md:max-w-[23.375rem]"
+            class="aspect-square h-full w-full object-cover grayscale transition-all duration-600 hover:grayscale-0 hover:scale-105 md:max-h-[23.375rem] md:max-w-[23.375rem]"
             src={artistPortrait}
             sizes="(min-width: 1024px) 40vw, 100vw"
             alt={`${name} Portrait`}
