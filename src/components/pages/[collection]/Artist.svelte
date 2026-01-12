@@ -47,6 +47,6 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    <ParallaxScrollImage disableParallaxOnDesktop={true} images={[{ img: images[0] }, { img: images[1] }]} />
+    <ParallaxScrollImage images={[{ img: images[0] }, { img: images[1] }]} />
   </div>
 </section>
