@@ -22,12 +22,12 @@
   }
 </script>
 
-<section>
+<section class="{$$props.class}">
   {#each services as item}
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="py-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
+      <div class="pt-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
         <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>

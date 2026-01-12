@@ -8,7 +8,7 @@
   let { title, image } = props;
 </script>
 
-<div class="relative h-screen w-full max-w-full overflow-hidden">
+<div class="relative h-screen w-full max-w-full overflow-hidden {$$props.class}">
   <SanityImage
     src={image}
     sizes="100vw"

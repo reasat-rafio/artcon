@@ -65,7 +65,7 @@
 </script>
 
 <section>
-  <div class="pt-[1.875rem] container-primary pb-[1.875rem] md:pt-[3.75rem] md:pb-[3.75rem] xl:pt-[6.75rem]">
+  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-xl {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

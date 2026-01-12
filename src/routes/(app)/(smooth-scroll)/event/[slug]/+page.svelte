@@ -66,23 +66,24 @@
 
   <Share href="/event" {logoLight} {logoDark}>Our Events</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as props}
+  {#each sections as props, index}
     {#if props._type === 'common.imageAsset'}
-      <ImageAsset {props} />
+      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" {props} />
     {:else if props._type === 'event.summary'}
       <Summary
+        class="pb-section"
         props={{
           ...props,
           descriptionBlock: { associationsList, socials, date, description, gallery },
         }} />
     {:else if props._type === 'event.video'}
-      <Video {props} />
+      <Video class="pb-section" {props} />
     {:else if props._type === 'event.documentation'}
-      <Documentation {props} />
+      <Documentation class="pb-section" {props} />
     {:else if props._type === 'event.gallery'}
-      <Gallery {props} />
+      <Gallery class="pb-section" {props} />
     {:else if props._type === 'event.newsAndMedia'}
-      <NewsAndMedia {props} />
+      <NewsAndMedia class="pb-section" {props} />
     {/if}
   {/each}
 

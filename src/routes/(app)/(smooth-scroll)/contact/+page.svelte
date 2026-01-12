@@ -55,8 +55,8 @@
   {/if}
 {/each}
 <div class="relative z-10 mt-[100dvh] bg-white">
-  <div class="py-section">
-    {#each sections as props}
+  <div class="pt-section">
+    {#each sections as props, index}
       {#if props._type === 'quote'}
         <div class="container-primary pb-section">
           <Quote quote={props} />

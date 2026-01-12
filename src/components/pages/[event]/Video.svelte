@@ -48,7 +48,7 @@
 
 {#if !!vrOrYtVideoSlider?.length}
   <section>
-    <div class="pt-section container-primary pb-sm md:pb-[4.94rem]">
+  <div class="pt-section container-primary pb-sm md:pb-section {$$props.class}">
       <div>
         <div
           class="relative overflow-hidden"

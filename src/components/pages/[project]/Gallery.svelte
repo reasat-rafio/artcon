@@ -21,7 +21,7 @@
 </script>
 
 <section>
-  <div class="container-primary py-section">
+  <div class="container-primary pt-section {$$props.class}">
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.Title>{title}</C.Title>

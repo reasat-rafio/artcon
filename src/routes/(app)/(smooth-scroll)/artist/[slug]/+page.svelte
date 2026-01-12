@@ -59,20 +59,22 @@
   <Share href="/artist" {logoDark} {logoLight}>Our Artist</Share>
   <div class="relative z-10 bg-white">
   {#if !!siteDocuments?.sections?.length}
-    {#each siteDocuments.sections as s}
+    {#each siteDocuments.sections as s, index}
       {#if s._type === 'common.imageAsset'}
-        <ImageAsset props={s} />
+        <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
       {:else if s._type === 'artist.summary'}
         <Summary
+          class="pb-section"
           props={{
             ...s,
             personalDocuments,
           }} />
       {:else if s._type === 'artist.video'}
-        <Video props={s} />
+        <Video class="pb-section" props={s} />
       {:else if s._type === 'common.artwork'}
         {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
           <Artwork.default
+            class="pb-section"
             props={{
               ...s,
               artworks: s.artworks,
@@ -82,12 +84,12 @@
             }} />
         {/await}
       {:else if s._type === 'artist.publication'}
-        <Publication publications={allPublications} artistName={personalDocuments.name} />
+        <Publication class="pb-section" publications={allPublications} artistName={personalDocuments.name} />
       {/if}
     {/each}
 
     {#if !!customArtworks?.length}
-      <section class="py-section container-primary">
+      <section class="pb-section container-primary pt-section">
         <ArtworkItems artworks={customArtworks} />
       </section>
     {/if}

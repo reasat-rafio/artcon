@@ -48,7 +48,7 @@
 </script>
 
 <section bind:this={rootEl}>
-  <div class="container-primary py-section relative border-t border-light-gray/40 pt-[2.26rem]">
+  <div class="container-primary pt-section relative border-t border-light-gray/40 {$$props.class}">
     {#if artistName}
       <h3 class="head-xl mb-md">{artistName}'s {publications.length > 1 ? 'publications' : 'publication'}</h3>
     {/if}

@@ -12,7 +12,7 @@
 </script>
 
 <section class="w-full max-w-full overflow-hidden">
-  <div class="container-primary py-section">
+  <div class="container-primary pt-section {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

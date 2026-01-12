@@ -64,11 +64,12 @@
 
   <Share href="/project" {logoLight} {logoDark}>Our Projects</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as s}
+  {#each sections as s, index}
     {#if s._type === 'common.imageAsset'}
-      <ImageAsset props={s} />
+      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
     {:else if s._type === 'project.summary'}
       <Summary
+        class="pb-section"
         props={{
           ...s,
           descriptionBlock: {
@@ -80,9 +81,9 @@
           },
         }} />
     {:else if s._type === 'project.video'}
-      <Video props={s} />
+      <Video class="pb-section" props={s} />
     {:else if s._type === 'project.gallery'}
-      <Gallery props={s} />
+      <Gallery class="pb-section" props={s} />
     {/if}
   {/each}
 
