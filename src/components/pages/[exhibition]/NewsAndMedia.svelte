@@ -15,7 +15,7 @@
 </script>
 
 <section>
-  <div class="py-section">
+  <div class="pt-section {$$props.class}">
     {#if !!quote}
       <div class="container-primary">
         <Quote class="mb-section" {quote} />

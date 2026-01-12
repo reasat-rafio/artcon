@@ -34,7 +34,7 @@
 </script>
 
 <section>
-  <div class="py-section container-primary">
+  <div class="pt-section container-primary {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

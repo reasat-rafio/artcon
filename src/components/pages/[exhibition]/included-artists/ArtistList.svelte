@@ -35,7 +35,7 @@
 
 <svelte:window bind:innerWidth />
 <section
-  class="container-primary py-section border-t border-quick-silver pt-[2.26rem]">
+  class="container-primary pt-section border-t border-quick-silver {$$props.class}">
   <h3 class="head-xl mb-md">Artist in this exhibition</h3>
   <div
     class="relative overflow-hidden"

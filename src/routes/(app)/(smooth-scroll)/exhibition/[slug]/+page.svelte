@@ -75,11 +75,12 @@
     }} />
   <Share href="/exhibition" {logoLight} {logoDark}>Our Exhibition</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as s}
+  {#each sections as s, index}
     {#if s._type === 'common.imageAsset'}
-      <ImageAsset props={s} />
+      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
     {:else if s._type === 'exhibition.summary'}
       <Summary
+      class="pb-section"
         props={{
           ...s,
           descriptionBlock: {
@@ -91,14 +92,15 @@
           },
         }} />
     {:else if s._type === 'exhibition.includedArtists'}
-      <IncludedArtists props={{ ...s, artists }} />
+      <IncludedArtists class="pb-section" props={{ ...s, artists }} />
     {:else if s._type === 'common.note'}
-      <Note props={s} />
+      <Note class="pb-section" props={s} />
     {:else if s._type === 'exhibition.publication' && !!publication}
-      <Publication props={{ ...s, publication }} />
+      <Publication class="pb-section" props={{ ...s, publication }} />
     {:else if s._type === 'common.artwork'}
       {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
         <Artwork.default
+          class="pb-section"
           props={{
             ...s,
             artworks: s.artworks,
@@ -112,11 +114,11 @@
       <div style="display: none;">Debug ctaTitle: {s.artworkLink?.title}</div>
     {:else if s._type === 'exhibition.gallery'}
       {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
-        <Gallery.default props={s} />
+        <Gallery.default class="pb-section" props={s} />
       {/await}
     {:else if s._type === 'exhibition.newsAndMedia'}
       {#await import('@/components/pages/[exhibition]/NewsAndMedia.svelte') then NewsAndMedia}
-        <NewsAndMedia.default props={s} />
+        <NewsAndMedia.default class="pb-section" props={s} />
       {/await}
     {:else if s._type === 'exhibition.team' && exhibitionType === 'group'}
       <div class="container-primary py-section">

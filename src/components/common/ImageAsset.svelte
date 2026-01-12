@@ -60,7 +60,7 @@
 
 <svelte:window on:scroll={setPosition} on:resize={setPosition} />
 <IntersectionObserver element={sectionEl} bind:intersecting>
-  <div bind:this={sectionEl} class="h-screen w-full overflow-hidden">
+  <div bind:this={sectionEl} class="h-screen w-full overflow-hidden {$$props.class}">
     <div
       use:parallaxAnimation
       bind:this={imageContainerEl}
