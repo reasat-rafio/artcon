@@ -26,7 +26,7 @@ const parallaxAnimation = (node: HTMLElement, options?: ParallaxAnimationOptions
     gsap.to(node, {
       y: 0,
       scrollTrigger: {
-        start: '-120px bottom',
+        start: '-80px bottom',
         end: 'bottom bottom',
         scrub: 3,
         trigger: node,
