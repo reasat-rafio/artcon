@@ -123,6 +123,7 @@
         <span class="inline">Send Message</span>
       </button>
       <button
+        type="button"
         on:click={clearForm}
         disabled={$delayed}
         class="border-black/20 text-black/20 block w-full rounded-[12px] border bg-[length:125%] bg-left px-[18px] py-[13px] text-[16px] font-medium tracking-[0.48px] transition-all duration-300 hover:scale-[1.01] hover:border-red-600 hover:bg-right hover:text-red-600 hover:shadow-xl sm:w-fit md:px-[32px]">

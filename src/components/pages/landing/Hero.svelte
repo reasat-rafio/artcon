@@ -58,12 +58,12 @@
 
     <div
       class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100dvh)] text-center text-white">
-      <header class="!drop-shadow-4xl">
+      <header>
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
           {#if !!topTitle}
             <h3
               bind:this={topTitleEl}
-              class="translate-y-full !font-inter opacity-0">
+              class="translate-y-full !font-inter opacity-0 shadow-text-subtitle">
               {topTitle}
             </h3>
           {:else}
@@ -74,7 +74,7 @@
         <div class="mb-[1.26rem] overflow-hidden">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-none opacity-0">
+            class="head-1 translate-y-full !leading-none opacity-0 shadow-text-title">
             {title}
           </h1>
         </div>
@@ -84,7 +84,7 @@
           {#if !!subtitle}
             <h2
               bind:this={subtitleEl}
-              class="translate-y-full whitespace-pre-wrap !font-medium !normal-case !tracking-[1px] text-platinum opacity-0">
+              class="translate-y-full whitespace-pre-wrap !font-medium !normal-case !tracking-[1px] text-platinum opacity-0 shadow-text-subtitle">
               {subtitle}
             </h2>
           {:else}

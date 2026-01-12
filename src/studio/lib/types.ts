@@ -34,5 +34,6 @@ export interface IArtist {
   email?: string;
   phone: string;
   born: string;
+  died?: string;
   artistPortrait: SanityAsset | string;
 }

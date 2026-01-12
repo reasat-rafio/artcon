@@ -42,6 +42,14 @@ const formatBornDate = (dateString: string): string => {
   return `${day} ${month} ${year}`;
 };
 
+const formatBornAndDiedDate = (bornDate: string, diedDate?: string): string => {
+  if (!bornDate) return '';
+  const born = formatBornDate(bornDate);
+  if (!diedDate) return born;
+  const died = formatBornDate(diedDate);
+  return `${born} – ${died}`;
+};
+
 const extractCountryName = (country: string): string => {
   if (!country) return '';
   return country.split('-').slice(1).join('-');
@@ -56,6 +64,7 @@ const query = groq`*[_type == "artist"] | order(personalDocuments.name.en asc)[]
         email,
         phone,
         born,
+        died,
         artistPortrait
     }
 }`;
@@ -117,7 +126,7 @@ const Table: React.FC<TableProps> = () => {
         <ul>
           <li>{item?.['name (en)']},</li>
           <li>{item?.['name (bn)']}</li>
-          <li style={{ fontSize: '0.9em', color: '#666', marginTop: '4px' }}>{formatBornDate(item?.born)}</li>
+          <li style={{ fontSize: '0.9em', color: '#666', marginTop: '4px' }}>{formatBornAndDiedDate(item?.born, item?.died)}</li>
         </ul>
       ),
       select: true,
@@ -181,7 +190,7 @@ const Table: React.FC<TableProps> = () => {
       const { id, artistPortrait, ...rest } = item;
       return {
         ...rest,
-        born: formatBornDate(item?.born),
+        born: formatBornAndDiedDate(item?.born, item?.died),
         country: extractCountryName(item?.country),
         portrait: artistPortrait ? urlFor(artistPortrait).url() : '',
       };

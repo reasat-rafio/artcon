@@ -166,13 +166,9 @@
                     rel="noopener noreferrer"
                     class="cursor-pointer transition-colors hover:!text-gray-500">
                     {gallery.name}
-                  </a>
+                  </a>{#if gallery?.location}, {gallery.location}{/if}
                 {:else}
-                  {gallery.name}
-                {/if}
-                {#if gallery?.location}
-                  <span> , </span>
-                  {gallery.location}
+                  {gallery.name}{#if gallery?.location}, {gallery.location}{/if}
                 {/if}
               </div>
               <div class="title-light">

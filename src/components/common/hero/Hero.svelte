@@ -81,12 +81,12 @@
     <Overlay />
     <div
       class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
-      <header class="space-y-[2.1875rem] !drop-shadow-4xl">
+      <header class="space-y-[2.1875rem]">
         <div
           class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
           {#if !!topTitle}
             <h3
-              class="translate-y-full !font-medium opacity-0 max-lg:line-clamp-2"
+              class="translate-y-full !font-medium opacity-0 max-lg:line-clamp-2 shadow-text-subtitle"
               bind:this={topTitleEl}>
               {topTitle}
             </h3>
@@ -98,7 +98,7 @@
         <div class="overflow-visible !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2">
+            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2 shadow-text-title">
             {title}
           </h1>
         </div>
@@ -106,7 +106,7 @@
         <div
           class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
           {#if !!subtitle}
-            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0 whitespace-pre">
+            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0 whitespace-pre shadow-text-subtitle">
               {subtitle}
             </h2>
           {:else}

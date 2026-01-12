@@ -143,13 +143,9 @@
                     rel="noopener noreferrer"
                     class="transition-colors hover:!text-gray-500">
                     {gallery.name}
-                  </a>
+                  </a>{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
                 {:else}
-                  {gallery.name}
-                {/if}
-                {#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}
-                  <span> , </span>
-                  {gallery.location}
+                  {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
                 {/if}
               </div>
               <div class="sub-title-light mt-1">

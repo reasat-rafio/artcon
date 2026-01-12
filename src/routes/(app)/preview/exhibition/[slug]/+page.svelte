@@ -172,13 +172,9 @@
                 {#if galleryUrl}
                   <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
                     {gallery.name}
-                  </a>
+                  </a>{#if gallery.location && !gallery.location.startsWith('http')}, {gallery.location}{/if}
                 {:else}
-                  {gallery.name}
-                {/if}
-                {#if gallery.location && !gallery.location.startsWith('http')}
-                  <span>, </span>
-                  {gallery.location}
+                  {gallery.name}{#if gallery.location && !gallery.location.startsWith('http')}, {gallery.location}{/if}
                 {/if}
               </div>
               <div class="sub-title-light !font-inter">
