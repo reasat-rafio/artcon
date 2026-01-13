@@ -80,7 +80,7 @@
       }} />
   {/if}
   {#if !!page?.allServices?.sections?.length}
-    <Services class="pb-section" bind:contextMessage services={page.allServices.sections} />
+    <Services  bind:contextMessage services={page.allServices.sections} />
   {/if}
   <Footer {footer} {contact} logo={logoDark} />
 </div>
