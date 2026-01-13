@@ -12,7 +12,7 @@
 
 <section
   use:parallaxAnimation
-  class="container-primary relative translate-y-[120px]">
+  class="container-primary relative translate-y-[120px] pb-section">
   <div class="w-full max-w-[64.125rem]">
     <form use:enhance class="w-full space-y-[3.12rem]" method="POST">
       <div class="grid grid-cols-2 gap-[1.88rem]">

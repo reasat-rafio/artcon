@@ -31,7 +31,7 @@
       if (result.type === 'success') {
         toasts.add({
           description: 'Form submitted successfully',
-          duration: 3000,
+          duration: 1000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'success',
@@ -40,7 +40,7 @@
         const errorMsg = result.data?.error || 'Failed to submit form';
         toasts.add({
           description: errorMsg,
-          duration: 3000,
+          duration: 1000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'error',

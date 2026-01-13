@@ -48,21 +48,30 @@ export const actions: Actions = {
         from_name: 'Artcon Website Contact Form Submission',
       };
 
+      console.log('FORM_ACCESS_KEY loaded:', FORM_ACCESS_KEY ? 'Yes' : 'No');
       console.log('Submitting to Web3Forms:', submissionData);
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json',
-          Origin: event.url.origin,
-          Referer: event.url.href,
         },
         body: JSON.stringify(submissionData),
       });
 
       console.log('Web3Forms response status:', response.status);
-      const responseData = await response.json();
+      
+      let responseData;
+      const contentType = response.headers.get('content-type');
+      
+      if (contentType?.includes('application/json')) {
+        responseData = await response.json();
+      } else {
+        const text = await response.text();
+        console.log('Web3Forms returned non-JSON response:', text.substring(0, 200));
+        responseData = { error: 'Invalid response from server' };
+      }
+      
       console.log('Web3Forms response:', responseData);
 
       if (!response.ok) {
