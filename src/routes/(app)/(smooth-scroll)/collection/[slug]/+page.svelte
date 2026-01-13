@@ -51,9 +51,9 @@
   const f = superForm(data.form, {
     validators: inquirySchema,
     resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
+    onResult: ({ result }) => {
+      console.log('Form result:', result);
+      
       if (result.type === 'success') {
         formPopupStore.setFormPopupVisibility(false);
         toasts.add({
@@ -64,13 +64,15 @@
           type: 'success',
         });
       } else if (result.type === 'failure') {
+        const errorMsg = result.data?.error || 'Failed to submit form';
         toasts.add({
-          description: (result.data as any)?.error || 'Failed to submit form. Please try again.',
+          description: errorMsg,
           duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'error',
         });
+        console.error('Form submission error:', errorMsg);
       }
     },
   });

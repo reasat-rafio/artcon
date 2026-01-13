@@ -18,15 +18,16 @@
       footer,
       contact,
     },
+    apiKey,
   } = data);
 
   const f = superForm(data.form, {
     taintedMessage: 'Are you sure you want leave?',
     validators: contactSchema,
     resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
+    onResult: ({ result }) => {
+      console.log('Form result:', result);
+      
       if (result.type === 'success') {
         toasts.add({
           description: 'Form submitted successfully',
@@ -36,13 +37,15 @@
           type: 'success',
         });
       } else if (result.type === 'failure') {
+        const errorMsg = result.data?.error || 'Failed to submit form';
         toasts.add({
-          description: (result.data as any)?.error || 'Failed to submit form. Please try again.',
+          description: errorMsg,
           duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'error',
         });
+        console.error('Form submission error:', errorMsg);
       }
     },
   });

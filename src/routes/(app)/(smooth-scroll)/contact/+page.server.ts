@@ -29,57 +29,50 @@ export const load = async (event) => {
   if (!data) throw error(404, { message: 'Not found' });
   const form = await superValidate(event, contactSchema);
 
-  return { page: data, form };
+  return { page: data, form, apiKey: FORM_ACCESS_KEY };
 };
 
 export const actions: Actions = {
   default: async (event) => {
-    const form = await superValidate(event, contactSchema);
-
-    if (!form.valid) return fail(400, { form });
-
-    const data = form.data;
-    data.access_key = FORM_ACCESS_KEY;
-    data.from_name = 'Artcon Website Contact Form Submission';
-
     try {
-      console.log('Submitting form data:', data);
+      const form = await superValidate(event, contactSchema);
+
+      if (!form.valid) {
+        console.log('Form validation failed:', form.errors);
+        return fail(400, { form });
+      }
+
+      const submissionData = {
+        ...form.data,
+        access_key: FORM_ACCESS_KEY,
+        from_name: 'Artcon Website Contact Form Submission',
+      };
+
+      console.log('Submitting to Web3Forms:', submissionData);
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
+          Origin: event.url.origin,
+          Referer: event.url.href,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submissionData),
       });
 
-      const responseText = await response.text();
-      console.log('Web3Forms Response:', response.status, responseText);
+      console.log('Web3Forms response status:', response.status);
+      const responseData = await response.json();
+      console.log('Web3Forms response:', responseData);
 
       if (!response.ok) {
-        let errorMessage = responseText;
-        
-        try {
-          const errorData = JSON.parse(responseText);
-          if (errorData.message) {
-            errorMessage = errorData.message;
-          } else if (typeof errorData === 'object') {
-            errorMessage = JSON.stringify(errorData);
-          }
-        } catch (e) {
- 
-          errorMessage = responseText || `HTTP ${response.status}: ${response.statusText}`;
-        }
-        
-        console.error('Web3Forms API Error - Status:', response.status, response.statusText);
-        console.error('Web3Forms API Error - Body:', responseText);
-        return fail(response.status, { form, error: errorMessage });
+        return fail(response.status, { form, error: 'Failed to submit form. Please try again.' });
       }
+
+      return { form };
     } catch (error) {
       console.error('Form submission error:', error);
-      return fail(500, { form, error: 'Network error. Please check your connection and try again.' });
+      return fail(500, { form: undefined, error: error instanceof Error ? error.message : 'Network error. Please try again.' });
     }
-
-    return { form };
   },
 };

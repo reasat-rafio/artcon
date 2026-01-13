@@ -53,10 +53,11 @@
   const f = superForm(data.form, {
     validators: inquirySchema,
     resetForm: true,
-    onResult: (event) => {
+    onResult: async (event) => {
       const result = event.result as FormResult<ActionData>;
 
       if (result.type === 'success') {
+
         formPopupStore.setFormPopupVisibility(false);
         toasts.add({
           description: 'Form submitted successfully',
@@ -64,14 +65,6 @@
           placement: 'bottom-right',
           theme: 'dark',
           type: 'success',
-        });
-      } else if (result.type === 'failure') {
-        toasts.add({
-          description: (result.data as any)?.error || 'Failed to submit form. Please try again.',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
         });
       }
     },
