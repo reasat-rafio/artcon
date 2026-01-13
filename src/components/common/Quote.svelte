@@ -4,7 +4,7 @@
   import type { Quote } from '@/lib/types/common.types';
 
   export let quote: Quote;
-  export let authorSize = '40px';
+  // export let authorSize = '40px';
   $: ({ author, text, url } = quote);
 </script>
 
@@ -17,7 +17,7 @@
       <p class="inline">"{text}"</p>
     </blockquote>
     {#if !!author}
-      <div class="block mt-[0.2em]" style="font-size: {authorSize}">
+      <div class="block">
         {#if url}
           <a href={url} target="_blank" rel="noopener noreferrer" class="inline cursor-pointer italic hover:underline">– {author}</a>
         {:else}
