@@ -171,13 +171,12 @@
               <div class="title-light !font-inter">
                 {#if galleryUrl}
                   <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
-                    {gallery.name}
+                    {gallery.name}<span>, </span>
                   </a>
                 {:else}
                   {gallery.name}
                 {/if}
                 {#if gallery.location && !gallery.location.startsWith('http')}
-                  <span>, </span>
                   {gallery.location}
                 {/if}
               </div>
@@ -202,7 +201,7 @@
               {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
                 <button class="cursor-pointer hover:opacity-90 transition-opacity w-full max-w-full" on:click={openInvitationCardPopup}>
                   <SanityImage
-                    class="object-contain w-full h-auto"
+                    class="object-contain w-full h-auto rounded-[0.9375rem]"
                     imageUrlBuilder={imageBuilder}
                     src={invitationCard.invitationCardImage}
                     alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
@@ -210,7 +209,7 @@
                 </button>
               {:else if data.page.publication?.publicationImage}
                 <SanityImage
-                  class="object-contain w-full h-auto"
+                  class="object-contain w-full h-auto rounded-[0.9375rem]"
                   imageUrlBuilder={imageBuilder}
                   src={data.page.publication.publicationImage}
                   alt={data.page.publication.publicationImage.alt}

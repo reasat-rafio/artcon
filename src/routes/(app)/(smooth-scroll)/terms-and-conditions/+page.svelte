@@ -48,7 +48,7 @@
         });
       } else if (result.type === 'failure') {
         toasts.add({
-          description: 'Failed to submit form. Please check your inputs.',
+          description: (result.data as any)?.error || 'Failed to submit form. Please try again.',
           duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',

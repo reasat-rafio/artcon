@@ -23,7 +23,7 @@ const siteDocuments = {
       title: 'Top Title',
       type: 'string',
       description:
-        'This will overwrite the status derived from the provided start and end dates.',
+        'This will overwrite the status derived from the provided start and end dates. (Preferred all caps input)',
     },
     {
       name: 'subtitle',

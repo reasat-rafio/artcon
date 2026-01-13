@@ -43,14 +43,43 @@ export const actions: Actions = {
     data.subject =
       'Inquiry Regarding Purchasing Publications on Artcon Website';
 
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      console.log('Submitting form data:', data);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseText = await response.text();
+      console.log('Web3Forms Response:', response.status, responseText);
+
+      if (!response.ok) {
+        let errorMessage = responseText;
+        
+        try {
+          const errorData = JSON.parse(responseText);
+          if (errorData.message) {
+            errorMessage = errorData.message;
+          } else if (typeof errorData === 'object') {
+            errorMessage = JSON.stringify(errorData);
+          }
+        } catch (e) {
+ 
+          errorMessage = responseText || `HTTP ${response.status}: ${response.statusText}`;
+        }
+        
+        console.error('Web3Forms API Error - Status:', response.status, response.statusText);
+        console.error('Web3Forms API Error - Body:', responseText);
+        return fail(response.status, { form, error: errorMessage });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      return fail(500, { form, error: 'Network error. Please check your connection and try again.' });
+    }
 
     return { form };
   },
