@@ -49,9 +49,9 @@
 
 <section bind:this={rootEl}>
   <div class="container-primary pt-section relative border-t border-light-gray/40 {$$props.class}">
-    {#if artistName}
+    <!-- {#if artistName}
       <h3 class="head-xl mb-md">{artistName}'s {publications.length > 1 ? 'publications' : 'publication'}</h3>
-    {/if}
+    {/if} -->
     
     {#if isSinglePublication}
       <div class="overflow-hidden">

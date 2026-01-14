@@ -59,7 +59,7 @@
       <div class="ml-[-1.56rem] flex">
         {#each chunks as chunk, chunkIndex (chunkIndex)}
           <div
-            class="relative grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[3.5rem] 2xl:grid-cols-3">
+            class="relative grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[32px] 2xl:grid-cols-3">
             <slot {chunk} />
           </div>
         {/each}

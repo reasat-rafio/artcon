@@ -90,7 +90,7 @@
     {#if !!otherEvents?.length}
       <OthersDocument
         urlPrefix="/event"
-        title="Other events"
+        title="Other Events"
         data={otherEvents} />
     {/if}
 

@@ -22,7 +22,7 @@
 
 <section>
   <div class="container-primary pt-section {$$props.class}">
-    <DescriptionBlock class="mb-section">
+    <DescriptionBlock class="mb-[5.625rem]">
       <svelte:fragment slot="intro" let:C>
         <C.Title>{title}</C.Title>
       </svelte:fragment>

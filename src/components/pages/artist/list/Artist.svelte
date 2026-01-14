@@ -61,8 +61,8 @@
     class="grid grid-cols-1 max-md:space-y-[1.25rem] md:grid-cols-2">
     <a
       href="/artist/{slug.current}"
-      class="relative mt-[0.75rem] flex flex-col md:pr-[2rem] lg:mt-[3.13rem] 2xl:pr-[5.81rem]">
-      <header class="space-y-[0.4375rem] pb-[1.44rem]">
+      class="relative flex flex-col md:pr-[2rem] lg:mt-[0.938rem] 2xl:pr-[5.81rem]">
+      <header class="space-y-[0.4375rem] pb-[3.125rem]">
         <h3 class="text-[1.375rem] font-optiberling-agency font-medium">{name}</h3>
         <h4 class="text-[1.125rem] font-optiberling-agency font-medium text-sonic-silver">{tag.name}</h4>
       </header>

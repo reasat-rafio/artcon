@@ -94,7 +94,7 @@
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
-      class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
+      class="container-primary flex items-center h-[110px]">
       <div class="flex flex-1 items-center">
         {#if (!!activeSearchParams || !!activeSortParams || !!activeArtistParams) && !$uiStore.mobileNavDropdownOpen}
           <button

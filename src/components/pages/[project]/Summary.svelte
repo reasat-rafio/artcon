@@ -59,7 +59,7 @@
                     <img 
                       src={imageBuilder.image(logo).height(50).url()}
                       alt={logo.alt || key} 
-                      class="h-[40px] lg:h-[50px] w-auto object-contain"
+                      class="h-[40px] lg:h-[45px] w-auto object-contain"
                     />
                   </div>
                 {/if}

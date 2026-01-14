@@ -8,10 +8,10 @@
 </script>
 
 <div class={cn('', $$props.class)}>
-  {#each artistGroup as { title, artists }}
-    <section id={title}>
+  {#each artistGroup as { title, artists }, index}
+    <section id={title} class={index !== 0 ? 'mt-[3.125rem]' : ''}>
       <h2
-        class="!font-outfit text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#000]/40">
+        class="!font-outfit m-0 text-[1.50363rem] font-medium tracking-[-0.03006rem] text-[#000]/40">
         {title}
       </h2>
 

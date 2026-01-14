@@ -59,7 +59,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-light-gray/40 pb-[5.84rem] pt-[3.28rem]">
+    class="container-primary border-t border-light-gray/40 pb-[5.84rem] pt-[2.625rem]">
     <div class="mb-[2rem] flex items-center justify-between">
       <h2 class="head-4">{title}</h2>
       {#if showCarousel}
@@ -106,7 +106,7 @@
                       </h4>
                     {/if}
                   </header>
-                  <h4 class="head-8 text-sonic-silver !font-inter">
+                  <h4 class="font-inter text-sonic-silver text-[14px] font-[300]">
                     {tag.name}
                   </h4>
                 </div>
@@ -143,9 +143,9 @@
                       </h4>
                     {/if}
                   </header>
-                  <h4 class="head-8 text-sonic-silver !font-inter">
+                  <div class="font-inter text-sonic-silver text-[14px] font-[300]">
                     {tag.name}
-                  </h4>
+                  </div>
                 </div>
               </a>
             {/each}

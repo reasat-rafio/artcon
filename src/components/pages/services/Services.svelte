@@ -27,8 +27,8 @@
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="pt-section pb-section container-primary space-y-sm md:space-y-[80px] xl:space-y-xl">
-        <article class="space-y-sm md:space-y-[80px] xl:space-y-xl">
+      <div class="pt-section container-primary space-y-sm md:space-y-0 xl:space-y-0">
+        <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>
               <C.Title el="h2">{item.title}</C.Title>
@@ -53,7 +53,7 @@
                 </figure>
               {/if}
               {#if item.summary?.text}
-                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px]">{item.summary.text}</p>
+                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px] mb-[90px]">{item.summary.text}</p>
               {/if}
             </svelte:fragment>
           </DescriptionBlock>

@@ -92,13 +92,13 @@
 
 <div
   use:animation
-  class="relative flex h-screen w-[100vw] flex-[0_0_100%] overflow-hidden">
+  class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
   <Overlay />
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
+    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
     <header class="space-y-[2.1875rem]">
       {#if !!topTitle}
         <h3

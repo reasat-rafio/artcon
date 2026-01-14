@@ -23,7 +23,7 @@
     {/if}
 
     <div class="container-primary">
-      <DescriptionBlock class="mb-sm md:mb-[4.63rem]">
+      <DescriptionBlock class="mb-[90px]">
         <svelte:fragment slot="intro" let:C>
           <C.Title>{title}</C.Title>
         </svelte:fragment>

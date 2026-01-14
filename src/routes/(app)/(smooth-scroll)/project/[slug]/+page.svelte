@@ -89,7 +89,7 @@
 
     {#if !!otherProjects?.length}
       <OthersDocument
-        title="Other projects"
+        title="Other Projects"
         data={otherProjects}
         urlPrefix="/project" />
     {/if}

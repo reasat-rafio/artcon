@@ -11,7 +11,7 @@
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[2.0001rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
   {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate, exhibitionType } (_id)}

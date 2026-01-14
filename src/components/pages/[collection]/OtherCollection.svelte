@@ -96,9 +96,9 @@
                         {artist?.name || name}
                       </h3>
                     </header>
-                    <h4 class="text-head-8 text-sonic-silver">
+                    <div class="font-inter text-sonic-silver text-[14px] font-[300]">
                       {media} | {year}
-                    </h4>
+                    </div>
                   </div>
                 </div>
               </a>
