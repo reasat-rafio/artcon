@@ -59,7 +59,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-light-gray/40 pb-[5.84rem] pt-[2.625rem]">
+    class="container-primary border-t border-light-gray/40 pb-section pt-[2.625rem]">
     <div class="mb-[2rem] flex items-center justify-between">
       <h2 class="head-4">{title}</h2>
       {#if showCarousel}
