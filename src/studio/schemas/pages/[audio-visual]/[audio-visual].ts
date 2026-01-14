@@ -23,15 +23,15 @@ const audioVisual = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'category',
-      type: 'reference',
-      to: [{ type: 'documentaryCategory' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    {
       name: 'type',
       type: 'reference',
       to: [{ type: 'audioVisualType' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'category',
+      type: 'reference',
+      to: [{ type: 'documentaryCategory' }],
       validation: (Rule: Rule) => Rule.required(),
     },
     {
