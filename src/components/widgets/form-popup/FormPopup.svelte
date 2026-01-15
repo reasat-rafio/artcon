@@ -9,7 +9,6 @@
   import Backdrop from '@/components/common/Backdrop.svelte';
   import { toasts } from 'svelte-toasts';
   import { onMount } from 'svelte';
-  import { toasts } from 'svelte-toasts';
 
   export let form: SuperForm<typeof inquirySchema>;
   export let contextMessage: string;
@@ -39,62 +38,7 @@
     reset();
   }
 
-  // Custom enhance function that shows toasts
-  function handleEnhance() {
-    return async ({ result, update }: any) => {
-      console.log('Enhance callback triggered');
-      console.log('Result type:', result?.type);
-      console.log('Result:', result);
-
-      await update();
-
-      if (result?.type === 'success') {
-        console.log('FormPopup: Success detected');
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-        setTimeout(() => {
-          formPopupStore.setFormPopupVisibility(false);
-          if (onFormSuccess) onFormSuccess();
-        }, 500);
-      } else if (result?.type === 'failure') {
-        console.log('FormPopup: Failure detected');
-        const errorMsg = (result as any)?.data?.error || 'Failed to submit form';
-        console.log('Error message:', errorMsg);
-        toasts.add({
-          description: errorMsg,
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-      } else if (result?.type === 'error') {
-        console.log('FormPopup: Error detected');
-        toasts.add({
-          description: 'An error occurred',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-      }
-    };
-  }
-
-  function onFormSubmit() {
-    console.log('Form data:', {
-      name: $f.name,
-      email: $f.email,
-      phone: $f.phone,
-      message: $f.message,
-      context: $f.context,
-    });
-  }
-
+  // Set the context message when component mounts or updates
   $: if (contextMessage) {
     $f.context = contextMessage;
   }
