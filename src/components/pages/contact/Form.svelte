@@ -4,10 +4,81 @@
   import { fade } from 'svelte/transition';
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';
+  import { toasts } from 'svelte-toasts';
 
   export let form: SuperForm<typeof contactSchema>;
+  // export let apiKey: string = '';
 
-  const { form: f, errors, enhance, delayed } = form;
+  const { form: f, errors, delayed, reset, enhance } = form;
+  // const { form: f, errors, delayed, reset } = form;
+  
+  // let isSubmitting = false;
+
+  // async function handleClientSubmit(e: SubmitEvent) {
+  //   e.preventDefault();
+    
+  //   if (!apiKey) {
+  //     toasts.add({
+  //       description: 'API key not configured',
+  //       duration: 3000,
+  //       placement: 'bottom-right',
+  //       theme: 'dark',
+  //       type: 'error',
+  //     });
+  //     return;
+  //   }
+
+  //   isSubmitting = true;
+
+  //   try {
+  //     const submissionData = {
+  //       ...$f,
+  //       access_key: apiKey,
+  //       from_name: 'Artcon Website Contact Form Submission',
+  //     };
+
+  //     const response = await fetch('https://api.web3forms.com/submit', {
+  //       method: 'POST',
+  //       mode: 'cors',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Accept: 'application/json',
+  //       },
+  //       body: JSON.stringify(submissionData),
+  //     });
+
+  //     if (response.ok) {
+  //       toasts.add({
+  //         description: 'Form submitted successfully',
+  //         duration: 3000,
+  //         placement: 'bottom-right',
+  //         theme: 'dark',
+  //         type: 'success',
+  //       });
+  //       reset();
+  //     } else {
+  //       const errorData = await response.json().catch(() => ({}));
+  //       toasts.add({
+  //         description: errorData.message || 'Failed to submit form. Please try again.',
+  //         duration: 3000,
+  //         placement: 'bottom-right',
+  //         theme: 'dark',
+  //         type: 'error',
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Form submission error:', error);
+  //     toasts.add({
+  //       description: error instanceof Error ? error.message : 'Network error. Please try again.',
+  //       duration: 3000,
+  //       placement: 'bottom-right',
+  //       theme: 'dark',
+  //       type: 'error',
+  //     });
+  //   } finally {
+  //     isSubmitting = false;
+  //   }
+  // }
 </script>
 
 <section
@@ -15,6 +86,7 @@
   class="container-primary relative translate-y-[120px] pb-section">
   <div class="w-full max-w-[64.125rem]">
     <form use:enhance class="w-full space-y-[3.12rem]" method="POST">
+    <!-- <form on:submit={handleClientSubmit} class="w-full space-y-[3.12rem]" method="POST"> -->
       <div class="grid grid-cols-2 gap-[1.88rem]">
         <Input
           bind:value={$f.name}
@@ -57,6 +129,26 @@
           Send massage
         {/if}
       </button>
+      <!-- <button
+        class="rounded-2xl border border-raisin-black px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-raisin-black"
+        disabled={isSubmitting}
+        type="submit">
+        {#if isSubmitting}
+          <span class="animate-pulse">Sending...</span>
+        {:else}
+          Send massage
+        {/if}
+      </button>
+      <button
+        class="rounded-2xl border border-raisin-black px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-raisin-black"
+        disabled={$delayed}
+        type="submit">
+        {#if $delayed}
+          <span class="animate-pulse">Sending...</span>
+        {:else}
+          Send massage
+        {/if}
+      </button> -->
     </form>
   </div>
 </section>

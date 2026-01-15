@@ -28,23 +28,26 @@
   const f = superForm(data.form, {
     validators: inquirySchema,
     resetForm: true,
-    onResult: ({ result }) => {
-      console.log('Form result:', result);
+    onResult: ({ result }: any) => {
+      console.log('==== onResult callback triggered ====');
+      console.log('Result type:', result?.type);
       
-      if (result.type === 'success') {
+      if (result?.type === 'success') {
+        console.log('Success detected - closing popup and showing toast');
         formPopupStore.setFormPopupVisibility(false);
         toasts.add({
           description: 'Form submitted successfully',
-          duration: 1000,
+          duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'success',
         });
-      } else if (result.type === 'failure') {
-        const errorMsg = result.data?.error || 'Failed to submit form';
+      } else if (result?.type === 'failure') {
+        console.log('Failure detected - showing error toast');
+        const errorMsg = (result as any)?.data?.error || 'Failed to submit form';
         toasts.add({
           description: errorMsg,
-          duration: 1000,
+          duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'error',

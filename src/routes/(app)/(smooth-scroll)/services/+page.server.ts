@@ -60,8 +60,23 @@ export const load: ServerLoad = async (event) => {
 export const actions: Actions = {
   default: async (event) => {
     const form = await superValidate(event, inquirySchema);
+    console.log('Form validation result:', form.valid);
 
-    if (!form.valid) return fail(400, { form });
+    if (form.valid) {
+      console.log('Valid Form Data Received:');
+      console.log('   Name:', form.data.name);
+      console.log('   Email:', form.data.email);
+      console.log('   Phone:', form.data.phone);
+      console.log('   Message:', form.data.message);
+      console.log('   Context:', form.data.context);
+    } else {
+      console.log('Form validation errors:', form.errors);
+    }
+
+    if (!form.valid) {
+      console.log('Form validation failed, returning fail');
+      return fail(400, { form });
+    }
 
     const submissionData = {
       ...form.data,
@@ -70,6 +85,7 @@ export const actions: Actions = {
     };
 
     try {
+      console.log('Submitting to Web3Forms with data:', submissionData);
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -81,14 +97,20 @@ export const actions: Actions = {
         body: JSON.stringify(submissionData),
       });
 
+      console.log('Web3Forms response status:', response.status);
+
       if (!response.ok) {
+        console.log('Web3Forms returned error');
         return fail(response.status, { form, error: 'Failed to submit form. Please try again.' });
       }
+      
+      console.log('Form submitted successfully to Web3Forms');
     } catch (error) {
       console.error('Form submission error:', error);
       return fail(500, { form, error: 'Network error. Please try again.' });
     }
 
-    return { form };
+    console.log('Returning success response');
+    return { form, success: true };
   },
 };

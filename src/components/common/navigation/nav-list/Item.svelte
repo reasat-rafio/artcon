@@ -66,9 +66,9 @@
   class="navitem text-[0.84375rem] uppercase leading-[120%] tracking-[0.01688rem] lg:opacity-0">
   <span
     class={cn('origin-center  break-words transition-all duration-500', {
-      'font-semibold opacity-100': $page.url.pathname === pageUrl,
+      'font-semibold opacity-100': $page.url.pathname === pageUrl || $page.url.pathname.startsWith(pageUrl + '/') || (pageUrl && $page.url.pathname.includes('/' + pageUrl.replace(/^\//,'') + '/')),
       'font-normal opacity-[0.64] hover:font-semibold hover:opacity-100':
-        $page.url.pathname !== pageUrl,
+        $page.url.pathname !== pageUrl && !$page.url.pathname.startsWith(pageUrl + '/') && (!pageUrl || !$page.url.pathname.includes('/' + pageUrl.replace(/^\//,'') + '/')),
     })}>
     {title}
   </span>

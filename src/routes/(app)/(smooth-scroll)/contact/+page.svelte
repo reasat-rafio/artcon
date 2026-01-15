@@ -25,22 +25,22 @@
     taintedMessage: 'Are you sure you want leave?',
     validators: contactSchema,
     resetForm: true,
-    onResult: ({ result }) => {
-      console.log('Form result:', result);
+    onResult: ({ result }: any) => {
+      console.log('Form result:', result?.type);
       
-      if (result.type === 'success') {
+      if (result?.type === 'success') {
         toasts.add({
           description: 'Form submitted successfully',
-          duration: 1000,
+          duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'success',
         });
-      } else if (result.type === 'failure') {
-        const errorMsg = result.data?.error || 'Failed to submit form';
+      } else if (result?.type === 'failure') {
+        const errorMsg = (result as any)?.data?.error || 'Failed to submit form';
         toasts.add({
           description: errorMsg,
-          duration: 1000,
+          duration: 3000,
           placement: 'bottom-right',
           theme: 'dark',
           type: 'error',

@@ -78,10 +78,11 @@ export const actions: Actions = {
         return fail(response.status, { form, error: 'Failed to submit form. Please try again.' });
       }
 
-      return { form };
+      return { form, success: true };
     } catch (error) {
       console.error('Form submission error:', error);
       return fail(500, { form: undefined, error: error instanceof Error ? error.message : 'Network error. Please try again.' });
     }
   },
 };
+

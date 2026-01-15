@@ -65,7 +65,7 @@
 </script>
 
 <section>
-  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-xl {$$props.class}">
+  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-section {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}

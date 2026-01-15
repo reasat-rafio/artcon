@@ -8,9 +8,11 @@
   import XIcon from '@/components/icons/X.svelte';
   import Backdrop from '@/components/common/Backdrop.svelte';
   import { onMount } from 'svelte';
+  import { toasts } from 'svelte-toasts';
 
   export let form: SuperForm<typeof inquirySchema>;
   export let contextMessage: string;
+  export let onFormSuccess: (() => void) | undefined = undefined;
 
   const { form: f, errors, enhance, delayed, reset } = form;
 
@@ -34,10 +36,66 @@
     reset();
   }
 
-  // Set the context message when component mounts or updates
+  // Custom enhance function that shows toasts
+  function handleEnhance() {
+    return async ({ result, update }: any) => {
+      console.log('Enhance callback triggered');
+      console.log('Result type:', result?.type);
+      console.log('Result:', result);
+
+      await update();
+
+      if (result?.type === 'success') {
+        console.log('FormPopup: Success detected');
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+        setTimeout(() => {
+          formPopupStore.setFormPopupVisibility(false);
+          if (onFormSuccess) onFormSuccess();
+        }, 500);
+      } else if (result?.type === 'failure') {
+        console.log('FormPopup: Failure detected');
+        const errorMsg = (result as any)?.data?.error || 'Failed to submit form';
+        console.log('Error message:', errorMsg);
+        toasts.add({
+          description: errorMsg,
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'error',
+        });
+      } else if (result?.type === 'error') {
+        console.log('FormPopup: Error detected');
+        toasts.add({
+          description: 'An error occurred',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'error',
+        });
+      }
+    };
+  }
+
+  function onFormSubmit() {
+    console.log('Form data:', {
+      name: $f.name,
+      email: $f.email,
+      phone: $f.phone,
+      message: $f.message,
+      context: $f.context,
+    });
+  }
+
   $: if (contextMessage) {
     $f.context = contextMessage;
   }
+
 </script>
 
 <Backdrop on:close={closeFormPopup} />
@@ -49,6 +107,7 @@
   <form
     method="POST"
     use:enhance
+    on:submit={onFormSubmit}
     class="relative flex !w-full flex-col gap-y-[2rem] rounded-[0.75rem] bg-white max-lg:px-[1.25rem] max-lg:py-[3.125rem] lg:p-[3.125rem]"
     style="box-shadow: 0px 30px 60px 0px rgba(89, 86, 230, 0.10);">
     <button
@@ -98,6 +157,7 @@
 
     <div class="flex flex-col-reverse gap-[1rem] sm:flex-row lg:gap-[2rem]">
       <button
+        on:click={() => console.log('BUTTON CLICK - delayed:', $delayed, 'Form valid:', !$errors.name && !$errors.email && !$errors.phone && !$errors.message)}
         disabled={$delayed}
         type="submit"
         class={cn(
