@@ -4,10 +4,8 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Form from '@/components/pages/contact/Form.svelte';
-  import type { ActionData } from './$types';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import { superForm } from 'sveltekit-superforms/client';
   import { contactSchema } from '@/lib/validator';
-  import { toasts } from 'svelte-toasts';
 
   export let data;
 
@@ -24,30 +22,6 @@
   const f = superForm(data.form, {
     taintedMessage: 'Are you sure you want leave?',
     validators: contactSchema,
-    resetForm: true,
-    onResult: ({ result }: any) => {
-      console.log('Form result:', result?.type);
-      
-      if (result?.type === 'success') {
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      } else if (result?.type === 'failure') {
-        const errorMsg = (result as any)?.data?.error || 'Failed to submit form';
-        toasts.add({
-          description: errorMsg,
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-        console.error('Form submission error:', errorMsg);
-      }
-    },
   });
 </script>
 
@@ -66,7 +40,7 @@
         </div>
       {/if}
     {/each}
-    <Form form={f} />
+    <Form form={f} {apiKey} />
   </div>
   <Footer {footer} {contact} logo={logoDark} />
 </div>

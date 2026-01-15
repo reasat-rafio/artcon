@@ -5,19 +5,9 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { SeoProps } from '@/lib/types/common.types';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
-  import type { PortableTextBlock } from 'sanity';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import type { ActionData } from './$types';
-  import { toasts } from 'svelte-toasts';
-
-  type Props = {
-    seo: SeoProps;
-    title: string;
-    privacyPolicy: PortableTextBlock[];
-  };
+  import { superForm } from 'sveltekit-superforms/client';
 
   export let data;
 
@@ -28,35 +18,11 @@
       footer,
       contact,
     },
+    apiKey,
   } = data);
 
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: ({ result }) => {
-      console.log('Form result:', result);
-      
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      } else if (result.type === 'failure') {
-        const errorMsg = result.data?.error || 'Failed to submit form';
-        toasts.add({
-          description: errorMsg,
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-        console.error('Form submission error:', errorMsg);
-      }
-    },
   });
 </script>
 
@@ -85,5 +51,6 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
+    {apiKey}
     contextMessage={`User pressed "Contact Us" in privacy policy page.`} />
 {/if}
