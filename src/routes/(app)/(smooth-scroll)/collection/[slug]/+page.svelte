@@ -18,9 +18,7 @@
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { toasts } from 'svelte-toasts';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import type { ActionData } from './$types';
+  import { superForm } from 'sveltekit-superforms/client';
 
   export let data;
 
@@ -40,6 +38,7 @@
       artist,
     },
     site: { logos },
+    apiKey,
   } = data);
 
   $: collectionImage = artworkImages?.[0];
@@ -50,31 +49,6 @@
   let innerWidth = 0;
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: ({ result }) => {
-      console.log('Form result:', result);
-      
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      } else if (result.type === 'failure') {
-        const errorMsg = result.data?.error || 'Failed to submit form';
-        toasts.add({
-          description: errorMsg,
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-        console.error('Form submission error:', errorMsg);
-      }
-    },
   });
 
   onMount(() => {
@@ -285,5 +259,6 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
+    {apiKey}
     contextMessage={`The user selected collection is titled ${name}${artist?.name ? ` by ${artist.name}` : subtitle ? ` by ${subtitle}` : ''}.`} />
 {/if}

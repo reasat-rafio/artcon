@@ -6,13 +6,9 @@
   import Services from '@/components/pages/services/Services.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
-  import type { PageProps } from '@/lib/types/common.types';
-  import type { ServicesPageProps } from '@/lib/types/services.types';
   import formPopupStore from '@/store/form-popup';
-  import type { ActionData } from './$types';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import { superForm } from 'sveltekit-superforms/client';
   import { inquirySchema } from '@/lib/validator';
-  import { toasts } from 'svelte-toasts';
 
   export let data;
   let {
@@ -22,36 +18,12 @@
       footer,
       contact,
     },
+    apiKey,
   } = data;
 
   let contextMessage: string;
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: ({ result }) => {
-      console.log('Form result:', result);
-      
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 1000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      } else if (result.type === 'failure') {
-        const errorMsg = result.data?.error || 'Failed to submit form';
-        toasts.add({
-          description: errorMsg,
-          duration: 1000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'error',
-        });
-        console.error('Form submission error:', errorMsg);
-      }
-    },
   });
 </script>
 
@@ -86,5 +58,5 @@
 </div>
 
 {#if $formPopupStore.show}
-  <FormPopup form={f} {contextMessage} />
+  <FormPopup form={f} {apiKey} {contextMessage} />
 {/if}
