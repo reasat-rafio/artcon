@@ -31,6 +31,7 @@
         body: JSON.stringify({
           access_key: apiKey,
           from_name: 'Artcon Website Contact Form Submission',
+          subject: 'Artcon Contact Inquiry',
           name: $f.name,
           email: $f.email,
           message: $f.message,

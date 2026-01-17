@@ -325,5 +325,5 @@
   <FormPopup
     form={f}
     {apiKey}
-    contextMessage={`The user selected publication is titled ${name} by ${subtitle ?? ''}.`} />
+    contextMessage={`${name}: ${exproleLink?.href || ''}`} />
 {/if}

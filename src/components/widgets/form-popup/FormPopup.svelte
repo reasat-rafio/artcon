@@ -61,11 +61,11 @@
         body: JSON.stringify({
           access_key: apiKey,
           from_name: 'Artcon Website Inquiry Form Submission',
+          subject: $f.context || 'Website Inquiry',
           name: $f.name,
           email: $f.email,
           phone: $f.phone,
-          message: $f.message,
-          context: $f.context,
+          message: $f.context ? `${$f.context}\n\n${$f.message}` : $f.message,
         }),
       });
 

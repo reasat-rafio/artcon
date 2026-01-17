@@ -13,7 +13,7 @@
   export let contextMessage: string;
 
   function handleFormPopup(title: string) {
-    contextMessage = `The user selected service is titled ${title}.`;
+    contextMessage = `Service Inquiry: ${title}`;
     formPopupStore.setFormPopupVisibility(true);
   }
 
