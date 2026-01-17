@@ -320,10 +320,10 @@
     </section>
   </article>
 </section>
-
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
     {apiKey}
-    contextMessage={`${name}: ${exproleLink?.href || ''}`} />
+    contextMessage={`${name}: ${exproleLink?.href || ''}`}
+    subjectLine={`Publication inquiry : ${name}`} />
 {/if}

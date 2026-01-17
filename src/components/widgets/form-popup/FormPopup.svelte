@@ -13,6 +13,7 @@
   export let form: SuperForm<typeof inquirySchema>;
   export let contextMessage: string;
   export let apiKey: string;
+  export let subjectLine: string | null = null;
 
   const { form: f, errors, validate, reset } = form;
 
@@ -61,7 +62,7 @@
         body: JSON.stringify({
           access_key: apiKey,
           from_name: 'Artcon Website Inquiry Form Submission',
-          subject: $f.context || 'Website Inquiry',
+          subject: subjectLine || $f.context || 'Website Inquiry',
           name: $f.name,
           email: $f.email,
           phone: $f.phone,
