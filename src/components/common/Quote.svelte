@@ -17,7 +17,7 @@
       <p class="inline">“{text}”</p>
     </blockquote>
     {#if !!author}
-      <div class="block" style="font-size: {authorSize}">
+      <div class="block" style="font-size: {authorSize}; margin-top:0.6rem;">
         {#if url}
           <a href={url} target="_blank" rel="noopener noreferrer" class="inline cursor-pointer italic hover:underline">– {author}</a>
         {:else}
