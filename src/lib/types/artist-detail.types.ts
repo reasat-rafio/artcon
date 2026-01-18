@@ -1,6 +1,7 @@
 import type { SanityAsset } from '@sanity/image-url/lib/types/types';
 import type {
   Asset,
+  ArtworkItem,
   CommonArtworkSectionProps,
   CommonImageAsset,
   CommonOtherExhibitionProps,
@@ -12,6 +13,7 @@ import type {
   SocialProps,
   Tag,
   VR,
+  Youtube,
 } from './common.types';
 import type { PortableTextBlock, Slug } from 'sanity';
 import type { SanityImageAssetDocument } from '@sanity/client';
@@ -27,6 +29,7 @@ export interface ArtistDetailPageProps {
     cta?: Cta;
   };
   artworks?: ShortArtworks[];
+  customArtworks?: ArtworkItem[];
   exhibitions: CommonOtherExhibitionProps[];
   personalDocuments: PersonalDocuments;
   otherArtists: OtherArtists[];
@@ -39,7 +42,8 @@ type Section =
   | CommonArtworkSectionProps
   | ArtistSummaryProps
   | PublicationSectionPros
-  | ExhibitionsProps;
+  | ExhibitionsProps
+  | VideoProps;
 
 export interface PublicationSectionPros {
   _type: 'artist.publication';
@@ -116,3 +120,11 @@ export interface Exhibition {
   image: SanityAsset;
   quote?: Quote;
 }
+
+export interface VideoProps {
+  _key: string;
+  _type: 'artist.video';
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
+}
+
+type VrOrYtVideoSlider = VR | Youtube;

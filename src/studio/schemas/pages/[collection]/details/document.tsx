@@ -1,6 +1,6 @@
 import { orderRankField } from '@sanity/orderable-document-list';
 import { FaPaintBrush } from 'react-icons/fa';
-import type { Rule } from 'sanity';
+import type { DefaultPreviewProps, Rule } from 'sanity';
 
 const collection = {
   name: 'collection',
@@ -9,14 +9,14 @@ const collection = {
   fields: [
     orderRankField({ type: 'collection' }),
     {
-      name: 'seo',
-      title: 'SEO',
-      type: 'seo',
+      title: 'Collection Title',
+      name: 'name',
+      type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Collection Title',
-      name: 'name',
+      title: 'Subtitle',
+      name: 'subtitle',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
     },
@@ -27,204 +27,126 @@ const collection = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Artist',
-      name: 'artist',
-      type: 'reference',
-      to: [{ type: 'artist' }],
+      title: 'Top Title',
+      name: 'topTitle',
+      type: 'string',
     },
-
     {
-      name: 'information',
-      title: 'Artwork Information',
-      type: 'object',
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'collectionTag' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'collectorImage',
+      title: 'Collector Image',
+      type: 'image',
+      options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
-          name: 'media',
+          name: 'alt',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessibility',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'size',
-          type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          name: 'artDate',
-          type: 'object',
-          validation: (Rule: Rule) => Rule.required(),
-          fields: [
-            {
-              title: 'Creation Details (required)',
-              name: 'creationDetails',
-              type: 'string',
-              description: 'Example: Executed in 1970',
-              // validation: (Rule: Rule) => Rule.required(),
-            },
-            {
-              title: 'Year (required)',
-              name: 'year',
-              type: 'string',
-              description: 'Example: 1970',
-              // validation: (Rule: Rule) => Rule.required(),
-            },
-          ],
-        },
-
-        {
-          title: 'Frame (required)',
-          name: 'frame',
-          type: 'string',
-        },
-        {
-          name: 'moreInformation',
-          description: 'example: This work is in a temporary frame. (frame)',
-          type: 'array',
-          of: [{ type: 'string' }],
         },
       ],
     },
-
     {
-      name: 'artworkImages',
-      type: 'array',
-      description: 'First image will be used as the main image',
-      validation: (Rule: Rule) => Rule.required().max(4),
-      of: [
+      name: 'thumbnail',
+      title: 'Thumbnail (for listing card)',
+      description: 'This image will be displayed on the collection listing page card',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (Rule: Rule) => Rule.required(),
+      fields: [
         {
-          name: 'artworkImage',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },
+    {
+      name: 'sliderImageVideo',
+      type: 'sliderImageVideo',
+      title: 'Slider Image / Video',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'quote',
+      type: 'quote',
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      type: 'array',
+      of: [{ type: 'block', lists: [], styles: [] }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'associationsList',
+      title: 'Associations List',
+      description: 'Key-value pairs like Catalogue no, First published, Language, etc.',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'exproleLink',
+      title: 'Explore Link',
+      type: 'object',
+      fields: [
+        {
+          title: 'Button Title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          name: 'href',
+          title: 'Button URL',
+          description: `The URL field accepts internal links in the format '/page-slug' or '/parent-slug/slug' (e.g., 'artcon.com/exhibition' becomes '/exhibition'). External URLs must begin with 'https://' or 'http://', while email links should use 'mailto:email@example.com'. Any valid external URL is accepted.`,
+          type: 'string',
+        },
+      ],
+    },
+    {
+      name: 'stock',
+      title: 'Stock',
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+
     {
       name: 'asset',
       title: 'Hero Image / Video',
       type: 'asset',
-      validation: (Rule: Rule) => Rule.required(),
-    },
-    // {
-    //   name: 'sliderImageVideo',
-    //   type: 'sliderImageVideo',
-    //   title: 'Slider Image / Video',
-    //   // validation: (Rule: Rule) => Rule.required(),
-    // },
-    {
-      name: 'topTitle',
-      title: 'Top Title',
-      type: 'string',
-    },
-    {
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
     },
     {
       title: 'Button',
       name: 'cta',
       type: 'cta',
     },
-
-    {
-      name: 'tag',
-      title: 'Tag',
-      type: 'reference',
-      to: [{ type: 'collectionTag' }],
-      validation: (Rule: Rule) => Rule.required(),
-    },
-
-    {
-      name: 'provenance',
-      type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
-      fields: [
-        {
-          title: 'Title (required)',
-          name: 'title',
-          type: 'string',
-          // validation: (Rule: Rule) => Rule.required(),
-        },
-        {
-          title: 'Description (required)',
-          name: 'description',
-          type: 'array',
-          of: [{ type: 'block', lists: [], styles: [] }],
-          // validation: (Rule: Rule) => Rule.required(),
-        },
-      ],
-    },
-
-    {
-      name: 'isAvailable',
-      type: 'boolean',
-      title: 'Collection is Available',
-      validation: (Rule: Rule) => Rule.required(),
-      initialValue: true,
-    },
-    {
-      name: 'displayNew',
-      title: 'New',
-      type: 'boolean',
-      description:
-        'Toggling this to true will display the new tag on the collection',
-      initialValue: false,
-      hidden: ({
-        document: { displaySold },
-      }: {
-        document: { displaySold: boolean };
-      }) => displaySold,
-    },
-    {
-      name: 'displaySold',
-      title: 'Sold',
-      type: 'boolean',
-      description:
-        'Toggling this to true will display the sold tag on the collection',
-      initialValue: false,
-      hidden: ({
-        document: { displayNew },
-      }: {
-        document: { displayNew: boolean };
-      }) => displayNew,
-    },
-    {
-      name: 'hideInquiryButton',
-      type: 'boolean',
-      initialValue: false,
-      description: 'Hide the inquiry button on this collection',
-    },
-
-    {
-      name: 'sections',
-      title: 'Sections',
-      type: 'array',
-      validation: (Rule: Rule) => Rule.required().min(1),
-
-      of: [
-        { type: 'collection.summary' },
-        { type: 'common.imageAsset' },
-        { type: 'common.note' },
-        { type: 'collection.artist' },
-        { type: 'collection.documentation' },
-      ],
-    },
   ],
   preview: {
     select: {
       title: 'name',
-      artistName: 'artist.personalDocuments.name.en',
-      media: 'artworkImages',
-      date: 'information.artDate.year',
+      subtitle: 'subtitle',
+      category: 'category.name',
+      media: 'thumbnail',
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    prepare: ({ title, media, artistName, date }: any) => ({
-      title: artistName,
-      subtitle: `${title} | ${date}`,
-      media: media[0],
+    prepare: ({
+      title,
+      subtitle,
+      category,
+      media,
+    }: DefaultPreviewProps & { subtitle: string; category: string }) => ({
+      title,
+      subtitle: `${subtitle} | ${category}`,
+      media,
     }),
   },
 };

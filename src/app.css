@@ -1,3 +1,5 @@
+@import '@fontsource/inter';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,9 +18,12 @@
   html,
   body {
     overscroll-behavior: none;
+    /* overflow-x: hidden; */
   }
   body {
     @apply text-dark-gunmetal;
+    width: 100%;
+    max-width: 100vw;
   }
 
   h1,
@@ -27,7 +32,7 @@
   h4,
   h5,
   h6 {
-    @apply !font-optiberling-agency font-medium capitalize;
+    @apply !font-optiberling-agency font-medium;
   }
 }
 
@@ -114,24 +119,25 @@
   }
 
   .mb-section {
-    @apply mb-sm md:mb-[5rem] xl:mb-xl;
+    @apply mb-sm md:mb-[5rem] xl:mb-[6.875rem];
   }
 
   .mt-section {
-    @apply mt-sm md:mt-[5rem] xl:mt-xl;
+    @apply mt-sm md:mt-[5rem] xl:mt-[6.875rem];
   }
   .pb-section {
-    @apply pb-sm md:pb-[5rem] xl:pb-xl;
+    @apply pb-sm md:pb-[5rem] xl:pb-[6.875rem];
   }
   .pt-section {
-    @apply pt-sm md:pt-[5rem] xl:pt-xl;
+    @apply pt-sm md:pt-[5rem] xl:pt-[6.875rem];
   }
 
   .py-section {
-    @apply py-sm md:py-[5rem] xl:py-xl;
+    @apply py-sm md:py-[5rem] xl:py-[6.875rem];
   }
+
   .my-section {
-    @apply my-sm md:my-[5rem] xl:my-xl;
+    @apply my-sm md:my-[5rem] xl:my-[6.875rem];
   }
 
   .px-section {
@@ -170,6 +176,17 @@
     @apply text-[0.75rem] font-light tracking-[0.015rem];
   }
   .caption {
-    @apply sub-title-light md:title-light mt-[0.69rem] block  pl-[0.62rem] font-light text-sonic-silver lg:mt-[1.22rem] lg:pl-[1.88rem];
+    @apply sub-title-light md:title-light pt-[1rem] block pl-[1.75rem] font-light text-sonic-silver;
+  }
+
+  /* TEXT SHADOWS */
+  .shadow-text-title {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
+  }
+  .shadow-text-subtitle {
+    text-shadow: -1px 1.5px 1px rgba(0, 0, 0, .25);
+  }
+  .shadow-text-discover {
+    text-shadow: -1px 1.5px 1px rgba(0, 0, 0, .25);
   }
 }

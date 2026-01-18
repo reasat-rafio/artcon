@@ -4,20 +4,10 @@
   import Cta from '@/components/ui/Cta.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { SeoProps } from '@/lib/types/common.types';
   import { inquirySchema } from '@/lib/validator.js';
   import formPopupStore from '@/store/form-popup.js';
-  import type { PortableTextBlock } from 'sanity';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import type { ActionData } from './$types.js';
+  import { superForm } from 'sveltekit-superforms/client';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
-  import { toasts } from 'svelte-toasts';
-
-  type Props = {
-    seo: SeoProps;
-    title: string;
-    termsConditions: PortableTextBlock[];
-  };
 
   export let data;
 
@@ -28,26 +18,11 @@
       footer,
       contact,
     },
+    apiKey,
   } = data);
 
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      }
-    },
   });
 </script>
 
@@ -76,5 +51,6 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
+    {apiKey}
     contextMessage={`User pressed "Contact Us" in terms and condition page.`} />
 {/if}

@@ -32,6 +32,7 @@
       coverImage,
       thumbnail,
       link,
+      isActive,
     },
     site: { logos },
   } = data);
@@ -41,10 +42,20 @@
   let contentEl: HTMLElement;
   let innerWidth = 0;
 
-  $: ({ date, status } = calculateStatusBetweenDates({
+  // $: ({ date, status } = calculateStatusBetweenDates({
+  //   startDate,
+  //   endDate,
+  // }));
+  $: ({ date } = calculateStatusBetweenDates({
     startDate,
     endDate,
   }));
+  $: status = 
+    isActive === 'active' 
+      ? 'Active' 
+      : isActive === 'temporarily-inactive' 
+        ? 'Temporarily Inactive' 
+        : 'Inactive';
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
@@ -55,7 +66,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -140,7 +151,7 @@
           <NavigationMobile
             cta={{ href: url, title: 'Explore', newTab: true }} />
           <Header
-            topic="Our virtual reality"
+            topic="Our Virtual Reality"
             title={name}
             subtitle={subtitle ?? ''}
             type={category.name}
@@ -148,7 +159,17 @@
             let:Info>
             <Info>
               <div class="title-light">
-                {gallery.name}
+                {#if gallery?.url}
+                  <a 
+                    href={gallery.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="cursor-pointer transition-colors hover:!text-gray-500">
+                    {gallery.name},
+                  </a>{#if gallery?.location}{gallery.location}{/if}
+                {:else}
+                  {gallery.name}{#if gallery?.location}{gallery.location}{/if}
+                {/if}
               </div>
               <div class="title-light">
                 {#if !!date && !!status}

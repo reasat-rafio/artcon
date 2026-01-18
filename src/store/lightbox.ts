@@ -5,6 +5,7 @@ type LightboxStore = {
   showLightbox: boolean;
   allImages: SanityImageAssetDocument[];
   activeIndex: number;
+  hideThumbnails: boolean;
 };
 
 const createLightboxStore = () => {
@@ -12,6 +13,7 @@ const createLightboxStore = () => {
     showLightbox: false,
     allImages: [],
     activeIndex: 0,
+    hideThumbnails: false,
   });
 
   const setAllImages = (images: SanityImageAssetDocument[]) => {
@@ -31,6 +33,16 @@ const createLightboxStore = () => {
   const setLightboxVisibility = (input: boolean) => {
     update(($store) => {
       $store.showLightbox = input;
+      if (!input) {
+        $store.hideThumbnails = false;
+      }
+      return $store;
+    });
+  };
+
+  const setHideThumbnails = (input: boolean) => {
+    update(($store) => {
+      $store.hideThumbnails = input;
       return $store;
     });
   };
@@ -40,6 +52,7 @@ const createLightboxStore = () => {
     setAllImages,
     setActiveIndex,
     setLightboxVisibility,
+    setHideThumbnails,
   };
 };
 

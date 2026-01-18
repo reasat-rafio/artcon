@@ -4,7 +4,6 @@
   import type { GalleryProps } from '@/lib/types/exhibition-detail.types';
   import Gallery from '@/components/ui/carousel/Gallery.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import parallaxAnimation from '@/lib/actions/parallaxAnimation';
   import lightboxStore from '@/store/lightbox';
 
   export let props: GalleryProps;
@@ -14,31 +13,17 @@
     images,
   } = props);
 
-  const lightboxAction = (index: number) => {
+  const lightboxAction = (globalIndex: number) => {
     lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(images);
-    lightboxStore.setActiveIndex(index);
+    lightboxStore.setActiveIndex(globalIndex);
   };
 </script>
 
 <section>
-  <div class="py-section container-primary">
-    <div
-      use:parallaxAnimation
-      class="mb-sm translate-y-[120px] md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[4.638rem]">
-      <Gallery items={images} let:chunk>
-        {#each chunk as image, index}
-          <Card
-            on:lightboxAction={() => lightboxAction(index)}
-            class="pl-[1.5625rem] hover:cursor-zoom-in max-md:pt-[1.5625rem]"
-            let:Image>
-            <Image {image} />
-          </Card>
-        {/each}
-      </Gallery>
-    </div>
-
-    <DescriptionBlock>
+  <div class="pt-section container-primary {$$props.class}">
+    <DescriptionBlock class="mb-sm md:mb-[5rem] xl:mb-[4.638rem]">
       <svelte:fragment slot="intro" let:C>
         <C.Title>{title}</C.Title>
       </svelte:fragment>
@@ -48,5 +33,21 @@
         </Description>
       </svelte:fragment>
     </DescriptionBlock>
+
+    <div class="lg:mr-[4.375rem]">
+      <Gallery items={images} let:chunk let:api>
+        {#each chunk as image, chunkIndex (image.asset._id || image._key || chunkIndex)}
+          {@const chunkSize = typeof window !== 'undefined' ? (window.innerWidth >= 1280 ? 6 : window.innerWidth >= 768 ? 4 : 2) : 2}
+          {@const slideIndex = api?.selectedScrollSnap() ?? 0}
+          {@const globalIndex = slideIndex * chunkSize + chunkIndex}
+          <Card
+            on:lightboxAction={() => lightboxAction(globalIndex)}
+            class="pl-[1.5625rem] hover:cursor-zoom-in max-md:pt-[1.5625rem]"
+            let:Image>
+            <Image {image} />
+          </Card>
+        {/each}
+      </Gallery>
+    </div>
   </div>
 </section>

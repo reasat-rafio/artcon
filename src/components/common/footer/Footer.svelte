@@ -8,6 +8,8 @@
   export let footer: FooterProps;
   export let contact: ContactProps;
   export let logo: SanityAsset;
+
+  const currentYear = new Date().getFullYear();
 </script>
 
 <footer id="footer" class="mt-auto">
@@ -60,11 +62,11 @@
 
     <div
       class="flex flex-col justify-between border-t border-quick-silver/50 pb-[1.5rem] pt-[1.56rem] max-lg:space-y-[0.63rem] lg:flex-row lg:items-center lg:pb-[2.5rem] lg:pt-[2rem]">
-      <p class="title-regular text-quick-silver">© ARTCON 2023</p>
+      <p class="font-inter text-[12px] font-normal leading-[120%] text-quick-silver">© ARTCON {currentYear}</p>
       <p
-        class="font-inter text-[14px] font-normal leading-[120%] text-quick-silver">
+        class="font-inter text-[12px] font-normal leading-[120%] text-quick-silver">
         Developed by <a
-          class="font-semibold hover:underline"
+          class="font-normal hover:underline"
           href="https://edistys.dev">
           Edistys
         </a>

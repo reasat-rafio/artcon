@@ -9,8 +9,10 @@
   export let index: number;
   export let activeBlockIndex: number;
   export let scrollDirection: 'forward' | 'backward';
+  export let currentSlug: string | undefined = undefined;
 
   $: ({ title, subtitle, topTitle, asset, cta } = block);
+  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
   let titleEl: HTMLElement;
   let assetEl: HTMLElement;
   let topTitleEl: HTMLElement;
@@ -90,26 +92,26 @@
 
 <div
   use:animation
-  class="relative flex h-screen w-[100vw] flex-[0_0_100%] overflow-hidden">
+  class="relative flex h-screen w-[100vw] flex-[0_0_100%] items-center justify-center overflow-hidden">
   <Asset bind:el={assetEl} {asset} />
   <Overlay />
 
   <div
     bind:this={contentContainerEl}
-    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
-    <header class="space-y-[2.1875rem] !drop-shadow-4xl">
+    class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] text-center text-white max-lg:px-[1rem]">
+    <header class="space-y-[2.1875rem]">
       {#if !!topTitle}
         <h3
           bind:this={topTitleEl}
-          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
+          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest max-lg:line-clamp-2 shadow-text-subtitle">
           {topTitle}
         </h3>
       {:else}
         <span class="invisible">""</span>
       {/if}
 
-      <div class="overflow-hidden !leading-[100%]">
-        <h1 bind:this={titleEl} class="head-1 uppercase !leading-none">
+      <div class="overflow-visible !leading-[100%]">
+        <h1 bind:this={titleEl} class="head-1 !leading-tight max-lg:line-clamp-2 shadow-text-title">
           {title}
         </h1>
       </div>
@@ -117,7 +119,7 @@
       <div
         class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
         {#if !!subtitle}
-          <h2 class="" bind:this={subtitleEl}>
+          <h2 class="whitespace-pre shadow-text-subtitle" bind:this={subtitleEl}>
             {subtitle}
           </h2>
         {:else}
@@ -126,7 +128,7 @@
       </div>
     </header>
     <div class="overflow-hidden">
-      {#if !!cta?.title && !!cta?.href}
+      {#if shouldShowCta && cta}
         <Cta
           variant="quaternary"
           className="cta-btn mx-auto min-w-[10.9375rem]"

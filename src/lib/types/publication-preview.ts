@@ -12,6 +12,10 @@ export interface PublicationPreviewProps {
   slug: Slug;
   gallery: null;
   stock: string;
+  externalLinkButton?: {
+    buttonText: string;
+    externalUrl: string;
+  };
   associationsList: AssociationsList[];
   _rev: string;
   sliderImageVideo: Asset;

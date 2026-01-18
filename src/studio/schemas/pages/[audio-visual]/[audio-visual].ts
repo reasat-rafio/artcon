@@ -2,7 +2,6 @@
 import { orderRankField } from '@sanity/orderable-document-list';
 import type { DefaultPreviewProps, Rule } from 'sanity';
 import { BiCameraMovie } from 'react-icons/bi';
-import { toPlainText } from '@portabletext/svelte';
 
 const audioVisual = {
   name: 'documentary',
@@ -106,18 +105,20 @@ const audioVisual = {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'information',
       media: 'coverImage',
       year: 'year',
+      type: 'type.name',
+      category: 'category.name',
     },
     prepare: ({
       title,
-      subtitle,
       year,
+      type,
+      category,
       media,
-    }: DefaultPreviewProps & { year: string }) => ({
+    }: DefaultPreviewProps & { year: string; type: string; category: string }) => ({
       title,
-      subtitle: `${year} | ${toPlainText(subtitle as any)}`,
+      subtitle: `${year} | ${type} | ${category}`,
       media,
     }),
   },

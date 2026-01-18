@@ -11,7 +11,7 @@ const query = groq`
             asset{
                 ...,
                 ${asset('image')},
-                video{
+                video {
                     "webm": video_webm.asset->url,
                     "mov": video_hevc.asset->url,
                 }
@@ -22,6 +22,7 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
+                    "type": category->{name},
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -37,6 +38,7 @@ const query = groq`
                     name,
                     subtitle,
                     slug,
+                    "type": category->{name},
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -55,12 +57,24 @@ const query = groq`
                     tag->{name},
                     "title": "Our event",
                     slug,
+                    startDate,
+                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
                         video{
                             "webm": video_webm.asset->url,
                             "mov": video_hevc.asset->url,
+                        }
+                    },
+                    "documentationImages": sections[_type == "event.documentation"][0].images[]{
+                        ...,
+                        asset-> {
+                            ...,
+                            metadata {
+                                lqip,
+                                dimensions
+                            }
                         }
                     },
                 },
@@ -88,17 +102,15 @@ const query = groq`
                     name,
                     subtitle,
                     "artistName" : artist->{...personalDocuments {...name {en}}},
+                    tag->{name},
                     slug,
-                    "sliderImageVideo" : {
-                    "image": artworkImages[0] {
-                            ...,
-                            asset-> {
-                                ...,
-                                metadata {
-                                    lqip,
-                                    dimensions
-                                }
-                            }
+                    exproleLink,
+                    sliderImageVideo {
+                        ...,
+                        ${asset('image')},
+                        video{
+                            "webm": video_webm.asset->url,
+                            "mov": video_hevc.asset->url,
                         }
                     },
                 },
@@ -108,6 +120,8 @@ const query = groq`
                     name,
                     slug,
                     subtitle,
+                    startDate,
+                    endDate,
                     sliderImageVideo {
                         ...,
                         ${asset('image')},
@@ -116,8 +130,17 @@ const query = groq`
                             "mov": video_hevc.asset->url,
                         }
                     },
-                    "exhibitionType": select(
-                        count(artists) > 1 => "Group Exhibition",
+                    "invitationCardImage": sections[_type == "exhibition.publication"][0].invitationCardImage{
+                        ...,
+                        asset-> {
+                            ...,
+                            metadata {
+                                lqip,
+                                dimensions
+                            }
+                        }
+                    },
+                    "artistName": select(
                         count(artists) == 1 => artists[0]-> {
                             ...personalDocuments {
                                 ...name{
@@ -125,6 +148,10 @@ const query = groq`
                                 }
                             }
                         },
+                    ),
+                    "exhibitionType": select(
+                        count(artists) > 1 => "Group Exhibition",
+                        count(artists) == 1 => "Solo Exhibition",
                     )
                 }
             }

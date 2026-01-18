@@ -18,7 +18,7 @@
 </script>
 
 <section>
-  <div class="container-primary py-sm md:py-[80px] xl:pb-[107px] xl:pt-xl">
+  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -58,6 +58,7 @@
 
     <ParallaxScrollImage
       class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
+      disableParallaxOnDesktop={true}
       images={[{ img: images[0] }, { img: images[1] }]} />
 
     {#if statement?.title && statement?.description}

@@ -9,27 +9,27 @@
 
 <div
   use:parallaxAnimation
-  class="col-span-1 mb-xl grid translate-y-[120px] gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[3.56rem] xl:grid-cols-3">
+  class="col-span-1 mb-xl grid w-full max-w-full translate-y-[120px] gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[2.5rem] xl:grid-cols-3">
   {#each coreTeam as { image, name, role, url }}
     {@const el = url ? 'a' : 'div'}
-    <svelte:element this={el} href={url} class="group relative h-[34.375rem]">
+    <svelte:element this={el} href={url} class="group relative h-[34.375rem] w-full max-w-full">
       <figure
-        class="h-full w-full grayscale transition-all duration-500 group-hover:grayscale-0">
+        class="h-full w-full max-w-full grayscale transition-all duration-500 group-hover:grayscale-0">
         <SanityImage
-          class="h-full w-full rounded-[1.56rem] object-cover"
+          class="h-full w-full max-w-full rounded-[1.56rem] object-cover"
           src={image}
           alt={name}
-          sizes="20vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           imageUrlBuilder={imageBuilder} />
       </figure>
 
       <div
         class="absolute bottom-0 left-0 w-fit space-y-[0.5rem] pb-[23px] pl-[23px] pr-[30px]">
         <h3
-          class="body-regular !font-inter !font-normal !leading-snug text-white">
+          class="!font-inter !font-normal !leading-snug text-white text-[1.375rem]">
           {name}
         </h3>
-        <p class="title-light text-quick-silver">{role}</p>
+        <p class="text-quick-silver text-[1.125rem] font-inter font-light leading-[120%]">{role}</p>
       </div>
     </svelte:element>
   {/each}

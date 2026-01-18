@@ -17,11 +17,12 @@
 
 {#if isSoloExhibition(artists)}
   <Summary
+    class="{$$props.class}"
     props={{
       ...artists.data,
       statement: statementProps,
       personalDocuments: artists.personalDocuments,
     }} />
 {:else if !!artists?.length}
-  <ArtistList {artists} />
+  <ArtistList class="{$$props.class}" {artists} />
 {/if}

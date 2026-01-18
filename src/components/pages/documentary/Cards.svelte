@@ -6,14 +6,24 @@
   import { fade } from 'svelte/transition';
 
   export let items: Documentary[];
+
+  function formatDate(dateString: string | undefined): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(date);
+  }
 </script>
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[2.0001rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, _id, category, coverImage } (_id)}
+  {#each items as { name, slug, _id, type, category, coverImage, duration } (_id)}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -23,14 +33,21 @@
         let:Title
         let:Container
         let:Subtitle>
-        <Asset asset={{ image: coverImage }} />
+        <Asset class="overflow-hidden rounded-[12px]" asset={{ image: coverImage }} />
         <Container>
           <div>
             <Title class="inline">{name}</Title>
           </div>
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
-            {category.name}
-          </Subtitle>
+          <div class="flex justify-between">
+            <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+              {category.name} / {type.name}
+            </div>
+            {#if duration}
+              <span class="font-inter text-sonic-silver pr-1 text-[14px] font-[300]">
+                {duration}
+              </span>
+            {/if}
+          </div>
         </Container>
       </Card>
     </div>

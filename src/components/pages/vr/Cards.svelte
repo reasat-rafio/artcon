@@ -10,7 +10,7 @@
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[2.0001rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
   {#each items as { name, slug, _id, category, gallery, thumbnail } (_id)}
@@ -31,9 +31,9 @@
             / {gallery.name}
           </h4>
 
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
+          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
             {category.name}
-          </Subtitle>
+          </div>
         </Container>
       </Card>
     </div>

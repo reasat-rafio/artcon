@@ -28,6 +28,7 @@
       sliderImageVideo,
       asset,
       tag,
+      subtitle,
     },
     site: { logos },
   } = data);
@@ -50,7 +51,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -132,12 +133,22 @@
               title: 'EXPLORE',
             }} />
 
-          <Header let:Info topic="Our event" title={name} type={tag.name}>
+          <Header let:Info topic="Our Event" title={name} subtitle={subtitle} type={tag.name}>
             <Info>
               <div class="title-light">
-                {gallery.name}
+                {#if gallery.url || (gallery.location && (gallery.location.startsWith('http://') || gallery.location.startsWith('https://')))}
+                  <a
+                    href={gallery.url || gallery.location}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="transition-colors hover:!text-gray-500">
+                    {gallery.name}
+                  </a>{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                {:else}
+                  {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                {/if}
               </div>
-              <div class="sub-title-light">
+              <div class="sub-title-light mt-1">
                 <span class="font-light">{date}</span>
                 <span class="px-[3px]">|</span>
                 <span class="!font-medium text-eerie-black">{status}</span>
@@ -145,9 +156,7 @@
             </Info>
           </Header>
 
-          <div
-            data-load-animate="y"
-            class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
+          <div data-load-animate="y" class="mb-[2.5rem] w-full rounded-[25px] overflow-hidden relative aspect-video">
             <Asset {asset} />
           </div>
 

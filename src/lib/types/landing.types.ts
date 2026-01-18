@@ -1,5 +1,6 @@
 import type { Slug } from 'sanity';
 import type { Asset, CommonHeroProps, SeoProps, Tag } from './common.types';
+import type { SanityImageAssetDocument } from '@sanity/client';
 
 export interface HomePageProps {
   seo: SeoProps;
@@ -21,11 +22,19 @@ export type SliderProps =
   | EventProps
   | AudioVisualProps;
 
-export type ExhibitionProps = Collection<'exhibition'>;
+export type ExhibitionProps = Collection<'exhibition'> & {
+  startDate?: string;
+  endDate?: string;
+  invitationCardImage?: SanityImageAssetDocument;
+};
 export type VrProps = Collection<'vr'>;
 export type PublicationProps = Collection<'publication'>;
 export type CollectionProps = Collection<'collection'>;
-export type EventProps = Collection<'event'>;
+export type EventProps = Collection<'event'> & {
+  startDate?: string;
+  endDate?: string;
+  documentationImages?: SanityImageAssetDocument[];
+};
 export type AudioVisualProps = Collection<'documentary'>;
 
 export type Collection<T> = {
@@ -39,6 +48,7 @@ export type Collection<T> = {
   tag?: Tag;
   artistName?: { en: string };
   type?: Tag;
+  exproleLink?: { href?: string; title?: string };
 };
 
 export type WithExtra<T> = T & {

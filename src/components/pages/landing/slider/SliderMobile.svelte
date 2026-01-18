@@ -22,12 +22,16 @@
     gsap.registerPlugin(Observer);
 
     const rootEl = document.querySelector('#landing-page') as HTMLElement;
-    adjustInitialScrollPosition(rootEl);
+    
+    // Only apply GSAP animations on desktop
+    if (innerWidth >= 1024) {
+      adjustInitialScrollPosition(rootEl);
 
-    let ctx = gsap.context(() => {
-      if (isLoaded) handleEventObserver(rootEl);
-    });
-    return () => ctx.revert();
+      let ctx = gsap.context(() => {
+        if (isLoaded) handleEventObserver(rootEl);
+      });
+      return () => ctx.revert();
+    }
   });
 
   function adjustInitialScrollPosition(el: HTMLElement) {
@@ -43,12 +47,13 @@
   }
 
   function handleEventObserver(el: HTMLElement) {
+    // Custom scroll animations for desktop
     Observer.create({
       target: window,
       type: 'wheel,scroll,touch',
       wheelSpeed: -1,
-      tolerance: 10,
-      preventDefault: true,
+      tolerance: 50,
+      preventDefault: false,
       onDown: () => {
         if (!animating) {
           currentIndex = Math.min(
@@ -56,9 +61,9 @@
             collections.length + 1,
           );
           gsap.to(el, {
-            duration: 0.7,
+            duration: 0.5,
             y: `-${currentIndex * 100}dvh`,
-            ease: 'expoOut',
+            ease: 'power2.out',
             onStart: () => {
               animating = true;
             },
@@ -75,9 +80,9 @@
             collections.length + 1,
           );
           gsap.to(el, {
-            duration: 0.7,
+            duration: 0.5,
             y: `-${currentIndex * 100}dvh`,
-            ease: 'expoOut',
+            ease: 'power2.out',
             onStart: () => {
               animating = true;
             },
@@ -108,8 +113,10 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <section
-  class={cn('z-40 block translate-y-[100dvh] lg:hidden', {
+  class={cn('z-40 block lg:hidden', {
     'fixed inset-0': !isLoaded,
+    'translate-y-[100dvh]': innerWidth >= 1024,
+    'mt-[100dvh]': innerWidth < 1024,
   })}>
   <div use:loaded id="mobile-slider-wrapper" class="flex flex-col">
     {#each collections as collection, index}

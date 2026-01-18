@@ -96,6 +96,7 @@ export interface Cta {
   _type?: 'cta';
   title: string;
   href: string;
+  slug?: string;
 }
 export interface CommonHeroProps {
   _type: 'common.hero';
@@ -184,6 +185,16 @@ export interface CommonArtworkSectionProps {
     title: string;
   };
   quote?: Quote;
+  artworkLink?: Cta;
+  artworks?: ArtworkItem[];
+}
+
+export interface ArtworkItem {
+  _key: string;
+  _type: 'artworkItem';
+  title: string;
+  image: SanityAsset;
+  description?: PortableTextBlock[];
 }
 
 export interface ShortArtworks {
@@ -201,11 +212,15 @@ export interface CommonOtherExhibitionProps {
   endDate?: string;
   subtitle?: string;
   type?: string | { name: string };
+  documentationImages?: SanityImageAssetDocument[];
+  invitationCardImage?: SanityImageAssetDocument;
 }
 
 export interface Association {
   key: string;
   value: string;
+  url?: string;
+  logo?: SanityAsset;
 }
 
 export interface Youtube {

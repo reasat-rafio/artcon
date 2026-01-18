@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
@@ -6,6 +7,7 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import Gallery from '@/components/pages/[project]/Gallery.svelte';
   import Summary from '@/components/pages/[project]/Summary.svelte';
+  import Video from '@/components/pages/[project]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -14,6 +16,7 @@
   export let data: PageProps<ProjectDetailPageProps>;
   $: ({
     page: {
+      _id,
       name,
       startDate,
       endDate,
@@ -21,6 +24,7 @@
       seo,
       asset,
       associationsList,
+      associationsButton,
       description,
       gallery,
       cta,
@@ -44,25 +48,28 @@
   $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
 
-<Hero
-  props={{
-    _type: 'common.hero',
-    asset,
-    cta,
-    title: name,
-    topTitle: _topTitle,
-    subtitle: subtitle ?? tag.name,
-  }} />
+  <Hero
+    currentSlug={$page.params.slug}
+    props={{
+      _type: 'common.hero',
+      asset,
+      cta,
+      title: name,
+      topTitle: _topTitle,
+      subtitle: subtitle ?? tag.name,
+    }} />
 
-<Share href="/project" {logoLight} {logoDark}>Our projects</Share>
-<div class="relative z-10 bg-white">
-  {#each sections as s}
+  <Share href="/project" {logoLight} {logoDark}>Our Projects</Share>
+  <div class="relative z-10 bg-white">
+  {#each sections as s, index}
     {#if s._type === 'common.imageAsset'}
-      <ImageAsset props={s} />
+      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
     {:else if s._type === 'project.summary'}
       <Summary
+        class="pb-section"
         props={{
           ...s,
           descriptionBlock: {
@@ -70,19 +77,23 @@
             gallery,
             description,
             associationsList,
+            associationsButton,
           },
         }} />
+    {:else if s._type === 'project.video'}
+      <Video class="pb-section" props={s} />
     {:else if s._type === 'project.gallery'}
-      <Gallery props={s} />
+      <Gallery class="pb-section" props={s} />
     {/if}
   {/each}
 
-  {#if !!otherProjects?.length}
-    <OthersDocument
-      title="Other projects"
-      data={otherProjects}
-      urlPrefix="/project" />
-  {/if}
+    {#if !!otherProjects?.length}
+      <OthersDocument
+        title="Other Projects"
+        data={otherProjects}
+        urlPrefix="/project" />
+    {/if}
 
-  <Footer {footer} {contact} logo={logoDark} />
-</div>
+    <Footer {footer} {contact} logo={logoDark} />
+  </div>
+{/key}

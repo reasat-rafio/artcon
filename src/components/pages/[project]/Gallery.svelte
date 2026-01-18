@@ -14,13 +14,25 @@
 
   const lightboxAction = (index: number) => {
     lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(images);
     lightboxStore.setActiveIndex(index);
   };
 </script>
 
 <section>
-  <div class="container-primary py-section">
+  <div class="container-primary pt-section {$$props.class}">
+    <DescriptionBlock class="mb-[5.625rem]">
+      <svelte:fragment slot="intro" let:C>
+        <C.Title>{title}</C.Title>
+      </svelte:fragment>
+      <svelte:fragment slot="description" let:Description>
+        <Description>
+          <PortableText value={description} />
+        </Description>
+      </svelte:fragment>
+    </DescriptionBlock>
+
     <div class="mb-sm md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[74.21px]">
       <Gallery items={images} let:chunk>
         {#each chunk as image, index}
@@ -33,16 +45,5 @@
         {/each}
       </Gallery>
     </div>
-
-    <DescriptionBlock>
-      <svelte:fragment slot="intro" let:C>
-        <C.Title>{title}</C.Title>
-      </svelte:fragment>
-      <svelte:fragment slot="description" let:Description>
-        <Description>
-          <PortableText value={description} />
-        </Description>
-      </svelte:fragment>
-    </DescriptionBlock>
   </div>
 </section>

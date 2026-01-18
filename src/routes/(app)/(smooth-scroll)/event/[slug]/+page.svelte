@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import ImageAsset from '@/components/common/ImageAsset.svelte';
   import OthersDocument from '@/components/common/other-document/OtherDocument.svelte';
   import Seo from '@/components/common/Seo.svelte';
@@ -8,6 +9,7 @@
   import Gallery from '@/components/pages/[event]/Gallery.svelte';
   import NewsAndMedia from '@/components/pages/[event]/NewsAndMedia.svelte';
   import Summary from '@/components/pages/[event]/Summary.svelte';
+  import Video from '@/components/pages/[event]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
@@ -27,9 +29,11 @@
       asset,
       gallery,
       associationsList,
+      socials,
       description,
       otherEvents,
       tag,
+      slug,
     },
     site: {
       logos: { logoDark, ogImage, logoLight },
@@ -47,43 +51,49 @@
   $: _topTitle = topTitle ?? (status !== 'Ongoing' ? date : status);
 </script>
 
-<Seo {seo} siteOgImg={ogImage} />
-<Hero
-  props={{
-    _type: 'common.hero',
-    asset,
-    cta,
-    topTitle: _topTitle,
-    title: name,
-    subtitle: subtitle ?? tag?.name,
-  }} />
+{#key $page.params.slug}
+  <Seo {seo} siteOgImg={ogImage} />
+  <Hero
+    currentSlug={slug.current}
+    props={{
+      _type: 'common.hero',
+      asset,
+      cta,
+      topTitle: _topTitle,
+      title: name,
+      subtitle: subtitle ?? tag?.name,
+    }} />
 
-<Share href="/event" {logoLight} {logoDark}>Our events</Share>
-<div class="relative z-10 bg-white">
-  {#each sections as props}
+  <Share href="/event" {logoLight} {logoDark}>Our Events</Share>
+  <div class="relative z-10 bg-white">
+  {#each sections as props, index}
     {#if props._type === 'common.imageAsset'}
-      <ImageAsset {props} />
+      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" {props} />
     {:else if props._type === 'event.summary'}
       <Summary
+        class="pb-section"
         props={{
           ...props,
-          descriptionBlock: { associationsList, date, description, gallery },
+          descriptionBlock: { associationsList, socials, date, description, gallery },
         }} />
+    {:else if props._type === 'event.video'}
+      <Video class="pb-section" {props} />
     {:else if props._type === 'event.documentation'}
-      <Documentation {props} />
+      <Documentation class="pb-section" {props} />
     {:else if props._type === 'event.gallery'}
-      <Gallery {props} />
+      <Gallery class="pb-section" {props} />
     {:else if props._type === 'event.newsAndMedia'}
-      <NewsAndMedia {props} />
+      <NewsAndMedia class="pb-section" {props} />
     {/if}
   {/each}
 
-  {#if !!otherEvents?.length}
-    <OthersDocument
-      urlPrefix="/event"
-      title="Other events"
-      data={otherEvents} />
-  {/if}
+    {#if !!otherEvents?.length}
+      <OthersDocument
+        urlPrefix="/event"
+        title="Other Events"
+        data={otherEvents} />
+    {/if}
 
-  <Footer {footer} {contact} logo={logoDark} />
-</div>
+    <Footer {footer} {contact} logo={logoDark} />
+  </div>
+{/key}

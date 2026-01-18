@@ -5,15 +5,16 @@ import type { Rule, SanityDefaultPreviewProps } from 'sanity';
 import React from 'react';
 import { formatDate } from '@/studio/helper';
 import { orderRankField } from '@sanity/orderable-document-list';
-import type { SanityDocument } from '@sanity/client';
+// import type { SanityDocument } from '@sanity/client';
 
 type PrepareProps = SanityDefaultPreviewProps & {
   image: SanityAsset;
   webm: string;
   hevc: string;
-  artists: unknown[];
+  artists: Array<{ name: string }>;
   startDate: string;
   endDate?: string;
+  gallery?: string;
 };
 
 const exhibition = {
@@ -68,7 +69,7 @@ const exhibition = {
       title: 'Top Title (Optional)',
       type: 'string',
       description:
-        'This will overwrite the status derived from the provided start and end dates.',
+        'This will overwrite the status derived from the provided start and end dates.(Preferred all caps input)',
     },
     {
       name: 'subtitle',
@@ -84,34 +85,24 @@ const exhibition = {
       type: 'cta',
     },
     {
+      name: 'exhibitionType',
+      title: 'Exhibition Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Solo Exhibition', value: 'solo' },
+          { title: 'Group Exhibition', value: 'group' },
+        ],
+        layout: 'dropdown',
+      },
+      validation: (Rule: Rule) => Rule.required(),
+      description: 'This determines the exhibition type. "Group Exhibition Members" section will only show on website when "Group Exhibition" is selected.',
+    },
+    {
       name: 'artists',
       title: 'Artist in this ehibition',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'artist' }] }],
-      validation: (Rule: Rule) => Rule.unique().required(),
-    },
-    {
-      name: 'artworks',
-      title: 'Featured Artworks in this Exhibition',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'collection' }],
-          options: {
-            filter: ({ document }: SanityDocument) => {
-              return {
-                filter: 'artist._ref in $ids',
-                params: {
-                  ids: document?.artists?.map(
-                    (artist: { _ref: string }) => artist._ref,
-                  ) ?? [''],
-                },
-              };
-            },
-          },
-        },
-      ],
       validation: (Rule: Rule) => Rule.unique().required(),
     },
     {
@@ -122,10 +113,11 @@ const exhibition = {
     },
     {
       name: 'tag',
-      title: 'Exhibition Type',
+      title: 'Tag',
       type: 'reference',
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
+      description: 'Select a tag for this exhibition (e.g., Solo Exhibition, Group Exhibition, etc.)',
     },
     {
       title: 'Space / Gallery',
@@ -152,6 +144,32 @@ const exhibition = {
       of: [{ type: 'keyValuePairs' }],
     },
     {
+      name: 'associationsButton',
+      title: 'External link Button (Optional)',
+      type: 'cta',
+      description: 'Button to display below the associations list',
+    },
+    {
+      title: 'Social Links',
+      name: 'socials',
+      type: 'array',
+      of: [{ type: 'social' }],
+    },
+    {
+      title: 'Organised by',
+      name: 'organizedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that organized this exhibition',
+    },
+    {
+      title: 'Published by',
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that published this exhibition',
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',
@@ -165,6 +183,7 @@ const exhibition = {
         { type: 'common.artwork' },
         { type: 'exhibition.gallery' },
         { type: 'exhibition.newsAndMedia' },
+        { type: 'exhibition.team' },
       ],
     },
   ],
@@ -176,25 +195,53 @@ const exhibition = {
       image: 'asset.image',
       webm: 'asset.video.video_webm.asset.url',
       hevc: 'asset.video.video_hevc.asset.url',
-      artists: 'artists',
+      subtitle: 'subtitle',
+      type: 'type.name',
+      gallery: 'gallery.title',
+      exhibitionType: 'exhibitionType',
     },
     prepare: ({
       title,
       image,
       webm,
       hevc,
-      artists,
+      subtitle,
+      type,
       startDate,
       endDate,
-    }: PrepareProps) => {
-      const exhibitionType =
-        artists?.length === 1 ? 'Solo Exhibition' : 'Group Exhibition';
+      gallery,
+      exhibitionType,
+    }: PrepareProps & { gallery: string; subtitle?: string; type?: string; exhibitionType?: 'solo' | 'group' }) => {
+      // Determine exhibition type label based on exhibitionType field
+      const exhibitionTypeLabel =
+        exhibitionType === 'solo'
+          ? 'Solo Exhibition'
+          : exhibitionType === 'group'
+            ? 'Group Exhibition'
+            : 'Exhibition';
+
+      // Determine the subtitle to show - prioritize the Subtitle field
+      let displaySubtitle = subtitle || '';
+      if (!displaySubtitle) {
+        if (exhibitionType === 'group') {
+          displaySubtitle = 'Group Exhibition';
+        } else if (exhibitionType === 'solo') {
+          displaySubtitle = type || 'Solo Exhibition';
+        } else {
+          displaySubtitle = type || 'Exhibition';
+        }
+      }
+
+      // Format dates: if same date, show only start date
+      const isSameDate =
+        startDate && endDate && formatDate(startDate) === formatDate(endDate);
+      const dateRange = isSameDate
+        ? formatDate(startDate)
+        : `${formatDate(startDate)}${endDate ? ` - ${formatDate(endDate)}` : ''}`;
 
       return {
-        title: `${title} | ${exhibitionType}`,
-        subtitle: `${formatDate(startDate)} ${
-          endDate ? ` - ${formatDate(endDate)}` : ''
-        }`,
+        title: `${title} | ${exhibitionTypeLabel}`,
+        subtitle: `${displaySubtitle} | ${gallery || 'Venue TBA'} | ${dateRange}`,
         media: image ? (
           image
         ) : webm && hevc ? (

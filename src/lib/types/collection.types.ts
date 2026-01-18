@@ -24,6 +24,7 @@ export interface HeroProps {
 
 export interface HighlightedCollection {
   name: string;
+  slug: Slug;
   subtitle?: string;
   topTitle?: string;
   cta?: Cta;
@@ -35,7 +36,9 @@ export interface Collection {
   _id: string;
   slug: Slug;
   name: string;
-  artworkImage: SanityImageAssetDocument;
+  subtitle?: string;
+  thumbnail: SanityImageAssetDocument;
+  category?: Tag;
   media: string;
   year: string;
   artist: { name: string; slug: Slug };

@@ -67,7 +67,7 @@ const event = {
       title: 'Top Title (Optional)',
       type: 'string',
       description:
-        'This will overwrite the status derived from the provided start and end dates.',
+        'This will overwrite the status derived from the provided start and end dates. (Preferred all caps input)',
     },
     {
       name: 'subtitle',
@@ -83,10 +83,11 @@ const event = {
     },
     {
       name: 'tag',
-      title: 'Event Type',
+      title: 'Event Category',
       type: 'reference',
       to: [{ type: 'eventTag' }],
       validation: (Rule: Rule) => Rule.required(),
+      description: 'Category of the event (e.g., Auction, Book launch). The status (Upcoming/Ongoing/Ended) is automatically calculated from the dates.',
     },
     {
       title: 'Space / Gallery',
@@ -111,12 +112,39 @@ const event = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'associationsButton',
+      title: 'External link Button (Optional)',
+      type: 'cta',
+      description: 'Button to display below the associations list',
+    },
+    {
+      title: 'Social Links',
+      name: 'socials',
+      type: 'array',
+      of: [{ type: 'social' }],
+    },
+    {
+      title: 'Organised by',
+      name: 'organizedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that organized this event',
+    },
+    {
+      title: 'Published by',
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that published this event',
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',
       validation: (Rule: Rule) => Rule.required().min(1),
       of: [
         { type: 'event.summary' },
+        { type: 'event.video' },
         { type: 'common.imageAsset' },
         { type: 'event.documentation' },
         { type: 'event.gallery' },

@@ -4,7 +4,7 @@ import type { Rule } from 'sanity';
 
 const eventTag = {
   name: 'eventTag',
-  title: 'Tag',
+  title: 'Event Category',
   type: 'document',
   icon: GrTag,
   fields: [
@@ -13,6 +13,14 @@ const eventTag = {
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Auction', value: 'Auction' },
+          { title: 'Book launch', value: 'Book launch' },
+          { title: 'Film Screening', value: 'Film Screening' },
+          { title: 'Celebration', value: 'Celebration' },
+        ],
+      },
     },
     {
       name: 'slug',

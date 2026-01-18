@@ -15,6 +15,7 @@ const query = groq`
           startDate,
           tag->,
           topTitle,
+          subtitle,
           asset{
             ...,
             ${asset('image')},
@@ -29,6 +30,7 @@ const query = groq`
         _id,
         name,
         slug,
+        subtitle,
         tag->,
         asset{
             ...,

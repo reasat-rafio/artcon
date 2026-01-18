@@ -23,14 +23,24 @@
 
   onMount(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'expoOut', duration: 0.6 },
-      });
-      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 });
-      if (titleEl) tl.to(titleEl, { y: 0, opacity: 0.75 }, '-=0.2');
-      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
-      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
-      tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      // Only animate on desktop (>= 1024px)
+      if (windowWidth >= 1024) {
+        const tl = gsap.timeline({
+          defaults: { ease: 'expoOut', duration: 0.6 },
+        });
+        if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+        if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
+        tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
+        tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      } else {
+        // On mobile, show elements immediately without animation
+        if (topTitleEl) gsap.set(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) gsap.set(titleEl, { y: 0, opacity: 1 });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 0, opacity: 1 });
+        gsap.set('.cta-btn', { y: 0, opacity: 1 });
+        gsap.set('#pointer', { opacity: 1 });
+      }
     });
 
     return () => ctx.revert();
@@ -39,21 +49,21 @@
 
 <svelte:window bind:innerHeight={windowHeight} bind:innerWidth={windowWidth} />
 <section
-  style={`filter: blur(${$tweenDelta * 7.5}px) grayscale(${
+  style={windowWidth >= 1024 ? `filter: blur(${$tweenDelta * 7.5}px) grayscale(${
     $tweenDelta * 50
-  }%);`}
+  }%);` : ''}
   class={twMerge('h-screen w-full ', $$props.class)}>
   <div class="relative flex h-full w-full">
     <Asset {asset} />
 
     <div
       class="relative z-30 mx-auto max-w-[76.3rem] px-[1rem] pt-[calc((334/1080)*100dvh)] text-center text-white">
-      <header class="!drop-shadow-4xl">
+      <header>
         <div class="head-8 lg:head-7 pb-[2.1875rem]">
           {#if !!topTitle}
             <h3
               bind:this={topTitleEl}
-              class="translate-y-full !font-inter opacity-0">
+              class="translate-y-full !font-inter opacity-0 shadow-text-subtitle">
               {topTitle}
             </h3>
           {:else}
@@ -64,7 +74,7 @@
         <div class="mb-[1.26rem] overflow-hidden">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-none opacity-0">
+            class="head-1 translate-y-full !leading-none opacity-0 shadow-text-title">
             {title}
           </h1>
         </div>
@@ -74,7 +84,7 @@
           {#if !!subtitle}
             <h2
               bind:this={subtitleEl}
-              class="translate-y-full whitespace-pre-wrap !font-medium !normal-case !tracking-[1px] text-platinum opacity-0">
+              class="translate-y-full whitespace-pre-wrap !font-medium !normal-case !tracking-[1px] text-platinum opacity-0 shadow-text-subtitle">
               {subtitle}
             </h2>
           {:else}
@@ -86,7 +96,7 @@
         {#if !!cta?.title}
           <Cta
             variant="quaternary"
-            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[0.875rem] !tracking-[0.27px] !leading-[16.2px] !font-medium !w-[140px] !rounded-[64px]"
+            className="cta-btn mx-auto translate-y-full uppercase opacity-0 !text-[0.875rem] !tracking-[0.27px] !leading-[16.2px] !font-medium !max-w-[90%] sm:!max-w-[none] !rounded-[64px]"
             href={cta.href}>
             {cta.title}
           </Cta>

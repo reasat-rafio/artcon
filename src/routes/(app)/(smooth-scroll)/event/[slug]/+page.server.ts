@@ -12,12 +12,28 @@ const query = (params: Partial<Record<string, string>>) =>
     topTitle,
     subtitle,
     cta,
-    associationsList,
+    associationsList[]{
+      key,
+      value,
+      url,
+      ${asset('logo')}
+    },
+    associationsButton,
+    socials[]{
+      _key,
+      _type,
+      type,
+      link
+    },
     description,
     endDate,
     startDate,
     tag->,
-    gallery->{name},
+    gallery->{
+      name,
+      location,
+      url
+    },
     asset {
       ...,
       ${asset('image')},
@@ -52,6 +68,16 @@ const query = (params: Partial<Record<string, string>>) =>
                 video{
                 "webm": video_webm.asset->url,
                 "mov": video_hevc.asset->url,
+            }
+        },
+        "documentationImages": sections[_type == "event.documentation"][0].images[]{
+            ...,
+            asset-> {
+                ...,
+                metadata {
+                    lqip,
+                    dimensions
+                }
             }
         },
     }

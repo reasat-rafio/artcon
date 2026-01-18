@@ -1,6 +1,7 @@
 import type { PortableTextBlock, Slug } from 'sanity';
 import type {
   Asset,
+  Association,
   CommonImageAsset,
   CommonNoteProps,
   Cta,
@@ -51,9 +52,10 @@ export interface Document {
     name: string;
     author?: string;
     isbn?: string;
-    publishedBy?: string;
+    publishedBy?: string[];
     cta?: Cta;
     description: PortableTextBlock[];
+    associationsList?: Association[];
   };
   quote?: Quote;
   image: SanityImageAssetDocument;

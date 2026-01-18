@@ -58,7 +58,7 @@
 {/each}
 
 <FilteringNavbar {tags} {logoDark} {logoLight}>
-  <svelte:fragment slot="name">Our virtual reality</svelte:fragment>
+  <svelte:fragment slot="name">Our Virtual Reality</svelte:fragment>
 </FilteringNavbar>
 <div class="relative z-10 bg-white">
   <Listing list={vrsWithImages} />

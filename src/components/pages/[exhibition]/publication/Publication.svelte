@@ -22,6 +22,7 @@
       exproleLink,
       publicationImage,
       slug,
+      associationsList,
     },
     invitationCardImage,
     fullInvitationCardImage,
@@ -37,7 +38,7 @@
 </script>
 
 <section>
-  <div class="py-section container-primary">
+  <div class="pt-section container-primary {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -45,6 +46,8 @@
     <ParallaxScrollImage
       on:triggerPopup={triggerPopup}
       class="mb-section"
+      disableHoverEffect={true}
+      disableParallaxOnDesktop={true}
       images={[
         {
           img: invitationCardImage,
@@ -69,11 +72,27 @@
           </C.HeaderContainer>
 
           <div>
+            {#if !!associationsList?.length}
+              <div class="mb-[1.5rem]">
+                <ul class="space-y-[0.5rem]">
+                  {#each associationsList as { key, value }}
+                    <div>
+                      <C.Subtitle class="!text-[0.75rem] font-light text-eerie-black">
+                        {key}
+                      </C.Subtitle>
+                      <C.Subtitle class="!text-[0.875rem] font-normal">
+                        {value}
+                      </C.Subtitle>
+                    </div>
+                  {/each}
+                </ul>
+              </div>
+            {/if}
             <C.Subtitle class="!text-[0.75rem] font-light  text-eerie-black">
               Published by
               {#each publishedBy as p, i}
                 <div class="inline font-light">
-                  {#if i === publishedBy.length - 1}
+                  {#if i === publishedBy.length - 1 && publishedBy.length > 1}
                     <span>and</span>
                   {:else if i !== 0}
                     ,
@@ -87,8 +106,8 @@
             <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
           </div>
 
-          <Cta className="capitalize" href={exproleLink.href}>
-            {exproleLink.title}
+          <Cta variant="tertiary" className="capitalize !min-w-[12rem] !px-[2.5rem] !py-[1rem] !text-[1rem] ![background:linear-gradient(90deg,rgb(100,100,100)_0%,rgb(220,50,50)_100%)]" href={`/preview/publication/${slug.current}`}>
+            Preview
           </Cta>
         </div>
       </svelte:fragment>

@@ -36,7 +36,7 @@
 
 <aside class={cn('sticky top-5 z-10 mb-[2.5rem] hidden', $$props.class)}>
   <div
-    class="mx-auto max-w-min cursor-grab overflow-hidden rounded-[2.68506rem] bg-cultured-gray py-[0.62rem] active:cursor-grabbing">
+    class="mx-auto max-w-min cursor-grab overflow-hidden rounded-[2.68506rem] bg-white border-2 border-light-gray shadow-md py-[0.62rem] active:cursor-grabbing">
     <div
       class="relative overflow-hidden px-[calc(1.25rem/2)]"
       on:emblaInit={onInit}
@@ -51,7 +51,7 @@
             class="mx-[calc(1.83rem/2)] flex-[0_0_auto] cursor-pointer text-center font-outfit text-[0.875rem] font-semibold leading-[150%] transition-colors duration-500 {anchor ===
             activeAnchor
               ? 'text-pigment-red'
-              : 'text-quick-silver'}">
+              : 'text-eerie-black'}">
             {anchor}
           </button>
         {/each}

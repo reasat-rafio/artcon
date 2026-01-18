@@ -5,19 +5,9 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import FormPopup from '@/components/widgets/form-popup/FormPopup.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { SeoProps } from '@/lib/types/common.types';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
-  import type { PortableTextBlock } from 'sanity';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import type { ActionData } from './$types';
-  import { toasts } from 'svelte-toasts';
-
-  type Props = {
-    seo: SeoProps;
-    title: string;
-    privacyPolicy: PortableTextBlock[];
-  };
+  import { superForm } from 'sveltekit-superforms/client';
 
   export let data;
 
@@ -28,31 +18,16 @@
       footer,
       contact,
     },
+    apiKey,
   } = data);
 
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      }
-    },
   });
 </script>
 
 <Seo {seo} siteOgImg={ogImage} />
-<div class="container-primary py-[7rem] lg:py-xl">
+<div class="container-primary py-[7rem] lg:py-section">
   <DescriptionBlock class="max-lg:mb-section">
     <svelte:fragment slot="intro" let:C>
       <C.Title class="lg:mb-10">{title}</C.Title>
@@ -76,5 +51,6 @@
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
+    {apiKey}
     contextMessage={`User pressed "Contact Us" in privacy policy page.`} />
 {/if}

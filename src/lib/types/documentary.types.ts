@@ -19,8 +19,11 @@ export interface Documentary {
   _id: string;
   slug: Slug;
   name: string;
+  type: Tag;
   category: Tag;
   coverImage: SanityImageAssetDocument;
+  year?: string;
+  duration?: string;
 }
 
 export interface HighlightedDocumentary {
@@ -28,4 +31,5 @@ export interface HighlightedDocumentary {
   slug: Slug;
   category: Tag;
   coverImage: SanityImageAssetDocument;
+  year?: string;
 }

@@ -9,10 +9,10 @@
 
 <div
   class={cn(
-    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[3.5rem] self-start md:grid-cols-2 xl:grid-cols-3',
+    'grid grid-cols-1 gap-x-[1.563rem] gap-y-[2.0001rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, _id, asset } (_id)}
+  {#each items as { name, slug, tag, _id, asset, subtitle } (_id)}
     <div in:fade>
       <Card
         el="a"
@@ -22,12 +22,12 @@
         let:Title
         let:Container
         let:Subtitle>
-        <Asset {asset} />
+        <Asset class="overflow-hidden rounded-[12px]" {asset} />
         <Container>
-          <Title>{name}</Title>
-          <Subtitle class="font-optiberling-agency text-sonic-silver">
+          <Title>{name}{#if subtitle} / <span class="head-8">{subtitle}</span>{/if}</Title>
+          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
             {tag.name}
-          </Subtitle>
+          </div>
         </Container>
       </Card>
     </div>

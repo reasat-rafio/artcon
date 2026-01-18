@@ -4,10 +4,8 @@
   import Footer from '@/components/common/footer/Footer.svelte';
   import Hero from '@/components/common/hero/Hero.svelte';
   import Form from '@/components/pages/contact/Form.svelte';
-  import type { ActionData } from './$types';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
+  import { superForm } from 'sveltekit-superforms/client';
   import { contactSchema } from '@/lib/validator';
-  import { toasts } from 'svelte-toasts';
 
   export let data;
 
@@ -18,25 +16,12 @@
       footer,
       contact,
     },
+    apiKey,
   } = data);
 
   const f = superForm(data.form, {
     taintedMessage: 'Are you sure you want leave?',
     validators: contactSchema,
-    resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
-      if (result.type === 'success') {
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      }
-    },
   });
 </script>
 
@@ -47,15 +32,15 @@
   {/if}
 {/each}
 <div class="relative z-10 mt-[100dvh] bg-white">
-  <div class="py-section">
-    {#each sections as props}
+  <div class="pt-section">
+    {#each sections as props, index}
       {#if props._type === 'quote'}
         <div class="container-primary pb-section">
           <Quote quote={props} />
         </div>
       {/if}
     {/each}
-    <Form form={f} />
+    <Form form={f} {apiKey} />
   </div>
   <Footer {footer} {contact} logo={logoDark} />
 </div>

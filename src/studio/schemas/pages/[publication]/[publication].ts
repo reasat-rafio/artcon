@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { toPlainText } from '@portabletext/svelte';
+// import { toPlainText } from '@portabletext/svelte';
 import { orderRankField } from '@sanity/orderable-document-list';
 import { BsFillPostageFill } from 'react-icons/bs';
 import type { DefaultPreviewProps, Rule } from 'sanity';
@@ -47,15 +47,20 @@ const publication = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'creditList',
+      title: 'Credit List',
+      description: 'Key-value pairs for credits like Author, Editor, Designer, etc.',
+      type: 'array',
+      of: [{ type: 'keyValuePairs' }],
+    },
+    {
       name: 'prices',
       type: 'object',
-      validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
           title: 'Price in BDT',
           name: 'priceBDT',
           type: 'number',
-          validation: (Rule: Rule) => Rule.required(),
         },
         {
           title: 'Discount Price in BDT',
@@ -66,7 +71,6 @@ const publication = {
           title: 'Price in USD',
           name: 'priceUSD',
           type: 'number',
-          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },
@@ -75,14 +79,64 @@ const publication = {
       type: 'string',
       options: {
         list: [
-          { title: 'Available', value: 'available' },
-          { title: 'Out of Stock', value: 'outOfStock' },
+          { title: 'Available', value: 'Available' },
+          { title: 'Not Available', value: 'Not Available' },
+          { title: 'Out of Stock', value: 'Out of Stock' },
+          { title: 'Online', value: 'Online' },
         ],
       },
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'coverImage',
+      name: 'externalLinkButton',
+      title: 'External Linked Button',
+      description: 'This button will be shown when stock is set to "Online". It will replace the Buy Now/Inquiry button.',
+      type: 'object',
+      hidden: ({ parent }: any) => parent?.stock !== 'Online',
+      fields: [
+        {
+          name: 'buttonText',
+          title: 'Button Text',
+          type: 'string',
+          validation: (Rule: Rule) =>
+            Rule.custom((buttonText: string | undefined, context: any) => {
+              const stock = (context.document as any)?.stock;
+              if (stock === 'Online' && !buttonText) {
+                return 'Button text is required when stock is set to Online';
+              }
+              return true;
+            }),
+        },
+        {
+          name: 'externalUrl',
+          title: 'External URL',
+          description: 'The external URL where the button will redirect (must start with https:// or http://)',
+          type: 'url',
+          validation: (Rule: Rule) =>
+            Rule.custom((externalUrl: string | undefined, context: any) => {
+              const stock = (context.document as any)?.stock;
+              if (stock === 'Online' && !externalUrl) {
+                return 'External URL is required when stock is set to Online';
+              }
+              if (externalUrl && !externalUrl.match(/^https?:\/\/.+/)) {
+                return 'URL must start with https:// or http://';
+              }
+              return true;
+            }),
+        },
+      ],
+    },
+    {
+      name: 'heroImageVideo',
+      title: 'Hero Image / Video',
+      description: 'This image or video will be displayed on the publication hero carousel',
+      type: 'sliderImageVideo',
+      validation: (Rule: Rule) => Rule.required(),
+    },
+    {
+      name: 'thumbnail',
+      title: 'Thumbnail (for listing card)',
+      description: 'This image will be displayed on the publication listing page card',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
@@ -90,7 +144,6 @@ const publication = {
         {
           name: 'alt',
           title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
           type: 'string',
           validation: (Rule: Rule) => Rule.required(),
         },
@@ -150,18 +203,18 @@ const publication = {
   preview: {
     select: {
       title: 'name',
-      author: 'subtitle',
-      subtitle: 'description',
+      subtitle: 'subtitle',
+      category: 'category.name',
       media: 'publicationImage',
     },
     prepare: ({
       title,
       subtitle,
-      author,
+      category,
       media,
-    }: DefaultPreviewProps & { author: string }) => ({
+    }: DefaultPreviewProps & { subtitle: string; category: string }) => ({
       title,
-      subtitle: `${author} | ${toPlainText(subtitle as any)}`,
+      subtitle: `${subtitle} | ${category}`,
       media,
     }),
   },

@@ -3,7 +3,8 @@
   import VR from '@/components/common/Vr.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { Association } from '@/lib/types/common.types';
+  import type { Association, SocialProps, Cta } from '@/lib/types/common.types';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type {
     Gallery,
     SummaryProps,
@@ -15,6 +16,10 @@
       gallery: Gallery;
       date: string;
       associationsList?: Association[];
+      associationsButton?: Cta;
+      socials?: SocialProps[];
+      organizedBy?: string[];
+      publishedBy?: string[];
       description?: PortableTextBlock[];
     };
   };
@@ -24,23 +29,30 @@
 </script>
 
 <section>
-  <div class="container-primary py-sm md:py-[80px] xl:pb-[107px] xl:pt-xl">
+  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px]">
-          <C.Title>{descriptionBlock.gallery.name}</C.Title>
-          {#if descriptionBlock.gallery?.location}
-            <C.Subtitle>{descriptionBlock.gallery.location}</C.Subtitle>
+        <C.HeaderContainer class="mb-[1.875rem] space-y-0">
+          {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
+          {#if galleryUrl}
+            <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors">
+              <C.Title class="!leading-none !mb-0 hover:!text-gray-500">{descriptionBlock.gallery.name}</C.Title>
+            </a>
+          {:else}
+            <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
           {/if}
-          <C.Subtitle>{descriptionBlock.date}</C.Subtitle>
+          {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
+            <C.Subtitle class="!leading-none !mt-0 !mb-0">{descriptionBlock.gallery.location}</C.Subtitle>
+          {/if}
+          <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock?.associationsList?.length}
-          <div class="space-y-[10px] lg:space-y-[13px]">
-            {#each descriptionBlock.associationsList as { key, value }}
+          <div class="mb-[1.875rem] space-y-[10px] lg:space-y-[13px]">
+            {#each descriptionBlock.associationsList as { key, value, url, logo }}
               <div>
                 <C.Subtitle
                   el="h4"
@@ -48,10 +60,41 @@
                   class="!text-[0.875rem] text-sonic-silver">
                   {key}
                 </C.Subtitle>
-                <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                {#if logo}
+                  <div class="mb-2 flex items-center">
+                    <img 
+                      src={imageBuilder.image(logo).height(50).url()}
+                      alt={logo.alt || key} 
+                      class="h-[40px] lg:h-[50px] w-auto object-contain"
+                    />
+                  </div>
+                {/if}
+                {#if url}
+                  <a href={url} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                    <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                  </a>
+                {:else}
+                  <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
+                {/if}
               </div>
             {/each}
           </div>
+        {/if}
+        {#if descriptionBlock.associationsButton}
+          <a
+            href={descriptionBlock.associationsButton.href}
+            target="{descriptionBlock.associationsButton.href.startsWith('http') ? '_blank' : '_self'}"
+            rel="{descriptionBlock.associationsButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
+            class="mt-[20px] inline-block rounded-full border border-black bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-black hover:text-black lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            {descriptionBlock.associationsButton.title}
+          </a>
+        {/if}
+        {#if !!descriptionBlock.socials?.length}
+          <C.SocialContainer class="mt-[1.875rem]">
+            {#each descriptionBlock.socials as { link, type }}
+              <C.Social {link} {type} />
+            {/each}
+          </C.SocialContainer>
         {/if}
       </svelte:fragment>
 

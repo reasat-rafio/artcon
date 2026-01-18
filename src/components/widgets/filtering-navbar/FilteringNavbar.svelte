@@ -94,7 +94,7 @@
   <div class="relative">
     <div
       bind:this={contentWrapperEl}
-      class="container-primary flex items-center max-lg:py-[1.1rem] lg:pb-[1.25rem] lg:pt-[1.5rem]">
+      class="container-primary flex items-center h-[110px]">
       <div class="flex flex-1 items-center">
         {#if (!!activeSearchParams || !!activeSortParams || !!activeArtistParams) && !$uiStore.mobileNavDropdownOpen}
           <button
@@ -135,7 +135,7 @@
                           class={cn(
                             'font-inter text-[0.7rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red sm:text-xs lg:text-[0.875rem]',
                             {
-                              'text-pigment-red':
+                              '!font-bold':
                                 current === activeSearchParams,
                             },
                           )}

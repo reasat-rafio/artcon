@@ -46,7 +46,11 @@ export const calculateStatusBetweenDates = ({
   const isoStartDate = DateTime.fromISO(startDate || '');
   const isoEndDate = endDate ? DateTime.fromISO(endDate || '') : null;
 
-  if (isoEndDate) {
+  // Check if start and end dates are the same
+  const isSameDay =
+    isoEndDate && isoStartDate.hasSame(isoEndDate, 'day');
+
+  if (isoEndDate && !isSameDay) {
     const formattedEndDate = isoEndDate.toFormat('d MMM, yyyy');
     const formattedStartDate = areSameMonthAndYear(isoStartDate, isoEndDate)
       ? isoStartDate.toFormat('d')
@@ -56,10 +60,11 @@ export const calculateStatusBetweenDates = ({
 
     date = `${formattedStartDate} - ${formattedEndDate}`;
 
-    if (isoStartDate <= currentDateTime && isoEndDate >= currentDateTime) {
-      status = 'Ongoing';
-    } else if (isoStartDate > currentDateTime) {
+    // Compare dates without time component
+    if (isoStartDate.startOf('day') > currentDateTime.startOf('day')) {
       status = 'Upcoming';
+    } else if (isoEndDate.startOf('day') >= currentDateTime.startOf('day')) {
+      status = 'Ongoing';
     } else {
       status = 'Ended';
     }
@@ -67,10 +72,11 @@ export const calculateStatusBetweenDates = ({
     const formattedDate = isoStartDate.toFormat('d MMM, yyyy');
     date = formattedDate;
 
-    if (isoStartDate.hasSame(currentDateTime, 'day')) {
-      status = 'Ongoing';
-    } else if (isoStartDate > currentDateTime) {
+    // For single date events, check if it's today or in the future
+    if (isoStartDate.startOf('day') > currentDateTime.startOf('day')) {
       status = 'Upcoming';
+    } else if (isoStartDate.hasSame(currentDateTime, 'day')) {
+      status = 'Ongoing';
     } else {
       status = 'Ended';
     }
@@ -159,14 +165,14 @@ export const uniqueTags = <T extends { tag: Tag } | { category: Tag }>(
   items: T[],
 ) => {
   return items.reduce((uniqueTags, collection) => {
-    if ('tag' in collection) {
+    if ('tag' in collection && collection.tag) {
       const {
         slug: { current },
       } = collection.tag;
       if (!uniqueTags.some((tag) => tag.slug.current === current)) {
         uniqueTags.push(collection.tag);
       }
-    } else if ('category' in collection) {
+    } else if ('category' in collection && collection.category) {
       const {
         slug: { current },
       } = collection.category;

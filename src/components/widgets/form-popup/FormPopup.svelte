@@ -1,18 +1,23 @@
 <script lang="ts">
   import type { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
-  import { fade, scale, blur } from 'svelte/transition';
+  import { scale, blur } from 'svelte/transition';
   import type { SuperForm } from 'sveltekit-superforms/client';
   import Input from './Input.svelte';
   import { cn } from '@/lib/cn';
   import XIcon from '@/components/icons/X.svelte';
   import Backdrop from '@/components/common/Backdrop.svelte';
+  import { toasts } from 'svelte-toasts';
   import { onMount } from 'svelte';
 
   export let form: SuperForm<typeof inquirySchema>;
   export let contextMessage: string;
+  export let apiKey: string;
+  export let subjectLine: string | null = null;
 
-  const { form: f, errors, enhance, delayed } = form;
+  const { form: f, errors, validate, reset } = form;
+
+  let submitting = false;
 
   onMount(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -31,12 +36,73 @@
   }
 
   function clearForm() {
-    f.update(() => ({
-      email: '',
-      message: '',
-      name: '',
-      phone: '',
-    }));
+    reset();
+  }
+
+  // Set the context message when component mounts or updates
+  $: if (contextMessage) {
+    $f.context = contextMessage;
+  }
+
+  async function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
+
+    const result = await validate();
+    if (!result.valid) return;
+
+    submitting = true;
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          from_name: 'Artcon Website Inquiry Form Submission',
+          subject: subjectLine || $f.context || 'Website Inquiry',
+          name: $f.name,
+          email: $f.email,
+          phone: $f.phone,
+          message: $f.context ? `${$f.context}\n\n${$f.message}` : $f.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        formPopupStore.setFormPopupVisibility(false);
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+        reset();
+      } else {
+        toasts.add({
+          description: data.message || 'Failed to submit form. Please try again.',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toasts.add({
+        description: 'Network error. Please try again.',
+        duration: 3000,
+        placement: 'bottom-right',
+        theme: 'dark',
+        type: 'error',
+      });
+    } finally {
+      submitting = false;
+    }
   }
 </script>
 
@@ -47,8 +113,7 @@
   out:blur
   class="fixed left-1/2 top-1/2 z-god h-min max-h-[calc(100dvh-1.5rem)] w-full -translate-x-1/2 -translate-y-1/2 overflow-y-auto max-lg:px-5 lg:max-w-xl">
   <form
-    method="POST"
-    use:enhance
+    on:submit={handleSubmit}
     class="relative flex !w-full flex-col gap-y-[2rem] rounded-[0.75rem] bg-white max-lg:px-[1.25rem] max-lg:py-[3.125rem] lg:p-[3.125rem]"
     style="box-shadow: 0px 30px 60px 0px rgba(89, 86, 230, 0.10);">
     <button
@@ -77,12 +142,8 @@
       error={$errors.email}
       placeholder="your email" />
 
-    <Input
-      class="hidden"
-      label="Context"
-      name="context"
-      value={contextMessage}
-      placeholder="Context" />
+    <!-- Hidden field for context -->
+    <input type="hidden" name="context" bind:value={$f.context} />
 
     <div class="flex w-full flex-col gap-y-[1rem]">
       <label class="text-[1rem] font-semibold" for="message">Message</label>
@@ -102,13 +163,13 @@
 
     <div class="flex flex-col-reverse gap-[1rem] sm:flex-row lg:gap-[2rem]">
       <button
-        disabled={$delayed}
+        disabled={submitting}
         type="submit"
         class={cn(
           'gradient-purple-blue-90 hover:shadow-cta block w-full rounded-[12px] bg-left px-[18px] py-[13px] text-[1rem] font-medium tracking-[0.48px] text-white transition-all duration-300 hover:scale-[1.01] hover:bg-right sm:w-fit md:px-[2rem]',
           'flex-1 space-x-[10px]',
         )}>
-        {#if $delayed}
+        {#if submitting}
           <div
             class="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
             role="status">
@@ -127,8 +188,9 @@
         <span class="inline">Send Message</span>
       </button>
       <button
+        type="button"
         on:click={clearForm}
-        disabled={$delayed}
+        disabled={submitting}
         class="border-black/20 text-black/20 block w-full rounded-[12px] border bg-[length:125%] bg-left px-[18px] py-[13px] text-[16px] font-medium tracking-[0.48px] transition-all duration-300 hover:scale-[1.01] hover:border-red-600 hover:bg-right hover:text-red-600 hover:shadow-xl sm:w-fit md:px-[32px]">
         Clear
       </button>

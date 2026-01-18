@@ -17,6 +17,12 @@
 
   let searchInputEl: HTMLInputElement;
   let searchIsActive = false;
+  
+  // Pre-generate logo URL to prevent re-render glitch
+  $: logoUrl = logo?.asset 
+    ? imageBuilder.image(logo).width(200).height(100).auto('format').url()
+    : '';
+  
   const setSearchBarActive = () => {
     searchIsActive = true;
     searchInputEl.focus();
@@ -43,16 +49,19 @@
     class={cn(
       'flex w-full items-center px-[1.25rem] lg:pl-[2.5rem] lg:pr-[2.37rem]',
     )}>
-    {#key logo?.asset?._id}
-      <a class="pt-[1.25rem] lg:pt-[2.5rem]" href="/">
-        <SanityImage
-          class="h-[50px] w-fit object-contain"
-          src={logo}
-          sizes="100px"
-          imageUrlBuilder={imageBuilder}
+    <a class="block pt-[1.25rem] lg:pt-[2.5rem]" href="/">
+      {#if logoUrl}
+        <img
+          src={logoUrl}
+          class="h-[50px] w-[100px] object-contain"
+          style="min-height: 50px; min-width: 100px;"
+          width="100"
+          height="50"
+          loading="eager"
+          fetchpriority="high"
           alt="Artcon Logo" />
-      </a>
-    {/key}
+      {/if}
+    </a>
 
     <div
       class={cn(

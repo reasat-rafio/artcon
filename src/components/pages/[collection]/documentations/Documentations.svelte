@@ -8,32 +8,52 @@
   import Autoplay from 'embla-carousel-autoplay';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import PublicationImage from '../../[artist]/publication/PublicationImage.svelte';
+  import { onDestroy } from 'svelte';
 
   export let props: DocumentationsProps;
   $: ({ documents } = props);
 
   let emblaApi: EmblaCarouselType;
   let rootEl: HTMLElement;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
 
   const slideNext = () => emblaApi.scrollNext();
   const slidePrev = () => emblaApi.scrollPrev();
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section bind:this={rootEl}>
   <div class="container-primary py-section relative">
     <div
       use:emblaCarouselSvelte={{
-        plugins: [Autoplay({ stopOnInteraction: true })],
+        plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
         options: { loop: true },
       }}
       on:emblaInit={onInit}
       class="overflow-hidden">
       <div class="-ml-[4rem] flex">
-        {#each documents as { quote, descriptionBlock: { name, author, cta, isbn, publishedBy, description }, image }}
+        {#each documents as { quote, descriptionBlock: { name, author, cta, isbn, publishedBy, description, associationsList }, image }}
           <div class="flex-[0_0_100%] pl-[4rem]">
             {#if !!quote}
               <Quote class="mb-section" {quote} />
@@ -55,13 +75,30 @@
                   </C.HeaderContainer>
 
                   <div>
+                    {#if !!associationsList?.length}
+                      <div class="mb-[1.5rem]">
+                        <div class="space-y-[0.5rem]">
+                          {#each associationsList as { key, value }}
+                            <div>
+                              <C.Subtitle
+                                class="!text-[0.75rem] font-light text-eerie-black">
+                                {key}
+                              </C.Subtitle>
+                              <C.Subtitle class="!text-[0.875rem] font-normal">
+                                {value}
+                              </C.Subtitle>
+                            </div>
+                          {/each}
+                        </div>
+                      </div>
+                    {/if}
                     {#if !!publishedBy?.length}
                       <C.Subtitle
                         class="!text-[0.75rem] font-light  text-eerie-black">
                         Published by
                         {#each publishedBy as p, i}
                           <div class="inline font-light">
-                            {#if i === publishedBy.length - 1}
+                             {#if i === publishedBy.length - 1 && publishedBy.length > 1}
                               <span>and</span>
                             {:else if i !== 0}
                               ,

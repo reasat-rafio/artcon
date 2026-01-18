@@ -4,7 +4,7 @@
   import type { CommonHeroProps } from '@/lib/types/common.types';
 
   export let asset: CommonHeroProps['asset'];
-  $: ({ image, video } = asset);
+  $: ({ image, video } = asset || {});
 </script>
 
 {#if !!image}
@@ -28,8 +28,12 @@
     autoPlay
     muted
     loop>
-    <source src={video?.mov} type="video/mp4; codecs=hvc1" />
-    <source src={video?.webm} type="video/webm" />
+    {#if video?.mov}
+      <source src={video.mov} type="video/mp4; codecs=hvc1" />
+    {/if}
+    {#if video?.webm}
+      <source src={video.webm} type="video/webm" />
+    {/if}
     Sorry, your browser doesn&apos;t support embedded videos.
   </video>
 {/if}

@@ -11,7 +11,6 @@ const summary = {
       name: 'quote',
       type: 'quote',
     },
-
     {
       name: 'vrOrYtVideoSlider',
       title: 'VR or Youtube Video Slider',

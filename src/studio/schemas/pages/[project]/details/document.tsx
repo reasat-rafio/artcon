@@ -107,6 +107,26 @@ const project = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'associationsButton',
+      title: 'External link Button (Optional)',
+      type: 'cta',
+      description: 'Button to display below the associations list',
+    },
+    {
+      title: 'Organised by',
+      name: 'organizedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that organized this project',
+    },
+    {
+      title: 'Published by',
+      name: 'publishedBy',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List of organizations that published this project',
+    },
+    {
       name: 'sections',
       title: 'Sections',
       type: 'array',
@@ -114,6 +134,7 @@ const project = {
       of: [
         { type: 'project.summary' },
         { type: 'common.imageAsset' },
+        { type: 'project.video' },
         { type: 'project.gallery' },
       ],
     },

@@ -7,6 +7,7 @@ import type {
   DescriptionBlock,
   Quote,
   SeoProps,
+  SocialProps,
   Tag,
   VR,
   Youtube,
@@ -22,11 +23,13 @@ export interface EventDetailPageProps {
   topTitle?: string;
   cta?: Cta;
   associationsList?: Association[];
+  associationsButton?: Cta;
+  socials?: SocialProps[];
   description?: PortableTextBlock[];
   endDate?: string;
   startDate: string;
   tag: Tag;
-  gallery: { name: string };
+  gallery: { name: string; location?: string; url?: string };
   asset: Asset;
   sections: Section[];
   otherEvents: OtherEventsProps[];
@@ -37,6 +40,7 @@ type Section =
   | GalleryProps
   | NewsAndMediaProps
   | SummaryProps
+  | VideoProps
   | DocumentationProps;
 
 export interface DocumentationProps {
@@ -48,9 +52,10 @@ export interface DocumentationProps {
     name: string;
     author?: string;
     isbn?: string;
-    publishedBy?: string;
+    publishedBy?: string[];
     cta?: Cta;
     description: PortableTextBlock[];
+    associationsList?: Association[];
   };
 }
 
@@ -95,6 +100,11 @@ export interface SummaryProps {
   _key: string;
   _type: 'event.summary';
   quote?: Quote;
+}
+
+export interface VideoProps {
+  _key: string;
+  _type: 'event.video';
   vrOrYtVideoSlider?: VrOrYtVideoSlider[];
 }
 

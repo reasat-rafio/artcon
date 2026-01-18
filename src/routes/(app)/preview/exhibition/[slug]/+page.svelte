@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
   import Asset from '@/components/common/hero/Asset.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
@@ -9,8 +9,11 @@
   import Header from '@/components/pages/[preview]/header/Header.svelte';
   import { calculateStatusBetweenDates } from '@/lib/helper';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ExhibitionPreviewProps } from '@/lib/types/exhibition-preview';
+  import lightboxStore from '@/store/lightbox';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
 
@@ -29,6 +32,7 @@
       sliderImageVideo,
       asset,
       exhibitionType,
+      invitationCard,
     },
     site: { logos },
   } = data);
@@ -53,7 +57,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.1, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -108,6 +112,20 @@
       }
     }
   });
+
+  function openInvitationCardPopup() {
+    if (invitationCard?.fullInvitationCardImage) {
+      lightboxStore.setLightboxVisibility(true);
+      lightboxStore.setActiveIndex(0);
+      lightboxStore.setHideThumbnails(true);
+      lightboxStore.setAllImages([
+        {
+          ...invitationCard.fullInvitationCardImage,
+          caption: name,
+        },
+      ]);
+    }
+  }
 </script>
 
 <Seo {seo} siteOgImg={logos?.ogImage} />
@@ -136,7 +154,7 @@
 
           <Header
             let:Info
-            topic="Our exhibition"
+            topic="Our Exhibition"
             title={name}
             subtitle={!!subtitle
               ? subtitle
@@ -149,8 +167,18 @@
                 ? 'Solo Exhibition'
                 : 'Group Exhibition'}>
             <Info>
-              <div class="title-light">
-                {gallery.name}
+              {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
+              <div class="title-light !font-inter">
+                {#if galleryUrl}
+                  <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
+                    {gallery.name}<span>, </span>
+                  </a>
+                {:else}
+                  {gallery.name}
+                {/if}
+                {#if gallery.location && !gallery.location.startsWith('http')}
+                  {gallery.location}
+                {/if}
               </div>
               <div class="sub-title-light !font-inter">
                 <span class="font-light">{date}</span>
@@ -160,19 +188,35 @@
             </Info>
           </Header>
 
-          <div
-            data-load-animate="y"
-            class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px] sm:h-full">
-            <Asset {asset} />
-          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
+            {#if !!description?.length}
+              <div data-load-animate="y" class="order-2 lg:order-1">
+                <PortableText
+                  class="body-light-m lg:body-light text-dark-gunmetal"
+                  value={description} />
+              </div>
+            {/if}
 
-          {#if !!description?.length}
-            <div data-load-animate="y">
-              <PortableText
-                class="body-light-m lg:body-light text-dark-gunmetal"
-                value={description} />
+            <div data-load-animate="y" class="order-1 lg:order-2 flex justify-center lg:justify-start w-full">
+              {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
+                <button class="cursor-pointer hover:opacity-90 transition-opacity w-full max-w-full" on:click={openInvitationCardPopup}>
+                  <SanityImage
+                    class="object-contain w-full h-auto rounded-[0.9375rem]"
+                    imageUrlBuilder={imageBuilder}
+                    src={invitationCard.invitationCardImage}
+                    alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
+                    sizes="100vw" />
+                </button>
+              {:else if data.page.publication?.publicationImage}
+                <SanityImage
+                  class="object-contain w-full h-auto rounded-[0.9375rem]"
+                  imageUrlBuilder={imageBuilder}
+                  src={data.page.publication.publicationImage}
+                  alt={data.page.publication.publicationImage.alt}
+                  sizes="100vw" />
+              {/if}
             </div>
-          {/if}
+          </div>
         </div>
       {/key}
     </section>

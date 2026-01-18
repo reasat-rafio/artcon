@@ -41,7 +41,7 @@ const sliderImageVideo = {
     {
       name: 'video',
       type: 'object',
-      title: 'Slider Video',
+      title: 'Video',
       hidden: ({ parent }: AssetFieldProps) =>
         !!parent?.image?.asset || !!parent?.image?.alt,
       fields: [

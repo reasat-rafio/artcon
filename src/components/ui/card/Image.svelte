@@ -10,19 +10,19 @@
 
 {#if variant === 'cover'}
   <figure
-    class={cn('h-auto max-3xl:aspect-video 3xl:h-[14.125rem]', $$props.class)}>
+    class={cn('h-auto max-3xl:aspect-video 3xl:h-[14.125rem] overflow-hidden rounded-[12px]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
-      class="h-full w-full rounded-[12px] object-cover"
+      class="h-full w-full rounded-[12px] object-cover transition-transform duration-600 hover:scale-105"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
       alt={image?.alt} />
   </figure>
 {:else if variant === 'fit'}
-  <figure class={cn('h-auto sm:h-[25rem]', $$props.class)}>
+  <figure class={cn('h-auto sm:h-[25rem] overflow-hidden rounded-[12px]', $$props.class)}>
     <SanityImage
       imageUrlBuilder={imageBuilder}
-      class="h-full w-full object-contain object-bottom"
+      class="h-full w-full object-contain object-bottom transition-transform duration-600 hover:scale-105"
       sizes="(min-width:640px) 35vw, 100vw"
       src={image}
       alt={image?.alt} />

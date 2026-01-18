@@ -32,7 +32,7 @@
   {scrollPrev}
   {carouselCanScrollNext}
   {carouselCanScrollPrev}
-  title="Our projects"
+  title="Our Projects"
   showNav={chunks.length > 1}>
   <div
     class="!w-full overflow-hidden"

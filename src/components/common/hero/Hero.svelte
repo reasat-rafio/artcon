@@ -11,24 +11,30 @@
   gsap.registerPlugin(ScrollTrigger);
 
   export let props: Omit<CommonHeroProps, '_key'>;
+  export let currentSlug: string | undefined = undefined;
+  export let status: 'Ongoing' | 'Upcoming' | 'Ended' | undefined = undefined;
   $: ({ subtitle, title, topTitle, asset, cta } = props);
+  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
+  $: ctaButtonText = status === 'Upcoming' ? 'Upcoming' : (cta?.title || 'Explore');
 
   let innerWidth = 0;
   let titleEl: HTMLElement;
   let topTitleEl: HTMLElement;
   let subtitleEl: HTMLElement;
 
-  function animation(node: HTMLElement) {
+  function animation(node: HTMLElement, shouldApply: boolean) {
     const ctx = gsap.context(() => {
-      gsap.to(node, {
-        scale: 1.15,
-        scrollTrigger: {
-          trigger: node,
-          start: '100% center',
-          end: 'bottom top',
-          scrub: 3,
-        },
-      });
+      if (shouldApply) {
+        gsap.to(node, {
+          scale: 1.15,
+          scrollTrigger: {
+            trigger: node,
+            start: '100% center',
+            end: 'bottom top',
+            scrub: 3,
+          },
+        });
+      }
     });
     return {
       destroy() {
@@ -39,15 +45,25 @@
 
   onMount(() => {
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: 'expoOut', duration: 0.5 },
-        delay: 0.6,
-      });
-      if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
-      if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
-      if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
-      tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
-      tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      // Only animate on desktop (>= 1024px)
+      if (innerWidth >= 1024) {
+        const tl = gsap.timeline({
+          defaults: { ease: 'expoOut', duration: 0.5 },
+          delay: 0.6,
+        });
+        if (topTitleEl) tl.to(topTitleEl, { y: 0, opacity: 1 }, '-=0.1');
+        if (titleEl) tl.to(titleEl, { y: 0, opacity: 1 }, '-=0.2');
+        if (subtitleEl) tl.to(subtitleEl, { y: 0, opacity: 1 }, '-=0.3');
+        tl.to('.cta-btn', { y: 0, opacity: 1 }, '-=0.4');
+        tl.to('#pointer', { opacity: 1 }, '-=0.4');
+      } else {
+        // On mobile, show elements immediately without animation
+        if (topTitleEl) gsap.set(topTitleEl, { y: 0, opacity: 1 });
+        if (titleEl) gsap.set(titleEl, { y: 0, opacity: 1 });
+        if (subtitleEl) gsap.set(subtitleEl, { y: 0, opacity: 1 });
+        gsap.set('.cta-btn', { y: 0, opacity: 1 });
+        gsap.set('#pointer', { opacity: 1 });
+      }
     });
 
     return () => ctx.revert();
@@ -56,21 +72,21 @@
 
 <svelte:window bind:innerWidth />
 <section
-  use:animation
+  use:animation={innerWidth >= 1024}
   class={cn('fixed inset-0 h-screen w-full', $$props.class)}>
-  <div class="relative flex h-full w-full">
+  <div class="relative flex h-full w-full items-center justify-center">
     {#key asset}
       <Asset {asset} />
     {/key}
     <Overlay />
     <div
-      class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] pt-[calc((340/1080)*100dvh)] text-center text-white max-lg:px-[1rem]">
-      <header class="space-y-[2.1875rem] !drop-shadow-4xl">
+      class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">
+      <header class="space-y-[2.1875rem]">
         <div
           class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
           {#if !!topTitle}
             <h3
-              class="translate-y-full !font-medium opacity-0"
+              class="translate-y-full !font-medium opacity-0 max-lg:line-clamp-2 shadow-text-subtitle"
               bind:this={topTitleEl}>
               {topTitle}
             </h3>
@@ -79,10 +95,10 @@
           {/if}
         </div>
 
-        <div class="overflow-hidden !leading-[100%]">
+        <div class="overflow-visible !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full uppercase !leading-none">
+            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2 shadow-text-title">
             {title}
           </h1>
         </div>
@@ -90,7 +106,7 @@
         <div
           class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
           {#if !!subtitle}
-            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0">
+            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0 whitespace-pre shadow-text-subtitle">
               {subtitle}
             </h2>
           {:else}
@@ -100,12 +116,12 @@
       </header>
 
       <div class="overflow-hidden">
-        {#if !!cta?.title && !!cta?.href}
+        {#if shouldShowCta && cta}
           <Cta
             variant="quaternary"
             className="cta-btn mx-auto translate-y-full opacity-0 min-w-[10.9375rem]"
             href={cta.href}>
-            {cta.title}
+            {ctaButtonText}
           </Cta>
         {:else}
           <span class="invisible">""</span>

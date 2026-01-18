@@ -15,7 +15,7 @@ const query = (params: Partial<Record<string, string>>) =>
     slug,
     cta,
     seo,
-    gallery->{name},
+    gallery->{name, url, location},
     description,
     sliderImageVideo {
       ...,
@@ -32,6 +32,13 @@ const query = (params: Partial<Record<string, string>>) =>
         "webm": video_webm.asset->url,
         "mov": video_hevc.asset->url,
       }
+    },
+    publication->{
+      ${asset('publicationImage')}
+    },
+    "invitationCard": sections[_type == "exhibition.publication"][0]{
+      ${asset('invitationCardImage')},
+      ${asset('fullInvitationCardImage')}
     },
     "exhibitionType": select(
       count(artists) > 1 => "Group Exhibition",

@@ -9,8 +9,7 @@ const query = groq`
         sections[]{
           ...,
           highlightedCollections[]->{
-            name,
-            topTitle,
+            name,            slug,            topTitle,
             subtitle,
             cta,
             artist->{
@@ -31,11 +30,13 @@ const query = groq`
         _createdAt,
         slug,
         name,
+        subtitle,
+        category->,
         tag->,
         displayNew,
         displaySold,
         isAvailable,
-        ${asset('artworkImages[0]', { as: 'artworkImage' })},
+        ${asset('thumbnail')},
         "media": information.media,
         "year": information.artDate.year,
         artist->{

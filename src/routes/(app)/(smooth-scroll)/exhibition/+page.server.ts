@@ -14,7 +14,9 @@ const query = groq`
           slug,
           endDate,
           startDate,
+          topTitle,
           subtitle,
+          exhibitionType,
           tag->{
             name,
             slug
@@ -45,6 +47,9 @@ const query = groq`
         name,
         slug,
         subtitle,
+        startDate,
+        endDate,
+        exhibitionType,
         tag->,
         asset{
           ...,
@@ -55,6 +60,14 @@ const query = groq`
           }
         },
         "type": select(
+          exhibitionType == "solo" => {
+            ...artists[0]->{
+              ...personalDocuments {
+                "name": name.en,
+              }
+            }
+          },
+          exhibitionType == "group" => "Group Exhibition",
           count(artists) == 1 => {
             ...artists[0]->{
               ...personalDocuments {

@@ -12,12 +12,30 @@ const query = (params: Partial<Record<string, string>>) =>
     cta,
     slug,
     seo,
-    associationsList,
+    exhibitionType,
+    associationsList[]{
+      key,
+      value,
+      url,
+      ${asset('logo')}
+    },
+    associationsButton,
+    socials[]{
+      _key,
+      _type,
+      type,
+      link
+    },
     description,
     endDate,
     startDate,
     tag->,
-    gallery->,
+    gallery->{
+      _id,
+      name,
+      location,
+      url
+    },
     publication->{
       name,
       subtitle,
@@ -38,26 +56,26 @@ const query = (params: Partial<Record<string, string>>) =>
           "mov": video_hevc.asset->url,
       }
     },
-    artworks[]->{
-      information,
-      "artwork": artworkImages[0] {
-        ...,
-        asset->{
-          ...,
-          metadata {
-           lqip,
-          dimensions
-         }
-       }
-      }
-    },
     sections[]{
       ...,
       ${asset('image')},
       ${asset('invitationCardImage')},
       ${asset('fullInvitationCardImage')},
       ${asset('images[]', { as: 'images' })},
-      ${asset('artworks[]', { as: 'artworks' })},
+      members[]{
+        ...,
+        ${asset('image')},
+      },
+      artworks[]{
+        _key,
+        _type,
+        ${asset('image')},
+        description
+      },
+      artworkLink{
+        title,
+        href
+      },
       vr->{
         url,
         caption,
@@ -114,6 +132,16 @@ const query = (params: Partial<Record<string, string>>) =>
         video{
           "webm": video_webm.asset->url,
           "mov": video_hevc.asset->url,
+        }
+    },
+    "invitationCardImage": sections[_type == "exhibition.publication"][0].invitationCardImage{
+        ...,
+        asset-> {
+            ...,
+            metadata {
+                lqip,
+                dimensions
+            }
         }
     },
     "type": select(

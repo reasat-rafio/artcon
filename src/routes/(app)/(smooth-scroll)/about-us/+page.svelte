@@ -29,14 +29,14 @@
 <div class="relative z-10 mt-[100dvh] bg-white">
   {#each page.sections as s}
     {#if s._type === 'aboutUsPage.aboutUs'}
-      <AboutUs props={s} />
+      <AboutUs class="pb-section" props={s} />
     {:else if s._type === 'aboutUsPage.teamBanner'}
-      <TeamBanner props={s} />
+      <TeamBanner class="pb-section" props={s} />
     {/if}
   {/each}
 
   {#if !!page?.team?.length}
-    <Team team={page.team} />
+    <Team class="pb-section" team={page.team} />
   {/if}
 
   <Footer {footer} {contact} logo={logoDark} />

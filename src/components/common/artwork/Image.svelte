@@ -13,7 +13,6 @@
   export let information: Information;
   export let innerWidth = 0;
   export let isSingleArtwork: boolean;
-  export let length: number;
 
   const dispatch = createEventDispatcher();
 
@@ -41,7 +40,7 @@
   )}>
   <div>
     <div style="transform: scale({$scale});">
-      <figure class="relative">
+      <figure class="group relative overflow-hidden rounded-[25px]">
         <SanityImage
           class="h-full w-full rounded-[25px] object-cover"
           sizes="(min-width:1024px) 60vw, 100vw"
@@ -54,7 +53,7 @@
             class="flex flex-col flex-wrap gap-y-[1px] text-[0.875rem] font-light">
             <li class="leading-none">{information.media}</li>
             <li>{information.size}</li>
-            <li>{information.artDate.creationDetails}</li>
+            <li>{information.artDate?.creationDetails}</li>
             <li>{information.frame}</li>
             {#if !!information?.moreInformation?.length}
               {#each information.moreInformation as info}

@@ -16,7 +16,7 @@ export const formatArtistListingProps = (
   props: ArtistListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedArtists.map(
-    ({ coverImage, name, asset, cta, subtitle, topTitle }) => {
+    ({ coverImage, name, asset, cta, subtitle, topTitle, slug }) => {
       return {
         _type: 'common.hero',
         _key: '',
@@ -24,7 +24,9 @@ export const formatArtistListingProps = (
         title: name,
         subtitle,
         topTitle,
-        cta,
+        cta: cta 
+          ? { ...cta, slug: slug.current } 
+          : { title: 'EXPLORE', href: `/artist/${slug.current}`, slug: slug.current },
       };
     },
   );
@@ -37,15 +39,15 @@ export const formatPublicationListingProps = (
   props: PublicationListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedPublication.map(
-    ({ coverImage, name, subtitle, slug, category }) => {
+    ({ heroImageVideo, name, subtitle, slug, category }) => {
       return {
         _type: 'common.hero',
         _key: '',
-        asset: { image: coverImage },
+        asset: heroImageVideo,
         title: name,
-        text: subtitle,
-        type: category.name,
-        cta: { title: 'EXPLORE', href: `/preview/publication/${slug.current}` },
+        subtitle: subtitle,
+        topTitle: category.name,
+        cta: { title: 'EXPLORE', href: `/preview/publication/${slug.current}`, slug: slug.current },
       };
     },
   );
@@ -66,7 +68,7 @@ export const formatVrListingProps = (
         title: name,
         topTitle: category.name,
         subtitle,
-        cta: { title: 'EXPLORE', href: `/preview/vr/${slug.current}` },
+        cta: { title: 'EXPLORE', href: `/preview/vr/${slug.current}`, slug: slug.current },
       };
     },
   );
@@ -97,7 +99,7 @@ export const formatProjectListingProps = (
         topTitle: _topTitle,
         // type: tag.name,
         subtitle,
-        cta: { title: 'EXPLORE', href: `/project/${slug.current}` },
+        cta: { title: 'EXPLORE', href: `/project/${slug.current}`, slug: slug.current },
       };
     },
   );
@@ -119,7 +121,7 @@ export const formatDocumentaryListingProps = (
         topTitle: 'Documentary',
         title: name,
         subtitle: category.name,
-        cta: { title: 'Explore', href: `/preview/documentary/${slug.current}` },
+        cta: { title: 'Explore', href: `/preview/documentary/${slug.current}`, slug: slug.current },
       };
     },
   );
@@ -133,7 +135,7 @@ export const formatEventListingProps = (
   props: EventListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedEvents.map(
-    ({ asset, name, topTitle, subtitle, cta, startDate, endDate, tag }) => {
+    ({ asset, name, topTitle, subtitle, cta, startDate, endDate, tag, slug }) => {
       const { date, status } = calculateStatusBetweenDates({
         startDate,
         endDate,
@@ -148,7 +150,13 @@ export const formatEventListingProps = (
         title: name,
         topTitle: _topTitle,
         subtitle: subtitle || tag?.name,
-        cta,
+        cta: cta 
+          ? { ...cta, slug: slug.current } 
+          : { 
+              title: status === 'Upcoming' ? 'UPCOMING' : 'EXPLORE', 
+              href: status === 'Upcoming' ? `/preview/event/${slug.current}` : `/event/${slug.current}`, 
+              slug: slug.current 
+            },
       };
     },
   );
@@ -162,7 +170,8 @@ export const formatCollectionListingProps = (
   props: CollectionListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedCollections.map(
-    ({ asset, name, topTitle, subtitle, artist, cta }) => {
+    ({ asset, name, topTitle, subtitle, artist, slug }) => {
+      const collectionSlug = slug?.current;
       return {
         _type: 'common.hero',
         _key: '',
@@ -170,7 +179,9 @@ export const formatCollectionListingProps = (
         subtitle,
         title: artist?.name || name,
         topTitle,
-        cta,
+        cta: collectionSlug
+          ? { title: 'EXPLORE', href: `/preview/collection/${collectionSlug}`, slug: collectionSlug }
+          : undefined,
       };
     },
   );
@@ -183,14 +194,24 @@ export const formatExhibitionListingProps = (
   props: ExhibitionListingHeroProps,
 ): CommonHeroListProps => {
   const formattedProps: CommonHeroProps[] = props.highlightedExhibition.map(
-    ({ asset, name, startDate, endDate, type, subtitle, slug, topTitle }) => {
+    ({ asset, name, startDate, endDate, type, subtitle, slug, topTitle, exhibitionType }) => {
       const { date, status } = calculateStatusBetweenDates({
         startDate,
         endDate,
       });
 
       const _topTitle = topTitle || (status !== 'Ongoing' ? date : status);
-      const _type = typeof type === 'string' ? type : type?.name;
+      
+      // Use exhibitionType field if available, otherwise fall back to type
+      let _type: string;
+      if (exhibitionType === 'group') {
+        _type = 'Group Exhibition';
+      } else if (exhibitionType === 'solo') {
+        _type = typeof type === 'object' ? type?.name : 'Solo Exhibition';
+      } else {
+        _type = typeof type === 'string' ? type : type?.name;
+      }
+      
       const _subtitle = subtitle || _type;
 
       return {
@@ -201,7 +222,11 @@ export const formatExhibitionListingProps = (
         subtitle: _subtitle,
         topTitle: _topTitle,
 
-        cta: { title: 'EXPLORE', href: `/exhibition/${slug.current}` },
+        cta: { 
+          title: status === 'Upcoming' ? 'UPCOMING' : 'EXPLORE', 
+          href: status === 'Upcoming' ? `/preview/exhibition/${slug.current}` : `/exhibition/${slug.current}`, 
+          slug: slug.current 
+        },
       };
     },
   );

@@ -35,7 +35,7 @@
   {scrollPrev}
   {carouselCanScrollNext}
   {carouselCanScrollPrev}
-  title="Our exhibitions"
+  title="Our Exhibitions"
   showNav={chunks.length > 1}>
   <div
     class="!w-full overflow-hidden"

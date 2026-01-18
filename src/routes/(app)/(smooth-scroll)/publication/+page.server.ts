@@ -17,15 +17,32 @@ const query = groq`
                   name,
                   slug
                 },
-                ${asset('coverImage')},
+                heroImageVideo {
+                  ...,
+                  ${asset('image')},
+                  video{
+                    "webm": video_webm.asset->url,
+                    "mov": video_hevc.asset->url,
+                  }
+                },
             },
         },
       "publications" : *[_type== "publication"]|order(orderRank){
         _id,
         name,
+        subtitle,
         slug,
         prices,
         ${asset('publicationImage')},
+        ${asset('thumbnail')},
+        heroImageVideo {
+          ...,
+          ${asset('image')},
+          video{
+            "webm": video_webm.asset->url,
+            "mov": video_hevc.asset->url,
+          }
+        },
         category->{
             name,
             slug

@@ -3,18 +3,84 @@
   import type { contactSchema } from '@/lib/validator';
   import { fade } from 'svelte/transition';
   import type { SuperForm } from 'sveltekit-superforms/client';
+  import { toasts } from 'svelte-toasts';
   import Input from './Input.svelte';
 
   export let form: SuperForm<typeof contactSchema>;
+  export let apiKey: string;
 
-  const { form: f, errors, enhance, delayed } = form;
+  const { form: f, errors, validate } = form;
+
+  let submitting = false;
+
+  async function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
+
+    const result = await validate();
+    if (!result.valid) return;
+
+    submitting = true;
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          from_name: 'Artcon Website Contact Form Submission',
+          subject: 'Artcon Contact Inquiry',
+          name: $f.name,
+          email: $f.email,
+          message: $f.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toasts.add({
+          description: 'Form submitted successfully',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'success',
+        });
+        $f.name = '';
+        $f.email = '';
+        $f.message = '';
+      } else {
+        toasts.add({
+          description:
+            data.message || 'Failed to submit form. Please try again.',
+          duration: 3000,
+          placement: 'bottom-right',
+          theme: 'dark',
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toasts.add({
+        description: 'Network error. Please try again.',
+        duration: 3000,
+        placement: 'bottom-right',
+        theme: 'dark',
+        type: 'error',
+      });
+    } finally {
+      submitting = false;
+    }
+  }
 </script>
 
 <section
   use:parallaxAnimation
-  class="container-primary relative translate-y-[120px]">
+  class="container-primary pb-section relative translate-y-[120px]">
   <div class="w-full max-w-[64.125rem]">
-    <form use:enhance class="w-full space-y-[3.12rem]" method="POST">
+    <form on:submit={handleSubmit} class="w-full space-y-[3.12rem]">
       <div class="grid grid-cols-2 gap-[1.88rem]">
         <Input
           bind:value={$f.name}
@@ -49,9 +115,9 @@
       </div>
       <button
         class="rounded-2xl border border-raisin-black px-[1.3125rem] py-[0.8125rem] text-[0.84375rem] text-raisin-black"
-        disabled={$delayed}
+        disabled={submitting}
         type="submit">
-        {#if $delayed}
+        {#if submitting}
           <span class="animate-pulse">Sending...</span>
         {:else}
           Send massage

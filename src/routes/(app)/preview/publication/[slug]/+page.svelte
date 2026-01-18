@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
+  import Quote from '@/components/common/Quote.svelte';
   import Seo from '@/components/common/Seo.svelte';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
@@ -13,12 +14,11 @@
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import { inquirySchema } from '@/lib/validator';
   import formPopupStore from '@/store/form-popup';
+  import lightboxStore from '@/store/lightbox';
   import { toPlainText } from '@portabletext/svelte';
   import { gsap } from 'gsap';
   import { onMount } from 'svelte';
-  import { toasts } from 'svelte-toasts';
-  import { superForm, type FormResult } from 'sveltekit-superforms/client';
-  import type { ActionData } from './$types';
+  import { superForm } from 'sveltekit-superforms/client';
 
   export let data;
 
@@ -35,10 +35,14 @@
       publicationImage,
       publishedBy,
       isbn,
+      creditList,
       prices,
       stock,
+      externalLinkButton,
+      quote,
     },
     site: { logos },
+    apiKey,
   } = data);
 
   let transitioningOut = false;
@@ -47,21 +51,6 @@
   let innerWidth = 0;
   const f = superForm(data.form, {
     validators: inquirySchema,
-    resetForm: true,
-    onResult: (event) => {
-      const result = event.result as FormResult<ActionData>;
-
-      if (result.type === 'success') {
-        formPopupStore.setFormPopupVisibility(false);
-        toasts.add({
-          description: 'Form submitted successfully',
-          duration: 3000,
-          placement: 'bottom-right',
-          theme: 'dark',
-          type: 'success',
-        });
-      }
-    },
   });
 
   onMount(() => {
@@ -73,7 +62,7 @@
         defaults: { ease: 'expo.out' },
       });
       if (innerWidth >= 1024) {
-        tl.to('#previewImage', { scale: 1.25, duration: 1 }).from(
+        tl.to('#previewImage', { scale: 1.08, duration: 1 }).from(
           animationNodes,
           {
             y: 100,
@@ -132,6 +121,18 @@
   function inquiryAction() {
     formPopupStore.setFormPopupVisibility(true);
   }
+
+  function openImagePopup() {
+    lightboxStore.setLightboxVisibility(true);
+    lightboxStore.setActiveIndex(0);
+    lightboxStore.setHideThumbnails(true);
+    lightboxStore.setAllImages([
+      {
+        ...publicationImage,
+        caption: name,
+      },
+    ]);
+  }
 </script>
 
 <Seo
@@ -146,7 +147,7 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { ...exproleLink, newTab: true },
+    { href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true },
   ]} />
 
 <section>
@@ -160,74 +161,93 @@
         <div
           class="preview_content_container"
           on:outroend={() => (transitioningOut = false)}>
-          <NavigationMobile cta={{ ...exproleLink, newTab: true }} />
+          <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true }} />
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="w-full lg:max-w-[457px]">
+            <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
               <Header
-                topic="Our publication"
+                topic="Our Publication"
                 title={name}
                 subtitle={subtitle ? subtitle : ''}
                 type={category.name}
                 let:Info>
-                <Info>
-                  <div class="sub-title-light">
-                    Published By {#each publishedBy as publisher, index}
-                      <span class="title-regular">
-                        {publisher}{#if index !== publishedBy.length - 1}
-                          {#if index === publishedBy.length - 2}
-                            {' '}
-                            <span class="sub-title-light">and</span>
-                          {:else}
-                            ,
-                          {/if}
-                        {/if}
-                        {' '}
-                      </span>
-                    {/each}
-                  </div>
-                  {#if !!isbn}
+                <div class="space-y-[1.5825rem]">
+                  <Info>
                     <div class="sub-title-light">
-                      ISBN {isbn}
+                      Published by {#each publishedBy as publisher, index}
+                        <span class="title-regular">
+                          {publisher}{#if index !== publishedBy.length - 1}
+                            {#if index === publishedBy.length - 2}
+                              {' '}
+                              <span class="sub-title-light">and</span>
+                            {:else}
+                              ,
+                            {/if}
+                          {/if}
+                          {' '}
+                        </span>
+                      {/each}
                     </div>
-                  {/if}
-                </Info>
-                <Info>
-                  <div class="sub-title-light">
-                    Price {#if !!prices?.discountPriceBDT}
-                      <span class="!font-normal text-[#9B9B9B] line-through">
-                        {prices.priceBDT}
-                      </span>
-                      <span class="font-medium">
-                        <span>{prices.discountPriceBDT} BDT</span>
-                        /
-                        <span>{prices.priceUSD} USD</span>
-                      </span>
-                    {:else}
-                      <span class="font-medium">
-                        <span>{prices.priceBDT} BDT</span>
-                        /
-                        <span>{prices.priceUSD} USD</span>
-                      </span>
+                    {#if !!isbn}
+                      <div class="sub-title-light">
+                        ISBN {isbn}
+                      </div>
                     {/if}
-                  </div>
+                  </Info>
+                  {#if !!creditList?.length}
+                    <Info>
+                      <ul class="mt-[1.5625rem] mb-[1.5625rem] space-y-[0.5rem]">
+                        {#each creditList as { key, value }}
+                          <li class="sub-title-light">
+                            <span>{key}</span>
+                            {' '}
+                            <span class="!font-normal">{value}</span>
+                          </li>
+                        {/each}
+                      </ul>
+                    </Info>
+                  {/if}
+                  {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
+                    <Info>
+                      <div class="sub-title-light">
+                        Price {#if !!prices?.discountPriceBDT}
+                          <span class="!font-normal text-[#9B9B9B] line-through">
+                            {prices.priceBDT}
+                          </span>
+                          <span class="font-medium">
+                            <span>{prices.discountPriceBDT} BDT</span>
+                            /
+                            <span>{prices.priceUSD} USD</span>
+                          </span>
+                        {:else}
+                          <span class="font-medium">
+                            <span>{prices.priceBDT} BDT</span>
+                            /
+                            <span>{prices.priceUSD} USD</span>
+                          </span>
+                        {/if}
+                      </div>
 
-                  <div class="title-light">
-                    <span class="sub-title-light">Stock</span>
-                    <span class="font-medium capitalize">{stock}</span>
-                  </div>
-                </Info>
+                      {#if stock !== 'Not Available'}
+                        <div class="title-light">
+                          <span class="sub-title-light">Stock</span>
+                          <span class="font-medium">{stock === 'Online' ? 'Available' : stock}</span>
+                        </div>
+                      {/if}
+                    </Info>
+                  {/if}
+                </div>
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
-                <figure data-load-animate="y">
+                <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
                     src={publicationImage}
                     alt={publicationImage.alt}
                     sizes="100vw" />
-                </figure>
+                </button>
               </div>
 
               {#if !!description?.length}
@@ -238,37 +258,61 @@
                 </div>
               {/if}
 
-              <ul class="mb-[2.5rem] space-y-[0.5rem]" data-load-animate="y">
-                {#each associationsList as { key, value }}
-                  <li class="sub-title-light">
-                    <span>{key}</span>
-                    {' '}
-                    <span class="!font-normal">{value}</span>
-                  </li>
-                {/each}
-              </ul>
+              {#if !!associationsList?.length}
+                <div class="mb-[2.5rem]" data-load-animate="y">
+                  <ul class="space-y-[0.5rem]">
+                    {#each associationsList as { key, value }}
+                      <li class="sub-title-light">
+                        <span>{key}</span>
+                        {' '}
+                        <span class="!font-normal">{value}</span>
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+
               <div class="pt-[1.38rem]" data-load-animate="y">
-                <Cta
-                  el="button"
-                  className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                  onClick={inquiryAction}
-                  variant="tertiary">
-                  Buy now
-                </Cta>
+                {#if stock === 'Online' && externalLinkButton?.externalUrl}
+                  <Cta
+                    el="a"
+                    href={externalLinkButton.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                    variant="tertiary">
+                    {externalLinkButton.buttonText || 'View Online'}
+                  </Cta>
+                {:else}
+                  <Cta
+                    el="button"
+                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                    onClick={inquiryAction}
+                    variant="tertiary">
+                    {stock === 'Available' ? 'Buy now' : 'Inquiry'}
+                  </Cta>
+                {/if}
               </div>
             </section>
 
-            <section class="hidden 3xl:block">
-              <figure
+            <!-- <section class="hidden 3xl:block"> -->
+            <section class="hidden 3xl:block w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+              <button
                 data-load-animate="y"
-                class="max-h-[23.75rem] 3xl:mt-[9.44rem]">
+                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
+                on:click={openImagePopup}>
                 <SanityImage
-                  class="rounded-[0.9375rem] object-contain"
+                  class="rounded-[0.9375rem] object-contain w-full h-auto"
                   imageUrlBuilder={imageBuilder}
                   src={publicationImage}
                   alt={publicationImage.alt}
                   sizes="40vw" />
-              </figure>
+              </button>
+              {#if !!quote}
+                <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
+                  <Quote {quote} authorSize="24px" class="!translate-y-0" />
+                </div>
+              {/if}
             </section>
           </div>
         </div>
@@ -276,9 +320,10 @@
     </section>
   </article>
 </section>
-
 {#if $formPopupStore.show}
   <FormPopup
     form={f}
-    contextMessage={`The user selected publication is titled ${name} by ${subtitle ?? ''}.`} />
+    {apiKey}
+    contextMessage={`${name}: ${exproleLink?.href || ''}`}
+    subjectLine={`Publication inquiry : ${name}`} />
 {/if}

@@ -15,6 +15,7 @@ const documentation = {
     {
       name: 'images',
       type: 'array',
+      description: '2 Images must be uploaded',
       validation: (Rule: Rule) => Rule.max(2).required(),
       of: [
         {

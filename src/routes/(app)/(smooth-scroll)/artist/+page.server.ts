@@ -37,10 +37,12 @@ const query = groq`
                 "name": name.en,
                 ${asset('artistPortrait')},
             },
-            artworks[0...4]->{
-                name,
-                slug,
-                ${asset('artworkImages[0]', { as: 'artworkImage' })},
+            "customArtworks": siteDocuments.sections[_type == "common.artwork"][0].artworks[0...4]{
+                _key,
+                _type,
+                title,
+                ${asset('image')},
+                description
             }
         },
         "tags": *[_type == "artistTag"]|order(orderRank)

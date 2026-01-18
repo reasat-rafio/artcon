@@ -38,6 +38,7 @@
   const triggerLightboxPopup = (index: number) => {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(index);
+    lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(
       artworks.map(
         ({
@@ -45,7 +46,7 @@
           information: { size, artDate, frame, media, moreInformation },
         }) => ({
           ...artwork,
-          caption: `${size}, ${artDate.creationDetails}, ${frame}, ${media}, ${moreInformation?.map((e) => e).join(', ')}`,
+          caption: `${size}, ${artDate?.creationDetails || ''}, ${frame}, ${media}, ${moreInformation?.map((e) => e).join(', ')}`,
         }),
       ),
     );

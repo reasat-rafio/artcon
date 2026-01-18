@@ -14,26 +14,32 @@ const service = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
+      name: 'descriptionMedia',
+      type: 'asset',
+      title: 'Description Image / Video (Optional)',
+      description: 'Optional image or video to show before the description',
+      validation: (Rule: Rule) => Rule.optional(),
+    },
+    {
       name: 'description',
       type: 'array',
       of: [{ type: 'block', lists: [], styles: [] }],
       validation: (Rule: Rule) => Rule.required(),
     },
-
     {
-      name: 'image',
+      name: 'fullWidthImage',
       type: 'image',
-      validation: (Rule: Rule) => Rule.required(),
+      title: 'Full Width Image (Optional)',
+      description: 'Optional full-width image displayed after the service description',
       options: {
         hotspot: true,
       },
       fields: [
         {
           name: 'alt',
-          title: 'Alternative Text',
-          description: 'Important for SEO and accessibility',
           type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
+          title: 'Alternative text',
+          description: 'Important for SEO and accessibility.',
         },
       ],
     },
@@ -41,8 +47,7 @@ const service = {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
-      media: 'image',
+      media: 'descriptionMedia.image',
     },
   },
 };

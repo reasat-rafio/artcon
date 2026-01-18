@@ -8,9 +8,9 @@
 
 <a href={link} target="_blank">
   <img
-    class="h-[0.938rem] w-[0.938rem]"
-    width="15px"
-    height="15px"
+    class="h-[1.407rem] w-[1.407rem]"
+    width="22.5px"
+    height="22.5px"
     src="/icons/socials/ash/{getSocialIconPath(type)}"
     alt="{type}'s icon" />
 </a>

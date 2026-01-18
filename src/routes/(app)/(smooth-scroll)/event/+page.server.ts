@@ -1,3 +1,4 @@
+
 import { asset } from '@/lib/sanity/sanity-image';
 import { sanityClient } from '@/lib/sanity/sanityClient';
 import { error } from '@sveltejs/kit';
@@ -32,6 +33,8 @@ const query = groq`
             slug,
             name,
             subtitle,
+            startDate,
+            endDate,
             tag->{
                 name,
                 slug
@@ -56,3 +59,4 @@ export const load = async () => {
     page: data,
   };
 };
+
