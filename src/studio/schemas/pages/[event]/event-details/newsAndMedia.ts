@@ -72,7 +72,6 @@ const newsAndMedia = {
         {
           name: 'title',
           type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     }),

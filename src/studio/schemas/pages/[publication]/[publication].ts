@@ -83,6 +83,7 @@ const publication = {
           { title: 'Not Available', value: 'Not Available' },
           { title: 'Out of Stock', value: 'Out of Stock' },
           { title: 'Online', value: 'Online' },
+          { title: 'Pre-order', value: 'Pre-order' },
         ],
       },
       validation: (Rule: Rule) => Rule.required(),
