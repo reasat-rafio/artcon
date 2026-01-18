@@ -216,14 +216,18 @@
                           </span>
                           <span class="font-medium">
                             <span>{prices.discountPriceBDT} BDT</span>
-                            /
-                            <span>{prices.priceUSD} USD</span>
+                            {#if prices.priceUSD}
+                              /
+                              <span>{prices.priceUSD} USD</span>
+                            {/if}
                           </span>
                         {:else}
                           <span class="font-medium">
                             <span>{prices.priceBDT} BDT</span>
-                            /
-                            <span>{prices.priceUSD} USD</span>
+                            {#if prices.priceUSD}
+                              /
+                              <span>{prices.priceUSD} USD</span>
+                            {/if}
                           </span>
                         {/if}
                       </div>
