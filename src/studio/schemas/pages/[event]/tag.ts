@@ -13,14 +13,6 @@ const eventTag = {
       name: 'name',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
-      options: {
-        list: [
-          { title: 'Auction', value: 'Auction' },
-          { title: 'Book launch', value: 'Book launch' },
-          { title: 'Film Screening', value: 'Film Screening' },
-          { title: 'Celebration', value: 'Celebration' },
-        ],
-      },
     },
     {
       name: 'slug',

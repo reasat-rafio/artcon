@@ -175,12 +175,14 @@
                     </ul>
                   </Info>
                 {/if}
-                <Info>
-                  <div class="mt-[0.27rem] title-light">
-                    <span class="sub-title-light">Stock</span>
-                    <span class="font-medium">{stock}</span>
-                  </div>
-                </Info>
+                {#if !!stock}
+                  <Info>
+                    <div class="mt-[0.27rem] title-light">
+                      <span class="sub-title-light">Stock</span>
+                      <span class="font-medium">{stock}</span>
+                    </div>
+                  </Info>
+                {/if}
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
