@@ -60,10 +60,11 @@ export const calculateStatusBetweenDates = ({
 
     date = `${formattedStartDate} - ${formattedEndDate}`;
 
-    if (isoStartDate <= currentDateTime && isoEndDate >= currentDateTime) {
-      status = 'Ongoing';
-    } else if (isoStartDate > currentDateTime) {
+    // Compare dates without time component
+    if (isoStartDate.startOf('day') > currentDateTime.startOf('day')) {
       status = 'Upcoming';
+    } else if (isoEndDate.startOf('day') >= currentDateTime.startOf('day')) {
+      status = 'Ongoing';
     } else {
       status = 'Ended';
     }
@@ -71,10 +72,11 @@ export const calculateStatusBetweenDates = ({
     const formattedDate = isoStartDate.toFormat('d MMM, yyyy');
     date = formattedDate;
 
-    if (isoStartDate <= currentDateTime) {
-      status = 'Ongoing';
-    } else if (isoStartDate > currentDateTime) {
+    // For single date events, check if it's today or in the future
+    if (isoStartDate.startOf('day') > currentDateTime.startOf('day')) {
       status = 'Upcoming';
+    } else if (isoStartDate.hasSame(currentDateTime, 'day')) {
+      status = 'Ongoing';
     } else {
       status = 'Ended';
     }
