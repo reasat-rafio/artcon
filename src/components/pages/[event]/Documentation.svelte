@@ -5,13 +5,25 @@
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import type { DocumentationProps } from '@/lib/types/event-detail.types';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
+  import imagePopupStore from '@/store/image-popup';
 
   export let props: DocumentationProps;
   $: ({
     quote,
-    images,
+    invitationCard,
+    coverImage,
     descriptionBlock: { description, name, author, cta, isbn, publishedBy, associationsList },
   } = props);
+
+  function triggerPopup() {
+    if (invitationCard?.fullInvitationCardImage) {
+      imagePopupStore.setVisibility(true);
+      imagePopupStore.setImage(
+        invitationCard.fullInvitationCardImage,
+        invitationCard.fullInvitationCardImage?.caption,
+      );
+    }
+  }
 </script>
 
 <section>
@@ -20,10 +32,23 @@
       <Quote class="mb-section" {quote} />
     {/if}
 
-    <ParallaxScrollImage
-      class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
-      disableParallaxOnDesktop={true}
-      images={[{ img: images[0] }, { img: images[1] }]} />
+    {#if !!invitationCard?.invitationCardImage && !!coverImage?.image}
+      <ParallaxScrollImage
+        on:triggerPopup={triggerPopup}
+        class="mb-section"
+        disableParallaxOnDesktop={true}
+        images={[
+          {
+            img: invitationCard.invitationCardImage,
+            triggerPopup: true,
+            caption: invitationCard.invitationCardImage?.caption,
+          },
+          {
+            img: coverImage.image,
+            caption: coverImage.image?.caption,
+          },
+        ]} />
+    {/if}
 
     <DescriptionBlock>
       <svelte:fragment slot="intro" let:C>

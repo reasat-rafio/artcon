@@ -16,6 +16,8 @@
       <svelte:element
         this={url ? 'a' : 'div'}
         href={url}
+        target={url?.startsWith('http') ? '_blank' : undefined}
+        rel={url?.startsWith('http') ? 'noopener noreferrer' : undefined}
         class="group flex h-fit w-full max-w-full items-center justify-start gap-x-[1.25rem]">
         <figure class="h-[7rem] w-[7rem] flex-shrink-0 overflow-hidden rounded-full">
           <SanityImage

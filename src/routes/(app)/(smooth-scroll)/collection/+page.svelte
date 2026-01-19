@@ -130,7 +130,7 @@
   <svelte:fragment slot="name">
     {activeArtistParams
       ? `${activeArtistParams}'s collection`
-      : 'Our Collection'}
+      : 'Our Collections'}
   </svelte:fragment>
   <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>
     <SortingDropdown />

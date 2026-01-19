@@ -45,7 +45,7 @@
     <ul class="flex gap-x-[1rem] lg:pl-[1.2rem] 3xl:translate-y-[-10px]">
       {#each contact.socials as { type, link }}
         <li>
-          <a href={link} target="_blank">
+          <a href={link} target="_blank" rel="noopener noreferrer">
             <img
               class="h-[15px] object-contain"
               width="20px"

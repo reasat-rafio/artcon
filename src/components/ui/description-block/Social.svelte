@@ -6,7 +6,7 @@
   export let type: Type;
 </script>
 
-<a href={link} target="_blank">
+<a href={link} target="_blank" rel="noopener noreferrer">
   <img
     class="h-[1.407rem] w-[1.407rem]"
     width="22.5px"

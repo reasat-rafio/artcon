@@ -14,6 +14,7 @@ import type {
   SocialProps,
   Tag,
   VR,
+  Youtube,
 } from './common.types';
 import type { PortableTextBlock, Slug } from 'sanity';
 import type {
@@ -114,8 +115,10 @@ export interface SummaryProps {
   _key: string;
   _type: 'exhibition.summary';
   quote?: Quote;
-  vr?: VR;
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
 }
+
+type VrOrYtVideoSlider = VR | Youtube;
 
 export interface IncludedArtistsProps {
   _key: string;

@@ -63,6 +63,8 @@
   bind:this={anchorEl}
   style="color: {textColor};"
   href={pageUrl ?? externalUrl}
+  target={externalUrl && externalUrl.startsWith('http') ? '_blank' : undefined}
+  rel={externalUrl && externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
   class="navitem text-[0.84375rem] uppercase leading-[120%] tracking-[0.01688rem] lg:opacity-0">
   <span
     class={cn('origin-center  break-words transition-all duration-500', {

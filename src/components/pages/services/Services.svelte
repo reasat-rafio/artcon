@@ -17,6 +17,14 @@
     formPopupStore.setFormPopupVisibility(true);
   }
 
+  function handleButtonClick(item: ServiceItemProps) {
+    if (item.button?.href) {
+      window.open(item.button.href, '_blank');
+    } else {
+      handleFormPopup(item.title);
+    }
+  }
+
   function isImageDivider(item: ServiceItemProps | ImageDividerProps): item is ImageDividerProps {
     return item._type === 'common.imageAsset';
   }
@@ -27,7 +35,7 @@
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="pt-section pb-section container-primary space-y-sm md:space-y-0 xl:space-y-0">
+      <div class="pt-section container-primary space-y-sm md:space-y-0 xl:space-y-0">
         <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>
@@ -35,7 +43,7 @@
               {#if item.button}
                 <Cta
                   el="button"
-                  onClick={() => handleFormPopup(item.title)}
+                  onClick={() => handleButtonClick(item)}
                   className="mt-md border-raisin-black text-raisin-black capitalize px-[1.94rem] leading-[120%]">
                   {item.button.label || 'Get Service'}
                 </Cta>
@@ -49,7 +57,7 @@
                     src={item.image}
                     alt={item.image.alt || item.title}
                     imageUrlBuilder={imageBuilder}
-                    sizes="(min-width: 1024px) 50vw, 100vw" />
+                    sizes="(min-width: 1024px) 812px, 500px" />
                 </figure>
               {/if}
               {#if item.summary?.text}
@@ -59,14 +67,14 @@
           </DescriptionBlock>
 
           {#if item.contentMedia}
-            <figure class="service-image">
+            <figure class="service-image mt-section">
               {#if item.contentMedia.image}
                 <SanityImage
                   class="h-full w-full object-cover rounded-[25px]"
                   src={item.contentMedia.image}
                   alt={item.contentMedia.image?.alt || item.title}
                   imageUrlBuilder={imageBuilder}
-                  sizes="(min-width: 1024px) 1200px, 100vw" />
+                  sizes="(min-width: 1024px) 1320px, 743px" />
               {:else if item.contentMedia.video}
                 <video
                   class="h-full w-full object-cover rounded-[25px]"

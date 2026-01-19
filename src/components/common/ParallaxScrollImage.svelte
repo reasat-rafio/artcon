@@ -68,7 +68,7 @@
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-center sm:justify-center">
+    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-center sm:justify-center sm:-mt-[45px]">
     <div class="hidden cursor-default sm:block">
       <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <figure
@@ -116,7 +116,8 @@
     <svelte:element
       this={!!secondImage?.link ? 'a' : 'div'}
       href={secondImage?.link}
-      target="_blank">
+      target={secondImage?.link?.startsWith('http') ? '_blank' : '_self'}
+      rel={secondImage?.link?.startsWith('http') ? 'noopener noreferrer' : undefined}>
       <figure class="overflow-hidden rounded-xl">
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"

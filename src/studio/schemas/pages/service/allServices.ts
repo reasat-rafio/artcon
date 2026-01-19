@@ -43,7 +43,7 @@ const serviceItem = {
       name: 'button',
       type: 'cta',
       title: 'Button (Left Side)',
-      description: 'Button displayed below title on left side',
+      description: 'Button displayed below title on left side. Button label defaults to "Get Service" if not specified. If no URL is provided, the button will show a popup form on the service page.',
     },
     {
       name: 'image',
@@ -73,6 +73,7 @@ const serviceItem = {
       type: 'asset',
       title: 'Content Image / Video (Full Width)',
       description: 'Image or Video displayed full width below the left & right sections',
+      validation: (Rule: Rule) => Rule.optional(),
     },
   ],
   preview: {

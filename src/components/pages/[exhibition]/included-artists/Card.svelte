@@ -15,6 +15,8 @@
 <svelte:element
   this={el}
   href={url}
+  target={el === 'a' && url?.startsWith('http') ? '_blank' : undefined}
+  rel={el === 'a' && url?.startsWith('http') ? 'noopener noreferrer' : undefined}
   class={cn(
     'group flex h-fit items-center justify-center space-x-[20px]',
     $$props.class,

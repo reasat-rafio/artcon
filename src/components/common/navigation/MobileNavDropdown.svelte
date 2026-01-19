@@ -77,6 +77,8 @@
         <li class="overflow-hidden text-white">
           <a
             href={pageUrl || externalUrl}
+            target={externalUrl && externalUrl.startsWith('http') ? '_blank' : undefined}
+            rel={externalUrl && externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
             class="dropdownItems head-8 block translate-y-full whitespace-nowrap pl-8 font-medium uppercase">
             {title}
           </a>

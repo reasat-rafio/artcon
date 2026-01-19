@@ -1,15 +1,22 @@
 <script lang="ts">
   import Quote from '@/components/common/Quote.svelte';
   import VR from '@/components/common/Vr.svelte';
+  import Youtube from '@/components/common/Youtube.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { Association, SocialProps, Cta } from '@/lib/types/common.types';
+  import type { Association, SocialProps, Cta, VR as VRType, Youtube as YoutubeType } from '@/lib/types/common.types';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type {
     Gallery,
     SummaryProps,
   } from '@/lib/types/exhibition-detail.types';
   import type { PortableTextBlock } from 'sanity';
+  import type { EmblaCarouselType } from 'embla-carousel';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import Autoplay from 'embla-carousel-autoplay';
+  import { onDestroy } from 'svelte';
 
   type Props = SummaryProps & {
     descriptionBlock: {
@@ -22,14 +29,50 @@
       publishedBy?: string[];
       description?: PortableTextBlock[];
     };
+    vrOrYtVideoSlider?: Array<VRType | YoutubeType>;
   };
 
   export let props: Props;
-  $: ({ quote, vr, descriptionBlock } = props);
+  $: ({ quote, vrOrYtVideoSlider, descriptionBlock } = props);
+
+  let emblaApi: EmblaCarouselType;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
+  let carouselCanScroll = false;
+  
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    carouselCanScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
+  };
+
+  $: carouselOptions = {
+    watchDrag: false,
+    loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
+    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
+      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+      : []
+  };
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <section>
-  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
+  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -107,8 +150,45 @@
       </svelte:fragment>
     </DescriptionBlock>
 
-    {#if !!vr}
-      <VR {vr} />
+    {#if !!vrOrYtVideoSlider?.length}
+      <div class="pb-section">
+        <div>
+          <div
+            class="relative overflow-hidden"
+            use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
+            on:emblaInit={onInit}>
+            <div class="-ml-[1.25rem] flex">
+              {#each vrOrYtVideoSlider as video}
+                <div class="flex-[0_0_100%] pl-[1.25rem]">
+                  {#if video._type === 'vr'}
+                    <VR vr={video} />
+                  {:else if video._type === 'youtube'}
+                    <Youtube yt={video} />
+                  {/if}
+                </div>
+              {/each}
+            </div>
+          </div>
+
+          <div
+            class="mx-auto flex max-w-[72.9375rem] translate-y-[20px] justify-center md:justify-end mt-[1rem] md:mt-0">
+            {#if carouselCanScroll}
+              <nav class="flex gap-x-[0.62rem]">
+                <button
+                  aria-label="Scroll to previous slide"
+                  on:click={() => emblaApi.scrollPrev()}>
+                  <ChevronLeftRounded />
+                </button>
+                <button
+                  aria-label="Scroll to next slide"
+                  on:click={() => emblaApi.scrollNext()}>
+                  <ChevronRightRounded />
+                </button>
+              </nav>
+            {/if}
+          </div>
+        </div>
+      </div>
     {/if}
   </div>
 </section>

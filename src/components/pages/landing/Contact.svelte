@@ -49,7 +49,7 @@
       <ul class="flex gap-x-[1.25rem] lg:translate-x-[19px]">
         {#each socials as { type, link }}
           <li>
-            <a href={link} target="_blank">
+            <a href={link} target="_blank" rel="noopener noreferrer">
               <img
                 class="h-[1.2rem] object-contain"
                 width="20px"

@@ -28,7 +28,7 @@
         on:mouseenter={() => (hoveredId = _id)}
         on:mouseleave={() => (hoveredId = null)}>
         <Image variant="fit" image={thumbnail || publicationImage} class="!rounded-none w-full" />
-        <Container class="flex flex-col gap-y-1">
+        <Container>
           <Title 
             class="text-left truncate" 
             title={`${name} / ${subtitle}`}

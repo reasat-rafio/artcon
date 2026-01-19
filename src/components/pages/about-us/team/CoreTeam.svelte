@@ -12,7 +12,7 @@
   class="col-span-1 mb-xl grid w-full max-w-full translate-y-[120px] gap-[1rem] md:gap-[2.5rem] lg:grid-cols-2 lg:gap-[2.5rem] xl:grid-cols-3">
   {#each coreTeam as { image, name, role, url }}
     {@const el = url ? 'a' : 'div'}
-    <svelte:element this={el} href={url} class="group relative h-[34.375rem] w-full max-w-full">
+    <svelte:element this={el} href={url} target={url?.startsWith('http') ? '_blank' : undefined} rel={url?.startsWith('http') ? 'noopener noreferrer' : undefined} class="group relative h-[34.375rem] w-full max-w-full">
       <figure
         class="h-full w-full max-w-full grayscale transition-all duration-500 group-hover:grayscale-0">
         <SanityImage

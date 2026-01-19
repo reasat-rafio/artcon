@@ -37,7 +37,7 @@
 <Share href="/" {logoLight} {logoDark}>Our Services</Share>
 
 <div class="relative z-10 bg-white">
-  {#if !!page?.allServices?.summary?.quote}
+  {#if !!page?.allServices?.summary}
     <Summary
       class="pb-section"
       props={{
