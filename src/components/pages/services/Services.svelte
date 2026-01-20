@@ -35,7 +35,7 @@
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="pt-section container-primary space-y-sm md:space-y-0 xl:space-y-0">
+      <div class="py-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
         <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>

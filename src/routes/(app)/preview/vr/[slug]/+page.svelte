@@ -189,7 +189,7 @@
             </Info>
           </Header>
 
-          {#if isActive === 'active'}
+          {#if isActive !== 'inactive' && isActive !== 'temporarily-inactive'}
             <Vr
               hideCaption
               autoPlay
