@@ -83,10 +83,10 @@
       class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">
       <header class="space-y-[2.1875rem]">
         <div
-          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest">
+          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest overflow-hidden whitespace-pre-wrap">
           {#if !!topTitle}
             <h3
-              class="translate-y-full !font-medium opacity-0 max-lg:line-clamp-2 shadow-text-subtitle"
+              class="translate-y-full !font-medium opacity-0 max-lg:line-clamp-2 shadow-text-subtitle whitespace-pre"
               bind:this={topTitleEl}>
               {topTitle}
             </h3>
@@ -95,10 +95,10 @@
           {/if}
         </div>
 
-        <div class="overflow-visible !leading-[100%]">
+        <div class="overflow-visible !leading-[100%] whitespace-pre-wrap">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2 shadow-text-title">
+            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2 shadow-text-title whitespace-pre">
             {title}
           </h1>
         </div>

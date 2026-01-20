@@ -59,7 +59,6 @@ const vr = {
     {
       name: 'thumbnail',
       type: 'image',
-      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'coverImage',
@@ -67,14 +66,12 @@ const vr = {
       description:
         'This image will be used as the cover image if this vr is featured in the listing page hero section.',
       options: { hotspot: true },
-      validation: (Rule: Rule) => Rule.required(),
       fields: [
         {
           name: 'alt',
           title: 'Alternative Text',
           description: 'Important for SEO and accessibility',
           type: 'string',
-          validation: (Rule: Rule) => Rule.required(),
         },
       ],
     },
@@ -91,7 +88,7 @@ const vr = {
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      title: 'Start Date (required)',
+      title: 'Start Date',
       name: 'startDate',
       type: 'datetime',
     },
@@ -114,7 +111,7 @@ const vr = {
         ],
       },
       description: 'Choose whether this VR experience is Active, Temporarily Inactive, or Inactive',
-      validation: (Rule: Rule) => Rule.required(),
+
     },
     {
       name: 'description',

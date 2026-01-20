@@ -1,6 +1,8 @@
 <script lang="ts">
   import { beforeNavigate } from '$app/navigation';
   import Seo from '@/components/common/Seo.svelte';
+  import SanityImage from '@/lib/sanity/sanity-image/sanity-image.svelte';
+  import { imageBuilder } from '@/lib/sanity/sanityClient';
   import DesktopImage from '@/components/pages/[preview]/DesktopImage.svelte';
   import MobileImage from '@/components/pages/[preview]/MobileImage.svelte';
   import NavigationDesktop from '@/components/pages/[preview]/NavigationDesktop.svelte';
@@ -55,7 +57,9 @@
       ? 'Active' 
       : isActive === 'temporarily-inactive' 
         ? 'Temporarily Inactive' 
-        : 'Inactive';
+        : isActive === 'inactive'
+          ? 'Inactive'
+          : 'Active';
 
   onMount(() => {
     const animationNodes = contentEl.querySelectorAll('[data-load-animate]');
@@ -165,27 +169,43 @@
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="cursor-pointer transition-colors hover:!text-gray-500">
-                    {gallery.name},
-                  </a>{#if gallery?.location}{gallery.location}{/if}
+                    {gallery.name}{#if gallery?.location}, {gallery.location}{/if}
+                  </a>
                 {:else}
-                  {gallery.name}{#if gallery?.location}{gallery.location}{/if}
+                  {gallery.name}{#if gallery?.location}, {gallery.location}{/if}
                 {/if}
               </div>
               <div class="title-light">
-                {#if !!date && !!status}
+                {#if !!startDate && !!endDate && !!date}
                   <span class="font-light">{date}</span>
                   <span class="px-[6px]">|</span>
                   <span class="font-medium text-eerie-black">{status}</span>
+                {:else if !!status}
+                  <span class="font-medium text-eerie-black">{status}</span>
+                {:else}
+                  <span class="font-medium text-eerie-black">Active</span>
                 {/if}
               </div>
             </Info>
           </Header>
 
-          <Vr
-            hideCaption
-            class="mb-[2.5rem]"
-            data-load-animate="y"
-            vr={{ _type: 'vr', caption, url, thumbnail }} />
+          {#if isActive === 'active'}
+            <Vr
+              hideCaption
+              autoPlay
+              class="mb-[2.5rem]"
+              data-load-animate="y"
+              vr={{ _type: 'vr', caption, url, thumbnail }} />
+          {:else if !!coverImage}
+            <div class="mb-[2.5rem]" data-load-animate="y">
+              <SanityImage
+                src={coverImage}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                class="w-full h-[578px] rounded-xl object-cover"
+                imageUrlBuilder={imageBuilder}
+                alt="VR cover image" />
+            </div>
+          {/if}
           {#if !!description?.length}
             <div data-load-animate="y">
               <PortableText

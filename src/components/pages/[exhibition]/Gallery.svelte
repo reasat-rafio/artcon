@@ -35,10 +35,9 @@
     </DescriptionBlock>
 
     <div class="lg:mr-[4.375rem]">
-      <Gallery items={images} let:chunk let:api>
+      <Gallery items={images} let:chunk let:slideIndex>
         {#each chunk as image, chunkIndex (image.asset._id || image._key || chunkIndex)}
           {@const chunkSize = typeof window !== 'undefined' ? (window.innerWidth >= 1280 ? 6 : window.innerWidth >= 768 ? 4 : 2) : 2}
-          {@const slideIndex = api?.selectedScrollSnap() ?? 0}
           {@const globalIndex = slideIndex * chunkSize + chunkIndex}
           <Card
             on:lightboxAction={() => lightboxAction(globalIndex)}

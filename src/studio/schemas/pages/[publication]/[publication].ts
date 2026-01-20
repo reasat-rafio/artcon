@@ -84,6 +84,7 @@ const publication = {
           { title: 'Out of Stock', value: 'Out of Stock' },
           { title: 'Online', value: 'Online' },
           { title: 'Pre-order', value: 'Pre-order' },
+          { title: 'Limited', value: 'Limited' },
         ],
       },
       validation: (Rule: Rule) => Rule.required(),

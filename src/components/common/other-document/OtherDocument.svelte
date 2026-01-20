@@ -86,7 +86,9 @@
                 href={href}
                 class="flex-[0_0_100%] pl-[1.563rem] md:flex-[0_0_50%] xl:flex-[0_0_33.333%]">
                 <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  <Asset {asset} />
+                  <div class="absolute h-full w-full transition-transform duration-500 hover:scale-105">
+                    <Asset {asset} />
+                  </div>
                 </div>
 
                 <div class="space-y-[0.625rem]">
@@ -123,7 +125,9 @@
                 : `${urlPrefix}/${slug.current}`}
               <a href={href}>
                 <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  <Asset {asset} />
+                  <div class="absolute h-full w-full transition-transform duration-600 hover:scale-105">
+                    <Asset {asset} />
+                  </div>
                 </div>
 
                 <div class="space-y-[0.625rem]">

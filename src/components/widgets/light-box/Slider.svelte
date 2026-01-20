@@ -24,7 +24,7 @@
   }}
   on:emblaInit={onInit}>
   <div class="flex h-full w-full items-center gap-x-[1.25rem]">
-    {#each $lightboxStore.allImages as img}
+    {#each $lightboxStore.allImages as img, index}
       <div
         class="flex h-full w-full flex-[0_0_100%] items-center justify-center">
         <figure class="h-fit w-fit sm:h-full">
@@ -35,10 +35,10 @@
             src={img}
             imageUrlBuilder={imageBuilder} />
 
-          {#if !!img?.caption}
+          {#if !!img?.caption || !!$lightboxStore.allTitles[index]}
             <figurecaption
-              class="sub-title-light md:title-light mt-[0.69rem] block pl-[0.62rem] font-light text-white drop-shadow-2xl lg:pl-[1.88rem] bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg leading-relaxed">
-              {img.caption}
+              class="title-light md:title-regular mt-[1rem] block pl-[0.62rem] font-light text-white drop-shadow-2xl lg:pl-[1.88rem] bg-black/50 backdrop-blur-sm px-6 py-3 rounded-lg leading-relaxed">
+              {img.caption || $lightboxStore.allTitles[index]}
             </figurecaption>
           {/if}
         </figure>

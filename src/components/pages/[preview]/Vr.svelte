@@ -9,11 +9,12 @@
 
   export let hideCaption = false;
   export let vr: VR;
+  export let autoPlay = false;
 
   $: ({ caption, url, thumbnail } = vr);
 
-  let state: State = 'thumbnail';
-  let showLoading = false;
+  let state: State = autoPlay ? 'iframe' : 'thumbnail';
+  let showLoading = autoPlay;
 
   function onClickAction() {
     showLoading = true;
@@ -24,7 +25,8 @@
 <section {...$$restProps} class={twMerge($$props.class)}>
   <button
     on:click={onClickAction}
-    class="relative mx-auto aspect-video h-fit w-full overflow-hidden rounded-xl">
+    disabled={autoPlay}
+    class="relative mx-auto aspect-video h-fit w-full overflow-hidden rounded-xl disabled:cursor-default">
     {#if state === 'thumbnail'}
       <SanityImage
         src={thumbnail}

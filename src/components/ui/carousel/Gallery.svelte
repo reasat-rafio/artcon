@@ -22,6 +22,7 @@
   let carouselCanScrollNext: boolean;
   let autoplayInstance: any;
   let hasCompletedCycle = false;
+  let currentSlideIndex = 0;
 
   $: chunks = chunkArray(items, slidesNumber);
   $: slidesNumber = innerWidth >= 1280 ? 6 : innerWidth >= 768 ? 4 : 2;
@@ -34,9 +35,11 @@
     autoplayInstance = emblaApi.plugins()?.autoplay;
     carouselCanScrollNext = event.detail.canScrollNext();
     carouselCanScrollPrev = event.detail.canScrollPrev();
+    currentSlideIndex = event.detail.selectedScrollSnap();
     
     emblaApi.on('select', () => {
       const currentIndex = emblaApi.selectedScrollSnap();
+      currentSlideIndex = currentIndex;
       const totalSlides = emblaApi.scrollSnapList().length;
       
       if (currentIndex === 0 && hasCompletedCycle) {
@@ -51,7 +54,8 @@
     emblaApi.on(
       'select',
       ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
-        canScrollNext() === false && carouselCanScrollNext ? carouselCanScrollNext : canScrollNext();
+        currentSlideIndex = emblaApi.selectedScrollSnap();
+        carouselCanScrollNext = canScrollNext();
         carouselCanScrollPrev = canScrollPrev();
       },
     );
@@ -88,7 +92,7 @@
             'chunk relative col-span-2 grid flex-[0_0_100%] grid-cols-1 md:grid-cols-2 md:gap-y-[1.563rem] xl:grid-cols-3',
             $$props.class,
           )}>
-          <slot {chunk} api={emblaApi} />
+          <slot {chunk} api={emblaApi} slideIndex={currentSlideIndex} />
         </div>
       {/each}
     </div>

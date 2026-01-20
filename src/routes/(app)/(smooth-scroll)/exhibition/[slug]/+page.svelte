@@ -80,7 +80,6 @@
       <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
     {:else if s._type === 'exhibition.summary'}
       <Summary
-      class="pb-section"
         props={{
           ...s,
           descriptionBlock: {
@@ -131,7 +130,7 @@
     {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
       <OthersDocument.default
         urlPrefix="/exhibition"
-        title="Other Exhibition"
+        title="Other Exhibitions"
         data={otherExhibitions} />
     {/await}
   {/if}
