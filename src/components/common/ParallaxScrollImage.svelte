@@ -68,56 +68,62 @@
   class={twMerge('flex w-full flex-col sm:flex-row', $$props.class)}>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-start">
+    class="w-full max-sm:pb-[1rem] sm:mr-[1.875rem] sm:flex sm:w-[30.30%] sm:items-center sm:justify-center sm:-mt-[45px]">
     <div class="hidden cursor-default sm:block">
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-      <figure
+      <button
+        type="button"
         bind:this={firstImageEl}
         on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
-        class="overflow-hidden rounded-xl max-w-[30vw]">
-        <SanityImage
-          class="max-h-[500px] w-full h-auto rounded-xl object-contain {firstImage?.triggerPopup
-            ? 'cursor-pointer'
-            : 'cursor-default'}"
-          sizes="30vw"
-          src={firstImage.img}
-          alt={firstImage.img?.alt}
-          imageUrlBuilder={imageBuilder} />
-        {#if !!firstImage.img?.caption || !!firstImage?.caption}
-          <figurecaption class="caption">
-            {firstImage?.caption ?? firstImage.img?.caption}
-          </figurecaption>
-        {/if}
-      </figure>
+        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup')}
+        disabled={!firstImage?.triggerPopup}
+        class="overflow-hidden rounded-xl max-w-[30vw] {firstImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
+        <figure>
+          <SanityImage
+            class="max-h-[500px] w-full h-auto rounded-xl object-contain"
+            sizes="30vw"
+            src={firstImage.img}
+            alt={firstImage.img?.alt}
+            imageUrlBuilder={imageBuilder} />
+          {#if !!firstImage.img?.caption || !!firstImage?.caption}
+            <figurecaption class="caption">
+              {firstImage?.caption ?? firstImage.img?.caption}
+            </figurecaption>
+          {/if}
+        </figure>
+      </button>
     </div>
     <div class="block sm:hidden">
-      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-      <figure
+      <button
+        type="button"
         bind:this={firstImageMobileEl}
-        class="ml-auto w-[13.4375rem] overflow-hidden"
-        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}>
-        <SanityImage
-          class="w-full h-auto rounded-xl object-contain {firstImage?.triggerPopup
-            ? 'cursor-pointer'
-            : 'cursor-default'}"
-          sizes="70vw"
-          src={firstImage.img}
-          alt={firstImage.img?.alt}
-          imageUrlBuilder={imageBuilder} />
-        {#if !!firstImage.img?.caption || !!firstImage?.caption}
-          <figurecaption class="caption">
-            {firstImage?.caption ?? firstImage.img?.caption}
-          </figurecaption>
-        {/if}
-      </figure>
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
+        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup')}
+        disabled={!firstImage?.triggerPopup}
+        class="ml-auto w-[13.4375rem] overflow-hidden {firstImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
+        <figure>
+          <SanityImage
+            class="w-full h-auto rounded-xl object-contain"
+            sizes="70vw"
+            src={firstImage.img}
+            alt={firstImage.img?.alt}
+            imageUrlBuilder={imageBuilder} />
+          {#if !!firstImage.img?.caption || !!firstImage?.caption}
+            <figurecaption class="caption">
+              {firstImage?.caption ?? firstImage.img?.caption}
+            </figurecaption>
+          {/if}
+        </figure>
+      </button>
     </div>
   </div>
   <div class="w-full flex-1 xl:pr-[9.69rem]">
-    <svelte:element
-      this={!!secondImage?.link ? 'a' : 'div'}
-      href={secondImage?.link}
-      target="_blank">
-      <figure class="overflow-hidden rounded-xl">
+    <button
+      type="button"
+      on:click={() => secondImage?.triggerPopup && dispatch('triggerPopup')}
+      on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && secondImage?.triggerPopup && dispatch('triggerPopup')}
+      disabled={!secondImage?.triggerPopup}
+      class="w-full overflow-hidden rounded-xl {secondImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
+      <figure>
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"
           src={secondImage.img}
@@ -130,6 +136,6 @@
           </figurecaption>
         {/if}
       </figure>
-    </svelte:element>
+    </button>
   </div>
 </div>

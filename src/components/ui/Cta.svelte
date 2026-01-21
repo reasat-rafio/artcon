@@ -38,7 +38,9 @@
     variantClasses[variant],
     className,
   )}
-  href={$$props.href}>
+  href={$$props.href}
+  target={el === 'a' && typeof $$props.href === 'string' && $$props.href.startsWith('http') ? '_blank' : undefined}
+  rel={el === 'a' && typeof $$props.href === 'string' && $$props.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
   <slot />
 </svelte:element>
 

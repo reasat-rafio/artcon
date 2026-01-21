@@ -19,6 +19,7 @@
   {href}
   class={cn($$props.class)}
   on:click={() => dispatch('lightboxAction')}
+  rel={el === 'a' && typeof href === 'string' && href.startsWith('http') ? 'noopener noreferrer' : undefined}
   {...$$restProps}>
   <slot {Title} {Subtitle} Container={HeaderContainer} {Image} {Asset} />
 </svelte:element>

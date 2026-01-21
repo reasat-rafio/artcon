@@ -152,70 +152,95 @@
               title: 'Exhibition',
             }} />
 
-          <Header
-            let:Info
-            topic="Our Exhibition"
-            title={name}
-            subtitle={!!subtitle
-              ? subtitle
-              : typeof exhibitionType === 'string'
-                ? exhibitionType
-                : exhibitionType.en}
-            type={!!topTitle
-              ? topTitle
-              : isSoloExhibition
-                ? 'Solo Exhibition'
-                : 'Group Exhibition'}>
-            <Info>
-              {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
-              <div class="title-light !font-inter">
-                {#if galleryUrl}
-                  <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
-                    {gallery.name}<span>, </span>
-                  </a>
-                {:else}
-                  {gallery.name}
-                {/if}
-                {#if gallery.location && !gallery.location.startsWith('http')}
-                  {gallery.location}
-                {/if}
-              </div>
-              <div class="sub-title-light !font-inter">
-                <span class="font-light">{date}</span>
-                <span class="px-[3px] text-eerie-black/50">|</span>
-                <span class="font-medium text-eerie-black">{status}</span>
-              </div>
-            </Info>
-          </Header>
+          <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
+            <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+              <Header
+                let:Info
+                topic="Our Exhibition"
+                title={name}
+                subtitle={!!subtitle
+                  ? subtitle
+                  : typeof exhibitionType === 'string'
+                    ? exhibitionType
+                    : exhibitionType.en}
+                type={!!topTitle
+                  ? topTitle
+                  : isSoloExhibition
+                    ? 'Solo Exhibition'
+                    : 'Group Exhibition'}>
+                <Info>
+                  {@const galleryUrl = gallery.url || (gallery.location?.startsWith('http') ? gallery.location : null)}
+                  <div class="title-light !font-inter">
+                    {#if galleryUrl}
+                      <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors hover:!text-gray-500">
+                        {gallery.name}<span>, </span>
+                      </a>
+                    {:else}
+                      {gallery.name}
+                    {/if}
+                    {#if gallery.location && !gallery.location.startsWith('http')}
+                      {gallery.location}
+                    {/if}
+                  </div>
+                  <div class="sub-title-light !font-inter">
+                    <span class="font-light">{date}</span>
+                    <span class="px-[3px] text-eerie-black/50">|</span>
+                    <span class="font-medium text-eerie-black">{status}</span>
+                  </div>
+                </Info>
+              </Header>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2.5rem] lg:gap-[3.75rem] mb-[2.5rem] items-start">
-            {#if !!description?.length}
-              <div data-load-animate="y" class="order-2 lg:order-1">
-                <PortableText
-                  class="body-light-m lg:body-light text-dark-gunmetal"
-                  value={description} />
+              <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
+                <button data-load-animate="y" class="cursor-pointer" on:click={status === 'Upcoming' && invitationCard?.invitationCardImage ? openInvitationCardPopup : undefined}>
+                  {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
+                    <SanityImage
+                      class="rounded-[0.9375rem] object-contain w-full h-auto"
+                      imageUrlBuilder={imageBuilder}
+                      src={invitationCard.invitationCardImage}
+                      alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
+                      sizes="100vw" />
+                  {:else if data.page.publication?.publicationImage}
+                    <SanityImage
+                      class="rounded-[0.9375rem] object-contain w-full h-auto"
+                      imageUrlBuilder={imageBuilder}
+                      src={data.page.publication.publicationImage}
+                      alt={data.page.publication.publicationImage.alt}
+                      sizes="100vw" />
+                  {/if}
+                </button>
               </div>
-            {/if}
 
-            <div data-load-animate="y" class="order-1 lg:order-2 flex justify-center lg:justify-start w-full">
-              {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
-                <button class="cursor-pointer hover:opacity-90 transition-opacity w-full max-w-full" on:click={openInvitationCardPopup}>
+              {#if !!description?.length}
+                <div class="mb-[2.5rem]" data-load-animate="y">
+                  <PortableText
+                    class="body-light-m lg:body-light text-dark-gunmetal"
+                    value={description} />
+                </div>
+              {/if}
+            </section>
+
+            <section class="hidden 3xl:block w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+              <button
+                data-load-animate="y"
+                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
+                on:click={status === 'Upcoming' && invitationCard?.invitationCardImage ? openInvitationCardPopup : undefined}>
+                {#if status === 'Upcoming' && invitationCard?.invitationCardImage}
                   <SanityImage
-                    class="object-contain w-full h-auto rounded-[0.9375rem]"
+                    class="rounded-[0.9375rem] object-contain w-full h-auto"
                     imageUrlBuilder={imageBuilder}
                     src={invitationCard.invitationCardImage}
                     alt={invitationCard.invitationCardImage.alt || 'Exhibition Invitation Card'}
-                    sizes="100vw" />
-                </button>
-              {:else if data.page.publication?.publicationImage}
-                <SanityImage
-                  class="object-contain w-full h-auto rounded-[0.9375rem]"
-                  imageUrlBuilder={imageBuilder}
-                  src={data.page.publication.publicationImage}
-                  alt={data.page.publication.publicationImage.alt}
-                  sizes="100vw" />
-              {/if}
-            </div>
+                    sizes="40vw" />
+                {:else if data.page.publication?.publicationImage}
+                  <SanityImage
+                    class="rounded-[0.9375rem] object-contain w-full h-auto"
+                    imageUrlBuilder={imageBuilder}
+                    src={data.page.publication.publicationImage}
+                    alt={data.page.publication.publicationImage.alt}
+                    sizes="40vw" />
+                {/if}
+              </button>
+            </section>
           </div>
         </div>
       {/key}

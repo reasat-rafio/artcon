@@ -155,7 +155,7 @@
           <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Explore', newTab: true }} />
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="w-full lg:max-w-[457px]">
+            <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
               <Header
                 topic="Our Collection"
                 title={name}
@@ -175,12 +175,14 @@
                     </ul>
                   </Info>
                 {/if}
-                <Info>
-                  <div class="mt-[0.27rem] title-light">
-                    <span class="sub-title-light">Stock</span>
-                    <span class="font-medium">{stock}</span>
-                  </div>
-                </Info>
+                {#if !!stock}
+                  <Info>
+                    <div class="mt-[0.27rem] title-light">
+                      <span class="sub-title-light">Stock</span>
+                      <span class="font-medium">{stock}</span>
+                    </div>
+                  </Info>
+                {/if}
               </Header>
 
               <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
@@ -215,7 +217,7 @@
               {/if}
             </section>
 
-            <section class="hidden 3xl:block">
+            <section class="hidden 3xl:block w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
               <button
                 data-load-animate="y"
                 class="3xl:mt-[9.44rem] cursor-pointer block w-full"

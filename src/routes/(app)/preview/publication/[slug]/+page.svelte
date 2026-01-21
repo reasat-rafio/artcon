@@ -165,13 +165,14 @@
 
           <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
             <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+            
               <Header
                 topic="Our Publication"
                 title={name}
                 subtitle={subtitle ? subtitle : ''}
                 type={category.name}
                 let:Info>
-                <div class="space-y-[1.5825rem]">
+                <div class="space-y-[1.875rem]">
                   <Info>
                     <div class="sub-title-light">
                       Published by {#each publishedBy as publisher, index}
@@ -196,7 +197,7 @@
                   </Info>
                   {#if !!creditList?.length}
                     <Info>
-                      <ul class="mt-[1.5625rem] mb-[1.5625rem] space-y-[0.5rem]">
+                      <ul class="mt-[1.875rem] mb-[1.875rem] space-y-[0.5rem]">
                         {#each creditList as { key, value }}
                           <li class="sub-title-light">
                             <span>{key}</span>
@@ -216,14 +217,18 @@
                           </span>
                           <span class="font-medium">
                             <span>{prices.discountPriceBDT} BDT</span>
-                            /
-                            <span>{prices.priceUSD} USD</span>
+                            {#if prices.priceUSD}
+                              /
+                              <span>{prices.priceUSD} USD</span>
+                            {/if}
                           </span>
                         {:else}
                           <span class="font-medium">
                             <span>{prices.priceBDT} BDT</span>
-                            /
-                            <span>{prices.priceUSD} USD</span>
+                            {#if prices.priceUSD}
+                              /
+                              <span>{prices.priceUSD} USD</span>
+                            {/if}
                           </span>
                         {/if}
                       </div>
@@ -238,8 +243,8 @@
                   {/if}
                 </div>
               </Header>
-
-              <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
+          
+              <div class="mb-[1.875rem] flex w-full justify-center 3xl:hidden">
                 <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
                   <SanityImage
                     class="rounded-[0.9375rem] object-contain"
@@ -251,7 +256,7 @@
               </div>
 
               {#if !!description?.length}
-                <div class="mb-[2.5rem]" data-load-animate="y">
+                <div class="mb-[1.875rem]" data-load-animate="y">
                   <PortableText
                     class="body-light-m lg:body-light text-dark-gunmetal"
                     value={description} />
@@ -259,7 +264,7 @@
               {/if}
 
               {#if !!associationsList?.length}
-                <div class="mb-[2.5rem]" data-load-animate="y">
+                <div class="mb-[1.875rem]" data-load-animate="y">
                   <ul class="space-y-[0.5rem]">
                     {#each associationsList as { key, value }}
                       <li class="sub-title-light">
@@ -272,7 +277,7 @@
                 </div>
               {/if}
 
-              <div class="pt-[1.38rem]" data-load-animate="y">
+              <div data-load-animate="y">
                 {#if stock === 'Online' && externalLinkButton?.externalUrl}
                   <Cta
                     el="a"
@@ -289,7 +294,7 @@
                     className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
                     onClick={inquiryAction}
                     variant="tertiary">
-                    {stock === 'Available' ? 'Buy now' : 'Inquiry'}
+                    {stock === 'Available' || stock === 'Limited' ? 'Buy now' : 'Inquiry'}
                   </Cta>
                 {/if}
               </div>
@@ -309,7 +314,7 @@
                   sizes="40vw" />
               </button>
               {#if !!quote}
-                <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
+                <div class="mt-[1.875rem] [&_div]:!head-4" data-load-animate="y">
                   <Quote {quote} authorSize="24px" class="!translate-y-0" />
                 </div>
               {/if}

@@ -34,10 +34,12 @@
     </DescriptionBlock>
 
     <div class="mb-sm md:mb-[5rem] lg:mr-[4.375rem] xl:mb-[74.21px]">
-      <Gallery items={images} let:chunk>
-        {#each chunk as image, index}
+      <Gallery items={images} let:chunk let:slideIndex>
+        {#each chunk as image, chunkIndex}
+          {@const chunkSize = typeof window !== 'undefined' ? (window.innerWidth >= 1280 ? 6 : window.innerWidth >= 768 ? 4 : 2) : 2}
+          {@const globalIndex = slideIndex * chunkSize + chunkIndex}
           <Card
-            on:lightboxAction={() => lightboxAction(index)}
+            on:lightboxAction={() => lightboxAction(globalIndex)}
             class="pl-[1.5625rem] hover:cursor-zoom-in max-md:pt-[1.5625rem]"
             let:Image>
             <Image {image} />

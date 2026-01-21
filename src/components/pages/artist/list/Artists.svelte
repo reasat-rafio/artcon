@@ -16,7 +16,7 @@
       </h2>
 
       <div class="space-y-[2.5rem]">
-        {#each artists as artist}
+        {#each artists as artist (artist.slug.current)}
           <Artist bind:activeAnchor {artist} {title} />
         {/each}
       </div>

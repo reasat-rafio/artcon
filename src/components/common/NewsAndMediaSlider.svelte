@@ -1,5 +1,6 @@
 <script lang="ts" generics="T">
   import parallaxAnimation from '@/lib/actions/parallaxAnimation';
+  import Autoplay from 'embla-carousel-autoplay';
 
   import { cn } from '@/lib/cn';
   import { chunkArray } from '@/lib/helper';
@@ -8,6 +9,7 @@
   import { slide } from 'svelte/transition';
   import ChevronLeftRounded from '../icons/ChevronLeftRounded.svelte';
   import ChevronRightRounded from '../icons/ChevronRightRounded.svelte';
+  import { onDestroy } from 'svelte';
 
   export let newsAndMedia: T[];
 
@@ -15,6 +17,8 @@
   let emblaApi: EmblaCarouselType;
   let carouselCanScrollPrev: boolean;
   let carouselCanScrollNext: boolean;
+  let autoplayInstance: any;
+  let hasCompletedCycle = false;
 
   $: slidesNumber =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
@@ -25,6 +29,13 @@
       ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
         carouselCanScrollNext = canScrollNext();
         carouselCanScrollPrev = canScrollPrev();
+        
+        const currentIndex = emblaApi.selectedScrollSnap();
+        if (currentIndex === 0 && hasCompletedCycle) {
+          autoplayInstance?.stop();
+        } else if (currentIndex > 0) {
+          hasCompletedCycle = true;
+        }
       },
     );
     emblaApi.on(
@@ -38,12 +49,17 @@
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
     carouselCanScrollNext = event.detail.canScrollNext();
     carouselCanScrollPrev = event.detail.canScrollPrev();
   };
 
   const scrollPrev = () => emblaApi.scrollPrev();
   const scrollNext = () => emblaApi.scrollNext();
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 </script>
 
 <svelte:window bind:innerWidth />
@@ -53,8 +69,8 @@
       class="overflow-hidden"
       on:emblaInit={onInit}
       use:emblaCarouselSvelte={{
-        plugins: [],
-        options: { axis: 'x' },
+        plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
+        options: { axis: 'x', loop: true, watchDrag: false },
       }}>
       <div class="ml-[-1.56rem] flex">
         {#each chunks as chunk, chunkIndex (chunkIndex)}
@@ -68,24 +84,26 @@
 
     <nav
       class="mt-[2.38rem] flex h-full items-center justify-center lg:mt-[1.57rem] lg:justify-end">
-      {#if carouselCanScrollPrev}
-        <button
-          aria-label="Scroll to previous slide"
-          class:mr-[.31rem]={carouselCanScrollNext}
-          transition:slide={{ axis: 'x' }}
-          on:click={scrollPrev}>
-          <ChevronLeftRounded />
-        </button>
-      {/if}
+      {#if carouselCanScrollPrev || carouselCanScrollNext}
+        {#if carouselCanScrollPrev}
+          <button
+            aria-label="Scroll to previous slide"
+            class:mr-[.31rem]={carouselCanScrollNext}
+            transition:slide={{ axis: 'x' }}
+            on:click={scrollPrev}>
+            <ChevronLeftRounded />
+          </button>
+        {/if}
 
-      {#if carouselCanScrollNext}
-        <button
-          aria-label="Scroll to next slide"
-          class:ml-[.31rem]={carouselCanScrollNext}
-          transition:slide={{ axis: 'x' }}
-          on:click={scrollNext}>
-          <ChevronRightRounded />
-        </button>
+        {#if carouselCanScrollNext}
+          <button
+            aria-label="Scroll to next slide"
+            class:ml-[.31rem]={carouselCanScrollNext}
+            transition:slide={{ axis: 'x' }}
+            on:click={scrollNext}>
+            <ChevronRightRounded />
+          </button>
+        {/if}
       {/if}
     </nav>
   </div>

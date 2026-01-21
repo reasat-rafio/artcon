@@ -4,6 +4,8 @@
   import type { ShortArtworks } from '@/lib/types/common.types';
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import { type EmblaCarouselType } from 'embla-carousel';
+  import Autoplay from 'embla-carousel-autoplay';
+  import { onDestroy } from 'svelte';
   import Image from './Image.svelte';
   import lightboxStore from '@/store/lightbox';
 
@@ -12,6 +14,8 @@
   let emblaApi: EmblaCarouselType;
   let activeSide = 1;
   let scrollSnaps: number[];
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
 
   $: if (emblaApi) {
     emblaApi.on(
@@ -33,7 +37,24 @@
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     scrollSnaps = event.detail.scrollSnapList();
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+      
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
   };
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
 
   const triggerLightboxPopup = (index: number) => {
     lightboxStore.setLightboxVisibility(true);
@@ -62,14 +83,13 @@
           align: 'start',
           loop: true,
         },
-        plugins: [],
+        plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })],
       }}
       on:emblaInit={onInit}>
       <div class="ml-[-1.25rem] flex items-center">
         {#each artworks as artwork, index}
           <Image
             {...artwork}
-            length={artworks.length}
             isSingleArtwork={artworks?.length === 1}
             on:triggerPopup={() => triggerLightboxPopup(index)}
             active={activeSide === index ||

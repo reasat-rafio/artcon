@@ -13,10 +13,18 @@ const summary = {
     },
 
     {
-      name: 'vr',
-      title: "Exhibition's VR",
-      type: 'reference',
-      to: [{ type: 'vr' }],
+      name: 'vrOrYtVideoSlider',
+      title: 'VR or Youtube Video Slider',
+      type: 'array',
+      of: [
+        {
+          name: 'vr',
+          title: 'VR',
+          type: 'reference',
+          to: [{ type: 'vr' }],
+        },
+        { name: 'youtube', title: 'Youtube', type: 'youtube' },
+      ],
     },
   ],
   preview: {

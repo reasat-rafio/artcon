@@ -38,7 +38,7 @@
 
 <div
   data-load-animate="y"
-  use:emblaCarouselSvelte={{ plugins: [Autoplay({ delay: 4000, stopOnInteraction: false })], options: { loop: true } }}
+  use:emblaCarouselSvelte={{ plugins: [Autoplay({ delay: 6000, stopOnInteraction: false })], options: { loop: true } }}
   on:emblaInit={onInit}
   class="relative mb-[2rem] w-full overflow-hidden">
   <div class="-ml-[1rem] flex">

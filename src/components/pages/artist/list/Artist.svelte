@@ -27,6 +27,9 @@
     lightboxStore.setAllImages(
       customArtworks.map((artwork) => artwork.image as SanityImageAssetDocument)
     );
+    lightboxStore.setAllTitles(
+      customArtworks.map((artwork) => artwork.title || '')
+    );
   }
 
   onMount(() => {

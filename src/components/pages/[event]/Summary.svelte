@@ -33,10 +33,12 @@
   let emblaApi: EmblaCarouselType;
   let autoplayInstance: any;
   let hasStartedMoving = false;
+  let carouselCanScroll = false;
   
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     autoplayInstance = emblaApi.plugins()?.autoplay;
+    carouselCanScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
     
     emblaApi.on('select', () => {
       const currentIndex = emblaApi.selectedScrollSnap();
@@ -55,7 +57,7 @@
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
     plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 4000, stopOnInteraction: false, jump: false })]
+      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
       : []
   };
 
@@ -65,7 +67,7 @@
 </script>
 
 <section>
-  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-section {$$props.class}">
+  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-section">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -146,7 +148,7 @@
     </DescriptionBlock>
 
     {#if !!vrOrYtVideoSlider?.length}
-      <div class="mt-section">
+      <div class="pb-section">
         <div
           class="relative overflow-hidden"
           use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
@@ -166,18 +168,20 @@
 
         <div
           class="mx-auto flex max-w-[72.9375rem] -translate-y-[0.875rem] justify-center md:justify-end mt-[2rem] md:mt-0">
-          <nav class="flex gap-x-[0.62rem]">
-            <button
-              aria-label="Scroll to previous slide"
-              on:click={() => emblaApi.scrollPrev()}>
-              <ChevronLeftRounded />
-            </button>
-            <button
-              aria-label="Scroll to next slide"
-              on:click={() => emblaApi.scrollNext()}>
-              <ChevronRightRounded />
-            </button>
-          </nav>
+          {#if carouselCanScroll}
+            <nav class="flex gap-x-[0.62rem]">
+              <button
+                aria-label="Scroll to previous slide"
+                on:click={() => emblaApi.scrollPrev()}>
+                <ChevronLeftRounded />
+              </button>
+              <button
+                aria-label="Scroll to next slide"
+                on:click={() => emblaApi.scrollNext()}>
+                <ChevronRightRounded />
+              </button>
+            </nav>
+          {/if}
         </div>
       </div>
     {/if}

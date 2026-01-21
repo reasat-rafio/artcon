@@ -13,14 +13,15 @@ const documentation = {
       type: 'quote',
     },
     {
-      name: 'images',
-      type: 'array',
-      description: '2 Images must be uploaded',
-      validation: (Rule: Rule) => Rule.max(2).required(),
-      of: [
+      title: 'Invitation Card',
+      name: 'invitationCard',
+      type: 'object',
+      fields: [
         {
-          name: 'image',
+          name: 'invitationCardImage',
+          title: 'Invitation Card Image',
           type: 'image',
+          description: 'Preview of uploaded image',
           validation: (Rule: Rule) => Rule.required(),
           options: { hotspot: true },
           fields: [
@@ -33,6 +34,61 @@ const documentation = {
             },
             {
               name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+        {
+          name: 'fullInvitationCardImage',
+          title: 'Full Invitation Card Image',
+          type: 'image',
+          description: 'This image will display on the popup modal',
+          validation: (Rule: Rule) => Rule.required(),
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Cover Image',
+      name: 'coverImage',
+      type: 'object',
+      description: 'Cover of the book',
+      fields: [
+        {
+          name: 'image',
+          title: 'Cover Image',
+          type: 'image',
+          description: 'Preview of uploaded image',
+          validation: (Rule: Rule) => Rule.required(),
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
               type: 'string',
               validation: (Rule: Rule) => Rule.required(),
             },

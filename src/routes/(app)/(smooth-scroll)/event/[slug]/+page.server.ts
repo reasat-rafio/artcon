@@ -45,7 +45,13 @@ const query = (params: Partial<Record<string, string>>) =>
     sections[]{
         ...,
         ${asset('image')},
-        ${asset('images[]', { as: 'images' })},
+        invitationCard{
+          ${asset('invitationCardImage')},
+          ${asset('fullInvitationCardImage')}
+        },
+        coverImage{
+          ${asset('image')}
+        },
         vrOrYtVideoSlider[]{
           _type == "vr" => {...}->,
           _type == "youtube" => {..., ${asset('thumbnail')}},

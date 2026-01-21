@@ -64,7 +64,7 @@
       subtitle: subtitle ?? tag?.name,
     }} />
 
-  <Share href="/event" {logoLight} {logoDark}>Our Events</Share>
+  <Share href="/event" {logoLight} {logoDark}>Our Event</Share>
   <div class="relative z-10 bg-white">
   {#each sections as props, index}
     {#if props._type === 'common.imageAsset'}

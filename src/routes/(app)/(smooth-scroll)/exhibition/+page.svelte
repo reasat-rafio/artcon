@@ -65,7 +65,7 @@
 {/each}
 
 <FilteringNavbar {tags} {logoDark} {logoLight}>
-  <svelte:fragment slot="name">Our Exhibition</svelte:fragment>
+  <svelte:fragment slot="name">Our Exhibitions</svelte:fragment>
 </FilteringNavbar>
 <div class="relative z-10 bg-white">
   <Listing list={exhibitionWithImages} />

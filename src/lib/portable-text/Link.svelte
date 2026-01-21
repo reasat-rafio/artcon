@@ -13,6 +13,8 @@
 
 <a
   {href}
+  target={href.startsWith('http') ? '_blank' : undefined}
+  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
   class="{hoverEffect
     ? 'hover:text-blue-main/80 transition-colors duration-200 ease-linear'
     : ''} {highlight ? 'text-theme-primary' : ''} ">

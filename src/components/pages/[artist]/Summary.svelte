@@ -9,12 +9,21 @@
     PersonalDocuments,
   } from '@/lib/types/artist-detail.types';
   import { DateTime } from 'luxon';
+  import lightboxStore from '@/store/lightbox';
 
   export let props: ArtistSummaryProps & {
     personalDocuments: PersonalDocuments;
   };
 
   $: ({ quote, vr, images, statement, personalDocuments } = props);
+
+  function triggerPopup() {
+    if (images && images.length >= 2) {
+      lightboxStore.setAllImages([images[0], images[1]]);
+      lightboxStore.setActiveIndex(0);
+      lightboxStore.setLightboxVisibility(true);
+    }
+  }
 </script>
 
 <section>
@@ -58,8 +67,12 @@
 
     <ParallaxScrollImage
       class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
+      on:triggerPopup={triggerPopup}
       disableParallaxOnDesktop={true}
-      images={[{ img: images[0] }, { img: images[1] }]} />
+      images={[
+        { img: images[0], triggerPopup: true },
+        { img: images[1], triggerPopup: true }
+      ]} />
 
     {#if statement?.title && statement?.description}
       <DescriptionBlock class="mb-section">

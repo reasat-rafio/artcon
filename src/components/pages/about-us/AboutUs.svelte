@@ -12,9 +12,9 @@
 </script>
 
 <section class="w-full max-w-full overflow-hidden">
-  <div class="container-primary pt-section {$$props.class}">
+  <div class="container-primary {$$props.class}">
     {#if !!quote}
-      <Quote class="mb-section" {quote} />
+      <Quote class="pt-section" {quote} />
     {/if}
 
     <DescriptionBlock>

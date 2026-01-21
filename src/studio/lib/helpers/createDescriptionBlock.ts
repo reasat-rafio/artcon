@@ -25,7 +25,6 @@ const createDescriptionBlock = ({
             lists: [],
           },
         ],
-        validation: (Rule: Rule) => Rule.required(),
       },
     ],
   };

@@ -6,6 +6,7 @@ type LightboxStore = {
   allImages: SanityImageAssetDocument[];
   activeIndex: number;
   hideThumbnails: boolean;
+  allTitles: string[];
 };
 
 const createLightboxStore = () => {
@@ -14,6 +15,7 @@ const createLightboxStore = () => {
     allImages: [],
     activeIndex: 0,
     hideThumbnails: false,
+    allTitles: [],
   });
 
   const setAllImages = (images: SanityImageAssetDocument[]) => {
@@ -47,12 +49,20 @@ const createLightboxStore = () => {
     });
   };
 
+  const setAllTitles = (titles: string[]) => {
+    update(($store) => {
+      $store.allTitles = titles;
+      return $store;
+    });
+  };
+
   return {
     subscribe,
     setAllImages,
     setActiveIndex,
     setLightboxVisibility,
     setHideThumbnails,
+    setAllTitles,
   };
 };
 

@@ -117,7 +117,6 @@ const collection = {
       name: 'stock',
       title: 'Stock',
       type: 'string',
-      validation: (Rule: Rule) => Rule.required(),
     },
 
     {

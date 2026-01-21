@@ -47,7 +47,13 @@ export interface DocumentationProps {
   _key: string;
   _type: 'event.documentation';
   quote?: Quote;
-  images: [SanityImageAssetDocument, SanityImageAssetDocument];
+  invitationCard?: {
+    invitationCardImage?: SanityImageAssetDocument;
+    fullInvitationCardImage?: SanityImageAssetDocument;
+  };
+  coverImage?: {
+    image?: SanityImageAssetDocument;
+  };
   descriptionBlock: {
     name: string;
     author?: string;
