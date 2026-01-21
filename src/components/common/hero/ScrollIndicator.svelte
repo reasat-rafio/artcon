@@ -10,12 +10,12 @@
     $$props.class,
   )}>
   <div
-    class="flex items-center justify-center space-x-[0.5rem] text-platinum lg:space-x-[1.06rem] lg:pr-[4.07rem]">
+    class="flex items-center justify-center space-x-[0.5rem] text-white lg:space-x-[1.06rem] lg:pr-[4.07rem]">
     <span class="text-[0.84375rem] font-normal uppercase tracking-[0.01688rem] shadow-text-discover">
       Discover our stories
     </span>
     <ChevronDown
       aria-label="Scroll to next slide"
-      class="chevron-icon animate-bounce text-white" />
+      class="chevron-icon animate-bounce text-white drop-shadow-[0_1.5px_1px_rgba(0,0,0,0.25)]" />
   </div>
 </div>

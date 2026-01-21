@@ -35,15 +35,20 @@
 
           <SanityImage
             imageUrlBuilder={imageBuilder}
-            class="h-full w-full object-cover transition-transform duration-600 hover:scale-110"
+            class="duration-600 h-full w-full object-cover transition-transform hover:scale-110"
             sizes="(min-width:640px) 35vw, 100vw"
             src={thumbnail}
             alt={thumbnail?.alt} />
         </div>
 
-        <Container class="text-center">
-          <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
-          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+        <Container class="space-y-[0.625rem] text-center">
+          <div>
+            <Title class="inline">
+              {name} /
+              <span class="head-8">{subtitle}</span>
+            </Title>
+          </div>
+          <div class="font-inter text-[14px] font-[300] text-sonic-silver">
             <span>{category?.name ?? ''}</span>
           </div>
         </Container>
