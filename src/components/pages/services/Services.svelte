@@ -67,7 +67,7 @@
           </DescriptionBlock>
 
           {#if item.contentMedia}
-           <div style="margin-top: 5rem;">
+           <div class="!mt-[2.813rem] lg:!mt-[5.625rem]">
              <figure class="service-image">
               {#if item.contentMedia.image}
                 <SanityImage
