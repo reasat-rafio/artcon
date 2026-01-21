@@ -45,33 +45,33 @@
       <h3 class="head-4 inline shadow-text-subtitle">{name}</h3>
 
       {#if _type === 'exhibition'}
-        /
+        <span class="shadow-text-subtitle">/</span>
         {#if !!subtitle}
-          <h4 class="head-6 inline !font-medium">{subtitle}</h4>
+          <h4 class="head-6 inline !font-medium shadow-text-subtitle">{subtitle}</h4>
         {:else if !!artistName?.en}
-          <h4 class="head-6 inline !font-medium">
+          <h4 class="head-6 inline !font-medium shadow-text-subtitle">
             {artistName.en}
           </h4>
         {:else if typeof exhibitionType === 'string'}
-          <h4 class="head-6 inline !font-medium">
+          <h4 class="head-6 inline !font-medium shadow-text-subtitle">
             {exhibitionType}
           </h4>
         {:else}
-          <h4 class="head-6 inline !font-medium">
+          <h4 class="head-6 inline !font-medium shadow-text-subtitle">
             {exhibitionType?.en}
           </h4>
         {/if}
       {:else if _type === 'event'}
-        <h4 class="head-6 inline !font-medium">
-          / {subtitle || tag?.name}
+        <h4 class="head-6 inline !font-medium shadow-text-subtitle">
+          <span class="shadow-text-subtitle">/</span> {subtitle || tag?.name}
         </h4>
       {:else if _type === 'collection' && (!!artistName?.en || !!subtitle)}
-        <h4 class="head-6 inline !font-medium">
-          / {subtitle || artistName?.en}
+        <h4 class="head-6 inline !font-medium shadow-text-subtitle">
+          <span class="shadow-text-subtitle">/</span> {subtitle || artistName?.en}
         </h4>
       {:else if !!subtitle}
-        <h4 class="head-6 inline !font-medium">
-          / {subtitle}
+        <h4 class="head-6 inline !font-medium shadow-text-subtitle">
+          <span class="shadow-text-subtitle">/</span> {subtitle}
         </h4>
       {/if}
     </div>
