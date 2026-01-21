@@ -39,7 +39,6 @@
 <div class="relative z-10 bg-white">
   {#if !!page?.allServices?.summary}
     <Summary
-      class="pb-section"
       props={{
         ...page.allServices.summary,
         descriptionBlock: {
@@ -54,7 +53,7 @@
   {#if !!page?.allServices?.sections?.length}
     <Services  bind:contextMessage services={page.allServices.sections} />
   {/if}
-  <Footer {footer} {contact} logo={logoDark} />
+  <Footer class="pt-section" {footer} {contact} logo={logoDark} />
 </div>
 
 {#if $formPopupStore.show}

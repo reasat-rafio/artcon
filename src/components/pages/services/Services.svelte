@@ -35,7 +35,7 @@
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="py-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
+      <div class="pt-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
         <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>
@@ -49,7 +49,7 @@
                 </Cta>
               {/if}
             </svelte:fragment>
-            <svelte:fragment slot="description" let:Description>
+            <svelte:fragment slot="description">
               {#if item.image}
                 <figure class="mb-md">
                   <SanityImage
@@ -61,13 +61,14 @@
                 </figure>
               {/if}
               {#if item.summary?.text}
-                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px] mb-[90px]">{item.summary.text}</p>
+                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px]">{item.summary.text}</p>
               {/if}
             </svelte:fragment>
           </DescriptionBlock>
 
           {#if item.contentMedia}
-            <figure class="service-image mt-section">
+           <div style="margin-top: 5rem;">
+             <figure class="service-image">
               {#if item.contentMedia.image}
                 <SanityImage
                   class="h-full w-full object-cover rounded-[25px]"
@@ -93,6 +94,7 @@
                 </video>
               {/if}
             </figure>
+           </div>
           {/if}
         </article>
       </div>
