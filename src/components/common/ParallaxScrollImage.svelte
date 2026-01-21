@@ -85,7 +85,7 @@
             alt={firstImage.img?.alt}
             imageUrlBuilder={imageBuilder} />
           {#if !!firstImage.img?.caption || !!firstImage?.caption}
-            <figurecaption class="caption">
+            <figurecaption class="caption text-left">
               {firstImage?.caption ?? firstImage.img?.caption}
             </figurecaption>
           {/if}
@@ -108,7 +108,7 @@
             alt={firstImage.img?.alt}
             imageUrlBuilder={imageBuilder} />
           {#if !!firstImage.img?.caption || !!firstImage?.caption}
-            <figurecaption class="caption">
+            <figurecaption class="caption text-left">
               {firstImage?.caption ?? firstImage.img?.caption}
             </figurecaption>
           {/if}
@@ -131,7 +131,7 @@
           class="w-full h-auto rounded-xl object-contain"
           imageUrlBuilder={imageBuilder} />
         {#if !!secondImage.img?.caption || !!secondImage?.caption}
-          <figurecaption class="caption">
+          <figurecaption class="caption text-left">
             {secondImage?.caption ?? secondImage?.img?.caption}
           </figurecaption>
         {/if}

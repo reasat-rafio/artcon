@@ -18,7 +18,7 @@
       <div
         class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent break-words">
         <blockquote class="inline" cite={url}>
-          <p class="inline">"{text}"</p>
+          <p class="inline">“{text}”</p>
         </blockquote>
         {#if !!author}
           <div class="block" style="font-size: {authorSize}; margin-top:0.6rem;">
@@ -31,7 +31,7 @@
     <div
       class="head-2 bg-gradient-to-r from-imperial-red to-[#0000004D] bg-clip-text font-optiberling-agency text-transparent break-words">
       <blockquote class="inline">
-        <p class="inline">"{text}"</p>
+        <p class="inline">“{text}”</p>
       </blockquote>
       {#if !!author}
         <div class="block" style="font-size: {authorSize}; margin-top:0.6rem;">
@@ -41,3 +41,4 @@
     </div>
   {/if}
 </section>
+

@@ -135,17 +135,20 @@
 
           <Header let:Info topic="Our Event" title={name} subtitle={subtitle} type={tag.name}>
             <Info>
+              {@const galleryUrl = gallery.url || (gallery.location && (gallery.location.startsWith('http://') || gallery.location.startsWith('https://')) ? gallery.location : null)}
               <div class="title-light">
-                {#if gallery.url || (gallery.location && (gallery.location.startsWith('http://') || gallery.location.startsWith('https://')))}
+                {#if galleryUrl}
                   <a
-                    href={gallery.url || gallery.location}
+                    href={galleryUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="transition-colors hover:!text-gray-500">
-                    {gallery.name}
-                  </a>{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                    class="transition-colors hover:!text-gray-500 block">
+                    {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                  </a>
                 {:else}
-                  {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                  <div>
+                    {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
+                  </div>
                 {/if}
               </div>
               <div class="sub-title-light mt-1">

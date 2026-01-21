@@ -162,17 +162,18 @@
             {link}
             let:Info>
             <Info>
+              {@const galleryUrl = gallery?.url || (gallery?.location?.startsWith('http') ? gallery.location : null)}
               <div class="title-light">
-                {#if gallery?.url}
+                {#if galleryUrl}
                   <a 
-                    href={gallery.url} 
+                    href={galleryUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     class="cursor-pointer transition-colors hover:!text-gray-500">
-                    {gallery.name}{#if gallery?.location}, {gallery.location}{/if}
+                    {gallery.name}{#if gallery?.location}<span>, </span>{gallery.location}{/if}
                   </a>
                 {:else}
-                  {gallery.name}{#if gallery?.location}, {gallery.location}{/if}
+                  {gallery.name}{#if gallery?.location}<span>, </span>{gallery.location}{/if}
                 {/if}
               </div>
               <div class="title-light">

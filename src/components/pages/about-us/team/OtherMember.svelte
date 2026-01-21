@@ -8,7 +8,7 @@
 </script>
 
 <section use:parallaxAnimation class="w-full max-w-full translate-y-[120px]">
-  <h3 class="head-4 mb-md">Other team members</h3>
+  <h3 class="head-4 mb-md">Other Team Members</h3>
 
   <div
     class="grid w-full max-w-full grid-cols-1 gap-x-[1.5rem] gap-y-[2rem] sm:grid-cols-2 md:grid-cols-2 md:gap-x-[2.5rem] md:gap-y-[3.12rem] lg:grid-cols-3 lg:gap-x-[3.56rem]">
