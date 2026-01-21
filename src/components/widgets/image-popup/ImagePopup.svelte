@@ -48,6 +48,6 @@
 <button
   transition:scale
   on:click={closePopup}
-  class="fixed right-2 top-2 z-god transition-transform hover:scale-110 lg:right-5 lg:top-5">
+  class="fixed right-2 top-2 z-god text-white transition-transform hover:scale-110 lg:right-5 lg:top-5">
   <XIcon class="h-5 w-5" />
 </button>

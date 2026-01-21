@@ -73,8 +73,8 @@
       <button
         type="button"
         bind:this={firstImageEl}
-        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
-        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup')}
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup', { imageIndex: 0 })}
+        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup', { imageIndex: 0 })}
         disabled={!firstImage?.triggerPopup}
         class="overflow-hidden rounded-xl max-w-[30vw] {firstImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
         <figure>
@@ -96,8 +96,8 @@
       <button
         type="button"
         bind:this={firstImageMobileEl}
-        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup')}
-        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup')}
+        on:click={() => firstImage?.triggerPopup && dispatch('triggerPopup', { imageIndex: 0 })}
+        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && firstImage?.triggerPopup && dispatch('triggerPopup', { imageIndex: 0 })}
         disabled={!firstImage?.triggerPopup}
         class="ml-auto w-[13.4375rem] overflow-hidden {firstImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
         <figure>
@@ -117,12 +117,43 @@
     </div>
   </div>
   <div class="w-full flex-1 xl:pr-[9.69rem]">
-    <button
-      type="button"
-      on:click={() => secondImage?.triggerPopup && dispatch('triggerPopup')}
-      on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && secondImage?.triggerPopup && dispatch('triggerPopup')}
-      disabled={!secondImage?.triggerPopup}
-      class="w-full overflow-hidden rounded-xl {secondImage?.triggerPopup ? 'cursor-pointer' : 'cursor-default'} bg-transparent border-none p-0">
+    {#if secondImage?.triggerPopup}
+      <button
+        type="button"
+        on:click={() => dispatch('triggerPopup', { imageIndex: 1 })}
+        on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && dispatch('triggerPopup', { imageIndex: 1 })}
+        class="w-full overflow-hidden rounded-xl cursor-pointer bg-transparent border-none p-0">
+        <figure>
+          <SanityImage
+            sizes="(min-width:1024px) 70vw, 100vw"
+            src={secondImage.img}
+            alt={secondImage.img?.alt}
+            class="w-full h-auto rounded-xl object-contain"
+            imageUrlBuilder={imageBuilder} />
+          {#if !!secondImage.img?.caption || !!secondImage?.caption}
+            <figurecaption class="caption text-left">
+              {secondImage?.caption ?? secondImage?.img?.caption}
+            </figurecaption>
+          {/if}
+        </figure>
+      </button>
+    {:else if secondImage?.link}
+      <a href={secondImage.link} class="w-full overflow-hidden rounded-xl block bg-transparent">
+        <figure>
+          <SanityImage
+            sizes="(min-width:1024px) 70vw, 100vw"
+            src={secondImage.img}
+            alt={secondImage.img?.alt}
+            class="w-full h-auto rounded-xl object-contain"
+            imageUrlBuilder={imageBuilder} />
+          {#if !!secondImage.img?.caption || !!secondImage?.caption}
+            <figurecaption class="caption text-left">
+              {secondImage?.caption ?? secondImage?.img?.caption}
+            </figurecaption>
+          {/if}
+        </figure>
+      </a>
+    {:else}
       <figure>
         <SanityImage
           sizes="(min-width:1024px) 70vw, 100vw"
@@ -136,6 +167,6 @@
           </figurecaption>
         {/if}
       </figure>
-    </button>
+    {/if}
   </div>
 </div>

@@ -17,10 +17,10 @@
 
   $: ({ quote, vr, images, statement, personalDocuments } = props);
 
-  function triggerPopup() {
+  function triggerPopup(event: CustomEvent<{ imageIndex: number }>) {
     if (images && images.length >= 2) {
       lightboxStore.setAllImages([images[0], images[1]]);
-      lightboxStore.setActiveIndex(0);
+      lightboxStore.setActiveIndex(event.detail.imageIndex);
       lightboxStore.setLightboxVisibility(true);
     }
   }

@@ -15,12 +15,20 @@
     descriptionBlock: { description, name, author, cta, isbn, publishedBy, associationsList },
   } = props);
 
-  function triggerPopup() {
-    if (invitationCard?.fullInvitationCardImage) {
+  function handlePopupTrigger(e: CustomEvent<{ imageIndex: number }>) {
+    const { imageIndex } = e.detail;
+    
+    if (imageIndex === 0 && invitationCard?.fullInvitationCardImage) {
       imagePopupStore.setVisibility(true);
       imagePopupStore.setImage(
         invitationCard.fullInvitationCardImage,
         invitationCard.fullInvitationCardImage?.caption,
+      );
+    } else if (imageIndex === 1 && coverImage?.image) {
+      imagePopupStore.setVisibility(true);
+      imagePopupStore.setImage(
+        coverImage.image,
+        coverImage.image?.caption,
       );
     }
   }
@@ -34,7 +42,7 @@
 
     {#if !!invitationCard?.invitationCardImage && !!coverImage?.image}
       <ParallaxScrollImage
-        on:triggerPopup={triggerPopup}
+        on:triggerPopup={handlePopupTrigger}
         class="mb-section"
         disableParallaxOnDesktop={true}
         images={[
@@ -45,6 +53,7 @@
           },
           {
             img: coverImage.image,
+            triggerPopup: true,
             caption: coverImage.image?.caption,
           },
         ]} />
