@@ -148,6 +148,8 @@ export interface VR {
   caption: string;
   url: string;
   thumbnail: SanityAsset;
+  coverImage?: SanityImageAssetDocument;
+  isActive?: 'active' | 'temporarily-inactive' | 'inactive';
 }
 
 export interface DescriptionBlock {
