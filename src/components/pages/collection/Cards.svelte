@@ -35,8 +35,8 @@
 
           <SanityImage
             imageUrlBuilder={imageBuilder}
-            class="h-full w-full object-cover transition-transform hover:scale-105"
-            style="transition-duration: 1200ms;"
+            class="h-full w-full object-cover transition-transform ease-in-out hover:scale-105"
+            style="transition-duration: 600ms;"
             sizes="(min-width:640px) 35vw, 100vw"
             src={thumbnail}
             alt={thumbnail?.alt} />

@@ -16,7 +16,8 @@
   {#if !!image}
     <SanityImage
       draggable={false}
-      class="h-full w-full object-cover transition-transform duration-600 hover:scale-105"
+      class="h-full w-full object-cover transition-transform ease-in-out hover:scale-105"
+      style="transition-duration: 600ms;"
       lqip
       sizes="100vw"
       alt={image.alt}
@@ -24,7 +25,8 @@
       imageUrlBuilder={imageBuilder} />
   {:else if !!video}
     <video
-      class="absolute h-full w-full object-cover transition-transform duration-600 hover:scale-105"
+      class="absolute h-full w-full object-cover transition-transform ease-in-out hover:scale-105"
+      style="transition-duration: 600ms;"
       width="100%"
       height="100%"
       disablePictureInPicture
