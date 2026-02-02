@@ -57,6 +57,7 @@
                     src={item.image}
                     alt={item.image.alt || item.title}
                     imageUrlBuilder={imageBuilder}
+                    style="aspect-ratio: 812/500"
                     sizes="(min-width: 1024px) 812px, 500px" />
                 </figure>
               {/if}
@@ -75,6 +76,7 @@
                   src={item.contentMedia.image}
                   alt={item.contentMedia.image?.alt || item.title}
                   imageUrlBuilder={imageBuilder}
+                  style="aspect-ratio: 1320/743"
                   sizes="(min-width: 1024px) 1320px, 743px" />
               {:else if item.contentMedia.video}
                 <video
