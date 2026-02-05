@@ -149,13 +149,9 @@
   }
 
   /* Preview */
-  /* .preview_container {
-    @apply flex h-[100dvh] w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
-  } */
    .preview_container {
     @apply flex h-[100dvh] w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
-}
-
+  }
 .preview_left {
     @apply w-full lg:w-[40%] h-full;
   }
