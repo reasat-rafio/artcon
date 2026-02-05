@@ -147,182 +147,207 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true },
+    {
+      href: exproleLink?.href || '#',
+      title: exproleLink?.title || 'Preview',
+      newTab: true,
+    },
   ]} />
 
 <section>
   <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage {sliderImageVideo} />
+    <div class="preview_left">
+      <DesktopImage {sliderImageVideo} />
+    </div>
+    <div class="preview_right">
+      <section bind:this={contentEl} class="preview_content_wrapper">
+        {#key transitioningOut}
+          <div
+            class="preview_content_container"
+            on:outroend={() => (transitioningOut = false)}>
+            <NavigationMobile
+              cta={{
+                href: exproleLink?.href || '#',
+                title: exproleLink?.title || 'Preview',
+                newTab: true,
+              }} />
 
-    <section bind:this={contentEl} class="preview_content_wrapper">
-      {#key transitioningOut}
-        <div
-          class="preview_content_container"
-          on:outroend={() => (transitioningOut = false)}>
-          <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Preview', newTab: true }} />
-
-          <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
-            
-              <Header
-                topic="Our Publication"
-                title={name}
-                subtitle={subtitle ? subtitle : ''}
-                type={category.name}
-                let:Info>
-                <div class="space-y-[1.875rem]">
-                  <Info>
-                    <div class="sub-title-light">
-                      Published by {#each publishedBy as publisher, index}
-                        <span class="title-regular">
-                          {publisher}{#if index !== publishedBy.length - 1}
-                            {#if index === publishedBy.length - 2}
-                              {' '}
-                              <span class="sub-title-light">and</span>
-                            {:else}
-                              ,
-                            {/if}
-                          {/if}
-                          {' '}
-                        </span>
-                      {/each}
-                    </div>
-                    {#if !!isbn}
-                      <div class="sub-title-light">
-                        ISBN {isbn}
-                      </div>
-                    {/if}
-                  </Info>
-                  {#if !!creditList?.length}
+            <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
+              <section
+                class="w-full"
+                style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+                <Header
+                  topic="Our Publication"
+                  title={name}
+                  subtitle={subtitle ? subtitle : ''}
+                  type={category.name}
+                  let:Info>
+                  <div class="space-y-[1.875rem]">
                     <Info>
-                      <ul class="mt-[1.875rem] mb-[1.875rem] space-y-[0.5rem]">
-                        {#each creditList as { key, value }}
-                          <li class="sub-title-light">
-                            <span>{key}</span>
+                      <div class="sub-title-light">
+                        Published by {#each publishedBy as publisher, index}
+                          <span class="title-regular">
+                            {publisher}{#if index !== publishedBy.length - 1}
+                              {#if index === publishedBy.length - 2}
+                                {' '}
+                                <span class="sub-title-light">and</span>
+                              {:else}
+                                ,
+                              {/if}
+                            {/if}
                             {' '}
-                            <span class="!font-normal">{value}</span>
-                          </li>
+                          </span>
                         {/each}
-                      </ul>
-                    </Info>
-                  {/if}
-                  {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
-                    <Info>
-                      <div class="sub-title-light">
-                        Price {#if !!prices?.discountPriceBDT}
-                          <span class="!font-normal text-[#9B9B9B] line-through">
-                            {prices.priceBDT}
-                          </span>
-                          <span class="font-medium">
-                            <span>{prices.discountPriceBDT} BDT</span>
-                            {#if prices.priceUSD}
-                              /
-                              <span>{prices.priceUSD} USD</span>
-                            {/if}
-                          </span>
-                        {:else}
-                          <span class="font-medium">
-                            <span>{prices.priceBDT} BDT</span>
-                            {#if prices.priceUSD}
-                              /
-                              <span>{prices.priceUSD} USD</span>
-                            {/if}
-                          </span>
-                        {/if}
                       </div>
-
-                      {#if stock !== 'Not Available'}
-                        <div class="title-light">
-                          <span class="sub-title-light">Stock</span>
-                          <span class="font-medium">{stock === 'Online' ? 'Available' : stock}</span>
+                      {#if !!isbn}
+                        <div class="sub-title-light">
+                          ISBN {isbn}
                         </div>
                       {/if}
                     </Info>
+                    {#if !!creditList?.length}
+                      <Info>
+                        <ul
+                          class="mb-[1.875rem] mt-[1.875rem] space-y-[0.5rem]">
+                          {#each creditList as { key, value }}
+                            <li class="sub-title-light">
+                              <span>{key}</span>
+                              {' '}
+                              <span class="!font-normal">{value}</span>
+                            </li>
+                          {/each}
+                        </ul>
+                      </Info>
+                    {/if}
+                    {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
+                      <Info>
+                        <div class="sub-title-light">
+                          Price {#if !!prices?.discountPriceBDT}
+                            <span
+                              class="!font-normal text-[#9B9B9B] line-through">
+                              {prices.priceBDT}
+                            </span>
+                            <span class="font-medium">
+                              <span>{prices.discountPriceBDT} BDT</span>
+                              {#if prices.priceUSD}
+                                /
+                                <span>{prices.priceUSD} USD</span>
+                              {/if}
+                            </span>
+                          {:else}
+                            <span class="font-medium">
+                              <span>{prices.priceBDT} BDT</span>
+                              {#if prices.priceUSD}
+                                /
+                                <span>{prices.priceUSD} USD</span>
+                              {/if}
+                            </span>
+                          {/if}
+                        </div>
+
+                        {#if stock !== 'Not Available'}
+                          <div class="title-light">
+                            <span class="sub-title-light">Stock</span>
+                            <span class="font-medium">
+                              {stock === 'Online' ? 'Available' : stock}
+                            </span>
+                          </div>
+                        {/if}
+                      </Info>
+                    {/if}
+                  </div>
+                </Header>
+
+                <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
+                  <button
+                    data-load-animate="y"
+                    class="cursor-pointer"
+                    on:click={openImagePopup}>
+                    <SanityImage
+                      class="h-auto w-full rounded-[0.9375rem] object-contain"
+                      imageUrlBuilder={imageBuilder}
+                      src={publicationImage}
+                      alt={publicationImage.alt}
+                      sizes="100vw" />
+                  </button>
+                </div>
+
+                {#if !!description?.length}
+                  <div class="mb-[2.5rem]" data-load-animate="y">
+                    <PortableText
+                      class="body-light-m lg:body-light text-dark-gunmetal"
+                      value={description} />
+                  </div>
+                {/if}
+
+                {#if !!associationsList?.length}
+                  <div class="mb-[2.5rem]" data-load-animate="y">
+                    <ul class="space-y-[0.5rem]">
+                      {#each associationsList as { key, value }}
+                        <li class="sub-title-light">
+                          <span>{key}</span>
+                          {' '}
+                          <span class="!font-normal">{value}</span>
+                        </li>
+                      {/each}
+                    </ul>
+                  </div>
+                {/if}
+
+                <div data-load-animate="y">
+                  {#if stock === 'Online' && externalLinkButton?.externalUrl}
+                    <Cta
+                      el="a"
+                      href={externalLinkButton.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                      variant="tertiary">
+                      {externalLinkButton.buttonText || 'View Online'}
+                    </Cta>
+                  {:else}
+                    <Cta
+                      el="button"
+                      className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                      onClick={inquiryAction}
+                      variant="tertiary">
+                      {stock === 'Available' || stock === 'Limited'
+                        ? 'Buy now'
+                        : 'Inquiry'}
+                    </Cta>
                   {/if}
                 </div>
-              </Header>
-          
-              <div class="mb-[1.875rem] flex w-full justify-center 3xl:hidden">
-                <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
+              </section>
+
+              <section
+                class="hidden w-full 3xl:block"
+                style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+                <button
+                  data-load-animate="y"
+                  class="block w-full cursor-pointer 3xl:mt-[9.44rem]"
+                  on:click={openImagePopup}>
                   <SanityImage
-                    class="rounded-[0.9375rem] object-contain"
+                    class="h-auto w-full rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
                     src={publicationImage}
                     alt={publicationImage.alt}
-                    sizes="100vw" />
+                    sizes="40vw" />
                 </button>
-              </div>
-
-              {#if !!description?.length}
-                <div class="mb-[1.875rem]" data-load-animate="y">
-                  <PortableText
-                    class="body-light-m lg:body-light text-dark-gunmetal"
-                    value={description} />
-                </div>
-              {/if}
-
-              {#if !!associationsList?.length}
-                <div class="mb-[1.875rem]" data-load-animate="y">
-                  <ul class="space-y-[0.5rem]">
-                    {#each associationsList as { key, value }}
-                      <li class="sub-title-light">
-                        <span>{key}</span>
-                        {' '}
-                        <span class="!font-normal">{value}</span>
-                      </li>
-                    {/each}
-                  </ul>
-                </div>
-              {/if}
-
-              <div data-load-animate="y">
-                {#if stock === 'Online' && externalLinkButton?.externalUrl}
-                  <Cta
-                    el="a"
-                    href={externalLinkButton.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                    variant="tertiary">
-                    {externalLinkButton.buttonText || 'View Online'}
-                  </Cta>
-                {:else}
-                  <Cta
-                    el="button"
-                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                    onClick={inquiryAction}
-                    variant="tertiary">
-                    {stock === 'Available' || stock === 'Limited' ? 'Buy now' : 'Inquiry'}
-                  </Cta>
+                {#if !!quote}
+                  <div
+                    class="[&_div]:!head-4 mt-[1.875rem]"
+                    data-load-animate="y">
+                    <Quote {quote} authorSize="24px" class="!translate-y-0" />
+                  </div>
                 {/if}
-              </div>
-            </section>
-
-            <!-- <section class="hidden 3xl:block"> -->
-            <section class="hidden 3xl:block w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
-              <button
-                data-load-animate="y"
-                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
-                on:click={openImagePopup}>
-                <SanityImage
-                  class="rounded-[0.9375rem] object-contain w-full h-auto"
-                  imageUrlBuilder={imageBuilder}
-                  src={publicationImage}
-                  alt={publicationImage.alt}
-                  sizes="40vw" />
-              </button>
-              {#if !!quote}
-                <div class="mt-[1.875rem] [&_div]:!head-4" data-load-animate="y">
-                  <Quote {quote} authorSize="24px" class="!translate-y-0" />
-                </div>
-              {/if}
-            </section>
+              </section>
+            </div>
           </div>
-        </div>
-      {/key}
-    </section>
+        {/key}
+      </section>
+    </div>
   </article>
 </section>
 {#if $formPopupStore.show}

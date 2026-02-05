@@ -128,9 +128,12 @@
   <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
+    <div class="preview_left">
     <DesktopImage {sliderImageVideo} />
+    </div>
 
-    <section bind:this={contentEl} class="preview_content_wrapper">
+    <div class="preview_right">
+      <section bind:this={contentEl} class="preview_content_wrapper">
       {#key transitioningOut}
         <div
           on:outroend={() => (transitioningOut = false)}
@@ -206,6 +209,7 @@
         </div>
       {/key}
     </section>
+    </div>
   </article>
 </section>
 

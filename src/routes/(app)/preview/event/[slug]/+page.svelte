@@ -119,59 +119,75 @@
   <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage {sliderImageVideo} />
+    <div class="preview_left"><DesktopImage {sliderImageVideo} /></div>
+    <div class="preview_right">
+      <section bind:this={contentEl} class="preview_content_wrapper">
+        {#key transitioningOut}
+          <div
+            on:outroend={() => (transitioningOut = false)}
+            out:fade={{ duration: 500 }}
+            class="preview_content_container">
+            <NavigationMobile
+              cta={{
+                href: `/event/${slug.current}`,
+                title: 'EXPLORE',
+              }} />
 
-    <section bind:this={contentEl} class="preview_content_wrapper">
-      {#key transitioningOut}
-        <div
-          on:outroend={() => (transitioningOut = false)}
-          out:fade={{ duration: 500 }}
-          class="preview_content_container">
-          <NavigationMobile
-            cta={{
-              href: `/event/${slug.current}`,
-              title: 'EXPLORE',
-            }} />
+            <Header
+              let:Info
+              topic="Our Event"
+              title={name}
+              {subtitle}
+              type={tag.name}>
+              <Info>
+                {@const galleryUrl =
+                  gallery.url ||
+                  (gallery.location &&
+                  (gallery.location.startsWith('http://') ||
+                    gallery.location.startsWith('https://'))
+                    ? gallery.location
+                    : null)}
+                <div class="title-light">
+                  {#if galleryUrl}
+                    <a
+                      href={galleryUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block transition-colors hover:!text-gray-500">
+                      {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')},
+                        {gallery.location}{/if}
+                    </a>
+                  {:else}
+                    <div>
+                      {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')},
+                        {gallery.location}{/if}
+                    </div>
+                  {/if}
+                </div>
+                <div class="sub-title-light mt-1">
+                  <span class="font-light">{date}</span>
+                  <span class="px-[3px]">|</span>
+                  <span class="!font-medium text-eerie-black">{status}</span>
+                </div>
+              </Info>
+            </Header>
 
-          <Header let:Info topic="Our Event" title={name} subtitle={subtitle} type={tag.name}>
-            <Info>
-              {@const galleryUrl = gallery.url || (gallery.location && (gallery.location.startsWith('http://') || gallery.location.startsWith('https://')) ? gallery.location : null)}
-              <div class="title-light">
-                {#if galleryUrl}
-                  <a
-                    href={galleryUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="transition-colors hover:!text-gray-500 block">
-                    {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
-                  </a>
-                {:else}
-                  <div>
-                    {gallery.name}{#if gallery.location && !gallery.location.startsWith('http://') && !gallery.location.startsWith('https://')}, {gallery.location}{/if}
-                  </div>
-                {/if}
-              </div>
-              <div class="sub-title-light mt-1">
-                <span class="font-light">{date}</span>
-                <span class="px-[3px]">|</span>
-                <span class="!font-medium text-eerie-black">{status}</span>
-              </div>
-            </Info>
-          </Header>
-
-          <div data-load-animate="y" class="mb-[2.5rem] w-full rounded-[25px] overflow-hidden relative aspect-video">
-            <Asset {asset} />
-          </div>
-
-          {#if !!description?.length}
-            <div data-load-animate="y">
-              <PortableText
-                class="body-light-m lg:body-light text-dark-gunmetal"
-                value={description} />
+            <div
+              data-load-animate="y"
+              class="relative mb-[2.5rem] aspect-video w-full overflow-hidden rounded-[25px]">
+              <Asset {asset} />
             </div>
-          {/if}
-        </div>
-      {/key}
-    </section>
+
+            {#if !!description?.length}
+              <div data-load-animate="y">
+                <PortableText
+                  class="body-light-m lg:body-light text-dark-gunmetal"
+                  value={description} />
+              </div>
+            {/if}
+          </div>
+        {/key}
+      </section>
+    </div>
   </article>
 </section>

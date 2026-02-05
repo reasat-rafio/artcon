@@ -7,7 +7,7 @@
   export let sliderImageVideo: Asset;
 </script>
 
-<div class="relative overflow-hidden max-lg:hidden lg:w-[600px] xl:w-[785px]">
+<div class="relative overflow-hidden max-lg:hidden lg:h-screen lg:w-full">
   <Overlay />
 
   {#if !!sliderImageVideo?.image}

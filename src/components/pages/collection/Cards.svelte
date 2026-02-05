@@ -42,16 +42,14 @@
             alt={thumbnail?.alt} />
         </div>
 
-        <Container class="space-y-[0.625rem] text-center">
-          <div>
-            <Title class="inline">
-              {name} /
-              <span class="head-8">{subtitle}</span>
-            </Title>
-          </div>
-          <div class="font-inter text-[14px] font-[300] text-sonic-silver">
-            <span>{category?.name ?? ''}</span>
-          </div>
+        <Container class="flex flex-col text-center">
+          <Title>
+            {name} /
+            <span class="head-8 not-italic">{subtitle}</span>
+          </Title>
+          <span class="font-inter text-[14px] font-[300] text-sonic-silver">
+            {category?.name ?? ''}
+          </span>
         </Container>
       </Card>
     </div>

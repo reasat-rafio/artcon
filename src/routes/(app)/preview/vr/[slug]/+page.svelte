@@ -52,11 +52,11 @@
     startDate,
     endDate,
   }));
-  $: status = 
-    isActive === 'active' 
-      ? 'Active' 
-      : isActive === 'temporarily-inactive' 
-        ? 'Temporarily Inactive' 
+  $: status =
+    isActive === 'active'
+      ? 'Active'
+      : isActive === 'temporarily-inactive'
+        ? 'Temporarily Inactive'
         : isActive === 'inactive'
           ? 'Inactive'
           : 'Active';
@@ -146,76 +146,84 @@
   <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage {sliderImageVideo} />
-    <section bind:this={contentEl} class="preview_content_wrapper">
-      {#key transitioningOut}
-        <div
-          on:outroend={() => (transitioningOut = false)}
-          class="preview_content_container">
-          <NavigationMobile
-            cta={{ href: url, title: 'Explore', newTab: true }} />
-          <Header
-            topic="Our Virtual Reality"
-            title={name}
-            subtitle={subtitle ?? ''}
-            type={category.name}
-            {link}
-            let:Info>
-            <Info>
-              {@const galleryUrl = gallery?.url || (gallery?.location?.startsWith('http') ? gallery.location : null)}
-              <div class="title-light">
-                {#if galleryUrl}
-                  <a 
-                    href={galleryUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="cursor-pointer transition-colors hover:!text-gray-500">
-                    {gallery.name}{#if gallery?.location}<span>, </span>{gallery.location}{/if}
-                  </a>
-                {:else}
-                  {gallery.name}{#if gallery?.location}<span>, </span>{gallery.location}{/if}
-                {/if}
-              </div>
-              <div class="title-light">
-                {#if !!startDate && !!endDate && !!date}
-                  <span class="font-light">{date}</span>
-                  <span class="px-[6px]">|</span>
-                  <span class="font-medium text-eerie-black">{status}</span>
-                {:else if !!status}
-                  <span class="font-medium text-eerie-black">{status}</span>
-                {:else}
-                  <span class="font-medium text-eerie-black">Active</span>
-                {/if}
-              </div>
-            </Info>
-          </Header>
+    <div class="preview_left"><DesktopImage {sliderImageVideo} /></div>
+    <div class="preview_right">
+      <section bind:this={contentEl} class="preview_content_wrapper">
+        {#key transitioningOut}
+          <div
+            on:outroend={() => (transitioningOut = false)}
+            class="preview_content_container">
+            <NavigationMobile
+              cta={{ href: url, title: 'Explore', newTab: true }} />
+            <Header
+              topic="Our Virtual Reality"
+              title={name}
+              subtitle={subtitle ?? ''}
+              type={category.name}
+              {link}
+              let:Info>
+              <Info>
+                {@const galleryUrl =
+                  gallery?.url ||
+                  (gallery?.location?.startsWith('http')
+                    ? gallery.location
+                    : null)}
+                <div class="title-light">
+                  {#if galleryUrl}
+                    <a
+                      href={galleryUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="cursor-pointer transition-colors hover:!text-gray-500">
+                      {gallery.name}{#if gallery?.location}<span>,</span>
+                        {gallery.location}{/if}
+                    </a>
+                  {:else}
+                    {gallery.name}{#if gallery?.location}<span>,</span>
+                      {gallery.location}{/if}
+                  {/if}
+                </div>
+                <div class="title-light">
+                  {#if !!startDate && !!endDate && !!date}
+                    <span class="font-light">{date}</span>
+                    <span class="px-[6px]">|</span>
+                    <span class="font-medium text-eerie-black">{status}</span>
+                  {:else if !!status}
+                    <span class="font-medium text-eerie-black">{status}</span>
+                  {:else}
+                    <span class="font-medium text-eerie-black">Active</span>
+                  {/if}
+                </div>
+              </Info>
+            </Header>
 
-          {#if isActive !== 'inactive' && isActive !== 'temporarily-inactive'}
-            <Vr
-              hideCaption
-              autoPlay
-              class="mb-[2.5rem]"
-              data-load-animate="y"
-              vr={{ _type: 'vr', caption, url, thumbnail }} />
-          {:else if !!coverImage}
-            <div class="mb-[2.5rem]" data-load-animate="y">
-              <SanityImage
-                src={coverImage}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                class="w-full h-[578px] rounded-xl object-cover"
-                imageUrlBuilder={imageBuilder}
-                alt="VR cover image" />
-            </div>
-          {/if}
-          {#if !!description?.length}
-            <div data-load-animate="y">
-              <PortableText
-                class="body-light-m lg:body-light text-dark-gunmetal"
-                value={description} />
-            </div>
-          {/if}
-        </div>
-      {/key}
-    </section>
+            {#if isActive !== 'inactive' && isActive !== 'temporarily-inactive'}
+              <Vr
+                hideCaption
+                autoPlay
+                class="mb-[2.5rem]"
+                data-load-animate="y"
+                vr={{ _type: 'vr', caption, url, thumbnail }} />
+            {:else if !!coverImage}
+              <div class="mb-[2.5rem]" data-load-animate="y">
+                <SanityImage
+                  src={coverImage}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  class="h-[578px] w-full rounded-xl object-cover"
+                  imageUrlBuilder={imageBuilder}
+                  alt="VR cover image" />
+              </div>
+            {/if}
+            {#if !!description?.length}
+              <div data-load-animate="y">
+                <PortableText
+                  class="body-light-m lg:body-light text-dark-gunmetal"
+                  value={description} />
+              </div>
+            {/if}
+          </div>
+        {/key}
+      </section>
+    </div>
   </article>
 </section>

@@ -149,8 +149,18 @@
   }
 
   /* Preview */
-  .preview_container {
+  /* .preview_container {
     @apply flex h-[100dvh] w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
+  } */
+   .preview_container {
+    @apply flex h-[100dvh] w-full flex-col bg-white max-lg:mt-[1rem] max-lg:rounded-t-[0.94rem] lg:flex-row;
+}
+
+.preview_left {
+    @apply w-full lg:w-[40%] h-full;
+  }
+.preview_right {
+    @apply w-full lg:w-[60%] h-full flex flex-col;
   }
   .preview_content_wrapper {
     @apply flex-[100%] overflow-scroll lg:flex-[calc(100%-600px)] xl:flex-[calc(100%-785px)];

@@ -138,107 +138,128 @@
 <NavigationDesktop
   ctas={[
     { href: '/', title: 'Back' },
-    { href: exproleLink?.href || '#', title: exproleLink?.title || 'Explore', newTab: true },
+    {
+      href: exproleLink?.href || '#',
+      title: exproleLink?.title || 'Explore',
+      newTab: true,
+    },
   ]} />
 
 <section>
   <MobileImage {sliderImageVideo} />
 
   <article bind:this={articleEl} class="preview_container">
-    <DesktopImage {sliderImageVideo} />
+    <div class="preview_left">
+      <DesktopImage {sliderImageVideo} />
+    </div>
+    <div class="preview_right">
+      <section bind:this={contentEl} class="preview_content_wrapper">
+        {#key transitioningOut}
+          <div
+            class="preview_content_container"
+            on:outroend={() => (transitioningOut = false)}>
+            <NavigationMobile
+              cta={{
+                href: exproleLink?.href || '#',
+                title: exproleLink?.title || 'Explore',
+                newTab: true,
+              }} />
 
-    <section bind:this={contentEl} class="preview_content_wrapper">
-      {#key transitioningOut}
-        <div
-          class="preview_content_container"
-          on:outroend={() => (transitioningOut = false)}>
-          <NavigationMobile cta={{ href: exproleLink?.href || '#', title: exproleLink?.title || 'Explore', newTab: true }} />
+            <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
+              <section
+                class="w-full"
+                style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+                <Header
+                  topic="Our Collection"
+                  title={name}
+                  subtitle={subtitle ?? ''}
+                  type={category.name}
+                  let:Info>
+                  {#if !!associationsList?.length}
+                    <Info>
+                      <ul class="space-y-[0.5rem]">
+                        {#each associationsList as { key, value }}
+                          <li class="sub-title-light">
+                            <span>{key}</span>
+                            {' '}
+                            <span class="!font-normal">{value}</span>
+                          </li>
+                        {/each}
+                      </ul>
+                    </Info>
+                  {/if}
+                  {#if !!stock}
+                    <Info>
+                      <div class="title-light mt-[0.27rem]">
+                        <span class="sub-title-light">Stock</span>
+                        <span class="font-medium">{stock}</span>
+                      </div>
+                    </Info>
+                  {/if}
+                </Header>
 
-          <div class="flex xl:gap-[1rem] 2xl:gap-[3rem]">
-            <section class="w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
-              <Header
-                topic="Our Collection"
-                title={name}
-                subtitle={subtitle ?? ''}
-                type={category.name}
-                let:Info>
-                {#if !!associationsList?.length}
-                  <Info>
-                    <ul class="space-y-[0.5rem]">
-                      {#each associationsList as { key, value }}
-                        <li class="sub-title-light">
-                          <span>{key}</span>
-                          {' '}
-                          <span class="!font-normal">{value}</span>
-                        </li>
-                      {/each}
-                    </ul>
-                  </Info>
+                <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
+                  <button
+                    data-load-animate="y"
+                    class="cursor-pointer"
+                    on:click={openImagePopup}>
+                    <SanityImage
+                      class="rounded-[0.9375rem] object-contain"
+                      imageUrlBuilder={imageBuilder}
+                      src={displayImage}
+                      alt={displayImage?.alt}
+                      sizes="100vw" />
+                  </button>
+                </div>
+
+                {#if !!description?.length}
+                  <div class="mb-[2.5rem]" data-load-animate="y">
+                    <PortableText
+                      class="body-light-m lg:body-light text-dark-gunmetal"
+                      value={description} />
+                  </div>
                 {/if}
-                {#if !!stock}
-                  <Info>
-                    <div class="mt-[0.27rem] title-light">
-                      <span class="sub-title-light">Stock</span>
-                      <span class="font-medium">{stock}</span>
-                    </div>
-                  </Info>
-                {/if}
-              </Header>
 
-              <div class="mb-[2.5rem] flex w-full justify-center 3xl:hidden">
-                <button data-load-animate="y" class="cursor-pointer" on:click={openImagePopup}>
+                {#if cta}
+                  <div class="pt-[1.38rem]" data-load-animate="y">
+                    <Cta
+                      el="a"
+                      href={cta.href || '#'}
+                      className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
+                      variant="tertiary">
+                      {cta.title || 'Button'}
+                    </Cta>
+                  </div>
+                {/if}
+              </section>
+
+              <section
+                class="hidden w-full 3xl:block"
+                style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
+                <button
+                  data-load-animate="y"
+                  class="block w-full cursor-pointer 3xl:mt-[9.44rem]"
+                  on:click={openImagePopup}>
                   <SanityImage
-                    class="rounded-[0.9375rem] object-contain"
+                    class="h-auto w-full rounded-[0.9375rem] object-contain"
                     imageUrlBuilder={imageBuilder}
                     src={displayImage}
                     alt={displayImage?.alt}
-                    sizes="100vw" />
+                    sizes="40vw" />
                 </button>
-              </div>
-
-              {#if !!description?.length}
-                <div class="mb-[2.5rem]" data-load-animate="y">
-                  <PortableText
-                    class="body-light-m lg:body-light text-dark-gunmetal"
-                    value={description} />
-                </div>
-              {/if}
-
-              {#if cta}
-                <div class="pt-[1.38rem]" data-load-animate="y">
-                  <Cta
-                    el="a"
-                    href={cta.href || '#'}
-                    className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
-                    variant="tertiary">
-                    {cta.title || 'Button'}
-                  </Cta>
-                </div>
-              {/if}
-            </section>
-
-            <section class="hidden 3xl:block w-full" style="transform: scale(calc(100vw / 1440)); transform-origin: top left;">
-              <button
-                data-load-animate="y"
-                class="3xl:mt-[9.44rem] cursor-pointer block w-full"
-                on:click={openImagePopup}>
-                <SanityImage
-                  class="rounded-[0.9375rem] object-contain w-full h-auto"
-                  imageUrlBuilder={imageBuilder}
-                  src={displayImage}
-                  alt={displayImage?.alt}
-                  sizes="40vw" />
-              </button>
-              {#if !!quote}
-                <div class="mt-[2.5rem] [&_div]:!head-4" data-load-animate="y">
-                  <Quote {quote} authorSize="24px" class="!translate-y-0" />
-                </div>
-              {/if}
-            </section>
+                {#if !!quote}
+                  <div
+                    class="[&_div]:!head-4 mt-[2.5rem]"
+                    data-load-animate="y">
+                    <Quote {quote} authorSize="24px" class="!translate-y-0" />
+                  </div>
+                {/if}
+              </section>
+            </div>
           </div>
-        </div>
-      {/key}
-    </section>
+        {/key}
+      </section>
+    </div>
   </article>
 </section>
 
