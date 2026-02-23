@@ -73,14 +73,16 @@
 
     if (!!activeArtistParams) {
       const filteredCollection = collectionsCopy.filter(
-        ({ artist: { slug } }) => slug.current === activeArtistParams,
+        (collection) => collection.artist?.slug?.current === activeArtistParams,
       );
       collectionsCopy = filteredCollection;
     }
 
     if (!!activeSearchParams) {
       const filteredCollection = collectionsCopy.filter(
-        ({ tag: { slug } }) => slug.current === activeSearchParams,
+        (collection) =>
+          collection.tag?.slug?.current === activeSearchParams ||
+          collection.category?.slug?.current === activeSearchParams,
       );
       collectionsCopy = filteredCollection;
     }

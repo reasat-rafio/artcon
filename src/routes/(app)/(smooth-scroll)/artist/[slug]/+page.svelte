@@ -98,7 +98,7 @@
       {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
         <OthersDocument.default
           urlPrefix="/exhibition"
-          title="Other Exhibition With Us"
+          title="Other Exhibitions With Us"
           data={exhibitions} />
       {/await}
     {/if}

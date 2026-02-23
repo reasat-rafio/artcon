@@ -35,17 +35,21 @@
 
           <SanityImage
             imageUrlBuilder={imageBuilder}
-            class="h-full w-full object-cover transition-transform duration-600 hover:scale-110"
+            class="h-full w-full object-cover transition-transform ease-in-out hover:scale-105"
+            style="transition-duration: 600ms;"
             sizes="(min-width:640px) 35vw, 100vw"
             src={thumbnail}
             alt={thumbnail?.alt} />
         </div>
 
-        <Container class="text-center">
-          <Title class="inline">{name} / <span class="head-8">{subtitle}</span></Title>
-          <div class="font-inter text-sonic-silver text-[14px] font-[300]">
-            <span>{category?.name ?? ''}</span>
-          </div>
+        <Container class="flex flex-col text-center">
+          <Title>
+            {name} /
+            <span class="head-8 not-italic">{subtitle}</span>
+          </Title>
+          <span class="font-inter text-[14px] font-[300] text-sonic-silver">
+            {category?.name ?? ''}
+          </span>
         </Container>
       </Card>
     </div>

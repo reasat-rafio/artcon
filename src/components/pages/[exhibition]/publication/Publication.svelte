@@ -35,6 +35,13 @@
       fullInvitationCardImage?.caption,
     );
   }
+
+  function handlePublicationImageClick() {
+    // If publication image link is missing, show popup like invitation card
+    if (!publicationImage) {
+      triggerPopup();
+    }
+  }
 </script>
 
 <section>
@@ -56,7 +63,8 @@
         {
           img: { ...publicationImage, alt: name },
           caption: name,
-          link: `/preview/publication/${slug.current}`,
+          link: publicationImage ? `/preview/publication/${slug.current}` : undefined,
+          triggerPopup: !publicationImage,
         },
       ]} />
 

@@ -85,6 +85,7 @@ export const searchQuery = (query: string) => groq`
       name,
       subtitle,
       thumbnail,
+      category->,
       tag->,
       displayNew,
       displaySold,
@@ -111,10 +112,12 @@ export const searchQuery = (query: string) => groq`
         topTitle,
         subtitle,
       },
-      artworks[0...4]->{
-         name,
-        slug,
-        ${asset('artworkImages[0]', { as: 'artworkImage' })},
+      "customArtworks": siteDocuments.sections[_type == "common.artwork"][0].artworks[0...4]{
+        _key,
+        _type,
+        title,
+        ${asset('image')},
+        description
       }
     },
     "vrs" : *[_type == "vr" && !(_id in path("drafts.**"))
@@ -147,6 +150,7 @@ export const searchQuery = (query: string) => groq`
         "priceUSD": prices.priceUSD
       },
       ${asset('publicationImage')},
+      ${asset('thumbnail')},
       category->,
     },
 
@@ -260,6 +264,7 @@ export const defaultSearchQuery = groq`
             name,
             subtitle,
             thumbnail,
+            category->,
             tag->,
             displayNew,
             displaySold,

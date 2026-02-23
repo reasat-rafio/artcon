@@ -35,7 +35,7 @@
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="py-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
+      <div class="pt-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
         <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>
@@ -49,7 +49,7 @@
                 </Cta>
               {/if}
             </svelte:fragment>
-            <svelte:fragment slot="description" let:Description>
+            <svelte:fragment slot="description">
               {#if item.image}
                 <figure class="mb-md">
                   <SanityImage
@@ -57,23 +57,26 @@
                     src={item.image}
                     alt={item.image.alt || item.title}
                     imageUrlBuilder={imageBuilder}
+                    style="aspect-ratio: 812/500"
                     sizes="(min-width: 1024px) 812px, 500px" />
                 </figure>
               {/if}
               {#if item.summary?.text}
-                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px] mb-[90px]">{item.summary.text}</p>
+                <p class="!font-inter !text-[1rem] !font-[300] !leading-[27px]">{item.summary.text}</p>
               {/if}
             </svelte:fragment>
           </DescriptionBlock>
 
           {#if item.contentMedia}
-            <figure class="service-image mt-section">
+           <div class="!mt-[2.813rem] lg:!mt-[5.625rem]">
+             <figure class="service-image">
               {#if item.contentMedia.image}
                 <SanityImage
                   class="h-full w-full object-cover rounded-[25px]"
                   src={item.contentMedia.image}
                   alt={item.contentMedia.image?.alt || item.title}
                   imageUrlBuilder={imageBuilder}
+                  style="aspect-ratio: 1320/743"
                   sizes="(min-width: 1024px) 1320px, 743px" />
               {:else if item.contentMedia.video}
                 <video
@@ -93,6 +96,7 @@
                 </video>
               {/if}
             </figure>
+           </div>
           {/if}
         </article>
       </div>

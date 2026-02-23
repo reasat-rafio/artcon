@@ -24,12 +24,14 @@
         let:Subtitle
         let:Image>
         <Image image={thumbnail} />
-        <Container>
-          <Title class="inline">{name}</Title>
-          <h4
-            class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
-            / {gallery.name}
-          </h4>
+        <Container class="space-y-[0.625rem]">
+          <div>
+            <Title class="inline">{name}</Title>
+            <h4
+              class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
+              / {gallery.name}
+            </h4>
+          </div>
 
           <div class="font-inter text-sonic-silver text-[14px] font-[300]">
             {category.name}

@@ -13,7 +13,7 @@
 </script>
 
 <footer id="footer" class="mt-auto">
-  <div class="container-primary">
+  <div class="container-primary {$$props.class}">
     <div
       class="flex flex-col border-t border-quick-silver/50 pb-[2rem] pt-[2rem] max-lg:flex-wrap lg:flex-row">
       <a
