@@ -2,7 +2,8 @@
   import Lenis from '@studio-freight/lenis';
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
+  import { get } from 'svelte/store';
   import { lenisStore as lenis, setLenisStore } from '@/store/lenis';
   import { raf } from '@/utils/tempus';
   import { useFrame } from '@/lib/lifecycle-functions/useFrame';
@@ -28,11 +29,35 @@
     $lenis.start();
   }
 
+  const syncScrollAndTriggers = async () => {
+    if ($uiStore.preventScrollToTop) return;
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+    await tick();
+
+    requestAnimationFrame(() => {
+      const lenisInstance = get(lenis);
+      lenisInstance?.scrollTo(0, { immediate: true });
+      ScrollTrigger.refresh();
+      ScrollTrigger.update();
+
+      requestAnimationFrame(() => {
+        const nextLenisInstance = get(lenis);
+        nextLenisInstance?.scrollTo(0, { immediate: true });
+        ScrollTrigger.refresh();
+        ScrollTrigger.update();
+      });
+    });
+  };
+
   onMount(() => {
     window.history.scrollRestoration = 'manual';
 
     const lenisInstance = new Lenis();
     setLenisStore(lenisInstance);
+
+    syncScrollAndTriggers();
 
     return () => {
       $lenis?.destroy();
@@ -44,7 +69,7 @@
   });
 
   afterNavigate(() => {
-    if (!$uiStore.preventScrollToTop) $lenis?.scrollTo(0, { immediate: true });
+    syncScrollAndTriggers();
   });
 </script>
 
