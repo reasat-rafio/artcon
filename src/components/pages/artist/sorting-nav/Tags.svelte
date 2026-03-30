@@ -22,7 +22,7 @@
     <li class="flex">
       <button
         class={cn(
-          'font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-pigment-red',
+          'font-inter text-[0.875rem] font-light leading-[120%] tracking-[0.0175rem] transition-colors duration-200 hover:text-black hover:font-medium',
           { '!font-bold': current === activeSearchParams },
         )}
         on:click|preventDefault={() => setSearchParams(current)}>
