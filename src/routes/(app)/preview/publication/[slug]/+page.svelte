@@ -202,7 +202,7 @@
                         {/each}
                       </div>
                       {#if !!isbn}
-                        <div class="sub-title-light">
+                        <div class="!text-[0.75rem] font-bold">
                           ISBN {isbn}
                         </div>
                       {/if}

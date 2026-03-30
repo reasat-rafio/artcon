@@ -111,7 +111,7 @@
                 </div>
               {/each}
             </C.Subtitle>
-            <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+            <C.Subtitle class="!text-[0.75rem] font-bold">ISBN {isbn}</C.Subtitle>
           </div>
 
           <Cta className="capitalize" href={`/preview/publication/${slug.current}`}>
