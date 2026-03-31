@@ -14,7 +14,7 @@
     'grid grid-cols-1 gap-x-[1.563rem] gap-y-[2.0001rem] self-start md:grid-cols-2 xl:grid-cols-3',
     $$props.class,
   )}>
-  {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate, exhibitionType } (_id)}
+  {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate, exhibitionType, artistsCount } (_id)}
     {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
     {@const cardHref = status === 'Upcoming' ? `/preview/exhibition/${slug.current}` : `/exhibition/${slug.current}`}
     <div animate:flip={{ duration: 500 }} in:fade>
@@ -36,7 +36,7 @@
               class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
               /
               {#if exhibitionType === 'group'}
-                Group Exhibition
+                {artistsCount ?? ''} Artists 
               {:else if exhibitionType === 'solo'}
                 {typeof type === 'string' ? type : type.name}
               {:else if subtitle}

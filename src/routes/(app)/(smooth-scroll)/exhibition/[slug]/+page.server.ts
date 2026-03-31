@@ -122,9 +122,14 @@ const query = (params: Partial<Record<string, string>>) =>
     }"][]{
      name,
      slug,
+     exhibitionType,
      tag->{name},
      startDate,
      subtitle,
+     "artistsCount": select(
+       exhibitionType == "group" => coalesce(count(sections[_type == "exhibition.team"][0].members), count(artists)),
+       count(artists)
+     ),
      endDate,
      asset {
       ...,

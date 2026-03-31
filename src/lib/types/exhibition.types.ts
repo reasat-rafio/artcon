@@ -12,6 +12,7 @@ export interface Exhibition {
   asset: Asset;
   name: string;
   subtitle?: string;
+  artistsCount?: number;
   tag: Tag;
   slug: Slug;
   exhibitionType?: 'solo' | 'group';
