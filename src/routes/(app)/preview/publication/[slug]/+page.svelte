@@ -313,7 +313,9 @@
                       className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
                       onClick={inquiryAction}
                       variant="tertiary">
-                      {stock === 'Available' || stock === 'Limited'
+                      {stock === 'Available' ||
+                      stock === 'Limited' ||
+                      stock === 'Pre-order'
                         ? 'Buy now'
                         : 'Inquiry'}
                     </Cta>
