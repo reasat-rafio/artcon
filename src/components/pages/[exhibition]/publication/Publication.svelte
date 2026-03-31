@@ -16,6 +16,7 @@
       description,
       subtitle,
       name,
+      category,
       publishedBy,
       isbn,
       quote,
@@ -62,7 +63,7 @@
         },
         {
           img: { ...publicationImage, alt: name },
-          caption: name,
+          caption: category?.name,
           link: publicationImage ? `/preview/publication/${slug.current}` : undefined,
           triggerPopup: !publicationImage,
         },
