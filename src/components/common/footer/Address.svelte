@@ -13,7 +13,8 @@
 </script>
 
 <div class={cn('w-full lg:pt-[0.75rem]', $$props.class)}>
-  <address class="flex flex-col gap-y-[1.62rem] text-eerie-black">
+  <address
+    class="flex flex-col gap-y-[1.62rem] text-eerie-black [&_a]:no-underline [&_a:hover]:no-underline [&_a:focus]:no-underline [&_a:active]:no-underline">
     <div class="sub-title-light flex gap-x-[0.75rem] not-italic 2xl:pr-[5rem]">
       <figure>
         <SanityImage
@@ -24,7 +25,9 @@
           imageUrlBuilder={imageBuilder} />
       </figure>
       <div>
-        <PortableText value={contact.address.address} />
+        <PortableText
+          class="[&_a]:!no-underline [&_a:hover]:!no-underline [&_a:focus]:!no-underline [&_a:active]:!no-underline"
+          value={contact.address.address} />
       </div>
     </div>
 
