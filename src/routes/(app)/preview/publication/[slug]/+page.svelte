@@ -196,9 +196,9 @@
                   <div class="space-y-[1.875rem]">
                     <Info>
                       {#if !!validPublishedBy.length}
-                        <div class="sub-title-light">
+                        <div class="sub-title-light !text-[0.875rem]">
                           Published by {#each validPublishedBy as publisher, index}
-                            <span class="title-regular">
+                            <span class="title-regular !text-[0.875rem] !font-medium">
                               {publisher}{#if index !== validPublishedBy.length - 1}
                                 {#if index === validPublishedBy.length - 2}
                                   {' '}
@@ -213,8 +213,8 @@
                         </div>
                       {/if}
                       {#if hasValidIsbn}
-                        <div class="!text-[0.75rem] font-bold">
-                          ISBN {isbn}
+                        <div class="sub-title-light !text-[0.875rem]">
+                          ISBN <span class="!text-[0.875rem] font-medium">{isbn}</span>
                         </div>
                       {/if}
                     </Info>
@@ -223,10 +223,10 @@
                         <ul
                           class="mb-[1.875rem] mt-[1.875rem] space-y-[0.5rem]">
                           {#each creditList as { key, value }}
-                            <li class="sub-title-light">
-                              <span>{key}</span>
+                            <li class="sub-title-light !text-[0.875rem]">
+                              <span class="!text-[0.875rem]">{key}</span>
                               {' '}
-                              <span class="!font-normal">{value}</span>
+                              <span class="!text-[0.875rem] !font-medium">{value}</span>
                             </li>
                           {/each}
                         </ul>
@@ -234,13 +234,13 @@
                     {/if}
                     {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
                       <Info>
-                        <div class="sub-title-light">
+                        <div class="sub-title-light !text-[0.875rem]">
                           Price {#if !!prices?.discountPriceBDT}
                             <span
-                              class="!font-normal text-[#9B9B9B] line-through">
+                              class="!text-[0.875rem] !font-normal text-[#9B9B9B] line-through">
                               {prices.priceBDT}
                             </span>
-                            <span class="font-medium">
+                            <span class="!text-[0.875rem] font-medium">
                               <span>{prices.discountPriceBDT} BDT</span>
                               {#if prices.priceUSD}
                                 /
@@ -248,7 +248,7 @@
                               {/if}
                             </span>
                           {:else}
-                            <span class="font-medium">
+                            <span class="!text-[0.875rem] font-medium">
                               <span>{prices.priceBDT} BDT</span>
                               {#if prices.priceUSD}
                                 /
@@ -259,9 +259,9 @@
                         </div>
 
                         {#if stock !== 'Not Available'}
-                          <div class="title-light">
-                            <span class="sub-title-light">Stock</span>
-                            <span class="font-medium">
+                          <div class="title-light !text-[0.875rem]">
+                            <span class="sub-title-light !text-[0.875rem]">Stock</span>
+                            <span class="!text-[0.875rem] font-medium">
                               {stock === 'Online' ? 'Available' : stock}
                             </span>
                           </div>
