@@ -62,7 +62,7 @@
     {#if isSinglePublication}
       <div class="overflow-hidden">
         <div class="-ml-[4rem] flex">
-          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList }}
+          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList, category }}
             <div class="flex-[0_0_100%] pl-[4rem]">
               {#if !!quote}
                 <Quote class="mb-section" {quote} />
@@ -71,6 +71,7 @@
               <PublicationImage
                 {name}
                 isSinglePublication={true}
+                caption={category?.name}
                 image={publicationImage} />
 
               <DescriptionBlock class="mt-section">
@@ -131,7 +132,7 @@
         on:emblaInit={onInit}
         class="overflow-hidden">
         <div class="-ml-[4rem] flex">
-          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList }}
+          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList, category }}
             <div class="flex-[0_0_100%] pl-[4rem]">
               {#if !!quote}
                 <Quote class="mb-section" {quote} />
@@ -142,6 +143,7 @@
                 {slideNext}
                 {slidePrev}
                 isSinglePublication={false}
+                caption={category?.name}
                 image={publicationImage} />
 
               <DescriptionBlock class="mt-section">

@@ -8,6 +8,7 @@
 
   export let image: SanityImageAssetDocument;
   export let name: string;
+  export let caption: string | undefined = undefined;
   export let slideNext: (() => void) | undefined = undefined;
   export let slidePrev: (() => void) | undefined = undefined;
   export let isSinglePublication: boolean = false;
@@ -25,12 +26,18 @@
     {/if}
     
     <div class="flex-1">
-      <SanityImage
-        class="h-auto max-h-[70vh] w-full object-contain "
-        src={image}
-        imageUrlBuilder={imageBuilder}
-        alt={name}
-        sizes="80vw" />
+      <div class="mx-auto w-fit max-w-full">
+        <SanityImage
+          class="h-auto max-h-[70vh] w-auto max-w-full object-contain"
+          src={image}
+          imageUrlBuilder={imageBuilder}
+          alt={name}
+          sizes="80vw" />
+
+        {#if !!caption}
+          <figurecaption class="caption mt-[0.5rem] block text-left">{caption}</figurecaption>
+        {/if}
+      </div>
     </div>
 
     {#if !isSinglePublication && slideNext}
@@ -51,4 +58,5 @@
       </div>
     {/if}
   </div>
+
 </section>

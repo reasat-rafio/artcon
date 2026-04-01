@@ -11,6 +11,7 @@ const query = (params: Partial<Record<string, string>>) =>
       ...publication->{
         _createdAt,
         name,
+        category->,
         isbn,
         subtitle,
         description,
@@ -25,6 +26,7 @@ const query = (params: Partial<Record<string, string>>) =>
     publications[]->{
       _createdAt,
       name,
+      category->,
       isbn,
       subtitle,
       description,
