@@ -17,8 +17,8 @@
 <section
   use:parallaxAnimation
   {...$$restProps}
-  class={cn('mx-auto max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
-  <div class="aspect-video h-full max-h-[40.938rem] overflow-hidden">
+  class={cn('mx-auto w-full max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
+  <div class="aspect-video h-full w-full max-h-[40.938rem] overflow-hidden">
     <div
       bind:this={youtubeWrapperEl}
       class="h-full w-full overflow-hidden rounded-xl bg-gray-300">
