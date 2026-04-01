@@ -122,6 +122,15 @@
     formPopupStore.setFormPopupVisibility(true);
   }
 
+  const isValidText = (value: unknown) =>
+    typeof value === 'string' && value.trim().length > 0 && value.trim().toLowerCase() !== 'null';
+
+  $: validPublishedBy = Array.isArray(publishedBy)
+    ? publishedBy.filter((item): item is string => isValidText(item))
+    : [];
+
+  $: hasValidIsbn = isValidText(isbn);
+
   function openImagePopup() {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(0);
@@ -186,22 +195,24 @@
                   let:Info>
                   <div class="space-y-[1.875rem]">
                     <Info>
-                      <div class="sub-title-light">
-                        Published by {#each publishedBy as publisher, index}
-                          <span class="title-regular">
-                            {publisher}{#if index !== publishedBy.length - 1}
-                              {#if index === publishedBy.length - 2}
-                                {' '}
-                                <span class="sub-title-light">and</span>
-                              {:else}
-                                ,
+                      {#if !!validPublishedBy.length}
+                        <div class="sub-title-light">
+                          Published by {#each validPublishedBy as publisher, index}
+                            <span class="title-regular">
+                              {publisher}{#if index !== validPublishedBy.length - 1}
+                                {#if index === validPublishedBy.length - 2}
+                                  {' '}
+                                  <span class="sub-title-light">and</span>
+                                {:else}
+                                  ,
+                                {/if}
                               {/if}
-                            {/if}
-                            {' '}
-                          </span>
-                        {/each}
-                      </div>
-                      {#if !!isbn}
+                              {' '}
+                            </span>
+                          {/each}
+                        </div>
+                      {/if}
+                      {#if hasValidIsbn}
                         <div class="!text-[0.75rem] font-bold">
                           ISBN {isbn}
                         </div>
