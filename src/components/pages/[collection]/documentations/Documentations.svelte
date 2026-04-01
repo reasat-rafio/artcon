@@ -112,7 +112,7 @@
                     {/if}
 
                     {#if !!isbn}
-                      <C.Subtitle class="!text-[0.75rem] font-bold">
+                      <C.Subtitle class="!text-[0.75rem]">
                         ISBN {isbn}
                       </C.Subtitle>
                     {/if}
