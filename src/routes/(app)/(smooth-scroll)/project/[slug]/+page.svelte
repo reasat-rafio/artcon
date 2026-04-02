@@ -80,9 +80,9 @@
           },
         }} />
     {:else if s._type === 'project.video'}
-      <Video class="pb-section" props={s} />
+      <Video props={s} />
     {:else if s._type === 'project.gallery'}
-      <Gallery class="pb-section" props={s} />
+      <Gallery props={s} />
     {/if}
   {/each}
 
