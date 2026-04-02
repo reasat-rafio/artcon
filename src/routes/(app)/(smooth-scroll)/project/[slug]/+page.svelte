@@ -69,7 +69,6 @@
       <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
     {:else if s._type === 'project.summary'}
       <Summary
-        class="pb-section"
         props={{
           ...s,
           descriptionBlock: {
