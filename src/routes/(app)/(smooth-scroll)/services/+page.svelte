@@ -53,7 +53,7 @@
   {#if !!page?.allServices?.sections?.length}
     <Services  bind:contextMessage services={page.allServices.sections} />
   {/if}
-  <Footer {footer} {contact} logo={logoDark} />
+  <Footer class="pt-section" {footer} {contact} logo={logoDark} />
 </div>
 
 {#if $formPopupStore.show}
