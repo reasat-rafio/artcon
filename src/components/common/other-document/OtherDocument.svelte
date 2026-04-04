@@ -59,7 +59,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-light-gray/40 pb-section pt-[2.625rem]">
+    class="container-primary border-t border-quick-silver/50 pb-section pt-[2.625rem]">
     <div class="mb-[2rem] flex items-center justify-between">
       <h2 class="head-4">{title}</h2>
       {#if showCarousel}
@@ -77,7 +77,7 @@
               options: { align: 'start', loop: false },
             }}>
             <div class="-ml-[1.563rem] flex">
-            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, documentationImages, invitationCardImage }}
+            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, exhibitionType, artistsCount, documentationImages, invitationCardImage }}
               {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
               {@const href = status === 'Upcoming' 
                 ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
@@ -94,7 +94,10 @@
                 <div class="space-y-[0.625rem]">
                   <header>
                     <h3 class="head-6 inline">{name}</h3>
-                    {#if !!subtitle}
+                    {#if exhibitionType === 'group'}
+                      <span class="head-8"> / </span>
+                      <h4 class="head-8 inline">{artistsCount ?? ''}</h4>
+                    {:else if !!subtitle}
                       <span class="head-8"> / </span>
                       <h4 class="head-8 inline">{subtitle}</h4>
                     {:else if !!type}
@@ -118,7 +121,7 @@
           </div>
         {:else}
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.563rem]">
-            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, documentationImages, invitationCardImage }}
+            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, exhibitionType, artistsCount, documentationImages, invitationCardImage }}
               {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
               {@const href = status === 'Upcoming' 
                 ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
@@ -133,7 +136,10 @@
                 <div class="space-y-[0.625rem]">
                   <header>
                     <h3 class="head-6 inline">{name}</h3>
-                    {#if !!subtitle}
+                    {#if exhibitionType === 'group'}
+                      <span class="head-8"> / </span>
+                      <h4 class="head-8 inline">{artistsCount ?? ''} Artists</h4>
+                    {:else if !!subtitle}
                       <span class="head-8"> / </span>
                       <h4 class="head-8 inline">{subtitle}</h4>
                     {:else if !!type}

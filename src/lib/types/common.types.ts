@@ -213,6 +213,8 @@ export interface CommonOtherExhibitionProps {
   startDate: string;
   endDate?: string;
   subtitle?: string;
+  exhibitionType?: 'solo' | 'group';
+  artistsCount?: number;
   type?: string | { name: string };
   documentationImages?: SanityImageAssetDocument[];
   invitationCardImage?: SanityImageAssetDocument;

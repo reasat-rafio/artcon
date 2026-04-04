@@ -26,18 +26,23 @@
 </script>
 
 <section>
-  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section">
+  <div class="container-primary xl:py-section pt-sm md:pt-[5rem]">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
 
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
-        <C.HeaderContainer class="mb-[20px] lg:mb-[40px] xl:mb-[50px] space-y-0">
-          <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
+        <C.HeaderContainer
+          class="mb-[20px] space-y-0 lg:mb-[40px] xl:mb-[50px]">
+          <C.Title class="!mb-0 !leading-none">
+            {descriptionBlock.gallery.name}
+          </C.Title>
         </C.HeaderContainer>
         {#if title}
-          <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{title}</C.Subtitle>
+          <C.Subtitle class="!mb-0 !mt-[10px] !leading-none">
+            {title}
+          </C.Subtitle>
         {/if}
       </svelte:fragment>
 
@@ -55,16 +60,17 @@
         {#if media.image}
           <figure class="w-full">
             <SanityImage
-              class="w-full h-auto object-cover rounded-[25px]"
+              class="h-auto w-full rounded-[25px] object-cover"
               src={media.image}
               alt={media.image?.alt || 'Services media'}
               imageUrlBuilder={imageBuilder}
-              sizes="100vw" />
+              style="aspect-ratio: 1320/743"
+              sizes="(min-width: 1024px) 1320px, 743px" />
           </figure>
         {:else if media.video}
           <figure class="w-full">
             <video
-              class="w-full h-auto object-cover rounded-[25px]"
+              class="h-auto w-full rounded-[25px] object-cover"
               width="100%"
               disablePictureInPicture
               controlsList="nodownload noplaybackrate"

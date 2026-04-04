@@ -29,17 +29,11 @@
   let contentBlockEl: HTMLDivElement;
   $: filteredCollections = collections;
   $: activeSearchParams = $page.url.searchParams.get('search');
-  $: activeSortParams = $page.url.searchParams.get('sort');
   $: activeArtistParams = $page.url.searchParams.get('artist');
   $: tags = uniqueTags(collections);
   $: activeSearchParams,
     activeArtistParams,
-    activeSortParams,
-    filterBySearchParams(
-      activeSearchParams,
-      activeSortParams,
-      activeArtistParams,
-    );
+    filterBySearchParams(activeSearchParams, activeArtistParams);
 
   $: sectionImages = sections.filter(
     ({ _type }) => _type === 'common.imageAsset',
@@ -59,14 +53,13 @@
 
   const filterBySearchParams = (
     activeSearchParams: string | null,
-    activeSortParams: string | null,
     activeArtistParams: string | null,
   ) => {
     uiStore.setPreventScrollToTop(true);
 
     let collectionsCopy = [...collections];
 
-    if (!activeSearchParams && !activeSortParams && !activeArtistParams) {
+    if (!activeSearchParams && !activeArtistParams) {
       filteredCollections = collectionsCopy;
       return;
     }
@@ -85,32 +78,6 @@
           collection.category?.slug?.current === activeSearchParams,
       );
       collectionsCopy = filteredCollection;
-    }
-
-    if (!!activeSortParams) {
-      switch (activeSortParams) {
-        case 'available':
-          collectionsCopy = collectionsCopy.filter(
-            ({ isAvailable }) => isAvailable === true,
-          );
-          break;
-        case 'artist-name':
-          collectionsCopy = collectionsCopy.sort((a, b) =>
-            a.artist.name.localeCompare(b.artist.name),
-          );
-          break;
-        case 'media':
-          collectionsCopy = collectionsCopy.sort((a, b) =>
-            a.media.localeCompare(b.media),
-          );
-          break;
-        case 'year':
-          collectionsCopy = collectionsCopy.sort((a, b) => +a.year - +b.year);
-          break;
-        default:
-          collectionsCopy = collections;
-          break;
-      }
     }
 
     filteredCollections = collectionsCopy;
@@ -133,9 +100,6 @@
     {activeArtistParams
       ? `${activeArtistParams}'s collection`
       : 'Our Collections'}
-  </svelte:fragment>
-  <svelte:fragment slot="sorting-dropdown" let:SortingDropdown>
-    <SortingDropdown />
   </svelte:fragment>
 </FilteringNavbar>
 <div bind:this={contentBlockEl} class="relative z-10 bg-white">

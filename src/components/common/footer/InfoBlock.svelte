@@ -23,7 +23,8 @@
       src="/icons/socials/black/{getSocialIconPath(type)}"
       alt="{type}'s icon" />
   </figure>
-  <div class="sub-title-light !leading-normal !text-eerie-black">
+  <div
+    class="sub-title-light !leading-normal !text-eerie-black [&_a]:!no-underline [&_a:hover]:!no-underline [&_a:focus]:!no-underline [&_a:active]:!no-underline">
     <PortableText components={{}} value={info} />
   </div>
 </div>

@@ -50,7 +50,7 @@
 
 {#if !!vrOrYtVideoSlider?.length}
   <section>
-  <div class="pt-section container-primary pb-sm md:pb-[4.94rem] {$$props.class}">
+  <div class="container-primary pb-sm md:py-section {$$props.class}">
       <div
         class="relative overflow-hidden"
         use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}

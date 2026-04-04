@@ -78,27 +78,27 @@
     
     <!-- Category/Type/Tag Badge -->
     {#if _type === 'publication' && type?.name}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {type.name}
       </span>
     {:else if _type === 'exhibition' && exhibitionType}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {typeof exhibitionType === 'string' ? exhibitionType : exhibitionType?.en}
       </span>
     {:else if _type === 'vr' && type?.name}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {type.name}
       </span>
     {:else if _type === 'collection' && tag?.name}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {tag.name}
       </span>
     {:else if _type === 'event' && tag?.name}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {tag.name}
       </span>
     {:else if _type === 'documentary' && type?.name}
-      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal backdrop-blur-sm drop-shadow-4xl">
+      <span class="inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-normal">
         {type.name}
       </span>
     {/if}

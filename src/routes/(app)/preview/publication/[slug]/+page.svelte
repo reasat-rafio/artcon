@@ -122,6 +122,15 @@
     formPopupStore.setFormPopupVisibility(true);
   }
 
+  const isValidText = (value: unknown) =>
+    typeof value === 'string' && value.trim().length > 0 && value.trim().toLowerCase() !== 'null';
+
+  $: validPublishedBy = Array.isArray(publishedBy)
+    ? publishedBy.filter((item): item is string => isValidText(item))
+    : [];
+
+  $: hasValidIsbn = isValidText(isbn);
+
   function openImagePopup() {
     lightboxStore.setLightboxVisibility(true);
     lightboxStore.setActiveIndex(0);
@@ -186,24 +195,26 @@
                   let:Info>
                   <div class="space-y-[1.875rem]">
                     <Info>
-                      <div class="sub-title-light">
-                        Published by {#each publishedBy as publisher, index}
-                          <span class="title-regular">
-                            {publisher}{#if index !== publishedBy.length - 1}
-                              {#if index === publishedBy.length - 2}
-                                {' '}
-                                <span class="sub-title-light">and</span>
-                              {:else}
-                                ,
+                      {#if !!validPublishedBy.length}
+                        <div class="sub-title-light !text-[0.875rem]">
+                          Published by {#each validPublishedBy as publisher, index}
+                            <span class="title-regular !text-[0.875rem] !font-medium">
+                              {publisher}{#if index !== validPublishedBy.length - 1}
+                                {#if index === validPublishedBy.length - 2}
+                                  {' '}
+                                  <span class="sub-title-light">and</span>
+                                {:else}
+                                  ,
+                                {/if}
                               {/if}
-                            {/if}
-                            {' '}
-                          </span>
-                        {/each}
-                      </div>
-                      {#if !!isbn}
-                        <div class="sub-title-light">
-                          ISBN {isbn}
+                              {' '}
+                            </span>
+                          {/each}
+                        </div>
+                      {/if}
+                      {#if hasValidIsbn}
+                        <div class="sub-title-light !text-[0.875rem]">
+                          ISBN <span class="!text-[0.875rem] font-medium">{isbn}</span>
                         </div>
                       {/if}
                     </Info>
@@ -212,10 +223,10 @@
                         <ul
                           class="mb-[1.875rem] mt-[1.875rem] space-y-[0.5rem]">
                           {#each creditList as { key, value }}
-                            <li class="sub-title-light">
-                              <span>{key}</span>
+                            <li class="sub-title-light !text-[0.875rem]">
+                              <span class="!text-[0.875rem]">{key}</span>
                               {' '}
-                              <span class="!font-normal">{value}</span>
+                              <span class="!text-[0.875rem] !font-medium">{value}</span>
                             </li>
                           {/each}
                         </ul>
@@ -223,13 +234,13 @@
                     {/if}
                     {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
                       <Info>
-                        <div class="sub-title-light">
+                        <div class="sub-title-light !text-[0.875rem]">
                           Price {#if !!prices?.discountPriceBDT}
                             <span
-                              class="!font-normal text-[#9B9B9B] line-through">
+                              class="!text-[0.875rem] !font-normal text-[#9B9B9B] line-through">
                               {prices.priceBDT}
                             </span>
-                            <span class="font-medium">
+                            <span class="!text-[0.875rem] font-medium">
                               <span>{prices.discountPriceBDT} BDT</span>
                               {#if prices.priceUSD}
                                 /
@@ -237,7 +248,7 @@
                               {/if}
                             </span>
                           {:else}
-                            <span class="font-medium">
+                            <span class="!text-[0.875rem] font-medium">
                               <span>{prices.priceBDT} BDT</span>
                               {#if prices.priceUSD}
                                 /
@@ -248,9 +259,9 @@
                         </div>
 
                         {#if stock !== 'Not Available'}
-                          <div class="title-light">
-                            <span class="sub-title-light">Stock</span>
-                            <span class="font-medium">
+                          <div class="title-light !text-[0.875rem]">
+                            <span class="sub-title-light !text-[0.875rem]">Stock</span>
+                            <span class="!text-[0.875rem] font-medium">
                               {stock === 'Online' ? 'Available' : stock}
                             </span>
                           </div>
@@ -313,7 +324,9 @@
                       className="min-w-[8.6875rem] leading-none capitalize px-[2.56rem] pt-[0.81rem] pb-[0.88rem]"
                       onClick={inquiryAction}
                       variant="tertiary">
-                      {stock === 'Available' || stock === 'Limited'
+                      {stock === 'Available' ||
+                      stock === 'Limited' ||
+                      stock === 'Pre-order'
                         ? 'Buy now'
                         : 'Inquiry'}
                     </Cta>

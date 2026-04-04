@@ -18,6 +18,12 @@
   let autoplayInstance: any;
   let hasStartedMoving = false;
 
+  const isValidText = (value: unknown) =>
+    typeof value === 'string' && value.trim().length > 0 && value.trim().toLowerCase() !== 'null';
+
+  const getValidList = (value: unknown) =>
+    Array.isArray(value) ? value.filter((item): item is string => isValidText(item)) : [];
+
   $: isSinglePublication = publications.length === 1;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
@@ -56,7 +62,7 @@
     {#if isSinglePublication}
       <div class="overflow-hidden">
         <div class="-ml-[4rem] flex">
-          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList }}
+          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList, category }}
             <div class="flex-[0_0_100%] pl-[4rem]">
               {#if !!quote}
                 <Quote class="mb-section" {quote} />
@@ -65,6 +71,7 @@
               <PublicationImage
                 {name}
                 isSinglePublication={true}
+                caption={category?.name}
                 image={publicationImage} />
 
               <DescriptionBlock class="mt-section">
@@ -76,23 +83,27 @@
                     </C.HeaderContainer>
 
                     <div>
-                      <C.Subtitle
-                        class="!text-[0.75rem] font-light  text-eerie-black">
-                        Published by
-                        {#each publishedBy as p, i}
-                          <div class="inline font-light">
-                             {#if i === publishedBy.length - 1 && publishedBy.length > 1}
-                              <span>and</span>
-                            {:else if i !== 0}
-                              ,
-                            {/if}
-                            <span class="!text-[0.875rem] font-normal">
-                              {p}
-                            </span>
-                          </div>
-                        {/each}
-                      </C.Subtitle>
-                      <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                      {#if !!getValidList(publishedBy).length}
+                        <C.Subtitle
+                          class="!text-[0.75rem] font-light  text-eerie-black">
+                          Published by
+                          {#each getValidList(publishedBy) as p, i}
+                            <div class="inline font-light">
+                               {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
+                                <span>and</span>
+                              {:else if i !== 0}
+                                ,
+                              {/if}
+                              <span class="!text-[0.875rem] font-normal">
+                                {p}
+                              </span>
+                            </div>
+                          {/each}
+                        </C.Subtitle>
+                      {/if}
+                      {#if isValidText(isbn)}
+                        <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                      {/if}
                     </div>
 
                     <Cta className="capitalize" href={exproleLink.href}>
@@ -121,7 +132,7 @@
         on:emblaInit={onInit}
         class="overflow-hidden">
         <div class="-ml-[4rem] flex">
-          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList }}
+          {#each publications as { quote, subtitle, isbn, description, exproleLink, name, publicationImage, publishedBy, associationsList, category }}
             <div class="flex-[0_0_100%] pl-[4rem]">
               {#if !!quote}
                 <Quote class="mb-section" {quote} />
@@ -132,6 +143,7 @@
                 {slideNext}
                 {slidePrev}
                 isSinglePublication={false}
+                caption={category?.name}
                 image={publicationImage} />
 
               <DescriptionBlock class="mt-section">
@@ -143,23 +155,27 @@
                     </C.HeaderContainer>
 
                     <div>
-                      <C.Subtitle
-                        class="!text-[0.75rem] font-light  text-eerie-black">
-                        Published by
-                        {#each publishedBy as p, i}
-                          <div class="inline font-light">
-                             {#if i === publishedBy.length - 1 && publishedBy.length > 1}
-                              <span>and</span>
-                            {:else if i !== 0}
-                              ,
-                            {/if}
-                            <span class="!text-[0.875rem] font-normal">
-                              {p}
-                            </span>
-                          </div>
-                        {/each}
-                      </C.Subtitle>
-                      <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                      {#if !!getValidList(publishedBy).length}
+                        <C.Subtitle
+                          class="!text-[0.75rem] font-light  text-eerie-black">
+                          Published by
+                          {#each getValidList(publishedBy) as p, i}
+                            <div class="inline font-light">
+                               {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
+                                <span>and</span>
+                              {:else if i !== 0}
+                                ,
+                              {/if}
+                              <span class="!text-[0.875rem] font-normal">
+                                {p}
+                              </span>
+                            </div>
+                          {/each}
+                        </C.Subtitle>
+                      {/if}
+                      {#if isValidText(isbn)}
+                        <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                      {/if}
                     </div>
 
                     <Cta className="capitalize" href={exproleLink.href}>

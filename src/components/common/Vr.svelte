@@ -19,9 +19,9 @@
 </script>
 
 <section
-  use:parallaxAnimation
   {...$$restProps}
-  class={cn('mx-auto max-w-[72.9375rem] translate-y-[120px]', $$props.class)}>
+  class={cn('mx-auto w-full max-w-[72.9375rem]', $$props.class)}>
+  <div use:parallaxAnimation class="translate-y-[120px]">
   {#if shouldShowCoverImage && !!coverImage}
     <div class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl">
       <SanityImage
@@ -52,6 +52,7 @@
       </div>
     </div>
   {/if}
+  </div>
   {#if !!caption}
     <span class="caption">{caption}</span>
   {/if}

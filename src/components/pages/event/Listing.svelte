@@ -12,7 +12,7 @@
   {#if !!list?.length}
     {#each list as { items, image }}
       <section
-        class="py-section container-primary lg:pr-[2rem] xl:pr-[4.375rem]">
+        class="py-section container-primary  ">
         <Cards {items} />
       </section>
 

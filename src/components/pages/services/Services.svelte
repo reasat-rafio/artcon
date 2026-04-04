@@ -31,11 +31,11 @@
 </script>
 
 <section class="{$$props.class}">
-  {#each services as item}
+  {#each services as item, idx}
     {#if isImageDivider(item)}
       <ImageAsset props={item} />
     {:else}
-      <div class="pt-section  container-primary space-y-sm md:space-y-0 xl:space-y-0">
+      <div class="{idx > 0 && idx < services.length - 1 && isImageDivider(services[idx - 1]) && isImageDivider(services[idx + 1]) ? 'py-section' : 'pt-section'} container-primary space-y-sm md:space-y-0 xl:space-y-0">
         <article class="space-y-sm md:space-y-0 xl:space-y-0">
           <DescriptionBlock>
             <svelte:fragment slot="intro" let:C>

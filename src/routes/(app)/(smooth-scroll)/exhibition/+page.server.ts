@@ -47,6 +47,10 @@ const query = groq`
         name,
         slug,
         subtitle,
+        "artistsCount": select(
+          exhibitionType == "group" => coalesce(count(sections[_type == "exhibition.team"][0].members), count(artists)),
+          count(artists)
+        ),
         startDate,
         endDate,
         exhibitionType,

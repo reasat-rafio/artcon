@@ -55,6 +55,9 @@ export interface Publication {
   quote?: Quote;
   publicationImage: SanityImageAssetDocument;
   name: string;
+  category?: {
+    name?: string;
+  };
   description: PortableTextBlock[];
   exproleLink: ExploreLink;
   isbn: string;

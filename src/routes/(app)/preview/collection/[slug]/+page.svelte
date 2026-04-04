@@ -179,10 +179,10 @@
                     <Info>
                       <ul class="space-y-[0.5rem]">
                         {#each associationsList as { key, value }}
-                          <li class="sub-title-light">
+                          <li class="font-light text-[14px]">
                             <span>{key}</span>
                             {' '}
-                            <span class="!font-normal">{value}</span>
+                            <span class="text-[14px] font-medium">{value}</span>
                           </li>
                         {/each}
                       </ul>
@@ -191,8 +191,8 @@
                   {#if !!stock}
                     <Info>
                       <div class="title-light mt-[0.27rem]">
-                        <span class="sub-title-light">Stock</span>
-                        <span class="font-medium">{stock}</span>
+                        <span class="font-light text-[14px]">Stock</span>
+                        <span class="text-[14px] font-medium">{stock}</span>
                       </div>
                     </Info>
                   {/if}
