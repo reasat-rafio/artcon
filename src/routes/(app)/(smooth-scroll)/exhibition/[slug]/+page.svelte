@@ -91,7 +91,7 @@
           },
         }} />
     {:else if s._type === 'exhibition.includedArtists'}
-      <IncludedArtists class="pb-section" props={{ ...s, artists }} />
+      <IncludedArtists props={{ ...s, artists }} />
     {:else if s._type === 'common.note'}
       <Note class="pb-section" props={s} />
     {:else if s._type === 'exhibition.publication' && !!publication}
@@ -99,7 +99,6 @@
     {:else if s._type === 'common.artwork'}
       {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
         <Artwork.default
-          class="pb-section"
           props={{
             ...s,
             artworks: s.artworks,

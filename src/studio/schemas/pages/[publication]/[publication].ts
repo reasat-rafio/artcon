@@ -48,8 +48,8 @@ const publication = {
     },
     {
       name: 'creditList',
-      title: 'Credit List',
-      description: 'Key-value pairs for credits like Author, Editor, Designer, etc.',
+      title: 'Associations List',
+      description: 'Key-value pairs for associations like Organised by, In collaboration with, etc.',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
     },
@@ -179,6 +179,8 @@ const publication = {
     },
     {
       name: 'associationsList',
+      title: 'Credit List',
+      description: 'Key-value pairs for credits like Author, Editor, Designer, etc.',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
       validation: (Rule: Rule) => Rule.required(),

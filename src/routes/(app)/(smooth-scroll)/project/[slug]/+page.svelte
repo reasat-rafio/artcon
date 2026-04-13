@@ -9,7 +9,7 @@
   import Summary from '@/components/pages/[project]/Summary.svelte';
   import Video from '@/components/pages/[project]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
+  import { calculateStatusBetweenDates, getYoutubeVideoSectionSpacingClass } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { ProjectDetailPageProps } from '@/lib/types/project-detail.types';
 
@@ -80,7 +80,14 @@
           },
         }} />
     {:else if s._type === 'project.video'}
-      <Video props={s} />
+      <Video
+        sectionSpacingClass={getYoutubeVideoSectionSpacingClass({
+          section: s,
+          index,
+          sections,
+          nonYoutubeSpacingClass: 'pb-sm md:py-section',
+        })}
+        props={s} />
     {:else if s._type === 'project.gallery'}
       <Gallery props={s} />
     {/if}

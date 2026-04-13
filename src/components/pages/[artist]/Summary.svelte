@@ -66,7 +66,7 @@
     </DescriptionBlock>
 
     <ParallaxScrollImage
-      class="mb-sm md:mb-[80px] xl:mb-[6.69rem]"
+    class="pb-section"
       on:triggerPopup={triggerPopup}
       disableParallaxOnDesktop={true}
       images={[
@@ -89,7 +89,7 @@
     {/if}
 
     {#if !!vr}
-      <VR {vr} />
+      <VR class="pb-section" {vr} />
     {/if}
   </div>
 </section>

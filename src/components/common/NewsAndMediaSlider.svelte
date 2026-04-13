@@ -19,10 +19,10 @@
   let carouselCanScrollNext: boolean;
   let autoplayInstance: any;
   let hasCompletedCycle = false;
-
-  $: slidesNumber =
+  
+  $: ITEMS_PER_SLIDE =
     innerWidth >= 1536 ? 6 : innerWidth >= 1280 ? 4 : innerWidth >= 768 ? 2 : 1;
-  $: chunks = chunkArray(newsAndMedia, slidesNumber);
+  $: chunks = chunkArray(newsAndMedia, ITEMS_PER_SLIDE);
   $: if (emblaApi) {
     emblaApi.on(
       'select',
@@ -63,6 +63,7 @@
 </script>
 
 <svelte:window bind:innerWidth />
+
 <div use:parallaxAnimation class={cn('translate-y-[120px]', $$props.class)}>
   <div id="news-and-media-slider">
     <div

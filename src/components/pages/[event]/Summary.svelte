@@ -17,7 +17,7 @@
 
   type Props = SummaryProps & {
     descriptionBlock: {
-      gallery: { name: string; location?: string; url?: string };
+      gallery?: { name: string; location?: string; url?: string };
       date: string;
       associationsList?: Association[];
       associationsButton?: Cta;
@@ -29,6 +29,10 @@
 
   export let props: Props;
   $: ({ quote, descriptionBlock, vrOrYtVideoSlider } = props);
+  $: gallery = descriptionBlock?.gallery;
+  $: galleryUrl =
+    gallery?.url ||
+    (gallery?.location?.startsWith('http') ? gallery.location : null);
 
   let emblaApi: EmblaCarouselType;
   let autoplayInstance: any;
@@ -67,7 +71,7 @@
 </script>
 
 <section>
-  <div class="pt-sm container-primary md:pt-[5rem] xl:pt-section">
+  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -75,18 +79,19 @@
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[1.875rem]">
-          {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
-          {#if galleryUrl}
+          {#if gallery?.name && galleryUrl}
             <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors">
-              <C.Title class="!leading-none !mb-0 hover:!text-gray-500">{descriptionBlock.gallery.name}</C.Title>
+              <C.Title class="!leading-none !mb-0 hover:!text-gray-500">{gallery.name}</C.Title>
             </a>
-          {:else}
-            <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
+          {:else if gallery?.name}
+            <C.Title class="!leading-none !mb-0">{gallery.name}</C.Title>
           {/if}
-          {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
-            <C.Subtitle class="!leading-none !mt-0 !mb-0">{descriptionBlock.gallery.location}</C.Subtitle>
+          {#if gallery?.location && !gallery.location.startsWith('http')}
+            <C.Subtitle class="!leading-none !mt-0 !mb-0">{gallery.location}</C.Subtitle>
           {/if}
-          <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
+          {#if descriptionBlock.date}
+            <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
+          {/if}
         </C.HeaderContainer>
         {#if !!descriptionBlock.associationsList?.length}
           <div class="mb-[1.875rem] space-y-[10px] lg:space-y-[13px]">

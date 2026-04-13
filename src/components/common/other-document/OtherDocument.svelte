@@ -96,7 +96,7 @@
                     <h3 class="head-6 inline">{name}</h3>
                     {#if exhibitionType === 'group'}
                       <span class="head-8"> / </span>
-                      <h4 class="head-8 inline">{artistsCount ?? ''}</h4>
+                      <h4 class="head-8 inline">{artistsCount ?? ''} Artists</h4>
                     {:else if !!subtitle}
                       <span class="head-8"> / </span>
                       <h4 class="head-8 inline">{subtitle}</h4>

@@ -11,7 +11,7 @@
   import Summary from '@/components/pages/[event]/Summary.svelte';
   import Video from '@/components/pages/[event]/Video.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
-  import { calculateStatusBetweenDates } from '@/lib/helper';
+  import { calculateStatusBetweenDates, getYoutubeVideoSectionSpacingClass } from '@/lib/helper';
   import type { PageProps } from '@/lib/types/common.types';
   import type { EventDetailPageProps } from '@/lib/types/event-detail.types';
 
@@ -54,7 +54,7 @@
 {#key $page.params.slug}
   <Seo {seo} siteOgImg={ogImage} />
   <Hero
-    currentSlug={slug.current}
+    currentSlug={slug?.current}
     props={{
       _type: 'common.hero',
       asset,
@@ -66,18 +66,26 @@
 
   <Share href="/event" {logoLight} {logoDark}>Our Event</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as props, index}
+  {#each sections ?? [] as props, index}
     {#if props._type === 'common.imageAsset'}
       <ImageAsset class="{index === 0 ? 'pb-section' : ''}" {props} />
     {:else if props._type === 'event.summary'}
-      <Summary
-        class="pb-section"
-        props={{
-          ...props,
-          descriptionBlock: { associationsList, socials, date, description, gallery },
-        }} />
+      <div>
+        <Summary
+          props={{
+            ...props,
+            descriptionBlock: { associationsList, socials, date, description, gallery },
+          }} />
+      </div>
     {:else if props._type === 'event.video'}
-      <Video class="pb-section" {props} />
+      <Video
+        sectionSpacingClass={getYoutubeVideoSectionSpacingClass({
+          section: props,
+          index,
+          sections: sections ?? [],
+          nonYoutubeSpacingClass: 'py-section',
+        })}
+        {props} />
     {:else if props._type === 'event.documentation'}
       <Documentation class="pb-section" {props} />
     {:else if props._type === 'event.gallery'}

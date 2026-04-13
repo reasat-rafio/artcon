@@ -8,6 +8,7 @@
   import Publication from '@/components/pages/[artist]/publication/Publication.svelte';
   import Share from '@/components/widgets/share/Share.svelte';
   import ArtworkItems from '@/components/common/artwork/ArtworkItems.svelte';
+  import { getYoutubeVideoSectionSpacingClass } from '@/lib/helper';
   import type { ArtistDetailPageProps, Publication as PublicationType } from '@/lib/types/artist-detail.types';
   import type { PageProps } from '@/lib/types/common.types';
 
@@ -64,13 +65,19 @@
         <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
       {:else if s._type === 'artist.summary'}
         <Summary
-          class="pb-section"
           props={{
             ...s,
             personalDocuments,
           }} />
       {:else if s._type === 'artist.video'}
-        <Video class="pb-section" props={s} />
+        <Video
+          sectionSpacingClass={getYoutubeVideoSectionSpacingClass({
+            section: s,
+            index,
+            sections: siteDocuments?.sections ?? [],
+            nonYoutubeSpacingClass: '',
+          })}
+          props={s} />
       {:else if s._type === 'common.artwork'}
         {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
           <Artwork.default

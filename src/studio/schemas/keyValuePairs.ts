@@ -18,6 +18,19 @@ const keyValuePairs = {
       type: 'image',
       title: 'Logo (Optional)',
       description: 'Logo for this association (fixed height, width adjusts automatically)',
+      hidden: ({
+        document,
+        parent,
+      }: {
+        document?: { _type?: string; creditList?: Array<{ _key?: string }> };
+        parent?: { _key?: string };
+      }) =>
+        !(
+          document?._type === 'publication' &&
+          Array.isArray(document.creditList) &&
+          typeof parent?._key === 'string' &&
+          document.creditList.some((item) => item?._key === parent._key)
+        ),
       options: { hotspot: true },
       fields: [
         {

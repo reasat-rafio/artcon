@@ -143,31 +143,12 @@ const exhibition = {
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
     },
-    {
-      name: 'associationsButton',
-      title: 'External link Button (Optional)',
-      type: 'cta',
-      description: 'Button to display below the associations list',
-    },
+  
     {
       title: 'Social Links',
       name: 'socials',
       type: 'array',
       of: [{ type: 'social' }],
-    },
-    {
-      title: 'Organised by',
-      name: 'organizedBy',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'List of organizations that organized this exhibition',
-    },
-    {
-      title: 'Published by',
-      name: 'publishedBy',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'List of organizations that published this exhibition',
     },
     {
       name: 'sections',

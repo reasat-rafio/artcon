@@ -85,6 +85,75 @@ export const calculateStatusBetweenDates = ({
   return { status, date };
 };
 
+type SectionWithType = {
+  _type?: string;
+};
+
+type VideoSectionLike = {
+  vrOrYtVideoSlider?: Array<{
+    _type?: string;
+  }>;
+};
+
+export function getYoutubeVideoSectionSpacingClass({
+  section,
+  index,
+  sections = [],
+  nonYoutubeSpacingClass = '',
+}: {
+  section: VideoSectionLike;
+  index: number;
+  sections?: SectionWithType[];
+  nonYoutubeSpacingClass?: string;
+}) {
+  const hasYoutubeVideo = !!section.vrOrYtVideoSlider?.some(
+    (video) => video._type === 'youtube',
+  );
+
+  if (!hasYoutubeVideo) {
+    return nonYoutubeSpacingClass;
+  }
+
+  const previousSection = index > 0 ? sections[index - 1] : undefined;
+  const nextSection = sections[index + 1];
+
+  const isPreviousImageDivider = previousSection?._type === 'common.imageAsset';
+  const isNextImageDivider = nextSection?._type === 'common.imageAsset';
+  const hasPreviousContentSection = !!previousSection && !isPreviousImageDivider;
+  const hasNextContentSection = !!nextSection && !isNextImageDivider;
+
+  const isTopWithoutImageDivider = !previousSection && hasNextContentSection;
+  const isBottomWithoutImageDivider = !nextSection && hasPreviousContentSection;
+  const isBetweenImageDividers = isPreviousImageDivider && isNextImageDivider;
+  const isBetweenContentSectionsWithoutDivider =
+    hasPreviousContentSection && hasNextContentSection;
+
+  // If this video block is the last section before footer, keep no section spacing.
+  if (!nextSection) {
+    return '';
+  }
+
+  if (isBetweenImageDividers) {
+    return 'py-section';
+  }
+
+  // If video is between two normal sections (no image divider), keep no section spacing.
+  if (isBetweenContentSectionsWithoutDivider) {
+    return '';
+  }
+
+  // If video comes after a non-image section, keep only bottom spacing.
+  if (hasPreviousContentSection || isBottomWithoutImageDivider) {
+    return 'pb-section';
+  }
+
+  if (isTopWithoutImageDivider) {
+    return 'pt-section';
+  }
+
+  return 'py-section';
+}
+
 export const isSoloExhibition = (
   artist: ArtistsProps,
 ): artist is SoloExhibitionProps => 'data' in artist;

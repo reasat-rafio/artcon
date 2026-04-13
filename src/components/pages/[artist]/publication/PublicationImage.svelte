@@ -35,7 +35,7 @@
           sizes="80vw" />
 
         {#if !!caption}
-          <figurecaption class="caption mt-[0.5rem] block text-left">{caption}</figurecaption>
+          <figurecaption class="caption block text-left">{caption}</figurecaption>
         {/if}
       </div>
     </div>

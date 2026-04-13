@@ -177,7 +177,7 @@
                   let:Info>
                   {#if !!associationsList?.length}
                     <Info>
-                      <ul class="space-y-[0.5rem]">
+                      <ul class="space-y-[0.2rem]">
                         {#each associationsList as { key, value }}
                           <li class="font-light text-[14px]">
                             <span>{key}</span>

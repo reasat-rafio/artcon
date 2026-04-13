@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { cn } from '@/lib/cn';
   import VR from '@/components/common/Vr.svelte';
   import Youtube from '@/components/common/Youtube.svelte';
   import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
@@ -10,6 +11,7 @@
   import { onDestroy } from 'svelte';
 
   export let props: VideoProps;
+  export let sectionSpacingClass = '';
   $: ({ vrOrYtVideoSlider } = props);
 
   let emblaApi: EmblaCarouselType;
@@ -38,7 +40,7 @@
   $: carouselOptions = {
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
-    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
+    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1
       ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
       : []
   };
@@ -50,7 +52,7 @@
 
 {#if !!vrOrYtVideoSlider?.length}
   <section>
-    <div class="pt-section container-primary pb-sm md:pb-[4.94rem] {$$props.class}">
+    <div class={cn('container-primary', sectionSpacingClass, $$props.class)}>
       <div
         class="relative overflow-hidden"
         use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
@@ -59,9 +61,13 @@
           {#each vrOrYtVideoSlider as props}
             <div class="flex-[0_0_100%] pl-[1.25rem]">
               {#if props._type === 'vr'}
-                <VR vr={props} />
+                <div class="pb-sm md:pb-[4.94rem]">
+                  <VR vr={props} />
+                </div>
               {:else if props._type === 'youtube'}
-                <Youtube yt={props} />
+                <div class="pb-sm md:pb-[4.94rem]">
+                  <Youtube yt={props} />
+                </div>
               {/if}
             </div>
           {/each}
