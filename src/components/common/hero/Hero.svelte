@@ -14,8 +14,10 @@
   export let currentSlug: string | undefined = undefined;
   export let status: 'Ongoing' | 'Upcoming' | 'Ended' | undefined = undefined;
   $: ({ subtitle, title, topTitle, asset, cta } = props);
-  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
-  $: ctaButtonText = status === 'Upcoming' ? 'Upcoming' : (cta?.title || 'Explore');
+  $: shouldShowCta =
+    !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
+  $: ctaButtonText =
+    status === 'Upcoming' ? 'Upcoming' : cta?.title || 'Explore';
 
   let innerWidth = 0;
   let titleEl: HTMLElement;
@@ -83,10 +85,10 @@
       class="relative z-30 mx-auto max-w-[76.3rem] space-y-[2.1875rem] px-[1rem] text-center text-white max-lg:px-[1rem]">
       <header class="space-y-[2.1875rem]">
         <div
-          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest overflow-visible whitespace-pre-wrap">
+          class="head-8 lg:head-7 overflow-visible whitespace-pre-wrap !font-medium !leading-[120%] !tracking-widest">
           {#if !!topTitle}
             <h3
-              class="translate-y-full !font-medium opacity-0 shadow-text-subtitle whitespace-pre-wrap"
+              class="shadow-text-subtitle translate-y-full whitespace-pre-wrap !font-medium uppercase opacity-0"
               bind:this={topTitleEl}>
               {topTitle}
             </h3>
@@ -95,10 +97,10 @@
           {/if}
         </div>
 
-        <div class="overflow-visible !leading-[100%] whitespace-pre-wrap">
+        <div class="overflow-visible whitespace-pre-wrap !leading-[100%]">
           <h1
             bind:this={titleEl}
-            class="head-1 translate-y-full !leading-tight max-lg:line-clamp-2 shadow-text-title whitespace-pre-wrap">
+            class="head-1 shadow-text-title translate-y-full whitespace-pre-wrap !leading-tight max-lg:line-clamp-2">
             {title}
           </h1>
         </div>
@@ -106,7 +108,9 @@
         <div
           class="head-3 overflow-visible whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
           {#if !!subtitle}
-            <h2 bind:this={subtitleEl} class="translate-y-full opacity-0 whitespace-pre-wrap shadow-text-subtitle">
+            <h2
+              bind:this={subtitleEl}
+              class="shadow-text-subtitle translate-y-full whitespace-pre-wrap opacity-0">
               {subtitle}
             </h2>
           {:else}

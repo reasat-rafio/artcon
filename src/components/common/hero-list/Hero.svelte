@@ -27,20 +27,20 @@
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
-    
+
     autoplayInstance = emblaApi.plugins()?.autoplay;
-    
+
     emblaApi.on('select', (e: EmblaCarouselType) => {
       const direction = DIRECTION_MAP[String(readDirection(e)) as '-1' | '1'];
       scrollDirection = direction as 'forward' | 'backward';
       activeBlockIndex = e.selectedScrollSnap();
-      
+
       const currentIndex = e.selectedScrollSnap();
-      
+
       if (currentIndex !== 0 && !hasStartedMoving) {
         hasStartedMoving = true;
       }
-      
+
       if (currentIndex === 0 && hasStartedMoving) {
         autoplayInstance?.stop();
       }
@@ -68,7 +68,7 @@
     }}>
     <div class="flex">
       {#each blocks as block, index}
-        <Block {index} {block} {activeBlockIndex} {scrollDirection} {currentSlug} />
+        <!-- <Block {index} {block} {activeBlockIndex} {scrollDirection} {currentSlug} /> -->
       {/each}
     </div>
   </div>

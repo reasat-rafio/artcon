@@ -73,67 +73,74 @@
       topTitle: _topTitle,
       subtitle: _subTitle,
     }} />
+
   <Share href="/exhibition" {logoLight} {logoDark}>Our Exhibition</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as s, index}
-    {#if s._type === 'common.imageAsset'}
-      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" props={s} />
-    {:else if s._type === 'exhibition.summary'}
-      <Summary
-        props={{
-          ...s,
-          descriptionBlock: {
-            date,
-            gallery,
-            description,
-            associationsList,
-            socials,
-          },
-        }} />
-    {:else if s._type === 'exhibition.includedArtists'}
-      <IncludedArtists class="pb-section" props={{ ...s, artists }} />
-    {:else if s._type === 'common.note'}
-      <Note class="pb-section" props={s} />
-    {:else if s._type === 'exhibition.publication' && !!publication}
-      <Publication class="pb-section" props={{ ...s, publication }} />
-    {:else if s._type === 'common.artwork'}
-      {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
-        <Artwork.default
-          class="pb-section"
+    {#each sections as s, index}
+      {#if s._type === 'common.imageAsset'}
+        <ImageAsset class={index === 0 ? 'pb-section' : ''} props={s} />
+      {:else if s._type === 'exhibition.summary'}
+        <Summary
           props={{
             ...s,
-            artworks: s.artworks,
-            artworkAtLast: true,
-            ctaLink: s.artworkLink?.href || `/exhibition/${slug.current}/collection`,
-            ctaTitle: s.artworkLink?.title,
+            descriptionBlock: {
+              date,
+              gallery,
+              description,
+              associationsList,
+              socials,
+            },
           }} />
-      {/await}
-      <div style="display: none;">Debug artworkLink: {JSON.stringify(s.artworkLink)}</div>
-      <div style="display: none;">Debug ctaLink: {s.artworkLink?.href || `/exhibition/${slug.current}/collection`}</div>
-      <div style="display: none;">Debug ctaTitle: {s.artworkLink?.title}</div>
-    {:else if s._type === 'exhibition.gallery'}
-      {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
-        <Gallery.default class="pb-section" props={s} />
-      {/await}
-    {:else if s._type === 'exhibition.newsAndMedia'}
-      {#await import('@/components/pages/[exhibition]/NewsAndMedia.svelte') then NewsAndMedia}
-        <NewsAndMedia.default class="pb-section" props={s} />
-      {/await}
-    {:else if s._type === 'exhibition.team' && exhibitionType === 'group'}
-      <div class="container-primary py-section">
-        <Team props={s} />
-      </div>
-    {/if}
-  {/each}
+      {:else if s._type === 'exhibition.includedArtists'}
+        <IncludedArtists class="pb-section" props={{ ...s, artists }} />
+      {:else if s._type === 'common.note'}
+        <Note class="pb-section" props={s} />
+      {:else if s._type === 'exhibition.publication' && !!publication}
+        <Publication class="pb-section" props={{ ...s, publication }} />
+      {:else if s._type === 'common.artwork'}
+        {#await import('@/components/common/artwork/Artwork.svelte') then Artwork}
+          <Artwork.default
+            class="pb-section"
+            props={{
+              ...s,
+              artworks: s.artworks,
+              artworkAtLast: true,
+              ctaLink:
+                s.artworkLink?.href || `/exhibition/${slug.current}/collection`,
+              ctaTitle: s.artworkLink?.title,
+            }} />
+        {/await}
+        <div style="display: none;">
+          Debug artworkLink: {JSON.stringify(s.artworkLink)}
+        </div>
+        <div style="display: none;">
+          Debug ctaLink: {s.artworkLink?.href ||
+            `/exhibition/${slug.current}/collection`}
+        </div>
+        <div style="display: none;">Debug ctaTitle: {s.artworkLink?.title}</div>
+      {:else if s._type === 'exhibition.gallery'}
+        {#await import('@/components/pages/[exhibition]/Gallery.svelte') then Gallery}
+          <Gallery.default class="pb-section" props={s} />
+        {/await}
+      {:else if s._type === 'exhibition.newsAndMedia'}
+        {#await import('@/components/pages/[exhibition]/NewsAndMedia.svelte') then NewsAndMedia}
+          <NewsAndMedia.default class="pb-section" props={s} />
+        {/await}
+      {:else if s._type === 'exhibition.team' && exhibitionType === 'group'}
+        <div class="container-primary py-section">
+          <Team props={s} />
+        </div>
+      {/if}
+    {/each}
 
-  {#if !!otherExhibitions?.length}
-    {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
-      <OthersDocument.default
-        urlPrefix="/exhibition"
-        title="Other Exhibitions"
-        data={otherExhibitions} />
-    {/await}
-  {/if}
+    {#if !!otherExhibitions?.length}
+      {#await import('@/components/common/other-document/OtherDocument.svelte') then OthersDocument}
+        <OthersDocument.default
+          urlPrefix="/exhibition"
+          title="Other Exhibitions"
+          data={otherExhibitions} />
+      {/await}
+    {/if}
 
     {#await import('@/components/common/footer/Footer.svelte') then Footer}
       <Footer.default {footer} {contact} logo={logoDark} />
