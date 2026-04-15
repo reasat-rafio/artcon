@@ -66,26 +66,31 @@
 
   <Share href="/event" {logoLight} {logoDark}>Our Event</Share>
   <div class="relative z-10 bg-white">
-  {#each sections as props, index}
-    {#if props._type === 'common.imageAsset'}
-      <ImageAsset class="{index === 0 ? 'pb-section' : ''}" {props} />
-    {:else if props._type === 'event.summary'}
-      <Summary
-        class="pb-section"
-        props={{
-          ...props,
-          descriptionBlock: { associationsList, socials, date, description, gallery },
-        }} />
-    {:else if props._type === 'event.video'}
-      <Video class="pb-section" {props} />
-    {:else if props._type === 'event.documentation'}
-      <Documentation class="pb-section" {props} />
-    {:else if props._type === 'event.gallery'}
-      <Gallery class="pb-section" {props} />
-    {:else if props._type === 'event.newsAndMedia'}
-      <NewsAndMedia class="pb-section" {props} />
-    {/if}
-  {/each}
+    {#each sections as props, index}
+      {#if props._type === 'common.imageAsset'}
+        <ImageAsset class={index === 0 ? 'pb-section' : ''} {props} />
+      {:else if props._type === 'event.summary'}
+        <Summary
+          props={{
+            ...props,
+            descriptionBlock: {
+              associationsList,
+              socials,
+              date,
+              description,
+              gallery,
+            },
+          }} />
+      {:else if props._type === 'event.video'}
+        <Video class="md:py-section py-sm" {props} />
+      {:else if props._type === 'event.documentation'}
+        <Documentation class="pb-section" {props} />
+      {:else if props._type === 'event.gallery'}
+        <Gallery class="pb-section" {props} />
+      {:else if props._type === 'event.newsAndMedia'}
+        <NewsAndMedia class="pb-section" {props} />
+      {/if}
+    {/each}
 
     {#if !!otherEvents?.length}
       <OthersDocument

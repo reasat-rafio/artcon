@@ -19,26 +19,30 @@
   let hasStartedMoving = false;
 
   const isValidText = (value: unknown) =>
-    typeof value === 'string' && value.trim().length > 0 && value.trim().toLowerCase() !== 'null';
+    typeof value === 'string' &&
+    value.trim().length > 0 &&
+    value.trim().toLowerCase() !== 'null';
 
   const getValidList = (value: unknown) =>
-    Array.isArray(value) ? value.filter((item): item is string => isValidText(item)) : [];
+    Array.isArray(value)
+      ? value.filter((item): item is string => isValidText(item))
+      : [];
 
   $: isSinglePublication = publications.length === 1;
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
-    
+
     autoplayInstance = emblaApi.plugins()?.autoplay;
-    
+
     emblaApi.on('select', () => {
       const currentIndex = emblaApi.selectedScrollSnap();
       const slideCount = emblaApi.scrollSnapList().length;
-      
+
       if (currentIndex !== 0 && !hasStartedMoving) {
         hasStartedMoving = true;
       }
-      
+
       if (currentIndex === 0 && hasStartedMoving) {
         autoplayInstance?.stop();
       }
@@ -54,11 +58,12 @@
 </script>
 
 <section bind:this={rootEl}>
-  <div class="container-primary pt-section relative border-t border-light-gray/40 {$$props.class}">
+  <div
+    class="container-primary pt-section relative border-t border-light-gray/40 {$$props.class}">
     <!-- {#if artistName}
       <h3 class="head-xl mb-md">{artistName}'s {publications.length > 1 ? 'publications' : 'publication'}</h3>
     {/if} -->
-    
+
     {#if isSinglePublication}
       <div class="overflow-hidden">
         <div class="-ml-[4rem] flex">
@@ -89,7 +94,7 @@
                           Published by
                           {#each getValidList(publishedBy) as p, i}
                             <div class="inline font-light">
-                               {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
+                              {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
                                 <span>and</span>
                               {:else if i !== 0}
                                 ,
@@ -102,13 +107,17 @@
                         </C.Subtitle>
                       {/if}
                       {#if isValidText(isbn)}
-                        <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                        <C.Subtitle class="!text-[0.75rem]">
+                          ISBN {isbn}
+                        </C.Subtitle>
                       {/if}
                     </div>
 
-                    <Cta className="capitalize" href={exproleLink.href}>
-                      {exproleLink.title}
-                    </Cta>
+                    {#if exproleLink?.title && exproleLink.href}
+                      <Cta className="capitalize" href={exproleLink.href}>
+                        {exproleLink.title}
+                      </Cta>
+                    {/if}
                   </div>
                 </svelte:fragment>
 
@@ -161,7 +170,7 @@
                           Published by
                           {#each getValidList(publishedBy) as p, i}
                             <div class="inline font-light">
-                               {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
+                              {#if i === getValidList(publishedBy).length - 1 && getValidList(publishedBy).length > 1}
                                 <span>and</span>
                               {:else if i !== 0}
                                 ,
@@ -174,13 +183,17 @@
                         </C.Subtitle>
                       {/if}
                       {#if isValidText(isbn)}
-                        <C.Subtitle class="!text-[0.75rem]">ISBN {isbn}</C.Subtitle>
+                        <C.Subtitle class="!text-[0.75rem]">
+                          ISBN {isbn}
+                        </C.Subtitle>
                       {/if}
                     </div>
 
-                    <Cta className="capitalize" href={exproleLink.href}>
-                      {exproleLink.title}
-                    </Cta>
+                    {#if exproleLink?.title && exproleLink.href}
+                      <Cta className="capitalize" href={exproleLink.href}>
+                        {exproleLink.title}
+                      </Cta>
+                    {/if}
                   </div>
                 </svelte:fragment>
 

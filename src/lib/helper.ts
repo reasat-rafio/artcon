@@ -47,8 +47,7 @@ export const calculateStatusBetweenDates = ({
   const isoEndDate = endDate ? DateTime.fromISO(endDate || '') : null;
 
   // Check if start and end dates are the same
-  const isSameDay =
-    isoEndDate && isoStartDate.hasSame(isoEndDate, 'day');
+  const isSameDay = isoEndDate && isoStartDate.hasSame(isoEndDate, 'day');
 
   if (isoEndDate && !isSameDay) {
     const formattedEndDate = isoEndDate.toFormat('d MMM, yyyy');

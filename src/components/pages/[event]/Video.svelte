@@ -8,6 +8,7 @@
   import emblaCarouselSvelte from 'embla-carousel-svelte';
   import Autoplay from 'embla-carousel-autoplay';
   import { onDestroy } from 'svelte';
+  import { cn } from '@/lib/cn';
 
   export let props: VideoProps;
   $: ({ vrOrYtVideoSlider } = props);
@@ -16,19 +17,19 @@
   let autoplayInstance: any;
   let hasStartedMoving = false;
   let carouselCanScroll = false;
-  
+
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     autoplayInstance = emblaApi.plugins()?.autoplay;
     carouselCanScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
-    
+
     emblaApi.on('select', () => {
       const currentIndex = emblaApi.selectedScrollSnap();
-      
+
       if (currentIndex !== 0 && !hasStartedMoving) {
         hasStartedMoving = true;
       }
-      
+
       if (currentIndex === 0 && hasStartedMoving) {
         autoplayInstance?.stop();
       }
@@ -38,9 +39,10 @@
   $: carouselOptions = {
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
-    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
-      : []
+    plugins:
+      vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1
+        ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+        : [],
   };
 
   onDestroy(() => {
@@ -50,11 +52,14 @@
 
 {#if !!vrOrYtVideoSlider?.length}
   <section>
-  <div class="container-primary pb-sm md:pb-section {$$props.class}">
+    <div class={cn('container-primary md:pb-section pb-sm', $$props.class)}>
       <div>
         <div
           class="relative overflow-hidden"
-          use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
+          use:emblaCarouselSvelte={{
+            plugins: carouselOptions.plugins,
+            options: carouselOptions,
+          }}
           on:emblaInit={onInit}>
           <div class="-ml-[1.25rem] flex">
             {#each vrOrYtVideoSlider as props}
@@ -70,7 +75,7 @@
         </div>
 
         <div
-          class="mx-auto flex max-w-[72.9375rem] translate-y-[20px] justify-center md:justify-end mt-[1rem] md:mt-0">
+          class="mx-auto mt-[1rem] flex max-w-[72.9375rem] translate-y-[20px] justify-center md:mt-0 md:justify-end">
           {#if carouselCanScroll}
             <nav class="flex gap-x-[0.62rem]">
               <button

@@ -59,7 +59,7 @@ export interface Publication {
     name?: string;
   };
   description: PortableTextBlock[];
-  exproleLink: ExploreLink;
+  exproleLink?: ExploreLink;
   isbn: string;
   slug: Slug;
   subtitle: string;

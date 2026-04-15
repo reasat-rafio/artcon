@@ -12,12 +12,20 @@
     quote,
     invitationCard,
     coverImage,
-    descriptionBlock: { description, name, author, cta, isbn, publishedBy, associationsList },
+    descriptionBlock: {
+      description,
+      name,
+      author,
+      cta,
+      isbn,
+      publishedBy,
+      associationsList,
+    },
   } = props);
 
   function handlePopupTrigger(e: CustomEvent<{ imageIndex: number }>) {
     const { imageIndex } = e.detail;
-    
+
     if (imageIndex === 0 && invitationCard?.fullInvitationCardImage) {
       imagePopupStore.setVisibility(true);
       imagePopupStore.setImage(
@@ -26,10 +34,7 @@
       );
     } else if (imageIndex === 1 && coverImage?.image) {
       imagePopupStore.setVisibility(true);
-      imagePopupStore.setImage(
-        coverImage.image,
-        coverImage.image?.caption,
-      );
+      imagePopupStore.setImage(coverImage.image, coverImage.image?.caption);
     }
   }
 </script>
@@ -75,7 +80,8 @@
                 <div class="space-y-[0.5rem]">
                   {#each associationsList as { key, value }}
                     <div>
-                      <C.Subtitle class="!text-[0.75rem] font-light text-eerie-black">
+                      <C.Subtitle
+                        class="!text-[0.75rem] font-light text-eerie-black">
                         {key}
                       </C.Subtitle>
                       <C.Subtitle class="!text-[0.875rem] font-normal">

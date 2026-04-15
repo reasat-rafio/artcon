@@ -25,10 +25,12 @@
     lightboxStore.setActiveIndex(index);
     lightboxStore.setHideThumbnails(false);
     lightboxStore.setAllImages(
-      customArtworks.map((artwork) => artwork.image as SanityImageAssetDocument)
+      customArtworks.map(
+        (artwork) => artwork.image as SanityImageAssetDocument,
+      ),
     );
     lightboxStore.setAllTitles(
-      customArtworks.map((artwork) => artwork.title || '')
+      customArtworks.map((artwork) => artwork.title || ''),
     );
   }
 
@@ -65,9 +67,14 @@
     <a
       href="/artist/{slug.current}"
       class="relative flex flex-col md:pr-[2rem] lg:mt-[0.938rem] 2xl:pr-[5.81rem]">
-      <header class="space-y-[0.4375rem] pb-[3.125rem]">
-        <h3 class="text-[1.375rem] font-optiberling-agency font-medium">{name}</h3>
-        <h4 class="text-[1.125rem] font-optiberling-agency font-medium text-sonic-silver">{tag.name}</h4>
+      <header class="space-y-[0.4375rem] pb-[1.5625rem]">
+        <h3 class="font-optiberling-agency text-[1.375rem] font-medium">
+          {name}
+        </h3>
+        <h4
+          class="font-optiberling-agency text-[1.125rem] font-medium text-sonic-silver">
+          {tag.name}
+        </h4>
       </header>
 
       <div class="block md:ml-auto">
@@ -75,7 +82,7 @@
           bind:this={artistImgEl}
           class="relative h-full w-full translate-y-[30px] overflow-hidden rounded-[1.25rem]">
           <SanityImage
-            class="aspect-square h-full w-full object-cover grayscale transition-all duration-600 hover:grayscale-0 hover:scale-105 md:max-h-[23.375rem] md:max-w-[23.375rem]"
+            class="duration-600 aspect-square h-full w-full object-cover grayscale transition-all hover:scale-105 hover:grayscale-0 md:max-h-[23.375rem] md:max-w-[23.375rem]"
             src={artistPortrait}
             sizes="(min-width: 1024px) 40vw, 100vw"
             alt={`${name} Portrait`}
@@ -90,8 +97,8 @@
             type="button"
             on:click={() => openImagePopup(index)}
             on:keydown={(e) => e.key === 'Enter' && openImagePopup(index)}
-            class="artworks relative translate-y-[30px] self-start rounded-[0.75rem] cursor-pointer md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
-            <figure class="overflow-hidden rounded-[0.75rem] group">
+            class="artworks relative translate-y-[30px] cursor-pointer self-start rounded-[0.75rem] md:pb-[3rem] md:pl-[1.5rem] md:pr-[1.5rem] md:pt-[1.5rem] xl:pb-[3rem] xl:pl-[2.5rem] xl:pr-[2.5rem] xl:pt-[2.5rem] 2xl:pb-[4.09rem] 2xl:pl-[3.37rem] 2xl:pr-[3.39rem] 2xl:pt-[3.35rem]">
+            <figure class="group overflow-hidden rounded-[0.75rem]">
               <SanityImage
                 class="aspect-square h-full w-full rounded-[0.75rem] object-cover transition-transform duration-300 group-hover:scale-110"
                 src={artwork.image}

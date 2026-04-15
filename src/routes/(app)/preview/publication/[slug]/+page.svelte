@@ -45,6 +45,8 @@
     apiKey,
   } = data);
 
+  $: console.log({ stock });
+
   let transitioningOut = false;
   let articleEl: HTMLElement;
   let contentEl: HTMLElement;
@@ -123,7 +125,9 @@
   }
 
   const isValidText = (value: unknown) =>
-    typeof value === 'string' && value.trim().length > 0 && value.trim().toLowerCase() !== 'null';
+    typeof value === 'string' &&
+    value.trim().length > 0 &&
+    value.trim().toLowerCase() !== 'null';
 
   $: validPublishedBy = Array.isArray(publishedBy)
     ? publishedBy.filter((item): item is string => isValidText(item))
@@ -198,7 +202,8 @@
                       {#if !!validPublishedBy.length}
                         <div class="sub-title-light !text-[0.875rem]">
                           Published by {#each validPublishedBy as publisher, index}
-                            <span class="title-regular !text-[0.875rem] !font-medium">
+                            <span
+                              class="title-regular !text-[0.875rem] !font-medium">
                               {publisher}{#if index !== validPublishedBy.length - 1}
                                 {#if index === validPublishedBy.length - 2}
                                   {' '}
@@ -214,7 +219,9 @@
                       {/if}
                       {#if hasValidIsbn}
                         <div class="sub-title-light !text-[0.875rem]">
-                          ISBN <span class="!text-[0.875rem] font-medium">{isbn}</span>
+                          ISBN <span class="!text-[0.875rem] font-medium">
+                            {isbn}
+                          </span>
                         </div>
                       {/if}
                     </Info>
@@ -226,12 +233,15 @@
                             <li class="sub-title-light !text-[0.875rem]">
                               <span class="!text-[0.875rem]">{key}</span>
                               {' '}
-                              <span class="!text-[0.875rem] !font-medium">{value}</span>
+                              <span class="!text-[0.875rem] !font-medium">
+                                {value}
+                              </span>
                             </li>
                           {/each}
                         </ul>
                       </Info>
                     {/if}
+
                     {#if prices?.priceBDT || prices?.discountPriceBDT || prices?.priceUSD}
                       <Info>
                         <div class="sub-title-light !text-[0.875rem]">
@@ -258,9 +268,11 @@
                           {/if}
                         </div>
 
-                        {#if stock !== 'Not Available'}
+                        {#if stock}
                           <div class="title-light !text-[0.875rem]">
-                            <span class="sub-title-light !text-[0.875rem]">Stock</span>
+                            <span class="sub-title-light !text-[0.875rem]">
+                              Stock
+                            </span>
                             <span class="!text-[0.875rem] font-medium">
                               {stock === 'Online' ? 'Available' : stock}
                             </span>
