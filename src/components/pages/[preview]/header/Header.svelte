@@ -25,12 +25,11 @@
       class={cn('mb-[0.62rem] text-eerie-black', {
         'cursor-pointer': !!link,
       })}>
-      <h2
-        class="head-4 !inline font-medium !leading-[115.5%] !text-eerie-black">
+      <h2 class="head-4 mb-2 font-medium !leading-[115.5%] !text-eerie-black">
         {title}
       </h2>
       {#if !!subtitle}
-        <h3 class="head-6 !inline !leading-none">{' '} / {subtitle}</h3>
+        <h3 class="head-6 mb-4 !leading-none">{' '} {subtitle}</h3>
       {/if}
     </header>
     {#if !!type}
