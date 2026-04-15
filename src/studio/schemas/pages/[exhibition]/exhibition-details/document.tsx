@@ -181,6 +181,7 @@ const exhibition = {
       subtitle: 'subtitle',
       type: 'type.name',
       exhibitionType: 'exhibitionType',
+      gallery: 'gallery.name',
     },
     prepare: ({
       title,
@@ -192,7 +193,9 @@ const exhibition = {
       startDate,
       endDate,
       exhibitionType,
+      gallery,
     }: PrepareProps & {
+      gallery: string;
       subtitle?: string;
       type?: string;
       exhibitionType?: 'solo' | 'group';
@@ -226,7 +229,7 @@ const exhibition = {
 
       return {
         title: `${title} | ${exhibitionTypeLabel}`,
-        subtitle: `${displaySubtitle} | ${dateRange}`,
+        subtitle: `${displaySubtitle} | ${gallery || 'Venue TBA'} | ${dateRange}`,
         media: image ? (
           image
         ) : webm && hevc ? (
