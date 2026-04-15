@@ -41,6 +41,7 @@ const query = (params: Partial<Record<string, string>>) =>
       "name": name.en,
       shortBio,
       born,
+      died,
       socials[]{
         ...,
         ${asset('icon')},

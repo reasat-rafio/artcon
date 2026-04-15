@@ -44,7 +44,13 @@
             <C.Subtitle
               class="!font-inter !text-[0.875rem] !normal-case !leading-none"
               variant="sm">
-              b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
+              {#if personalDocuments?.died}
+                {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
+                –
+                {DateTime.fromISO(personalDocuments.died).toFormat('yyyy')}
+              {:else}
+                b. {DateTime.fromISO(personalDocuments.born).toFormat('yyyy')}
+              {/if}
             </C.Subtitle>
           {/if}
         </C.HeaderContainer>

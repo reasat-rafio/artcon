@@ -100,6 +100,7 @@ export interface ArtistSummaryProps {
 
 export interface PersonalDocuments {
   born?: string;
+  died?: string;
   name: string;
   shortBio?: PortableTextBlock[];
   socials?: SocialProps[];
