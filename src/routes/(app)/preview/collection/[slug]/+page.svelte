@@ -177,9 +177,9 @@
                   let:Info>
                   {#if !!associationsList?.length}
                     <Info>
-                      <ul class="space-y-[0.5rem]">
+                      <ul class="space-y-[0.10rem]">
                         {#each associationsList as { key, value }}
-                          <li class="font-light text-[14px]">
+                          <li class="text-[14px] font-light">
                             <span>{key}</span>
                             {' '}
                             <span class="text-[14px] font-medium">{value}</span>
@@ -191,7 +191,7 @@
                   {#if !!stock}
                     <Info>
                       <div class="title-light mt-[0.27rem]">
-                        <span class="font-light text-[14px]">Stock</span>
+                        <span class="text-[14px] font-light">Stock</span>
                         <span class="text-[14px] font-medium">{stock}</span>
                       </div>
                     </Info>
@@ -251,7 +251,7 @@
                   <div
                     class="[&_div]:!head-4 mt-[2.5rem]"
                     data-load-animate="y">
-                    <Quote {quote} authorSize="24px" class="!translate-y-0" />
+                    <Quote {quote} smallAuthor class="!translate-y-0" />
                   </div>
                 {/if}
               </section>

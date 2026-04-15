@@ -4,8 +4,15 @@
   import type { Quote } from '@/lib/types/common.types';
 
   export let quote: Quote;
-  export let authorSize = '40px';
+  export let smallAuthor = false;
   $: ({ author, text, url } = quote);
+
+  $: authorClass = cn(
+    'block mt-[0.6rem]',
+    smallAuthor
+      ? 'text-lg md:text-xl lg:text-2xl'
+      : 'text-2xl md:text-3xl lg:text-[2.5rem]',
+  );
 </script>
 
 <section use:parallaxAnimation class={cn('max-w-[44.375rem] w-full translate-y-[120px]', $$props.class)}>
@@ -21,7 +28,7 @@
           <p class="inline">“{text}”</p>
         </blockquote>
         {#if !!author}
-          <div class="block" style="font-size: {authorSize}; margin-top:0.6rem;">
+          <div class={authorClass}>
             <p class="inline italic">– {author}</p>
           </div>
         {/if}
@@ -34,7 +41,7 @@
         <p class="inline">“{text}”</p>
       </blockquote>
       {#if !!author}
-        <div class="block" style="font-size: {authorSize}; margin-top:0.6rem;">
+        <div class={authorClass}>
           <p class="inline italic">– {author}</p>
         </div>
       {/if}

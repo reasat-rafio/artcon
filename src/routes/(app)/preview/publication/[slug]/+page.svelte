@@ -363,7 +363,7 @@
                   <div
                     class="[&_div]:!head-4 mt-[1.875rem]"
                     data-load-animate="y">
-                    <Quote {quote} authorSize="24px" class="!translate-y-0" />
+                    <Quote {quote} smallAuthor class="!translate-y-0" />
                   </div>
                 {/if}
               </section>
