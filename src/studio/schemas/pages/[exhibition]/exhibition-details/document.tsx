@@ -96,7 +96,8 @@ const exhibition = {
         layout: 'dropdown',
       },
       validation: (Rule: Rule) => Rule.required(),
-      description: 'This determines the exhibition type. "Group Exhibition Members" section will only show on website when "Group Exhibition" is selected.',
+      description:
+        'This determines the exhibition type. "Group Exhibition Members" section will only show on website when "Group Exhibition" is selected.',
     },
     {
       name: 'artists',
@@ -117,7 +118,8 @@ const exhibition = {
       type: 'reference',
       to: [{ type: 'exhibitionTag' }],
       validation: (Rule: Rule) => Rule.required(),
-      description: 'Select a tag for this exhibition (e.g., Solo Exhibition, Group Exhibition, etc.)',
+      description:
+        'Select a tag for this exhibition (e.g., Solo Exhibition, Group Exhibition, etc.)',
     },
     {
       title: 'Space / Gallery',
@@ -197,7 +199,6 @@ const exhibition = {
       hevc: 'asset.video.video_hevc.asset.url',
       subtitle: 'subtitle',
       type: 'type.name',
-      gallery: 'gallery.title',
       exhibitionType: 'exhibitionType',
     },
     prepare: ({
@@ -209,9 +210,12 @@ const exhibition = {
       type,
       startDate,
       endDate,
-      gallery,
       exhibitionType,
-    }: PrepareProps & { gallery: string; subtitle?: string; type?: string; exhibitionType?: 'solo' | 'group' }) => {
+    }: PrepareProps & {
+      subtitle?: string;
+      type?: string;
+      exhibitionType?: 'solo' | 'group';
+    }) => {
       // Determine exhibition type label based on exhibitionType field
       const exhibitionTypeLabel =
         exhibitionType === 'solo'
@@ -241,7 +245,7 @@ const exhibition = {
 
       return {
         title: `${title} | ${exhibitionTypeLabel}`,
-        subtitle: `${displaySubtitle} | ${gallery || 'Venue TBA'} | ${dateRange}`,
+        subtitle: `${displaySubtitle} | ${dateRange}`,
         media: image ? (
           image
         ) : webm && hevc ? (
