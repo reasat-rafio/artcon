@@ -48,8 +48,9 @@ const publication = {
     },
     {
       name: 'creditList',
-      title: 'Credit List',
-      description: 'Key-value pairs for credits like Author, Editor, Designer, etc.',
+      title: 'Associations List',
+      description:
+        'Key-value pairs for credits like Author, Editor, Designer, etc.',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
     },
@@ -92,7 +93,8 @@ const publication = {
     {
       name: 'externalLinkButton',
       title: 'External Linked Button',
-      description: 'This button will be shown when stock is set to "Online". It will replace the Buy Now/Inquiry button.',
+      description:
+        'This button will be shown when stock is set to "Online". It will replace the Buy Now/Inquiry button.',
       type: 'object',
       hidden: ({ parent }: any) => parent?.stock !== 'Online',
       fields: [
@@ -112,7 +114,8 @@ const publication = {
         {
           name: 'externalUrl',
           title: 'External URL',
-          description: 'The external URL where the button will redirect (must start with https:// or http://)',
+          description:
+            'The external URL where the button will redirect (must start with https:// or http://)',
           type: 'url',
           validation: (Rule: Rule) =>
             Rule.custom((externalUrl: string | undefined, context: any) => {
@@ -131,14 +134,16 @@ const publication = {
     {
       name: 'heroImageVideo',
       title: 'Hero Image / Video',
-      description: 'This image or video will be displayed on the publication hero carousel',
+      description:
+        'This image or video will be displayed on the publication hero carousel',
       type: 'sliderImageVideo',
       validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'thumbnail',
       title: 'Thumbnail (for listing card)',
-      description: 'This image will be displayed on the publication listing page card',
+      description:
+        'This image will be displayed on the publication listing page card',
       type: 'image',
       options: { hotspot: true },
       validation: (Rule: Rule) => Rule.required(),
@@ -177,8 +182,10 @@ const publication = {
       of: [{ type: 'block', lists: [], styles: [] }],
       // validation: (Rule: Rule) => Rule.required(),
     },
+
     {
       name: 'associationsList',
+      title: 'Credit List',
       type: 'array',
       of: [{ type: 'keyValuePairs' }],
       validation: (Rule: Rule) => Rule.required(),
