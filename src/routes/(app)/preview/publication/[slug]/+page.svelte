@@ -161,7 +161,7 @@
   ctas={[
     { href: '/', title: 'Back' },
     {
-      href: exproleLink?.href || '#',
+      href: exproleLink?.href,
       title: exproleLink?.title || 'Preview',
       newTab: true,
     },
