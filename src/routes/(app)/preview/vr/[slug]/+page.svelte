@@ -186,8 +186,10 @@
                 <div class="title-light">
                   {#if !!startDate && !!endDate && !!date}
                     <span class="font-light">{date}</span>
-                    <span class="px-[6px]">|</span>
-                    <span class="font-medium text-eerie-black">{status}</span>
+                    {#if status === 'Active'}
+                      <span class="px-[6px]">|</span>
+                      <span class="font-medium text-eerie-black">{status}</span>
+                    {/if}
                   {:else if !!status}
                     <span class="font-medium text-eerie-black">{status}</span>
                   {:else}
