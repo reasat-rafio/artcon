@@ -19,7 +19,6 @@ const query = (params: Partial<Record<string, string>>) =>
       url,
       ${asset('logo')}
     },
-    associationsButton,
     socials[]{
       _key,
       _type,

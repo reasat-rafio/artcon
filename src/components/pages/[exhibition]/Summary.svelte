@@ -31,8 +31,6 @@
       associationsList?: Association[];
       associationsButton?: Cta;
       socials?: SocialProps[];
-      organizedBy?: string[];
-      publishedBy?: string[];
       description?: PortableTextBlock[];
     };
     vrOrYtVideoSlider?: Array<VRType | YoutubeType>;
