@@ -12,7 +12,8 @@
   export let currentSlug: string | undefined = undefined;
 
   $: ({ title, subtitle, topTitle, asset, cta } = block);
-  $: shouldShowCta = !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
+  $: shouldShowCta =
+    !!cta?.title && !!cta?.href && (!currentSlug || cta?.slug !== currentSlug);
   let titleEl: HTMLElement;
   let assetEl: HTMLElement;
   let topTitleEl: HTMLElement;
@@ -103,15 +104,17 @@
       {#if !!topTitle}
         <h3
           bind:this={topTitleEl}
-          class="head-8 lg:head-7 !font-medium !leading-[120%] !tracking-widest shadow-text-subtitle whitespace-pre-wrap">
+          class="head-8 lg:head-7 shadow-text-subtitle whitespace-pre-wrap !font-medium uppercase !leading-[120%] !tracking-widest">
           {topTitle}
         </h3>
       {:else}
         <span class="invisible">""</span>
       {/if}
 
-      <div class="overflow-visible !leading-[100%] whitespace-pre-wrap">
-        <h1 bind:this={titleEl} class="head-1 !leading-tight max-lg:line-clamp-2 shadow-text-title whitespace-pre-wrap">
+      <div class="overflow-visible whitespace-pre-wrap !leading-[100%]">
+        <h1
+          bind:this={titleEl}
+          class="head-1 shadow-text-title whitespace-pre-wrap !leading-tight max-lg:line-clamp-2">
           {title}
         </h1>
       </div>
@@ -119,7 +122,9 @@
       <div
         class="head-3 overflow-hidden whitespace-pre-wrap !leading-[115.5%] !tracking-[0.045rem]">
         {#if !!subtitle}
-          <h2 class="whitespace-pre-wrap shadow-text-subtitle" bind:this={subtitleEl}>
+          <h2
+            class="shadow-text-subtitle whitespace-pre-wrap"
+            bind:this={subtitleEl}>
             {subtitle}
           </h2>
         {:else}
