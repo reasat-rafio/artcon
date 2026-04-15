@@ -227,8 +227,7 @@
                     </Info>
                     {#if !!creditList?.length}
                       <Info>
-                        <ul
-                          class="mb-[1.875rem] mt-[1.875rem] space-y-[0.5rem]">
+                        <ul class="space-y-[0.5rem]">
                           {#each creditList as { key, value }}
                             <li class="sub-title-light !text-[0.875rem]">
                               <span class="!text-[0.875rem]">{key}</span>

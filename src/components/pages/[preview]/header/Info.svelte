@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { twMerge } from 'tailwind-merge';
+  import { cn } from '@/lib/cn';
 </script>
 
 <div
   data-load-animate="y"
-  class={twMerge('space-y-[0.38rem] text-eerie-black ', $$props.class)}>
+  class={cn('space-y-[0.38rem] text-eerie-black ', $$props.class)}>
   <slot />
 </div>
