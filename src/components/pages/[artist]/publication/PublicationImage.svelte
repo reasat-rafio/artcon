@@ -26,18 +26,18 @@
     {/if}
     
     <div class="flex-1">
-      <div class="mx-auto w-fit max-w-full">
+      <figure class="mx-auto w-fit max-w-full">
         <SanityImage
-          class="h-auto max-h-[70vh] w-auto max-w-full object-contain"
+          class="h-auto max-h-[70vh] w-auto max-w-full rounded-xl object-contain"
           src={image}
           imageUrlBuilder={imageBuilder}
           alt={name}
           sizes="80vw" />
 
         {#if !!caption}
-          <figurecaption class="caption mt-[0.5rem] block text-left">{caption}</figurecaption>
+          <figurecaption class="caption text-left">{caption}</figurecaption>
         {/if}
-      </div>
+      </figure>
     </div>
 
     {#if !isSinglePublication && slideNext}
