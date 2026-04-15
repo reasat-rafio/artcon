@@ -13,6 +13,7 @@ type PrepareProps = SanityDefaultPreviewProps & {
   startDate: string;
   endDate?: string;
   tagName: string;
+  gallery: string;
 };
 
 const event = {
@@ -87,7 +88,8 @@ const event = {
       type: 'reference',
       to: [{ type: 'eventTag' }],
       validation: (Rule: Rule) => Rule.required(),
-      description: 'Category of the event (e.g., Auction, Book launch). The status (Upcoming/Ongoing/Ended) is automatically calculated from the dates.',
+      description:
+        'Category of the event (e.g., Auction, Book launch). The status (Upcoming/Ongoing/Ended) is automatically calculated from the dates.',
     },
     {
       title: 'Space / Gallery',
@@ -142,6 +144,7 @@ const event = {
       hevc: 'asset.video.video_hevc.asset.url',
       artists: 'artists',
       tagName: 'tag.name',
+      gallery: 'gallery.name',
     },
     prepare: ({
       title,
@@ -151,10 +154,11 @@ const event = {
       startDate,
       endDate,
       tagName,
+      gallery,
     }: PrepareProps) => {
       return {
         title: title,
-        subtitle: `${tagName} | ${formatDate(startDate)} ${
+        subtitle: `${tagName} | ${gallery || 'Venue TBA'} | ${formatDate(startDate)} ${
           endDate ? ` - ${formatDate(endDate)}` : ''
         }`,
         media: image ? (
