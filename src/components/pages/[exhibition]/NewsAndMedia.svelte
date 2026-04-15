@@ -40,7 +40,7 @@
         class="container-primary xl:pr-[4.375rem]"
         let:chunk
         {newsAndMedia}>
-        {#each chunk as { image, link, subtitle, title }, index (image.asset?._id || link || index)}
+        {#each chunk as { image, link, subtitle, title }}
           <Card
             el="a"
             href={link}
