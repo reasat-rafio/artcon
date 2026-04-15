@@ -1,0 +1,97 @@
+<script lang="ts">
+  import VR from '@/components/common/Vr.svelte';
+  import Youtube from '@/components/common/Youtube.svelte';
+  import ChevronLeftRounded from '@/components/icons/ChevronLeftRounded.svelte';
+  import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
+  import type { VideoProps } from '@/lib/types/exhibition-detail.types';
+  import type { EmblaCarouselType } from 'embla-carousel';
+  import emblaCarouselSvelte from 'embla-carousel-svelte';
+  import Autoplay from 'embla-carousel-autoplay';
+  import { onDestroy } from 'svelte';
+  import { cn } from '@/lib/cn';
+
+  export let props: VideoProps;
+  $: ({ vrOrYtVideoSlider } = props);
+
+  let emblaApi: EmblaCarouselType;
+  let autoplayInstance: any;
+  let hasStartedMoving = false;
+  let carouselCanScroll = false;
+
+  const onInit = (event: CustomEvent<EmblaCarouselType>) => {
+    emblaApi = event.detail;
+    autoplayInstance = emblaApi.plugins()?.autoplay;
+    carouselCanScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
+
+    emblaApi.on('select', () => {
+      const currentIndex = emblaApi.selectedScrollSnap();
+
+      if (currentIndex !== 0 && !hasStartedMoving) {
+        hasStartedMoving = true;
+      }
+
+      if (currentIndex === 0 && hasStartedMoving) {
+        autoplayInstance?.stop();
+      }
+    });
+  };
+
+  $: carouselOptions = {
+    watchDrag: false,
+    loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
+    plugins:
+      vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1
+        ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+        : [],
+  };
+
+  onDestroy(() => {
+    autoplayInstance?.stop();
+  });
+</script>
+
+{#if !!vrOrYtVideoSlider?.length}
+  <section>
+    <div class={cn('container-primary md:pb-section pb-sm', $$props.class)}>
+      <div>
+        <div
+          class="relative overflow-hidden"
+          use:emblaCarouselSvelte={{
+            plugins: carouselOptions.plugins,
+            options: carouselOptions,
+          }}
+          on:emblaInit={onInit}>
+          <div class="-ml-[1.25rem] flex">
+            {#each vrOrYtVideoSlider as video}
+              <div class="flex-[0_0_100%] pl-[1.25rem]">
+                {#if video._type === 'vr'}
+                  <VR vr={video} />
+                {:else if video._type === 'youtube'}
+                  <Youtube yt={video} />
+                {/if}
+              </div>
+            {/each}
+          </div>
+        </div>
+
+        <div
+          class="mx-auto mt-[1rem] flex max-w-[72.9375rem] translate-y-[20px] justify-center md:mt-0 md:justify-end">
+          {#if carouselCanScroll}
+            <nav class="flex gap-x-[0.62rem]">
+              <button
+                aria-label="Scroll to previous slide"
+                on:click={() => emblaApi?.scrollPrev()}>
+                <ChevronLeftRounded />
+              </button>
+              <button
+                aria-label="Scroll to next slide"
+                on:click={() => emblaApi?.scrollNext()}>
+                <ChevronRightRounded />
+              </button>
+            </nav>
+          {/if}
+        </div>
+      </div>
+    </div>
+  </section>
+{/if}

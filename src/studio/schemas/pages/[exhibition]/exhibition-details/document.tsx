@@ -178,6 +178,7 @@ const exhibition = {
       validation: (Rule: Rule) => Rule.required().min(1),
       of: [
         { type: 'exhibition.summary' },
+        { type: 'exhibition.video' },
         { type: 'common.imageAsset' },
         { type: 'exhibition.includedArtists' },
         { type: 'common.note' },

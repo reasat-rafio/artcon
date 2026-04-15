@@ -69,6 +69,7 @@ type Section =
   | CommonImageAsset
   | CommonNoteProps
   | SummaryProps
+  | VideoProps
   | PublicationProps
   | CommonArtworkSectionProps
   | IncludedArtistsProps
@@ -115,6 +116,12 @@ export interface SummaryProps {
   _key: string;
   _type: 'exhibition.summary';
   quote?: Quote;
+  vrOrYtVideoSlider?: VrOrYtVideoSlider[];
+}
+
+export interface VideoProps {
+  _key: string;
+  _type: 'exhibition.video';
   vrOrYtVideoSlider?: VrOrYtVideoSlider[];
 }
 

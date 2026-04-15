@@ -5,6 +5,7 @@
   import Hero from '@/components/common/hero/Hero.svelte';
   import Note from '@/components/pages/[exhibition]/Note.svelte';
   import Summary from '@/components/pages/[exhibition]/Summary.svelte';
+  import Video from '@/components/pages/[exhibition]/Video.svelte';
   import IncludedArtists from '@/components/pages/[exhibition]/included-artists/IncludedArtists.svelte';
   import Publication from '@/components/pages/[exhibition]/publication/Publication.svelte';
   import Team from '@/components/pages/[exhibition]/team/Team.svelte';
@@ -91,6 +92,8 @@
               socials,
             },
           }} />
+      {:else if s._type === 'exhibition.video'}
+        <Video class="pb-section" props={s} />
       {:else if s._type === 'exhibition.includedArtists'}
         <IncludedArtists class="pb-section" props={{ ...s, artists }} />
       {:else if s._type === 'common.note'}
