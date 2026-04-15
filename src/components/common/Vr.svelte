@@ -14,44 +14,49 @@
     showLoading = false;
   }
 
+  $: console.log({ url, caption });
+
   // Show cover image if VR is inactive or temporarily inactive
-  $: shouldShowCoverImage = isActive === 'inactive' || isActive === 'temporarily-inactive';
+  $: shouldShowCoverImage =
+    isActive === 'inactive' || isActive === 'temporarily-inactive';
 </script>
 
 <section
   {...$$restProps}
   class={cn('mx-auto w-full max-w-[72.9375rem]', $$props.class)}>
   <div use:parallaxAnimation class="translate-y-[120px]">
-  {#if shouldShowCoverImage && !!coverImage}
-    <div class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl">
-      <SanityImage
-        src={coverImage}
-        sizes="(min-width: 1024px) 50vw, 100vw"
-        class="h-full w-full object-cover"
-        imageUrlBuilder={imageBuilder}
-        alt="VR cover image" />
-    </div>
-  {:else}
-    <div class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl">
-      <iframe
-        on:load={onIframeLoad}
-        allowfullscreen
-        class={cn(
-          'h-full w-full overflow-hidden bg-gray-300',
-          showLoading && 'invisible',
-        )}
-        src={url}
-        title={caption || 'Virtual Reality Experience'} />
-
+    {#if shouldShowCoverImage && !!coverImage}
       <div
-        class={cn(
-          'absolute inset-0 flex h-full w-full animate-pulse items-center justify-center bg-gray-300',
-          { hidden: !showLoading },
-        )}>
-        <span class="title-regular">Loading...</span>
+        class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl">
+        <SanityImage
+          src={coverImage}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          class="h-full w-full object-cover"
+          imageUrlBuilder={imageBuilder}
+          alt="VR cover image" />
       </div>
-    </div>
-  {/if}
+    {:else}
+      <div
+        class="relative aspect-video h-full max-h-[40.938rem] w-full overflow-hidden rounded-xl">
+        <iframe
+          on:load={onIframeLoad}
+          allowfullscreen
+          class={cn(
+            'h-full w-full overflow-hidden bg-gray-300',
+            showLoading && 'invisible',
+          )}
+          src={url}
+          title={caption || 'Virtual Reality Experience'} />
+
+        <div
+          class={cn(
+            'absolute inset-0 flex h-full w-full animate-pulse items-center justify-center bg-gray-300',
+            { hidden: !showLoading },
+          )}>
+          <span class="title-regular">Loading...</span>
+        </div>
+      </div>
+    {/if}
   </div>
   {#if !!caption}
     <span class="caption">{caption}</span>

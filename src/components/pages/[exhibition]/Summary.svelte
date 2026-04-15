@@ -6,7 +6,13 @@
   import ChevronRightRounded from '@/components/icons/ChevronRightRounded.svelte';
   import DescriptionBlock from '@/components/ui/description-block/DescriptionBlock.svelte';
   import PortableText from '@/lib/portable-text/PortableText.svelte';
-  import type { Association, SocialProps, Cta, VR as VRType, Youtube as YoutubeType } from '@/lib/types/common.types';
+  import type {
+    Association,
+    SocialProps,
+    Cta,
+    VR as VRType,
+    Youtube as YoutubeType,
+  } from '@/lib/types/common.types';
   import { imageBuilder } from '@/lib/sanity/sanityClient';
   import type {
     Gallery,
@@ -39,19 +45,19 @@
   let autoplayInstance: any;
   let hasStartedMoving = false;
   let carouselCanScroll = false;
-  
+
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     emblaApi = event.detail;
     autoplayInstance = emblaApi.plugins()?.autoplay;
     carouselCanScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
-    
+
     emblaApi.on('select', () => {
       const currentIndex = emblaApi.selectedScrollSnap();
-      
+
       if (currentIndex !== 0 && !hasStartedMoving) {
         hasStartedMoving = true;
       }
-      
+
       if (currentIndex === 0 && hasStartedMoving) {
         autoplayInstance?.stop();
       }
@@ -61,18 +67,22 @@
   $: carouselOptions = {
     watchDrag: false,
     loop: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1,
-    plugins: vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1 
-      ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
-      : []
+    plugins:
+      vrOrYtVideoSlider && vrOrYtVideoSlider.length > 1
+        ? [Autoplay({ delay: 6000, stopOnInteraction: false, jump: false })]
+        : [],
   };
 
   onDestroy(() => {
     autoplayInstance?.stop();
   });
+
+  $: console.log({ vrOrYtVideoSlider });
 </script>
 
 <section>
-  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
+  <div
+    class="container-primary xl:pt-section pt-sm md:pt-[5rem] {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -80,18 +90,34 @@
     <DescriptionBlock class="mb-section">
       <svelte:fragment slot="intro" let:C>
         <C.HeaderContainer class="mb-[1.875rem] space-y-0">
-          {@const galleryUrl = descriptionBlock.gallery.url || (descriptionBlock.gallery.location?.startsWith('http') ? descriptionBlock.gallery.location : null)}
+          {@const galleryUrl =
+            descriptionBlock.gallery.url ||
+            (descriptionBlock.gallery.location?.startsWith('http')
+              ? descriptionBlock.gallery.location
+              : null)}
           {#if galleryUrl}
-            <a href={galleryUrl} target="_blank" rel="noopener noreferrer" class="cursor-pointer transition-colors">
-              <C.Title class="!leading-none !mb-0 hover:!text-gray-500">{descriptionBlock.gallery.name}</C.Title>
+            <a
+              href={galleryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cursor-pointer transition-colors">
+              <C.Title class="!mb-0 !leading-none hover:!text-gray-500">
+                {descriptionBlock.gallery.name}
+              </C.Title>
             </a>
           {:else}
-            <C.Title class="!leading-none !mb-0">{descriptionBlock.gallery.name}</C.Title>
+            <C.Title class="!mb-0 !leading-none">
+              {descriptionBlock.gallery.name}
+            </C.Title>
           {/if}
           {#if descriptionBlock.gallery.location && !descriptionBlock.gallery.location.startsWith('http')}
-            <C.Subtitle class="!leading-none !mt-0 !mb-0">{descriptionBlock.gallery.location}</C.Subtitle>
+            <C.Subtitle class="!mb-0 !mt-0 !leading-none">
+              {descriptionBlock.gallery.location}
+            </C.Subtitle>
           {/if}
-          <C.Subtitle class="!mt-[10px] !leading-none !mb-0">{descriptionBlock.date}</C.Subtitle>
+          <C.Subtitle class="!mb-0 !mt-[10px] !leading-none">
+            {descriptionBlock.date}
+          </C.Subtitle>
         </C.HeaderContainer>
         {#if !!descriptionBlock?.associationsList?.length}
           <div class="mb-[1.875rem] space-y-[10px] lg:space-y-[13px]">
@@ -105,15 +131,18 @@
                 </C.Subtitle>
                 {#if logo}
                   <div class="mb-2 flex items-center">
-                    <img 
+                    <img
                       src={imageBuilder.image(logo).height(50).url()}
-                      alt={logo.alt || key} 
-                      class="h-[40px] lg:h-[50px] w-auto object-contain"
-                    />
+                      alt={logo.alt || key}
+                      class="h-[40px] w-auto object-contain lg:h-[50px]" />
                   </div>
                 {/if}
                 {#if url}
-                  <a href={url} target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cursor-pointer hover:underline">
                     <C.Subtitle el="div" variant="sm">{value}</C.Subtitle>
                   </a>
                 {:else}
@@ -126,9 +155,13 @@
         {#if descriptionBlock.associationsButton}
           <a
             href={descriptionBlock.associationsButton.href}
-            target="{descriptionBlock.associationsButton.href.startsWith('http') ? '_blank' : '_self'}"
-            rel="{descriptionBlock.associationsButton.href.startsWith('http') ? 'noopener noreferrer' : ''}"
-            class="mt-[20px] inline-block rounded-full border border-black bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 hover:bg-black hover:text-black lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
+            target={descriptionBlock.associationsButton.href.startsWith('http')
+              ? '_blank'
+              : '_self'}
+            rel={descriptionBlock.associationsButton.href.startsWith('http')
+              ? 'noopener noreferrer'
+              : ''}
+            class="border-black hover:bg-black hover:text-black mt-[20px] inline-block rounded-full border bg-transparent px-[30px] py-[10px] text-sm font-medium text-gray-600 transition-all duration-300 lg:mt-[30px] lg:px-[40px] lg:py-[12px] lg:text-base">
             {descriptionBlock.associationsButton.title}
           </a>
         {/if}
@@ -155,7 +188,10 @@
         <div>
           <div
             class="relative overflow-hidden"
-            use:emblaCarouselSvelte={{ plugins: carouselOptions.plugins, options: carouselOptions }}
+            use:emblaCarouselSvelte={{
+              plugins: carouselOptions.plugins,
+              options: carouselOptions,
+            }}
             on:emblaInit={onInit}>
             <div class="-ml-[1.25rem] flex">
               {#each vrOrYtVideoSlider as video}
@@ -171,7 +207,7 @@
           </div>
 
           <div
-            class="mx-auto flex max-w-[72.9375rem] translate-y-[20px] justify-center md:justify-end mt-[1rem] md:mt-0">
+            class="mx-auto mt-[1rem] flex max-w-[72.9375rem] translate-y-[20px] justify-center md:mt-0 md:justify-end">
             {#if carouselCanScroll}
               <nav class="flex gap-x-[0.62rem]">
                 <button
