@@ -3,6 +3,18 @@
 import { orderRankField } from '@sanity/orderable-document-list';
 import { BsFillPostageFill } from 'react-icons/bs';
 import type { DefaultPreviewProps, Rule } from 'sanity';
+import type { SanityAssetDocument } from '@sanity/client';
+import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+
+interface AssetFieldProps {
+  parent: {
+    image: SanityAsset;
+    video: {
+      video_webm: SanityAssetDocument;
+      video_hevc: SanityAssetDocument;
+    };
+  };
+}
 
 const publication = {
   name: 'publication',
@@ -134,10 +146,54 @@ const publication = {
     {
       name: 'heroImageVideo',
       title: 'Hero Image / Video',
-      description:
-        'This image or video will be displayed on the publication hero carousel',
-      type: 'sliderImageVideo',
+      type: 'object',
+      description: 'Please provide input in only one of the following fields',
       validation: (Rule: Rule) => Rule.required(),
+      fields: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          hidden: ({ parent }: AssetFieldProps) => !!parent?.video?.video_webm,
+          options: {
+            hotspot: true,
+          },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              description: 'Important for SEO and accessibility',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+        {
+          name: 'video',
+          type: 'object',
+          hidden: ({ parent }: AssetFieldProps) => !!parent?.image?.asset,
+          fields: [
+            {
+              name: 'video_webm',
+              type: 'file',
+              title: 'WebM',
+              options: {
+                accept: 'video/webm,video/x-matroska',
+              },
+              validation: (Rule: Rule) => Rule.required(),
+            },
+            {
+              name: 'video_hevc',
+              type: 'file',
+              title: 'MOV - HEVC',
+              options: {
+                accept: 'video/quicktime,video/mp4',
+              },
+              validation: (Rule: Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'thumbnail',
