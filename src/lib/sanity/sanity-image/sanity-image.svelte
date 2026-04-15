@@ -103,7 +103,7 @@
 <style>
   img {
     opacity: var(--initial-opacity);
-    transition: opacity 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
     height: 100%;
     width: 100%;
   }

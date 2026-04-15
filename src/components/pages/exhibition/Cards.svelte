@@ -16,7 +16,10 @@
   )}>
   {#each items as { name, slug, tag, type, asset, _id, subtitle, startDate, endDate, exhibitionType, artistsCount } (_id)}
     {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
-    {@const cardHref = status === 'Upcoming' ? `/preview/exhibition/${slug.current}` : `/exhibition/${slug.current}`}
+    {@const cardHref =
+      status === 'Upcoming'
+        ? `/preview/exhibition/${slug.current}`
+        : `/exhibition/${slug.current}`}
     <div animate:flip={{ duration: 500 }} in:fade>
       <Card
         el="a"
@@ -24,8 +27,7 @@
         class="flex flex-col gap-y-[1.25rem]"
         let:Asset
         let:Title
-        let:Container
-        let:Subtitle>
+        let:Container>
         <div class="relative overflow-hidden rounded-[12px]">
           <Asset {asset} />
         </div>
@@ -36,7 +38,7 @@
               class="inline text-[1rem] font-medium tracking-[0.02rem] text-eerie-black">
               /
               {#if exhibitionType === 'group'}
-                {artistsCount ?? ''} Artists 
+                {artistsCount ?? ''} Artists
               {:else if exhibitionType === 'solo'}
                 {typeof type === 'string' ? type : type.name}
               {:else if subtitle}
@@ -49,11 +51,12 @@
             </h4>
           </div>
           <div class="flex justify-between">
-            <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+            <div class="font-inter text-[14px] font-[300] text-sonic-silver">
               {tag.name}
             </div>
             {#if startDate}
-              <span class="font-inter text-sonic-silver pr-1 text-[14px] font-[300]">
+              <span
+                class="pr-1 font-inter text-[14px] font-[300] text-sonic-silver">
                 {calculateStatusBetweenDates({ startDate, endDate }).date}
               </span>
             {/if}
@@ -63,4 +66,3 @@
     </div>
   {/each}
 </div>
-

@@ -68,7 +68,12 @@
     }}>
     <div class="flex">
       {#each blocks as block, index}
-        <!-- <Block {index} {block} {activeBlockIndex} {scrollDirection} {currentSlug} /> -->
+        <Block
+          {index}
+          {block}
+          {activeBlockIndex}
+          {scrollDirection}
+          {currentSlug} />
       {/each}
     </div>
   </div>

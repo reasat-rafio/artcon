@@ -11,8 +11,7 @@
 <div>
   {#if !!list?.length}
     {#each list as { items, image }}
-      <section
-        class="py-section container-primary  ">
+      <section class="py-section container-primary">
         <Cards {items} />
       </section>
 

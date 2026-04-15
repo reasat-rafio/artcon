@@ -16,8 +16,7 @@
   {#if !!image}
     <SanityImage
       draggable={false}
-      class="h-full w-full object-cover transition-transform ease-in-out hover:scale-105"
-      style="transition-duration: 600ms;"
+      class="h-full w-full object-cover transition hover:scale-105"
       lqip
       sizes="100vw"
       alt={image.alt}
