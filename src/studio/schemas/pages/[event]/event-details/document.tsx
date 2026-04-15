@@ -112,30 +112,10 @@ const event = {
       // validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'associationsButton',
-      title: 'External link Button (Optional)',
-      type: 'cta',
-      description: 'Button to display below the associations list',
-    },
-    {
       title: 'Social Links',
       name: 'socials',
       type: 'array',
       of: [{ type: 'social' }],
-    },
-    {
-      title: 'Organised by',
-      name: 'organizedBy',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'List of organizations that organized this event',
-    },
-    {
-      title: 'Published by',
-      name: 'publishedBy',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'List of organizations that published this event',
     },
     {
       name: 'sections',

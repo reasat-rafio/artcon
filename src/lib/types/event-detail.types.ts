@@ -23,7 +23,6 @@ export interface EventDetailPageProps {
   topTitle?: string;
   cta?: Cta;
   associationsList?: Association[];
-  associationsButton?: Cta;
   socials?: SocialProps[];
   description?: PortableTextBlock[];
   endDate?: string;
