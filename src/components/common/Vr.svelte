@@ -14,8 +14,6 @@
     showLoading = false;
   }
 
-  $: console.log({ url, caption });
-
   // Show cover image if VR is inactive or temporarily inactive
   $: shouldShowCoverImage =
     isActive === 'inactive' || isActive === 'temporarily-inactive';

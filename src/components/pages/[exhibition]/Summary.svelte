@@ -74,8 +74,6 @@
   onDestroy(() => {
     autoplayInstance?.stop();
   });
-
-  $: console.log({ vrOrYtVideoSlider });
 </script>
 
 <section>

@@ -24,14 +24,20 @@
   } as const;
 
   $: if (emblaApi) {
-    emblaApi.on('select', ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
-    emblaApi.on('resize', ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
-      carouselCanScrollNext = canScrollNext();
-      carouselCanScrollPrev = canScrollPrev();
-    });
+    emblaApi.on(
+      'select',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
+    emblaApi.on(
+      'resize',
+      ({ canScrollNext, canScrollPrev }: EmblaCarouselType) => {
+        carouselCanScrollNext = canScrollNext();
+        carouselCanScrollPrev = canScrollPrev();
+      },
+    );
   }
 
   data.sort((a, b) => {
@@ -59,7 +65,7 @@
 
 <section>
   <div
-    class="container-primary border-t border-quick-silver/50 pb-section pt-[2.625rem]">
+    class="container-primary pb-section border-t border-quick-silver/50 pt-[2.625rem]">
     <div class="mb-[2rem] flex items-center justify-between">
       <h2 class="head-4">{title}</h2>
       {#if showCarousel}
@@ -77,58 +83,74 @@
               options: { align: 'start', loop: false },
             }}>
             <div class="-ml-[1.563rem] flex">
-            {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, exhibitionType, artistsCount, documentationImages, invitationCardImage }}
-              {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
-              {@const href = status === 'Upcoming' 
-                ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
-                : `${urlPrefix}/${slug.current}`}
-              <a
-                href={href}
-                class="flex-[0_0_100%] pl-[1.563rem] md:flex-[0_0_50%] xl:flex-[0_0_33.333%]">
-                <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  <div class="absolute h-full w-full transition-transform duration-500 hover:scale-105">
-                    <Asset {asset} />
+              {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, exhibitionType, artistsCount, documentationImages, invitationCardImage }}
+                {@const { status } = calculateStatusBetweenDates({
+                  startDate,
+                  endDate,
+                })}
+                {@const href =
+                  status === 'Upcoming'
+                    ? `/preview/${urlPrefix.slice(1)}/${slug.current}`
+                    : `${urlPrefix}/${slug.current}`}
+                <a
+                  {href}
+                  class="flex-[0_0_100%] pl-[1.563rem] md:flex-[0_0_50%] xl:flex-[0_0_33.333%]">
+                  <div
+                    class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-[0.75rem]">
+                    <div
+                      class="absolute h-full w-full transition-transform duration-500 hover:scale-105">
+                      <Asset {asset} />
+                    </div>
                   </div>
-                </div>
 
-                <div class="space-y-[0.625rem]">
-                  <header>
-                    <h3 class="head-6 inline">{name}</h3>
-                    {#if exhibitionType === 'group'}
-                      <span class="head-8"> / </span>
-                      <h4 class="head-8 inline">{artistsCount ?? ''}</h4>
-                    {:else if !!subtitle}
-                      <span class="head-8"> / </span>
-                      <h4 class="head-8 inline">{subtitle}</h4>
-                    {:else if !!type}
-                      <span class="head-8"> / </span>
-                      <h4 class="head-8 inline">
-                        {#if typeof type === 'string'}
-                          {type}
-                        {:else}
-                          {type.name}
-                        {/if}
-                      </h4>
-                    {/if}
-                  </header>
-                  <h4 class="font-inter text-sonic-silver text-[14px] font-[300]">
-                    {tag.name}
-                  </h4>
-                </div>
-              </a>
-            {/each}
+                  <div class="space-y-[0.625rem]">
+                    <header>
+                      <h3 class="head-6 inline">{name}</h3>
+                      {#if exhibitionType === 'group'}
+                        <span class="head-8">/</span>
+                        <h4 class="head-8 inline">
+                          {artistsCount ?? ''} Artists
+                        </h4>
+                      {:else if !!subtitle}
+                        <span class="head-8">/</span>
+                        <h4 class="head-8 inline">{subtitle}</h4>
+                      {:else if !!type}
+                        <span class="head-8">/</span>
+                        <h4 class="head-8 inline">
+                          {#if typeof type === 'string'}
+                            {type}
+                          {:else}
+                            {type.name}
+                          {/if}
+                        </h4>
+                      {/if}
+                    </header>
+                    <h4
+                      class="font-inter text-[14px] font-[300] text-sonic-silver">
+                      {tag.name}
+                    </h4>
+                  </div>
+                </a>
+              {/each}
             </div>
           </div>
         {:else}
-          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[1.563rem]">
+          <div
+            class="grid grid-cols-1 gap-[1.563rem] md:grid-cols-2 xl:grid-cols-3">
             {#each data as { slug, type, name, asset, tag, subtitle, startDate, endDate, exhibitionType, artistsCount, documentationImages, invitationCardImage }}
-              {@const { status } = calculateStatusBetweenDates({ startDate, endDate })}
-              {@const href = status === 'Upcoming' 
-                ? `/preview/${urlPrefix.slice(1)}/${slug.current}` 
-                : `${urlPrefix}/${slug.current}`}
-              <a href={href}>
-                <div class="relative mb-[1.25rem] overflow-hidden rounded-[0.75rem] aspect-square">
-                  <div class="absolute h-full w-full transition-transform duration-600 hover:scale-105">
+              {@const { status } = calculateStatusBetweenDates({
+                startDate,
+                endDate,
+              })}
+              {@const href =
+                status === 'Upcoming'
+                  ? `/preview/${urlPrefix.slice(1)}/${slug.current}`
+                  : `${urlPrefix}/${slug.current}`}
+              <a {href}>
+                <div
+                  class="relative mb-[1.25rem] aspect-square overflow-hidden rounded-[0.75rem]">
+                  <div
+                    class="duration-600 absolute h-full w-full transition-transform hover:scale-105">
                     <Asset {asset} />
                   </div>
                 </div>
@@ -137,13 +159,15 @@
                   <header>
                     <h3 class="head-6 inline">{name}</h3>
                     {#if exhibitionType === 'group'}
-                      <span class="head-8"> / </span>
-                      <h4 class="head-8 inline">{artistsCount ?? ''} Artists</h4>
+                      <span class="head-8">/</span>
+                      <h4 class="head-8 inline">
+                        {artistsCount ?? ''} Artists
+                      </h4>
                     {:else if !!subtitle}
-                      <span class="head-8"> / </span>
+                      <span class="head-8">/</span>
                       <h4 class="head-8 inline">{subtitle}</h4>
                     {:else if !!type}
-                      <span class="head-8"> / </span>
+                      <span class="head-8">/</span>
                       <h4 class="head-8 inline">
                         {#if typeof type === 'string'}
                           {type}
@@ -153,7 +177,8 @@
                       </h4>
                     {/if}
                   </header>
-                  <div class="font-inter text-sonic-silver text-[14px] font-[300]">
+                  <div
+                    class="font-inter text-[14px] font-[300] text-sonic-silver">
                     {tag.name}
                   </div>
                 </div>
@@ -161,29 +186,29 @@
             {/each}
           </div>
         {/if}
-        </div>
       </div>
-
-      {#if showCarousel}
-        <nav
-          class="mt-[2.38rem] flex items-center justify-center gap-x-[0.62rem] lg:mt-[1.57rem] lg:justify-end">
-          <button
-            aria-label="Scroll to previous slide"
-            disabled={!carouselCanScrollPrev}
-            class:opacity-50={!carouselCanScrollPrev}
-            class:cursor-not-allowed={!carouselCanScrollPrev}
-            on:click={() => emblaApi.scrollPrev()}>
-            <ChevronLeftRounded />
-          </button>
-          <button
-            aria-label="Scroll to next slide"
-            disabled={!carouselCanScrollNext}
-            class:opacity-50={!carouselCanScrollNext}
-            class:cursor-not-allowed={!carouselCanScrollNext}
-            on:click={() => emblaApi.scrollNext()}>
-            <ChevronRightRounded />
-          </button>
-        </nav>
-      {/if}
     </div>
+
+    {#if showCarousel}
+      <nav
+        class="mt-[2.38rem] flex items-center justify-center gap-x-[0.62rem] lg:mt-[1.57rem] lg:justify-end">
+        <button
+          aria-label="Scroll to previous slide"
+          disabled={!carouselCanScrollPrev}
+          class:opacity-50={!carouselCanScrollPrev}
+          class:cursor-not-allowed={!carouselCanScrollPrev}
+          on:click={() => emblaApi.scrollPrev()}>
+          <ChevronLeftRounded />
+        </button>
+        <button
+          aria-label="Scroll to next slide"
+          disabled={!carouselCanScrollNext}
+          class:opacity-50={!carouselCanScrollNext}
+          class:cursor-not-allowed={!carouselCanScrollNext}
+          on:click={() => emblaApi.scrollNext()}>
+          <ChevronRightRounded />
+        </button>
+      </nav>
+    {/if}
+  </div>
 </section>
