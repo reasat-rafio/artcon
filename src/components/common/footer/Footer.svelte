@@ -38,8 +38,12 @@
             <a
               class="font-inter text-[12px] font-normal leading-[120%] text-quick-silver transition-all duration-300 hover:text-dark-gunmetal"
               href={externalUrl || pageUrl}
-              target={externalUrl && externalUrl.startsWith('http') ? '_blank' : undefined}
-              rel={externalUrl && externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined}>
+              target={externalUrl && externalUrl.startsWith('http')
+                ? '_blank'
+                : undefined}
+              rel={externalUrl && externalUrl.startsWith('http')
+                ? 'noopener noreferrer'
+                : undefined}>
               {title}
             </a>
           {/each}
@@ -47,7 +51,7 @@
       </div>
 
       <div
-        class="max-lg:pb-[2.56rem] font-light 3xl:translate-x-[10px] 3xl:translate-y-[10px]">
+        class="font-light max-lg:pb-[2.56rem] 3xl:translate-x-[10px] 3xl:translate-y-[10px]">
         <Address {contact} />
       </div>
 
@@ -56,8 +60,12 @@
           <a
             class="title-regular text-quick-silver"
             href={externalUrl || pageUrl}
-            target={externalUrl && externalUrl.startsWith('http') ? '_blank' : undefined}
-            rel={externalUrl && externalUrl.startsWith('http') ? 'noopener noreferrer' : undefined}>
+            target={externalUrl && externalUrl.startsWith('http')
+              ? '_blank'
+              : undefined}
+            rel={externalUrl && externalUrl.startsWith('http')
+              ? 'noopener noreferrer'
+              : undefined}>
             {title}
           </a>
         {/each}
@@ -66,7 +74,10 @@
 
     <div
       class="flex flex-col justify-between border-t border-quick-silver/50 pb-[1.5rem] pt-[1.56rem] max-lg:space-y-[0.63rem] lg:flex-row lg:items-center lg:pb-[2.5rem] lg:pt-[2rem]">
-      <p class="font-inter font-light text-[12px] leading-[120%] text-quick-silver">© ARTCON {currentYear}</p>
+      <p
+        class="font-inter text-[12px] font-light leading-[120%] text-quick-silver">
+        © ARTCON 2014 – {currentYear}
+      </p>
       <p
         class="font-inter text-[12px] font-light leading-[120%] text-quick-silver">
         Developed by <a
