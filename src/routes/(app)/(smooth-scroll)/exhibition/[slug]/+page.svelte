@@ -93,7 +93,7 @@
             },
           }} />
       {:else if s._type === 'exhibition.video'}
-        <Video class="pb-section" props={s} />
+        <Video class="py-section" props={s} />
       {:else if s._type === 'exhibition.includedArtists'}
         <IncludedArtists class="pb-section" props={{ ...s, artists }} />
       {:else if s._type === 'common.note'}
