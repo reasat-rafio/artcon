@@ -4,6 +4,7 @@ import {
   IoLogoInstagram,
   IoLogoYoutube,
   IoShareSocial,
+  IoGlobe,
 } from 'react-icons/io5';
 import { BiLogoGmail } from 'react-icons/bi';
 import { AiOutlinePhone } from 'react-icons/ai';
@@ -20,7 +21,15 @@ const social = {
       title: 'Type',
       type: 'string',
       options: {
-        list: ['facebook', 'instagram', 'youtube', 'mail', 'phone', 'whatsapp'],
+        list: [
+          'facebook',
+          'instagram',
+          'youtube',
+          'mail',
+          'phone',
+          'whatsapp',
+          'web',
+        ],
       },
       validation: (Rule: Rule) => Rule.required(),
     },
@@ -49,7 +58,9 @@ const social = {
                     ? FaWhatsapp
                     : type === 'phone'
                       ? AiOutlinePhone
-                      : IoShareSocial,
+                      : type === 'web'
+                        ? IoGlobe
+                        : IoShareSocial,
       };
     },
   },

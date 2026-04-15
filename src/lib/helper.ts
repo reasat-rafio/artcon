@@ -120,6 +120,8 @@ export const getSocialIconPath = (type: Type) => {
       return 'whatsapp.svg';
     case 'youtube':
       return 'youtube.svg';
+    case 'web':
+      return 'web.svg';
     default:
       return null;
   }

@@ -53,6 +53,7 @@ export type Type =
   | 'youtube'
   | 'mail'
   | 'whatsapp'
+  | 'web'
   | 'phone';
 
 export interface SocialProps {
