@@ -10,6 +10,7 @@
   } from '@/lib/types/artist-detail.types';
   import { DateTime } from 'luxon';
   import lightboxStore from '@/store/lightbox';
+  import { cn } from '@/lib/cn';
 
   export let props: ArtistSummaryProps & {
     personalDocuments: PersonalDocuments;
@@ -27,7 +28,8 @@
 </script>
 
 <section>
-  <div class="container-primary pt-sm md:pt-[5rem] xl:pt-section {$$props.class}">
+  <div
+    class="container-primary xl:pt-section pt-sm md:pt-[5rem] {$$props.class}">
     {#if !!quote}
       <Quote class="mb-section" {quote} />
     {/if}
@@ -71,11 +73,11 @@
       disableParallaxOnDesktop={true}
       images={[
         { img: images[0], triggerPopup: true },
-        { img: images[1], triggerPopup: true }
+        { img: images[1], triggerPopup: true },
       ]} />
 
     {#if statement?.title && statement?.description}
-      <DescriptionBlock class="mb-section">
+      <DescriptionBlock class={cn(!!vr && 'mb-section')}>
         <svelte:fragment slot="intro" let:C>
           <C.Title>{statement.title}</C.Title>
         </svelte:fragment>
